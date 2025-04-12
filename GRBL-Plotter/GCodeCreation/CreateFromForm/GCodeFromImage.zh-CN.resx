@@ -772,4 +772,46 @@
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>像素艺术维度</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>对于路由器、激光或单色笔或刷子
+使用灰度值（0 - 255）来控制工具的深度或功率。
+生成灰度时将考虑颜色滤镜和效果。</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>灰度值特殊用途</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>适用于液体分配器或其他特殊机器。
+使用灰度值（0 - 255）来控制您需要的任何轴。
+生成灰度时将考虑颜色滤镜和效果。</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>对于路由器、激光或单色笔或刷子
+使用灰度值（0 - 255）来控制工具的深度或功率。
+生成灰度时将考虑颜色滤镜和效果。</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>较低的价值</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode 之后</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode 应用值</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode 之前</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>最小值（白色）</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>最大值（黑色）</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>来自代码/脚本</value>
+  </data>
 </root>

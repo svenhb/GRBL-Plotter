@@ -719,4 +719,50 @@
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>البعد بكسل الفن</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>لجهاز التوجيه، أو الليزر، أو قلم أو فرشاة أحادية اللون.
+
+يستخدم قيمة تدرج الرمادي (0 - 255) للتحكم في عمق أو قوة الأداة.
+
+ستُؤخذ مرشحات الألوان والتأثيرات في الاعتبار عند إنشاء تدرج الرمادي.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>قيمة رمادية للاستخدام الخاص</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>لموزعات السوائل أو غيرها من الآلات الخاصة.
+يستخدم قيمة التدرج الرمادي (٠ - ٢٥٥) للتحكم في أي محور تحتاجه.
+سيتم مراعاة فلاتر الألوان والتأثيرات عند إنشاء التدرج الرمادي.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>لجهاز التوجيه، أو الليزر، أو قلم أو فرشاة أحادية اللون.
+
+يستخدم قيمة تدرج الرمادي (0 - 255) للتحكم في عمق أو قوة الأداة.
+
+ستُؤخذ مرشحات الألوان والتأثيرات في الاعتبار عند إنشاء تدرج الرمادي.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>قيمة أقل</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>رمز GCode بعد</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>قيمة تطبيق رمز GCode</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>رمز GCode قبل</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>الحد الأدنى (أبيض)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>الحد الأقصى (أسود)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>من الكود/البرنامج النصي</value>
+  </data>
 </root>

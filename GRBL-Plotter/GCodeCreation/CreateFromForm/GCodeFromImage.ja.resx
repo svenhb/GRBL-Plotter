@@ -719,4 +719,46 @@
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>ピクセルアートの次元</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>ルーター、レーザー、単色ペン、ブラシの場合
+グレースケール値 (0 - 255) を使用して、ツールの深さやパワーを制御します。
+グレースケールを生成するときは、カラー フィルターと効果が考慮されます。</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>グレー値の特殊用途</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>液体ディスペンサーやその他の特殊機械用。
+グレースケール値 (0 - 255) を使用して、必要な軸を制御します。
+グレースケールを生成するときは、カラー フィルターと効果が考慮されます。</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>ルーター、レーザー、単色ペン、ブラシの場合
+グレースケール値 (0 - 255) を使用して、ツールの深さやパワーを制御します。
+グレースケールを生成するときは、カラー フィルターと効果が考慮されます。</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode 適用後</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode 適用値</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode 適用前</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>最小 (白)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>最大 (黒)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>コード/スクリプトから</value>
+  </data>
 </root>

@@ -694,4 +694,46 @@ Caso contrário, começa na borda inferior esquerda.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Dimensão Pixel Art</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Para roteador, laser ou caneta ou pincel de cor única
+Usa o valor de escala de cinza (0 - 255) para controlar a profundidade ou potência da ferramenta.
+Filtros de cor e efeitos serão considerados ao gerar escala de cinza.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Uso especial do valor cinza</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Para dispensador de líquidos ou outras máquinas especiais.
+Usa o valor de escala de cinza (0 - 255) para controlar qualquer eixo que você precisar.
+Filtros de cor e efeitos serão considerados ao gerar escala de cinza.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Para roteador, laser ou caneta ou pincel de cor única
+Usa o valor de escala de cinza (0 - 255) para controlar a profundidade ou potência da ferramenta.
+Filtros de cor e efeitos serão considerados ao gerar escala de cinza.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Valor inferior</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode depois</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode aplica valor</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode antes</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (biały)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Maks (czarny)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Do código/script</value>
+  </data>
 </root>

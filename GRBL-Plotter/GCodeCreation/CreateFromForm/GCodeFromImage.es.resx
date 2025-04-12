@@ -703,4 +703,46 @@ De lo contrario, comienza en el borde inferior izquierdo.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Dimensión de arte de píxeles</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Para fresadora, láser, lápiz o pincel de un solo color.
+Utiliza el valor de escala de grises (0-255) para controlar la profundidad o la potencia de la herramienta.
+Se tendrán en cuenta los filtros y efectos de color al generar la escala de grises.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Valor gris uso especial</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Para dispensadores de líquidos u otras máquinas especiales.
+Utiliza el valor de escala de grises (0-255) para controlar cualquier eje que necesite.
+Se considerarán filtros de color y efectos al generar la escala de grises.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Para fresadora, láser, lápiz o pincel de un solo color.
+Utiliza el valor de escala de grises (0-255) para controlar la profundidad o la potencia de la herramienta.
+Se tendrán en cuenta los filtros y efectos de color al generar la escala de grises.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Bajo valor</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>Código G después</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>Valor de aplicación del Código G</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Código G antes</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Mín. (blanco)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Máx. (negro)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Desde código/script</value>
+  </data>
 </root>

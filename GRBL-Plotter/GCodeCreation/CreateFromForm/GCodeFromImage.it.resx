@@ -717,4 +717,46 @@ Altrimenti inizia dal bordo inferiore sinistro.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Dimensione della pixel art</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Per router, laser o penna o pennello monocolore
+Utilizza il valore della scala di grigi (0 - 255) per controllare la profondità o la potenza dello strumento.
+I filtri colore e gli effetti saranno presi in considerazione quando si genera la scala di grigi.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Uso speciale valore grigio</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Per erogatori di liquidi o altre macchine speciali.
+Utilizza il valore della scala di grigi (0 - 255) per controllare qualsiasi asse necessario.
+I filtri colore e gli effetti saranno presi in considerazione quando si genera la scala di grigi.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Per router, laser o penna o pennello monocolore
+Utilizza il valore della scala di grigi (0 - 255) per controllare la profondità o la potenza dello strumento.
+I filtri colore e gli effetti saranno presi in considerazione quando si genera la scala di grigi.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Valore più basso</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode dopo</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode applica valore</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode prima</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (bianco)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Max (nero)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Dal codice/script</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -114,7 +114,17 @@ namespace GrblPlotter
         {
             Logger.Info("++++++ GCodeFromImage STOP ++++++");
             Properties.Settings.Default.locationImageForm = Location;
-            Properties.Settings.Default.importImagePixelArt = RbPixelArt.Checked;
+
+            int processingMode = Properties.Settings.Default.importImageProcessingMode;
+            if (RbGrayscalePattern.Checked) { Properties.Settings.Default.importImageProcessingMode=0; }
+            else if (RbGrayscaleVector.Checked) { Properties.Settings.Default.importImageProcessingMode = 1; }
+            else if (RbPixelArt.Checked) { Properties.Settings.Default.importImageProcessingMode = 2; }
+
+            if (RbStartGrayZ.Checked) { Properties.Settings.Default.importImageGrayAsMode=0; }
+            else if (RbStartGrayS.Checked) { Properties.Settings.Default.importImageGrayAsMode = 1; }
+            else if (RbStartGraySpecial.Checked) { Properties.Settings.Default.importImageGrayAsMode = 2; }
+
+            Properties.Settings.Default.Save();
 
             pictureBox1.Image = null;
             adjustedImage = null;
@@ -158,17 +168,6 @@ namespace GrblPlotter
         }
 
         #region load picture
-        //On form load
-        /* not used ??? */
-        private void GCodeFromImage_Load(object sender, EventArgs e)
-        {
-            lblStatus.Text = "Done";
-            GetToolTableSettings();
-            AutoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
-            RbStartGrayS.Checked = !Properties.Settings.Default.importImageGrayAsZ;
-            RbPixelArtShape.Checked = !Properties.Settings.Default.importImagePixelArtDrawDot;
-        }
-
         // load picture when form opens
         private void ImageToGCode_Load(object sender, EventArgs e)
         {
@@ -176,7 +175,6 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            RbStartGrayS.Checked = !Properties.Settings.Default.importImageGrayAsZ;
             RbPixelArtShape.Checked = !Properties.Settings.Default.importImagePixelArtDrawDot;
             RbPixelArtDrawShapeRect.Checked = !Properties.Settings.Default.importImagePixelArtDrawShapeCircle;
 
@@ -187,18 +185,37 @@ namespace GrblPlotter
                 else
                 { tabControl2.SelectedTab = tabPage2Gray; }
 
-                if (Properties.Settings.Default.importImageGrayVectorize)
-                { RbGrayscaleVector.Checked = true; }
-                else
-                { RbGrayscalePattern.Checked = true; }
+                int processingMode = Properties.Settings.Default.importImageProcessingMode;
+                if (processingMode <= 0)
+                {
+                    RbGrayscalePattern.Checked = true;
+                    GbOutputSizeSet.Visible = true;
+                    GbOutputSizeShow.Visible = false;
+                    RbGrayscaleVector_CheckedChanged(sender, e);
+                }
+                else if (processingMode == 1)
+                {
+                    RbGrayscaleVector.Checked = true;
+                    GbOutputSizeSet.Visible = true;
+                    GbOutputSizeShow.Visible = false;
+                    RbGrayscaleVector_CheckedChanged(sender, e);
+                }
+                else if (processingMode >= 2)
+                {
+                    RbPixelArt.Checked = true;
+                    GbOutputSizeSet.Visible = false;
+                    GbOutputSizeShow.Visible = true;
+                    RbGrayscaleVector_CheckedChanged(sender, e);
+                }
 
-                if (!Properties.Settings.Default.importImageGrayAsZ)
-                    RbStartGrayS.Checked = true;
+                int grayMode = Properties.Settings.Default.importImageGrayAsMode;
+                if (grayMode <= 0) { RbStartGrayZ.Checked = true; }
+                else if (grayMode == 1) { RbStartGrayS.Checked = true; }
+                else if (grayMode >= 2) { RbStartGraySpecial.Checked = true; }
 
                 TabControl2_SelectedIndexChanged(null, null);           // don't 'ApplyColorCorrections'			
             }
             EnableControlEvents();
-            RbPixelArt.Checked = Properties.Settings.Default.importImagePixelArt;
 
             ResetColorCorrectionControls();
 
@@ -207,6 +224,7 @@ namespace GrblPlotter
 
             ProcessLoading();   		// reset color corrections
             UpdateToolTableList();		// show tool-files and last loaded tools
+            Highlight();
         }
 
         private static string lastFile = "";
@@ -302,7 +320,7 @@ namespace GrblPlotter
                 MessageBox.Show(string.Format("Error on loading from URL '{0}'\r\n{1}", url, err.Message), "Error");
             }
         }
-		
+
         private void GCodeFromImage_DragEnter(object sender, DragEventArgs e)
         { e.Effect = DragDropEffects.All; }
 
@@ -359,7 +377,7 @@ namespace GrblPlotter
                 GenerateResultImageGray(ref resultToolNrArray);   	// fill resultToolNrArray (Image-Pixel=GrayVal)
         }
         #endregion
-		
+
         private void GetToolTableSettings()
         {
             if (useColorMode) // use color mode
@@ -449,7 +467,7 @@ namespace GrblPlotter
             }
             CheckedListBoxTools.SelectedIndexChanged += CheckedListBoxTools_SelectedIndexChanged;
         }
-		
+
         /// <summary>
         /// update result after deselecting tools
         /// </summary>
@@ -517,7 +535,7 @@ namespace GrblPlotter
             if (logEnable) Logger.Trace("ApplyColorCorrectionsEvent  sender:{0}   preventEvent:{1} ", ((Control)sender).Name, preventEvent);
             if (preventEvent) return;
             if ((sender.GetType() == typeof(RadioButton)) && !((RadioButton)sender).Checked) return;
-        //    if ((sender.GetType() == typeof(CheckBox)) && !((CheckBox)sender).Checked) return;
+            //    if ((sender.GetType() == typeof(CheckBox)) && !((CheckBox)sender).Checked) return;
 
             DisableControlEvents();
             {
@@ -573,7 +591,7 @@ namespace GrblPlotter
             resoFactorX = 1;
             resoFactorY = 1;
 
-            LbLSizeXPic.Text = originalImage.Width.ToString()+" px";
+            LbLSizeXPic.Text = originalImage.Width.ToString() + " px";
             LbLSizeYPic.Text = originalImage.Height.ToString() + " px";
             UpdateSizeControls();
 
@@ -601,7 +619,7 @@ namespace GrblPlotter
                 ySize = originalImage.Height * (int)NuDPixelArtDotsPerPixel.Value;
             }
             pixelCount = xSize * ySize;
-            Logger.Info("●●●  ApplyColorCorrections  pixelCount:{0}  Size:{1} x {2}   resoVal:{3}  desiredX:{4}  desiredY:{5}", pixelCount, xSize, ySize, nUDResoX.Value, resoDesiredX, resoDesiredY);
+            Logger.Info("●●●  ApplyColorCorrections  pixelCount:{0}  Size:{1} x {2}   resoVal:{3:0.0000}  desiredX:{4:0.0000}  desiredY:{5:0.0000}", pixelCount, xSize, ySize, nUDResoX.Value, resoDesiredX, resoDesiredY);
 
             try
             {
@@ -1181,7 +1199,7 @@ namespace GrblPlotter
                 }
             }
         }
-		
+
         /// <summary>
         /// Count amount of different colors in adjusted image
         /// </summary>
@@ -1367,12 +1385,12 @@ namespace GrblPlotter
                 oldPoint = e.Location;
             }
         }
-		
+
         private static String HexConverter(System.Drawing.Color c)
         {
             return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
         }
-		
+
         private void CbExceptColor_CheckedChanged(object sender, EventArgs e)
         {
             if (cbExceptColor.Checked)
@@ -1559,6 +1577,11 @@ namespace GrblPlotter
             else
             { RbStartGrayS.BackColor = GbStartGrayS.BackColor = Color.WhiteSmoke; }
 
+            if (RbStartGraySpecial.Checked)
+            { RbStartGraySpecial.BackColor = GbStartGraySpecial.BackColor = Color.Yellow; }
+            else
+            { RbStartGraySpecial.BackColor = GbStartGraySpecial.BackColor = Color.WhiteSmoke; }
+
             if (RbEngravingLine.Checked)
             { RbEngravingLine.BackColor = GbEngravingLine.BackColor = Color.Yellow; }
             else
@@ -1597,7 +1620,40 @@ namespace GrblPlotter
 
         private void BtnReloadPattern_Click(object sender, EventArgs e)
         {
-			// dummy function, 
+            // dummy function, 
         }
+
+        private void TbPixelArtDrawShapeFileDialog_Click(object sender, EventArgs e)
+        {
+            SetFilePath(TbPixelArtDrawShapeScript);
+        }
+
+        private void SetFilePath(TextBox tmp, string filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*")
+        {
+            OpenFileDialog opnDlg = new OpenFileDialog();
+            string ipath = Datapath.MakeAbsolutePath(tmp.Text);
+            Logger.Info("SetFilePath initiial: box:{0}   makeAbsolute:{1}", tmp.Text, ipath);
+            opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
+            opnDlg.Filter = filter;  //"GCode (*.nc)|*.nc|All Files (*.*)|*.*";
+            //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
+            if (opnDlg.ShowDialog(this) == DialogResult.OK)
+            {
+                FileInfo f = new FileInfo(opnDlg.FileName);
+                string path;
+                Logger.Info("SetFilePath DirectoryName:{0}   Datapath.AppDataFolder:{1}", f.DirectoryName, Datapath.AppDataFolder);
+                if (f.DirectoryName == Datapath.AppDataFolder)
+                    path = f.Name;  // only file name
+                else if (f.DirectoryName.StartsWith(Datapath.AppDataFolder))
+                    path = f.FullName.Replace(Datapath.AppDataFolder, ".");
+                else
+                    path = f.FullName;  // Full path
+                if (path.StartsWith(@".\"))
+                    path = path.Substring(2);
+                tmp.Text = path;
+                Logger.Info("SetFilePath changed: box:{0}   makeAbsolute:{1}", path, opnDlg.FileName);
+            }
+            opnDlg.Dispose();
+        }
+
     }
 }

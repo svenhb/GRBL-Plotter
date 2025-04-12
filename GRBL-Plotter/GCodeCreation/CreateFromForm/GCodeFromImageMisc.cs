@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -167,6 +167,7 @@ namespace GrblPlotter
             tabControl2.SelectedIndexChanged -= TabControl2_SelectedIndexChanged;
             RbStartGrayS.CheckedChanged -= RbGrayZ_CheckedChanged;
             RbStartGrayZ.CheckedChanged -= RbGrayZ_CheckedChanged;
+            RbStartGraySpecial.CheckedChanged -= RbGrayZ_CheckedChanged;
         }
         private void EnableControlEvents()
         {
@@ -214,6 +215,7 @@ namespace GrblPlotter
             tabControl2.SelectedIndexChanged += TabControl2_SelectedIndexChanged;
             RbStartGrayS.CheckedChanged += RbGrayZ_CheckedChanged;
             RbStartGrayZ.CheckedChanged += RbGrayZ_CheckedChanged;
+            RbStartGraySpecial.CheckedChanged += RbGrayZ_CheckedChanged;
             preventEvent = false;
         }
 
@@ -922,19 +924,26 @@ namespace GrblPlotter
                 gBgcodeSelection.BackColor = Color.Yellow;
                 GbPixelArt.BackColor = Color.WhiteSmoke;
                 tabControl3.SelectedIndex = 1;
+                GbOutputSizeSet.Visible = true;
+                GbOutputSizeShow.Visible = false;
             }
-            else if (RbGrayscaleVector.Checked)
+            else if (RbGrayscalePattern.Checked)
             {
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
                 GbPixelArt.BackColor = Color.WhiteSmoke;
                 tabControl3.SelectedIndex = 0;
+                GbOutputSizeSet.Visible = true;
+                GbOutputSizeShow.Visible = false;
             }
             else if (RbPixelArt.Checked)
             {
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
                 GbPixelArt.BackColor = Color.Yellow;
                 tabControl3.SelectedIndex = 2;
+                GbOutputSizeSet.Visible = false;
+                GbOutputSizeShow.Visible = true;
             }
+            tabControl3.Invalidate();
             tabControl3.SelectedIndexChanged += TabControl3_SelectedIndexChanged;
 
             ResetColorCorrectionControls();

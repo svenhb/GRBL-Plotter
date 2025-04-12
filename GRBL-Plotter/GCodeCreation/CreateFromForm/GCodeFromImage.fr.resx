@@ -703,4 +703,46 @@ Sinon, cela commence sur le bord inférieur gauche.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Dimension Pixel Art</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Pour routeur, laser, stylo ou pinceau monochrome
+Utilise la valeur de gris (0 à 255) pour contrôler la profondeur ou la puissance de l'outil.
+Les filtres et effets de couleur seront pris en compte lors de la génération des niveaux de gris.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Valeur de gris usage spécial</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Pour distributeur de liquide ou autres machines spéciales.
+Utilise la valeur de niveaux de gris (0 à 255) pour contrôler les axes nécessaires.
+Les filtres et effets de couleur seront pris en compte lors de la génération des niveaux de gris.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Pour routeur, laser, stylo ou pinceau monochrome
+Utilise la valeur de gris (0 à 255) pour contrôler la profondeur ou la puissance de l'outil.
+Les filtres et effets de couleur seront pris en compte lors de la génération des niveaux de gris.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Valeur inférieure</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode après</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>Valeur d'application du GCode</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Valeur</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode avant</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (blanc)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Max (noir)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>À partir du code/script</value>
+  </data>
 </root>

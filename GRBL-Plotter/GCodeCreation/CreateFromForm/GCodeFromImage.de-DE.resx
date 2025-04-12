@@ -678,4 +678,46 @@ Farbfilter und Effekte werden bei der Generierung von Graustufen berücksichtigt
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Pixel-Art-Dimension</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Für Router, Laser oder einfarbigen Stift oder Pinsel.
+Verwendet den Graustufenwert (0–255), um die Tiefe oder Leistung des Werkzeugs zu steuern.
+Farbfilter und -effekte werden bei der Graustufengenerierung berücksichtigt.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Grauwert-Sondernutzung</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Für Flüssigkeitsspender oder andere Spezialmaschinen.
+Verwendet den Graustufenwert (0–255) zur Steuerung der gewünschten Achsen.
+Farbfilter und -effekte werden bei der Graustufengenerierung berücksichtigt.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Für Router, Laser oder einfarbigen Stift oder Pinsel.
+Verwendet den Graustufenwert (0–255), um die Tiefe oder Leistung des Werkzeugs zu steuern.
+Farbfilter und -effekte werden bei der Graustufengenerierung berücksichtigt.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode nach</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode-Wert anwenden</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode vor</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (weiß)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Max (schwarz)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Aus Code/Skript</value>
+  </data>
 </root>

@@ -712,4 +712,46 @@
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Пиксельное измерение</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Для маршрутизатора, лазера или одноцветной ручки или кисти
+Использует значение градаций серого (0 - 255) для управления глубиной или мощностью инструмента.
+При создании градаций серого будут учитываться цветовые фильтры и эффекты.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Значение серого специального назначения</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Для дозатора жидкости или других специальных машин.
+Использует значение шкалы серого (0–255) для управления любой необходимой вам осью.
+Цветовые фильтры и эффекты будут учитываться при создании шкалы серого.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Для маршрутизатора, лазера или одноцветной ручки или кисти
+Использует значение градаций серого (0 - 255) для управления глубиной или мощностью инструмента.
+При создании градаций серого будут учитываться цветовые фильтры и эффекты.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Меньшее значение</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode после</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode применить значение</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode до</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Мин (белый)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Макс (черный)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Из кода/скрипта</value>
+  </data>
 </root>

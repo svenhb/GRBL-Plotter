@@ -716,4 +716,46 @@ Jinak začíná na levém dolním okraji.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Rozměr Pixel Art</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Pro router, laser nebo jednobarevné pero nebo štětec
+Použije hodnotu ve stupních šedi (0 - 255) k ovládání hloubky nebo výkonu nástroje.
+Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Šedá hodnota speciální použití</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Pro dávkovače kapalin nebo jiné speciální stroje.
+Použije hodnotu ve stupních šedi (0 - 255) k ovládání jakékoli osy, kterou potřebujete.
+Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Pro router, laser nebo jednobarevné pero nebo štětec
+Použije hodnotu ve stupních šedi (0 - 255) k ovládání hloubky nebo výkonu nástroje.
+Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Nižší hodnota</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode po</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>Hodnota použití GCode</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Hodnota</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode dříve</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (bílá)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Max (černá)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Z kódu / skriptu</value>
+  </data>
 </root>

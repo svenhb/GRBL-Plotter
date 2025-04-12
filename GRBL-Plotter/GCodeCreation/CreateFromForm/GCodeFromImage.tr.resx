@@ -722,4 +722,46 @@ Aksi takdirde sol alt kenardan başlar.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Piksel Sanatı boyutu</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Yönlendirici, lazer veya tek renkli kalem veya fırça için
+Alet derinliğini veya gücünü kontrol etmek için gri tonlama değerini (0 - 255) kullanır.
+Gri tonlama oluşturulurken renk filtreleri ve efektler dikkate alınacaktır.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Gri değeri özel kullanım</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Sıvı dağıtıcı veya diğer özel makineler için.
+Gri tonlama değerini (0 - 255) ihtiyaç duyduğunuz herhangi bir ekseni kontrol etmek için kullanır.
+Gri tonlama oluşturulurken renk filtreleri ve efektler dikkate alınacaktır.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Yönlendirici, lazer veya tek renkli kalem veya fırça için
+Alet derinliğini veya gücünü kontrol etmek için gri tonlama değerini (0 - 255) kullanır.
+Gri tonlama oluşturulurken renk filtreleri ve efektler dikkate alınacaktır.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Düşük değer</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode sonrası</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode uygulama değeri</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode öncesi</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Min (beyaz)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Max (siyah)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Koddan / komut dosyasından</value>
+  </data>
 </root>

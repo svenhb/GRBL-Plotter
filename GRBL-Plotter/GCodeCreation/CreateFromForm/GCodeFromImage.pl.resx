@@ -713,4 +713,46 @@ Wyniki „3” to 3x3 = 9 kropek.</value>
   <data name="GbOutputSizeShow.Text" xml:space="preserve">
     <value>Wymiar sztuki pikseli</value>
   </data>
+  <data name="RbStartGrayS.ToolTip" xml:space="preserve">
+    <value>Do routera, lasera lub jednokolorowego pióra lub pędzla
+Używa wartości skali szarości (0–255), aby kontrolować głębokość lub moc narzędzia.
+Filtry kolorów i efekty zostaną uwzględnione podczas generowania skali szarości.</value>
+  </data>
+  <data name="RbStartGraySpecial.Text" xml:space="preserve">
+    <value>Specjalne zastosowanie wartości szarości</value>
+  </data>
+  <data name="RbStartGraySpecial.ToolTip" xml:space="preserve">
+    <value>Do dozowników cieczy lub innych specjalnych maszyn.
+Używa wartości skali szarości (0 - 255) do kontrolowania dowolnej potrzebnej osi.
+Filtry kolorów i efekty zostaną uwzględnione podczas generowania skali szarości.</value>
+  </data>
+  <data name="RbStartGrayZ.ToolTip" xml:space="preserve">
+    <value>Do routera, lasera lub jednokolorowego pióra lub pędzla
+Używa wartości skali szarości (0–255), aby kontrolować głębokość lub moc narzędzia.
+Filtry kolorów i efekty zostaną uwzględnione podczas generowania skali szarości.</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Niższa wartość</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>GCode po</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>GCode zastosuj wartość</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Wartość</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>GCode przed</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Maks. (biały)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Min. (czarny)</value>
+  </data>
+  <data name="RbPixelArtDrawShapeScript.Text" xml:space="preserve">
+    <value>Z kodu/skryptu</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
  * 2023-03-14 l:1226 f:BtnApplyShape_Click check min/max before setting the value; save also avoidZUp, finalMove0, insertShape
  * 2023-06-05 allow X = 0.0, highlight CbInsertCode
  * 2023-07-31 l:156 f:BtnApply_Click fix group and figure tags
+ * 2025-03-10 integrate INI settings
 */
 
 using System;
@@ -1324,5 +1325,26 @@ namespace GrblPlotter
             else
                 ctrl.BackColor = Color.Transparent;
 		}
+    }
+	
+    public partial class IniFile
+    {
+        internal static string sectionShapeTool = "Shape Tool";
+        internal static string[,] keyValueShapeTool = {
+            {"Diameter",     "createShapeToolDiameter"   },
+            {"Z Step",   	 "createShapeToolZStep" },
+            {"XY Feedrate",  "createShapeToolFeedXY"  },
+            {"Z Feedrate",   "createShapeToolFeedZ"    },
+            {"Overlap",      "createShapeToolOverlap"   },
+            {"Spindle Speed","createShapeToolSpindleSpeed" },
+			
+            {"Z Final", "importGCZDown"  },
+            {"Origin",  "createShapeOrigin"},
+            {"Path",   	"createShapeToolPath" },
+            {"Shape",	"createShapeType"   },
+            {"X Value", "createShapeX"   },
+            {"Y Value", "createShapeY"   },
+            {"R Value", "createShapeR"   }
+        };
     }
 }

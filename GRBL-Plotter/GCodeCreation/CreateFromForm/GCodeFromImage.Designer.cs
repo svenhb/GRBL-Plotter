@@ -136,9 +136,13 @@
             this.btnGetPWMValues = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
+            this.RbStartGrayS = new System.Windows.Forms.RadioButton();
             this.cBToolChange = new System.Windows.Forms.CheckBox();
             this.cBImportGCToolM0 = new System.Windows.Forms.CheckBox();
             this.cBImportGCTool = new System.Windows.Forms.CheckBox();
+            this.RbStartGraySpecial = new System.Windows.Forms.RadioButton();
+            this.RbStartGrayZ = new System.Windows.Forms.RadioButton();
+            this.nUDSpecialBottom = new System.Windows.Forms.NumericUpDown();
             this.CbLaserOnly = new System.Windows.Forms.CheckBox();
             this.cBLaserModeOffEnd = new System.Windows.Forms.CheckBox();
             this.cBLaserModeOnStart = new System.Windows.Forms.CheckBox();
@@ -156,7 +160,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.nUDZTop = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.RbStartGrayS = new System.Windows.Forms.RadioButton();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.cBPreview = new System.Windows.Forms.CheckBox();
@@ -178,12 +181,21 @@
             this.CboxToolFiles = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.tabPage2Gray = new System.Windows.Forms.TabPage();
-            this.RbStartGrayZ = new System.Windows.Forms.RadioButton();
-            this.LblStartGrayMode = new System.Windows.Forms.Label();
+            this.GbStartGraySpecial = new System.Windows.Forms.GroupBox();
+            this.tBCodeValue2 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.tBCodeAfter = new System.Windows.Forms.TextBox();
+            this.tBCodeValue1 = new System.Windows.Forms.TextBox();
+            this.tBCodeBefore = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.nUDSpecialTop = new System.Windows.Forms.NumericUpDown();
+            this.label39 = new System.Windows.Forms.Label();
             this.GbStartGrayS = new System.Windows.Forms.GroupBox();
             this.nUDSTop = new System.Windows.Forms.NumericUpDown();
             this.tabPageSize = new System.Windows.Forms.TabPage();
-            this.GbOutputSizeShow = new System.Windows.Forms.GroupBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.RbEngravingPattern = new System.Windows.Forms.RadioButton();
@@ -201,6 +213,9 @@
             this.GbPixelArt = new System.Windows.Forms.GroupBox();
             this.RbPixelArtShape = new System.Windows.Forms.RadioButton();
             this.GbDrawShape = new System.Windows.Forms.GroupBox();
+            this.TbPixelArtDrawShapeFileDialog = new System.Windows.Forms.Button();
+            this.TbPixelArtDrawShapeScript = new System.Windows.Forms.TextBox();
+            this.RbPixelArtDrawShapeScript = new System.Windows.Forms.RadioButton();
             this.CbPixelArtShapeFill = new System.Windows.Forms.CheckBox();
             this.label33 = new System.Windows.Forms.Label();
             this.NuDPixelArtShapePenDiameter = new System.Windows.Forms.NumericUpDown();
@@ -218,6 +233,15 @@
             this.RbPixelArt = new System.Windows.Forms.RadioButton();
             this.RbGrayscaleVector = new System.Windows.Forms.RadioButton();
             this.RbGrayscalePattern = new System.Windows.Forms.RadioButton();
+            this.GbOutputSizeShow = new System.Windows.Forms.GroupBox();
+            this.LbLSizeYCode = new System.Windows.Forms.Label();
+            this.LbLSizeXCode = new System.Windows.Forms.Label();
+            this.LbLSizeYPic = new System.Windows.Forms.Label();
+            this.LbLSizeXPic = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.GbToolEnable = new System.Windows.Forms.GroupBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -252,14 +276,6 @@
             this.lblSaturation = new System.Windows.Forms.Label();
             this.tBarSaturation = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.LbLSizeXPic = new System.Windows.Forms.Label();
-            this.LbLSizeYPic = new System.Windows.Forms.Label();
-            this.LbLSizeYCode = new System.Windows.Forms.Label();
-            this.LbLSizeXCode = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.GbOutputSizeSet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDResoX)).BeginInit();
@@ -289,6 +305,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBBMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColorPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGCodeOutlineSmooth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSpecialBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEngravingAngle)).BeginInit();
@@ -304,10 +321,11 @@
             this.tabPage2Color.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage2Gray.SuspendLayout();
+            this.GbStartGraySpecial.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSpecialTop)).BeginInit();
             this.GbStartGrayS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSTop)).BeginInit();
             this.tabPageSize.SuspendLayout();
-            this.GbOutputSizeShow.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GbEngravingPattern.SuspendLayout();
@@ -322,6 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NuDPixelArtDotSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NuDPixelArtDotsPerPixel)).BeginInit();
             this.GbGrayscaleProcess.SuspendLayout();
+            this.GbOutputSizeShow.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.GbToolEnable.SuspendLayout();
             this.GbColorReduction.SuspendLayout();
@@ -1278,6 +1297,14 @@
             this.label29.Name = "label29";
             this.toolTip1.SetToolTip(this.label29, resources.GetString("label29.ToolTip"));
             // 
+            // RbStartGrayS
+            // 
+            resources.ApplyResources(this.RbStartGrayS, "RbStartGrayS");
+            this.RbStartGrayS.Name = "RbStartGrayS";
+            this.toolTip1.SetToolTip(this.RbStartGrayS, resources.GetString("RbStartGrayS.ToolTip"));
+            this.RbStartGrayS.UseVisualStyleBackColor = true;
+            this.RbStartGrayS.CheckedChanged += new System.EventHandler(this.RbGrayZ_CheckedChanged);
+            // 
             // cBToolChange
             // 
             resources.ApplyResources(this.cBToolChange, "cBToolChange");
@@ -1304,6 +1331,44 @@
             this.cBImportGCTool.Name = "cBImportGCTool";
             this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
             this.cBImportGCTool.UseVisualStyleBackColor = true;
+            // 
+            // RbStartGraySpecial
+            // 
+            resources.ApplyResources(this.RbStartGraySpecial, "RbStartGraySpecial");
+            this.RbStartGraySpecial.Name = "RbStartGraySpecial";
+            this.toolTip1.SetToolTip(this.RbStartGraySpecial, resources.GetString("RbStartGraySpecial.ToolTip"));
+            this.RbStartGraySpecial.UseVisualStyleBackColor = true;
+            this.RbStartGraySpecial.CheckedChanged += new System.EventHandler(this.RbGrayZ_CheckedChanged);
+            // 
+            // RbStartGrayZ
+            // 
+            this.RbStartGrayZ.BackColor = System.Drawing.Color.Yellow;
+            this.RbStartGrayZ.Checked = true;
+            resources.ApplyResources(this.RbStartGrayZ, "RbStartGrayZ");
+            this.RbStartGrayZ.Name = "RbStartGrayZ";
+            this.RbStartGrayZ.TabStop = true;
+            this.toolTip1.SetToolTip(this.RbStartGrayZ, resources.GetString("RbStartGrayZ.ToolTip"));
+            this.RbStartGrayZ.UseVisualStyleBackColor = false;
+            this.RbStartGrayZ.CheckedChanged += new System.EventHandler(this.RbGrayZ_CheckedChanged);
+            // 
+            // nUDSpecialBottom
+            // 
+            this.nUDSpecialBottom.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDSpecialBottom.DecimalPlaces = 2;
+            resources.ApplyResources(this.nUDSpecialBottom, "nUDSpecialBottom");
+            this.nUDSpecialBottom.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDSpecialBottom.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDSpecialBottom.Name = "nUDSpecialBottom";
+            this.toolTip1.SetToolTip(this.nUDSpecialBottom, resources.GetString("nUDSpecialBottom.ToolTip"));
+            this.nUDSpecialBottom.Value = global::GrblPlotter.Properties.Settings.Default.importImageSpecialMin;
             // 
             // CbLaserOnly
             // 
@@ -1476,13 +1541,6 @@
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // RbStartGrayS
-            // 
-            resources.ApplyResources(this.RbStartGrayS, "RbStartGrayS");
-            this.RbStartGrayS.Name = "RbStartGrayS";
-            this.RbStartGrayS.UseVisualStyleBackColor = true;
-            this.RbStartGrayS.CheckedChanged += new System.EventHandler(this.RbGrayZ_CheckedChanged);
-            // 
             // label22
             // 
             resources.ApplyResources(this.label22, "label22");
@@ -1642,34 +1700,114 @@
             // 
             // tabPage2Gray
             // 
+            this.tabPage2Gray.Controls.Add(this.RbStartGraySpecial);
             this.tabPage2Gray.Controls.Add(this.RbStartGrayZ);
+            this.tabPage2Gray.Controls.Add(this.GbStartGraySpecial);
             this.tabPage2Gray.Controls.Add(this.RbStartGrayS);
-            this.tabPage2Gray.Controls.Add(this.LblStartGrayMode);
             this.tabPage2Gray.Controls.Add(this.GbStartGrayS);
             this.tabPage2Gray.Controls.Add(this.GbStartGrayZ);
             resources.ApplyResources(this.tabPage2Gray, "tabPage2Gray");
             this.tabPage2Gray.Name = "tabPage2Gray";
             this.tabPage2Gray.UseVisualStyleBackColor = true;
             // 
-            // RbStartGrayZ
+            // GbStartGraySpecial
             // 
-            this.RbStartGrayZ.BackColor = System.Drawing.Color.Yellow;
-            this.RbStartGrayZ.Checked = global::GrblPlotter.Properties.Settings.Default.importImageGrayAsZ;
-            this.RbStartGrayZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importImageGrayAsZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.RbStartGrayZ, "RbStartGrayZ");
-            this.RbStartGrayZ.Name = "RbStartGrayZ";
-            this.RbStartGrayZ.TabStop = true;
-            this.RbStartGrayZ.UseVisualStyleBackColor = false;
-            this.RbStartGrayZ.CheckedChanged += new System.EventHandler(this.RbGrayZ_CheckedChanged);
+            this.GbStartGraySpecial.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbStartGraySpecial.Controls.Add(this.tBCodeValue2);
+            this.GbStartGraySpecial.Controls.Add(this.label43);
+            this.GbStartGraySpecial.Controls.Add(this.label42);
+            this.GbStartGraySpecial.Controls.Add(this.label41);
+            this.GbStartGraySpecial.Controls.Add(this.label40);
+            this.GbStartGraySpecial.Controls.Add(this.tBCodeAfter);
+            this.GbStartGraySpecial.Controls.Add(this.tBCodeValue1);
+            this.GbStartGraySpecial.Controls.Add(this.tBCodeBefore);
+            this.GbStartGraySpecial.Controls.Add(this.label38);
+            this.GbStartGraySpecial.Controls.Add(this.nUDSpecialTop);
+            this.GbStartGraySpecial.Controls.Add(this.label39);
+            this.GbStartGraySpecial.Controls.Add(this.nUDSpecialBottom);
+            resources.ApplyResources(this.GbStartGraySpecial, "GbStartGraySpecial");
+            this.GbStartGraySpecial.Name = "GbStartGraySpecial";
+            this.GbStartGraySpecial.TabStop = false;
             // 
-            // LblStartGrayMode
+            // tBCodeValue2
             // 
-            this.LblStartGrayMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            resources.ApplyResources(this.LblStartGrayMode, "LblStartGrayMode");
-            this.LblStartGrayMode.Name = "LblStartGrayMode";
+            this.tBCodeValue2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialCodeValue2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBCodeValue2, "tBCodeValue2");
+            this.tBCodeValue2.Name = "tBCodeValue2";
+            this.tBCodeValue2.Text = global::GrblPlotter.Properties.Settings.Default.importImageSpecialCodeValue2;
+            // 
+            // label43
+            // 
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.Name = "label43";
+            // 
+            // label42
+            // 
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.Name = "label42";
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            // 
+            // tBCodeAfter
+            // 
+            this.tBCodeAfter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialCodeAfter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBCodeAfter, "tBCodeAfter");
+            this.tBCodeAfter.Name = "tBCodeAfter";
+            this.tBCodeAfter.Text = global::GrblPlotter.Properties.Settings.Default.importImageSpecialCodeAfter;
+            // 
+            // tBCodeValue1
+            // 
+            this.tBCodeValue1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialCodeValue1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBCodeValue1, "tBCodeValue1");
+            this.tBCodeValue1.Name = "tBCodeValue1";
+            this.tBCodeValue1.Text = global::GrblPlotter.Properties.Settings.Default.importImageSpecialCodeValue1;
+            // 
+            // tBCodeBefore
+            // 
+            this.tBCodeBefore.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialCodeBefore", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBCodeBefore, "tBCodeBefore");
+            this.tBCodeBefore.Name = "tBCodeBefore";
+            this.tBCodeBefore.Text = global::GrblPlotter.Properties.Settings.Default.importImageSpecialCodeBefore;
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // nUDSpecialTop
+            // 
+            this.nUDSpecialTop.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importImageSpecialMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDSpecialTop.DecimalPlaces = 2;
+            resources.ApplyResources(this.nUDSpecialTop, "nUDSpecialTop");
+            this.nUDSpecialTop.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDSpecialTop.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDSpecialTop.Name = "nUDSpecialTop";
+            this.nUDSpecialTop.Value = global::GrblPlotter.Properties.Settings.Default.importImageSpecialMax;
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
             // 
             // GbStartGrayS
             // 
+            this.GbStartGrayS.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbStartGrayS.Controls.Add(this.CbLaserOnly);
             this.GbStartGrayS.Controls.Add(this.cBLaserModeOffEnd);
             this.GbStartGrayS.Controls.Add(this.cBLaserModeOnStart);
@@ -1701,28 +1839,13 @@
             // 
             // tabPageSize
             // 
-            this.tabPageSize.Controls.Add(this.GbOutputSizeShow);
             this.tabPageSize.Controls.Add(this.tabControl3);
             this.tabPageSize.Controls.Add(this.GbGrayscaleProcess);
             this.tabPageSize.Controls.Add(this.GbOutputSizeSet);
+            this.tabPageSize.Controls.Add(this.GbOutputSizeShow);
             resources.ApplyResources(this.tabPageSize, "tabPageSize");
             this.tabPageSize.Name = "tabPageSize";
             this.tabPageSize.UseVisualStyleBackColor = true;
-            // 
-            // GbOutputSizeShow
-            // 
-            this.GbOutputSizeShow.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.GbOutputSizeShow.Controls.Add(this.LbLSizeYCode);
-            this.GbOutputSizeShow.Controls.Add(this.LbLSizeXCode);
-            this.GbOutputSizeShow.Controls.Add(this.LbLSizeYPic);
-            this.GbOutputSizeShow.Controls.Add(this.LbLSizeXPic);
-            this.GbOutputSizeShow.Controls.Add(this.label37);
-            this.GbOutputSizeShow.Controls.Add(this.label36);
-            this.GbOutputSizeShow.Controls.Add(this.label35);
-            this.GbOutputSizeShow.Controls.Add(this.label34);
-            resources.ApplyResources(this.GbOutputSizeShow, "GbOutputSizeShow");
-            this.GbOutputSizeShow.Name = "GbOutputSizeShow";
-            this.GbOutputSizeShow.TabStop = false;
             // 
             // tabControl3
             // 
@@ -1883,6 +2006,9 @@
             // 
             // GbDrawShape
             // 
+            this.GbDrawShape.Controls.Add(this.TbPixelArtDrawShapeFileDialog);
+            this.GbDrawShape.Controls.Add(this.TbPixelArtDrawShapeScript);
+            this.GbDrawShape.Controls.Add(this.RbPixelArtDrawShapeScript);
             this.GbDrawShape.Controls.Add(this.CbPixelArtShapeFill);
             this.GbDrawShape.Controls.Add(this.label33);
             this.GbDrawShape.Controls.Add(this.NuDPixelArtShapePenDiameter);
@@ -1891,6 +2017,29 @@
             resources.ApplyResources(this.GbDrawShape, "GbDrawShape");
             this.GbDrawShape.Name = "GbDrawShape";
             this.GbDrawShape.TabStop = false;
+            // 
+            // TbPixelArtDrawShapeFileDialog
+            // 
+            resources.ApplyResources(this.TbPixelArtDrawShapeFileDialog, "TbPixelArtDrawShapeFileDialog");
+            this.TbPixelArtDrawShapeFileDialog.Name = "TbPixelArtDrawShapeFileDialog";
+            this.TbPixelArtDrawShapeFileDialog.UseVisualStyleBackColor = true;
+            this.TbPixelArtDrawShapeFileDialog.Click += new System.EventHandler(this.TbPixelArtDrawShapeFileDialog_Click);
+            // 
+            // TbPixelArtDrawShapeScript
+            // 
+            this.TbPixelArtDrawShapeScript.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importImagePixelArtDrawShapeScriptText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbPixelArtDrawShapeScript, "TbPixelArtDrawShapeScript");
+            this.TbPixelArtDrawShapeScript.Name = "TbPixelArtDrawShapeScript";
+            this.TbPixelArtDrawShapeScript.Text = global::GrblPlotter.Properties.Settings.Default.importImagePixelArtDrawShapeScriptText;
+            // 
+            // RbPixelArtDrawShapeScript
+            // 
+            resources.ApplyResources(this.RbPixelArtDrawShapeScript, "RbPixelArtDrawShapeScript");
+            this.RbPixelArtDrawShapeScript.Checked = global::GrblPlotter.Properties.Settings.Default.importImagePixelArtDrawShapeScript;
+            this.RbPixelArtDrawShapeScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importImagePixelArtDrawShapeScript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbPixelArtDrawShapeScript.Name = "RbPixelArtDrawShapeScript";
+            this.RbPixelArtDrawShapeScript.TabStop = true;
+            this.RbPixelArtDrawShapeScript.UseVisualStyleBackColor = true;
             // 
             // CbPixelArtShapeFill
             // 
@@ -2059,6 +2208,61 @@
             this.RbGrayscalePattern.TabStop = true;
             this.RbGrayscalePattern.UseVisualStyleBackColor = true;
             this.RbGrayscalePattern.CheckedChanged += new System.EventHandler(this.RbGrayscaleVector_CheckedChanged);
+            // 
+            // GbOutputSizeShow
+            // 
+            this.GbOutputSizeShow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbOutputSizeShow.Controls.Add(this.LbLSizeYCode);
+            this.GbOutputSizeShow.Controls.Add(this.LbLSizeXCode);
+            this.GbOutputSizeShow.Controls.Add(this.LbLSizeYPic);
+            this.GbOutputSizeShow.Controls.Add(this.LbLSizeXPic);
+            this.GbOutputSizeShow.Controls.Add(this.label37);
+            this.GbOutputSizeShow.Controls.Add(this.label36);
+            this.GbOutputSizeShow.Controls.Add(this.label35);
+            this.GbOutputSizeShow.Controls.Add(this.label34);
+            resources.ApplyResources(this.GbOutputSizeShow, "GbOutputSizeShow");
+            this.GbOutputSizeShow.Name = "GbOutputSizeShow";
+            this.GbOutputSizeShow.TabStop = false;
+            // 
+            // LbLSizeYCode
+            // 
+            resources.ApplyResources(this.LbLSizeYCode, "LbLSizeYCode");
+            this.LbLSizeYCode.Name = "LbLSizeYCode";
+            // 
+            // LbLSizeXCode
+            // 
+            resources.ApplyResources(this.LbLSizeXCode, "LbLSizeXCode");
+            this.LbLSizeXCode.Name = "LbLSizeXCode";
+            // 
+            // LbLSizeYPic
+            // 
+            resources.ApplyResources(this.LbLSizeYPic, "LbLSizeYPic");
+            this.LbLSizeYPic.Name = "LbLSizeYPic";
+            // 
+            // LbLSizeXPic
+            // 
+            resources.ApplyResources(this.LbLSizeXPic, "LbLSizeXPic");
+            this.LbLSizeXPic.Name = "LbLSizeXPic";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
             // 
             // tabPage4
             // 
@@ -2350,46 +2554,6 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // label34
-            // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.Name = "label34";
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.Name = "label35";
-            // 
-            // label36
-            // 
-            resources.ApplyResources(this.label36, "label36");
-            this.label36.Name = "label36";
-            // 
-            // label37
-            // 
-            resources.ApplyResources(this.label37, "label37");
-            this.label37.Name = "label37";
-            // 
-            // LbLSizeXPic
-            // 
-            resources.ApplyResources(this.LbLSizeXPic, "LbLSizeXPic");
-            this.LbLSizeXPic.Name = "LbLSizeXPic";
-            // 
-            // LbLSizeYPic
-            // 
-            resources.ApplyResources(this.LbLSizeYPic, "LbLSizeYPic");
-            this.LbLSizeYPic.Name = "LbLSizeYPic";
-            // 
-            // LbLSizeYCode
-            // 
-            resources.ApplyResources(this.LbLSizeYCode, "LbLSizeYCode");
-            this.LbLSizeYCode.Name = "LbLSizeYCode";
-            // 
-            // LbLSizeXCode
-            // 
-            resources.ApplyResources(this.LbLSizeXCode, "LbLSizeXCode");
-            this.LbLSizeXCode.Name = "LbLSizeXCode";
-            // 
             // GCodeFromImage
             // 
             this.AllowDrop = true;
@@ -2451,6 +2615,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBBMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColorPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGCodeOutlineSmooth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSpecialBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEngravingAngle)).EndInit();
@@ -2473,12 +2638,13 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2Gray.ResumeLayout(false);
+            this.GbStartGraySpecial.ResumeLayout(false);
+            this.GbStartGraySpecial.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSpecialTop)).EndInit();
             this.GbStartGrayS.ResumeLayout(false);
             this.GbStartGrayS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSTop)).EndInit();
             this.tabPageSize.ResumeLayout(false);
-            this.GbOutputSizeShow.ResumeLayout(false);
-            this.GbOutputSizeShow.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.GbEngravingPattern.ResumeLayout(false);
@@ -2499,6 +2665,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NuDPixelArtDotsPerPixel)).EndInit();
             this.GbGrayscaleProcess.ResumeLayout(false);
             this.GbGrayscaleProcess.PerformLayout();
+            this.GbOutputSizeShow.ResumeLayout(false);
+            this.GbOutputSizeShow.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.GbToolEnable.ResumeLayout(false);
             this.GbToolEnable.PerformLayout();
@@ -2673,7 +2841,6 @@
         private System.Windows.Forms.RadioButton RbChannelC;
         public System.Windows.Forms.ComboBox CBoxPatternFiles;
         private System.Windows.Forms.TabPage tabPageSetup;
-        private System.Windows.Forms.Label LblStartGrayMode;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TabPage tabPageSize;
         private System.Windows.Forms.ComboBox CboxToolFiles;
@@ -2746,5 +2913,22 @@
         private System.Windows.Forms.Label LbLSizeYPic;
         private System.Windows.Forms.Label LbLSizeXPic;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox TbPixelArtDrawShapeScript;
+        private System.Windows.Forms.RadioButton RbPixelArtDrawShapeScript;
+        private System.Windows.Forms.Button TbPixelArtDrawShapeFileDialog;
+        private System.Windows.Forms.GroupBox GbStartGraySpecial;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.NumericUpDown nUDSpecialTop;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.NumericUpDown nUDSpecialBottom;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox tBCodeAfter;
+        private System.Windows.Forms.TextBox tBCodeValue1;
+        private System.Windows.Forms.TextBox tBCodeBefore;
+        private System.Windows.Forms.TextBox tBCodeValue2;
+        private System.Windows.Forms.RadioButton RbStartGraySpecial;
     }
 }
