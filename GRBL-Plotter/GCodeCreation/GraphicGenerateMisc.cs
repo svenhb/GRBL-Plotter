@@ -1115,6 +1115,19 @@ namespace GrblPlotter
             actualDimension.ScaleXY(scaleX, scaleY);
         }
 
+        private static void AddPressure(List<PathObject> graphicToProcess)
+        {
+            foreach (PathObject item in graphicToProcess)      // replace original list
+            {
+                if (item is ItemPath PathData)
+                {
+                    //PathData.Path[1].Depth
+                    {
+                    }
+                }
+            }
+        }
+
         private static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions)
         {
             if (logEnable) Logger.Trace("...RepeatPaths({0})", repetitions);

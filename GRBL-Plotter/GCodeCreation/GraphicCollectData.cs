@@ -1112,6 +1112,8 @@ namespace GrblPlotter
                 SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}", Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle));
             }
 
+            AddPressure(completeGraphic);
+
             /* repeate paths */
             if (!cancelByWorker && graphicInformation.OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete)
             {

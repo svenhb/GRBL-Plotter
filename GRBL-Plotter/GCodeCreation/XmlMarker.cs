@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
  * 2023-07-31 new functions FindInsertPositionFigure/Group/Next
  * 2023-11-15 add figurePenColorAnyCount
  * 2024-01-14 l:452 f:FinishFigure change check if (tmpFigure.PenColor.Contains("none"))
+ * 2025-06-20 bug fix in FindInsertPositionFigureNext and FindInsertPositionGroupNext; add ListAllFigures, ListAllGroups
 */
 
 using System;
@@ -391,17 +392,6 @@ namespace GrblPlotter
             return -1;
         }
 
-
-
-        /*************************************************************************************/
-        public static void AddFigure(int lineStart, string element, int figureNR)
-        {
-            if (element != null)
-                tmpFigure = SetBlockData(lineStart, element, figureNR);
-            //    if (logEnable) Logger.Trace("AddFigure color:{0}  width{1}", tmpFigure.penColor, tmpFigure.penWidth);
-            //           if (gcode.loggerTrace) Logger.Trace("AddFigure Line {0}  Id {1}  Geometry {2}", lineStart, tmpFigure.id, tmpFigure.geometry);
-        }
-
         internal static BlockData SetBlockData(int lineStart, string element, int figNr)
         {
             //Logger.Trace("   setBlockData  {0}  {1}", lineStart, element);
@@ -441,6 +431,16 @@ namespace GrblPlotter
                 Logger.Error(err, " SetBlockData {0} ", element);
             }
             return tmp;
+        }
+
+
+        /*************************************************************************************
+		 **** Figures
+		 *************************************************************************************/
+        public static void AddFigure(int lineStart, string element, int figureNR)
+        {
+            if (element != null)
+                tmpFigure = SetBlockData(lineStart, element, figureNR);
         }
 
         public static void FinishFigure(int lineEnd)
@@ -595,7 +595,7 @@ namespace GrblPlotter
             int end = listFigures[listFigures.Count - 1].LineEnd;
             if (GetGroup(current))      // only check within same group
                 end = lastGroup.LineEnd;
-            for (int i = 0; i < listFigures.Count - 1; i++)
+            for (int i = 0; i < listFigures.Count; i++)
             {
                 if (listFigures[i].LineEnd <= end)
                 {
@@ -615,8 +615,20 @@ namespace GrblPlotter
             }
             return false;
         }
+		
+		public static void ListAllFigures()
+		{			
+            for (int i = 0; i < listFigures.Count; i++)
+            {
+				Logger.Trace("ListAllFigures i:{0}  LineStart:{1}  LineEnd:{2}  Id:{3}  FigureNr:{4}", i, listFigures[i].LineStart, listFigures[i].LineEnd, listFigures[i].Id, listFigures[i].FigureNr);
+			}
+		}
 
-        /**********************************************************************************/
+
+
+        /*************************************************************************************
+		 **** Groups
+		 *************************************************************************************/
         public static void AddGroup(int lineStart, string element, int figureNR)
         {
             if (element != null)
@@ -741,8 +753,12 @@ namespace GrblPlotter
         public static int FindInsertPositionGroupNext(int current)
         {
             if (listGroups.Count >= 1)
-            {
-                for (int i = 0; i < listGroups.Count - 1; i++)
+            {	
+				int i = listGroups.Count - 1;
+				if ((current >= listGroups[i].LineStart) && (current <= listGroups[i].LineEnd))	// if last group
+				{ return listGroups[i].LineEnd + 1; }
+				
+                for (i = 0; i < listGroups.Count - 1; i++)
                 {
                     if ((current >= listGroups[i].LineStart) && (current <= listGroups[i].LineEnd))
                     { return listGroups[i + 1].LineStart; }
@@ -761,7 +777,18 @@ namespace GrblPlotter
             return false;
         }
 
-        /*************************************************************************************/
+		public static void ListAllGroups()
+		{			
+            for (int i = 0; i < listGroups.Count; i++)
+            {
+				Logger.Trace("ListAllGroups i:{0}  LineStart:{1}  LineEnd:{2}  Id:{3}  FigureNr:{4}", i, listGroups[i].LineStart, listGroups[i].LineEnd, listGroups[i].Id, listGroups[i].FigureNr);
+			}
+		}
+
+
+        /*************************************************************************************
+		 **** Tiles
+		 *************************************************************************************/
         public static void AddTile(int lineStart, string element, int figureNR)
         {
             if (element != null)
@@ -825,7 +852,9 @@ namespace GrblPlotter
         }
 
        
-        /**********************************************************************************/
+        /*************************************************************************************
+		 **** Collections
+		 *************************************************************************************/
         public static void AddCollection(int lineStart, string element, int figureNR)
         {
             if (element != null)
