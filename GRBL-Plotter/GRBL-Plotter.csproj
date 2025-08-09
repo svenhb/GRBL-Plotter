@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.7.5.3</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.7.6.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -150,6 +150,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TabletControl">
+      <HintPath>DLLs\TabletControl.dll</HintPath>
+    </Reference>
     <Reference Include="virtualJoystick, Version=0.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\virtualJoystick.dll</HintPath>
@@ -176,6 +179,12 @@
     </Compile>
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageMisc.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromTablet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromTablet.Designer.cs">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\GraphicClasses.cs" />
     <Compile Include="GCodeCreation\GraphicCollectText.cs" />
@@ -709,6 +718,9 @@
     <Content Include="data\jogpaths\L_50mm_1.5.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\papersize.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\usecases\example_plotter_pen_changer_automatic.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -911,6 +923,15 @@
     <Content Include="data\examples\bunny_new.pdn-json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\examples\line.isf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\sinus.isf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\tulip.isf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
@@ -1049,6 +1070,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.tr.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.ar.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.cs.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.de-DE.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.es.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.fr.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.it.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.ja.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.pl.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.pt.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.ru.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.tr.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromTablet.zh-CN.resx">
+      <DependentUpon>GCodeFromTablet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.cs.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
