@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.13.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -2840,6 +2840,42 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["gui2DInfoShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public decimal gui2DInfoSize1 {
+            get {
+                return ((decimal)(this["gui2DInfoSize1"]));
+            }
+            set {
+                this["gui2DInfoSize1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public decimal gui2DInfoSize2 {
+            get {
+                return ((decimal)(this["gui2DInfoSize2"]));
+            }
+            set {
+                this["gui2DInfoSize2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("128")]
+        public int gui2DInfoTranparency {
+            get {
+                return ((int)(this["gui2DInfoTranparency"]));
+            }
+            set {
+                this["gui2DInfoTranparency"] = value;
             }
         }
         
@@ -7039,6 +7075,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importImageGrayAsMode {
+            get {
+                return ((int)(this["importImageGrayAsMode"]));
+            }
+            set {
+                this["importImageGrayAsMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importImageGrayVectorize {
             get {
@@ -7195,6 +7243,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importImageProcessingMode {
+            get {
+                return ((int)(this["importImageProcessingMode"]));
+            }
+            set {
+                this["importImageProcessingMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal importImageReso {
             get {
@@ -7286,6 +7346,78 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importImageSMin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G0 Z5")]
+        public string importImageSpecialCodeAfter {
+            get {
+                return ((string)(this["importImageSpecialCodeAfter"]));
+            }
+            set {
+                this["importImageSpecialCodeAfter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1 Z1 F1000")]
+        public string importImageSpecialCodeBefore {
+            get {
+                return ((string)(this["importImageSpecialCodeBefore"]));
+            }
+            set {
+                this["importImageSpecialCodeBefore"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 A")]
+        public string importImageSpecialCodeValue1 {
+            get {
+                return ((string)(this["importImageSpecialCodeValue1"]));
+            }
+            set {
+                this["importImageSpecialCodeValue1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F10000")]
+        public string importImageSpecialCodeValue2 {
+            get {
+                return ((string)(this["importImageSpecialCodeValue2"]));
+            }
+            set {
+                this["importImageSpecialCodeValue2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importImageSpecialMax {
+            get {
+                return ((decimal)(this["importImageSpecialMax"]));
+            }
+            set {
+                this["importImageSpecialMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2")]
+        public decimal importImageSpecialMin {
+            get {
+                return ((decimal)(this["importImageSpecialMin"]));
+            }
+            set {
+                this["importImageSpecialMin"] = value;
             }
         }
         
@@ -10291,97 +10423,121 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal importImageSpecialMax {
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        public decimal tabletSizeX {
             get {
-                return ((decimal)(this["importImageSpecialMax"]));
+                return ((decimal)(this["tabletSizeX"]));
             }
             set {
-                this["importImageSpecialMax"] = value;
+                this["tabletSizeX"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-2")]
-        public decimal importImageSpecialMin {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal tabletSizeY {
             get {
-                return ((decimal)(this["importImageSpecialMin"]));
+                return ((decimal)(this["tabletSizeY"]));
             }
             set {
-                this["importImageSpecialMin"] = value;
+                this["tabletSizeY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1 Z1 F1000")]
-        public string importImageSpecialCodeBefore {
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal tabletSizePen {
             get {
-                return ((string)(this["importImageSpecialCodeBefore"]));
+                return ((decimal)(this["tabletSizePen"]));
             }
             set {
-                this["importImageSpecialCodeBefore"] = value;
+                this["tabletSizePen"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 A")]
-        public string importImageSpecialCodeValue1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("500, 480")]
+        public global::System.Drawing.Size tabletFormSize {
             get {
-                return ((string)(this["importImageSpecialCodeValue1"]));
+                return ((global::System.Drawing.Size)(this["tabletFormSize"]));
             }
             set {
-                this["importImageSpecialCodeValue1"] = value;
+                this["tabletFormSize"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F10000")]
-        public string importImageSpecialCodeValue2 {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool tabletShowTransparency {
             get {
-                return ((string)(this["importImageSpecialCodeValue2"]));
+                return ((bool)(this["tabletShowTransparency"]));
             }
             set {
-                this["importImageSpecialCodeValue2"] = value;
+                this["tabletShowTransparency"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G90 G0 Z5")]
-        public string importImageSpecialCodeAfter {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool tabletFitToCurve {
             get {
-                return ((string)(this["importImageSpecialCodeAfter"]));
+                return ((bool)(this["tabletFitToCurve"]));
             }
             set {
-                this["importImageSpecialCodeAfter"] = value;
+                this["tabletFitToCurve"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int importImageGrayAsMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal tabletPointDistance {
             get {
-                return ((int)(this["importImageGrayAsMode"]));
+                return ((decimal)(this["tabletPointDistance"]));
             }
             set {
-                this["importImageGrayAsMode"] = value;
+                this["tabletPointDistance"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int importImageProcessingMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point tabletFormLocation {
             get {
-                return ((int)(this["importImageProcessingMode"]));
+                return ((global::System.Drawing.Point)(this["tabletFormLocation"]));
             }
             set {
-                this["importImageProcessingMode"] = value;
+                this["tabletFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool tabletPlotterMoveMouse {
+            get {
+                return ((bool)(this["tabletPlotterMoveMouse"]));
+            }
+            set {
+                this["tabletPlotterMoveMouse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool tabletPlotterMoveAir {
+            get {
+                return ((bool)(this["tabletPlotterMoveAir"]));
+            }
+            set {
+                this["tabletPlotterMoveAir"] = value;
             }
         }
     }

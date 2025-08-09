@@ -707,6 +707,15 @@
     <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="gui2DInfoSize1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="gui2DInfoSize2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="gui2DInfoTranparency" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">128</Value>
+    </Setting>
     <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -2545,6 +2554,36 @@
     </Setting>
     <Setting Name="sizeUseCase" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">600, 500</Value>
+    </Setting>
+    <Setting Name="tabletFitToCurve" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="tabletFormLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="tabletFormSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">500, 480</Value>
+    </Setting>
+    <Setting Name="tabletPlotterMoveAir" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="tabletPlotterMoveMouse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="tabletPointDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="tabletShowTransparency" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="tabletSizePen" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="tabletSizeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="tabletSizeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="toolTableLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">empty</Value>
