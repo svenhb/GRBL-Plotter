@@ -85,9 +85,9 @@ namespace GrblPlotter
         }
         internal string NewCustomString
         {
-            set 
+            set
             {
-                TbGrblCustomString.Text= value;
+                TbGrblCustomString.Text = value;
             }
         }
         public ControlSetupForm()
@@ -342,6 +342,17 @@ namespace GrblPlotter
             TbGrblCustomString.Text = Grbl.GetInfo("VER1");
         }
 
+        public void ShowTab(string tab)
+        {
+            if (tab == "setup")
+                tabControl_Level1.SelectedIndex = 1;
+        }
+        public void UpdateToolTable()
+        {
+            Logger.Trace("UpdateToolTable  {0}", Properties.Settings.Default.toolTableLastLoaded);
+            LoadToolList(Properties.Settings.Default.toolTableLastLoaded);
+        }
+
         private void SaveSettings()
         {
             if (dGVCustomBtnChanged)
@@ -401,33 +412,34 @@ namespace GrblPlotter
         { SaveSettings(); }
 
         private void BtnColorBackground_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorBackground, "gui2DColorBackground"); }
+        { ApplyColor(btnColorBackground, "gui2DColorBackground"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorBackgroundPath_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorBackgroundPath, "gui2DColorBackgroundPath"); }
+        { ApplyColor(btnColorBackgroundPath, "gui2DColorBackgroundPath"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorDimension_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorDimension, "gui2DColorDimension"); }
+        { ApplyColor(btnColorDimension, "gui2DColorDimension"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorRuler_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorRuler, "gui2DColorRuler"); }
+        { ApplyColor(btnColorRuler, "gui2DColorRuler"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorPenUp_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorPenUp, "gui2DColorPenUp"); }
+        { ApplyColor(btnColorPenUp, "gui2DColorPenUp"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorPenDown_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorPenDown, "gui2DColorPenDown"); }
+        { ApplyColor(btnColorPenDown, "gui2DColorPenDown"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorRotaryInfo_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorRotaryInfo, "gui2DColorRotaryInfo"); }
+        { ApplyColor(btnColorRotaryInfo, "gui2DColorRotaryInfo"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorTool_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorTool, "gui2DColorTool"); }
+        { ApplyColor(btnColorTool, "gui2DColorTool"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorMarker_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorMarker, "gui2DColorMarker"); }
+        { ApplyColor(btnColorMarker, "gui2DColorMarker"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorHeightMap_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorHeightMap, "gui2DColorHeightMap"); }
+        { ApplyColor(btnColorHeightMap, "gui2DColorHeightMap"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorMachineLimit_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); }
+        { ApplyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); BtnApply2DViewChanges.PerformClick(); }
         private void BtnColorSimulation_Click(object sender, EventArgs e)
-        { ApplyColor(btnColorSimulation, "gui2DColorSimulation"); }
+        { ApplyColor(btnColorSimulation, "gui2DColorSimulation"); BtnApply2DViewChanges.PerformClick(); }
 
         private void ApplyColor(Button btn, string settings)
         {
             colorDialog1.AnyColor = true;
+            colorDialog1.SolidColorOnly = false;
             colorDialog1.Color = (Color)Properties.Settings.Default[settings];
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -962,6 +974,7 @@ namespace GrblPlotter
         }
         private void LoadToolList(string filename)
         {
+            Logger.Trace("LoadToolList {0}", filename);
             ImportCSVToDgv(filename);
             Properties.Settings.Default.toolTableOriginal = true;
             Properties.Settings.Default.toolTableLastLoaded = filename; // Path.GetFileName(filename);
@@ -969,6 +982,7 @@ namespace GrblPlotter
             lblToolListChanged.Text = "orginal";
             lblToolListChanged.BackColor = Color.Transparent;
             ExportDgvToCSV(defaultToolList);
+            this.Refresh();
         }
         private void BtnLoadToolTable_Click(object sender, EventArgs e)
         {
@@ -2513,25 +2527,25 @@ namespace GrblPlotter
         private void CbToolChangeM6PassThrough_CheckedChanged(object sender, EventArgs e)
         {
             gBToolChange.Enabled = !CbToolChangeM6PassThrough.Checked;
-            CbToolChangeM6PassThrough.BackColor = CbToolChangeM6PassThrough.Checked? Color.Yellow: SystemColors.Control;
+            CbToolChangeM6PassThrough.BackColor = CbToolChangeM6PassThrough.Checked ? Color.Yellow : SystemColors.Control;
         }
 
         private void BtnSetGrblCustomString_Click(object sender, EventArgs e)
         {
-            commandToSend = String.Format("$I={0};RST",TbGrblCustomString.Text);
+            commandToSend = String.Format("$I={0};RST", TbGrblCustomString.Text);
         }
-		
+
         private void BtnSetGrblCustomStringIniFile_Click(object sender, EventArgs e)
         {
             try
             {
-				string fname = TbGrblCustomString.Text;
-				if (fname=="") return;
+                string fname = TbGrblCustomString.Text;
+                if (fname == "") return;
 
                 string section = "Info";
                 string localDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string iniPath = Datapath.Usecases + "\\" + fname + ".ini";
-				var MyIni = new IniFile(iniPath);
+                var MyIni = new IniFile(iniPath);
 
                 if (!File.Exists(iniPath))  // Write entry manually to force UTF-16 encoding
                 {
@@ -2540,7 +2554,7 @@ namespace GrblPlotter
                 }
 
                 MyIni.Write("Date", localDate, section);
-            //    MyIni.Write("Use case info", fname);
+                //    MyIni.Write("Use case info", fname);
                 MyIni.Write("Set Defaults", "True", section);
                 MyIni.WriteSection(IniFile.sectionSetupGcodeGeneration);
                 MyIni.WriteSection(IniFile.sectionSetupMachineLimits);
@@ -2548,8 +2562,8 @@ namespace GrblPlotter
                 MyIni.Write("PauseCode Enable", setup.flowControlEnable.ToString(), "Flow Control");
                 MyIni.Write("PauseCode Code", setup.flowControlText.ToString(), "Flow Control");
 
-             //   MyIni.WriteButtons();
-          //      MyIni.WriteJoystick();
+                //   MyIni.WriteButtons();
+                //      MyIni.WriteJoystick();
                 MyIni.WriteGrblSetting();
                 Logger.Info("Save machine parameters as '{0}' {1}", "SetupGcodeGeneration", iniPath);
             }
@@ -2559,42 +2573,42 @@ namespace GrblPlotter
                 Logger.Error(err, "BtnSetGrblCustomStringIniFile_Click ");
                 MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
             }
-		}
+        }
 
         MessageForm _message_form = null;
         private void BtnTestGrblCustomStringIniFile_Click(object sender, EventArgs e)
         {
-			string fname = TbGrblCustomString.Text;
-			if (fname=="") return;
-			
-			string path = Datapath.Usecases + "\\" + fname + ".ini";
-			if (!File.Exists(path))
-			{
-				Logger.Trace("⚠⚠⚠ BtnTestGrblCustomStringIniFile - FAIL ini-file not found: '{0}'", path);
-				MessageBox.Show("Error", "File not found");
-				return;
-			}
-			var MyIni = new IniFile(path);
-            
+            string fname = TbGrblCustomString.Text;
+            if (fname == "") return;
+
+            string path = Datapath.Usecases + "\\" + fname + ".ini";
+            if (!File.Exists(path))
+            {
+                Logger.Trace("⚠⚠⚠ BtnTestGrblCustomStringIniFile - FAIL ini-file not found: '{0}'", path);
+                MessageBox.Show("Error", "File not found");
+                return;
+            }
+            var MyIni = new IniFile(path);
+
             if (_message_form != null)
             {
                 _message_form.Close();
                 _message_form = null;
             }
             if (true)
-			{
-				uint duration = 5;
+            {
+                uint duration = 5;
                 _message_form = new MessageForm();
-				_message_form.Show();
+                _message_form.Show();
 
-				if (_message_form != null)
-				{
-					string html = MyIni.ShowIniMachineSettingsHTML("Machine defaults");
-					_message_form.DontClose = false;
-					_message_form.ShowMessage(600, 800, "Saved Machine Defaults", html, (int)duration);     // show graphic import options
-				}
-			}
-		}
+                if (_message_form != null)
+                {
+                    string html = MyIni.ShowIniMachineSettingsHTML("Machine defaults");
+                    _message_form.DontClose = false;
+                    _message_form.ShowMessage(600, 800, "Saved Machine Defaults", html, (int)duration);     // show graphic import options
+                }
+            }
+        }
 
         private void BtnOpenGrblCustomStringIniFile_Click(object sender, EventArgs e)
         {
@@ -2602,6 +2616,16 @@ namespace GrblPlotter
             if (fname == "") return;
             string iniPath = Datapath.Usecases + "\\" + fname + ".ini";
             Process.Start("notepad.exe", iniPath);
+        }
+
+        private void NudInfoTextSize1_ValueChanged(object sender, EventArgs e)
+        {
+            BtnApply2DViewChanges.PerformClick();
+        }
+
+        private void BtnApply2DViewChanges_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

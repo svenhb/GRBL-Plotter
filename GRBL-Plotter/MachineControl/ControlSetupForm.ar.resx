@@ -4028,4 +4028,58 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>تحميل الإعدادات الافتراضية عند الاتصال</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>نص المعلومات</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>يجب إعادة تحميل الرسم البياني حتى يسري مفعوله.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>يجب إعادة تحميل الرسم البياني حتى يسري مفعوله.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>يجب إعادة تحميل الرسم البياني حتى يسري مفعوله.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>فتح ملف</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>افتح ملف INI في محرر النصوص "المفكرة".</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>احفظ الإعدادات</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>احفظ بعض الإعدادات المهمة في ملف INI.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>اختبر ملف INI</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>اعرض بعض الإعدادات المهمة في ملف INI.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>مؤشر حجم النص</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>معلومات حجم النص</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>شفافية الخلفية</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>تغيير حجم النموذج الرئيسي</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>حجم نص المعلومات بجوار المؤشر</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>حجم نص المعلومات في الحافة العلوية اليسرى للعرض ثنائي الأبعاد</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>شفافية خلفية النص</value>
+  </data>
 </root>

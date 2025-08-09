@@ -3738,4 +3738,68 @@ Utilisez « Exporter les paramètres de la machine » pour enregistrer les « va
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>Charger les valeurs par défaut lors de la connexion</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>Texte d'information</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>Le rechargement du graphique est nécessaire pour prendre effet.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>Le rechargement du graphique est nécessaire pour prendre effet.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>Le rechargement du graphique est nécessaire pour prendre effet.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Ouvrir le fichier</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Ouvrir le fichier INI dans l'éditeur de texte Bloc-notes.</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Enregistrer les paramètres</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Enregistrer certains paramètres importants dans le fichier INI.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Tester le fichier INI</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Afficher certains paramètres importants du fichier INI.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>Curseur de taille de texte</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>Informations sur la taille du texte</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>Transparence de l'arrière-plan</value>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>Chemin d'information</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>Simulation</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Redimensionner le formulaire principal</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>Taille du texte d'information près du curseur</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>Taille du texte d'information en haut à gauche de la vue 2D</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>Transparence de l'arrière-plan du texte</value>
+  </data>
 </root>

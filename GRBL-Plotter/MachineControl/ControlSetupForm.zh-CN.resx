@@ -4698,4 +4698,55 @@ SpindleEnable;</value>
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>连接时加载默认值</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>信息文本</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>需要重新加载图形才能生效。</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>需要重新加载图形才能生效。</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>需要重新加载图形才能生效。</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>打开文件</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>使用文本编辑器（记事本）打开 INI 文件。</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>保存设置</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>在 INI 文件中保存一些重要设置。</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>测试 INI 文件</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>显示 INI 文件的一些重要设置。</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>文本大小光标</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>文本大小信息</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>背景透明度</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>光标附近信息文本的文本大小</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>2D 视图左上边缘信息文本的文本大小</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>文本背景的透明度</value>
+  </data>
 </root>

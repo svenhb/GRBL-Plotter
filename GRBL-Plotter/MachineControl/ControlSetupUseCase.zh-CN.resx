@@ -142,12 +142,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>选择用例</value>
   </data>
-  <data name="BtnLoad.Text" xml:space="preserve">
-    <value>加载并应用设置，关闭对话框</value>
-  </data>
-  <data name="BtnOk.Text" xml:space="preserve">
-    <value>关闭对话框，不做任何更改</value>
-  </data>
   <data name="LblUseCaseHeader.Text" xml:space="preserve">
     <value>label2</value>
   </data>

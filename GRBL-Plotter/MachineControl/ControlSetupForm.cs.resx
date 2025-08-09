@@ -4027,4 +4027,58 @@ Použijte „Exportovat nastavení stroje“ k uložení „výchozích nastaven
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>Načíst výchozí nastavení při připojení</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>Informační text</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>Je potřeba znovu načíst grafiku, aby se projevila.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>Je potřeba znovu načíst grafiku, aby se projevila.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>Je potřeba znovu načíst grafiku, aby se projevila.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Otevřít soubor</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Otevřete soubor INI v textovém editoru Poznámkový blok.</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Uložte nastavení</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Uložte některá důležitá nastavení do souboru INI.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Test souboru ini</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Zobrazit některá důležitá nastavení souboru INI.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>Použít</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>Kurzor velikosti textu</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>Informace o velikosti textu</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>Průhlednost pozadí</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Změnit velikost hlavního formuláře</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>Velikost textu informačního textu poblíž kurzoru</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>Velikost textu informačního textu v levém horním okraji 2D pohledu</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>Průhlednost pozadí textu</value>
+  </data>
 </root>

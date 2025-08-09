@@ -34,12 +34,12 @@
  * 2024-02-12 add GetTranslate(int offset)
  * 2024-03-11 add ConvertToPolar()
  * 2025-04-02 option to use 0;0 as center for mirror, rotation, scale
+ * 2025-06-17 l:297 f:TransformGCodeRotate bug fix nullable... if (gcline.i == null) { gcline.i = 0; }
  */
 
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -121,7 +121,7 @@ namespace GrblPlotter
         /// <summary>
         /// mirror gcode
         /// </summary>
-        public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX, bool flipAtOrigin=false)
+        public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX, bool flipAtOrigin = false)
         {
             Logger.Info("●●● TransformGCode-Mirror {0}", shiftToZero);
             EventCollector.SetTransform("Tmir");
@@ -266,7 +266,6 @@ namespace GrblPlotter
                 {
                     if ((gcline.x != null) || (gcline.y != null))
                     {
-
                         newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
                         newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                         if (gcline.isdistanceModeG90)	// absolute
@@ -294,6 +293,9 @@ namespace GrblPlotter
                     }
                     if ((gcline.i != null) || (gcline.j != null))
                     {
+                    //    Logger.Trace("TransformGCodeRotate I:{0:0.00}  J:{1:0.00}", gcline.i, gcline.j);
+                //        if (gcline.i == null) { gcline.i = 0; } // not set to 0 in GCode2DViewpath 304?
+                //        if (gcline.j == null) { gcline.j = 0; } // not set to 0 in GCode2DViewpath 304?
                         newvali = (double)gcline.i * Math.Cos(angle * Math.PI / 180) - (double)gcline.j * Math.Sin(angle * Math.PI / 180);
                         newvalj = (double)gcline.i * Math.Sin(angle * Math.PI / 180) + (double)gcline.j * Math.Cos(angle * Math.PI / 180);
                         gcline.i = newvali * scale;
@@ -321,7 +323,7 @@ namespace GrblPlotter
         {
             XyPoint centerOfFigure = xyzSize.GetCenter();
             if (useOrigin)
-                centerOfFigure=new XyPoint();
+                centerOfFigure = new XyPoint();
 
             if (lastFigureNumber > 0)
                 centerOfFigure = GetCenterOfMarkedFigure();

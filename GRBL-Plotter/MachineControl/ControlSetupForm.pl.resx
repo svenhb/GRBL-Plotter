@@ -3969,4 +3969,58 @@ Użyj „Eksportuj ustawienia urządzenia”, aby zapisać „ustawienia domyśl
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>Załaduj wartości domyślne podczas łączenia</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>Tekst informacyjny</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>Aby zmiany weszły w życie, konieczne jest ponowne załadowanie grafiki.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>Aby zmiany weszły w życie, konieczne jest ponowne załadowanie grafiki.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>Aby zmiany weszły w życie, konieczne jest ponowne załadowanie grafiki.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Otwórz plik</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Otwórz plik INI w edytorze tekstu Notatnik.</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Zapisz ustawienia</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Zapisz niektóre ważne ustawienia w pliku INI.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Przetestuj plik INI</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Pokaż niektóre ważne ustawienia pliku INI.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>Zastosuj</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>Kursor rozmiaru tekstu</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>Informacje o rozmiarze tekstu</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>Przezroczystość tła</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Zmień rozmiar formularza głównego</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>Rozmiar tekstu informacji w pobliżu kursora</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>Rozmiar tekstu informacji w lewym górnym rogu widoku 2D</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>Przezroczystość tła tekstu</value>
+  </data>
 </root>

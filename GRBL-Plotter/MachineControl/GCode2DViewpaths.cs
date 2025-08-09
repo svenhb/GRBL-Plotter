@@ -34,6 +34,8 @@
  * 2024-01-25 l:262 f:CreateDrawingPathFromGCode get markerSize from graphics dimension
  * 2024-09-13 l:329 add p-word for G2/3
  * 2024-12-09 l:282 f:CreateDrawingPathFromGCode add pixelArtEnable
+ * 2025-06-08 l:287 check if !halfToneEnable
+ * 2025-06-18 l:308 remove if (newL.i == null) { newL.i = 0; } done during parsing in GCodeParser.cs 386
 */
 
 using System;
@@ -283,7 +285,7 @@ namespace GrblPlotter
                             markerSize = (float)pixelArtDotWidth;
                             CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false); // draw rect
                         }
-                        if (pathActualDown != null)
+                        if (!halfToneEnable &&(pathActualDown != null))
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
                             CreateMarker(pathActualDown, tmpPoint, markerSize, markerType, false);               // draw cross
@@ -300,8 +302,8 @@ namespace GrblPlotter
 
                 else if ((newL.motionMode == 2 || newL.motionMode == 3) && (newL.i != null || newL.j != null))
                 {
-                    if (newL.i == null) { newL.i = 0; }
-                    if (newL.j == null) { newL.j = 0; }
+                //    if (newL.i == null) { newL.i = 0; }
+                //    if (newL.j == null) { newL.j = 0; }
 
                     ArcProperties arcMove;
                     arcMove = GcodeMath.GetArcMoveProperties((XyPoint)oldL.actualPos, (XyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));

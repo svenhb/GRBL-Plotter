@@ -3959,4 +3959,58 @@ X получает значения радиуса, Y получает знач�
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>Загружать настройки по умолчанию при подключении</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>Информационный текст</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>Для вступления изменений в силу необходима перезагрузка графики.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>Для вступления изменений в силу необходима перезагрузка графики.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>Для вступления изменений в силу необходима перезагрузка графики.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Открыть файл</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Открыть INI-файл в текстовом редакторе Notepad.</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Сохранить настройки</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Сохраните некоторые важные настройки в INI-файле.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Тестовый INI-файл</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>Показать некоторые важные настройки INI-файла.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>Курсор размера текста</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>Информация о размере текста</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>Прозрачность фона</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Изменение размера основной формы</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>Размер текста информационного текста рядом с курсором</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>Размер текста информационного текста в верхнем левом углу 2D-вида</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>Прозрачность фона текста</value>
+  </data>
 </root>

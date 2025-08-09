@@ -4046,4 +4046,58 @@ Bu dizeyi ayarlamak için Grbl $I=xxx gönderin; burada xxx, 80 karakterden kıs
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>Bağlanırken varsayılanları yükle</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>Bilgi metni</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>Etki etmesi için grafiğin yeniden yüklenmesi gerekiyor.</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>Etki etmesi için grafiğin yeniden yüklenmesi gerekiyor.</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>Etki etmesi için grafiğin yeniden yüklenmesi gerekiyor.</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Dosyayı aç</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INI dosyasını metin düzenleyici Not Defteri'nde aç.</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>Ayarları kaydet</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INI dosyasına bazı önemli ayarları kaydet.</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>INI dosyasını test et</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INI dosyasının bazı önemli ayarlarını göster.</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>Metin boyutu imleci</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>Metin boyutu bilgisi</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>Arka planın şeffaflığı</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Ana Formu Yeniden Boyutlandır</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>İmlecin yakınındaki bilgi metninin metin boyutu</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>2B görünümün sol üst kenarındaki bilgi metninin metin boyutu</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>Metin arka planının şeffaflığı</value>
+  </data>
 </root>

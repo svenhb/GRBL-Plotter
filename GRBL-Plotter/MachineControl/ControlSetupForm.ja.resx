@@ -4037,4 +4037,58 @@ X は半径値を取得し、Y は角度値を取得します。
   <data name="GbGrblDefaults.Text" xml:space="preserve">
     <value>接続時にデフォルトをロードする</value>
   </data>
+  <data name="groupBox50.Text" xml:space="preserve">
+    <value>情報テキスト</value>
+  </data>
+  <data name="CbShowVertexEnable.ToolTip" xml:space="preserve">
+    <value>有効にするにはグラフィックをリロードする必要があります。</value>
+  </data>
+  <data name="cB2DViewFigureId.ToolTip" xml:space="preserve">
+    <value>有効にするにはグラフィックをリロードする必要があります。</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.ToolTip" xml:space="preserve">
+    <value>有効にするにはグラフィックをリロードする必要があります。</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
+  <data name="BtnOpenGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INIファイルをテキストエディタ（メモ帳）で開きます。</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>設定を保存</value>
+  </data>
+  <data name="BtnSetGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INIファイルに重要な設定を保存します。</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.Text" xml:space="preserve">
+    <value>INIファイルをテストします</value>
+  </data>
+  <data name="BtnTestGrblCustomStringIniFile.ToolTip" xml:space="preserve">
+    <value>INIファイルの重要な設定をいくつか表示します。</value>
+  </data>
+  <data name="BtnApply2DViewChanges.Text" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="label118.Text" xml:space="preserve">
+    <value>文字サイズカーソル</value>
+  </data>
+  <data name="label117.Text" xml:space="preserve">
+    <value>文字サイズ情報</value>
+  </data>
+  <data name="label116.Text" xml:space="preserve">
+    <value>背景の透明度</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>メインフォームのサイズを変更する</value>
+  </data>
+  <data name="NudInfoTextSize2.ToolTip" xml:space="preserve">
+    <value>カーソル付近の情報テキストの文字サイズ</value>
+  </data>
+  <data name="NudInfoTextSize1.ToolTip" xml:space="preserve">
+    <value>2Dビューの左上端の情報テキストの文字サイズ</value>
+  </data>
+  <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
+    <value>テキスト背景の透明度</value>
+  </data>
 </root>

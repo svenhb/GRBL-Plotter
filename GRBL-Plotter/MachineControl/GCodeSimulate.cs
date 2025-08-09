@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2024-01-22 l:535 f:ProcessedPathDraw check index before use
  * 2024-09-13 l:336 fGetDistance add p-word for G2/3, issue #416
  * 2024-09-29 l:94 f:CheckDwell add p-word for G4 Dwell, issue #417
+ * 2025-06-25 l:85 f:Reset index out of range fix
  */
 
 using System;
@@ -82,7 +83,8 @@ namespace GrblPlotter
                 remainingStep = stepWidth = 10;
                 lastPosMarker = posXY = Grbl.PosMarker = new XyzPoint();
                 Grbl.PosMarkerAngle = 0;
-                codeNext = new SimuCoordByLine(simuList[lineNr]);
+				if (simuList.Count > 0)
+					codeNext = new SimuCoordByLine(simuList[lineNr]);
                 CreateMarkerPath();
                 isTangentialZ = (tangentialAxisName == "Z");
                 pathSimulation.Reset();

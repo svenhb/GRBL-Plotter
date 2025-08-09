@@ -455,7 +455,7 @@ namespace GrblPlotter
             SelectionHandle.SetBounds(selectionBounds);
             float centerX = selectionBounds.X + selectionBounds.Width / 2;
             float centerY = selectionBounds.Y + selectionBounds.Height / 2;
-            selectedFigureInfo = string.Format("Selected figure: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
+            selectedFigureInfo = string.Format("Selected figure: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000}\r\n        Y {4:0.000}", figureNr, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
         }
 
         public static void MarkSelectedGroup(int start)		// mark all figures within a group
@@ -581,7 +581,10 @@ namespace GrblPlotter
                 }
             }
 
-            Logger.Info("MarkSelectedCollection end:{0} {1}  lastFig:{2}", line, gcodeList[line].codeLine, lastFigureNumber);
+			if (line < gcodeList.Count)
+				Logger.Info("MarkSelectedCollection end:{0} {1}  lastFig:{2}", line, gcodeList[line].codeLine, lastFigureNumber);
+			else
+				Logger.Warn("MarkSelectedCollection end:{0} gcodeList.count:{1}  lastFig:{2}", line, gcodeList.Count, lastFigureNumber);
 
             RectangleF selectionBounds = pathMarkSelection.GetBounds();
             SelectionHandle.SetBounds(selectionBounds);						// set and activate selection handle

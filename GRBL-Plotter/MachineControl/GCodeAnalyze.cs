@@ -40,6 +40,7 @@
  * 2025-03-18 l:552 f: GetGCodeLines take G04 isDwell into account 
 			  l:841 f:CalculateProcessTime take acceleration into account 
  * 2025-04-02 use PixelArt attribute 'Source' to get GcodeByLine.lastAxisVal to calc markerSize in 2D view
+ * 2025-06-06 l:264 f:CalcWidth	set default to max (not -1)
 */
 
 using System;
@@ -80,7 +81,8 @@ namespace GrblPlotter
                 { color = Properties.Settings.Default.gui2DColorPenDown; }
                 else if (UInt32.TryParse(pencolor, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out uint clr))  // try Hex code #00ff00
                 {
-                    clr |= 0xff000000; // remove alpha
+                    if ((clr & 0xff000000) < 0x10000000)
+                        clr |= 0xff000000; // remove alpha
                     color = System.Drawing.Color.FromArgb((int)clr);
                 }
                 else
@@ -216,6 +218,7 @@ namespace GrblPlotter
         private static ModalGroup modal = new ModalGroup();        // keep modal states and helper variables
 
         private static readonly Dictionary<double, int> showHalftonePath = new Dictionary<double, int>();    // assignment penWidth to pathIndex
+        private static readonly Dictionary<string, Dictionary<double, int>> showHalftonePathColor = new Dictionary<string, Dictionary<double, int>>();    // assignment penColor/penWidth to pathIndex
 
         // HalfTone: store F, S, Z values for pen-width calculation
         private static class HalfTone
@@ -238,10 +241,10 @@ namespace GrblPlotter
                 showHalftoneMin = 0;
                 showHalftoneMax = 100;
                 showHalftoneWidth = 1;
-                showHalftoneLastS = 1;
-                showHalftoneLastZ = 1;
+                showHalftoneLastS = -1;
+                showHalftoneLastZ = 99;
                 lastS = -1;
-                lastZ = double.MaxValue;
+                lastZ = 99;
                 lastF = -1;
             }
 
@@ -260,21 +263,20 @@ namespace GrblPlotter
 
             public static double CalcWidth()
             {
-                double width = -1;
+                double width = -1;// if no change... keep path
                 double diff;
                 if (showHalftoneS && (showHalftoneLastS != lastS))
                 {
                     diff = showHalftoneMax - showHalftoneMin;
-                    //    if (diff > 0)
-                    //        width = (lastS - showHalftoneMin) * showHalftoneWidth / diff;    // calculate pen-width
                     width = Math.Abs((lastS - showHalftoneMin) * showHalftoneWidth / diff);    // calculate pen-width
+                                                                                               //    Logger.Trace("CalcWidth-S  min:{0} max:{1}  diff:{2}  lastS:{3}  showHalftoneLastS:{4} width:{5:0.0}", showHalftoneMin, showHalftoneMax, diff, lastS, showHalftoneLastS, width);
                 }
 
                 else if (showHalftoneZ && (showHalftoneLastZ != lastZ))
                 {
                     diff = showHalftoneMax - showHalftoneMin;
-                    //   if (diff > 0)
                     width = Math.Abs((lastZ - showHalftoneMin) * showHalftoneWidth / diff);    // calculate pen-width
+                                                                                               //    Logger.Trace("CalcWidth-Z  min:{0} max:{1}  diff:{2}  lastZ:{3}  showHalftoneLastZ:{4} width:{5:0.0}", showHalftoneMin, showHalftoneMax, diff, lastZ, showHalftoneLastZ, width);
                 }
                 return width;
             }
@@ -318,6 +320,7 @@ namespace GrblPlotter
             ClearDrawingPath();                    	// reset paths, dimensions
             HalfTone.Reset();
             showHalftonePath.Clear();
+            showHalftonePathColor.Clear();
 
             figureMarkerCount = 0;
             tileCount = 0;
@@ -420,7 +423,8 @@ namespace GrblPlotter
                     { break; }
                 }
 
-                if (processSubs && programEnd)						// surround subroutine-code in ( )
+                //    if (processSubs && programEnd)                      // surround subroutine-code in ( )
+                if (programEnd)                      // surround subroutine-code in ( )
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
 
                 /*******************************************************************/
@@ -473,7 +477,7 @@ namespace GrblPlotter
                     {
                         if (singleLine.Contains("PD"))
                         {
-							// lastAxisVal selected via lastAxisChoice during newLine.ParseLine
+                            // lastAxisVal selected via lastAxisChoice during newLine.ParseLine
                             double diff = HalfTone.showHalftoneMax - HalfTone.showHalftoneMin;
                             pixelArtDotWidth = (HalfTone.showHalftoneWidth * (GcodeByLine.lastAxisVal - HalfTone.showHalftoneMin) / diff / 2);
                         }
@@ -1056,15 +1060,16 @@ namespace GrblPlotter
 
         private static void ProcessHalftoneData()
         {
-            double width = HalfTone.CalcWidth();
+            double width = Math.Round(HalfTone.CalcWidth(), 3);
 
-            if (width >= 0)
-            {
+            if (width >= 0) // if -1 (no change in width) keep prev. path and width
+            {   /*
                 if (showHalftonePath.ContainsKey(width))                        // if pen-width was used before, continue path
                 {
                     int index = showHalftonePath[width];
                     if ((index >= 0) && (index < pathObject.Count))
                     { pathActualDown = pathObject[index].path; }
+                    Logger.Trace("Use path width:{0}  index:{1}", width, index);
                 }
                 else
                 {
@@ -1072,7 +1077,40 @@ namespace GrblPlotter
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                     showHalftonePath.Add(width, pathObject.Count - 1);          // store new pen-width with according index
+                    Logger.Trace("Add path width:{0}  index:{1}", width, pathObject.Count - 1);
                 }
+                */
+                if (showHalftonePathColor.Count > 0)
+                {
+                    if (showHalftonePathColor.ContainsKey(XmlMarker.tmpFigure.PenColor) &&
+                        showHalftonePathColor[XmlMarker.tmpFigure.PenColor].ContainsKey(width))                        // if pen-width was used before, continue path
+                    {
+                        int index = showHalftonePathColor[XmlMarker.tmpFigure.PenColor][width];
+                        if ((index >= 0) && (index < pathObject.Count))
+                        { pathActualDown = pathObject[index].path; }
+                    }
+                    else
+                    {
+                        PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width, offset2DView);      // set color, width, pendownpath                                                                                                                           
+                        pathObject.Add(tmp);
+                        pathActualDown = pathObject[pathObject.Count - 1].path;
+
+                        if (showHalftonePathColor.ContainsKey(XmlMarker.tmpFigure.PenColor))
+                            showHalftonePathColor[XmlMarker.tmpFigure.PenColor].Add(width, pathObject.Count - 1);          // store new pen-width with according index
+                        else
+                        {
+                            showHalftonePathColor.Add(XmlMarker.tmpFigure.PenColor, new Dictionary<double, int>());
+                            showHalftonePathColor[XmlMarker.tmpFigure.PenColor].Add(width, pathObject.Count - 1);
+                        }
+                    }
+                }
+                else
+                {
+                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width, offset2DView);      // set color, width, pendownpath                                                                                                                           
+                    pathObject.Add(tmp);
+                    pathActualDown = pathObject[pathObject.Count - 1].path;
+                }
+
                 pathActualDown.StartFigure();
             }
             HalfTone.showHalftoneLastS = HalfTone.lastS;

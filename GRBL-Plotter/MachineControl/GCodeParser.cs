@@ -30,6 +30,7 @@
  * 2022-04-18 line 630 simplify GetAlpha by use of atan2
  * 2024-09-24 l:476 f:SimuCoordByLine add pWord and isDwell, issue #416, #417
  * 2025-04-02 l:349 f:ParseGCodeToken store last value of choosen axis
+ * 2025-06-18 l:386 f:ParseGCodeToken if i is set, set j=0
 */
 
 
@@ -382,9 +383,11 @@ namespace GrblPlotter
                     break;
                 case 'I':
                     i = value;
+					if (j==null) j=0;
                     break;
                 case 'J':
                     j = value;
+					if (i==null) i=0;
                     break;
                 case 'N':
                     nNumber = (int)value;
