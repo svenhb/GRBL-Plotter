@@ -1298,6 +1298,23 @@ namespace GrblPlotter
             bool applyPixelArt = RbPixelArt.Checked;
             if (applyPixelArt)
             {
+                if (CbPixelArtLimit.Checked)
+                {
+                    int maxA = (int)NuDPixelArtLimitCount.Value*1000;
+                    int nowA = originalImage.Width * originalImage.Height;
+                    if (nowA > maxA)
+                    {
+                        Logger.Trace("resize nowA:{0}   maxA:{1}", nowA, maxA);
+                        int nowX = originalImage.Width;
+                        int nowY = originalImage.Height;
+                        double ratio = (double)nowY / (double)nowX;         // nowA=nowX*nowX*ratio
+                        double maxX = Math.Sqrt(maxA / ratio);
+                        double maxY = maxX * ratio;
+                        Logger.Trace("resize old:{0} {1}  new:{2} {3}   ratio:{4:0.00}",nowX,nowY,(int)maxX,(int)maxY,ratio);
+                        ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor((int)maxX, (int)maxY);
+                        originalImage = filterResize.Apply(originalImage);
+                    }
+                }
                 UpdateSizeControls();
             }
             GetToolTableSettings();

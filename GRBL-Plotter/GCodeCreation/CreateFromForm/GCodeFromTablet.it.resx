@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Leggi tutti i tratti dalla tela e convertili in GCode.</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>Sposta con penna sollevata</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>Invia anche comandi di spostamento al plotter se la penna è sollevata.</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>Aggiorna vista 2D</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>Larghezza reale della penna, necessaria per visualizzare la larghezza corretta sulla tela.</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>L'altezza della tela verrà tradotta in base all'altezza del plotter.</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>La larghezza della tela verrà tradotta in base all'altezza del plotter.</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Assegna un GCode normale, separando il codice in righe diverse usando ';' come separatore.
+Oppure assegna un nome file contenente il GCode.</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Esegui cambio utensile su Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Esegui i seguenti script sui comandi Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Aggiungi Pausa (M0)</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Sostituisci qualsiasi comando M06 (cambio utensile) con M0 (pausa) per il cambio utensile manuale.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Aggiungi comando Cambio utensile Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Esegui l'azione di cambio utensile sui comandi Tx M06 se le informazioni sono disponibili - seleziona la scheda "Cambio utensile".</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>Modalità di modifica</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>Aggiorna vista 2D</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>Aggiornamento in tempo reale del plotter</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Massimo. larghezza del tratto</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / Altezza</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / Larghezza</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>La larghezza della penna visibile dipende dalla dimensione di lavoro del plotter selezionato</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>Mostra trasparenza</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>Carica tabella utensili</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>Dal modulo di configurazione</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Invia gcode in pausa</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>Apri modulo di configurazione</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Ultima tabella utensili caricata</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Colore selezionato</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>Disegna</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>Seleziona</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>Elimina punto</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>Elimina tratto</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Tavoletta grafica</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>Scegli una taglia standard</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>Le unità verranno convertite in mm</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>Vista 2D dopo aver sollevato la penna</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>Fai clic su una linea per eliminarla</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>Fai clic su un punto specifico di una linea per eliminarla</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>Adatta alla curva</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>Dopo aver completato una linea, questa viene smussata.</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>Seleziona una linea facendo clic su di essa o più linee circondandole per spostarle, ridimensionarle o eliminarle.</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>Disegna linee con il colore selezionato.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Aggiornamento in tempo reale</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>Dimensioni di lavoro del plotter</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>Dimensioni penna/pennello</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Uno stilo è una penna digitale che fornisce anche un valore di pressione (da 0% a 100%). Questo valore di pressione controlla lo spessore della penna e può essere convertito in un valore Z (per un asse Z) o in un valore S (per un servocomando RC) per controllare la pressione della penna del plotter. Un mouse fornisce un valore di pressione costante del 50%.</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>Applica valore</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>Riduci la quantità di punti dati per tratto. Mantieni la distanza minima. Applica il nuovo valore a tutti i tratti.</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>La distanza minima tra i punti del tratto verrà applicata al termine del tratto.</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Larghezza del tratto al 100% di pressione</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>Scambia i valori X e Y</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Crea</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aggiornamento in tempo reale della vista 2D</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aggiungi ogni tratto finito alla vista 2D nel modulo principale</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importa l'intero disegno</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aggiornamento in tempo reale</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aggiorna la posizione del plotter spostando la penna o il mouse.</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configurazione/Aiuto</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>Nuovo (cancella tela)</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Distanza minima</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>Un tratto disegnato con lo stilo è costituito da innumerevoli coordinate di punti. Una volta completato un tratto, il numero di punti viene ridotto al numero necessario.</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>Modifica tratti</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>Muoviti anche con il movimento del mouse</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importa dati xyz</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Importa dati XYZ dagli appunti (valori separati da tabulazione x y z o x z)</value>
+  </data>
+</root>

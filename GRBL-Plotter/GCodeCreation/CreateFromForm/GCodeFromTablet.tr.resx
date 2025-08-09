@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tuvaldeki tüm vuruşları oku ve GCode'a dönüştür.</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>Kalem yukarı doğru hareket ettir</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>Ayrıca kalem yukarıdaysa çiziciye hareket komutları gönder.</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>2B görünümü güncelle</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>Gerçek kalem genişliği, tuvalde doğru kalem genişliğini göstermek için gereklidir.</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>Tuval yüksekliği bu çizici yüksekliğine çevrilecektir.</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>Tuval genişliği bu çizici genişliğine çevrilecektir.</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Düzenli GCode atayın, kodu ayırıcı olarak ';' kullanarak farklı satırlara ayırın.
+Ya da GCode içeren bir dosya adı atayın.</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Tx M06'da araç değişikliği gerçekleştir</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Tx M06 komutlarında aşağıdaki komut dosyalarını yürüt</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Bunun yerine Duraklatma (M0) ekle</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Manuel araç değişikliği için herhangi bir M06 (araç değişikliği) komutunu M0 (duraklatma) ile değiştir.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Araç Değişikliği cmd'si Tx M06 ekle</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Bilgi mevcutsa Tx M06 komutlarında araç değişikliği eylemi gerçekleştir - 'Araç değişikliği' sekmesini kontrol et.</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>Düzenleme modu</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>2B görünümü güncelle</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>Plotter canlı güncellemesi</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Maks. kontur genişliği</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / Yükseklik</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / Genişlik</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Görünür kalem genişliği, seçilen çizicinin çalışma boyutuna bağlıdır</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>Şeffaflığı göster</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>Alet tablosunu yükle</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>Kurulum formundan</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Duraklatıldığında gcode gönder</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>Kurulum formunu aç</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Son yüklenen araç tablosu</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Seçili renk</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>Çiz</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>Seç</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>Noktayı sil</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>İndirmeyi sil</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Grafik tableti</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>Standart bir boyut seçin</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>Birimler mm'ye dönüştürülecek</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>Kalemi kaldırdıktan sonra 2D görünüm</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>Bir çizgiyi silmek için üzerine tıklayın</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>Bir çizgiyi silmek için belirli bir noktaya tıklayın</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>Eğriye uydur</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>Bir çizgi tamamlandıktan sonra yumuşatılır.</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>Üzerine tıklayarak bir çizgiyi veya hareket ettirmek, ölçeklemek veya silmek için çevreleyerek bazı çizgileri seçin.</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>Seçilen renkle çizgiler çizin.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Canlı Güncelleme</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>Plotter çalışma boyutu</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>Kalem / fırça boyutu</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>Renk</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Kalem, bir basınç değeri (0% ila 100%) de veren dijital bir kalemdir. Bu basınç değeri kalem genişliğini kontrol eder ve çizici kalem basıncını kontrol etmek için bir Z değerine (bir Z ekseni için) veya bir S değerine (bir RC servo için) dönüştürülebilir. 
+Bir fare %50'lik sabit bir basınç değeri verir.</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>Değeri uygula</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>Vuruş başına veri noktası sayısını azaltın. Minimum mesafeyi koruyun. Tüm vuruşlara yeni değer uygulayın.</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>Çizim noktaları arasındaki minimum mesafe, çizgi tamamlandıktan sonra uygulanacaktır.</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>%100 basınçta strok genişliği</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>X ve Y değerlerini değiştirin</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aç</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Oluştur</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>2B görünüm canlı güncelleme</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Bitmiş her çizgiyi ana formdaki 2B görünüme ekle</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tüm çizimi içe aktar</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Canlı güncelleme</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kalem veya fare hareketiyle çizici konumunu güncelleyin.</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kurulum / Yardım</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>Yeni (temiz tuval)</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Minimum mesafe</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>Kalemle çizilen bir çizgi, sayısız nokta koordinatından oluşur. Bir çizgi tamamlandıktan sonra, nokta sayısı gerekli sayıya düşürülür.</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>Çizimleri değiştir</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>Fare hareketiyle de hareket edin</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>xyz verilerini içe aktar</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Panodan XYZ verilerini içe aktar (sekmeyle ayrılmış değerler x y z veya x z)</value>
+  </data>
+</root>

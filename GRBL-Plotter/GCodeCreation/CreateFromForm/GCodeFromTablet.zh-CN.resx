@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>读取画布上的所有笔触并将其转换为 GCode。</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>提笔时移动</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>如果提笔，也向绘图仪发送移动命令。</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>更新二维视图</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>实际笔宽，需要在画布上显示正确的笔宽。</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>画布高度将转换为绘图仪高度。</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>画布宽度将转换为绘图仪宽度。</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>指定常规 GCode，使用“;”作为分隔符将代码分成不同的行。
+或者指定包含 GCode 的文件名。</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>在 Tx M06 上执行换刀</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>在 Tx M06 命令上执行以下脚本</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>添加暂停 (M0)</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>将任何 M06（换刀）命令替换为 M0（暂停）以进行手动换刀。</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>添加换刀命令 Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>如果有可用信息，则在 Tx M06 命令上执行换刀操作 - 检查“换刀”选项卡。</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>编辑模式</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>更新 2D 视图</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>绘图仪实时更新</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>最大限度。笔划宽度</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / 高度</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / 宽度</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>可见笔的宽度取决于所选的绘图仪工作尺寸</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>显示透明度</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>加载工具表</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>从设置表单</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>暂停时发送 G 代码</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>打开设置表单</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>上次加载的工具表</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>选定的颜色</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>绘制</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>删除点</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>删除笔触</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>绘图板</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>选择标准尺寸</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>单位将转换为毫米</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>提笔后更新二维视图</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>点击一条线即可删除它</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>点击线上的某个点即可删除它</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>拟合曲线</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>完成一条线后，它会被平滑处理。</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>点击一条线即可选择它，或者通过包围多条线来选择它们，以便移动、缩放或删除。</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>使用选定的颜色绘制线条。</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>实时更新</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>绘图仪工作尺寸</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>笔/画笔尺寸</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>手写笔是一种数字笔，它也能提供压力值（0% 到 100%）。该压力值控制笔的宽度，并可转换为 Z 值（用于 Z 轴）或 S 值（用于 RC 伺服电机），以控制绘图仪的笔压。
+鼠标提供 50% 的恒定压力值。</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>应用值</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>减少每笔画的数据点数量。保持最小距离。将新值应用于所有笔画。</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>笔触完成后，将应用笔触点之间的最小距离。</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>100% 压力下的描边宽度</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>交换 X 和 Y 值</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>二维视图实时更新</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将每个完成的笔画添加到主窗口中的二维视图</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>导入整幅图纸</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>绘图仪</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>实时更新</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>随着笔或鼠标的移动更新绘图仪的位置。</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置/帮助</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>新建（清除画布）</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>最小距离</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>用手写笔绘制的笔触由无数个点坐标组成。笔触完成后，点数会减少到所需的数量。</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>修改笔触</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>鼠标移动时也移动</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>导入 xyz 数据</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>从剪贴板导入 XYZ 数据（制表符分隔的 xyz 或 xz 值）</value>
+  </data>
+</root>

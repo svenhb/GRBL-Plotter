@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>キャンバスからすべてのストロークを読み取り、GCode に変換します。</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>ペンが上がっているときに移動</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>ペンが上がっている場合も、プロッタに移動コマンドを送信します。</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>2Dビューを更新</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>実際のペン幅。キャンバス上で正しいペン幅を表示するために必要です。</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>キャンバスの高さはこのプロッタの高さに変換されます。</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>キャンバスの幅はこのプロッタの幅に変換されます。</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>通常の GCode を割り当てる場合は、区切り文字として ';' を使用してコードを複数の行に分割します。
+または、GCode を含むファイル名を割り当てます。</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Tx M06 で工具交換を実行</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Tx M06 コマンドで以下のスクリプトを実行</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>代わりに Pause (M0) を追加</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>手動工具交換の場合は、M06 (工具交換) コマンドを M0 (一時停止) に置き換えます。</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Tx M06 に工具交換コマンドを追加</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>情報が利用可能な場合、Tx M06 コマンドで工具交換アクションを実行します - 「工具交換」タブを確認してください。</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>編集モード</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>2D ビューを更新</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>プロッターのライブアップデート</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>最大。ストローク幅</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / 高さ</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / 幅</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>表示されるペン幅は、選択したプロッタの作業サイズによって異なります。</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>透明度を表示</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>ツールテーブルを読み込む</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>セットアップフォームから</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>一時停止時にGコードを送信</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>セットアップフォームを開く</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>最後に読み込んだツールテーブル</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>選択した色</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>描画</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>点を削除</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>ストロークの削除</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>グラフィックタブレット</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>標準サイズを選択してください</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>単位はmmに変換されます</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>ペンを持ち上げた後の2Dビュー</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>線をクリックして削除します。</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>線上の特定の点をクリックして削除します。</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>曲線にフィット</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>線が完成すると、滑らかになります。</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>線をクリックするか、複数の線を囲んで選択し、移動、拡大縮小、削除します。</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>選択した色で線を描画します。</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>ライブアップデート</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>プロッタ作業サイズ</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>ペン/ブラシサイズ</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>色</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>スタイラスはデジタルペンの一種で、圧力値（0%～100%）を出力します。この圧力値はペン幅を制御し、Z値（Z軸の場合）またはS値（RCサーボの場合）に変換してプロッタのペン圧力を制御できます。
+マウスは50%の一定の圧力値を提供します。</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>値を適用</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>ストロークごとのデータポイント数を減らします。最小距離を維持します。すべてのストロークに新しい値を適用します。</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>ストロークの終了時に、ストローク点間の最小距離が適用されます。</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>筆圧100%時の線幅</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>XとYの値を入れ替える</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>作成</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>2Dビューのライブ更新</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>完成したストロークをメインフォームの2Dビューに追加</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>図面全体をインポート</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>プロッタ</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>ライブ更新</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>ペンまたはマウスの動きに応じてプロッタの位置を更新します。</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>セットアップ/ヘルプ</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>新規（キャンバスをクリア）</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>最小距離</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>スタイラスで描いたストロークは、無数の点座標で構成されます。ストロークが完了すると、点の数は必要な数にまで削減されます。</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>ストロークを修正</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>マウスの動きに合わせて移動</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>xyzデータのインポート</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>クリップボードからXYZデータをインポートします（タブ区切りのxyzまたはxzの値）</value>
+  </data>
+</root>

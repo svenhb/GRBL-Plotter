@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>262, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="LblMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 17</value>
@@ -357,6 +360,9 @@
   <data name="nUDResoX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Distance between lines, should match pen width</value>
   </data>
@@ -1989,6 +1995,9 @@
   <data name="&gt;&gt;btnGenerate.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>677, 17</value>
+  </metadata>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 22</value>
   </data>
@@ -2989,7 +2998,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="RbStartGrayS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3022,105 +3031,6 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   </data>
   <data name="&gt;&gt;RbStartGrayS.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="cBToolChange.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBToolChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBToolChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 50</value>
-  </data>
-  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 17</value>
-  </data>
-  <data name="cBToolChange.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="cBToolChange.Text" xml:space="preserve">
-    <value>Perform tool change on Tx M06</value>
-  </data>
-  <data name="cBToolChange.ToolTip" xml:space="preserve">
-    <value>Execute following scripts on Tx M06 commands</value>
-  </data>
-  <data name="&gt;&gt;cBToolChange.Name" xml:space="preserve">
-    <value>cBToolChange</value>
-  </data>
-  <data name="&gt;&gt;cBToolChange.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBToolChange.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCToolM0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCToolM0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 32</value>
-  </data>
-  <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 17</value>
-  </data>
-  <data name="cBImportGCToolM0.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="cBImportGCToolM0.Text" xml:space="preserve">
-    <value>Add Pause (M0) instead</value>
-  </data>
-  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
-    <value>Replace any M06 (tool change) command by M0 (pause) for manual tool change.</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Name" xml:space="preserve">
-    <value>cBImportGCToolM0</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 17</value>
-  </data>
-  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Add Tool Change command Tx M06</value>
-  </data>
-  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Perform tool change action on Tx M06 commands if information is available - check tab 'Tool change'.</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
-    <value>cBImportGCTool</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="RbStartGraySpecial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3186,313 +3096,6 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;RbStartGrayZ.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="nUDSpecialBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 12</value>
-  </data>
-  <data name="nUDSpecialBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="nUDSpecialBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDSpecialBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDSpecialBottom.Name" xml:space="preserve">
-    <value>nUDSpecialBottom</value>
-  </data>
-  <data name="&gt;&gt;nUDSpecialBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSpecialBottom.Parent" xml:space="preserve">
-    <value>GbStartGraySpecial</value>
-  </data>
-  <data name="&gt;&gt;nUDSpecialBottom.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="CbLaserOnly.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbLaserOnly.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbLaserOnly.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 72</value>
-  </data>
-  <data name="CbLaserOnly.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="CbLaserOnly.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="CbLaserOnly.Text" xml:space="preserve">
-    <value>Use Laser</value>
-  </data>
-  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
-    <value>For a laser, no Pen-up and -down code is needed, compared to pen, lifted by a servo.</value>
-  </data>
-  <data name="&gt;&gt;CbLaserOnly.Name" xml:space="preserve">
-    <value>CbLaserOnly</value>
-  </data>
-  <data name="&gt;&gt;CbLaserOnly.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbLaserOnly.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;CbLaserOnly.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cBLaserModeOffEnd.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBLaserModeOffEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBLaserModeOffEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 54</value>
-  </data>
-  <data name="cBLaserModeOffEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 17</value>
-  </data>
-  <data name="cBLaserModeOffEnd.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Lasermode OFF at G-Code end</value>
-  </data>
-  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
-    <value>Sets $32=0 at G-Code end</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Name" xml:space="preserve">
-    <value>cBLaserModeOffEnd</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cBLaserModeOnStart.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBLaserModeOnStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBLaserModeOnStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 36</value>
-  </data>
-  <data name="cBLaserModeOnStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 17</value>
-  </data>
-  <data name="cBLaserModeOnStart.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Lasermode ON at G-Code start</value>
-  </data>
-  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
-    <value>Sets $32=1 at G-Code start</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Name" xml:space="preserve">
-    <value>cBLaserModeOnStart</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="nUDSBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 12</value>
-  </data>
-  <data name="nUDSBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="nUDSBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="nUDSBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Name" xml:space="preserve">
-    <value>nUDSBottom</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="nUDZBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 12</value>
-  </data>
-  <data name="nUDZBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="nUDZBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDZBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDZBottom.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Name" xml:space="preserve">
-    <value>nUDZBottom</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Parent" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="CbEngravingTopDown.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbEngravingTopDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbEngravingTopDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 38</value>
-  </data>
-  <data name="CbEngravingTopDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="CbEngravingTopDown.TabIndex" type="System.Int32, mscorlib">
-    <value>62</value>
-  </data>
-  <data name="CbEngravingTopDown.Text" xml:space="preserve">
-    <value>Top down</value>
-  </data>
-  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
-    <value>If checked an angle=0 it starts on the upper left edge.
-Otherwise it starts on the lower left edge.</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingTopDown.Name" xml:space="preserve">
-    <value>CbEngravingTopDown</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingTopDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingTopDown.Parent" xml:space="preserve">
-    <value>GbEngravingLine</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingTopDown.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="CbEngravingCross.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbEngravingCross.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbEngravingCross.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 15</value>
-  </data>
-  <data name="CbEngravingCross.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 17</value>
-  </data>
-  <data name="CbEngravingCross.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="CbEngravingCross.Text" xml:space="preserve">
-    <value>Cross (add lines +90°)</value>
-  </data>
-  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
-    <value>If checked a 2nd line pattern, turned by 90 degrees will be added</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingCross.Name" xml:space="preserve">
-    <value>CbEngravingCross</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingCross.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingCross.Parent" xml:space="preserve">
-    <value>GbEngravingLine</value>
-  </data>
-  <data name="&gt;&gt;CbEngravingCross.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cBOnlyLeftToRight.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBOnlyLeftToRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 38</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="cBOnlyLeftToRight.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
-    <value>Only left to right</value>
-  </data>
-  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
-    <value>Only draw from one direction to avoid offsets</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
-    <value>cBOnlyLeftToRight</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
-    <value>GbEngravingLine</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="NudEngravingAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="NudEngravingAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="NudEngravingAngle.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="NudEngravingAngle.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
-    <value>Angle of the line pattern</value>
-  </data>
-  <data name="&gt;&gt;NudEngravingAngle.Name" xml:space="preserve">
-    <value>NudEngravingAngle</value>
-  </data>
-  <data name="&gt;&gt;NudEngravingAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudEngravingAngle.Parent" xml:space="preserve">
-    <value>GbEngravingLine</value>
-  </data>
-  <data name="&gt;&gt;NudEngravingAngle.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="GbColorReplacingMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 234</value>
   </data>
@@ -3517,6 +3120,9 @@ Otherwise it starts on the lower left edge.</value>
   <data name="&gt;&gt;GbColorReplacingMode.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>475, 17</value>
+  </metadata>
   <data name="loadPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 20</value>
   </data>
@@ -3636,6 +3242,33 @@ Otherwise it starts on the lower left edge.</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="nUDZBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 12</value>
+  </data>
+  <data name="nUDZBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDZBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDZBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Name" xml:space="preserve">
+    <value>nUDZBottom</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Parent" xml:space="preserve">
+    <value>GbStartGrayZ</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="GbStartGrayZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 14</value>
@@ -3957,6 +3590,105 @@ Otherwise it starts on the lower left edge.</value>
   </data>
   <data name="&gt;&gt;GbUseCaseLoad.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="cBToolChange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBToolChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBToolChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 50</value>
+  </data>
+  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="cBToolChange.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Perform tool change on Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Execute following scripts on Tx M06 commands</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Name" xml:space="preserve">
+    <value>cBToolChange</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCToolM0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCToolM0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 32</value>
+  </data>
+  <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 17</value>
+  </data>
+  <data name="cBImportGCToolM0.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Add Pause (M0) instead</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Replace any M06 (tool change) command by M0 (pause) for manual tool change.</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Name" xml:space="preserve">
+    <value>cBImportGCToolM0</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 17</value>
+  </data>
+  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Add Tool Change command Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Perform tool change action on Tx M06 commands if information is available - check tab 'Tool change'.</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
+    <value>cBImportGCTool</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 194</value>
@@ -4336,7 +4068,7 @@ Manual or automatic tool change can be applied.</value>
     <value>66, 14</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>58, 13</value>
   </data>
   <data name="label38.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4390,7 +4122,7 @@ Manual or automatic tool change can be applied.</value>
     <value>234, 14</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
+    <value>62, 13</value>
   </data>
   <data name="label39.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4409,6 +4141,33 @@ Manual or automatic tool change can be applied.</value>
   </data>
   <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="nUDSpecialBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 12</value>
+  </data>
+  <data name="nUDSpecialBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDSpecialBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDSpecialBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDSpecialBottom.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDSpecialBottom.Name" xml:space="preserve">
+    <value>nUDSpecialBottom</value>
+  </data>
+  <data name="&gt;&gt;nUDSpecialBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSpecialBottom.Parent" xml:space="preserve">
+    <value>GbStartGraySpecial</value>
+  </data>
+  <data name="&gt;&gt;nUDSpecialBottom.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="GbStartGraySpecial.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 176</value>
@@ -4430,6 +4189,132 @@ Manual or automatic tool change can be applied.</value>
   </data>
   <data name="&gt;&gt;GbStartGraySpecial.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="CbLaserOnly.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbLaserOnly.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbLaserOnly.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 72</value>
+  </data>
+  <data name="CbLaserOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="CbLaserOnly.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CbLaserOnly.Text" xml:space="preserve">
+    <value>Use Laser</value>
+  </data>
+  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
+    <value>For a laser, no Pen-up and -down code is needed, compared to pen, lifted by a servo.</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.Name" xml:space="preserve">
+    <value>CbLaserOnly</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.Parent" xml:space="preserve">
+    <value>GbStartGrayS</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBLaserModeOffEnd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 54</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 17</value>
+  </data>
+  <data name="cBLaserModeOffEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Lasermode OFF at G-Code end</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
+    <value>Sets $32=0 at G-Code end</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Name" xml:space="preserve">
+    <value>cBLaserModeOffEnd</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Parent" xml:space="preserve">
+    <value>GbStartGrayS</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBLaserModeOnStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBLaserModeOnStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBLaserModeOnStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 36</value>
+  </data>
+  <data name="cBLaserModeOnStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 17</value>
+  </data>
+  <data name="cBLaserModeOnStart.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Lasermode ON at G-Code start</value>
+  </data>
+  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
+    <value>Sets $32=1 at G-Code start</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Name" xml:space="preserve">
+    <value>cBLaserModeOnStart</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Parent" xml:space="preserve">
+    <value>GbStartGrayS</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="nUDSBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 12</value>
+  </data>
+  <data name="nUDSBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDSBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="nUDSBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Name" xml:space="preserve">
+    <value>nUDSBottom</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Parent" xml:space="preserve">
+    <value>GbStartGrayS</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="nUDSTop.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 12</value>
@@ -4623,6 +4508,40 @@ Manual or automatic tool change can be applied.</value>
   <data name="&gt;&gt;RbEngravingLine.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="CbEngravingTopDown.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbEngravingTopDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbEngravingTopDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 38</value>
+  </data>
+  <data name="CbEngravingTopDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="CbEngravingTopDown.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="CbEngravingTopDown.Text" xml:space="preserve">
+    <value>Top down</value>
+  </data>
+  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
+    <value>If checked an angle=0 it starts on the upper left edge.
+Otherwise it starts on the lower left edge.</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Name" xml:space="preserve">
+    <value>CbEngravingTopDown</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4652,6 +4571,99 @@ Manual or automatic tool change can be applied.</value>
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="CbEngravingCross.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbEngravingCross.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbEngravingCross.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 15</value>
+  </data>
+  <data name="CbEngravingCross.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="CbEngravingCross.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="CbEngravingCross.Text" xml:space="preserve">
+    <value>Cross (add lines +90°)</value>
+  </data>
+  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
+    <value>If checked a 2nd line pattern, turned by 90 degrees will be added</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Name" xml:space="preserve">
+    <value>CbEngravingCross</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBOnlyLeftToRight.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 38</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="cBOnlyLeftToRight.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Only left to right</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Only draw from one direction to avoid offsets</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
+    <value>cBOnlyLeftToRight</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="NudEngravingAngle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="NudEngravingAngle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="NudEngravingAngle.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="NudEngravingAngle.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
+    <value>Angle of the line pattern</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Name" xml:space="preserve">
+    <value>NudEngravingAngle</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="GbEngravingLine.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 13</value>
@@ -4869,6 +4881,90 @@ Manual or automatic tool change can be applied.</value>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="label44.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 127</value>
+  </data>
+  <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 13</value>
+  </data>
+  <data name="label44.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="label44.Text" xml:space="preserve">
+    <value>k</value>
+  </data>
+  <data name="&gt;&gt;label44.Name" xml:space="preserve">
+    <value>label44</value>
+  </data>
+  <data name="&gt;&gt;label44.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label44.Parent" xml:space="preserve">
+    <value>GbPixelArt</value>
+  </data>
+  <data name="&gt;&gt;label44.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="NuDPixelArtLimitCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 123</value>
+  </data>
+  <data name="NuDPixelArtLimitCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="NuDPixelArtLimitCount.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="NuDPixelArtLimitCount.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NuDPixelArtLimitCount.ToolTip" xml:space="preserve">
+    <value>Limit dot count in 1000 step</value>
+  </data>
+  <data name="&gt;&gt;NuDPixelArtLimitCount.Name" xml:space="preserve">
+    <value>NuDPixelArtLimitCount</value>
+  </data>
+  <data name="&gt;&gt;NuDPixelArtLimitCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NuDPixelArtLimitCount.Parent" xml:space="preserve">
+    <value>GbPixelArt</value>
+  </data>
+  <data name="&gt;&gt;NuDPixelArtLimitCount.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbPixelArtLimit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbPixelArtLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 105</value>
+  </data>
+  <data name="CbPixelArtLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="CbPixelArtLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CbPixelArtLimit.Text" xml:space="preserve">
+    <value>Limit dot count</value>
+  </data>
+  <data name="CbPixelArtLimit.ToolTip" xml:space="preserve">
+    <value>To avoid program hang-up, limit amount of dots</value>
+  </data>
+  <data name="&gt;&gt;CbPixelArtLimit.Name" xml:space="preserve">
+    <value>CbPixelArtLimit</value>
+  </data>
+  <data name="&gt;&gt;CbPixelArtLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbPixelArtLimit.Parent" xml:space="preserve">
+    <value>GbPixelArt</value>
+  </data>
+  <data name="&gt;&gt;CbPixelArtLimit.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="RbPixelArtShape.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4897,7 +4993,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;RbPixelArtShape.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="TbPixelArtDrawShapeFileDialog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5140,7 +5236,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;GbDrawShape.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="label32.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5170,7 +5266,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="NuDPixelArtGapSize.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 78</value>
@@ -5194,7 +5290,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;NuDPixelArtGapSize.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="BtnPixelArtCalcSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5224,7 +5320,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;BtnPixelArtCalcSize.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5254,7 +5350,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="NuDPixelArtDotSize.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 56</value>
@@ -5278,7 +5374,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;NuDPixelArtDotSize.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="NuDPixelArtDotsPerPixel.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 34</value>
@@ -5302,7 +5398,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;NuDPixelArtDotsPerPixel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="RbPixelArtPbP.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5332,7 +5428,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;RbPixelArtPbP.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5362,7 +5458,7 @@ Manual or automatic tool change can be applied.</value>
     <value>GbPixelArt</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="GbPixelArt.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -6816,6 +6912,15 @@ Manual or automatic tool change can be applied.</value>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>590, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>43</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -6885,46 +6990,4 @@ Manual or automatic tool change can be applied.</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="GbGcodeDirection.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="LblStartGrayMode.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="radioButton1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>262, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>677, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>475, 17</value>
-  </metadata>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>590, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>43</value>
-  </metadata>
 </root>

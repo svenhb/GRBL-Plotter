@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Считывать все штрихи с холста и преобразовывать их в GCode.</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>Перемещение при поднятом пере</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>Также отправляет команды перемещения плоттеру, если перо поднято.</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>Обновить 2D-вид</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>Реальная ширина пера, необходимая для отображения правильной ширины пера на холсте.</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>Высота холста будет переведена на эту высоту плоттера.</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>Ширина холста будет переведена на эту ширину плоттера.</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Назначьте обычный GCode, разделите код на разные строки, используя ';' в качестве разделителя.
+Или назначьте имя файла, содержащее GCode.</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Выполнить смену инструмента на Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Выполнить следующие скрипты на командах Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Добавить вместо этого паузу (M0)</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Заменить любую команду M06 (смена инструмента) на M0 (пауза) для ручной смены инструмента.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Добавить команду смены инструмента Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Выполнить действие смены инструмента на командах Tx M06, если информация доступна - проверьте вкладку «Смена инструмента».</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>Режим редактирования</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>Обновить 2D-вид</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>Обновление плоттера в реальном времени</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Макс. ширина штриха</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / Высота</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / Ширина</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Видимая ширина пера зависит от выбранного рабочего размера плоттера.</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>Показать прозрачность</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>Загрузить таблицу инструментов</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>Из ​​формы настройки</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Отправить gcode на паузе</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>Открыть форму настройки</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Последняя загруженная таблица инструментов</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Выбранный цвет</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>Нарисовать</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>Удалить точку</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>Удалить штрих</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Графический планшет</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Онлайн-помощь</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>Выберите стандартный размер</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>Единицы будут преобразованы в мм</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>2D-вид после поднятия ручки</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>Нажмите на линию, чтобы удалить ее</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>Нажмите на определенную точку линии, чтобы удалить ее</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>Подогнать под кривую</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>После завершения линии она сглаживается.</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>Выберите линию, щелкнув по ней, или несколько линий, окружив их для перемещения, масштабирования или удаления.</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>Нарисовать линии выбранным цветом.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Обновление в реальном времени</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>Рабочий размер плоттера</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>Размер пера/кисти</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Стилус — это цифровое перо, которое также обеспечивает значение давления (от 0% до 100%). Это значение давления управляет шириной пера и может быть преобразовано в значение Z (для оси Z) или значение S (для RC-сервопривода) для управления давлением пера плоттера. 
+Мышь обеспечивает постоянное значение давления 50%.</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>Применить значение</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>Уменьшить количество точек данных на один штрих. Сохранять минимальное расстояние. Применить новое значение ко всем штрихам.</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>Минимальное расстояние между точками штриха будет применено после завершения штриха.</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Ширина штриха при 100% нажиме</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>Поменять местами значения X и Y</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Обновление 2D-вида в режиме реального времени</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Добавить каждый готовый штрих в 2D-вид в основной форме</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Импортировать весь рисунок</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Плоттер</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Обновление в реальном времени</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Обновляйте положение плоттера при перемещении пера или мыши.</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Настройка/Помощь</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>Создать (очистить холст)</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Мин. расстояние</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>Штрих, нарисованный стилусом, состоит из множества точек. После завершения штриха количество точек уменьшается до необходимого.</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>Изменить штрихи</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>Двигаться также по движению мыши</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Импорт данных XYZ</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Импорт данных XYZ из буфера обмена (значения, разделенные табуляцией, x, y, z или x, z)</value>
+  </data>
+</root>

@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>اقرأ جميع الخطوط من اللوحة القماشية وحولها إلى GCode.</value>
+  </data>
+  <data name="CbMovementPenUp.Text" xml:space="preserve">
+    <value>التحريك عند رفع القلم</value>
+  </data>
+  <data name="CbMovementPenUp.ToolTip" xml:space="preserve">
+    <value>إرسال أوامر التحريك إلى الراسم عند رفع القلم.</value>
+  </data>
+  <data name="BtnRefresh.Text" xml:space="preserve">
+    <value>⟳</value>
+  </data>
+  <data name="BtnRefresh.ToolTip" xml:space="preserve">
+    <value>تحديث العرض ثنائي الأبعاد</value>
+  </data>
+  <data name="NudSizePen.ToolTip" xml:space="preserve">
+    <value>عرض القلم الحقيقي ضروري لعرض عرض القلم الصحيح على اللوحة القماشية.</value>
+  </data>
+  <data name="NudSizeY.ToolTip" xml:space="preserve">
+    <value>سيتم تحويل ارتفاع اللوحة القماشية إلى ارتفاع الراسمة هذا.</value>
+  </data>
+  <data name="NudSizeX.ToolTip" xml:space="preserve">
+    <value>سيتم تحويل عرض اللوحة القماشية إلى عرض الراسمة هذا.</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>عيّن GCode عاديًا، وافصل الكود إلى أسطر مختلفة باستخدام ; كفاصل. أو عيّن اسم ملف يحتوي على GCode.</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>تغيير الأداة في Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>نفذ البرامج النصية التالية على أوامر Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>أضف إيقافًا مؤقتًا (M0) بدلاً من ذلك</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>استبدل أي أمر M06 (تغيير أداة) بأمر M0 (إيقاف مؤقت) لتغيير الأداة يدويًا.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>أضف أمر تغيير الأداة في Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>نفذ إجراء تغيير الأداة على أوامر Tx M06 إذا توفرت معلومات - حدد علامة التبويب "تغيير الأداة".</value>
+  </data>
+  <data name="GbMode.Text" xml:space="preserve">
+    <value>وضع التحرير</value>
+  </data>
+  <data name="CbUpdate.Text" xml:space="preserve">
+    <value>تحديث العرض ثنائي الأبعاد</value>
+  </data>
+  <data name="GbPlotter.Text" xml:space="preserve">
+    <value>تحديث مباشر للمخطط</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>الأعلى. عرض السكتة الدماغية</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y / الارتفاع</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X / العرض</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>يعتمد عرض القلم المرئي على حجم الرسم التخطيطي المحدد</value>
+  </data>
+  <data name="CbTransparency.Text" xml:space="preserve">
+    <value>إظهار الشفافية</value>
+  </data>
+  <data name="LblToolTable.Text" xml:space="preserve">
+    <value>تحميل جدول الأدوات</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>من نموذج الإعداد</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>إرسال رمز Gcode عند الإيقاف المؤقت</value>
+  </data>
+  <data name="BtnOpenSetup.Text" xml:space="preserve">
+    <value>فتح نموذج الإعداد</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>آخر جدول أدوات تم تحميله</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>اللون المحدد</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="RbMode0.Text" xml:space="preserve">
+    <value>رسم.</value>
+  </data>
+  <data name="RbMode1.Text" xml:space="preserve">
+    <value>تحديد.</value>
+  </data>
+  <data name="RbMode2.Text" xml:space="preserve">
+    <value>حذف نقطة.</value>
+  </data>
+  <data name="RbMode3.Text" xml:space="preserve">
+    <value>حذف الخط</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>قرص الرسومات</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>مساعدة عبر الإنترنت</value>
+  </data>
+  <data name="CboxPapersize.Text" xml:space="preserve">
+    <value>اختر الحجم القياسي</value>
+  </data>
+  <data name="CboxPapersize.ToolTip" xml:space="preserve">
+    <value>سيتم تحويل الوحدات إلى مليمتر</value>
+  </data>
+  <data name="CbUpdate.ToolTip" xml:space="preserve">
+    <value>منظر ثنائي الأبعاد بعد رفع القلم</value>
+  </data>
+  <data name="RbMode3.ToolTip" xml:space="preserve">
+    <value>انقر على خط لحذفه.</value>
+  </data>
+  <data name="RbMode2.ToolTip" xml:space="preserve">
+    <value>انقر على نقطة محددة من خط لحذفها.</value>
+  </data>
+  <data name="CbFitToCurve.Text" xml:space="preserve">
+    <value>ملاءمة المنحنى.</value>
+  </data>
+  <data name="CbFitToCurve.ToolTip" xml:space="preserve">
+    <value>بعد إكمال الخط، يتم تنعيمه.</value>
+  </data>
+  <data name="RbMode1.ToolTip" xml:space="preserve">
+    <value>حدد خطًا بالنقر عليه، أو حدد بعض الخطوط بإحاطتها للتحريك أو تغيير الحجم أو الحذف.</value>
+  </data>
+  <data name="RbMode0.ToolTip" xml:space="preserve">
+    <value>ارسم خطوطًا باللون المحدد.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>تحديث مباشر</value>
+  </data>
+  <data name="GbSize.Text" xml:space="preserve">
+    <value>حجم الراسمة</value>
+  </data>
+  <data name="GbPen.Text" xml:space="preserve">
+    <value>حجم القلم/الفرشاة</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>لون</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>القلم الرقمي هو قلم رقمي يُعطي قيمة ضغط (من ٠٪ إلى ١٠٠٪). تتحكم هذه القيمة في عرض القلم، ويمكن تحويلها إلى قيمة Z (للمحور Z) أو قيمة S (للمحرك المؤازر RC) للتحكم في ضغط قلم الراسمة. يُعطي الماوس قيمة ضغط ثابتة قدرها ٥٠٪.</value>
+  </data>
+  <data name="BtnReduce.Text" xml:space="preserve">
+    <value>طبّق قيمة</value>
+  </data>
+  <data name="BtnReduce.ToolTip" xml:space="preserve">
+    <value>قلّل عدد نقاط البيانات لكلّ ضربة. حافظ على الحدّ الأدنى للمسافة. طبّق قيمة جديدة على جميع الضربات.</value>
+  </data>
+  <data name="NudPointDistance.ToolTip" xml:space="preserve">
+    <value>تُطبق المسافة الدنيا بين نقاط الضربة بعد الانتهاء منها.</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>عرض الشوط عند ضغط ١٠٠٪</value>
+  </data>
+  <data name="BtnSwitchXy.ToolTip" xml:space="preserve">
+    <value>تبديل قيمتي X وY</value>
+  </data>
+  <data name="BtnCloseSetup.Text" xml:space="preserve">
+    <value>يغلق</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>يثبت</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>أنشئ</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحديث مباشر للعرض ثنائي الأبعاد</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>إضافة كل رسمة نهائية إلى العرض ثنائي الأبعاد في النموذج الرئيسي</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>استيراد الرسم بالكامل</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>الرسام</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحديث مباشر</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تحديث موضع الراسمة عند تحريك القلم أو الماوس.</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>الإعداد / المساعدة</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>جديد (مسح اللوحة)</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>الحد الأدنى للمسافة</value>
+  </data>
+  <data name="LblStrokes.Text" xml:space="preserve">
+    <value>تتكون كل ضربة قلم من عدد لا نهائي من إحداثيات النقاط. بعد اكتمال كل ضربة، يُقلل عدد النقاط إلى الحد الأدنى المطلوب.</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>تعديل الضربات</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>التحرك أيضًا على حركة الماوس</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import xyz data</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Import XYZ data from clipboard (tab seperated values x y z  or x z)</value>
+  </data>
+</root>

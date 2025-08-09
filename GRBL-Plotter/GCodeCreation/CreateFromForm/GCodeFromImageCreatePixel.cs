@@ -20,6 +20,7 @@
  * 2024-12-12 New routines to draw pixels dot by dot
  * 2024-12-18 Shape from script
  * 2025-04-08 add special function
+ * 2025-06-07 fill specialCodexxx variables
 */
 
 using System;
@@ -42,10 +43,10 @@ namespace GrblPlotter
         private static double pixelArtPenRadius = 0.2;
         private static bool pixelArtFill = false;
 
-        private static string specialCodeBefore = "";
-        private static string specialCodeValue1 = "";
-        private static string specialCodeValue2 = "";
-        private static string specialCodeAfter = "";
+        private static string specialCodeBefore = "G90 G1 Z1 F1000";
+        private static string specialCodeValue1 = "G91 A";
+        private static string specialCodeValue2 = "F10000";
+        private static string specialCodeAfter = "G90 G0 Z5";
 
 
         private static StringBuilder pixelArtShapeScript = new StringBuilder();
@@ -61,11 +62,13 @@ namespace GrblPlotter
             string pixelArtSource = "S";
             if (RbStartGrayZ.Checked)
                 pixelArtSource = "Z";
-            if (RbStartGraySpecial.Checked)
+            specialCodeValue1 = tBCodeValue1.Text;
+            if (RbStartGraySpecial.Checked && (specialCodeValue1.Length > 1))
+            {
                 pixelArtSource = specialCodeValue1.Substring(specialCodeValue1.Length - 1);
-
+            }
             Logger.Info("▼▼  ConvertColorMapPixelArt  px-dist:{0}  colorMapCount:{1}", pixelArtDistance, colorMap.Count);
-            Gcode.Comment(finalString, string.Format("{0} Source=\"{1}\" />", XmlMarker.PixelArt, pixelArtSource));
+            Gcode.Comment(finalString, string.Format("{0} Source=\"{1}\" Dot-count=\"{2}\"/>", XmlMarker.PixelArt, pixelArtSource, (resultImage.Width * resultImage.Height)));
             int toolNr, skipTooNr = 1;
             short key;
             PointF tmpP;
@@ -411,7 +414,7 @@ namespace GrblPlotter
                 drawType = 1;
 
             int dotLineCount = 4;
-            if (!special) 
+            if (!special)
             {
                 if (useZnotS) { dotLineCount = 3; }
                 else { dotLineCount = 5; }
@@ -448,14 +451,14 @@ namespace GrblPlotter
                     return;
                 }
                 cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
-				
-				// move to xy position
+
+                // move to xy position
                 if (drawShape)
                     finalString.AppendFormat("G{0} X{1} Y{2}\r\n", Gcode.FrmtCode(0), Gcode.FrmtNum(pixelPosX - adaptRadius), Gcode.FrmtNum(pixelPosY));
                 else
                     finalString.AppendFormat("G{0} X{1} Y{2}\r\n", Gcode.FrmtCode(0), Gcode.FrmtNum(pixelPosX), Gcode.FrmtNum(pixelPosY));
 
-				// apply brightnes as Gcode value as Z, S or special
+                // apply brightnes as Gcode value as Z, S or special
                 SetPixelHeight(brightnes, useZnotS, special, false);
 
                 if (!special)
@@ -494,13 +497,13 @@ namespace GrblPlotter
             {	// apply code for down and up
                 float sval = (float)nUDSpecialTop.Value - height * (float)(nUDSpecialTop.Value - nUDSpecialBottom.Value) / 255;
                 if (specialCodeBefore != "")
-                {   
-					finalString.AppendFormat("{0}\r\n", specialCodeBefore);
-					finalString.AppendFormat("{0}{1}{2} (PD DOT)\r\n", specialCodeValue1, Gcode.FrmtNum(sval), specialCodeValue2);
-				}
-				else
-					finalString.AppendFormat("{0}{1}{2} (PD DOT)\r\n", specialCodeValue1, Gcode.FrmtNum(sval), specialCodeValue2);
-				
+                {
+                    finalString.AppendFormat("{0}\r\n", specialCodeBefore);
+                    finalString.AppendFormat("{0}{1}{2} (PD DOT)\r\n", specialCodeValue1, Gcode.FrmtNum(sval), specialCodeValue2);
+                }
+                else
+                    finalString.AppendFormat("{0}{1}{2} (PD DOT)\r\n", specialCodeValue1, Gcode.FrmtNum(sval), specialCodeValue2);
+
                 finalString.AppendFormat("{0} (PU)\r\n", specialCodeAfter);
             }
             else
@@ -536,7 +539,6 @@ namespace GrblPlotter
             LbLSizeXCode.Text = w.ToString();
             LbLSizeYCode.Text = h.ToString();
         }
-
     }
 
     class PixelBox : PictureBox
