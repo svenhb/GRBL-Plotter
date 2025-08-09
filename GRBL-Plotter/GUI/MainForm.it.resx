@@ -608,7 +608,7 @@ a quanto ha perso (questo è il problema con gli stepper in generale). In caso c
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Grafica offset in base alla posizione dell'indicatore</value>
+    <value>Offset grafico -&gt; Posizione marcatore a 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Reimposta zoom</value>
@@ -1213,5 +1213,60 @@ Aggiungi 'G54;' all'intestazione G-Code per tornare automaticamente a G54 prima 
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Coordinate utensile (Lavoro/Macchina)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Modifica figura</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Abilita la modalità di modifica per la vista 2D per modificare le figure - seleziona il menu contestuale facendo clic con il pulsante destro del mouse.</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Avanzamento a passo sulla figura.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Abilita la modalità di avanzamento a passo sulla figura: sposta lo strumento nella posizione del gcode più vicina alla posizione cliccata.</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Avanzamento a passo sulla posizione cliccata.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Abilita la modalità jog sull'area macchina, spostando l'utensile nella posizione cliccata.
+Alt-clic arrotonda la posizione a 0,1 raster.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Applica un offset a tutte le coordinate del G-Code, in modo che la posizione del marcatore ottenga la coordinata 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Offset grafico -&gt; Posizione marcatore all'ultima posizione utensile</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Applica un offset a tutte le coordinate del G-Code, in modo che la posizione del marcatore ottenga la coordinata effettiva dell'utensile.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Usa origine 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Usa la coordinata di lavoro 0;0 come centro per specchiatura, rotazione e ridimensionamento</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Compensazione del raggio</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Offset grafico -&gt; Posizione marcatore a 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Applica un offset a tutte le coordinate del G-Code, in modo che la posizione del marcatore ottenga la coordinata 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Offset grafico -&gt; Posizione marcatore all'ultima posizione utensile</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Applica un offset a tutte le coordinate del G-Code, in modo che la posizione del marcatore ottenga la coordinata effettiva dell'utensile.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spostamento tra le ultime posizioni</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tavoletta grafica</value>
   </data>
 </root>

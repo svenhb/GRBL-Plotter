@@ -28,8 +28,10 @@
  * 2023-12-01 l:682 f:OnRaiseProcessEvent add new action "Probing"
  * 2024-02-07 l:698 f:OnRaiseProcessEvent add Barcode, CreatText, 2D-View
  * 2024-02-12 split file, new  MainFormProcessAutomation.cs
+ * 2025-06-03 add _tablet_form
 */
 
+//using GrblPlotter.GCodeCreation.CreateFromForm;
 using GrblPlotter.MachineControl;
 using System;
 using System.Windows.Forms;
@@ -47,6 +49,7 @@ namespace GrblPlotter
         GCodeFromImage _image_form = null;
         GCodeFromShape _shape_form = null;
         GCodeForBarcode _barcode_form = null;
+        GCodeFromTablet _tablet_form = null;
         GCodeForWireCutter _wireCutter_form = null;
 
         ControlStreamingForm _streaming_form = null;
@@ -183,6 +186,90 @@ namespace GrblPlotter
         }
         private void FormClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
         { _shape_form = null; EventCollector.SetOpenForm("FCsis"); }
+
+        /********************************************************************
+         * Direct control
+         * _tablet_form
+         ********************************************************************/
+        private void DirectControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_tablet_form == null)
+            {
+                _tablet_form = new GCodeFromTablet();
+                _tablet_form.RaiseCmdEvent += OnRaiseTabletCmdEvent;
+                _tablet_form.FormClosed += FormClosed_Tablet;
+                //    _tablet_form.BtnImport.Click += GetGCodeFromTablet;      // assign btn-click event
+                _tablet_form.importWholeDrawingToolStripMenuItem.Click += GetGCodeFromTablet;
+                EventCollector.SetOpenForm("Ftab");
+            }
+            else
+            {
+                _tablet_form.Visible = false;
+            }
+
+            if (showFormInFront) _tablet_form.Show(this);
+            else _tablet_form.Show(); // this);
+
+            showFormsToolStripMenuItem.Visible = true;
+            _tablet_form.WindowState = FormWindowState.Normal;
+        }
+        private void FormClosed_Tablet(object sender, FormClosedEventArgs e)
+        { _tablet_form = null; EventCollector.SetOpenForm("FCtab"); }
+        private void OnRaiseTabletCmdEvent(object sender, CmdEventArgs e)
+        {
+            if (e.Command.Contains("update"))
+            {
+                Logger.Trace("OnRaiseTabletCmdEvent update");
+                NewCodeStart(false);
+                SetFctbCodeText(_tablet_form.GetCode().ToString());
+                NewCodeEnd();
+                fCTBCode.Refresh();
+                FoldBlocks1();
+                return;
+            }
+            else if (e.Command.Contains("setup"))
+            {
+                SetupToolStripMenuItem_Click(sender, e);
+                _setup_form?.ShowTab("setup");
+            }
+            else if (e.Command.Contains("tool"))
+            {
+                _setup_form?.UpdateToolTable();
+            }
+            else
+            {
+                string[] commands;
+                commands = e.Command.Split(';');
+                if (!_serial_form.SerialPortOpen)
+                    return;
+                foreach (string btncmd in commands)
+                {
+                    if (btncmd.Contains("stop"))
+                    { if (!Grbl.isVersion_0) SendRealtimeCommand(133); }
+                    else
+                        SendCommand(btncmd.Trim());
+                }
+            }
+        }
+        private void GetGCodeFromTablet(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                string tmpCode = "(no gcode)";
+                if (Graphic.GCode != null)
+                {
+                    tmpCode = Graphic.GCode.ToString();
+                }
+                InsertCodeFromForm(tmpCode, "from tablet");
+                Properties.Settings.Default.counterImportText += 1;
+                string source = "Iink";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                AfterImport(source);
+            }
+            else
+                MessageBox.Show(Localization.GetString("mainStreamingActive"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
 
         /********************************************************************
          * Barcode
@@ -608,6 +695,7 @@ namespace GrblPlotter
                 _setup_form = new ControlSetupForm();
                 _setup_form.FormClosed += FormClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += LoadSettings;
+                _setup_form.BtnApply2DViewChanges.Click += Update2DView;
                 _setup_form.btnReloadFile.Click += ReStartConvertFileFromSetup;
                 _setup_form.btnMoveToolXY.Click += MoveToPickup;
                 _setup_form.btnGCPWMUp.Click += MoveToPickup;

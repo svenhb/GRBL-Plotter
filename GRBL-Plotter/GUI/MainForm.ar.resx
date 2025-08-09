@@ -881,7 +881,7 @@
     <value>صفر XY في الموضع المميز G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>تعويض الرسوم عن طريق وضع علامة</value>
+    <value>إزاحة الرسومات -&gt; موضع العلامة إلى ٠:٠</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>إعادة تعيين التكبير</value>
@@ -1247,5 +1247,59 @@
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>إحداثيات الأداة (العمل / الجهاز)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>تحرير الشكل</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>يُفعّل وضع التحرير في العرض ثنائي الأبعاد لتحرير الأشكال - تحقق من قائمة السياق عند النقر بزر الماوس الأيمن.</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>التحريك إلى موضع الشكل.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>تفعيل وضع التحريك على الشكل: يُحرّك الأداة إلى موضع gcode الأقرب إلى موضع النقر.</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>التحريك إلى موضع النقر.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>يُفعّل وضع الركض على منطقة الآلة، ويُحرّك الأداة إلى موضع النقر. يُدوّر النقر مع الضغط على مفتاح Alt الموضع إلى ٠.١ نقطة.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>يُطبّق إزاحة على جميع إحداثيات G-Code، بحيث يصبح موضع العلامة إحداثيًا ٠:٠.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>إزاحة الرسومات -&gt; موضع العلامة إلى موضع الأداة (الأخير).</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>يُطبّق إزاحة على جميع إحداثيات G-Code، بحيث يصبح موضع العلامة إحداثيًا للأداة.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>استخدم الأصل 0؛0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>استخدم إحداثيات العمل 0؛0 كمركز للانعكاس والدوران والتغيير في الحجم</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>تعويض نصف القطر</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزاحة الرسومات ← موضع العلامة إلى ٠:٠</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>طبّق إزاحة على جميع إحداثيات G-Code، بحيث يصبح موضع العلامة إحداثيًا ٠:٠.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزاحة الرسومات ← موضع العلامة إلى موضع الأداة (الأخير).</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>طبّق إزاحة على جميع إحداثيات G-Code، بحيث يصبح موضع العلامة إحداثيًا للأداة.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>التنقل بين المواضع الأخيرة</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>قرص الرسم</value>
   </data>
 </root>

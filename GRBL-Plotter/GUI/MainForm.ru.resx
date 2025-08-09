@@ -856,7 +856,7 @@
     <value>Ноль XY в отмеченной позиции G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Смещение графики по положению маркера</value>
+    <value>Смещение графики -&gt; Положение маркера на 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Сброс масштабирования</value>
@@ -1218,5 +1218,60 @@
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Координаты инструмента (работа / станок)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Редактировать фигуру</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Включает режим редактирования для 2DView для редактирования фигур — проверьте контекстное меню при щелчке правой кнопкой мыши</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Перейти к позиции фигуры</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Включить режим перемещения на фигуре: перемещает инструмент в позицию gcode, которая ближе всего к нажатой позиции</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Перейти к нажатой позиции.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Включает режим толчковой подачи на участке машины, перемещает инструмент в позицию щелчка. 
+Alt-щелчок округляет позицию до 0,1 растра,</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Применяет смещение ко всем координатам G-кода, так что положение маркера получит координату 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Смещение графики -&gt; Положение маркера на (последнюю) позицию инструмента.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Применяет смещение ко всем координатам G-кода, так что положение маркера получит фактическую координату инструмента.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Использовать начало координат 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Использовать рабочую координату 0;0 как центр для зеркального отображения, вращения и масштабирования</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Компенсация радиуса</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смещение графики -&gt; Положение маркера на 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Применить смещение ко всем координатам G-кода, так что положение маркера получит координату 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смещение графики -&gt; Положение маркера на (последнюю) позицию инструмента.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Применить смещение ко всем координатам G-кода, так что положение маркера получит фактическую координату инструмента.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Перемещение между последними позициями</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Графический планшет</value>
   </data>
 </root>

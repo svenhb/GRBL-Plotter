@@ -1769,6 +1769,7 @@ namespace GrblPlotter
             if (_shape_form != null) { _shape_form.WindowState = FormWindowState.Normal; _shape_form.BringToFront(); }
             if (_wireCutter_form != null) { _wireCutter_form.WindowState = FormWindowState.Normal; _wireCutter_form.BringToFront(); }
             if (_barcode_form != null) { _barcode_form.WindowState = FormWindowState.Normal; _barcode_form.BringToFront(); }
+            if (_tablet_form != null) { _tablet_form.WindowState = FormWindowState.Normal; _tablet_form.BringToFront(); }
 
             if (_setup_form != null) { _setup_form.WindowState = FormWindowState.Normal; _setup_form.BringToFront(); }
             if (_camera_form != null) { _camera_form.WindowState = FormWindowState.Normal; _camera_form.BringToFront(); }
@@ -1789,7 +1790,6 @@ namespace GrblPlotter
             else
                 CbAddGraphic.BackColor = Color.Transparent;
         }
-
     }
 }
 

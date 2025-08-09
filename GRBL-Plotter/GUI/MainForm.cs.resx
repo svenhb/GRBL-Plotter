@@ -571,7 +571,7 @@ na kolik ztratil (to je problém stepperů obecně). V opačném případě se G
     <value>Nula XY na označené pozici G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Offset grafiky podle pozice značky</value>
+    <value>Offsetová grafika -&gt; Poz. značky. na 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Obnovit přiblížení</value>
@@ -1246,5 +1246,60 @@ Změna nastavení importu po prvním importu může vést k nežádoucím efekt�
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Souřadnice nástroje (práce / stroj)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Upravit obrázek</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Povolí režim úprav pro 2DView pro úpravu obrázků - kliknutím pravým tlačítkem zkontrolujte kontextovou nabídku</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Jog to figure poz.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Povolit režim krokování na obrázku: přesune nástroj do pozice gcode, která je nejblíže pozici, na kterou jste kliknuli</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Přejděte na kliknutou pozici.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Povolí krokový režim v oblasti stroje, přesune nástroj do klepnuté polohy. 
+Kliknutí se stisknutou klávesou Alt zaokrouhlí pozici na 0,1 rastru,</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Použije posun na všechny souřadnice G-kódu, takže poloha značky bude mít souřadnice 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Offsetová grafika -&gt; Poz. značky. do (poslední) pozice nástroje.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Použije offset na všechny souřadnice G-kódu, takže poloha značky získá skutečné souřadnice nástroje.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Použít počátek 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Použijte pracovní souřadnici 0;0 jako střed pro zrcadlení, otáčení a změnu měřítka</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Kompenzace poloměru</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafika odsazení -&gt; Pozice značky na 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Použijte odsazení na všechny souřadnice G-kódu, aby pozice značky získala souřadnici 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafika odsazení -&gt; Pozice značky na (poslední) pozici nástroje.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Použijte odsazení na všechny souřadnice G-kódu, aby pozice značky získala skutečnou souřadnici nástroje.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pohyb mezi posledními pozicemi</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafický tablet</value>
   </data>
 </root>

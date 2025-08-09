@@ -840,7 +840,7 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
     <value>Zéro XY à la position marquée G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Graphiques décalés par position du marqueur</value>
+    <value>Décalage graphique -&gt; Position du marqueur à 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Réinitialiser le zoom</value>
@@ -1150,7 +1150,7 @@ La modification des paramètres d'importation après la première importation pe
     <value>Automatisation des processus</value>
   </data>
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Coupe-fil chaud</value>
+    <value>Coupe-fil</value>
   </data>
   <data name="BtnJogAbsZ.Text" xml:space="preserve">
     <value>Passer à</value>
@@ -1191,5 +1191,60 @@ La modification des paramètres d'importation après la première importation pe
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Coordonnées de l'outil (travail / machine)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Modifier la figure</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Active le mode édition de la vue 2D pour modifier les figures. Consultez le menu contextuel lors d'un clic droit.</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Déplacement vers la position de la figure.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Activer le mode déplacement sur la figure : déplace l'outil vers la position du Gcode la plus proche de la position cliquée.</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Déplacement vers la position cliquée.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Abilite la modalitât jog su la aree de machine, al sposte il strument inte posizion clicade. 
+Clic alt al arrotonde la posizion a 0.1 raster,</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Applique un décalage à toutes les coordonnées du code G, de sorte que la position du marqueur obtienne la coordonnée 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Décalage graphique -&gt; Position du marqueur à la (dernière) position de l'outil</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Applique un décalage à toutes les coordonnées du code G, de sorte que la position du marqueur obtienne la coordonnée réelle de l'outil.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Utiliser l'origine 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Utiliser la coordonnée de travail 0;0 comme centre pour la mise en miroir, la rotation et la mise à l'échelle</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Compensation de rayon</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Décalage graphique -&gt; Position du marqueur à 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Appliquer un décalage à toutes les coordonnées du G-Code, afin que la position du marqueur obtienne les coordonnées 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Décalage graphique -&gt; Position du marqueur à la (dernière) position de l'outil</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Appliquer un décalage à toutes les coordonnées du G-Code, afin que la position du marqueur obtienne les coordonnées réelles de l'outil.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Déplacement entre les dernières positions</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Peinture au stylet</value>
   </data>
 </root>

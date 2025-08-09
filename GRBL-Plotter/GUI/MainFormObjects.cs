@@ -110,7 +110,6 @@ namespace GrblPlotter
         public static string Tools { get => AppDataFolder + "\\data\\tools"; }
         public static string Scripts { get => AppDataFolder + "\\data\\scripts"; }
         public static string Usecases { get => AppDataFolder + "\\data\\usecases"; }
-        public static string Hotkeys { get => AppDataFolder + "\\data\\hotkeys.xml"; }
         public static string Examples { get => AppDataFolder + "\\data\\examples"; }
         public static string Extension { get => AppDataFolder + "\\data\\extensions"; }
         public static string Buttons { get => AppDataFolder + "\\data\\buttons"; }
@@ -120,6 +119,10 @@ namespace GrblPlotter
         public static string LogFiles { get => AppDataFolder + "\\logfiles"; }
         public static string Data { get => AppDataFolder + "\\data"; }
 
+        public static string Hotkeys { get => AppDataFolder + "\\data\\hotkeys.xml"; }
+        public static string Papersize { get => AppDataFolder + "\\data\\papersize.xml"; }
+
+		public static string HelpURL { get => "https://grbl-plotter.de/index.php"; }
 
         public static string MakeAbsolutePath(string fileName)
         {

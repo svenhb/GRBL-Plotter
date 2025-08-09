@@ -322,10 +322,6 @@ G代码命令，直到执行了'$H'归位循环。 或者如果用户需要
     <value>实际主轴转速（RPM）</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>手动控制</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>标记代码（不删除）</value>
     <comment>2DView_Menu</comment>
@@ -864,7 +860,7 @@ G代码命令，直到执行了'$H'归位循环。 或者如果用户需要
     <value>在标记位置G10 L20处清零XY</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>通过标记位置偏移图像</value>
+    <value>偏移图形 -&gt; 标记位置至 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>重置缩放</value>
@@ -1602,5 +1598,60 @@ for SVG 文件</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>GRBL-Plotter</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>编辑图形</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>启用 2DView 的编辑模式以编辑图形 - 右键单击​​时检查上下文菜单。</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>慢速移动到图形位置。</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>在图形上启用慢速移动模式：将工具移动到最接近点击位置的 Gcode 位置。</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>慢速移动到点击位置。</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>在机器区域启用慢进模式，将工具移动到点击位置。
+按住 Alt 键并点击可将位置四舍五入到 0.1 个光栅，</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>对所有 G 代码坐标应用偏移，使标记位置获得坐标 0;0。</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>偏移图形 -&gt; 标记位置至（最后一个）工具位置。</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>对所有 G 代码坐标应用偏移，使标记位置获得实际工具坐标。</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>使用原点 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>使用 0;0 工作坐标作为镜像、旋转和缩放的中心</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>半径补偿</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>将图形偏移 -&gt; 标记位置偏移至 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>对所有 G 代码坐标应用偏移，使标记位置获得坐标 0;0。</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>将图形偏移 -&gt; 标记位置偏移至（最后一个）工具位置。</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>对所有 G 代码坐标应用偏移，使标记位置获得实际工具坐标。</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>在最后位置之间移动</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>图形输入板</value>
   </data>
 </root>

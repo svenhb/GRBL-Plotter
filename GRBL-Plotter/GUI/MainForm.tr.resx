@@ -614,7 +614,7 @@ ne kadar kaybettiğine göre (genel olarak steplerin sorunu budur). Aksi takdird
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>İşaretçi Konumuna göre ofset grafikleri</value>
+    <value>Ofset grafikleri -&gt; İşaretleyici konumu 0;0'a</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Yakınlaştırmayı Sıfırla</value>
@@ -1234,5 +1234,60 @@ Kamera koordinat sistemi = G59
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Takım Koordinatları (İş / Makine)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Şekli düzenle</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>2DView için şekilleri düzenlemek üzere düzenleme modunu etkinleştirir - sağ tıklamada bağlam menüsünü kontrol edin</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Şekil pozisyonuna doğru ilerle.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Şekilde ilerle modunu etkinleştir: aracı tıklanan pozisyona en yakın olan gcode pozisyonuna taşır</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Tıklanan pozisyona doğru ilerle.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Makine alanında jog modunu etkinleştirir, aracı tıklanan konuma taşır.
+Alt-tıklama konumu 0,1 rastere yuvarlar,</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Tüm G-Kodu koordinatlarına bir ofset uygular, böylece İşaretleyici konumu 0;0 koordinatını alır.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Ofset grafikleri -&gt; İşaretleyici konumu (son) araç konumu.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Tüm G-Kodu koordinatlarına bir ofset uygular, böylece İşaretleyici konumu gerçek araç koordinatını alır.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Kökeni 0;0 kullanın</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Yansıtma, döndürme ve ölçekleme için merkez olarak 0;0 çalışma koordinatını kullanın</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Yarıçap telafisi</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ofset grafikleri -&gt; İşaretleyici konumu 0;0'a</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tüm G-Kodu koordinatlarına bir ofset uygulayın, böylece İşaretleyici konumu 0;0 koordinatını alır.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ofset grafikleri -&gt; İşaretleyici konumu (son) araç konumu.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tüm G-Kodu koordinatlarına bir ofset uygulayın, böylece İşaretleyici konumu gerçek araç koordinatını alır.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Son konumlar arasında hareket edin</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafik tablet</value>
   </data>
 </root>

@@ -820,7 +820,7 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>Null XY an der markierten Position G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Versetzte Grafik um die Markerposition</value>
+    <value>Grafik-Offset -&gt; Markerposition auf 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Zoomen zurücksetzen</value>
@@ -1180,5 +1180,60 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Werkzeugkoordinaten (Arbeit / Maschine)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Pfad bearbeiten</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Aktiviert den Bearbeitungsmodus für die 2D-Ansicht zum Bearbeiten von Figuren. Kontextmenü bei Rechtsklick.</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Werkzeug zur markierten Pfadposition bewegen</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Jog-Modus für Figur aktivieren: Bewegt das Werkzeug zur G-Code-Position, die der angeklickten Position am nächsten liegt.</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Werkzeug zur angeklickten Position bewegen</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Aktiviert den Bewegungdmodus im Maschinenbereich und bewegt das Werkzeug zur angeklickten Position.
+Alt-Klick rundet die Position auf 0,1 Raster.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Wendet einen Offset auf alle G-Code-Koordinaten an, sodass die Markerposition die Koordinate 0;0 erhält.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Grafik-Offset -&gt; Markerposition auf (letzte) Werkzeugposition</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Wendet einen Offset auf alle G-Code-Koordinaten an, sodass die Markerposition die tatsächliche Werkzeugkoordinate erhält.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Ursprung 0;0 verwenden</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Arbeitskoordinate 0;0 als Mittelpunkt für Spiegelung, Drehung und Skalierung verwenden</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Radiuskompensation</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafik-Offset -&gt; Markerposition auf 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Verschiebt alle G-Code-Koordinaten, sodass die Markerposition die Koordinate 0;0 erhält.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafik-Offset -&gt; Markerposition auf (letzte) Werkzeugposition</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Verschiebt alle G-Code-Koordinaten, sodass die Markerposition die tatsächliche Werkzeugkoordinate erhält.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wechselt zwischen den letzten Positionen</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grafiktablett</value>
   </data>
 </root>

@@ -94,8 +94,8 @@ namespace GrblPlotter
 				_setup_form.Dispose();
 				_jogPathCreator_form.Dispose();*/
 				
-				myFont7.Dispose();
-    			myFont8.Dispose();
+				myFont1.Dispose();
+    			myFont2.Dispose();
 
                 selectionPathOrig.Dispose();
         }
@@ -216,6 +216,9 @@ namespace GrblPlotter
             this.btnResume = new System.Windows.Forms.Button();
             this.btnOverrideDoor = new System.Windows.Forms.Button();
             this.CbAddGraphic = new System.Windows.Forms.CheckBox();
+            this.Rb2DViewMode1 = new System.Windows.Forms.RadioButton();
+            this.Rb2DViewMode2 = new System.Windows.Forms.RadioButton();
+            this.Rb2DViewMode3 = new System.Windows.Forms.RadioButton();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
             this.btnSimulatePause = new System.Windows.Forms.Button();
             this.btnSimulate = new System.Windows.Forms.Button();
@@ -331,6 +334,7 @@ namespace GrblPlotter
             this.cmsPicBoxMoveToMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxZeroXYAtMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxMoveGraphicsOrigin = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveGraphicsOriginTo00 = new System.Windows.Forms.ToolStripMenuItem();
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxMarkFirstPos = new System.Windows.Forms.ToolStripMenuItem();
@@ -345,6 +349,7 @@ namespace GrblPlotter
             this.cmsPicBoxSetGCodeAsBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxClearBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.copyContentTroClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tLPMitteUnten1Zeile = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tLPCustomButton1 = new System.Windows.Forms.TableLayoutPanel();
@@ -434,6 +439,7 @@ namespace GrblPlotter
             this.wireCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createJogPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useOrigin = new System.Windows.Forms.ToolStripMenuItem();
@@ -517,6 +523,12 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
+            this.cmsPictureBox2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.moveBetweenLastPositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -555,6 +567,7 @@ namespace GrblPlotter
             this.tLPMitteUnten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
+            this.tLPMitteUnten1Zeile.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tLPCustomButton1.SuspendLayout();
@@ -567,6 +580,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordX)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.cmsPictureBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -1457,6 +1471,33 @@ namespace GrblPlotter
             this.CbAddGraphic.UseVisualStyleBackColor = true;
             this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
             // 
+            // Rb2DViewMode1
+            // 
+            resources.ApplyResources(this.Rb2DViewMode1, "Rb2DViewMode1");
+            this.Rb2DViewMode1.BackColor = System.Drawing.Color.Yellow;
+            this.Rb2DViewMode1.Checked = true;
+            this.Rb2DViewMode1.Name = "Rb2DViewMode1";
+            this.Rb2DViewMode1.TabStop = true;
+            this.toolTip1.SetToolTip(this.Rb2DViewMode1, resources.GetString("Rb2DViewMode1.ToolTip"));
+            this.Rb2DViewMode1.UseVisualStyleBackColor = false;
+            this.Rb2DViewMode1.CheckedChanged += new System.EventHandler(this.Rb2DViewMode1_CheckedChanged);
+            // 
+            // Rb2DViewMode2
+            // 
+            resources.ApplyResources(this.Rb2DViewMode2, "Rb2DViewMode2");
+            this.Rb2DViewMode2.Name = "Rb2DViewMode2";
+            this.toolTip1.SetToolTip(this.Rb2DViewMode2, resources.GetString("Rb2DViewMode2.ToolTip"));
+            this.Rb2DViewMode2.UseVisualStyleBackColor = true;
+            this.Rb2DViewMode2.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
+            // 
+            // Rb2DViewMode3
+            // 
+            resources.ApplyResources(this.Rb2DViewMode3, "Rb2DViewMode3");
+            this.Rb2DViewMode3.Name = "Rb2DViewMode3";
+            this.toolTip1.SetToolTip(this.Rb2DViewMode3, resources.GetString("Rb2DViewMode3.ToolTip"));
+            this.Rb2DViewMode3.UseVisualStyleBackColor = true;
+            this.Rb2DViewMode3.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
+            // 
             // gBoxStream
             // 
             this.gBoxStream.Controls.Add(this.btnSimulatePause);
@@ -2257,8 +2298,9 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
             this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
-            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
             this.tLPMitteUnten.Controls.Add(this.CbAddGraphic, 0, 2);
+            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 3);
+            this.tLPMitteUnten.Controls.Add(this.tLPMitteUnten1Zeile, 0, 1);
             this.tLPMitteUnten.Name = "tLPMitteUnten";
             // 
             // pictureBox1
@@ -2296,6 +2338,7 @@ namespace GrblPlotter
             this.cmsPicBoxMoveToMarkedPosition,
             this.cmsPicBoxZeroXYAtMarkedPosition,
             this.cmsPicBoxMoveGraphicsOrigin,
+            this.cmsPicBoxMoveGraphicsOriginTo00,
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
             this.cmsPicBoxMarkFirstPos,
@@ -2392,6 +2435,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.cmsPicBoxMoveGraphicsOrigin, "cmsPicBoxMoveGraphicsOrigin");
             this.cmsPicBoxMoveGraphicsOrigin.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin_Click);
             // 
+            // cmsPicBoxMoveGraphicsOriginTo00
+            // 
+            this.cmsPicBoxMoveGraphicsOriginTo00.Name = "cmsPicBoxMoveGraphicsOriginTo00";
+            resources.ApplyResources(this.cmsPicBoxMoveGraphicsOriginTo00, "cmsPicBoxMoveGraphicsOriginTo00");
+            this.cmsPicBoxMoveGraphicsOriginTo00.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin2_Click);
+            // 
             // deletenotMarkToolStripMenuItem
             // 
             resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
@@ -2473,6 +2522,14 @@ namespace GrblPlotter
             this.copyContentTroClipboardToolStripMenuItem.Name = "copyContentTroClipboardToolStripMenuItem";
             resources.ApplyResources(this.copyContentTroClipboardToolStripMenuItem, "copyContentTroClipboardToolStripMenuItem");
             this.copyContentTroClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToClipboardToolStripMenuItem_Click);
+            // 
+            // tLPMitteUnten1Zeile
+            // 
+            resources.ApplyResources(this.tLPMitteUnten1Zeile, "tLPMitteUnten1Zeile");
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode1, 0, 0);
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode2, 1, 0);
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode3, 2, 0);
+            this.tLPMitteUnten1Zeile.Name = "tLPMitteUnten1Zeile";
             // 
             // tLPRechtsOben
             // 
@@ -3102,6 +3159,7 @@ namespace GrblPlotter
             this.createBarcodeToolStripMenuItem,
             this.imageToolStripMenuItem,
             this.createSimpleShapesToolStripMenuItem,
+            this.directControlToolStripMenuItem,
             this.wireCutterToolStripMenuItem,
             this.createJogPathToolStripMenuItem,
             this.startExtensionToolStripMenuItem});
@@ -3148,6 +3206,12 @@ namespace GrblPlotter
             // 
             this.startExtensionToolStripMenuItem.Name = "startExtensionToolStripMenuItem";
             resources.ApplyResources(this.startExtensionToolStripMenuItem, "startExtensionToolStripMenuItem");
+            // 
+            // directControlToolStripMenuItem
+            // 
+            this.directControlToolStripMenuItem.Name = "directControlToolStripMenuItem";
+            resources.ApplyResources(this.directControlToolStripMenuItem, "directControlToolStripMenuItem");
+            this.directControlToolStripMenuItem.Click += new System.EventHandler(this.DirectControlToolStripMenuItem_Click);
             // 
             // gCodeToolStripMenuItem
             // 
@@ -3732,6 +3796,45 @@ namespace GrblPlotter
             this.loadTimer.Interval = 200;
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
             // 
+            // cmsPictureBox2
+            // 
+            this.cmsPictureBox2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms2ToolStripMenuItem,
+            this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem,
+            this.toolStripSeparator18,
+            this.moveBetweenLastPositionsToolStripMenuItem});
+            this.cmsPictureBox2.Name = "cmsPictureBox2";
+            resources.ApplyResources(this.cmsPictureBox2, "cmsPictureBox2");
+            // 
+            // cms2ToolStripMenuItem
+            // 
+            this.cms2ToolStripMenuItem.Name = "cms2ToolStripMenuItem";
+            resources.ApplyResources(this.cms2ToolStripMenuItem, "cms2ToolStripMenuItem");
+            this.cms2ToolStripMenuItem.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin_Click);
+            // 
+            // offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem
+            // 
+            this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Name = "offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem";
+            resources.ApplyResources(this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem, "offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem");
+            this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin2_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
+            // 
+            // moveBetweenLastPositionsToolStripMenuItem
+            // 
+            this.moveBetweenLastPositionsToolStripMenuItem.CheckOnClick = true;
+            this.moveBetweenLastPositionsToolStripMenuItem.Name = "moveBetweenLastPositionsToolStripMenuItem";
+            resources.ApplyResources(this.moveBetweenLastPositionsToolStripMenuItem, "moveBetweenLastPositionsToolStripMenuItem");
+            this.moveBetweenLastPositionsToolStripMenuItem.Click += new System.EventHandler(this.moveBetweenLastPositionsToolStripMenuItem_Click);
+            // 
+            // moveTimer
+            // 
+            this.moveTimer.Interval = 200;
+            this.moveTimer.Tick += new System.EventHandler(this.moveTimer_Tick);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3807,6 +3910,8 @@ namespace GrblPlotter
             this.tLPMitteUnten.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsPictureBox.ResumeLayout(false);
+            this.tLPMitteUnten1Zeile.ResumeLayout(false);
+            this.tLPMitteUnten1Zeile.PerformLayout();
             this.tLPRechtsOben.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.tLPCustomButton1.ResumeLayout(false);
@@ -3823,6 +3928,7 @@ namespace GrblPlotter
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.cmsPictureBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4235,6 +4341,18 @@ namespace GrblPlotter
         private System.Windows.Forms.NumericUpDown NudSetCoordA;
         private System.Windows.Forms.Label LblSetCoordA;
         private System.Windows.Forms.ToolStripMenuItem useOrigin;
+        private System.Windows.Forms.TableLayoutPanel tLPMitteUnten1Zeile;
+        private System.Windows.Forms.RadioButton Rb2DViewMode1;
+        private System.Windows.Forms.RadioButton Rb2DViewMode2;
+        private System.Windows.Forms.RadioButton Rb2DViewMode3;
+        private System.Windows.Forms.ContextMenuStrip cmsPictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem cms2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveBetweenLastPositionsToolStripMenuItem;
+        private System.Windows.Forms.Timer moveTimer;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMoveGraphicsOriginTo00;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
+        private System.Windows.Forms.ToolStripMenuItem offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directControlToolStripMenuItem;
     }
 }
 

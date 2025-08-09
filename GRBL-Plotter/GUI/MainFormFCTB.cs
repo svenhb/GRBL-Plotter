@@ -431,7 +431,7 @@ namespace GrblPlotter
                 string line;
                 int figureCount = 1;
 
-                if (!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} Id=\"{1}\">)", XmlMarker.CollectionStart, globalCollectionCounter++)); }
+                if (!containsCollection && fromFile) { tmpCodeFinish.AppendLine(string.Format("({0} Id=\"{1}\">)", XmlMarker.CollectionStart, globalCollectionCounter++)); }
 
                 for (int k = 0; k < tmpCodeLines.Length; k++)       // go through code-lines to insert
                 {
@@ -488,7 +488,7 @@ namespace GrblPlotter
                     }
                     if (line.Contains(XmlMarker.CollectionEnd)) useCode = false;
                 }
-                if (!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} >)", XmlMarker.CollectionEnd)); }
+                if (!containsCollection && fromFile) { tmpCodeFinish.AppendLine(string.Format("({0} >)", XmlMarker.CollectionEnd)); }
 
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.CollectionStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
@@ -510,8 +510,11 @@ namespace GrblPlotter
             }
             else
             {
-                fCTBCode.Text = sourceGCode;
+            //    fCTBCode.Text = sourceGCode; // removed 2025-06-19
                 Logger.Warn("⚠⚠⚠ Insert code was not possible at line: {0}", insertLineNr);
+				Logger.Warn("....InsertCodeToFctb FAILED insertLineNr:{0}  lineSelected:{1}",insertLineNr, lineSelected);
+				XmlMarker.ListAllFigures();
+				XmlMarker.ListAllGroups();				
                 codeInsert = new System.Drawing.Point(-1, -1);
                 return -1;
             }

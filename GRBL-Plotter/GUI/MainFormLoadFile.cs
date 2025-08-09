@@ -71,6 +71,7 @@
  * 2024-09-20 l:1278 f:LoadFromClipboard add paste from clipboard for GCodeFromPDNJson
  * 2024-12-27 l:1244 f:LoadFromClipboard add svg-string.Trim('\0')
  * 2025-03-04 add $I customization string
+ * 2025-05-23 l:216 f:SaveRecentFile bug fix if save path contains Datapath.AppDataFolder
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -206,13 +207,17 @@ namespace GrblPlotter
         private void SaveRecentFile(string path, bool addPath = true)
         {
             Logger.Info("SaveRecentFile: {0}", path);
+            Logger.Trace("AppDataFolder : {0}", Datapath.AppDataFolder);
             saveName = Path.GetFileNameWithoutExtension(path);
             string dname1 = Path.GetFileName(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
 
-            if (path.StartsWith(Datapath.AppDataFolder) && (path.Length > (Datapath.AppDataFolder.Length + 1)))
-            { path = path.Substring(Datapath.AppDataFolder.Length + 1); }
+            if (path.StartsWith(Datapath.AppDataFolder) && (path.Length > (Datapath.AppDataFolder.Length + 1)) && (path[Datapath.AppDataFolder.Length + 1] == '\\'))
+            {
+                path = path.Substring(Datapath.AppDataFolder.Length + 1);
+                Logger.Trace(" shorten path : {0}", path);
+            }
 
             if (MRUlist.Contains(path)) //prevent duplication on recent list
                 MRUlist.Remove(path);
@@ -221,16 +226,6 @@ namespace GrblPlotter
             {
                 MRUlist.Insert(0, path);    //insert given path into list on top
                 SetRecentText();
-                /*     cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", path);
-
-                     cmsPicBoxReloadFile.Text = Localization.GetString("loadMessageReload") + " | " + dname1;
-                     try
-                     {
-                         cmsPicBoxReloadFile2.Text = Localization.GetString("loadMessageReload") + " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[1]));
-                         cmsPicBoxReloadFile2.Visible = true;// (dname1 == fileLastProcessed + ".nc");
-                     }
-                     catch
-                     { }*/
             }
 
             //keep list number not exceeded the given value
@@ -323,17 +318,8 @@ namespace GrblPlotter
             pictureBox1.Invalidate();                   // resfresh view
             fCTBCode.Bookmarks.Clear();
 
-        /*    if (LineIsInRange(fCTBCodeClickedLineLast))
-            {
-                try
-                {
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                }
-                catch (Exception err) { Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ", fCTBCodeClickedLineLast); }
-            }
-       */     fCTBCodeClickedLineNow = 0;
+            fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
-            //     fCTBCode.Clear();
             ClearErrorLines();
 
             SetEditMode(false);
@@ -381,11 +367,6 @@ namespace GrblPlotter
                 {
                     codeInsertedAt = SetFctbCodeText(Graphic.GCode.ToString(), imported);    // newCodeEnd
                 }
-                /*    if (multiFileImportNotLastFile)
-                    {
-                        fCTBCode.Refresh();
-                        return; 
-                    }*/
                 VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
             else
@@ -415,6 +396,7 @@ namespace GrblPlotter
             VisuGCode.CalcDrawingArea(_markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
             showPaths = true;
+            Rb2DViewMode2.Enabled = Rb2DViewMode3.Enabled = true;
 
             if (loadTimerStep > 0)				// will be set in StartConvert if CodeSize > 250kb (showProgress = true)
             {

@@ -252,6 +252,13 @@ namespace GrblPlotter
 
             _projector_form?.Invalidate();
         }
+        public void Update2DView(object sender, EventArgs e)
+        {
+            if (shutDown) return;
+            Logger.Info("Update2DView");
+            GraphicPropertiesSetup();
+            pictureBox1.Invalidate();
+        }
 
         private void UpdateWholeApplication()	// after ini file, setup change, update controls
         {	// Update everything which could be changed via Setup or INI-file
@@ -546,6 +553,7 @@ namespace GrblPlotter
             if (_serial_form != null)
             { isConnected = _serial_form.SerialPortOpen || Grbl.grblSimulate; }
 
+            moveTimer.Enabled = false;
             UpdateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
 
             bool allowControl = isStreamingPause;

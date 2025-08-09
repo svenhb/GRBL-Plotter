@@ -878,7 +878,7 @@ Grblのバッファーにモーションがキューイングされていて準�
     <value>マーク位置G10 L20のゼロXY</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>マーカー位置によるグラフィックのオフセット</value>
+    <value>グラフィックスのオフセット -&gt; マーカー位置を 0;0 に</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>ズームをリセット</value>
@@ -1244,5 +1244,60 @@ Grblのバッファーにモーションがキューイングされていて準�
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>工具座標（作業/機械）</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>図形の編集</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>2DView の編集モードを有効にして図形を編集します。右クリックでコンテキストメニューを表示します。</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>図形の位置へ移動</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>図形のジョグモードを有効にすると、クリックした位置に最も近い Gcode 位置にツールが移動します。</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>クリックした位置へ移動</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>機械エリアでジョグモードを有効にし、工具をクリックした位置に移動します。
+Altキーを押しながらクリックすると、位置が0.1ラスターに丸められます。</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>すべての G コード座標にオフセットを適用し、マーカー位置が座標 0;0 になるようにします。</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>グラフィックスのオフセット -&gt; マーカー位置を（最後の）ツール位置に</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>すべての G コード座標にオフセットを適用し、マーカー位置が実際のツール座標になるようにします。</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>原点 0;0 を使用</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>ミラーリング、回転、スケーリングの中心として 0;0 作業座標を使用します</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>半径補正</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>グラフィックのオフセット -&gt; マーカー位置を 0;0 に</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>すべての G コード座標にオフセットを適用し、マーカー位置が座標 0;0 になるようにします。</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>グラフィックのオフセット -&gt; マーカー位置を（最後の）ツール位置に</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>すべての G コード座標にオフセットを適用し、マーカー位置が実際のツール座標になるようにします。</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>最後の位置間を移動します</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>グラフィックタブレット</value>
   </data>
 </root>

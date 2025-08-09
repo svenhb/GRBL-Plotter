@@ -609,7 +609,7 @@ ile stracił (to jest problem z stepperami w ogóle). W przeciwnym razie GRBL po
     <value>Zerowanie XY w zaznaczonym miejscu G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Przesunięcie grafiki o pozycję markera</value>
+    <value>Przesunięcie grafiki -&gt; Poz. znacznika do 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Resetuj powiększanie</value>
@@ -1176,5 +1176,60 @@ Dodaj 'G54;' do nagłówka G-Code aby automatycznie przełączyć się z powrote
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Współrzędne narzędzia (praca/maszyna)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Edytuj figurę</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Włącza tryb edycji dla 2DView, aby edytować figury - sprawdź menu kontekstowe po kliknięciu prawym przyciskiem myszy</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Przesuń do pozycji figury</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Włącz tryb przesuwania na figurze: przesuwa narzędzie do pozycji gcode, która jest najbliższa klikniętej pozycji</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Przesuń do klikniętej pozycji.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Włącza tryb przesuwania w obszarze maszyny, przesuwa narzędzie do klikniętej pozycji. 
+Alt-klik zaokrągla pozycję do rastra 0,1,</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Zastosowuje przesunięcie do wszystkich współrzędnych kodu G, tak aby pozycja znacznika uzyskała współrzędną 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Przesunięcie grafiki -&gt; Poz. znacznika do (ostatniego) położenia narzędzia.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Zastosowuje przesunięcie do wszystkich współrzędnych kodu G, tak aby pozycja znacznika uzyskała rzeczywistą współrzędną narzędzia.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Użyj punktu początkowego 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Użyj współrzędnej roboczej 0;0 jako środka do odbicia lustrzanego, obrotu i skalowania</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Kompensacja promienia</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przesunięcie grafiki -&gt; Poz. znacznika do 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zastosuj przesunięcie do wszystkich współrzędnych kodu G, tak aby pozycja znacznika otrzymała współrzędną 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przesunięcie grafiki -&gt; Poz. znacznika do (ostatniego) położenia narzędzia.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zastosuj przesunięcie do wszystkich współrzędnych kodu G, tak aby pozycja znacznika otrzymała rzeczywistą współrzędną narzędzia.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przesuń między ostatnimi pozycjami</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tablet graficzny</value>
   </data>
 </root>

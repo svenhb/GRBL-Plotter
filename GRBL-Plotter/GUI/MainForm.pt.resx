@@ -859,7 +859,7 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <value>Zero XY na posição marcada G10 L20</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Gráficos deslocados por posição do marcador</value>
+    <value>Deslocamento de gráficos -&gt; Posição do marcador para 0;0</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Redefinir o zoom</value>
@@ -1218,5 +1218,60 @@ Alterar as configurações de importação após a primeira importação pode le
   </data>
   <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Coordenadas da ferramenta (Trabalho / Máquina)</value>
+  </data>
+  <data name="Rb2DViewMode1.Text" xml:space="preserve">
+    <value>Editar figura</value>
+  </data>
+  <data name="Rb2DViewMode1.ToolTip" xml:space="preserve">
+    <value>Ativa o modo de edição para a Visualização 2D para editar figuras - verifique o menu de contexto ao clicar com o botão direito.</value>
+  </data>
+  <data name="Rb2DViewMode2.Text" xml:space="preserve">
+    <value>Deslocar para a posição da figura.</value>
+  </data>
+  <data name="Rb2DViewMode2.ToolTip" xml:space="preserve">
+    <value>Ativar modo de deslocamento na figura: move a ferramenta para a posição do código de barras mais próxima da posição clicada.</value>
+  </data>
+  <data name="Rb2DViewMode3.Text" xml:space="preserve">
+    <value>Deslocar para a posição clicada.</value>
+  </data>
+  <data name="Rb2DViewMode3.ToolTip" xml:space="preserve">
+    <value>Habilita o modo de deslocamento na área da máquina, move a ferramenta para a posição clicada.
+A tecla Alt-clique arredonda a posição para 0,1 raster.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.ToolTipText" xml:space="preserve">
+    <value>Aplica um deslocamento a todas as coordenadas do código G, de modo que a posição do marcador obtenha a coordenada 0;0.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.Text" xml:space="preserve">
+    <value>Deslocamento de gráficos -&gt; Posição do marcador para a (última) posição da ferramenta.</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOriginTo00.ToolTipText" xml:space="preserve">
+    <value>Aplica um deslocamento a todas as coordenadas do código G, de modo que a posição do marcador obtenha a coordenada real da ferramenta.</value>
+  </data>
+  <data name="useOrigin.Text" xml:space="preserve">
+    <value>Use a origem 0;0</value>
+  </data>
+  <data name="useOrigin.ToolTipText" xml:space="preserve">
+    <value>Use a coordenada de trabalho 0;0 como centro para espelhamento, rotação e dimensionamento.</value>
+  </data>
+  <data name="toolStrip_RadiusComp.ToolTipText" xml:space="preserve">
+    <value>Compensação de raio</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deslocamento de gráficos -&gt; Posição do marcador para 0;0</value>
+  </data>
+  <data name="cms2ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aplique um deslocamento a todas as coordenadas do G-Code, para que a posição do marcador obtenha a coordenada 0;0.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deslocamento de gráficos -&gt; Posição do marcador para a (última) posição da ferramenta.</value>
+  </data>
+  <data name="offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aplique um deslocamento a todas as coordenadas do G-Code, para que a posição do marcador obtenha a coordenada real da ferramenta.</value>
+  </data>
+  <data name="moveBetweenLastPositionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Movimentação entre as últimas posições</value>
+  </data>
+  <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mesa digitalizadora</value>
   </data>
 </root>
