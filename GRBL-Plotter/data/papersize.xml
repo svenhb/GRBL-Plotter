@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<papersize>
+<preset name="A0" min="841" max="1189" unit="mm" />
+<preset name="A1" min="594" max="841" unit="mm" />
+<preset name="A2" min="420" max="594" unit="mm" />
+<preset name="A3" min="297" max="420" unit="mm" />
+<preset name="A4" min="210" max="297" unit="mm" />
+<preset name="A5" min="148" max="210" unit="mm" />
+<preset name="A6" min="105" max="148" unit="mm" />
+<preset name="A7" min="74" max="105" unit="mm" />
+<preset name="A8" min="52" max="74" unit="mm" />
+<preset name="A9" min="37" max="52" unit="mm" />
+<preset name="A10" min="26" max="37" unit="mm" />
+<preset name="Note block" min="100" max="100" unit="mm" />
+<preset name="Note block" min="90" max="90" unit="mm" />
+<preset name="Note block" min="75" max="75" unit="mm" />
+<preset name="US Letter" min="8.5" max="11" unit="in" />
+<preset name="US Legal" min="8.5" max="14" unit="in" />
+<preset name="US Executive" min="7.25" max="10.5" unit="in" />
+<preset name="US Ledger/Tabloid" min="11" max="17" unit="in" />
+<preset name="B0" min="1000" max="1414" unit="mm" />
+<preset name="B1" min="707" max="1000" unit="mm" />
+<preset name="B2" min="500" max="707" unit="mm" />
+<preset name="B3" min="353" max="500" unit="mm" />
+<preset name="B4" min="250" max="353" unit="mm" />
+<preset name="B5" min="176" max="250" unit="mm" />
+<preset name="B6" min="125" max="176" unit="mm" />
+<preset name="B7" min="88" max="125" unit="mm" />
+<preset name="B8" min="62" max="88" unit="mm" />
+<preset name="B9" min="44" max="62" unit="mm" />
+<preset name="B10" min="31" max="44" unit="mm" />
+<preset name="C0" min="917" max="1297" unit="mm" />
+<preset name="C1" min="648" max="917" unit="mm" />
+<preset name="C2" min="458" max="648" unit="mm" />
+<preset name="C3" min="324" max="458" unit="mm" />
+<preset name="C4" min="229" max="324" unit="mm" />
+<preset name="C5" min="162" max="229" unit="mm" />
+<preset name="C6" min="114" max="162" unit="mm" />
+<preset name="C7" min="81" max="114" unit="mm" />
+<preset name="C8" min="57" max="81" unit="mm" />
+<preset name="C9" min="40" max="57" unit="mm" />
+<preset name="C10" min="28" max="40" unit="mm" />
+<preset name="D1" min="545" max="771" unit="mm" />
+<preset name="D2" min="385" max="545" unit="mm" />
+<preset name="D3" min="272" max="385" unit="mm" />
+<preset name="D4" min="192" max="272" unit="mm" />
+<preset name="D5" min="136" max="192" unit="mm" />
+<preset name="D6" min="96" max="136" unit="mm" />
+<preset name="D7" min="68" max="96" unit="mm" />
+<preset name="E3" min="400" max="560" unit="mm" />
+<preset name="E4" min="280" max="400" unit="mm" />
+<preset name="E5" min="200" max="280" unit="mm" />
+<preset name="E6" min="140" max="200" unit="mm" />
+<preset name="CSE" min="462" max="649" unit="pt" />
+<preset name="US #10 Envelope" min="9.5" max="4.125" unit="in" />
+<preset name="DL Envelope" min="220" max="110" unit="mm" />
+<preset name="Banner 468x60" min="468" max="60" unit="px" />
+<preset name="Icon 16x16" min="16" max="16" unit="px" />
+<preset name="Icon 32x32" min="32" max="32" unit="px" />
+<preset name="Icon 48x48" min="48" max="48" unit="px" />
+<preset name="ID Card (ISO 7810)" min="85.60" max="53.98" unit="mm" />
+<preset name="Business Card (US)" min="3.5" max="2" unit="in" />
+<preset name="Business Card (Europe)" min="85" max="55" unit="mm" />
+<preset name="Business Card (AU/NZ)" min="90" max="55" unit="mm" />
+<preset name="Arch A" min="9" max="12" unit="in" />
+<preset name="Arch B" min="12" max="18" unit="in" />
+<preset name="Arch C" min="18" max="24" unit="in" />
+<preset name="Arch D" min="24" max="36" unit="in" />
+<preset name="Arch E" min="36" max="48" unit="in" />
+<preset name="Arch E1" min="30" max="42" unit="in" />
+</papersize>
