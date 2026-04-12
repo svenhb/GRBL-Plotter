@@ -726,4 +726,55 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Tekrar yükle</value>
   </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Fareyle üzerine gelindiğinde açılımı aç</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Boyut kontrolü</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Joystick raster</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>Fare bırakıldığında kaydırmayı durdur</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Klasik düğmeleri göster</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Joystick üzerindeki okları göster</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Adım boyutu etiketlerini göster</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Lazer için tarama dolgusu</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Tarama dolgusunu etkinleştir</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Çizgi aralığı</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Çizgi açısı</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Açı artışını etkinleştir</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Açıyı artır</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Girinti</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Çevreleyen yolu sil</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Çizici için tarama dolgusu</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Çapraz kapak</value>
+  </data>
 </root>

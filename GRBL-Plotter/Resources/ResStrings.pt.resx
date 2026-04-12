@@ -117,8 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarme</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Verifica</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Aguarde</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>Ocioso</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>Jog</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>Sonda</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Ecexutando</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Dormir</value>
+  </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>controlador grbl não está conectado! \r\nNão é possível realizar a ação desejada!</value>
+  </data>
   <data name="mainAttention" xml:space="preserve">
     <value>Atenção</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Sinta-se livre para melhorar a tradução</value>
   </data>
   <data name="mainHotkeyError" xml:space="preserve">
     <value>Arquivo 'hotkeys.xml' não encontrado, nenhuma tecla de atalho definida!</value>
@@ -222,6 +258,15 @@
   <data name="mainQuit" xml:space="preserve">
     <value>Sair do GRBL-Plotter?</value>
   </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Rapidez</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Iniciar simulação de caminho</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Parar simulação</value>
+  </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>A transmissão ainda está ativa - pressione Parar e tente novamente</value>
   </data>
@@ -273,48 +318,6 @@
   <data name="serialOpen" xml:space="preserve">
     <value>Abrir</value>
   </data>
-  <data name="mainSimuStart" xml:space="preserve">
-    <value>Iniciar simulação de caminho</value>
-  </data>
-  <data name="mainSimuStop" xml:space="preserve">
-    <value>Parar simulação</value>
-  </data>
-  <data name="mainHelpLanguage" xml:space="preserve">
-    <value>Sinta-se livre para melhorar a tradução</value>
-  </data>
-  <data name="mainSimuSpeed" xml:space="preserve">
-    <value>Rapidez</value>
-  </data>
-  <data name="grblIdle" xml:space="preserve">
-    <value>Ocioso</value>
-  </data>
-  <data name="grblRun" xml:space="preserve">
-    <value>Ecexutando</value>
-  </data>
-  <data name="grblAlarm" xml:space="preserve">
-    <value>Alarme</value>
-  </data>
-  <data name="grblCheck" xml:space="preserve">
-    <value>Verifica</value>
-  </data>
-  <data name="grblDoor" xml:space="preserve">
-    <value>Porta</value>
-  </data>
-  <data name="grblHold" xml:space="preserve">
-    <value>Aguarde</value>
-  </data>
-  <data name="grblHome" xml:space="preserve">
-    <value>Casa</value>
-  </data>
-  <data name="grblJog" xml:space="preserve">
-    <value>Jog</value>
-  </data>
-  <data name="grblProbe" xml:space="preserve">
-    <value>Sonda</value>
-  </data>
-  <data name="grblSleep" xml:space="preserve">
-    <value>Dormir</value>
-  </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
     <value>Verifique a janela COM para obter mais informações</value>
   </data>
@@ -342,14 +345,14 @@
   <data name="statusStripeResetNeeded" xml:space="preserve">
     <value>Provavelmente é necessário reiniciar o controlador</value>
   </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Seleção movida por</value>
+  </data>
   <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
     <value>O status da transmissão e o código G são salvos em '_lastProcessed.nc'. É possível continuar após a reinicialização do programa.</value>
   </data>
   <data name="statusStripeUpKeys" xml:space="preserve">
     <value>Control-Up para mover o bloco selecionado para cima; Control-Shift-Up para mover para o topo</value>
-  </data>
-  <data name="statusStripeSelectionMoved" xml:space="preserve">
-    <value>Seleção movida por</value>
   </data>
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Verificar se há nova versão do GRBL-Plotter no GitHub' - pode ser desativado em [Setup - Program control]</value>
@@ -398,9 +401,6 @@
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Marcador de distorção</value>
-  </data>
-  <data name="grblNotConnected" xml:space="preserve">
-    <value>controlador grbl não está conectado! \r\nNão é possível realizar a ação desejada!</value>
   </data>
   <data name="useCaseInfo" xml:space="preserve">
     <value>Um caso de uso é uma configuração predefinida para ajustar as configurações de uma máquina e/ou aplicativo específico.\r\nAs configurações de um caso de uso selecionado e aplicado também permanecem após a importação dos gráficos.\r\nUm caso de uso precisa para ser armazenado em \data\usecases para ser acessível.\r\nTambém podem ser usadas configurações de máquina exportadas e subconjuntos dela.</value>
@@ -713,5 +713,56 @@ Possível solução alternativa: tente converter o objeto em caminho.</value>
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Recarregar</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Expandir ao passar o mouse</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Controlar tamanho</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Rasterização do joystick</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>Parar movimentação ao soltar o mouse</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Mostrar botões clássicos</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Mostrar setas no joystick</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Mostrar rótulos de tamanho do passo</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Preenchimento de hachura para laser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Habilitar preenchimento de hachura</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Espaçamento entre linhas</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Ângulo da linha</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Habilitar incremento de ângulo</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Incrementar ângulo</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Recuo</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Excluir caminho circundante</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Preenchimento de hachura para plotter</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Hachura cruzada</value>
   </data>
 </root>

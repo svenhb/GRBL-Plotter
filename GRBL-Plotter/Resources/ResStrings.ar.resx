@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>إنذار</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>التحقق من</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>باب</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>خامل</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>يجري بيطء</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>مسبار</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>يركض</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>ينام</value>
+  </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>جهاز تحكم grbl غير متصل! \r\n لا يمكن تنفيذ الإجراء المطلوب!</value>
+  </data>
   <data name="mainAttention" xml:space="preserve">
     <value>انتباه</value>
   </data>
@@ -225,6 +258,15 @@
   <data name="mainQuit" xml:space="preserve">
     <value>استقال GRBL-Plotter؟</value>
   </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>سرعة</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>بدء محاكاة المسار</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>وقف المحاكاة</value>
+  </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>لا يزال البث نشطًا - اضغط على إيقاف وحاول مرة أخرى</value>
   </data>
@@ -276,45 +318,6 @@
   <data name="serialOpen" xml:space="preserve">
     <value>افتح</value>
   </data>
-  <data name="mainSimuStart" xml:space="preserve">
-    <value>بدء محاكاة المسار</value>
-  </data>
-  <data name="mainSimuStop" xml:space="preserve">
-    <value>وقف المحاكاة</value>
-  </data>
-  <data name="mainSimuSpeed" xml:space="preserve">
-    <value>سرعة</value>
-  </data>
-  <data name="grblAlarm" xml:space="preserve">
-    <value>إنذار</value>
-  </data>
-  <data name="grblCheck" xml:space="preserve">
-    <value>التحقق من</value>
-  </data>
-  <data name="grblDoor" xml:space="preserve">
-    <value>باب</value>
-  </data>
-  <data name="grblHold" xml:space="preserve">
-    <value>معلق</value>
-  </data>
-  <data name="grblHome" xml:space="preserve">
-    <value>الصفحة الرئيسية</value>
-  </data>
-  <data name="grblIdle" xml:space="preserve">
-    <value>خامل</value>
-  </data>
-  <data name="grblJog" xml:space="preserve">
-    <value>يجري بيطء</value>
-  </data>
-  <data name="grblProbe" xml:space="preserve">
-    <value>مسبار</value>
-  </data>
-  <data name="grblRun" xml:space="preserve">
-    <value>يركض</value>
-  </data>
-  <data name="grblSleep" xml:space="preserve">
-    <value>ينام</value>
-  </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
     <value>تحقق من نافذة COM للحصول على مزيد من المعلومات</value>
   </data>
@@ -342,14 +345,14 @@
   <data name="statusStripeResetNeeded" xml:space="preserve">
     <value>ربما هناك حاجة لإعادة ضبط وحدة التحكم</value>
   </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>تم نقل التحديد بواسطة</value>
+  </data>
   <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
     <value>يتم حفظ حالة البث و G-Code في "_lastProcessed.nc". يمكن الاستمرار بعد إعادة تشغيل البرنامج.</value>
   </data>
   <data name="statusStripeUpKeys" xml:space="preserve">
     <value>Control-Up لتحريك الكتلة المحددة لأعلى ؛ Control-Shift-Up للانتقال إلى الأعلى</value>
-  </data>
-  <data name="statusStripeSelectionMoved" xml:space="preserve">
-    <value>تم نقل التحديد بواسطة</value>
   </data>
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>"التحقق من إصدار GRBL-Plotter الجديد على GitHub" - يمكن تعطيله في [الإعداد - التحكم في البرنامج]</value>
@@ -398,9 +401,6 @@
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>علامة تشويه</value>
-  </data>
-  <data name="grblNotConnected" xml:space="preserve">
-    <value>جهاز تحكم grbl غير متصل! \r\n لا يمكن تنفيذ الإجراء المطلوب!</value>
   </data>
   <data name="useCaseInfo" xml:space="preserve">
     <value>حالة الاستخدام هي إعداد مسبق الضبط لضبط الإعدادات لجهاز و / أو تطبيق معين. \ r \ n تظل إعدادات حالة الاستخدام المحددة والمطبقة بعد استيراد الرسومات. \ r \ n احتياجات حالة الاستخدام ليتم تخزينها في \ بيانات \ حالات مستخدم حتى يمكن الوصول إليها. \ r \ n يمكن أيضًا استخدام إعدادات الجهاز والمجموعات الفرعية المصدرة منها.</value>
@@ -597,6 +597,9 @@
   <data name="importMessagePUDPenUp" xml:space="preserve">
     <value>قلم يصل</value>
   </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
   <data name="importMessageOption1" xml:space="preserve">
     <value>تفسير المسار:</value>
   </data>
@@ -641,9 +644,6 @@
   </data>
   <data name="importMessageOptionWireBender" xml:space="preserve">
     <value>بندر الأسلاك</value>
-  </data>
-  <data name="importMessagePUDPenDown" xml:space="preserve">
-    <value>القلم لأسفل</value>
   </data>
   <data name="importMessageOption1Link" xml:space="preserve">
     <value>تفسيرات المسار الممكنة</value>
@@ -713,5 +713,56 @@
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>إعادة تحميل</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>فتح عند تمرير الماوس</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>التحكم في الحجم</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>التحكم في حركة عصا التحكم</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>إيقاف الحركة عند رفع الماوس</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>إظهار الأزرار التقليدية</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>إظهار الأسهم على عصا التحكم</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>إظهار تسميات حجم الخطوة</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>تعبئة التظليل لليزر</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>تمكين تعبئة التظليل</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>تباعد الأسطر</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>زاوية الخط</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>تمكين زيادة الزاوية</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>زيادة الزاوية</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>المسافة البادئة</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>حذف المسار المحيط</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>تعبئة التظليل للراسمة</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>فتحة متقاطعة</value>
   </data>
 </root>

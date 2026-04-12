@@ -729,4 +729,55 @@ Possible workaround: try to convert object to path.</value>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Reload File</value>
   </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Unfold on mouse over</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Control size</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Joy stick raster</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>STOP jogging on mouse up</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Show classic buttons</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Show arrows on joy stick</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Show step size labels</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Hatch fill for Laser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Enable hatch fill</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Line spacing</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Line angle</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Enable angle increment</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Increment angle</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Indentation</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Delete surrounding path</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Hatch fill for Plotter</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Cross hatch</value>
+  </data>
 </root>

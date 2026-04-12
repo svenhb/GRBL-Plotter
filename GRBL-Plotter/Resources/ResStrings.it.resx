@@ -718,4 +718,55 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Ricaricare</value>
   </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Espandi al passaggio del mouse</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Controlla le dimensioni</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Raster del joystick</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>Interrompi la corsa al rilascio del mouse</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Mostra i pulsanti classici</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Mostra le frecce sul joystick</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Mostra le etichette delle dimensioni del passo</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Riempimento tratteggiato per Laser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Abilita riempimento tratteggiato</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Spaziatura tra le linee</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Angolo della linea</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Abilita incremento angolo</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Incrementa angolo</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Rientro</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Elimina il tracciato circostante</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Riempimento tratteggio per plotter</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Tratteggio incrociato</value>
+  </data>
 </root>

@@ -1474,6 +1474,96 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Line angle ähnelt.
+        /// </summary>
+        public static string optionFillAngle {
+            get {
+                return ResourceManager.GetString("optionFillAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Increment angle ähnelt.
+        /// </summary>
+        public static string optionFillAngleIncrement {
+            get {
+                return ResourceManager.GetString("optionFillAngleIncrement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable angle increment ähnelt.
+        /// </summary>
+        public static string optionFillAngleIncrementEnable {
+            get {
+                return ResourceManager.GetString("optionFillAngleIncrementEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cross hatch ähnelt.
+        /// </summary>
+        public static string optionFillCross {
+            get {
+                return ResourceManager.GetString("optionFillCross", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete surrounding path ähnelt.
+        /// </summary>
+        public static string optionFillDeletePath {
+            get {
+                return ResourceManager.GetString("optionFillDeletePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Line spacing ähnelt.
+        /// </summary>
+        public static string optionFillDistance {
+            get {
+                return ResourceManager.GetString("optionFillDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable hatch fill ähnelt.
+        /// </summary>
+        public static string optionFillEnable {
+            get {
+                return ResourceManager.GetString("optionFillEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hatch fill for Laser ähnelt.
+        /// </summary>
+        public static string optionFillHeadlineLaser {
+            get {
+                return ResourceManager.GetString("optionFillHeadlineLaser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hatch fill for Plotter ähnelt.
+        /// </summary>
+        public static string optionFillHeadlinePlotter {
+            get {
+                return ResourceManager.GetString("optionFillHeadlinePlotter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Indentation ähnelt.
+        /// </summary>
+        public static string optionFillInsetDistance {
+            get {
+                return ResourceManager.GetString("optionFillInsetDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die probing ähnelt.
         /// </summary>
         public static string probing {
@@ -1830,6 +1920,69 @@ namespace GrblPlotter.Resources {
         public static string textNewFontException {
             get {
                 return ResourceManager.GetString("textNewFontException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Control size ähnelt.
+        /// </summary>
+        public static string ucSetupControlSize {
+            get {
+                return ResourceManager.GetString("ucSetupControlSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Joy stick raster ähnelt.
+        /// </summary>
+        public static string ucSetupJoyStickRaster {
+            get {
+                return ResourceManager.GetString("ucSetupJoyStickRaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show arrows on joy stick ähnelt.
+        /// </summary>
+        public static string ucSetupShowArrows {
+            get {
+                return ResourceManager.GetString("ucSetupShowArrows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show classic buttons ähnelt.
+        /// </summary>
+        public static string ucSetupShowClassicButtons {
+            get {
+                return ResourceManager.GetString("ucSetupShowClassicButtons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show step size labels ähnelt.
+        /// </summary>
+        public static string ucSetupShowLabel {
+            get {
+                return ResourceManager.GetString("ucSetupShowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die STOP jogging on mouse up ähnelt.
+        /// </summary>
+        public static string ucSetupStopJoggingOnMouseUp {
+            get {
+                return ResourceManager.GetString("ucSetupStopJoggingOnMouseUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unfold on mouse over ähnelt.
+        /// </summary>
+        public static string ucSetupUnfoldOnMouseOver {
+            get {
+                return ResourceManager.GetString("ucSetupUnfoldOnMouseOver", resourceCulture);
             }
         }
         

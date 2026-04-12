@@ -117,35 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="serialCloseError" xml:space="preserve">
-    <value>Eine serielle Verbindung ist erforderlich. \r\nSchließen Sie stattdessen das Hauptfenster</value>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grbl-Controller ist nicht verbunden!\r\nDie gewünschte Aktion kann nicht ausgeführt werden!</value>
   </data>
   <data name="mainAttention" xml:space="preserve">
     <value>Achtung</value>
   </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Die nächste Bewegung wird die Maschinengrenzen überschreiten! \r</value>
+  <data name="mainHotkeyError" xml:space="preserve">
+    <value>Datei 'hotkeys.xml' nicht gefunden, keine Hotkeys gesetzt!</value>
   </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Drücke 'Ok', um trotzdem zu fahren</value>
+  <data name="mainHotkeyError1" xml:space="preserve">
+    <value>Unbekannte Aktion:</value>
   </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Keine gültige Zahl</value>
-  </data>
-  <data name="mainQuit" xml:space="preserve">
-    <value>GRBL-Plotter beenden?</value>
-  </data>
-  <data name="mainToolChange" xml:space="preserve">
-    <value>Werkzeug- / Stiftwechsel!</value>
-  </data>
-  <data name="mainToolChange1" xml:space="preserve">
-    <value>Werkzeugwechsel erforderlich: \r</value>
-  </data>
-  <data name="mainToolChange2" xml:space="preserve">
-    <value>\r Drücke Start, um fortzufahren.</value>
+  <data name="mainHotkeyError2" xml:space="preserve">
+    <value>Fehler mit Hotkey.xml</value>
   </data>
   <data name="mainInfoCheckCode" xml:space="preserve">
     <value>Überprüfe G-Code</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Fehler vor Zeile</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Check G-Code beendet</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Senden G-Code beendet</value>
   </data>
   <data name="mainInfoSendCode" xml:space="preserve">
     <value>Sende G-Code</value>
@@ -156,14 +153,11 @@
   <data name="mainInfoUndo" xml:space="preserve">
     <value>Letzte Aktion rückgängig machen</value>
   </data>
-  <data name="mainHotkeyError" xml:space="preserve">
-    <value>Datei 'hotkeys.xml' nicht gefunden, keine Hotkeys gesetzt!</value>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>Die nächste Bewegung wird die Maschinengrenzen überschreiten! \r</value>
   </data>
-  <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Unbekannte Aktion:</value>
-  </data>
-  <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Fehler mit Hotkey.xml</value>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Drücke 'Ok', um trotzdem zu fahren</value>
   </data>
   <data name="mainLimits3" xml:space="preserve">
     <value>Grafikgröße überschreitet Maschinengröße! \r\nTransformation wird empfohlen, um eine Beschädigung der Maschine zu vermeiden!</value>
@@ -177,6 +171,12 @@
   <data name="mainLoadError2" xml:space="preserve">
     <value>Die URL-Erweiterung lautet nicht "svg" oder "dxf". \r\nVersuche trotzdem den SVG-Import, ohne jedoch die Liste "Zuletzt verwendete Dateien" zu aktualisieren.</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Dateierweiterung nicht unterstützt '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>Keine gültige Zahl</value>
+  </data>
   <data name="mainParseError1" xml:space="preserve">
     <value>Keine gültige Zahl, Zeile auf 0 setzen</value>
   </data>
@@ -189,8 +189,29 @@
   <data name="mainPauseStream2" xml:space="preserve">
     <value>Möchten Sie den Job fortsetzen?</value>
   </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Fortschritt</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>GRBL-Plotter beenden?</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Starte Pfadsimulation</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Stop Simulation</value>
+  </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>Das Streaming ist immer noch aktiv - drücke Stopp und versuche es erneut</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>Werkzeug- / Stiftwechsel!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>Werkzeugwechsel erforderlich: \r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\r Drücke Start, um fortzufahren.</value>
   </data>
   <data name="mainUnknownCode" xml:space="preserve">
     <value>Unbekannten G-Code auskommentiert: \r\n</value>
@@ -200,12 +221,6 @@
   </data>
   <data name="probingCancel2" xml:space="preserve">
     <value>Letzten Befehl verarbeiten</value>
-  </data>
-  <data name="probingProbingOn" xml:space="preserve">
-    <value>Abtasten auf </value>
-  </data>
-  <data name="mainProgress" xml:space="preserve">
-    <value>Fortschritt</value>
   </data>
   <data name="probingCenter" xml:space="preserve">
     <value>In die Mitte fahren</value>
@@ -219,6 +234,9 @@
   <data name="probingFinish" xml:space="preserve">
     <value>Fertig</value>
   </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>Abtasten auf </value>
+  </data>
   <data name="probingSetCenter" xml:space="preserve">
     <value>Setze Mitte</value>
   </data>
@@ -228,26 +246,11 @@
   <data name="serialClose" xml:space="preserve">
     <value>Schließen</value>
   </data>
-  <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Fehler vor Zeile</value>
-  </data>
-  <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Check G-Code beendet</value>
-  </data>
-  <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Senden G-Code beendet</value>
-  </data>
-  <data name="mainLoadError3" xml:space="preserve">
-    <value>Dateierweiterung nicht unterstützt '</value>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>Eine serielle Verbindung ist erforderlich. \r\nSchließen Sie stattdessen das Hauptfenster</value>
   </data>
   <data name="serialOpen" xml:space="preserve">
     <value>Öffnen</value>
-  </data>
-  <data name="mainSimuStart" xml:space="preserve">
-    <value>Starte Pfadsimulation</value>
-  </data>
-  <data name="mainSimuStop" xml:space="preserve">
-    <value>Stop Simulation</value>
   </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
     <value>Überprüfen Sie das COM-Fenster für weitere Informationen</value>
@@ -276,14 +279,14 @@
   <data name="statusStripeResetNeeded" xml:space="preserve">
     <value>Möglicherweise ist ein Reset des Controllers erforderlich</value>
   </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Auswahl verschoben um</value>
+  </data>
   <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
     <value>Streaming-Status und G-Code werden in '_lastProcessed.nc' gespeichert. Fortsetzung nach Programmneustart ist möglich.</value>
   </data>
   <data name="statusStripeUpKeys" xml:space="preserve">
     <value>Control-Up, um den ausgewählten Block 1 nach oben zu verschieben; Control-Shift-Up, um nach oben zu gelangen</value>
-  </data>
-  <data name="statusStripeSelectionMoved" xml:space="preserve">
-    <value>Auswahl verschoben um</value>
   </data>
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Auf GitHub nach neuer GRBL-Plotter-Version suchen' - kann in [Setup - Programmsteuerung] deaktiviert werden.</value>
@@ -332,9 +335,6 @@
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Verzerrungsmarker</value>
-  </data>
-  <data name="grblNotConnected" xml:space="preserve">
-    <value>grbl-Controller ist nicht verbunden!\r\nDie gewünschte Aktion kann nicht ausgeführt werden!</value>
   </data>
   <data name="useCaseInfo" xml:space="preserve">
     <value>Ein Anwendungsfall ist ein voreingestelltes Setup, um Einstellungen für eine bestimmte Maschine und/oder Anwendung anzupassen.\r\nDie Einstellungen eines ausgewählten und angewendeten Anwendungsfalls bleiben auch nach dem Import der Grafiken erhalten.\r\nEin Anwendungsfall muss in \data\usecases gespeichert werden, um zugänglich zu sein.\r\nAuch exportierte Maschineneinstellungen und Teilmengen davon können verwendet werden.</value>
@@ -528,6 +528,9 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   <data name="importMessagePUDPenUp" xml:space="preserve">
     <value>Stift hoch</value>
   </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>Stift runter</value>
+  </data>
   <data name="importMessageOption1" xml:space="preserve">
     <value>Pfadinterpretation:</value>
   </data>
@@ -572,9 +575,6 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   </data>
   <data name="importMessageOptionWireBender" xml:space="preserve">
     <value>Drahtbieger</value>
-  </data>
-  <data name="importMessagePUDPenDown" xml:space="preserve">
-    <value>Stift runter</value>
   </data>
   <data name="importMessageOption1Link" xml:space="preserve">
     <value>Mögliche Pfadinterpretationen</value>
@@ -644,5 +644,56 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Neu laden</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Beim Überfahren mit der Maus aufklappen</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Größe steuern</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Joystick-Raster</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>Joystick-Bewegung beim Loslassen der Maustaste stoppen</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Klassische Schaltflächen anzeigen</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Pfeile auf dem Joystick anzeigen</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Schrittgrößenbeschriftungen anzeigen</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Schraffurfüllung für Laser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Schraffurfüllung aktivieren</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Linienabstand</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Linienwinkel</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Winkelinkrement aktivieren</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Winkelinkrement</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Einzug</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Umgebenden Pfad löschen</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Schraffurfüllung für Plotter</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Kreuzschraffur</value>
   </data>
 </root>

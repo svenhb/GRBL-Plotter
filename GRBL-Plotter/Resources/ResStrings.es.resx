@@ -117,174 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="serialCloseError" xml:space="preserve">
-    <value>Se necesita conexión en serie. \r\nCierre la ventana principal</value>
-  </data>
-  <data name="mainAttention" xml:space="preserve">
-    <value>Atención</value>
-  </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>¡El próximo movimiento excederá los límites de la máquina!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Presione 'Ok' para moverse de todos modos</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>No es un numero valido</value>
-  </data>
-  <data name="mainProblem" xml:space="preserve">
-    <value>Problema</value>
-  </data>
-  <data name="mainQuit" xml:space="preserve">
-    <value>Salir de GRBL-Plotter?</value>
-  </data>
-  <data name="mainToolChange" xml:space="preserve">
-    <value>¡Cambio de herramienta / lápiz!</value>
-  </data>
-  <data name="mainToolChange1" xml:space="preserve">
-    <value>Cambio de herramienta necesario: \r</value>
-  </data>
-  <data name="mainToolChange2" xml:space="preserve">
-    <value>\r presione inicio para continuar.</value>
-  </data>
-  <data name="mainInfoCheckCode" xml:space="preserve">
-    <value>Verifique el código G</value>
-  </data>
-  <data name="mainInfoSendCode" xml:space="preserve">
-    <value>Enviar código G</value>
-  </data>
-  <data name="mainInfoStopStream" xml:space="preserve">
-    <value>DETENER la transmisión (</value>
-  </data>
-  <data name="mainInfoStopStream2" xml:space="preserve">
-    <value>DETENER la transmisión (línea</value>
-  </data>
-  <data name="mainInfoToolChange" xml:space="preserve">
-    <value>Cambio de herramienta...</value>
-  </data>
-  <data name="mainInfoUndo" xml:space="preserve">
-    <value>Deshacer la última acción</value>
-  </data>
-  <data name="mainHotkeyError" xml:space="preserve">
-    <value>Archivo 'hotkeys.xml' no encontrado, no hay teclas de acceso rápido configuradas!</value>
-  </data>
-  <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Acción desconocida:</value>
-  </data>
-  <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Error con Hotkey.xml</value>
-  </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>¡La dimensión de gráficos excede la dimensión de la máquina! \r\n ¡Se recomienda la transformación para evitar dañar la máquina!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>La transmisión debe detenerse antes de cargar un nuevo archivo</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>Archivo no encontrado: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>La extensión de URL no es 'svg' o 'dxf' \r\n Intente importar SVG de todos modos, pero sin configurar la lista 'Archivo reciente'.</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>No es un número válido, establezca la línea en 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Pausar transmisión - presione play</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>El último trabajo se detuvo en la línea.</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>¿Quieres continuar con el trabajo?</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>La transmisión aún está activa: presione Detener e intente nuevamente</value>
-  </data>
-  <data name="mainUnknownCode" xml:space="preserve">
-    <value>G-Code desconocido comentado: \r\n</value>
-  </data>
-  <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Error antes de la línea</value>
-  </data>
-  <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Termine de verificar el código G</value>
-  </data>
-  <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Terminer l'envoi du code G</value>
-  </data>
-  <data name="mainInfoKill" xml:space="preserve">
-    <value>Presione 'Kill Alarm' para continuar</value>
-  </data>
-  <data name="mainInfoLaserModeOff" xml:space="preserve">
-    <value>Modo láser no activo $32 = 0</value>
-  </data>
-  <data name="mainInfoLaserModeOn" xml:space="preserve">
-    <value>Modo láser activo $32 = 1</value>
-  </data>
-  <data name="mainInfoPause" xml:space="preserve">
-    <value>Pausar transmisión - presione play (</value>
-  </data>
-  <data name="mainInfoProbing" xml:space="preserve">
-    <value>Sondeo</value>
-  </data>
-  <data name="mainInfoResume" xml:space="preserve">
-    <value>Presione 'Reanudar' para continuar</value>
-  </data>
-  <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Espere IDLE, luego pause (</value>
-  </data>
-  <data name="mainProgress" xml:space="preserve">
-    <value>Progreso</value>
-  </data>
-  <data name="serialClose" xml:space="preserve">
-    <value>Desconectar</value>
-  </data>
-  <data name="serialOpen" xml:space="preserve">
-    <value>Conectar</value>
-  </data>
-  <data name="probingCancel1" xml:space="preserve">
-    <value>Muestreo abortado</value>
-  </data>
-  <data name="probingCancel2" xml:space="preserve">
-    <value>Procesar último comando</value>
-  </data>
-  <data name="probingProbingOn" xml:space="preserve">
-    <value>Sondeo en </value>
-  </data>
-  <data name="probingCenter" xml:space="preserve">
-    <value>Mover al centro</value>
-  </data>
-  <data name="probingFail1" xml:space="preserve">
-    <value>Fallo: sin contacto</value>
-  </data>
-  <data name="probingFail2" xml:space="preserve">
-    <value>Cancelar sondeo</value>
-  </data>
-  <data name="probingFinish" xml:space="preserve">
-    <value>Terminar</value>
-  </data>
-  <data name="probingSetCenter" xml:space="preserve">
-    <value>Establecer centro</value>
-  </data>
-  <data name="probingTimeOut" xml:space="preserve">
-    <value>Se acabó el tiempo</value>
-  </data>
-  <data name="mainLoadError3" xml:space="preserve">
-    <value>Extensión de archivo no compatible '</value>
-  </data>
-  <data name="mainSimuStart" xml:space="preserve">
-    <value>Iniciar simulación de ruta</value>
-  </data>
-  <data name="mainSimuStop" xml:space="preserve">
-    <value>Detener la simulación</value>
-  </data>
-  <data name="mainHelpLanguage" xml:space="preserve">
-    <value>Siéntase libre de mejorar la traducción</value>
-  </data>
-  <data name="mainSimuSpeed" xml:space="preserve">
-    <value>Velo.</value>
-  </data>
   <data name="grblAlarm" xml:space="preserve">
     <value>Alarma</value>
   </data>
@@ -315,6 +147,177 @@
   <data name="grblSleep" xml:space="preserve">
     <value>Dormir</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>¡El controlador grbl no está conectado! \r\n¡No se puede realizar la acción deseada!</value>
+  </data>
+  <data name="mainAttention" xml:space="preserve">
+    <value>Atención</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Siéntase libre de mejorar la traducción</value>
+  </data>
+  <data name="mainHotkeyError" xml:space="preserve">
+    <value>Archivo 'hotkeys.xml' no encontrado, no hay teclas de acceso rápido configuradas!</value>
+  </data>
+  <data name="mainHotkeyError1" xml:space="preserve">
+    <value>Acción desconocida:</value>
+  </data>
+  <data name="mainHotkeyError2" xml:space="preserve">
+    <value>Error con Hotkey.xml</value>
+  </data>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>Verifique el código G</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Error antes de la línea</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Termine de verificar el código G</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Terminer l'envoi du code G</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>Presione 'Kill Alarm' para continuar</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>Modo láser no activo $32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>Modo láser activo $32 = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>Pausar transmisión - presione play (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>Sondeo</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>Presione 'Reanudar' para continuar</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>Enviar código G</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>DETENER la transmisión (</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>DETENER la transmisión (línea</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>Cambio de herramienta...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>Deshacer la última acción</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Espere IDLE, luego pause (</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>¡El próximo movimiento excederá los límites de la máquina!\r</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Presione 'Ok' para moverse de todos modos</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>¡La dimensión de gráficos excede la dimensión de la máquina! \r\n ¡Se recomienda la transformación para evitar dañar la máquina!</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>La transmisión debe detenerse antes de cargar un nuevo archivo</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>Archivo no encontrado: '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>La extensión de URL no es 'svg' o 'dxf' \r\n Intente importar SVG de todos modos, pero sin configurar la lista 'Archivo reciente'.</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Extensión de archivo no compatible '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>No es un numero valido</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>No es un número válido, establezca la línea en 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>Pausar transmisión - presione play</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>El último trabajo se detuvo en la línea.</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>¿Quieres continuar con el trabajo?</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>Problema</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Progreso</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>Salir de GRBL-Plotter?</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Velo.</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Iniciar simulación de ruta</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Detener la simulación</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>La transmisión aún está activa: presione Detener e intente nuevamente</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>¡Cambio de herramienta / lápiz!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>Cambio de herramienta necesario: \r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\r presione inicio para continuar.</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>G-Code desconocido comentado: \r\n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>Muestreo abortado</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>Procesar último comando</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>Mover al centro</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>Fallo: sin contacto</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>Cancelar sondeo</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>Terminar</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>Sondeo en </value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>Establecer centro</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>Se acabó el tiempo</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>Se necesita conexión en serie. \r\nCierre la ventana principal</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
     <value>Consulte la ventana COM para obtener más información.</value>
   </data>
@@ -342,14 +345,14 @@
   <data name="statusStripeResetNeeded" xml:space="preserve">
     <value>Probablemente sea necesario reiniciar el controlador</value>
   </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Selección movida por</value>
+  </data>
   <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
     <value>El estado de transmisión y el código G se guardan en '_lastProcessed.nc'. La continuación después del reinicio del programa es posible.</value>
   </data>
   <data name="statusStripeUpKeys" xml:space="preserve">
     <value>Control-Up para mover el bloque seleccionado hacia arriba; Control-Shift-Up para moverse hacia arriba</value>
-  </data>
-  <data name="statusStripeSelectionMoved" xml:space="preserve">
-    <value>Selección movida por</value>
   </data>
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Buscar nueva versión de GRBL-Plotter en GitHub': se puede desactivar en [Configuración - Control de programa]</value>
@@ -398,9 +401,6 @@
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Marcador de distorsión</value>
-  </data>
-  <data name="grblNotConnected" xml:space="preserve">
-    <value>¡El controlador grbl no está conectado! \r\n¡No se puede realizar la acción deseada!</value>
   </data>
   <data name="useCaseInfo" xml:space="preserve">
     <value>Un caso de uso es una configuración preestablecida para ajustar la configuración de una máquina y/o aplicación específica.\r\nLa configuración de un caso de uso seleccionado y aplicado también permanece después de la importación de los gráficos.\r\nUn caso de uso necesita para almacenarse en \data\usecases para que sea accesible.\r\nTambién se pueden usar configuraciones de máquina exportadas y subconjuntos de la misma.</value>
@@ -713,5 +713,56 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Recargar</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Desplegar al pasar el ratón por encima</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Controlar tamaño</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Rasterización con joystick</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>Detener desplazamiento al soltar el ratón</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Mostrar botones clásicos</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Mostrar flechas en el joystick</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Mostrar etiquetas de tamaño de paso</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Relleno de trama para láser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Activar relleno de trama</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Espaciado de línea</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Ángulo de línea</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Activar incremento de ángulo</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Incrementar ángulo</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Sangría</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Eliminar trazado circundante</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Relleno de trama para plotter</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Tramado cruzado</value>
   </data>
 </root>

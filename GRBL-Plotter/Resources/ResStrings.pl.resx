@@ -180,6 +180,45 @@
   <data name="mainInfoUndo" xml:space="preserve">
     <value>Cofnij ostatnią akcję</value>
   </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Poczekaj na IDLE, a następnie wstrzymaj (</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>Następny ruch przekroczy limity urządzenia!\r</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Naciśnij przycisk "Ok", aby kontynuować ruch.</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>Wymiar grafiki przekracza wymiar urządzenia!\r\nTransformacja jest zalecana, aby uniknąć uszkodzenia urządzenia!</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>Przesyłanie strumieniowe musi zostać zatrzymane przed załadowaniem nowego pliku</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>Nie znaleziono pliku: '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>Rozszerzeniem adresu URL nie jest 'svg' lub 'dxf'\r\nSpróbuj mimo to zaimportować SVG, ale bez ustawiania listy 'Ostatnie pliki'.</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Rozszerzenie pliku nie jest obsługiwane '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>Nieprawidłowy numer</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>Nieprawidłowy numer, ustaw linię na 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>Wstrzymano przesyłanie strumieniowe - naciśnij 'Rozpocznij'</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>Ostatnie zadanie zostało wstrzymane w wierszu</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>Czy chcesz kontynuować pracę?</value>
+  </data>
   <data name="mainProblem" xml:space="preserve">
     <value>Problem</value>
   </data>
@@ -197,6 +236,9 @@
   </data>
   <data name="mainSimuStop" xml:space="preserve">
     <value>Zatrzymaj symulację ścieżki</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>Streaming jest nadal aktywny - naciśnij Stop i spróbuj ponownie.</value>
   </data>
   <data name="mainToolChange" xml:space="preserve">
     <value>Zmiana pióra / narzędzia!</value>
@@ -245,45 +287,6 @@
   </data>
   <data name="serialOpen" xml:space="preserve">
     <value>Otwórz</value>
-  </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Następny ruch przekroczy limity urządzenia!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Naciśnij przycisk "Ok", aby kontynuować ruch.</value>
-  </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>Wymiar grafiki przekracza wymiar urządzenia!\r\nTransformacja jest zalecana, aby uniknąć uszkodzenia urządzenia!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>Przesyłanie strumieniowe musi zostać zatrzymane przed załadowaniem nowego pliku</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>Nie znaleziono pliku: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>Rozszerzeniem adresu URL nie jest 'svg' lub 'dxf'\r\nSpróbuj mimo to zaimportować SVG, ale bez ustawiania listy 'Ostatnie pliki'.</value>
-  </data>
-  <data name="mainLoadError3" xml:space="preserve">
-    <value>Rozszerzenie pliku nie jest obsługiwane '</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Nieprawidłowy numer</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>Nieprawidłowy numer, ustaw linię na 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Wstrzymano przesyłanie strumieniowe - naciśnij 'Rozpocznij'</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>Ostatnie zadanie zostało wstrzymane w wierszu</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>Czy chcesz kontynuować pracę?</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>Streaming jest nadal aktywny - naciśnij Stop i spróbuj ponownie.</value>
   </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
     <value>Sprawdź okno COM, aby uzyskać więcej informacji</value>
@@ -471,9 +474,6 @@ Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
     <value>Znaleziono nieobsługiwany atrybut SVG-XML.
 Obraz wynikowy może wyglądać inaczej niż oczekiwano.
 Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
-  </data>
-  <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Poczekaj na IDLE, a następnie wstrzymaj (</value>
   </data>
   <data name="importMessageTitle" xml:space="preserve">
     <value>importować informacje</value>
@@ -693,5 +693,56 @@ Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Przeładować</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Rozwiń po najechaniu myszką</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Rozmiar kontrolki</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Raster joysticka</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>ZAKOŃCZ przesuwanie po najechaniu myszką w górę</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Pokaż klasyczne przyciski</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Pokaż strzałki na joysticku</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Pokaż etykiety rozmiaru kroku</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Wypełnienie kreskowaniem dla lasera</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Włącz wypełnienie kreskowaniem</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Odstęp między wierszami</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Kąt linii</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Włącz zwiększanie kąta</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Zwiększ kąt</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Wcięcie</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Usuń otaczającą ścieżkę</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Wypełnianie kreskowania dla plotera</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Właz krzyżowy</value>
   </data>
 </root>

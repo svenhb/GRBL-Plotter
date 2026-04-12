@@ -597,6 +597,9 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="importMessagePUDPenUp" xml:space="preserve">
     <value>pero nahoru</value>
   </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>perem dolů</value>
+  </data>
   <data name="importMessageOption1" xml:space="preserve">
     <value>Výklad cesty:</value>
   </data>
@@ -641,9 +644,6 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   </data>
   <data name="importMessageOptionWireBender" xml:space="preserve">
     <value>ohýbačka drátu</value>
-  </data>
-  <data name="importMessagePUDPenDown" xml:space="preserve">
-    <value>perem dolů</value>
   </data>
   <data name="importMessageOption1Link" xml:space="preserve">
     <value>Možné interpretace cest</value>
@@ -713,5 +713,56 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   </data>
   <data name="loadMessageReload" xml:space="preserve">
     <value>Znovu načíst</value>
+  </data>
+  <data name="ucSetupUnfoldOnMouseOver" xml:space="preserve">
+    <value>Rozbalit při najetí myší</value>
+  </data>
+  <data name="ucSetupControlSize" xml:space="preserve">
+    <value>Ovládání velikosti</value>
+  </data>
+  <data name="ucSetupJoyStickRaster" xml:space="preserve">
+    <value>Rastr joysticku</value>
+  </data>
+  <data name="ucSetupStopJoggingOnMouseUp" xml:space="preserve">
+    <value>ZASTAVIT běh při najetí myší nahoru</value>
+  </data>
+  <data name="ucSetupShowClassicButtons" xml:space="preserve">
+    <value>Zobrazit klasická tlačítka</value>
+  </data>
+  <data name="ucSetupShowArrows" xml:space="preserve">
+    <value>Zobrazit šipky na joysticku</value>
+  </data>
+  <data name="ucSetupShowLabel" xml:space="preserve">
+    <value>Zobrazit popisky velikosti kroku</value>
+  </data>
+  <data name="optionFillHeadlineLaser" xml:space="preserve">
+    <value>Šrafování pro laser</value>
+  </data>
+  <data name="optionFillEnable" xml:space="preserve">
+    <value>Povolit šrafování</value>
+  </data>
+  <data name="optionFillDistance" xml:space="preserve">
+    <value>Řádkování</value>
+  </data>
+  <data name="optionFillAngle" xml:space="preserve">
+    <value>Úhel čáry</value>
+  </data>
+  <data name="optionFillAngleIncrementEnable" xml:space="preserve">
+    <value>Povolit zvětšení úhlu</value>
+  </data>
+  <data name="optionFillAngleIncrement" xml:space="preserve">
+    <value>Zvětšení úhlu</value>
+  </data>
+  <data name="optionFillInsetDistance" xml:space="preserve">
+    <value>Odsazení</value>
+  </data>
+  <data name="optionFillDeletePath" xml:space="preserve">
+    <value>Smazat okolní cestu</value>
+  </data>
+  <data name="optionFillHeadlinePlotter" xml:space="preserve">
+    <value>Šrafování pro plotr</value>
+  </data>
+  <data name="optionFillCross" xml:space="preserve">
+    <value>Křížový poklop</value>
   </data>
 </root>
