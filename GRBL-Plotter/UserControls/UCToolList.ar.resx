@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TsmiByNrAscending.Text" xml:space="preserve">
+    <value>فرز حسب رقم الأداة تصاعديًا</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByNrDescending.Text" xml:space="preserve">
+    <value>فرز حسب رقم الأداة تنازليًا</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByColorAscending.Text" xml:space="preserve">
+    <value>فرز حسب اللون تصاعديًا</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByColorDescending.Text" xml:space="preserve">
+    <value>فرز حسب اللون تنازليًا</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiRenumber.Text" xml:space="preserve">
+    <value>إعادة ترقيم الأدوات</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="BtnSaveToolList.ToolTip" xml:space="preserve">
+    <value>حفظ قائمة الأدوات المعروضة في ملف</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnLoadToolList.ToolTip" xml:space="preserve">
+    <value>تحميل قائمة الأدوات من ملف</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnReloadGraphic.ToolTip" xml:space="preserve">
+    <value>إعادة تحميل الرسم لتحديث قائمة الأدوات أو تطبيقها</value>
+    <comment>tip</comment>
+  </data>
+  <data name="CbGroupSelection.Items" xml:space="preserve">
+    <value>تجميع حسب اللون</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Items1" xml:space="preserve">
+    <value>تجميع حسب العرض</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Items2" xml:space="preserve">
+    <value>تجميع حسب الطبقة</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Text" xml:space="preserve">
+    <value>تجميع حسب اللون</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.ToolTip" xml:space="preserve">
+    <value>تجميع الأشكال حسب اللون أو العرض أو الطبقة وتعيينها لأداة.</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnExtra.ToolTip" xml:space="preserve">
+    <value>عرض إحداثيات تغيير القلم ورمز G</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnPresetY.ToolTip" xml:space="preserve">
+    <value>تعيين إحداثيات الأداة تلقائيًا على المحور Y</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnPresetX.ToolTip" xml:space="preserve">
+    <value>تعيين إحداثيات الأداة تلقائيًا على المحور X</value>
+    <comment>tip</comment>
+  </data>
+  <data name="CbApplyToolList.ToolTip" xml:space="preserve">
+    <value>تطبيق إعدادات قائمة الأدوات المعروضة عند استيراد الرسم التالي</value>
+    <comment>tip</comment>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value>قوة الليزر</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>سرعة حركة الليزر</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value>عدد مرات تكرار كل شكل</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value>إعداد grbl $32
+M3 وضع طاقة الليزر الثابتة: يحافظ هذا الوضع على طاقة الليزر كما هي مُبرمجة، بغض النظر عن حركة الجهاز.
+M4 وضع طاقة الليزر الديناميكية: يقوم هذا الوضع بضبط طاقة الليزر تلقائيًا بناءً على السرعة الحالية مقارنةً بالسرعة المُبرمجة.</value>
+    <comment>ttt</comment>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>تفعيل خاصية الهواء باستخدام الأمر المحدد (علامة تبويب الليزر - الإعدادات)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label23.ToolTip" xml:space="preserve">
+    <value>قطر القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPlotterS.ToolTip" xml:space="preserve">
+    <value>قيمة PWM للمحرك المؤازر لخفض القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label12.ToolTip" xml:space="preserve">
+    <value>سرعة حركة القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label24.ToolTip" xml:space="preserve">
+    <value>قطر الأداة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label18.ToolTip" xml:space="preserve">
+    <value>الموضع النهائي على المحور Z المراد استخدامه</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label19.ToolTip" xml:space="preserve">
+    <value>سرعة حركة جهاز التوجيه</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label20.ToolTip" xml:space="preserve">
+    <value>سرعة المحور Z</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>أوامر GCode المراد تنفيذها قبل تطبيق رقم الأداة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPlotterLaser.ToolTip" xml:space="preserve">
+    <value>تفعيل الليزر بدلاً من المحور Z للقلم، باستخدام الإعدادات من صفحة الليزر الخاصة برقم الأداة المحدد.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblNoXML.Text" xml:space="preserve">
+    <value>لا يمكن إنشاء قائمة الأدوات الأولية بدون بيانات XML.</value>
+  </data>
+  <data name="BtnSaveToolList.Text" xml:space="preserve">
+    <value>حفظ</value>
+    <comment>btn3</comment>
+  </data>
+  <data name="BtnLoadToolList.Text" xml:space="preserve">
+    <value>تحميل</value>
+    <comment>btn2</comment>
+  </data>
+  <data name="BtnReloadGraphic.Text" xml:space="preserve">
+    <value>إعادة تحميل الرسم</value>
+    <comment>btn5</comment>
+  </data>
+  <data name="BtnExtra.Text" xml:space="preserve">
+    <value>الموضع</value>
+    <comment>btn6</comment>
+  </data>
+  <data name="BtnPresetY.Text" xml:space="preserve">
+    <value>الوضع المُسبق Y</value>
+    <comment>btn8</comment>
+  </data>
+  <data name="BtnPresetX.Text" xml:space="preserve">
+    <value>الوضع المُسبق X</value>
+    <comment>btn7</comment>
+  </data>
+  <data name="CbApplyToolList.Text" xml:space="preserve">
+    <value>تطبيق قائمة الأدوات</value>
+    <comment>btn1</comment>
+  </data>
+  <data name="BtnPreset.Text" xml:space="preserve">
+    <value>ألوان مُسبقة الضبط</value>
+    <comment>btn4</comment>
+  </data>
+</root>

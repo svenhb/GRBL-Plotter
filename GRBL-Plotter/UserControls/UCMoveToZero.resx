@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 18</value>
+  </data>
+  <data name="BtnX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnX.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="BtnX.Text" xml:space="preserve">
+    <value>X=0</value>
+  </data>
+  <data name="BtnX.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate X=0</value>
+  </data>
+  <data name="&gt;&gt;BtnX.Name" xml:space="preserve">
+    <value>BtnX</value>
+  </data>
+  <data name="&gt;&gt;BtnX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnX.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnX.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 18</value>
+  </data>
+  <data name="BtnY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnY.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnY.Text" xml:space="preserve">
+    <value>Y=0</value>
+  </data>
+  <data name="BtnY.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate Y=0</value>
+  </data>
+  <data name="&gt;&gt;BtnY.Name" xml:space="preserve">
+    <value>BtnY</value>
+  </data>
+  <data name="&gt;&gt;BtnY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnY.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnY.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="BtnZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 18</value>
+  </data>
+  <data name="BtnZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnZ.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="BtnZ.Text" xml:space="preserve">
+    <value>Z=0</value>
+  </data>
+  <data name="BtnZ.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate Z=0</value>
+  </data>
+  <data name="&gt;&gt;BtnZ.Name" xml:space="preserve">
+    <value>BtnZ</value>
+  </data>
+  <data name="&gt;&gt;BtnZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZ.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnZ.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="BtnXY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 38</value>
+  </data>
+  <data name="BtnXY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnXY.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="BtnXY.Text" xml:space="preserve">
+    <value>XY=0</value>
+  </data>
+  <data name="BtnXY.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate X=0 Y=0</value>
+  </data>
+  <data name="&gt;&gt;BtnXY.Name" xml:space="preserve">
+    <value>BtnXY</value>
+  </data>
+  <data name="&gt;&gt;BtnXY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnXY.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnXY.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 18</value>
+  </data>
+  <data name="BtnA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnA.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="BtnA.Text" xml:space="preserve">
+    <value>A=0</value>
+  </data>
+  <data name="BtnA.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate A=0</value>
+  </data>
+  <data name="&gt;&gt;BtnA.Name" xml:space="preserve">
+    <value>BtnA</value>
+  </data>
+  <data name="&gt;&gt;BtnA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnA.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnA.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="BtnB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 18</value>
+  </data>
+  <data name="BtnB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnB.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="BtnB.Text" xml:space="preserve">
+    <value>B=0</value>
+  </data>
+  <data name="BtnB.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate B=0</value>
+  </data>
+  <data name="&gt;&gt;BtnB.Name" xml:space="preserve">
+    <value>BtnB</value>
+  </data>
+  <data name="&gt;&gt;BtnB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnB.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnB.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="BtnC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 18</value>
+  </data>
+  <data name="BtnC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnC.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="BtnC.Text" xml:space="preserve">
+    <value>C=0</value>
+  </data>
+  <data name="BtnC.ToolTip" xml:space="preserve">
+    <value>Move to work coordinate C=0</value>
+  </data>
+  <data name="&gt;&gt;BtnC.Name" xml:space="preserve">
+    <value>BtnC</value>
+  </data>
+  <data name="&gt;&gt;BtnC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnC.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnC.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CbG0.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbG0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 42</value>
+  </data>
+  <data name="CbG0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 17</value>
+  </data>
+  <data name="CbG0.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="CbG0.Text" xml:space="preserve">
+    <value>G0</value>
+  </data>
+  <data name="CbG0.ToolTip" xml:space="preserve">
+    <value>Use G0 instead of jog-command</value>
+  </data>
+  <data name="&gt;&gt;CbG0.Name" xml:space="preserve">
+    <value>CbG0</value>
+  </data>
+  <data name="&gt;&gt;CbG0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbG0.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;CbG0.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="BtnStop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
+  <data name="BtnStop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="BtnStop.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="BtnStop.Text" xml:space="preserve">
+    <value>STOP</value>
+  </data>
+  <data name="BtnStop.ToolTip" xml:space="preserve">
+    <value>Stop jogging</value>
+  </data>
+  <data name="&gt;&gt;BtnStop.Name" xml:space="preserve">
+    <value>BtnStop</value>
+  </data>
+  <data name="&gt;&gt;BtnStop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStop.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnStop.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblSetupHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetupHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 7</value>
+  </data>
+  <data name="LblSetupHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 13</value>
+  </data>
+  <data name="LblSetupHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Setup 'Move to zero'</value>
+  </data>
+  <data name="LblSetupHeadline.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
+    <value>LblSetupHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnSetup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="BtnSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 0</value>
+  </data>
+  <data name="BtnSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="BtnSetup.Text" xml:space="preserve">
+    <value>⚙</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Name" xml:space="preserve">
+    <value>BtnSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Parent" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GbZero.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="GbZero.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="GbZero.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="GbZero.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="GbZero.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 90</value>
+  </data>
+  <data name="GbZero.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="GbZero.Text" xml:space="preserve">
+    <value>Move to zero pos.</value>
+  </data>
+  <data name="GbZero.ToolTip" xml:space="preserve">
+    <value>Click to fold / unfold</value>
+  </data>
+  <data name="&gt;&gt;GbZero.Name" xml:space="preserve">
+    <value>GbZero</value>
+  </data>
+  <data name="&gt;&gt;GbZero.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbZero.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GbZero.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 90</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCMoveToZero</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>

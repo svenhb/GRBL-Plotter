@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TsmiByNrAscending.Text" xml:space="preserve">
+    <value>按工具编号升序排序</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByNrDescending.Text" xml:space="preserve">
+    <value>按工具编号降序排序</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByColorAscending.Text" xml:space="preserve">
+    <value>按颜色升序排序</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiByColorDescending.Text" xml:space="preserve">
+    <value>按颜色降序排序</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="TsmiRenumber.Text" xml:space="preserve">
+    <value>重新编号工具</value>
+    <comment>tsmi</comment>
+  </data>
+  <data name="BtnSaveToolList.ToolTip" xml:space="preserve">
+    <value>将显示的工具列表保存到文件</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnLoadToolList.ToolTip" xml:space="preserve">
+    <value>从文件加载工具列表</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnReloadGraphic.ToolTip" xml:space="preserve">
+    <value>重新加载图形以更新或应用工具列表</value>
+    <comment>tip</comment>
+  </data>
+  <data name="CbGroupSelection.Items" xml:space="preserve">
+    <value>按颜色分组</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Items1" xml:space="preserve">
+    <value>按宽度分组</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Items2" xml:space="preserve">
+    <value>按图层分组</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.Text" xml:space="preserve">
+    <value>按颜色分组</value>
+    <comment>cb</comment>
+  </data>
+  <data name="CbGroupSelection.ToolTip" xml:space="preserve">
+    <value>按颜色、宽度或图层对图形进行分组并分配给工具</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnExtra.ToolTip" xml:space="preserve">
+    <value>显示笔切换坐标和 G 代码</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnPresetY.ToolTip" xml:space="preserve">
+    <value>自动设置工具在 Y 轴上的坐标</value>
+    <comment>tip</comment>
+  </data>
+  <data name="BtnPresetX.ToolTip" xml:space="preserve">
+    <value>自动设置工具在 X 轴上的坐标</value>
+    <comment>tip</comment>
+  </data>
+  <data name="CbApplyToolList.ToolTip" xml:space="preserve">
+    <value>在下次导入图形时应用显示的工具列表设置</value>
+    <comment>tip</comment>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value>激光功率</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>激光移动速度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value>每个图形的重复次数</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value>grbl $32 设置
+M3 恒定激光功率模式：恒定激光功率模式会保持激光功率与设定值一致，无论机器是否移动。
+M4 动态激光功率模式：动态激光功率模式会根据当前速度与设定速度的比值自动调节激光功率。</value>
+    <comment>ttt</comment>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>使用给定命令激活气动模式（设备激光选项卡 - 设置）</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label23.ToolTip" xml:space="preserve">
+    <value>笔直径</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPlotterS.ToolTip" xml:space="preserve">
+    <value>笔下落时伺服电机的 PWM 值</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label12.ToolTip" xml:space="preserve">
+    <value>笔移动速度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label24.ToolTip" xml:space="preserve">
+    <value>工具直径</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label18.ToolTip" xml:space="preserve">
+    <value>最终 Z 轴位置</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label19.ToolTip" xml:space="preserve">
+    <value>铣刀移动速度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label20.ToolTip" xml:space="preserve">
+    <value>Z 轴速度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>应用工具编号之前要执行的 G 代码命令</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPlotterLaser.ToolTip" xml:space="preserve">
+    <value>使用特定工具编号的激光页面设置，激活激光而不是 Z 轴来控制笔。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblNoXML.Text" xml:space="preserve">
+    <value>如果没有 XML 数据，则无法创建初始工具列表。
+导入图形即可解决此问题。</value>
+  </data>
+  <data name="BtnSaveToolList.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>btn3</comment>
+  </data>
+  <data name="BtnLoadToolList.Text" xml:space="preserve">
+    <value>加载</value>
+    <comment>btn2</comment>
+  </data>
+  <data name="BtnReloadGraphic.Text" xml:space="preserve">
+    <value>重新加载图形</value>
+    <comment>btn5</comment>
+  </data>
+  <data name="BtnExtra.Text" xml:space="preserve">
+    <value>位置</value>
+    <comment>btn6</comment>
+  </data>
+  <data name="BtnPresetY.Text" xml:space="preserve">
+    <value>预设 Y 轴</value>
+    <comment>btn8</comment>
+  </data>
+  <data name="BtnPresetX.Text" xml:space="preserve">
+    <value>预设 X 轴</value>
+    <comment>btn7</comment>
+  </data>
+  <data name="CbApplyToolList.Text" xml:space="preserve">
+    <value>应用工具列表</value>
+    <comment>btn1</comment>
+  </data>
+  <data name="BtnPreset.Text" xml:space="preserve">
+    <value>预设颜色</value>
+    <comment>btn4</comment>
+  </data>
+</root>
