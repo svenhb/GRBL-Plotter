@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2024-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2024-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
  *
  * Level 2: graphicRelated: collect dots, lines, arcs; sorting by distance, merging, clipping, grouping, tangential axis
  *			- collect path-data (pen-down path): either path with line and arc or just a dot
- *			- path modifications: remove offset, hatch fill, repeat paths, sort by distance and merge, 
+ *			- path modifications: remove offset, hatch FillToolListElements, repeat paths, sort by distance and merge, 
  *			- tangential axis, drag-knife, clipping and tiling, path extension
  *
  * Level 3: graphic2Gcode: translate graphic-paths into GCode commands
@@ -37,9 +37,11 @@
  * 2024-08-20 option to find white background
  * 2024-09-20 add paste from clipboard
  * 2024-10-08 support PoTrace with different DPIs
+ * 2026-03-20 get penWidth from selected device default - MyControl.GetActualWidth()
 */
 
 using CsPotrace;
+using GrblPlotter.UserControls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -190,7 +192,8 @@ namespace GrblPlotter
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
             bool usePoTrace = Properties.Settings.Default.importVectorizeAlgorithmPoTrace;
 
-            Logger.Info("▼▼▼▼  ConvertBitmaps Start {0}", filePath);
+			penWidth = MyControl.GetActualWidth().ToString();
+            Logger.Info("▼▼▼▼  ConvertBitmaps Start {0}  Pen width {1:0.000}  from {2}", filePath, penWidth, MyControl.GetSelectedDeviceName());
             Logger.Trace("►►►► pjsFile width:{0}  height:{1}  layers:{2}", pjsFile.width, pjsFile.height, pjsFile.layers.Count);
 
             ConversionInfo = "";
@@ -258,7 +261,8 @@ namespace GrblPlotter
             ConversionInfo = "";
             shapeCounter = 0;
 
-            Logger.Info("▼▼▼▼  ConvertBitmap Start  use PoTrace:{0}  path:{1}", usePoTrace, filePath);
+			penWidth = MyControl.GetActualWidth().ToString();
+            Logger.Info("▼▼▼▼  ConvertBitmap Start  use PoTrace:{0}  path:{1}  Pen width {2:0.000}  from {3}", usePoTrace, filePath, penWidth, MyControl.GetSelectedDeviceName());
 
             Graphic.Init(Graphic.SourceType.PDNJson, filePath, backgroundWorker, backgroundEvent);
             Graphic.SetPenWidth(penWidth);

@@ -24,7 +24,7 @@
  *
  * Level 2: graphicRelated: collect dots, lines, arcs; sorting by distance, merging, clipping, grouping, tangential axis
  *			- collect path-data (pen-down path): either path with line and arc or just a dot
- *			- path modifications: remove offset, hatch fill, repeat paths, sort by distance and merge, 
+ *			- path modifications: remove offset, hatch FillToolListElements, repeat paths, sort by distance and merge, 
  *			- tangential axis, drag-knife, clipping and tiling, path extension
  *
  * Level 3: graphic2Gcode: translate graphic-paths into GCode commands
@@ -55,6 +55,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {
@@ -179,7 +180,7 @@ namespace GrblPlotter
             string val = "C,0.03200";
             apertures.Add(key, new Aperture(val));
 
-            //handleM19 = Properties.Settings.Default.importGerberTypeEnable;
+            //handleM19 = Properties.ListSettings.Default.importGerberTypeEnable;
             geometryPen = Properties.Settings.Default.importGerberTypePen;
             geometryKnife = Properties.Settings.Default.importGerberTypeKnife;
             geometryM19 = Properties.Settings.Default.importGerberTypeM19;

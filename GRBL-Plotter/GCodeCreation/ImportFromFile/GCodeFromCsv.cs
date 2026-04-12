@@ -24,7 +24,7 @@
  *
  * Level 2: graphicRelated: collect dots, lines, arcs; sorting by distance, merging, clipping, grouping, tangential axis
  *			- collect path-data (pen-down path): either path with line and arc or just a dot
- *			- path modifications: remove offset, hatch fill, repeat paths, sort by distance and merge, 
+ *			- path modifications: remove offset, hatch FillToolListElements, repeat paths, sort by distance and merge, 
  *			- tangential axis, drag-knife, clipping and tiling, path extension
  *
  * Level 3: graphic2Gcode: translate graphic-paths into GCode commands
@@ -40,6 +40,7 @@
  * 2021-07-31 code clean up / code quality
 */
 
+using GrblPlotter.Helper;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -47,6 +48,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 //#pragma warning disable CA1303	// Do not pass literals as localized parameters
 

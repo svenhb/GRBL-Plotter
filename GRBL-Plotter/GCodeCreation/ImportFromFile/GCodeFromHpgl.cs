@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
  *
  * Level 2: graphicRelated: collect dots, lines, arcs; sorting by distance, merging, clipping, grouping, tangential axis
  *			- collect path-data (pen-down path): either path with line and arc or just a dot
- *			- path modifications: remove offset, hatch fill, repeat paths, sort by distance and merge, 
+ *			- path modifications: remove offset, hatch FillToolListElements, repeat paths, sort by distance and merge, 
  *			- tangential axis, drag-knife, clipping and tiling, path extension
  *
  * Level 3: graphic2Gcode: translate graphic-paths into GCode commands
@@ -55,6 +55,7 @@
  * 2021-07-31 code clean up / code quality
  * 2023-07-06 l:288 f:MoveTo	improove parsing coord-token, add text support
  * 2023-07-07 also support missing line-terminator ";" and coord-separator "."
+ * 2026-03-28 l:627 f:ConvertArgs add try catch
 */
 
 using System;
@@ -65,6 +66,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {
@@ -366,7 +368,7 @@ namespace GrblPlotter
         }
 
 
-        private static void HPGL_SP(string nr)          // select Pen Nr
+        private static void HPGL_SP(string nr)          // select Pen ToolNr
         {
             if (nr.Length > 0)
             {
@@ -617,15 +619,23 @@ namespace GrblPlotter
         {
             if (coord.Length > 0)
             {
-                char delimiter = ' ';
-                if (coord.IndexOf(",") != -1) { delimiter = ','; }
-                else if (coord.IndexOf(".") != -1) { delimiter = '.'; }
+                try
+                {
+                    char delimiter = ' ';
+                    if (coord.IndexOf(",") != -1) { delimiter = ','; }
+                    else if (coord.IndexOf(".") != -1) { delimiter = '.'; }
 
-                string[] coordinates = coord.Trim().Split(delimiter);
-                Point tmpPoint = new Point();
+                    string[] coordinates = coord.Trim().Split(delimiter);
+                    Point tmpPoint = new Point();
 
-                double[] floatArgs = coordinates.Select(arg => double.Parse(arg.Trim(), System.Globalization.NumberStyles.Number, System.Globalization.NumberFormatInfo.InvariantInfo)).ToArray();
-                return floatArgs;
+                    double[] floatArgs = coordinates.Select(arg => double.Parse(arg.Trim(), System.Globalization.NumberStyles.Number, System.Globalization.NumberFormatInfo.InvariantInfo)).ToArray();
+                    return floatArgs;
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err," Error ConvertArgs: '{0}' ",coord);
+                    return new double[0];
+                }
             }
             else
                 return new double[0];

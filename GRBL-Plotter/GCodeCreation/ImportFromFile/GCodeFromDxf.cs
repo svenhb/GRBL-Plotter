@@ -24,7 +24,7 @@
  *
  * Level 2: graphicRelated: collect dots, lines, arcs; sorting by distance, merging, clipping, grouping, tangential axis
  *			- collect path-data (pen-down path): either path with line and arc or just a dot
- *			- path modifications: remove offset, hatch fill, repeat paths, sort by distance and merge, 
+ *			- path modifications: remove offset, hatch FillToolListElements, repeat paths, sort by distance and merge, 
  *			- tangential axis, drag-knife, clipping and tiling, path extension
  *
  * Level 3: graphic2Gcode: translate graphic-paths into GCode commands
@@ -54,7 +54,7 @@
  * 2020-01-08 bug fix convert 'Point' line 323
  * 2020-02-19 bug fix round corners in blocks
  * 2020-02-22 updated DXFLib.dll is needed (DXFInsert-RotationAngle, DXFEllipse)
- * 2020-03-30 Grouping also by Layer-Name
+ * 2020-03-30 Grouping also by Layer-ToolName
  * 2020-04-15 DXFArc automatic correction if R is > DXF ARC step width
  * 2020-04-26 Replace class Plotter by class Graphic for sorting
  * 2020-04-27 DXFArc implement G3 instead of line segments
@@ -89,7 +89,7 @@
  * 2024-03-19 l:440 f:ProcessEntities reset dash pattern
  * 2024-05-03 l:1060 f:CalcEllipse bug fix blockScaling #375
  * 2024-05-23 l:720 f:ProcessEntities calc spline with degree=2
- * 2024-12-16 l:875 take care of Properties.Settings.Default.importSVGCircleToDotS
+ * 2024-12-16 l:875 take care of Properties.ListSettings.Default.importSVGCircleToDotS
  * 2025-05-05 l:1185 f:BlockRotate  take over orgiginal Z to avoid null
  * 2025-05-22 l:723 get Z value from Spline -CubicBezier
 */
@@ -106,6 +106,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter //DXFImporter
 {
@@ -250,10 +251,10 @@ namespace GrblPlotter //DXFImporter
             if (lastSetZ == null)
             {
                 Logger.Info("●●●● DxfImportZ = false (no Z information)");
-                Graphic.graphicInformation.DxfImportZ = false;    // no Z value, no need for export
+                Graphic.graphicInformation.ImportDxfConsiderZ = false;    // no Z value, no need for export
             }
             else
-                Logger.Info("●●●● DxfImportZ = {0}", Graphic.graphicInformation.DxfImportZ);
+                Logger.Info("●●●● DxfImportZ = {0}", Graphic.graphicInformation.ImportDxfConsiderZ);
 
             ConversionInfo += string.Format("{0} elements imported", shapeCounter);
             Logger.Info("▲▲▲▲ ConvertDXF Finish: shapeCounter: {0}", shapeCounter);
@@ -490,7 +491,7 @@ namespace GrblPlotter //DXFImporter
 
             dxfColorHex = GetColorFromID(dxfColorNr);
 
-            /* get fill */
+            /* get FillToolListElements */
             #region Hatch
             if (entity.GetType() == typeof(DXFHatch))
             {
@@ -581,7 +582,7 @@ namespace GrblPlotter //DXFImporter
                     {
                         if (!nodesOnly)
                         {
-                            DXFStartPath(position);//, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString( ));
+                            DXFStartPath(position);//, "Start LWPolyLine - ToolNr pts " + lp.VertexCount.ToString( ));
                         }
                         else { GCodeDotOnly(position); }//, "Start LWPolyLine"); }
                         if (logPosition) Logger.Trace("Start DXFLWPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
@@ -1383,7 +1384,7 @@ namespace GrblPlotter //DXFImporter
             points[2] = c2;
             points[3] = c3;             // new Point(cx3, cy3);
             double[] pointZ;
-            var b = GetBezierApproximationDXF(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt, out pointZ);
+            var b = GetBezierApproximationDXF(points, ImportParameter.BezierControlPointsCnt, out pointZ);
             for (int i = 1; i < b.Points.Count; i++)
                 DXFMoveTo(b.Points[i].X, b.Points[i].Y, pointZ[i]);
         }
@@ -1398,7 +1399,7 @@ namespace GrblPlotter //DXFImporter
             points[2] = (DXFPoint)qp2;     // new Point(qpx2, qpy2);
             points[3] = c3;             // new Point(cx3, cy3);
             double[] pointZ;
-            var b = GetBezierApproximationDXF(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt, out pointZ);
+            var b = GetBezierApproximationDXF(points, ImportParameter.BezierControlPointsCnt, out pointZ);
             for (int i = 1; i < b.Points.Count; i++)
                 DXFMoveTo(b.Points[i].X, b.Points[i].Y, pointZ[i]);
         }
