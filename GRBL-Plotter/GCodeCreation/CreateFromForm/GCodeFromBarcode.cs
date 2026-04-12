@@ -44,6 +44,7 @@ namespace GrblPlotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
+		private static bool doBarcode=true;
 
         public GCodeForBarcode()
         {
@@ -60,6 +61,14 @@ namespace GrblPlotter
             UpdateIniVariables();
         }
 
+		public void Restart()
+		{
+			if (doBarcode)
+				BtnGenerateBarcodeClick(null, null);
+			else
+				BtnGenerateQRCode_Click(null, null);		
+		}
+		
         public void UpdateIniVariables()
         {
             string tmpText = Properties.Settings.Default.importBarcode1DName;
@@ -108,7 +117,7 @@ namespace GrblPlotter
         {
             Logger.Trace("Check Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex).ToString(), textBox1.Text);
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
-            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
+            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, GroupColor.Black, GroupColor.White, 200, 100);
 
             if (b.GetError)
             { pictureBox1.Image = null; }
@@ -121,9 +130,10 @@ namespace GrblPlotter
         public void BtnGenerateBarcodeClick(object sender, EventArgs e)
         {
             Logger.Trace(culture, "Generate Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex).ToString(), textBox1.Text);
-
+			doBarcode=true;
+			
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
-            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
+            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, GroupColor.Black, GroupColor.White, 200, 100);
 
             if (b.GetError)
             { pictureBox1.Image = null; }
@@ -223,6 +233,7 @@ namespace GrblPlotter
         private void BtnGenerateQRCode_Click(object sender, EventArgs e)
         {
             Logger.Trace("Generate QR-Code");
+			doBarcode=false;
             GenerateQR();
             GenerateGCode2D();
         }

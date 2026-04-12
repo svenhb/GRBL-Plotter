@@ -36,10 +36,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeFromShape));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.cBTool = new System.Windows.Forms.ComboBox();
             this.cBNoZUp = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cBToolSet = new System.Windows.Forms.CheckBox();
+            this.CbDeviceDefaults = new System.Windows.Forms.CheckBox();
             this.nUDToolOverlap = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
             this.nUDToolSpindleSpeed = new System.Windows.Forms.NumericUpDown();
@@ -118,7 +119,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cBMoveTo00 = new System.Windows.Forms.CheckBox();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -151,11 +151,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CbDeviceDefaults);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.cBTool);
             this.groupBox1.Controls.Add(this.cBNoZUp);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cBToolSet);
             this.groupBox1.Controls.Add(this.nUDToolOverlap);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.nUDToolSpindleSpeed);
@@ -171,6 +171,16 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-shape";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // cBTool
             // 
@@ -191,14 +201,12 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // cBToolSet
+            // CbDeviceDefaults
             // 
-            resources.ApplyResources(this.cBToolSet, "cBToolSet");
-            this.cBToolSet.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
-            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolSet.Name = "cBToolSet";
-            this.cBToolSet.UseVisualStyleBackColor = true;
-            this.cBToolSet.CheckedChanged += new System.EventHandler(this.CBToolSet_CheckedChanged);
+            resources.ApplyResources(this.CbDeviceDefaults, "CbDeviceDefaults");
+            this.CbDeviceDefaults.Name = "CbDeviceDefaults";
+            this.CbDeviceDefaults.UseVisualStyleBackColor = true;
+            this.CbDeviceDefaults.CheckedChanged += new System.EventHandler(this.CBToolSet_CheckedChanged);
             // 
             // nUDToolOverlap
             // 
@@ -975,20 +983,10 @@
             this.CbInsertCode.UseVisualStyleBackColor = true;
             this.CbInsertCode.CheckedChanged += new System.EventHandler(this.CbInsertCode_CheckedChanged);
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.Tag = "id=form-shape";
-            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.BtnHelp_Click);
-            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.CbInsertCode);
             this.Controls.Add(this.cBMoveTo00);
             this.Controls.Add(this.groupBox7);
@@ -1091,7 +1089,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cBToolSet;
+        private System.Windows.Forms.CheckBox CbDeviceDefaults;
         private System.Windows.Forms.ComboBox cBTool;
         private System.Windows.Forms.CheckBox cBNoZUp;
         private System.Windows.Forms.TabControl tabControl1;

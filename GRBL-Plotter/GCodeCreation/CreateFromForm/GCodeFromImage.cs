@@ -23,7 +23,7 @@
  
  if (color mode)	use toolTable
 	 count colors		CountResultColors - adjustedImage
-	 show tools 		ListAvailableTools
+	 show toolProp 		ListAvailableTools
 	 
  else	 			use grayMap
 	 count gray values
@@ -41,7 +41,7 @@
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 309 check nUDMaxColors.maximum, line 1137 add catch
  * 2021-12-10 fix ThreadException LockBits line 1079, line 512
- * 2022-01-07 add try/catch for BtnLoad_Click, LoadExtern, CountImageColors
+ * 2022-01-07 add try/catch for BtnLoadToolList_Click, LoadExtern, CountImageColors
  * 2022-02-17 function CountImageColors line 1388 switch from int to long
  * 2022-03-24 add drop-down for tool-files and tool-table entries
  * 2022-03-28 move some functions to new file GCodeFromImageMisc
@@ -54,6 +54,8 @@
 
 using AForge.Imaging.ColorReduction;
 using AForge.Imaging.Filters;
+using GrblPlotter.Helper;
+using GrblPlotter.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -73,7 +75,7 @@ namespace GrblPlotter
         private Bitmap adjustedImage;
         private Bitmap resultImage;
 
-        private static int toolTableCount = 0;      // amount of tools
+        private static int toolTableCount = 0;      // amount of toolProp
         private static int imageColors = 0;         // amount of single colors
 
         private static int pixelCount = 100;
@@ -103,12 +105,16 @@ namespace GrblPlotter
         private static int GrayValueMapAmountOfValues = 0;
 
         // Replace orginal color by nearest color from tool table
-        // fill-up usedColor array
+        // FillToolListElements-up usedColor array
         private static short[,] resultToolNrArray;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static bool logEnable = true;
+
+        public event EventHandler<UserControlGuiControlEventArgs> RaiseGuiControlEvent;
+        protected virtual void OnRaiseGuiControlEvent(UserControlGuiControlEventArgs e)
+        { RaiseGuiControlEvent?.Invoke(this, e); }
 
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -116,11 +122,11 @@ namespace GrblPlotter
             Properties.Settings.Default.locationImageForm = Location;
 
             int processingMode = Properties.Settings.Default.importImageProcessingMode;
-            if (RbGrayscalePattern.Checked) { Properties.Settings.Default.importImageProcessingMode=0; }
+            if (RbGrayscalePattern.Checked) { Properties.Settings.Default.importImageProcessingMode = 0; }
             else if (RbGrayscaleVector.Checked) { Properties.Settings.Default.importImageProcessingMode = 1; }
             else if (RbPixelArt.Checked) { Properties.Settings.Default.importImageProcessingMode = 2; }
 
-            if (RbStartGrayZ.Checked) { Properties.Settings.Default.importImageGrayAsMode=0; }
+            if (RbStartGrayZ.Checked) { Properties.Settings.Default.importImageGrayAsMode = 0; }
             else if (RbStartGrayS.Checked) { Properties.Settings.Default.importImageGrayAsMode = 1; }
             else if (RbStartGraySpecial.Checked) { Properties.Settings.Default.importImageGrayAsMode = 2; }
 
@@ -181,7 +187,7 @@ namespace GrblPlotter
             DisableControlEvents();
             {
                 if (Properties.Settings.Default.importImageColorMode)
-                { tabControl2.SelectedTab = tabPage2Color; useColorMode = true; }           // show Color Mode tab
+                { tabControl2.SelectedTab = tabPage2Color; useColorMode = true; }           // show GroupColor Mode tab
                 else
                 { tabControl2.SelectedTab = tabPage2Gray; }
 
@@ -223,7 +229,7 @@ namespace GrblPlotter
             if (loadFromFile) LoadExtern(lastFile, false);          // ProcessLoading later
 
             ProcessLoading();   		// reset color corrections
-            UpdateToolTableList();		// show tool-files and last loaded tools
+            UpdateColorPaletteList();		// show tool-files and last loaded toolProp
             Highlight();
         }
 
@@ -335,7 +341,8 @@ namespace GrblPlotter
         private void ProcessLoading()
         {
             useColorMode = (tabControl2.SelectedIndex == 0);
-            if (logEnable) Logger.Trace("ProcessLoading useColorMode:{0}", useColorMode);
+            // if (logEnable) 
+            Logger.Trace("ProcessLoading useColorMode:{0}", useColorMode);
 
             lblStatus.Text = "Opening file...";
             adjustedImage = new Bitmap(originalImage);
@@ -360,7 +367,7 @@ namespace GrblPlotter
 
                 tabControl1.SelectedIndex = 0;      // switch to 1st tab after loading an image
 
-                GetToolTableSettings();             // get max tools from tooltable or 255 in grayscale mode
+                GetColorPaletteSettings();             // get max toolProp from tooltable or 255 in grayscale mode
                 imageColors = CountImageColors();   // get amount of different colors in adjustedImage
 
                 if (imageColors < toolTableCount)
@@ -368,21 +375,22 @@ namespace GrblPlotter
             }
             EnableControlEvents();
 
-            ListAvailableTools();                                   // fill CheckedListBoxTools and enable all Items
+            ListAvailableTools();                                   // FillToolListElements CheckedListBoxTools and enable all Items
             ApplyColorCorrections("ProcessLoading");                                // show current result
 
+            Logger.Trace("ProcessLoading 2");
             if (useColorMode)
-                GenerateResultImage(ref resultToolNrArray);         // fill resultToolNrArray (Image-Pixel=ToolNr)
+                GenerateResultImage(ref resultToolNrArray);         // FillToolListElements resultToolNrArray (Image-Pixel=ToolNr)
             else
-                GenerateResultImageGray(ref resultToolNrArray);   	// fill resultToolNrArray (Image-Pixel=GrayVal)
+                GenerateResultImageGray(ref resultToolNrArray);   	// FillToolListElements resultToolNrArray (Image-Pixel=GrayVal)
         }
         #endregion
 
-        private void GetToolTableSettings()
+        private void GetColorPaletteSettings()
         {
             if (useColorMode) // use color mode
             {
-                toolTableCount = ToolTable.Init(" (GCodeFromImage)");// - 1;       // 1 entry reserved
+                toolTableCount = Colors.MyPalette.Count;// ToolTable.Init(" (GCodeFromImage)");// - 1;       // 1 entry reserved
             }
             else
             {
@@ -395,7 +403,7 @@ namespace GrblPlotter
             nUDMaxColors.ValueChanged += ApplyColorCorrectionsEvent;
             preventEvent = false;
 
-            if (logEnable) Logger.Trace("GetToolTableSettings {0}  useColorMode:{1}", toolTableCount, useColorMode);
+            if (logEnable) Logger.Trace("GetColorPaletteSettings {0}  useColorMode:{1}", toolTableCount, useColorMode);
         }
 
         /***** CheckedListBoxTools *****/
@@ -407,29 +415,29 @@ namespace GrblPlotter
             int used = 0;
             if (useColorMode)
             {
-                ToolTable.SortByToolNR(false);
+                Colors.SortByToolNR(false);
                 int tmpCount = pixelCount;                  // keep original counter 
-                if (cbExceptColor.Checked)
-                    tmpCount -= ToolTable.PixelCount(0);    // no color-except
+                                                            //     if (cbExceptColor.Checked)
+                                                            //       tmpCount -= ToolTable.PixelCount(0);    // no color-except
                 if (tmpCount < 1) { tmpCount = 1; }
 
                 if (RbSortToolsByPixel.Checked)
-                    ToolTable.SortByPixelCount(CbSortInvert.Checked);
+                    Colors.SortByPixelCount(CbSortInvert.Checked);
                 else
-                    ToolTable.SortByToolNR(CbSortInvert.Checked);
+                    Colors.SortByToolNR(CbSortInvert.Checked);
 
                 int toolPixelCount;
                 float percent;
-                if (logEnable) Logger.Info("ListAvailableTools cnt1:{0}  all:{1}  exception-cnt:{2}  tmpCount:{3}", ToolTable.PixelCount(1), pixelCount, ToolTable.PixelCount(0), tmpCount);
-                for (int i = 0; i < toolTableCount; i++)
+                //        if (logEnable) Logger.Info("ListAvailableTools cnt1:{0}  all:{1}  exception-cnt:{2}  tmpCount:{3}", ToolTable.PixelCount(1), pixelCount, ToolTable.PixelCount(0), tmpCount);
+                for (int i = 0; i < Colors.MyPalette.Count; i++)
                 {
-                    ToolTable.SetIndex(i);
-                    toolPixelCount = ToolTable.PixelCount(i);
+                    //        ToolTable.SetIndex(i);
+                    toolPixelCount = Colors.MyPalette[i].PixelCount;//  ToolTable.PixelCount(i);
                     percent = (toolPixelCount * 100 / tmpCount);
-                    if ((ToolTable.IndexToolNR() >= 0) && (all || ToolTable.IndexUse()) && (toolPixelCount > 0))
+                    if ((all || Colors.MyPalette[i].Use) && (toolPixelCount > 0))
                     {
-                        CheckedListBoxTools.Items.Add(string.Format("{0,2}) {1,10}    {2,5:##0.00}%    {3,6}", ToolTable.IndexToolNR(), ToolTable.GetName(), percent, toolPixelCount), ToolTable.IndexSelected());
-                        if (ToolTable.IndexSelected()) used++;
+                        CheckedListBoxTools.Items.Add(string.Format("{0,2}) {1,10}    {2,5:##0.00}%    {3,6}", Colors.MyPalette[i].ToolNr, Colors.MyPalette[i].Name, percent, toolPixelCount), Colors.MyPalette[i].Use);
+                        if (Colors.MyPalette[i].Use) used++;
                         listed++;
                     }
                 }
@@ -469,26 +477,27 @@ namespace GrblPlotter
         }
 
         /// <summary>
-        /// update result after deselecting tools
+        /// update result after deselecting toolProp
         /// </summary>
         private void CheckedListBoxTools_SelectedIndexChanged(object sender, EventArgs e)
         {
             int checkedCount = 0;
             if (useColorMode)
             {
-                ToolTable.SortByToolNR(false);
+                Colors.SortByToolNR(false);
                 for (int i = 0; i < CheckedListBoxTools.Items.Count; i++)      // index = unknown
                 {
                     if (Int32.TryParse((CheckedListBoxTools.Items[i].ToString().Split(')'))[0], out int toolNr))    // get toolNr from text
                     {
-                        ToolTable.SetIndex(ToolTable.GetIndexByToolNR(toolNr));                     // get index from toolNr
-                        ToolTable.SetSelected(CheckedListBoxTools.GetItemChecked(i));                          // set selected property of index
+                        //         ToolTable.SetIndex(ToolTable.GetIndexByToolNR(toolNr));                     // get index from toolNr
+                        //         ToolTable.SetSelected(CheckedListBoxTools.GetItemChecked(i));                          // set selected property of index
                         if (CheckedListBoxTools.GetItemChecked(i))
                             checkedCount++;
                         //				Logger.Trace("ClbTools_SelectedIndexChanged  i:{0}  toolNr:{1}   checked:{2}   IndexSelected:{3}", i, toolNr, CheckedListBoxTools.GetItemChecked(i), ToolTable.IndexSelected());
                     }
                 }
-                GenerateResultImage(ref resultToolNrArray);         // fill resultToolNrArray (Image-Pixel=ToolNr)
+                Logger.Trace("CheckedListBoxTools_SelectedIndexChanged");
+                GenerateResultImage(ref resultToolNrArray);         // FillToolListElements resultToolNrArray (Image-Pixel=ToolNr)
             }
             else
             {
@@ -530,7 +539,7 @@ namespace GrblPlotter
         ******************************************************************/
         //Contrast adjusted by user
         private bool preventEvent = false;
-        private void ApplyColorCorrectionsEvent(object sender, EventArgs e)		// nUDMaxColors.ValueChanged  nUDResoX/Y, GrayscaleChannels, Gamma, Contrast, Bright, Satur, Hue, tBR/G/B/Min/Max
+        private void ApplyColorCorrectionsEvent(object sender, EventArgs e)		// nUDMaxColors.ValueChanged  nUDResoX/Y, GrayscaleChannels, Gamma, Contrast, Bright, Satur, Hue, tBR/G/B/ZMin/ZMax
         {
             if (logEnable) Logger.Trace("ApplyColorCorrectionsEvent  sender:{0}   preventEvent:{1} ", ((Control)sender).Name, preventEvent);
             if (preventEvent) return;
@@ -550,7 +559,7 @@ namespace GrblPlotter
         }
 
         private bool scrollBarClicked = false;
-        private void ApplyColorCorrectionsEventScrollBar(object sender, EventArgs e)		// Gamma, Contrast, Bright, Satur, Hue, tBR/G/B/Min/Max
+        private void ApplyColorCorrectionsEventScrollBar(object sender, EventArgs e)		// Gamma, Contrast, Bright, Satur, Hue, tBR/G/B/ZMin/ZMax
         {
             if (scrollBarClicked)
                 return;
@@ -581,7 +590,7 @@ namespace GrblPlotter
 
             resoDesiredX = nUDResoX.Value;
             resoDesiredY = nUDResoX.Value;
-            //          if (nUDResoY.Enabled) { resoDesiredY = nUDResoY.Value; }
+            //          if (nUDResoY.Enable) { resoDesiredY = nUDResoY.Value; }
             if (originalImage == null)
             {
                 Logger.Info("●●●● ApplyColorCorrections originalImage = null");
@@ -719,9 +728,9 @@ namespace GrblPlotter
                 /*********************
 				***** COLOR MODE *****
 				**********************/
-                if (_useColorMode && cBReduceColorsToolTable.Checked)		// for Color Mode
+                if (_useColorMode && cBReduceColorsToolTable.Checked)		// for GroupColor Mode
                 {
-                    ToolTable.SetAllSelected(true);     //  enable all tools
+                    Colors.SetAllSelected(true);     //  enable all toolProp
                     List<Color> myPalette = new List<Color>();
                     ColorImageQuantizer ciq = new ColorImageQuantizer(new MedianCutQuantizer());
 
@@ -730,10 +739,10 @@ namespace GrblPlotter
                         redoColorAdjust = false;
 
                         int matchLimit = 0;
-                        ToolTable.SortByToolNR(false);
+                        Colors.SortByToolNR(false);
                         int tmpCount = pixelCount;                // keep original counter 
-                        if (cbExceptColor.Checked)
-                            tmpCount -= ToolTable.PixelCount(0);  // no color-except
+                                                                  //     if (cbExceptColor.Checked)
+                                                                  //          tmpCount -=  Colors.MyPalette   ToolTable.PixelCount(0);  // no color-except
                         if (tmpCount < 1) { tmpCount = 1; }
 
                         int toolPixelCount;
@@ -742,14 +751,14 @@ namespace GrblPlotter
                         if (applyPercentLimit)
                         {
                             applyPercentLimit = false;
-                            for (int i = 0; i < toolTableCount; i++)
+                            for (int i = 0; i < Colors.MyPalette.Count; i++)
                             {
-                                toolPixelCount = ToolTable.PixelCount(i);
+                                toolPixelCount = Colors.MyPalette[i].PixelCount;
                                 percent = (toolPixelCount * 100 / tmpCount);
                                 if (percent >= nUDColorPercent.Value)
                                 { matchLimit++; }// tmp += toolTable.getName() + "  " + (toolTable.pixelCount(i) * 100 / tmpCount) + "\r\n"; }
                                 else
-                                { ToolTable.SetPresent(false); }    // below limit, disable color / tool-nr
+                                { Colors.SetUse(i, false); }    // below limit, disable color / tool-nr
                             }
                             if (matchLimit < nUDMaxColors.Minimum) { matchLimit = (int)nUDMaxColors.Maximum; }
                             if (matchLimit > nUDMaxColors.Maximum) { matchLimit = (int)nUDMaxColors.Maximum; }
@@ -761,19 +770,19 @@ namespace GrblPlotter
                         myPalette.Add(cbExceptColor.BackColor);
 
                     if (RbSortToolsByPixel.Checked)
-                        ToolTable.SortByPixelCount(CbSortInvert.Checked);
+                        Colors.SortByPixelCount(CbSortInvert.Checked);
                     else
-                        ToolTable.SortByToolNR(CbSortInvert.Checked);
+                        Colors.SortByToolNR(CbSortInvert.Checked);
 
-                    ToolTable.SetAllSelected(false);                    // 
+                    //    Colors.SetAllSelected(false);                    // 
 
                     for (int i = 0; i < (int)nUDMaxColors.Value; i++)   // add colors to AForge filter
                     {
-                        ToolTable.SetIndex(i);
-                        if ((ToolTable.IndexToolNR() >= 0) && ToolTable.IndexUse())
+                        //    ToolTable.SetIndex(i);
+                        if ((i < Colors.MyPalette.Count) && (Colors.MyPalette[i].ToolNr >= 0) && Colors.MyPalette[i].Use)
                         {
-                            myPalette.Add(ToolTable.IndexColor());
-                            ToolTable.SetSelected(true);
+                            myPalette.Add(Colors.MyPalette[i].Col);
+                            //       ToolTable.SetSelected(true);
                         }
                     }
                     ListAvailableTools(false);      // show only applied colors
@@ -880,12 +889,13 @@ namespace GrblPlotter
 
         private void ShowResultImage(bool showResult = true)//, bool preview = false)
         {
-            if (logEnable) Logger.Trace("ShowResultImage showResult:{0}", showResult);
+            //  if (logEnable) 
+            Logger.Trace("ShowResultImage showResult:{0}", showResult);
 
             if (adjustedImage == null) { Logger.Warn("ShowResultImage adjustedImage == null"); return; }//if no image, do nothing
 
             if (useColorMode)
-                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+                GenerateResultImage(ref resultToolNrArray);      // FillToolListElements countColors
             else
                 GenerateResultImageGray(ref resultToolNrArray);
 
@@ -902,16 +912,15 @@ namespace GrblPlotter
         /// </summary>
         private void CountResultColors()    	// update pixelCounts for specific tool-colors in ToolTable
         {
-            Color myColor;
-            if (cbExceptColor.Checked)
-                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
-            else
-                ToolTable.ClrExceptionColor();
-            ToolTable.Clear();                  // ColorPresent = false; ToolSelected = true; PixelCount = 0; Diff = int.MaxValue;
+            Color originalColor;
+            Colors.Clear();                  // Use = false; PixelCount = 0; Diff = int.MaxValue;
+            Colors.ExceptionColor.Col = cbExceptColor.BackColor;
+            Colors.ExceptionColor.Use = cbExceptColor.Checked;
+
             int mode = conversionMode;
             BitmapData dataAdjusted = null;
-            sbyte myToolNr;//, myIndex;			// also -1 is possible
-            Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
+            short myToolNr;//, myIndex;			// also -1 is possible
+            Dictionary<Color, short> lookUpToolNr = new Dictionary<Color, short>();
             try
             {
                 Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
@@ -924,27 +933,30 @@ namespace GrblPlotter
                 long bsize = dataAdjusted.Stride * adjustedImage.Height;
                 byte[] pixelsAdjusted = new byte[bsize];
                 Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
+
+                PaletteEntry pEntry;
                 byte r, g, b, a;
+
                 for (long index = 0; index < pixelsAdjusted.Length; index += psize)
                 {
                     b = pixelsAdjusted[index]; g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
-                    myColor = Color.FromArgb(a, r, g, b);
-                    if (myColor.A == 0)                             // skip exception, removed: cbExceptAlpha.Checked
-                    { myToolNr = -1; ToolTable.SortByToolNR(false); ToolTable.SetIndex(0); }
+                    originalColor = Color.FromArgb(a, r, g, b);
+
+                    if (originalColor.A == 0)                             // skip exception, removed: cbExceptAlpha.Checked
+                    { myToolNr = -1; }
                     else
                     {
-                        if (lookUpToolNr.TryGetValue(myColor, out myToolNr))                // myColor already registered
+                        if (lookUpToolNr.TryGetValue(originalColor, out myToolNr))                // originalColor already registered
                         {
-                            ToolTable.SetIndex(ToolTable.GetIndexByToolNR(myToolNr));       // set index
+                            pEntry = Colors.GetPaletteEntryByToolNR(myToolNr, true);
                         }
                         else
                         {
-                            myToolNr = (sbyte)ToolTable.GetToolNRByColor(myColor, mode);    // find nearest color in palette, sort by match, set index to 0
-                            lookUpToolNr.Add(myColor, myToolNr);
+                            pEntry = Colors.GetPaletteEntryByColor(originalColor, mode, true);
+                            myToolNr = (short)pEntry.ToolNr;
+                            lookUpToolNr.Add(originalColor, myToolNr);
                         }
                     }
-                    ToolTable.CountPixel();                                                 // count pixel / color of selected index
-                    ToolTable.SetPresent(true);                                             // set flag "ColorPresent"
                 }
             }
             finally
@@ -981,7 +993,7 @@ namespace GrblPlotter
                 {
                     b = pixelsAdjusted[index]; //g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
                     {
-                        if (lookUpGrayVal.TryGetValue(b, out long amount))                // myColor already registered
+                        if (lookUpGrayVal.TryGetValue(b, out long amount))                // originalColor already registered
                         {
                             lookUpGrayVal[b]++;
                         }
@@ -1007,26 +1019,25 @@ namespace GrblPlotter
 
 
         /// <summary>
-        /// Generate result image and fill resultToolNrArray
+        /// Generate result image and FillToolListElements resultToolNrArray
         /// </summary>
         private void GenerateResultImage(ref short[,] tmpToolNrArray)      // and count tool colors
-        {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
+        {//https://www.codeproject.com/Articles/17162/Fast-GroupColor-Depth-Change-for-Bitmaps
 
             if (adjustedImage == null) { Logger.Warn("GenerateResultImage adjustedImage == null"); return; }//if no image, do nothing
             if (logEnable) Logger.Trace("GenerateResultImage ");
 
-            Color myColor, newColor;
-            if (cbExceptColor.Checked)
-                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
-            else
-                ToolTable.ClrExceptionColor();
+            Color originalColor, replaceColor;
+            Colors.Clear();
+            Colors.ExceptionColor.Col = cbExceptColor.BackColor;
+            Colors.ExceptionColor.Use = cbExceptColor.Checked;
 
             int mode = conversionMode;
             BitmapData dataAdjusted = null;
             BitmapData dataResult = null;
             lblStatus.Text = "Generate result image...";
 
-            Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
+            Dictionary<Color, short> lookUpToolNr = new Dictionary<Color, short>();
             int rectWidth = -1, rectHeight = -1;
             try
             {
@@ -1049,8 +1060,10 @@ namespace GrblPlotter
                 tmpToolNrArray = new short[rectWidth, rectHeight];	//adjustedImage.Width, adjustedImage.Height];
                 Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
 
+                PaletteEntry pEntry; //= new PaletteEntry();
                 byte r, g, b, a;
                 int bx = 0, by = 0;
+
                 for (long index = 0; index < pixelsAdjusted.Length; index += psize)
                 {
                     b = pixelsAdjusted[index];      // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
@@ -1059,36 +1072,39 @@ namespace GrblPlotter
                     a = pixelsAdjusted[index + 3];
 
                     /***** index current color *****/
-                    myColor = Color.FromArgb(a, r, g, b);
-                    if (lookUpToolNr.TryGetValue(myColor, out sbyte myToolNr))
-                    {        // color already indexed
-                        ToolTable.SetIndex(ToolTable.GetIndexByToolNR(myToolNr));       // set as usable
+                    originalColor = Color.FromArgb(a, r, g, b);
+                    if (lookUpToolNr.TryGetValue(originalColor, out short myToolNr))
+                    {
+                        pEntry = Colors.GetPaletteEntryByToolNR(myToolNr, true);
                     }
                     else
                     {
-                        myToolNr = (sbyte)ToolTable.GetToolNRByColor(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
-                        lookUpToolNr.Add(myColor, myToolNr);
+                        pEntry = Colors.GetPaletteEntryByColor(originalColor, mode, true);
+                        myToolNr = (short)pEntry.ToolNr;
+                        lookUpToolNr.Add(originalColor, myToolNr);
                     }
 
-                    if (myColor.A == 0)                 // skip exception, removed: cbExceptAlpha.Checked
-                    { newColor = backgroundColor; myToolNr = -1; ToolTable.SortByToolNR(false); ToolTable.SetIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
+                    if (originalColor.A == 0)                 // skip exception, removed: cbExceptAlpha.Checked
+                    {
+                        replaceColor = backgroundColor; myToolNr = -1;
+                    }
                     else
                     {
-                        if ((myToolNr < 0) || (!ToolTable.IndexSelected()))  // -1 = alpha, -1 = exception color
-                        { newColor = backgroundColor; myToolNr = -1; }
-                        else
-                            newColor = ToolTable.GetColor();   // Color.FromArgb(255, r, g, b);
+                        replaceColor = pEntry.Col;
+                        //      if ((myToolNr < 0) || (!Colors.MyPalette[colorIndex].Use))  // -1 = alpha, -1 = exception color
+                        //      { replaceColor = backgroundColor; myToolNr = -1; }
+                        //       else
+                        //          replaceColor = Colors.MyPalette[colorIndex].Col;   // GroupColor.FromArgb(255, r, g, b);
                     }
-                    ToolTable.CountPixel(); // count pixel / color
-                    ToolTable.SetPresent(true);
+
                     tmpToolNrArray[bx++, by] = myToolNr;
 
                     if (bx >= rectWidth)	//adjustedImage.Width)
                     { bx = 0; by++; }
                     // apply new color
-                    pixelsResult[index] = newColor.B;// newColor.A;
-                    pixelsResult[index + 1] = newColor.G;
-                    pixelsResult[index + 2] = newColor.R;
+                    pixelsResult[index] = replaceColor.B;// replaceColor.A;
+                    pixelsResult[index + 1] = replaceColor.G;
+                    pixelsResult[index + 2] = replaceColor.R;
                     pixelsResult[index + 3] = 255;
                 }
                 Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
@@ -1110,7 +1126,7 @@ namespace GrblPlotter
         }
 
         private void GenerateResultImageGray(ref short[,] tmpToolNrArray)      // and count tool colors
-        {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
+        {//https://www.codeproject.com/Articles/17162/Fast-GroupColor-Depth-Change-for-Bitmaps
 
             if (adjustedImage == null) { Logger.Warn("GenerateResultImageGray adjustedImage == null"); return; }//if no image, do nothing
             if (logEnable) Logger.Trace("GenerateResultImageGray pixelFormat:{0}", adjustedImage.PixelFormat);
@@ -1155,7 +1171,7 @@ namespace GrblPlotter
                     if (bx >= rectWidth)	//adjustedImage.Width)
                     { bx = 0; by++; }
                     // apply new color
-                    pixelsResult[index] = b;// newColor.A;
+                    pixelsResult[index] = b;// replaceColor.A;
                     pixelsResult[index + 1] = b;
                     pixelsResult[index + 2] = b;
                     pixelsResult[index + 3] = 255;
@@ -1293,6 +1309,8 @@ namespace GrblPlotter
         public void BtnGenerateClick(object sender, EventArgs e)
         {
             Logger.Trace("▼▼▼▼▼▼▼▼▼▼▼▼ BtnGenerateClick ");
+            //    OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 13));
+
             UpdateLogging();
             Cursor.Current = Cursors.WaitCursor;
             bool applyPixelArt = RbPixelArt.Checked;
@@ -1300,7 +1318,7 @@ namespace GrblPlotter
             {
                 if (CbPixelArtLimit.Checked)
                 {
-                    int maxA = (int)NuDPixelArtLimitCount.Value*1000;
+                    int maxA = (int)NuDPixelArtLimitCount.Value * 1000;
                     int nowA = originalImage.Width * originalImage.Height;
                     if (nowA > maxA)
                     {
@@ -1310,22 +1328,24 @@ namespace GrblPlotter
                         double ratio = (double)nowY / (double)nowX;         // nowA=nowX*nowX*ratio
                         double maxX = Math.Sqrt(maxA / ratio);
                         double maxY = maxX * ratio;
-                        Logger.Trace("resize old:{0} {1}  new:{2} {3}   ratio:{4:0.00}",nowX,nowY,(int)maxX,(int)maxY,ratio);
+                        Logger.Trace("resize old:{0} {1}  new:{2} {3}   ratio:{4:0.00}", nowX, nowY, (int)maxX, (int)maxY, ratio);
                         ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor((int)maxX, (int)maxY);
                         originalImage = filterResize.Apply(originalImage);
                     }
                 }
                 UpdateSizeControls();
             }
-            GetToolTableSettings();
+            GetColorPaletteSettings();
+            Gcode.Setup(false);
+
             ApplyColorCorrections("BtnGenerateClick");
 
             if (useColorMode)
-                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+                GenerateResultImage(ref resultToolNrArray);      // FillToolListElements countColors
             else
                 GenerateResultImageGray(ref resultToolNrArray);
 
-            if (useColorMode)	//tabControl2.SelectedIndex == 0)     // Color mode
+            if (useColorMode)	//tabControl2.SelectedIndex == 0)     // GroupColor mode
             {
                 Logger.Info("▼▼▼▼ Generate GCode in color mode   {0}", resultToolNrArray.Length);
                 cBPreview.Checked = true;
@@ -1341,7 +1361,13 @@ namespace GrblPlotter
             }
             Cursor.Current = Cursors.Default;
             //    ResetColorCorrectionControls();
-            ApplyColorCorrections("BtnGenerateClick");                                // show current result
+            //     ApplyColorCorrections("BtnGenerateClick");                                // show current result
+            if (useColorMode && !applyPixelArt)
+            {
+                finalString.Clear();
+                Graphic.CreateGCode();          // result is saved as stringbuilder in Graphic.GCode;
+            }
+
             return;
         }
 
@@ -1389,8 +1415,8 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        int i = ToolTable.GetToolNRByColor(clr, conversionMode);
-                        lblStatus.Text = clr.ToString() + " = " + ToolTable.GetToolName(i);
+                        int i = Colors.GetToolNRByColor(clr, conversionMode);
+                        lblStatus.Text = clr.ToString() + " = " + Colors.MyPalette[i].Name;
                         if (cbExceptColor.Checked)
                             LblExceptionValue.Text = HexConverter(clr);//.ToString();// + " = " + ToolTable.GetToolName(i);		
                         cbExceptColor.BackColor = clr;
@@ -1410,14 +1436,15 @@ namespace GrblPlotter
 
         private void CbExceptColor_CheckedChanged(object sender, EventArgs e)
         {
+            Colors.ExceptionColor.Col = cbExceptColor.BackColor;
+            Colors.ExceptionColor.Use = cbExceptColor.Checked;
+
             if (cbExceptColor.Checked)
             {
-                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
                 LblExceptionValue.Text = HexConverter(cbExceptColor.BackColor);//.ToString();		
             }
             else
             {
-                ToolTable.ClrExceptionColor();
                 LblExceptionValue.Text = "";
             }
             redoColorAdjust = true;
@@ -1493,7 +1520,7 @@ namespace GrblPlotter
                     LblMode.BackColor = Color.Yellow;
 
                     //	if (sender == null)
-                    { toolTableCount = ToolTable.Init(" (Gcode from image)"); }
+                    { toolTableCount = Colors.MyPalette.Count; }
                 }
                 cBPreview.Checked = useColorMode;
             }
@@ -1572,8 +1599,8 @@ namespace GrblPlotter
                         LaserModeReturnValue = "$32=1 (laser mode on)";
                 }
             }
-            UpdateToolTableList();              // show tool-files and last loaded tools
-            GetToolTableSettings();             // get max tools from tooltable or 255 in grayscale mode
+            UpdateColorPaletteList();              // show tool-files and last loaded toolProp
+            GetColorPaletteSettings();             // get max toolProp from tooltable or 255 in grayscale mode
         }
 
         private void BtnGetPWMValues_Click(object sender, EventArgs e)

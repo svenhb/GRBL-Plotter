@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
  * 2021-09-10 add radioButtons to select line alignment: left, center, right line 168
  * 2022-02-28 check if a font is selected before creating text
  * 2022-03-04 check max in NudFontSize_ValueChanged
- * 2022-09-30 line 155 disable ApplyHatchFill (from SVG import)
+ * 2022-09-30 line 155 disable ApplyHatchFillSVG (from SVG import)
  * 2022-12-30 add win system font choice, word wrap
  * 2023-01-06 ShowTextSize - check if (textFont.Size != null)
  * 2023-01-10 check font before 1st use
@@ -40,8 +40,10 @@
  * 2024-02-06 add process automation
  * 2024-02-22 update proprties after loading ini-file
  * 2024-11-05 l:540 f:ShowTextSize also check if (textFont != null) issue #422
+ * 2026-03-05 SetActiveDevice 
 */
 
+using GrblPlotter.UserControls;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -90,15 +92,15 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            int toolCount = ToolTable.Init(" (TextForm_Load)");
-            ToolProp tmpTool;
+            int toolCount = ToolList.Init(" (TextForm_Load)");
+            ToolProperty tmpTool;
             bool defaultToolFound = false;
             for (int i = 0; i < toolCount; i++)
             {
-                tmpTool = ToolTable.GetToolProperties(i);
-                if (i == tmpTool.Toolnr)
+                tmpTool = ToolList.GetToolProperties(i);
+                if (i == tmpTool.ToolNr)
                 {
-                    cBTool.Items.Add(i.ToString(culture) + ") " + tmpTool.Name);
+                    cBTool.Items.Add(i.ToString(culture) + ") " + tmpTool.ToolName);
                     if (i == Properties.Settings.Default.importGCToolDefNr)
                     {
                         cBTool.SelectedIndex = cBTool.Items.Count - 1;
@@ -218,7 +220,13 @@ namespace GrblPlotter
             Properties.Settings.Default.createTextFontColor = ColorTranslator.ToHtml(textColor);
             Properties.Settings.Default.Save();
         }
-
+        public void SetActiveDevice(int device)
+        {
+            bool isDevice = (device < 3);
+            GbCodeSettings.Visible = !isDevice;
+            LblDevice.Visible = isDevice;
+            LblDevice.Text = "GCode settings from device: " + MyControl.GetSelectedDeviceName();
+        }
         #region form_controls
         // get text, break it into chars, get path, etc... This event needs to be assigned in MainForm to poll text
         private void BtnApply_Click(object sender, EventArgs e)     // in MainForm:  _text_form.btnApply.Click += getGCodeFromText;
@@ -229,7 +237,7 @@ namespace GrblPlotter
             VisuGCode.pathBackground.Reset();
             Graphic.CleanUp();
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
-            Graphic.graphicInformation.ApplyHatchFill = CbHatchFill.Checked;
+            Graphic.graphicInformation.ApplyHatchFillSVG = CbHatchFill.Checked;
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance; //false;
             Graphic.graphicInformation.OptionZFromWidth = false;
@@ -547,14 +555,14 @@ namespace GrblPlotter
 
                 RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
                 LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
-                //	Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
+                //	Properties.ListSettings.Default.createTextSystemFontSize = textFont.Size;
 
                 LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
                 LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
             }
             catch (Exception err)
             {
-                Logger.Error(err, "ShowTextSize ");// textFont.Name:'{0}'  textFont.Size:'{1}' ", textFont.FontFamily.Name, textFont.Size);
+                Logger.Error(err, "ShowTextSize ");// textFont.ToolName:'{0}'  textFont.Size:'{1}' ", textFont.FontFamily.ToolName, textFont.Size);
             }
         }
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -54,6 +54,7 @@
             this.CbFitToCurve = new System.Windows.Forms.CheckBox();
             this.NudSizePen = new System.Windows.Forms.NumericUpDown();
             this.GbMode = new System.Windows.Forms.GroupBox();
+            this.BtnCreateGcode = new System.Windows.Forms.Button();
             this.BtnFitCurve = new System.Windows.Forms.Button();
             this.GbPlotter = new System.Windows.Forms.GroupBox();
             this.CbMovementMouse = new System.Windows.Forms.CheckBox();
@@ -88,6 +89,7 @@
             this.GbPen = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SetupPanel = new System.Windows.Forms.Panel();
+            this.LblDevice = new System.Windows.Forms.Label();
             this.BtnImport = new System.Windows.Forms.Button();
             this.BtnCloseSetup = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -95,7 +97,7 @@
             this.GbModify = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.LblStrokes = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GbLiveUpdate = new System.Windows.Forms.GroupBox();
             this.GbSize = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TssLblActualPos = new System.Windows.Forms.ToolStripStatusLabel();
@@ -115,7 +117,7 @@
             this.GbPen.SuspendLayout();
             this.SetupPanel.SuspendLayout();
             this.GbModify.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GbLiveUpdate.SuspendLayout();
             this.GbSize.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -370,6 +372,7 @@
             // GbMode
             // 
             this.GbMode.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbMode.Controls.Add(this.BtnCreateGcode);
             this.GbMode.Controls.Add(this.RbMode3);
             this.GbMode.Controls.Add(this.RbMode2);
             this.GbMode.Controls.Add(this.RbMode1);
@@ -378,6 +381,13 @@
             resources.ApplyResources(this.GbMode, "GbMode");
             this.GbMode.Name = "GbMode";
             this.GbMode.TabStop = false;
+            // 
+            // BtnCreateGcode
+            // 
+            resources.ApplyResources(this.BtnCreateGcode, "BtnCreateGcode");
+            this.BtnCreateGcode.Name = "BtnCreateGcode";
+            this.BtnCreateGcode.UseVisualStyleBackColor = true;
+            this.BtnCreateGcode.Click += new System.EventHandler(this.MenuImportWholeDrawing_Click);
             // 
             // BtnFitCurve
             // 
@@ -632,17 +642,23 @@
             // SetupPanel
             // 
             this.SetupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SetupPanel.Controls.Add(this.LblDevice);
             this.SetupPanel.Controls.Add(this.BtnImport);
             this.SetupPanel.Controls.Add(this.BtnCloseSetup);
             this.SetupPanel.Controls.Add(this.label6);
             this.SetupPanel.Controls.Add(this.LblInfo);
             this.SetupPanel.Controls.Add(this.GbToolChange);
             this.SetupPanel.Controls.Add(this.GbModify);
-            this.SetupPanel.Controls.Add(this.groupBox1);
+            this.SetupPanel.Controls.Add(this.GbLiveUpdate);
             this.SetupPanel.Controls.Add(this.GbPlotter);
             this.SetupPanel.Controls.Add(this.GbSize);
             resources.ApplyResources(this.SetupPanel, "SetupPanel");
             this.SetupPanel.Name = "SetupPanel";
+            // 
+            // LblDevice
+            // 
+            resources.ApplyResources(this.LblDevice, "LblDevice");
+            this.LblDevice.Name = "LblDevice";
             // 
             // BtnImport
             // 
@@ -690,14 +706,14 @@
             resources.ApplyResources(this.LblStrokes, "LblStrokes");
             this.LblStrokes.Name = "LblStrokes";
             // 
-            // groupBox1
+            // GbLiveUpdate
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox1.Controls.Add(this.CbUpdate);
-            this.groupBox1.Controls.Add(this.BtnRefresh);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.GbLiveUpdate.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbLiveUpdate.Controls.Add(this.CbUpdate);
+            this.GbLiveUpdate.Controls.Add(this.BtnRefresh);
+            resources.ApplyResources(this.GbLiveUpdate, "GbLiveUpdate");
+            this.GbLiveUpdate.Name = "GbLiveUpdate";
+            this.GbLiveUpdate.TabStop = false;
             // 
             // GbSize
             // 
@@ -733,7 +749,7 @@
             // GCodeFromTablet
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.SetupPanel);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.statusStrip1);
@@ -770,8 +786,8 @@
             this.SetupPanel.PerformLayout();
             this.GbModify.ResumeLayout(false);
             this.GbModify.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GbLiveUpdate.ResumeLayout(false);
+            this.GbLiveUpdate.PerformLayout();
             this.GbSize.ResumeLayout(false);
             this.GbSize.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -828,7 +844,7 @@
         private System.Windows.Forms.Button BtnSwitchXy;
         private System.Windows.Forms.Label LblInfo;
         private System.Windows.Forms.ToolStripStatusLabel TssLblCanvasData;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GbLiveUpdate;
         private System.Windows.Forms.Button BtnReduce;
         private System.Windows.Forms.Button BtnFitCurve;
         private System.Windows.Forms.NumericUpDown NudPointDistance;
@@ -852,5 +868,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button BtnImport;
         private System.Windows.Forms.ToolStripMenuItem importXyzDataToolStripMenuItem;
+        internal System.Windows.Forms.Button BtnCreateGcode;
+        private System.Windows.Forms.Label LblDevice;
     }
 }

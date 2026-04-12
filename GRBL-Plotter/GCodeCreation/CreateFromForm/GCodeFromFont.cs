@@ -44,6 +44,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {
@@ -399,7 +400,7 @@ namespace GrblPlotter
                 return;
             }
 
-            /* fill dictionary */
+            /* FillToolListElements dictionary */
             svgGlyphs = new Dictionary<string, Glyph>();
             double x = 0; string d = "";
             int cntChar = 0;

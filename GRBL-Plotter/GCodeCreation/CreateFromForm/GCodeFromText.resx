@@ -138,6 +138,9 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Letter height</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Height of letters</value>
   </data>
@@ -178,7 +181,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnApply.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nUDLineBreak.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 101</value>
@@ -418,7 +421,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbFont1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="RbAlign3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -538,7 +541,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBImportGraphicNoise.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -569,7 +572,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicNoise.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicNoise.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -605,7 +608,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CbOutline.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;CbOutline.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -638,7 +641,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBToolTable.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBToolTable.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -671,7 +674,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CbHatchFill.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;CbHatchFill.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -704,7 +707,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBConnectLetter.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBConnectLetter.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -725,7 +728,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBTool.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -755,7 +758,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -785,7 +788,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBPauseLine.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBPauseLine.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -815,7 +818,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBPauseWord.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBPauseWord.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -845,7 +848,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBPauseChar.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;cBPauseChar.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -872,34 +875,34 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbCodeSettings</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 6</value>
+  <data name="GbCodeSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 4</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 136</value>
+  <data name="GbCodeSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 138</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="GbCodeSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code</value>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>GCode</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;GbCodeSettings.Name" xml:space="preserve">
+    <value>GbCodeSettings</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbCodeSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbCodeSettings.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;GbCodeSettings.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="BtnSaveIni.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1180,6 +1183,36 @@
   <data name="&gt;&gt;NUDWidth.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="LblDevice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblDevice.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="LblDevice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>265, 29</value>
+  </data>
+  <data name="LblDevice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="LblDevice.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>GCode settings for device:</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Name" xml:space="preserve">
+    <value>LblDevice</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="CbWordWrap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1208,7 +1241,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;CbWordWrap.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="RbFont2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1238,7 +1271,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;RbFont2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="RbFont1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1268,7 +1301,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;RbFont1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 148</value>
@@ -1292,7 +1325,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="CbInsertCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1322,7 +1355,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;CbInsertCode.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tBText.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1355,7 +1388,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;tBText.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="LblHeight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1583,7 +1616,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbFont2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1897,8 +1930,14 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>114, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>700, 341</value>
@@ -1930,13 +1969,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>114, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

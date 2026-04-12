@@ -29,6 +29,10 @@ using System.Windows.Forms;
 namespace GrblPlotter.BarcodeCreation
 {
     #region Enums
+#pragma warning disable CA1707 // Bezeichner dürfen keine Unterstriche enthalten
+#pragma warning disable CA1805
+#pragma warning disable CA2000
+#pragma warning disable CA1707
     public enum TYPE : int { UNSPECIFIED, UPCA, UPCE, UPC_SUPPLEMENTAL_2DIGIT, UPC_SUPPLEMENTAL_5DIGIT, EAN13, EAN8, Interleaved2of5, Interleaved2of5_Mod10, Standard2of5, Standard2of5_Mod10, Industrial2of5, Industrial2of5_Mod10, CODE39, CODE39Extended, CODE39_Mod43, Codabar, PostNet, BOOKLAND, ISBN, JAN13, MSI_Mod10, MSI_2Mod10, MSI_Mod11, MSI_Mod11_Mod10, Modified_Plessey, CODE11, USD8, UCC12, UCC13, LOGMARS, CODE128, CODE128A, CODE128B, CODE128C, ITF14, CODE93, TELEPEN, FIM, PHARMACODE };
     public enum SaveTypes : int { JPG, BMP, PNG, GIF, TIFF, UNSPECIFIED };
     public enum AlignmentPositions : int { CENTER, LEFT, RIGHT };
@@ -270,7 +274,7 @@ namespace GrblPlotter.BarcodeCreation
             this.Width = Width;
             this.Height = Height;
             return Encode(iType, ValueToEncode, ForeColor, BackColor);
-        }//Encode(TYPE, string, Color, Color, int, int)
+        }//Encode(TYPE, string, GroupColor, GroupColor, int, int)
         /// <summary>
         /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
         /// </summary>
@@ -284,7 +288,7 @@ namespace GrblPlotter.BarcodeCreation
             this.BackColor = BackColor;
             this.ForeColor = ForeColor;
             return Encode(iType, ValueToEncode);
-        }//(Image)Encode(Type, string, Color, Color)
+        }//(Image)Encode(Type, string, GroupColor, GroupColor)
         /// <summary>
         /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
         /// </summary>
@@ -343,7 +347,9 @@ namespace GrblPlotter.BarcodeCreation
         /// This also sets the internal values used within the class.
         /// </returns>
         /// <param name="raw_data" >Optional raw_data parameter to for quick barcode generation</param>
+#pragma warning disable CA1707 // Bezeichner dürfen keine Unterstriche enthalten
         public string GenerateBarcode(string raw_data)
+#pragma warning restore CA1707 // Bezeichner dürfen keine Unterstriche enthalten
         {
             if (!string.IsNullOrEmpty(raw_data))
             {
@@ -516,7 +522,7 @@ namespace GrblPlotter.BarcodeCreation
 
                         using (Graphics g = Graphics.FromImage(bitmap))
                         {
-                            //fill background
+                            //FillToolListElements background
                             g.Clear(BackColor);
 
                             //lines are fBarWidth wide so draw the appropriate color line vertically

@@ -20,9 +20,10 @@
  * 2024-12-12 New routines to draw pixels dot by dot
  * 2024-12-18 Shape from script
  * 2025-04-08 add special function
- * 2025-06-07 fill specialCodexxx variables
+ * 2025-06-07 FillToolListElements specialCodexxx variables
 */
 
+using GrblPlotter.Helper;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -70,7 +71,7 @@ namespace GrblPlotter
             Logger.Info("▼▼  ConvertColorMapPixelArt  px-dist:{0}  colorMapCount:{1}", pixelArtDistance, colorMap.Count);
             Gcode.Comment(finalString, string.Format("{0} Source=\"{1}\" Dot-count=\"{2}\"/>", XmlMarker.PixelArt, pixelArtSource, (resultImage.Width * resultImage.Height)));
             int toolNr, skipTooNr = 1;
-            short key;
+        //   short key;
             PointF tmpP;
             int pathCount = 0;
 
@@ -80,26 +81,26 @@ namespace GrblPlotter
 
             int drawType = CheckDrawShapeType();
 
-            for (int index = 0; index < toolTableCount; index++)  	// go through lists
+            for (int index = 0; index < Colors.MyPalette.Count; index++)  	// go through lists
             {
-                ToolTable.SetIndex(index);                      	// set index in class
-                key = (short)ToolTable.IndexToolNR();               // if tool-nr == known key go on
-                                                                    //    if (ToolTable.IndexSelected())
-                if (logEnable) Logger.Trace("ConvertColorMapPixelArt  index:{0}  key:{1}   IndexSelected:{2}  colorMap.ContainsKey:{3}  color:{4}", index, key, ToolTable.IndexSelected(), colorMap.ContainsKey(key), ToolTable.IndexColor());
-
-                if (colorMap.ContainsKey(key) && ToolTable.IndexSelected())
+         //       ToolTable.SetIndex(index);                      	// set index in class
+          //      key = (short)ToolTable.IndexToolNR();               // if tool-nr == known key go on
+             //   key = (short)(index + 1);                                             //    if (ToolTable.IndexSelected())
+                                                                                      //        if (logEnable) Logger.Trace("ConvertColorMapPixelArt  index:{0}  key:{1}   IndexSelected:{2}  colorMap.ContainsKey:{3}  color:{4}", index, key, ToolTable.IndexSelected(), colorMap.ContainsKey(key), ToolTable.IndexColor());
+                toolNr = Colors.MyPalette[index].ToolNr;
+                if (colorMap.ContainsKey(toolNr) && Colors.MyPalette[index].Use)//                ToolTable.IndexSelected())
                 {
-                    toolNr = key;                               // use tool in palette order
-                    if (cbSkipToolOrder.Checked)
-                        toolNr = skipTooNr++;                   // or start tool-nr at 1
+                  //  toolNr = key;                               // use tool in palette order
+                 //   if (cbSkipToolOrder.Checked)
+                 //       toolNr = skipTooNr++;                   // or start tool-nr at 1
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
 
-                    Gcode.Tool(finalString, toolNr, 0, ToolTable.IndexName() + " [" + ColorTranslator.ToHtml(ToolTable.IndexColor()) + "]");  // + svgPalette.pixelCount());
+                    Gcode.Tool(finalString, toolNr, 0, Colors.MyPalette[index].Name + " [" + ColorTranslator.ToHtml(Colors.MyPalette[index].Col) + "]");  // + svgPalette.pixelCount());
 
-                    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.GroupStart, (++pathCount), ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), ToolTable.IndexName(), gCodeWidth));		//toolTable.indexName()));
+                    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.GroupStart, (++pathCount), ColorTranslator.ToHtml(Colors.MyPalette[index].Col).Substring(1), Colors.MyPalette[index].Name, gCodeWidth));		//toolTable.indexName()));
                     Gcode.ReduceGCode = false;
-                    Gcode.PenUp(finalString, " start ");
+                    Gcode.PenUp(finalString, "PU"); // start
 
                     if (drawType < 2)
                         Gcode.ReduceGCode = true;
@@ -107,13 +108,14 @@ namespace GrblPlotter
                     int factor = resoFactorX;
                     int start = 0;// factor / 2;
 
-                    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Pixel\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, pathCount, ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), gCodeWidth));
+                    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Pixel\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, pathCount, ColorTranslator.ToHtml(Colors.MyPalette[index].Col).Substring(1), gCodeWidth));
                     Logger.Trace("adaptRadius = pixelArtDotWidth / 2 - pixelArtPenRadius; {0}  {1}", pixelArtDotWidth, pixelArtPenRadius);
 
+                    Logger.Trace("▼▼▼ DrawColorMapPixelArt toolNr:{0}  start:{1}  drawType:{2}", toolNr, start, drawType);
                     for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
                     {
-                        while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
-                            DrawColorMapPixelArt(key, y, 0, drawType);
+                        while (colorMap[toolNr][y].Count > 1)          // start at line 0 and check line by line
+                            DrawColorMapPixelArt(toolNr, y, 0, drawType);
                     }
                     Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                     Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.GroupEnd));
@@ -161,7 +163,7 @@ namespace GrblPlotter
 
                     Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.GroupStart, (++pathCount), ColorTranslator.ToHtml(Color.FromArgb(key, key, key)).Substring(1), key, pixelArtDistance));     //toolTable.indexName()));
                     Gcode.ReduceGCode = false;
-                    Gcode.PenUp(finalString, " start ");
+                    Gcode.PenUp(finalString, "PU"); // start
 
                     if (drawType < 2)
                         Gcode.ReduceGCode = true;
@@ -171,6 +173,7 @@ namespace GrblPlotter
 
                     Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Pixel\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, pathCount, ColorTranslator.ToHtml(Color.FromArgb(key, key, key)).Substring(1), pixelArtDistance));
 
+                    Logger.Trace("▼▼▼ DrawColorMapPixelArt toolNr:{0}  start:{1}  drawType:{2}", key, start, drawType);
                     for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
                     {
                         while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
@@ -195,7 +198,6 @@ namespace GrblPlotter
                 string command = TbPixelArtDrawShapeScript.Text;
                 if (string.IsNullOrEmpty(command))
                     return drawType;
-                string[] commands = { };
 
                 if (!command.StartsWith("(") && command.Contains("\\"))
                 {
@@ -219,7 +221,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    commands = command.Split(';');
+                    string[] commands = command.Split(';');
 
                     Gcode.PenDown(pixelArtShapeScript, "PD");
                     foreach (string cmd in commands)
@@ -241,7 +243,7 @@ namespace GrblPlotter
             bool drawShape = RbPixelArtShape.Checked;
             bool drawSpecial = RbStartGraySpecial.Checked;
             double coordY = pixelArtDistance * (double)line + pixelArtDistance / 2;
-            Logger.Trace("▼▼▼ DrawColorMapPixelArt special:{0}  useZ:{1}  shape:{2}", drawSpecial, useZnotS, drawShape);
+        //    Logger.Trace("▼▼▼ DrawColorMapPixelArt special:{0}  useZ:{1}  shape:{2}", drawSpecial, useZnotS, drawShape);
 
             if (colorMap[toolNr][line].Count > 1)   // at least two numbers needed: start, stop
             {
@@ -384,8 +386,8 @@ namespace GrblPlotter
         {
             if (useZnotS)
             {
-                finalString.AppendFormat("G{0} Z{1} F{2} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(nUDZBottom.Value), Gcode.GcodeZFeed);
-                finalString.AppendFormat("G{0} Z{1} (PU)\r\n", Gcode.FrmtCode(0), Gcode.FrmtNum(Gcode.GcodeZUp));
+                finalString.AppendFormat("G{0} Z{1} F{2} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(nUDZBottom.Value), Gcode.OptionZAxis.Feed);
+                finalString.AppendFormat("G{0} Z{1} (PU)\r\n", Gcode.FrmtCode(0), Gcode.FrmtNum(Gcode.OptionZAxis.Up));
                 cncCoordLastZ = cncCoordZ = (float)nUDZTop.Value;
             }
             else
@@ -450,7 +452,7 @@ namespace GrblPlotter
                     brightnes = -1;
                     return;
                 }
-                cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
+                cncCoordLastZ = cncCoordZ = Gcode.OptionZAxis.Up;
 
                 // move to xy position
                 if (drawShape)
@@ -513,7 +515,7 @@ namespace GrblPlotter
                     cncCoordZ = (float)nUDZTop.Value - height * (float)(nUDZTop.Value - nUDZBottom.Value) / 255;    // calc Z value
                     if (relative) { SZ = string.Format("Z{0}", Gcode.FrmtNum(cncCoordZ - cncCoordLastZ)); }
                     else { SZ = string.Format("Z{0}", Gcode.FrmtNum(cncCoordZ)); }
-                    finalString.AppendFormat("G{0} {1} F{2} (PD)\r\n", Gcode.FrmtCode(1), SZ, Gcode.GcodeZFeed);
+                    finalString.AppendFormat("G{0} {1} F{2} (PD)\r\n", Gcode.FrmtCode(1), SZ, Gcode.OptionZAxis.Feed);
                 }
                 else
                 {

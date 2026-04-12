@@ -64,7 +64,7 @@ namespace GrblPlotter
             this.RbAlign2 = new System.Windows.Forms.RadioButton();
             this.RbAlign1 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GbCodeSettings = new System.Windows.Forms.GroupBox();
             this.cBImportGraphicNoise = new System.Windows.Forms.CheckBox();
             this.CbOutline = new System.Windows.Forms.CheckBox();
             this.cBToolTable = new System.Windows.Forms.CheckBox();
@@ -88,6 +88,7 @@ namespace GrblPlotter
             this.NUDWidth = new System.Windows.Forms.NumericUpDown();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.LblDevice = new System.Windows.Forms.Label();
             this.CbWordWrap = new System.Windows.Forms.CheckBox();
             this.RbFont2 = new System.Windows.Forms.RadioButton();
             this.RbFont1 = new System.Windows.Forms.RadioButton();
@@ -118,7 +119,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontSize)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.GbCodeSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -302,22 +303,22 @@ namespace GrblPlotter
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // groupBox1
+            // GbCodeSettings
             // 
-            this.groupBox1.Controls.Add(this.cBImportGraphicNoise);
-            this.groupBox1.Controls.Add(this.CbOutline);
-            this.groupBox1.Controls.Add(this.cBToolTable);
-            this.groupBox1.Controls.Add(this.CbHatchFill);
-            this.groupBox1.Controls.Add(this.cBConnectLetter);
-            this.groupBox1.Controls.Add(this.cBTool);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cBPauseLine);
-            this.groupBox1.Controls.Add(this.cBPauseWord);
-            this.groupBox1.Controls.Add(this.cBPauseChar);
-            this.groupBox1.Controls.Add(this.label2);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.GbCodeSettings.Controls.Add(this.cBImportGraphicNoise);
+            this.GbCodeSettings.Controls.Add(this.CbOutline);
+            this.GbCodeSettings.Controls.Add(this.cBToolTable);
+            this.GbCodeSettings.Controls.Add(this.CbHatchFill);
+            this.GbCodeSettings.Controls.Add(this.cBConnectLetter);
+            this.GbCodeSettings.Controls.Add(this.cBTool);
+            this.GbCodeSettings.Controls.Add(this.label3);
+            this.GbCodeSettings.Controls.Add(this.cBPauseLine);
+            this.GbCodeSettings.Controls.Add(this.cBPauseWord);
+            this.GbCodeSettings.Controls.Add(this.cBPauseChar);
+            this.GbCodeSettings.Controls.Add(this.label2);
+            resources.ApplyResources(this.GbCodeSettings, "GbCodeSettings");
+            this.GbCodeSettings.Name = "GbCodeSettings";
+            this.GbCodeSettings.TabStop = false;
             // 
             // cBImportGraphicNoise
             // 
@@ -341,8 +342,8 @@ namespace GrblPlotter
             // cBToolTable
             // 
             resources.ApplyResources(this.cBToolTable, "cBToolTable");
-            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
-            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolListUse;
+            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolListUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBToolTable.Name = "cBToolTable";
             this.toolTip1.SetToolTip(this.cBToolTable, resources.GetString("cBToolTable.ToolTip"));
             this.cBToolTable.UseVisualStyleBackColor = true;
@@ -503,8 +504,9 @@ namespace GrblPlotter
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.LblDevice);
             this.tabPage1.Controls.Add(this.CbWordWrap);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.GbCodeSettings);
             this.tabPage1.Controls.Add(this.RbFont2);
             this.tabPage1.Controls.Add(this.RbFont1);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -517,6 +519,11 @@ namespace GrblPlotter
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // LblDevice
+            // 
+            resources.ApplyResources(this.LblDevice, "LblDevice");
+            this.LblDevice.Name = "LblDevice";
             // 
             // CbWordWrap
             // 
@@ -708,7 +715,7 @@ namespace GrblPlotter
             // GCodeFromText
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.BtnSaveIni);
@@ -723,8 +730,8 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontSize)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GbCodeSettings.ResumeLayout(false);
+            this.GbCodeSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -751,7 +758,7 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox cBToolTable;
         private System.Windows.Forms.ComboBox cBFont;
         private System.Windows.Forms.ComboBox cBTool;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GbCodeSettings;
         private System.Windows.Forms.GroupBox GbFont1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -807,5 +814,6 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnHelp;
         private System.Windows.Forms.Button BtnSaveIni;
         private System.Windows.Forms.CheckBox cBImportGraphicNoise;
+        private System.Windows.Forms.Label LblDevice;
     }
 }

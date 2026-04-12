@@ -117,18 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CbDeviceDefaults.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="CbDeviceDefaults.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="CbDeviceDefaults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 14</value>
+  </data>
+  <data name="CbDeviceDefaults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 17</value>
+  </data>
+  <data name="CbDeviceDefaults.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CbDeviceDefaults.Text" xml:space="preserve">
+    <value>Use defaults from selected device</value>
+  </data>
+  <data name="&gt;&gt;CbDeviceDefaults.Name" xml:space="preserve">
+    <value>CbDeviceDefaults</value>
+  </data>
+  <data name="&gt;&gt;CbDeviceDefaults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbDeviceDefaults.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;CbDeviceDefaults.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>353, 0</value>
   </data>
   <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="button3.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
@@ -151,7 +181,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 12</value>
@@ -161,6 +191,9 @@
   </data>
   <data name="cBTool.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
+  </data>
+  <data name="cBTool.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;cBTool.Name" xml:space="preserve">
     <value>cBTool</value>
@@ -172,7 +205,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBNoZUp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -205,7 +238,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBNoZUp.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -235,36 +268,6 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cBToolSet.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBToolSet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBToolSet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 14</value>
-  </data>
-  <data name="cBToolSet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 17</value>
-  </data>
-  <data name="cBToolSet.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="cBToolSet.Text" xml:space="preserve">
-    <value>Get values from tool table</value>
-  </data>
-  <data name="&gt;&gt;cBToolSet.Name" xml:space="preserve">
-    <value>cBToolSet</value>
-  </data>
-  <data name="&gt;&gt;cBToolSet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBToolSet.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cBToolSet.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="nUDToolOverlap.Location" type="System.Drawing.Point, System.Drawing">
@@ -2431,7 +2434,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>384, 441</value>

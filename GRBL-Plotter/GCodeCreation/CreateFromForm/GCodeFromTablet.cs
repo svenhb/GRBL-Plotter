@@ -24,6 +24,8 @@
  https://www.codeproject.com/Articles/19102/Adventures-into-Ink-API-using-WPF
  https://wiki.evilmadscientist.com/RoboPaint_RT
 */
+using GrblPlotter.Helper;
+using GrblPlotter.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +38,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
 using System.Xml;
+//using static GrblPlotter.Helper.Colors;
 using Button = System.Windows.Forms.Button;
 using Color = System.Drawing.Color;
 
@@ -80,16 +83,20 @@ namespace GrblPlotter
 
         private void GCodeFromTablet_Load(object sender, EventArgs e)
         {
-            string defaultToolList = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-            LoadToolListSetBtn(defaultToolList);                  // list tools from _current.csv	
+            //    string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
+            if (!System.IO.Directory.Exists(Datapath.ColorPalette))
+                MessageBox.Show("Subdirectory 'palettes' doesn't exist", "Attention");
+            FillToolTableFileList(Datapath.ColorPalette);           // list tool table files
+            string defaultToolList = Datapath.ColorPalette + "\\" + "GRBL-Plotter_Watercolor.txt";
+            LoadColorPalettetSetBtn(defaultToolList);                  // list toolProp from _current.csv	
             ResizeCanvas();
             figurePenSize = (double)NudSizePen.Value;
             Tablet.PenSize = Tablet.Width * (double)(NudSizePen.Value / NudSizeX.Value);
             Logger.Trace("GCodeFromTablet_Load Plotter X:{0}  Y:{1}  NudPen:{2}   Canvas X:{3}  Y:{4}  TabletPen:{5}", NudSizeX.Value, NudSizeY.Value, NudSizePen.Value, Tablet.Width, Tablet.Height, Tablet.PenSize);
             canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
-            UpdateToolTableList();      // show tool-files and last loaded tools
+            UpdateToolTableList();      // show tool-files and last loaded toolProp
             SetCanvasColor();
-			
+
             this.Size = Properties.Settings.Default.tabletFormSize;
             this.Location = Properties.Settings.Default.tabletFormLocation;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
@@ -104,7 +111,7 @@ namespace GrblPlotter
         private void GCodeFromTablet_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Info("++++++ GCodeFromTablet STOP ++++++");
-            //    Properties.Settings.Default.locationImageForm = Location;
+            //    Properties.ListSettings.Default.locationImageForm = Location;
             Properties.Settings.Default.tabletFormSize = this.Size;
             Properties.Settings.Default.tabletFormLocation = this.Location;
             Properties.Settings.Default.Save();
@@ -242,7 +249,7 @@ namespace GrblPlotter
                 else
                 {
                     /*     if (!stylus)
-                         { cmdZ = string.Format("S:{0:0}", Properties.Settings.Default.importGCPWMDown); }
+                         { cmdZ = string.Format("S:{0:0}", Properties.ListSettings.Default.importGCPWMDown); }
                          else*/
                     { cmdZ = string.Format("S:{0:0}", z); }
                 }
@@ -327,7 +334,7 @@ namespace GrblPlotter
             // or set Z value via G1
             else if (Properties.Settings.Default.importGCZEnable)
             {
-                cmd = string.Format("G1Z{0:0.0}F10000 (PD)", 0);//, Properties.Settings.Default.importGCZFeed);
+                cmd = string.Format("G1Z{0:0.0}F10000 (PD)", 0);//, Properties.ListSettings.Default.importGCZFeed);
             }
 
             cmd = cmd.Replace(",", ".");
@@ -354,6 +361,7 @@ namespace GrblPlotter
         /* deliver simple GCode from collected data */
         internal StringBuilder GetCode()
         {
+            Logger.Trace("●●●●●● Tablet GetCode");
             StringBuilder header = new StringBuilder(string.Format("( {0} by GRBL-Plotter {1} )\r\n", "Direct draw", MyApplication.GetVersion()));
             header.AppendFormat("( G-Code lines      : {0} )\r\n", gcodeLines);
             header.AppendFormat("( Path length (PD)  : {0:0.0} mm )\r\n", gcodeDistancePD);
@@ -381,52 +389,54 @@ namespace GrblPlotter
         }
 
         /* Read complete inkCanvas and generate GCode */
-        private void GenerateGCode()
-        {	/* called by BtnImport_Click, which also triggers MainFormOtherForms.cs GetGCodeFromTablet
+        internal void GenerateGCode()
+        {   /* called by BtnImport_Click, which also triggers MainFormOtherForms.cs GetGCodeFromTablet
 			   Read all Strokes from InkCanvas and copy to Graphic-class 
 			   GetGCodeFromTablet() copies result from Graphic-class to 2D-View
 			   */
+            Logger.Trace("●●●●●● Tablet GenerateGCode");
             int strokeCount = Tablet.GetStrokeCount();
             Logger.Trace("###### Import strokes {0}", strokeCount);
             if (strokeCount > 0)
             {
                 VisuGCode.pathBackground.Reset();
                 Graphic.CleanUp();
-                Graphic.Init(Graphic.SourceType.Text, "", null, null);
-                Graphic.graphicInformation.DxfImportZ = false;
-                Graphic.graphicInformation.OptionZFromWidth = false;
-                Graphic.graphicInformation.OptionSFromWidth = false;
+                Graphic.Init(Graphic.SourceType.Ink, "", null, null);
+                /*    Graphic.graphicInformation.ImportDxfConsiderZ = false;
+                    Graphic.graphicInformation.OptionZFromWidth = false;
+                    Graphic.graphicInformation.OptionSFromWidth = false;
 
-                Graphic.graphicInformation.PenWidthMin = 0;
-                Graphic.graphicInformation.PenWidthMax = (double)NudSizePen.Value;
+                    Graphic.graphicInformation.PenWidthMin = 0;
+                    Graphic.graphicInformation.PenWidthMax = (double)NudSizePen.Value;
 
-                if (Properties.Settings.Default.importGCPWMEnable)
-                    Graphic.graphicInformation.OptionSFromWidth = true;
-                else if (Properties.Settings.Default.importGCZEnable)
-                {
-                    Graphic.graphicInformation.OptionZFromWidth = true;
-                    Graphic.graphicInformation.DxfImportZ = true;
-                }
-                Graphic.graphicInformation.ApplyHatchFill = false;
-                Graphic.graphicInformation.OptionNodesOnly = false;
-                Graphic.graphicInformation.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance; //false;
-                Graphic.graphicInformation.FigureEnable = true;
-                Graphic.graphicInformation.GroupEnable = true;
-                Graphic.graphicInformation.GroupOption = Graphic.GroupOption.ByColor;
+                    if (Properties.Settings.Default.importGCPWMEnable)
+                        Graphic.graphicInformation.OptionSFromWidth = true;
+                    else if (Properties.Settings.Default.importGCZEnable)
+                    {
+                        Graphic.graphicInformation.OptionZFromWidth = true;
+                        Graphic.graphicInformation.ImportDxfConsiderZ = true;
+                    }
+                    Graphic.graphicInformation.ApplyHatchFillSVG = false;
+                    Graphic.graphicInformation.OptionNodesOnly = false;
+                    Graphic.graphicInformation.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance; //false;
+                    Graphic.graphicInformation.FigureEnable = true;
+                    Graphic.graphicInformation.GroupEnable = true;
+                    Graphic.graphicInformation.GroupOption = Graphic.GroupOption.ByColor;
+              */
                 Graphic.maxObjectCountBeforeReducingXML = 0;   // no limit
 
                 Graphic.SetType("Ink");
 
                 /* save settings */
-                decimal origWidthMax = Properties.Settings.Default.importDepthFromWidthMax;
-                decimal zMin = Properties.Settings.Default.importDepthFromWidthMin;
-                decimal zMax = Properties.Settings.Default.importDepthFromWidthMax;
-                bool pwmFromWidth = Properties.Settings.Default.importPWMFromWidth;
-                Properties.Settings.Default.importDepthFromWidthMin = 0;
-                Properties.Settings.Default.importDepthFromWidthMax = Properties.Settings.Default.importGCZDown;
-                Properties.Settings.Default.importPWMFromWidth = Graphic.graphicInformation.OptionSFromWidth;
-                Properties.Settings.Default.Save();
-
+                /*        decimal origWidthMax = Properties.Settings.Default.importDepthFromWidthMax;
+                        decimal zMin = Properties.Settings.Default.importDepthFromWidthMin;
+                        decimal zMax = Properties.Settings.Default.importDepthFromWidthMax;
+                        bool pwmFromWidth = Properties.Settings.Default.importPWMFromWidth;
+               /*        Properties.Settings.Default.importDepthFromWidthMin = 0;
+                        Properties.Settings.Default.importDepthFromWidthMax = Properties.Settings.Default.importGCZDown;
+                        Properties.Settings.Default.importPWMFromWidth = Graphic.graphicInformation.OptionSFromWidth;
+                        Properties.Settings.Default.Save();
+        */
                 Logger.Trace("##### GenerateGCode S:{0}  Z:{1}  Pen-min:{2}  Pen-max:{3}", Graphic.graphicInformation.OptionSFromWidth, Graphic.graphicInformation.OptionZFromWidth, Graphic.graphicInformation.PenWidthMin, Graphic.graphicInformation.PenWidthMax);
                 Logger.Trace("##### GenerateGCode min:{0}  max:{1}", Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax);
 
@@ -451,10 +461,11 @@ namespace GrblPlotter
                                                 //	VisuGCode.pathBackground
 
                 /* restore settings */
-                Properties.Settings.Default.importDepthFromWidthMax = origWidthMax;
-                Properties.Settings.Default.importDepthFromWidthMin = zMin;
-                Properties.Settings.Default.importDepthFromWidthMax = zMax;
-                Properties.Settings.Default.importPWMFromWidth = pwmFromWidth;
+                /*     Properties.Settings.Default.importDepthFromWidthMax = origWidthMax;
+                     Properties.Settings.Default.importDepthFromWidthMin = zMin;
+                     Properties.Settings.Default.importDepthFromWidthMax = zMax;
+                     Properties.Settings.Default.importPWMFromWidth = pwmFromWidth;
+               */
             }
         }
 
@@ -528,13 +539,12 @@ namespace GrblPlotter
         /* reload file list and update tool buttons */
         private void UpdateToolTableList()
         {
-            FillToolTableFileList(Datapath.Tools);			// list tool table files
-            CboxToolFiles.Text = Properties.Settings.Default.toolTableLastLoaded;
-            string defaultToolList = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-            LoadToolListSetBtn(defaultToolList);                  // list tools from _current.csv			
+            FillToolTableFileList(Datapath.ColorPalette);           // list tool table files
+                                                                    //    CboxToolFiles.Text = Properties.Settings.Default.toolTableLastLoaded;
+                                                                    //   string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
         }
 
-        /* list all CSV files from tools-folder in combobox */
+        /* list all CSV files from toolProp-folder in combobox */
         private void FillToolTableFileList(string filepath)
         {
             try
@@ -543,11 +553,11 @@ namespace GrblPlotter
                 CboxToolFiles.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
                 {
-                    if (Files[i].ToLower().EndsWith("csv"))
+                    //   if (Files[i].ToLower().EndsWith("csv"))
                     {
                         string name = Path.GetFileName(Files[i]);
-                        if (name != ToolTable.DefaultFileName)
-                            CboxToolFiles.Items.Add(name);
+                        //        if (name != ToolList.DefaultFileName)
+                        CboxToolFiles.Items.Add(name);
                     }
                 }
             }
@@ -559,99 +569,44 @@ namespace GrblPlotter
         {
             if (!string.IsNullOrEmpty(CboxToolFiles.Text))
             {
-                string newTool = Datapath.Tools + "\\" + CboxToolFiles.Text;
-                string defTool = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-                try
-                {
-                    System.IO.File.Copy(newTool, defTool, true);
-                    Properties.Settings.Default.toolTableLastLoaded = CboxToolFiles.Text;
-                    Properties.Settings.Default.Save();
-                }
-                catch (Exception err)
-                {
-                    Logger.Error(err, "CboxToolFiles_SelectedIndexChanged could not copy file to default {0}", newTool);
-                    EventCollector.StoreException("CboxToolFiles_SelectedIndexChanged: " + newTool + " " + err.Message + " - ");
-                }
-
-                LoadToolListSetBtn(defTool);
+                string newPalette = Datapath.ColorPalette + "\\" + CboxToolFiles.Text;
+                LoadColorPalettetSetBtn(newPalette);
                 SendCodeEvent(new CmdEventArgs("tool"));
             }
         }
 
-        /* Display tools from selected tool table */
-        private bool LoadToolListSetBtn(string file)
+        /* Display colors from selected color palette */
+        private bool LoadColorPalettetSetBtn(string file)
         {
-            if (File.Exists(file))
+            Colors.LoadColorPalette(file);
+
+            int index = 0;
+            int toolCnt = Colors.MyPalette.Count;
+            //    double flpRatio = (double)FlpToolSelection.Width / FlpToolSelection.Height;
+            int w = FlpToolSelection.Width;
+            int btnSize = 44;
+            if (toolCnt * btnSize > 2 * w)
+                btnSize = 33;
+            if (toolCnt * btnSize > 3 * w)
+                btnSize = 22;
+
+            foreach (PaletteEntry tmp in Colors.MyPalette)
             {
-                Logger.Trace("Load Tool Table {0}", file);
-                FlpToolSelection.Controls.Clear();
-                string[] readText;
-
-                try
+                Button btn = new Button
                 {
-                    readText = File.ReadAllLines(file);
-                }
-                catch (IOException err)
-                {
-                    // read already opened file???
-                    // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
-                    EventCollector.StoreException("LoadToolList IOException: " + file + " " + err.Message + " - ");
-                    Logger.Error(err, "LoadToolList IOException:{0}", file);
-                    MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
-                    return false;
-                }
-                catch
-                {//(Exception err) { 
-                    throw;      // unknown exception...
-                }
-
-                string[] col;
-                int toolNr;
-                string toolColor;
-                string toolName;
-
-                int index = 0;
-                int toolCnt = readText.Length;
-                //    double flpRatio = (double)FlpToolSelection.Width / FlpToolSelection.Height;
-                int w = FlpToolSelection.Width;
-                int btnSize = 44;
-                if (toolCnt * btnSize > 2 * w)
-                    btnSize = 33;
-                if (toolCnt * btnSize > 3 * w)
-                    btnSize = 22;
-                foreach (string s in readText)
-                {
-                    if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
-                        continue;
-
-                    if (s.Length > 10)
-                    {
-                        col = s.Split(',');
-                        toolNr = Convert.ToInt32(col[0].Trim());
-                        toolColor = col[1].Trim();
-                        toolName = col[2].Trim();
-
-                        Button btn = new Button
-                        {
-                            Name = "btn_" + index.ToString(),
-                            //    btn.Text = toolName;
-                            Tag = toolNr,
-                            Font = new Font("Arial", 10f, FontStyle.Bold),
-                            BackColor = ColorTranslator.FromHtml('#' + toolColor)
-                        };
-                        btn.ForeColor = ContrastColor(btn.BackColor);
-                        btn.Height = btn.Width = btnSize;
-                        btn.Margin = new System.Windows.Forms.Padding(0);
-                        btn.Padding = new System.Windows.Forms.Padding(0);
-                        btn.Click += BtnToolSelection_Click;
-                        toolTip1.SetToolTip(btn, string.Format("{0}\r\nTool:{1} change pos. \r\nX:{2} \r\nY:{3} \r\nZ:{4} \r\nA:{5}", toolName, col[0], col[3], col[4], col[5], col[6]));
-                        FlpToolSelection.Controls.Add(btn);
-                        //    FlpToolSelection.SetFlowBreak(btn, false);
-                    }
-                }
-                return true;
+                    Name = "btn_" + index.ToString(),
+                    Font = new Font("Arial", 10f, FontStyle.Bold),
+                    BackColor = tmp.Col
+                };
+                btn.ForeColor = ContrastColor(btn.BackColor);
+                btn.Height = btn.Width = btnSize;
+                btn.Margin = new System.Windows.Forms.Padding(0);
+                btn.Padding = new System.Windows.Forms.Padding(0);
+                btn.Click += BtnToolSelection_Click;
+                toolTip1.SetToolTip(btn, string.Format("{0}", tmp.Name));
+                FlpToolSelection.Controls.Add(btn);
             }
-            return false;
+            return true;
         }
 
         /* tool button was clicked */
@@ -661,13 +616,13 @@ namespace GrblPlotter
             Color toolColor = btn.BackColor;
             PSelectedColor.BackColor = toolColor;
             toolTip1.SetToolTip(PSelectedColor, btn.Text);
-            toolNr = (int)btn.Tag;
+            //    toolNr = (int)btn.Tag;
 
             Tablet.ForeColor = figureColor = Color.FromArgb(128, toolColor.R, toolColor.G, toolColor.B);    // add transparency
             if (!CbTransparency.Checked)
                 Tablet.ForeColor = figureColor = toolColor;    // add transparency
 
-            Logger.Trace("btnToolSelection_Click toolNr:{0}  Color:{1}", toolNr, toolColor);
+            //    Logger.Trace("btnToolSelection_Click toolNr:{0}  Color:{1}", toolNr, toolColor);
 
             if (RbMode1.Checked)
                 Tablet.SetSelectionColor(figureColor);
@@ -807,8 +762,8 @@ namespace GrblPlotter
         {
             Tablet.Clear();
             canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
-            string defaultToolList = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-            LoadToolListSetBtn(defaultToolList);                  // list tools from _current.csv						
+            //   string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
+            //   LoadColorPalettetSetBtn(defaultToolList);                  // list toolProp from _current.csv						
             figureCount = 1;
             Tablet.Clear();
             gcodeString.Clear();
@@ -889,6 +844,13 @@ namespace GrblPlotter
                     }
                 }
             }
+        }
+        public void SetActiveDevice(int device)
+        {
+            bool isDevice = (device < 3);
+            GbToolChange.Visible = !isDevice;
+            LblDevice.Visible = isDevice;
+            LblDevice.Text = "GCode settings from device: " + MyControl.GetSelectedDeviceName();
         }
 
         private void BtnImport_Click(object sender, EventArgs e)

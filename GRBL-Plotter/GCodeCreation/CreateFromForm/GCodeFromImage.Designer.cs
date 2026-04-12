@@ -1280,7 +1280,7 @@
             this.cBPreview.UseVisualStyleBackColor = true;
             this.cBPreview.CheckedChanged += new System.EventHandler(this.JustShowResult);
             // 
-            // tabControl1
+            // TcServoZAxis
             // 
             this.tabControl1.Controls.Add(this.tabPageSetup);
             this.tabControl1.Controls.Add(this.tabPageSize);
@@ -2600,7 +2600,8 @@
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnShowOrig);
             this.Controls.Add(this.btnTest);

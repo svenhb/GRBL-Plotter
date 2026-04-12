@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,8 +33,10 @@
  * 2023-06-05 allow X = 0.0, highlight CbInsertCode
  * 2023-07-31 l:156 f:BtnApply_Click fix group and figure tags
  * 2025-03-10 integrate INI settings
+ * 2026-03-31 no use of tooltable anymore
 */
 
+using GrblPlotter.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,7 +48,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace GrblPlotter
 {
@@ -64,15 +65,15 @@ namespace GrblPlotter
         private static bool gcodeTangEnable = false;
         private Image picBevelOff = Properties.Resources.rndOff;
         private Image picBevelOn = Properties.Resources.rndOn;
-        private ToolProp tprop = new ToolProp();
-        private readonly ToolProp torig = new ToolProp();
+        //    private ToolProperty tprop = new ToolProperty();
+        //    private readonly ToolProperty torig = new ToolProperty();
 
-		internal class AppProp
-		{
-			internal bool avoidZUp = false;
-			internal bool finalMove0=false;
-			internal bool insertShape = false;
-		}
+        internal class AppProp
+        {
+            internal bool avoidZUp = false;
+            internal bool finalMove0 = false;
+            internal bool insertShape = false;
+        }
 
         internal class PathProp
         {
@@ -88,10 +89,10 @@ namespace GrblPlotter
         internal class ShapeFull
         {
             internal string name = "";
-            internal ToolProp tool = new ToolProp();
+            internal ToolProperty tool = new ToolProperty();
             internal PathProp path = new PathProp();
             internal ShapeProp shape = new ShapeProp();
-			internal AppProp app = new AppProp();
+            internal AppProp app = new AppProp();
         }
         internal List<ShapeFull> Shapes = new List<ShapeFull>();
 
@@ -112,17 +113,23 @@ namespace GrblPlotter
         private void BtnCancel_Click(object sender, EventArgs e)
         { this.Close(); }
 
-        private void BtnApply_Click(object sender, EventArgs e)
+        public void BtnApply_Click(object sender, EventArgs e)
         {
             SaveSettings();
             Gcode.Setup(false);                  // load defaults from setup-tab - disable InsertSubroutine, LineSegmentation
-
-            Gcode.GcodeXYFeed = (float)nUDToolFeedXY.Value;    // override devault values
-            Gcode.GcodeZFeed = (float)nUDToolFeedZ.Value;    // override devault values
-            Gcode.GcodeSpindleSpeed = (float)nUDToolSpindleSpeed.Value;    // override devault values
-            Gcode.GcodeZDown = (float)nUDImportGCZDown.Value;
-            gcodeTangEnable = Properties.Settings.Default.importGCTangentialEnable;
-
+            double penWidth = (double)nUDToolDiameter.Value;
+            if (!CbDeviceDefaults.Checked)
+            {
+                Gcode.GcodeXYFeed = (float)nUDToolFeedXY.Value;    // override devault values
+                Gcode.OptionZAxis.Feed = (float)nUDToolFeedZ.Value;    // override devault values
+                Gcode.Spindle.Speed = (float)nUDToolSpindleSpeed.Value;    // override devault values
+                Gcode.OptionZAxis.Down = (float)nUDImportGCZDown.Value;
+                gcodeTangEnable = Properties.Settings.Default.importGCTangentialEnable;
+            }
+            else
+            {
+                penWidth = MyControl.GetActualWidth();
+            }
 
             Logger.Debug(culture, "Create GCode {0}", Gcode.GetSettings());
 
@@ -131,7 +138,7 @@ namespace GrblPlotter
             path = PathBackground;      // create background path
             path.StartFigure();
 
-            Gcode.Tool(gcodeString, tprop.Toolnr, 0, tprop.Name + " [" + ColorTranslator.ToHtml(tprop.Color) + "]");                                                                                                                                                //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
+            //        Gcode.Tool(gcodeString, tprop.ToolNr, 0, tprop.ToolName + " [" + ColorTranslator.ToHtml(tprop.GroupColor) + "]");                                                                                                                                                //       if (!Properties.ListSettings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
 
             float x, y, rShape, d, dTool, dToolOffset, overlap, rTool, rToolOffset, zStep;
             float zStart = 0;
@@ -156,15 +163,17 @@ namespace GrblPlotter
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value); // if step >= final Z
 
-            if (cBToolSet.Checked)
+            /*     if (CbDeviceDefaults.Checked)
+                 {
+                     Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Type=\"Shape\" PenColor=\"{2}\" ToolNr=\"{3}\" ToolName=\"{4}\">", XmlMarker.GroupStart, figureCount, ColorTranslator.ToHtml(tprop.GroupColor).Substring(1), tprop.ToolNr, tprop.ToolName));     //toolTable.indexName()));
+                     Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Geometry=\"Shape\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, figureCount, ColorTranslator.ToHtml(tprop.GroupColor).Substring(1), tprop.GroupWidth));
+                 }
+                 else*/
             {
-                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Type=\"Shape\" PenColor=\"{2}\" ToolNr=\"{3}\" ToolName=\"{4}\">", XmlMarker.GroupStart, figureCount, ColorTranslator.ToHtml(tprop.Color).Substring(1), tprop.Toolnr, tprop.Name));     //toolTable.indexName()));
-                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Geometry=\"Shape\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, figureCount, ColorTranslator.ToHtml(tprop.Color).Substring(1), tprop.Diameter));
-            }
-            else
-            {
-                Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" >");
-                Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" Geometry=\"Shape\" >");
+                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Type=\"Shape\" PenColor=\"{2}\" ToolNr=\"{3}\" ToolName=\"{4}\"  PenWidth=\"{5}\">", XmlMarker.GroupStart, figureCount, "000000", 1, "Black", penWidth));     //toolTable.indexName()));
+                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Geometry=\"Shape\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, figureCount, "000000", penWidth));
+                //                Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" PenColor=\"{2}\" ToolNr=\"{3}\" ToolName=\"{4}\">");
+                //                Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" Geometry=\"Shape\" >");
             }
 
             if (tabControl1.SelectedTab == tabPage1)    // rectangle, circle
@@ -196,7 +205,7 @@ namespace GrblPlotter
                         //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                         if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
-                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "");
+                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "PU");
                             if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ "  " + passCount.ToString() + ">");
                         }
                         passCount++;
@@ -210,8 +219,8 @@ namespace GrblPlotter
                             Gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, "");
                         else
                             Gcode.MoveToRapid(gcodeString, offsetX, offsetY, "");
-                        Gcode.GcodeZDown = zStep;               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = zStep;               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         if (cBToolpathPocket.Checked)           // 1st pocket
                         {
                             if ((x > Math.Abs(dToolOffset)) && (y > Math.Abs(dToolOffset)))      // wide enough for pocket
@@ -230,14 +239,14 @@ namespace GrblPlotter
                                 {
                                     Gcode.PenUp(gcodeString, "Pocket finish");
                                     Gcode.MoveToRapid(gcodeString, offsetX, offsetY, "Pocket finish");
-                                    Gcode.PenDown(gcodeString, "");
+                                    Gcode.PenDown(gcodeString, "PD");
                                 }
                             }
                         }
 
                         MakeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // final rectangle clockwise
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                     if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -274,7 +283,7 @@ namespace GrblPlotter
                         //                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                         if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
-                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "");
+                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "PU");
                             if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                         }
                         passCount++;
@@ -288,8 +297,8 @@ namespace GrblPlotter
                             Gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape, "");
                         else
                             Gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
-                        Gcode.GcodeZDown = zStep;               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = zStep;               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         if (cBToolpathPocket.Checked)
                         {
                             dx = overlap; dy = overlap; rDelta = rShape - overlap;
@@ -307,14 +316,14 @@ namespace GrblPlotter
                                 Gcode.MoveTo(gcodeString, offsetX, offsetY + rShape, "");
                             else
                             {
-                                Gcode.PenUp(gcodeString, "");
+                                Gcode.PenUp(gcodeString, "PU");
                                 Gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
-                                Gcode.PenDown(gcodeString, "");
+                                Gcode.PenDown(gcodeString, "PD");
                             }
                         }
                         MakeRect(offsetX, offsetY, offsetX + x, offsetY + y, rShape, true);  // rectangle clockwise
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                     if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -336,7 +345,7 @@ namespace GrblPlotter
                         //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                         if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
-                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "");
+                            if (!cBNoZUp.Checked) Gcode.PenUp(gcodeString, "PU");
                             if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                         }
                         passCount++;
@@ -354,8 +363,8 @@ namespace GrblPlotter
                         zStep -= (float)nUDToolZStep.Value;
                         if (zStep < (float)nUDImportGCZDown.Value)
                             zStep = (float)nUDImportGCZDown.Value;
-                        Gcode.GcodeZDown = zStep;               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = zStep;               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         rDelta = overlap;
                         counter = 0;
                         if ((cBToolpathPocket.Checked) && (rShape > 2 * rToolOffset))
@@ -373,7 +382,7 @@ namespace GrblPlotter
                         Gcode.SetTangential(gcodeString, -270, false);  //
                         Gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                     if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
                 #endregion
@@ -455,7 +464,7 @@ namespace GrblPlotter
                         if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
                             //if (!cBNoZUp.Checked) 
-                            Gcode.PenUp(gcodeString, "");
+                            Gcode.PenUp(gcodeString, "PU");
                             if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ "  " + passCount.ToString() + ">");
                         }
                         passCount++;
@@ -465,8 +474,8 @@ namespace GrblPlotter
                         if (gcodeTangEnable) Gcode.SetTangential(gcodeString, aStart, true);
                         Gcode.MoveToRapid(gcodeString, (float)(xStart + xOff + offsetX), (float)(yStart + yOff + offsetY), "");
 
-                        Gcode.GcodeZDown = zStep;               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = zStep;               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
 
                         Gcode.SetTangential(gcodeString, aEnd, false);  //
                         if (isRound)
@@ -475,7 +484,7 @@ namespace GrblPlotter
                             Gcode.MoveTo(gcodeString, (float)(xEnd + xOff + offsetX), (float)(yEnd + yOff + offsetY), "");
 
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                     if (!inOneStep) Gcode.Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
 
@@ -550,8 +559,8 @@ namespace GrblPlotter
                             Gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
 
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yEnd + offsetY), "");
-                        Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = (circlePos.Y - roundR);               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
                         if (circlePos.Y <= 0)
                             break;
@@ -561,11 +570,11 @@ namespace GrblPlotter
                         if (rBRoundZYB.Checked)
                         { yEnd = (roundR - (circlePos.X + rTool)); }
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
-                        Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = (circlePos.Y - roundR);               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yEnd + offsetY), "");
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                 }
                 #endregion
                 #region vertical
@@ -626,8 +635,8 @@ namespace GrblPlotter
                             Gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
 
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
-                        Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = (circlePos.Y - roundR);               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
 
                         circlePos = GetCirclePos(roundR, stepZ, circlePos.Y);
@@ -638,11 +647,11 @@ namespace GrblPlotter
                             break;
 
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
-                        Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
-                        Gcode.PenDown(gcodeString, "");
+                        Gcode.OptionZAxis.Down = (circlePos.Y - roundR);               // adapt Z-deepth
+                        Gcode.PenDown(gcodeString, "PD");
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
                     }
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                 }
                 #endregion
                 //        MessageBox.Show(tmp);
@@ -654,7 +663,7 @@ namespace GrblPlotter
                 Gcode.MoveToRapid(gcodeString, 0, 0, "");
 
             Gcode.JobEnd(gcodeString, "EndJob");      // Spindle / laser off
-                                                      //    if (Properties.Settings.Default.importGCZEnable)
+                                                      //    if (Properties.ListSettings.Default.importGCZEnable)
                                                       //         gcode.SpindleOff(gcodeString, "Finish - Spindle off");
 
             string header = Gcode.GetHeader("Simple Shape", "");
@@ -722,9 +731,9 @@ namespace GrblPlotter
             {
                 if (penUp)
                 {
-                    Gcode.PenUp(gcodeString, "");
+                    Gcode.PenUp(gcodeString, "PU");
                     gcodeString.AppendFormat("G00 {0}{1:0.000}\r\n", Properties.Settings.Default.importGCTangentialAxis, angleNew);
-                    Gcode.PenDown(gcodeString, "");
+                    Gcode.PenDown(gcodeString, "PD");
                 }
                 Gcode.SetTangential(gcodeString, angle, false);  //
             }
@@ -777,15 +786,15 @@ namespace GrblPlotter
 
             SaveOrigToolProperties();	// needed in CBToolSet_CheckedChanged
 
-            int toolCount = ToolTable.Init(" (ShapeToGCode_Load)");   // get max index
-            ToolProp tmpTool;
+            int toolCount = ToolList.Init(" (ShapeToGCode_Load)");   // get max index
+            ToolProperty tmpTool;
             bool defaultToolFound = false;
             for (int i = 0; i < toolCount; i++)
             {
-                tmpTool = ToolTable.GetToolProperties(i);
-                if (i == tmpTool.Toolnr)
+                tmpTool = ToolList.GetToolProperties(i);
+                if (i == tmpTool.ToolNr)
                 {
-                    cBTool.Items.Add(i.ToString(culture) + ") " + tmpTool.Name);
+                    cBTool.Items.Add(i.ToString(culture) + ") " + tmpTool.ToolName);
                     if (i == Properties.Settings.Default.importGCToolDefNr)
                     {
                         cBTool.SelectedIndex = cBTool.Items.Count - 1;
@@ -798,7 +807,7 @@ namespace GrblPlotter
                 cBTool.Items.Add("No tools found");
                 cBTool.SelectedIndex = 0;
             }
-            tprop = ToolTable.GetToolProperties(1);
+            //    tprop = ToolList.GetToolProperties(1);
             CBToolSet_CheckedChanged(sender, e);
 
             rB1.Image = (Image)picBevelOff.Clone();
@@ -808,8 +817,8 @@ namespace GrblPlotter
 
             LoadXML(Datapath.Data + "\\simpleshapes.xml");
             Update_ShapeSelection(-1);
-			
-			Highlight(CbInsertCode,CbInsertCode.Checked, Color.Yellow);
+
+            Highlight(CbInsertCode, CbInsertCode.Checked, Color.Yellow);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -918,19 +927,23 @@ namespace GrblPlotter
         }
         private void CBToolSet_CheckedChanged(object sender, EventArgs e)
         {
-            bool valueFromToolTable = cBToolSet.Checked;
-            label1.Enabled = valueFromToolTable;
-            cBTool.Enabled = valueFromToolTable;
-            if (valueFromToolTable)                     // switch to tooltable - save current settings
-            {
-                SaveOrigToolProperties();
-                RefreshToolPropertiesFromSelectedTool();        // CBTool_SelectedIndexChanged(sender, e);
-            }
-            else
-            {
-                SetToolProperties(torig);               // switch back to manual tool settings
-            }
-            EnableToolPropertiesControls(!valueFromToolTable);
+            bool valueFromToolTable = CbDeviceDefaults.Checked;
+            label10.Enabled = nUDToolFeedXY.Enabled = !valueFromToolTable;
+            label14.Enabled = nUDToolFeedZ.Enabled = !valueFromToolTable;
+
+            /*      label1.Enabled = valueFromToolTable;
+                  cBTool.Enabled = valueFromToolTable;
+                  if (valueFromToolTable)                     // switch to tooltable - save current settings
+                  {
+                      SaveOrigToolProperties();
+                      RefreshToolPropertiesFromSelectedTool();        // CBTool_SelectedIndexChanged(sender, e);
+                  }
+                  else
+                  {
+                  //    SetToolProperties(torig);               // switch back to manual tool settings
+                      SetToolProperties(GetDeviceProperties(torig));
+                  }
+                  EnableToolPropertiesControls(!valueFromToolTable);*/
         }
 
         private void EnableToolPropertiesControls(bool state)
@@ -945,8 +958,8 @@ namespace GrblPlotter
 
         private void SaveOrigToolProperties()
         {
-            FillToolProp(torig);
-            Logger.Info(culture, "Save Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", torig.Diameter, torig.FeedXY, torig.FinalZ, torig.StepZ, torig.FeedZ, torig.Overlap, torig.SpindleSpeed);
+            //        FillToolProp(GetDeviceProperties(torig));
+            //       Logger.Info(culture, "Save Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", torig.Diameter, torig.FeedXY, torig.FinalZ, torig.StepZ, torig.FeedZ, torig.Overlap, torig.SpindleSpeed);
         }
         private void CBTool_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -959,43 +972,52 @@ namespace GrblPlotter
             {
                 int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")), culture);
                 Properties.Settings.Default.importGCToolDefNr = tnr;
-                if (cBToolSet.Checked)
+                if (CbDeviceDefaults.Checked)
                 {
-                    tprop = ToolTable.GetToolProperties(tnr);
-                    SetToolProperties(tprop);
+                    //         tprop = ToolList.GetToolProperties(tnr);
+                    //          SetToolProperties(GetDeviceProperties(tprop));
                 }
             }
         }
-
-        private void SetToolProperties(ToolProp tmp)
+        private DeviceToolProperties GetDeviceProperties(ToolProperty tprop)
         {
-            Logger.Info(culture, "Set Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tmp.Diameter, tmp.FeedXY, tmp.FinalZ, tmp.StepZ, tmp.FeedZ, tmp.Overlap, tmp.SpindleSpeed);
-            try
-            {
-                CheckSetValue(nUDToolDiameter, (decimal)tmp.Diameter);
-                CheckSetValue(nUDToolFeedXY, (decimal)tmp.FeedXY);
-                CheckSetValue(nUDImportGCZDown, (decimal)tmp.FinalZ);
-                CheckSetValue(nUDToolZStep, (decimal)Math.Abs(tmp.StepZ));
-                CheckSetValue(nUDToolFeedZ, (decimal)tmp.FeedZ);
-                CheckSetValue(nUDToolOverlap, (decimal)tmp.Overlap);
-                CheckSetValue(nUDToolSpindleSpeed, (decimal)tmp.SpindleSpeed);
-            }
-            catch (Exception err)
-            {
-                Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs");
-            }
+            DeviceSelection SelectedDevice = MyControl.SelectedDevice;
+            if (SelectedDevice == DeviceSelection.Laser)
+                return (tprop.Laser);
+            else if (SelectedDevice == DeviceSelection.Plotter)
+                return (tprop.Plotter);
+            else
+                return (tprop.Router);
         }
+        /*    private void SetToolProperties(DeviceToolProperties tmp)
+            {
+           //     Logger.Info(culture, "Set Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tmp.Diameter, tmp.FeedXY, tmp.FinalZ, tmp.StepZ, tmp.FeedZ, tmp.Overlap, tmp.SpindleSpeed);
+                try
+                {
+                    CheckSetValue(nUDToolDiameter, (decimal)tmp.Diameter);
+                    CheckSetValue(nUDToolFeedXY, (decimal)tmp.FeedXY);
+                    CheckSetValue(nUDImportGCZDown, (decimal)tmp.FinalZ);
+                    //    CheckSetValue(nUDToolZStep, (decimal)Math.Abs(tmp.StepZ));
+                    CheckSetValue(nUDToolFeedZ, (decimal)tmp.FeedZ);
+                    //    CheckSetValue(nUDToolOverlap, (decimal)tmp.Overlap);
+                    CheckSetValue(nUDToolSpindleSpeed, (decimal)tmp.FinalS);
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs");
+                }
+            }*/
 
-        private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val, bool setExtreme=false)
+        private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val, bool setExtreme = false)
         {
-			if (setExtreme)
-			{
-				if (val < nUDcontrol.Minimum) {val = nUDcontrol.Minimum;}
-				if (val > nUDcontrol.Maximum) {val = nUDcontrol.Maximum;}
-				nUDcontrol.Value = val;
-				return;
-			}
-			
+            if (setExtreme)
+            {
+                if (val < nUDcontrol.Minimum) { val = nUDcontrol.Minimum; }
+                if (val > nUDcontrol.Maximum) { val = nUDcontrol.Maximum; }
+                nUDcontrol.Value = val;
+                return;
+            }
+
             if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
             { nUDcontrol.Value = val; }
             else
@@ -1102,7 +1124,7 @@ namespace GrblPlotter
                 xmlWrite.WriteAttributeString("name", shape.name);
 
                 xmlWrite.WriteStartElement("tool");
-                shape.tool.WriteAttributes(xmlWrite);
+                //         shape.tool.WriteAttributes(xmlWrite);
                 xmlWrite.WriteEndElement();
 
                 xmlWrite.WriteStartElement("path");
@@ -1156,7 +1178,7 @@ namespace GrblPlotter
                     case "tool":
                         if (shapeIndex >= 0)
                         {
-                            Shapes[shapeIndex].tool.ReadAttributes(xmlRead);
+                            //           Shapes[shapeIndex].tool.ReadAttributes(xmlRead);
                         }
                         break;
                     case "path":
@@ -1180,7 +1202,7 @@ namespace GrblPlotter
                             if (xmlRead["azup"].Length > 0) { Shapes[shapeIndex].app.avoidZUp = (xmlRead["azup"].ToLower() == "true"); }
                             if (xmlRead["finm"].Length > 0) { Shapes[shapeIndex].app.finalMove0 = (xmlRead["finm"].ToLower() == "true"); }
                             if (xmlRead["insh"].Length > 0) { Shapes[shapeIndex].app.insertShape = (xmlRead["insh"].ToLower() == "true"); }
-						}
+                        }
                         break;
                 }
             }
@@ -1214,7 +1236,7 @@ namespace GrblPlotter
             Shapes.Add(new ShapeFull());
             int shapeIndex = Shapes.Count - 1;
 
-            FillToolProp(Shapes[shapeIndex].tool);
+            FillToolProp(GetDeviceProperties(Shapes[shapeIndex].tool));
 
             Shapes[shapeIndex].path.type = GetToolpathID();
             Shapes[shapeIndex].path.origin = GetOriginID();
@@ -1240,25 +1262,25 @@ namespace GrblPlotter
             int index = CbShapeSelection.SelectedIndex;
             if ((index >= 0) && (index < Shapes.Count))
             {
-                cBToolSet.Checked = false;
+                CbDeviceDefaults.Checked = false;
 
-                SetToolProperties(Shapes[index].tool);
+                //        SetToolProperties(GetDeviceProperties(Shapes[index].tool));
                 SetToolpathID(Shapes[index].path.type);
                 SetOriginID(Shapes[index].path.origin);
-				
+
                 SetShapeID(Shapes[index].shape.type);
                 CheckSetValue(nUDShapeX, (decimal)Shapes[index].shape.dimX, true);
                 CheckSetValue(nUDShapeY, (decimal)Shapes[index].shape.dimY, true);
                 CheckSetValue(nUDShapeR, (decimal)Shapes[index].shape.dimR, true);
-				cBToolpathPocket.Checked = Shapes[index].shape.pocket;
-				
-				cBNoZUp.Checked = Shapes[index].app.avoidZUp;
-				cBMoveTo00.Checked = Shapes[index].app.finalMove0;
-				CbInsertCode.Checked = Shapes[index].app.insertShape;
-				
+                cBToolpathPocket.Checked = Shapes[index].shape.pocket;
+
+                cBNoZUp.Checked = Shapes[index].app.avoidZUp;
+                cBMoveTo00.Checked = Shapes[index].app.finalMove0;
+                CbInsertCode.Checked = Shapes[index].app.insertShape;
+
                 TbShapeName.Text = Shapes[index].name;
-				
-				Highlight(CbInsertCode,CbInsertCode.Checked, Color.Yellow);
+
+                Highlight(CbInsertCode, CbInsertCode.Checked, Color.Yellow);
             }
         }
 
@@ -1275,15 +1297,15 @@ namespace GrblPlotter
             Update_ShapeSelection(index);
         }
 
-        private void FillToolProp(ToolProp tmp)
+        private void FillToolProp(DeviceToolProperties tmp)
         {
             tmp.Diameter = (float)nUDToolDiameter.Value;
             tmp.FeedXY = (float)nUDToolFeedXY.Value;
             tmp.FinalZ = (float)nUDImportGCZDown.Value;
-            tmp.StepZ = (float)nUDToolZStep.Value;
+            //    tmp.StepZ = (float)nUDToolZStep.Value;
             tmp.FeedZ = (float)nUDToolFeedZ.Value;
-            tmp.Overlap = (float)nUDToolOverlap.Value;
-            tmp.SpindleSpeed = (float)nUDToolSpindleSpeed.Value;
+            //    tmp.Overlap = (float)nUDToolOverlap.Value;
+            tmp.FinalS = (float)nUDToolSpindleSpeed.Value;
         }
 
         private void CbInsertCode_CheckedChanged(object sender, EventArgs e)
@@ -1317,31 +1339,31 @@ namespace GrblPlotter
             string name = string.Format("{0}_{1:0.0}_{2:0.0}_{3:0.0}", shapes[GetShapeID()], nUDShapeX.Value, nUDShapeY.Value, nUDShapeR.Value);
             TbShapeName.Text = name;
         }
-		
-		private void Highlight(Control ctrl, bool highlight, Color color)
-		{
-			if (highlight)
-				ctrl.BackColor = color;
+
+        private void Highlight(Control ctrl, bool highlight, Color color)
+        {
+            if (highlight)
+                ctrl.BackColor = color;
             else
                 ctrl.BackColor = Color.Transparent;
-		}
+        }
     }
-	
+
     public partial class IniFile
     {
         internal static string sectionShapeTool = "Shape Tool";
         internal static string[,] keyValueShapeTool = {
             {"Diameter",     "createShapeToolDiameter"   },
-            {"Z Step",   	 "createShapeToolZStep" },
+            {"Z Step",       "createShapeToolZStep" },
             {"XY Feedrate",  "createShapeToolFeedXY"  },
             {"Z Feedrate",   "createShapeToolFeedZ"    },
             {"Overlap",      "createShapeToolOverlap"   },
             {"Spindle Speed","createShapeToolSpindleSpeed" },
-			
+
             {"Z Final", "importGCZDown"  },
             {"Origin",  "createShapeOrigin"},
-            {"Path",   	"createShapeToolPath" },
-            {"Shape",	"createShapeType"   },
+            {"Path",    "createShapeToolPath" },
+            {"Shape",   "createShapeType"   },
             {"X Value", "createShapeX"   },
             {"Y Value", "createShapeY"   },
             {"R Value", "createShapeR"   }

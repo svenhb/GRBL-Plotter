@@ -20,6 +20,7 @@
  * 2024-06-06 new form for wire cutter 
 */
 
+using GrblPlotter.Helper;
 using NLog;
 using System;
 using System.Drawing.Drawing2D;
@@ -273,7 +274,7 @@ namespace GrblPlotter
         /* 	Generate the tool path for a circle ring segment 
 			Shape path: the resulting work pice					4 points: outer-, inner-edges
 			Tool path: Shape path + tool radius offset			8 points: outer-, inner-edges + tool radius extension
-			Feed path: Safety distance to tool path (Clearance) 5 points 
+			FeedXY path: Safety distance to tool path (Clearance) 5 points 
 		*/
 
         internal static Point Origin = new Point();		// start point of shape
@@ -294,7 +295,7 @@ namespace GrblPlotter
 
         internal static Point Clearance = new Point();   // distance lead-path to shape-path
         private static double toolR = 1;
-        private static bool arcToLine = Properties.Settings.Default.importGCNoArcs;// false;
+        private static bool arcToLine = ImportParameter.AvoidArcCommand;// false;
 
         private static Dimensions tempDim = new Dimensions();
 

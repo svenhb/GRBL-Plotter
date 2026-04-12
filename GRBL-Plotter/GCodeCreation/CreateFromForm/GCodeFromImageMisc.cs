@@ -24,6 +24,7 @@
  * 2024-12-12 add controls to Dis/EnableControlEvents
 */
 
+using GrblPlotter.Helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -62,7 +63,10 @@ namespace GrblPlotter
             DisableControlEvents();
             {
                 cbGrayscale.Checked = true; tBarGamma.Value = 10;
-                cbExceptColor.Checked = true; ToolTable.SetExceptionColor(cbExceptColor.BackColor);
+                cbExceptColor.Checked = true; 
+           //     ToolTable.SetExceptionColor(cbExceptColor.BackColor);
+                Colors.ExceptionColor.Col = cbExceptColor.BackColor;
+
                 cBPreview.Checked = true; cBReduceColorsToolTable.Checked = true;
                 if (nUDMaxColors.Maximum >= 2)
                     nUDMaxColors.Value = 2;
@@ -90,13 +94,17 @@ namespace GrblPlotter
                 cBFilterEdge.Checked = false;
                 cBPosterize.Checked = false;
                 cBFilterHistogram.Checked = false;
-                //    GetToolTableSettings();          // get actual toolTable and show
+                //    GetColorPaletteSettings();          // get actual toolTable and show
                 cBReduceColorsToolTable.Checked = false;
                 cBReduceColorsDithering.Checked = false;
                 rBMode0.Checked = true;
                 //   cbExceptColor.Checked = false;
                 cbExceptColor.BackColor = Color.White;
-                ToolTable.ClrExceptionColor();
+                //     ToolTable.ClrExceptionColor();
+                Colors.ExceptionColor = new PaletteEntry();
+                Colors.ExceptionColor.Col = Color.White;
+                Colors.ExceptionColor.Use = true;
+
                 cBPreview.Checked = false;
                 redoColorAdjust = false;
 
@@ -135,9 +143,9 @@ namespace GrblPlotter
             tBGMax.Scroll -= ApplyColorCorrectionsEventScrollBar;
             tBBMin.Scroll -= ApplyColorCorrectionsEventScrollBar;
             tBBMax.Scroll -= ApplyColorCorrectionsEventScrollBar;
-        //    RbSortToolsByPixel.CheckedChanged -= ApplyColorCorrectionsEvent;
-        //    RbSortToolsByNumber.CheckedChanged -= ApplyColorCorrectionsEvent;
-        //    CbSortInvert.CheckedChanged -= ApplyColorCorrectionsEvent;
+            //    RbSortToolsByPixel.CheckedChanged -= ApplyColorCorrectionsEvent;
+            //    RbSortToolsByNumber.CheckedChanged -= ApplyColorCorrectionsEvent;
+            //    CbSortInvert.CheckedChanged -= ApplyColorCorrectionsEvent;
 
             cBGCodeFill.CheckedChanged -= ApplyColorCorrectionsEvent;
             cBGCodeOutline.CheckedChanged -= CbGCodeOutline_CheckedChanged;
@@ -183,9 +191,9 @@ namespace GrblPlotter
             tBGMax.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBBMin.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBBMax.Scroll += ApplyColorCorrectionsEventScrollBar;
-        //    RbSortToolsByPixel.CheckedChanged += ApplyColorCorrectionsEvent;
-        //    RbSortToolsByNumber.CheckedChanged += ApplyColorCorrectionsEvent;
-        //    CbSortInvert.CheckedChanged += ApplyColorCorrectionsEvent;
+            //    RbSortToolsByPixel.CheckedChanged += ApplyColorCorrectionsEvent;
+            //    RbSortToolsByNumber.CheckedChanged += ApplyColorCorrectionsEvent;
+            //    CbSortInvert.CheckedChanged += ApplyColorCorrectionsEvent;
 
             cBGCodeFill.CheckedChanged += ApplyColorCorrectionsEvent;
             cBGCodeOutline.CheckedChanged += CbGCodeOutline_CheckedChanged;
@@ -233,7 +241,9 @@ namespace GrblPlotter
                     tBBMin.Value = 64;
                     cbExceptColor.Checked = true;
                     cbExceptColor.BackColor = Color.FromArgb(255, 0, 0, 0);
-                    ToolTable.SetExceptionColor(cbExceptColor.BackColor);
+                //    ToolTable.SetExceptionColor(cbExceptColor.BackColor);
+                    Colors.ExceptionColor.Col = cbExceptColor.BackColor;
+
                     cBGCodeOutline.Checked = false;
                 }
                 else if (tmp == 2)              // graphic many colors
@@ -415,7 +425,7 @@ namespace GrblPlotter
             AutoZoomToolStripMenuItem_Click(this, null);
 
             if (useColorMode)
-                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+                GenerateResultImage(ref resultToolNrArray);      // FillToolListElements countColors
             else
                 GenerateResultImageGray(ref resultToolNrArray);
 
@@ -435,7 +445,7 @@ namespace GrblPlotter
             AutoZoomToolStripMenuItem_Click(this, null);
 
             if (useColorMode)
-                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+                GenerateResultImage(ref resultToolNrArray);      // FillToolListElements countColors
             else
                 GenerateResultImageGray(ref resultToolNrArray);
 
@@ -556,7 +566,7 @@ namespace GrblPlotter
             imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
             Graphics g = Graphics.FromImage(output);
-            //            g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
+            //            g.DrawRectangle(new Pen(new SolidBrush(GroupColor.White)), 0, 0, output.Width, output.Height);   // remove transparency
             g.DrawImage(output, new Rectangle(0, 0, output.Width, output.Height)
             , 0, 0, output.Width, output.Height,
             GraphicsUnit.Pixel, imageAttributes);
@@ -584,7 +594,7 @@ namespace GrblPlotter
             /*        Bitmap output = new Bitmap(img.Width, img.Height);//, PixelFormat.Format24bppRgb);
                     Graphics g = Graphics.FromImage(output);
                     g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
+                    g.DrawRectangle(new Pen(new SolidBrush(GroupColor.White)), 0, 0, output.Width, output.Height);   // remove transparency
                     g.DrawImage(img, 0, 0);
                     return (output);*/
         }
@@ -791,18 +801,17 @@ namespace GrblPlotter
         /**********************************
         ***** 
         ***********************************/
-        private void UpdateToolTableList()
+        private void UpdateColorPaletteList()
         {
             if (logEnable) Logger.Trace("UpdateToolTableList");
-            FillToolTableFileList(Datapath.Tools);			// list tool table files
-            CboxToolFiles.Text = "Last loaded: " + Properties.Settings.Default.toolTableLastLoaded;
-
-            string defaultToolList = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-            LoadToolList(defaultToolList);                  // list tools from _current.csv			
+            FillColorPaletteFileList(Datapath.ColorPalette);			// list tool table files
+            CboxToolFiles.Text = "Last loaded: " + Properties.Settings.Default.colorPaletteLastLoaded;
+            Colors.LoadColorPalette();  // load colorPaletteLastLoaded
+            UpdateColorList();
         }
 
-        /* list all CSV files from tools-folder */
-        private void FillToolTableFileList(string filepath)
+        /* list all CSV files from toolProp-folder */
+        private void FillColorPaletteFileList(string filepath)
         {
             try
             {
@@ -810,15 +819,13 @@ namespace GrblPlotter
                 CboxToolFiles.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
                 {
-                    if (Files[i].ToLower().EndsWith("csv"))
                     {
                         string name = Path.GetFileName(Files[i]);
-                        if (name != ToolTable.DefaultFileName)
-                            CboxToolFiles.Items.Add(name);
+                        CboxToolFiles.Items.Add(name);
                     }
                 }
             }
-            catch (Exception err) { Logger.Error(err, "FillToolTableFileList "); }
+            catch (Exception err) { Logger.Error(err, "FillColorPaletteFileList "); }
         }
 
         /* copy selected tool-file to _current.csv */
@@ -826,71 +833,27 @@ namespace GrblPlotter
         {
             if (!string.IsNullOrEmpty(CboxToolFiles.Text))
             {
-                string newTool = Datapath.Tools + "\\" + CboxToolFiles.Text;
-                string defTool = Datapath.Tools + "\\" + ToolTable.DefaultFileName;
-                try
-                {
-                    System.IO.File.Copy(newTool, defTool, true);
-                    Properties.Settings.Default.toolTableLastLoaded = CboxToolFiles.Text;
-                }
-                catch (Exception err)
-                {
-                    Logger.Error(err, "CboxToolFiles_SelectedIndexChanged could not copy file to default {0}", newTool);
-                    EventCollector.StoreException("CboxToolFiles_SelectedIndexChanged: " + newTool + " " + err.Message + " - ");
-                }
+                string newPalette = Datapath.ColorPalette + "\\" + CboxToolFiles.Text;
 
-                LoadToolList(defTool);
-                GetToolTableSettings();
+                if (Colors.LoadColorPalette(newPalette))
+                    Properties.Settings.Default.colorPaletteLastLoaded = CboxToolFiles.Text;
+
+                UpdateColorList();
+                GetColorPaletteSettings();
             }
         }
 
-        /* Display tools from selected tool table */
-        private bool LoadToolList(string file)
+        /* Display toolProp from selected tool table */
+        private void UpdateColorList()
         {
             UpdateLogging();
-            if (File.Exists(file))
+            CboxToolTable.Items.Clear();
+            CboxToolTable.Items.Add("Nr  Color          Name ");
+            int i = 1;
+            foreach (PaletteEntry tmp in Colors.MyPalette)
             {
-                Logger.Trace("Load Tool Table {0}", file);
-                CboxToolTable.Items.Clear();
-                string[] readText;
-
-                try
-                {
-                    readText = File.ReadAllLines(file);
-                }
-                catch (IOException err)
-                {
-                    // read already opened file???
-                    // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
-                    EventCollector.StoreException("LoadToolList IOException: " + file + " " + err.Message + " - ");
-                    Logger.Error(err, "LoadToolList IOException:{0}", file);
-                    MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
-                    return false;
-                }
-                catch
-                {//(Exception err) { 
-                    throw;      // unknown exception...
-                }
-
-                string[] col;
-                CboxToolTable.Items.Add("Nr  Color  Name              Pen-Width");
-                foreach (string s in readText)
-                {
-                    if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
-                        continue;
-
-                    if (s.Length > 10)
-                    {
-                        col = s.Split(',');
-                        if (col.Length > 7)
-                            CboxToolTable.Items.Add(string.Format("{0,3} {1,6} {2,20} {3} ", col[0].Trim(), col[1].Trim(), col[2], col[7]));
-                        else
-                            CboxToolTable.Items.Add(s);
-                    }
-                }
-                return true;
+                CboxToolTable.Items.Add(string.Format("{0,3} {1,6} {2,20}", i++, ColorTranslator.ToHtml(tmp.Col), tmp.Name));
             }
-            return false;
         }
 
         /* OwnerDrawFixed - colorize tool-entry lines */
@@ -901,10 +864,10 @@ namespace GrblPlotter
             SolidBrush brush = new SolidBrush(Color.Black);
             if ((e.Index > 0) && (text.Length > 10))
             {
-                //    Logger.Info("CboxToolTable_DrawItem  '{0}'  {1}", text.Substring(4, 6), text);
+                //    Logger.Info("CboxToolTable_DrawItem  '{0}'  {1}", text.Substring(5, 6), text);
                 try
                 {
-                    long clr = Convert.ToInt32(text.Substring(4, 6), 16) | 0xff000000;
+                    long clr = Convert.ToInt32(text.Substring(5, 6), 16) | 0xff000000;
                     brush = new SolidBrush(ContrastColor(Color.FromArgb((int)clr)));
                     if (!e.Bounds.IsEmpty)
                         e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb((int)clr)), e.Bounds);
@@ -918,7 +881,7 @@ namespace GrblPlotter
         private void RbGrayscaleVector_CheckedChanged(object sender, EventArgs e)
         {
 
-           tabControl3.SelectedIndexChanged -= TabControl3_SelectedIndexChanged;
+            tabControl3.SelectedIndexChanged -= TabControl3_SelectedIndexChanged;
             if (RbGrayscaleVector.Checked)
             {
                 gBgcodeSelection.BackColor = Color.Yellow;
@@ -1021,26 +984,26 @@ namespace GrblPlotter
 
 
         internal class GrayProp
-        {   // tool properties general
-            public byte GrayVal { get; set; }
-            public long Count { get; set; }
-            public bool Use { get; set; }
+    {   // tool properties general
+        public byte GrayVal { get; set; }
+        public long Count { get; set; }
+        public bool Use { get; set; }
 
-            public GrayProp()
-            { ResetToolProperties(); }
+        public GrayProp()
+        { ResetToolProperties(); }
 
-            public GrayProp(byte gray, long cnt)
-            {
-                GrayVal = gray; Count = cnt; Use = true;
-            }
-
-            public void ResetToolProperties()
-            {
-                GrayVal = 0; Use = true; Count = 0;
-            }
+        public GrayProp(byte gray, long cnt)
+        {
+            GrayVal = gray; Count = cnt; Use = true;
         }
 
-
-
+        public void ResetToolProperties()
+        {
+            GrayVal = 0; Use = true; Count = 0;
+        }
     }
+
+
+
+}
 }
