@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2020-03-11 split from MainForm.cs
  * 2021-02-06 add gamePad PointOfViewController0
  * 2021-07-26 code clean up / code quality
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -58,7 +59,7 @@ namespace GrblPlotter
                     if (datas.Length > 0)   // no trigger if no change in data
                     {
                         bool doJog = false;
-                        //   var property = Properties.Settings.Default;
+                        //   var property = Properties.ListSettings.Default;
                         foreach (var state in datas)
                         {
                             string offset = state.Offset.ToString();        // execute gPButtonsx strings
@@ -234,7 +235,7 @@ namespace GrblPlotter
                     int stepIndex = 0, feed = 10000;
                     string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd = "";
                     bool stopJog = false;
-                    var prop = Properties.Settings.Default;
+                    var prop = Properties.ListSettings.Default;
 
                     gamePadRepitition++;
                     if (gamePadRepitition > 4) { gamePadRepitition = 0; }
@@ -250,7 +251,7 @@ namespace GrblPlotter
                             {
                                 try
                                 {
-                                    command = Properties.Settings.Default["gamePad" + offset].ToString();        // gP
+                                    command = Properties.ListSettings.Default["gamePad" + offset].ToString();        // gP
                                     if (command.IndexOf('#') >= 0)
                                     { processSpecialCommands(command); }
                                     else
@@ -346,20 +347,20 @@ namespace GrblPlotter
             string sign = (((value < 32767) && (!invert)) || ((value > 32767) && (invert))) ? "-" : "";
             if (stpIndex > 0)
             {
-                Int32.TryParse(Properties.Settings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
+                Int32.TryParse(Properties.ListSettings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
 
                 string sstep = "1";
                 if ((axis == "X") || (axis == "Y"))
-                {   sstep = Properties.Settings.Default["guiJoystickXYStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["guiJoystickXYSpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.ListSettings.Default["guiJoystickXYStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.ListSettings.Default["guiJoystickXYSpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 else if ((axis == "Z"))
-                {   sstep = Properties.Settings.Default["guiJoystickZStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["guiJoystickZSpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.ListSettings.Default["guiJoystickZStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.ListSettings.Default["guiJoystickZSpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 else if ((axis == "A") || (axis == "B") || (axis == "C"))
-                {   sstep = Properties.Settings.Default["guiJoystickAStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.ListSettings.Default["guiJoystickAStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.ListSettings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 return string.Format("{0}{1}{2}", axis, sign, sstep);
             }

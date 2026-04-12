@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+/*
+ * 2026-01-05 in .designer set	this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+								this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+*/
 namespace GrblPlotter.GUI
 {
     partial class MainFormStreamSection
@@ -164,7 +167,8 @@ namespace GrblPlotter.GUI
             // MainFormStreamSection
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.BtnSetMin);
             this.Controls.Add(this.BtnSetMax);
             this.Controls.Add(this.lblPosition);

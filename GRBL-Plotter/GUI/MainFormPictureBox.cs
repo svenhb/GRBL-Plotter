@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,14 +48,17 @@
  * 2024-05-20 add "Apply last transform"
  * 2025-03-04 l:1124 f:ClearWorkspace add showFormText()
  * 2025-05-17 l:1070 f:CmsPicBoxMoveToMarkedPosition_Click use G0 or G1 depending on cBMoveG0.Checked
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using FastColoredTextBoxNS;
 using GrblPlotter.MachineControl;
+using GrblPlotter.Helper;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using GrblPlotter.UserControls;
 
 namespace GrblPlotter
 {
@@ -79,7 +82,7 @@ namespace GrblPlotter
         private readonly Pen penDimension = new Pen(Color.DarkGray, 1F);
         private readonly Pen penSimulation = new Pen(Color.Blue, 0.4F);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
-        //private readonly SolidBrush brushBackground = new SolidBrush(Color.FromArgb(50, Color.White));
+        //private readonly SolidBrush brushBackground = new SolidBrush(GroupColor.FromArgb(50, GroupColor.White));
         private SolidBrush brushBackground = new SolidBrush(Color.White);
         private readonly SolidBrush brushBackgroundPath = new SolidBrush(Color.DarkGray);
 
@@ -108,7 +111,7 @@ namespace GrblPlotter
         private readonly object lockObject = new object();
         private bool shiftedDisplay = false;
 
-        private bool logSelection = false;  //true;
+        private readonly bool logSelection = false;  //true;
 
         private XmlMarkerType markerType = XmlMarkerType.Figure;
         private XmlMarkerType lastMarkerType = XmlMarkerType.Figure;
@@ -194,7 +197,7 @@ namespace GrblPlotter
                     posMoveEnd = picAbsPos;
 
                 /* Label position */
-                int offX = +5, offY = -10;
+                int offX, offY;
                 offX = (int)Properties.Settings.Default.gui2DInfoSize2;
                 offY = -(int)Properties.Settings.Default.gui2DInfoSize2 - 2;
                 if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width / 2)) { offX = -(int)Properties.Settings.Default.gui2DInfoSize2 * 11; }// - 75; }
@@ -234,7 +237,7 @@ namespace GrblPlotter
                             //    Point stringposRot = new Point(pictureBox1.PointToClient(MousePosition).X - 20, pictureBox1.PointToClient(MousePosition).Y + 20);
                             //    Point stringposMov = new Point(pictureBox1.PointToClient(MousePosition).X + 20, pictureBox1.PointToClient(MousePosition).Y - 15);
 
-                            //   if (Properties.Settings.Default.machineLimitsShow)  // 2023-08-31 issue #355	-	moved into if gui2DInfoShow
+                            //   if (Properties.ListSettings.Default.machineLimitsShow)  // 2023-08-31 issue #355	-	moved into if gui2DInfoShow
                             // {
                             SolidBrush labelBrush = brushBackground;
                             if (transformType != SelectionHandle.Handle.None)
@@ -374,7 +377,7 @@ namespace GrblPlotter
                         break;
                     }
                 }
-                //       Logger.Trace("Paint color pen down {0} largeAmount:{1}  count:{2}  availale:{3}", Properties.Settings.Default.gui2DColorPenDownModeEnable ,VisuGCode.largeDataAmount,VisuGCode.pathObject.Count , coloredPenPathAvailable);
+                //       Logger.Trace("Paint color pen down {0} largeAmount:{1}  count:{2}  availale:{3}", Properties.ListSettings.Default.gui2DColorPenDownModeEnable ,VisuGCode.largeDataAmount,VisuGCode.pathObject.Count , coloredPenPathAvailable);
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (VisuGCode.pathObject.Count > 0) && coloredPenPathAvailable && !VisuGCode.pathObjectPenColorOnlyNone)// && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
                 {
                     //if (VisuGCode.pathObject.Count > 0)
@@ -394,7 +397,7 @@ namespace GrblPlotter
                             //        Logger.Trace("Paint color pen down");
                             foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
                             {
-                                //            Logger.Trace("Color {0}",tmpPath.color);
+                                //            Logger.Trace("GroupColor {0}",tmpPath.color);
                                 e.DrawPath(tmpPath.pen, tmpPath.path);
                                 penSelection.Width = tmpPath.pen.Width;
                             }
@@ -424,7 +427,7 @@ namespace GrblPlotter
 
                 if (SelectionHandle.IsActive) SelectionHandle.DrawPath(e, picScaling * zoomFactor);		// adapt handle size if scaling/zooming changed
 
-                if (!(showPathPenUp ^ toolStripViewPenUp.Checked))  //Properties.Settings.Default.gui2DPenUpShow))
+                if (!(showPathPenUp ^ toolStripViewPenUp.Checked))  //Properties.ListSettings.Default.gui2DPenUpShow))
                     e.DrawPath(penUp, VisuGCode.pathPenUp);
 
                 if (shiftedDisplay)
@@ -660,11 +663,11 @@ namespace GrblPlotter
                     VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
                     FctbSetBookmark();
 
-                    if (cBMoveG0.Checked)
+            /*        if (cBMoveG0.Checked)
                         SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
                     else
                         SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                    picAbsPosLast2 = picAbsPosLast1;
+            */        picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = (XyPoint)Grbl.PosMarker;
                 }
             }
@@ -685,11 +688,11 @@ namespace GrblPlotter
                 }
                 if (allowMove)
                 {
-                    if (cBMoveG0.Checked)
+           /*         if (cBMoveG0.Checked)
                         SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
                     else
                         SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
-                    picAbsPosLast2 = picAbsPosLast1;
+            */        picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = picAbsPos;
                 }
             }
@@ -828,7 +831,7 @@ namespace GrblPlotter
                         /* Click on same object / same position: toggle selected objects (if possible):
                          * 1st select Figure, 2nd select Group, 3rd select Tile, finally select nothing
                          */
-                        if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
+                        if (expandGCode)    //Properties.ListSettings.Default.FCTBBlockExpandOnSelect)
                         { foldLevel = foldLevelSelected; }
 
                         if (!keepMarkerType)
@@ -940,11 +943,11 @@ namespace GrblPlotter
 
                         if (modKeyCtrlAlt)
                         {
-                            if (cBMoveG0.Checked)
+                 /*           if (cBMoveG0.Checked)
                                 SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
                             else
                                 SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                        }
+                 */       }
                     }
                     //    else if (false)
                     //    { }
@@ -1076,8 +1079,8 @@ namespace GrblPlotter
                 penRotary.Color = Properties.Settings.Default.gui2DColorRotaryInfo;
                 penHeightMap.Color = Properties.Settings.Default.gui2DColorHeightMap;
                 penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
-                //	penGrid1.Color = ControlPaint.LightLight(penRuler.Color);
-                //	penGrid10.Color = ControlPaint.Light(penRuler.Color);
+                //	penGrid1.GroupColor = ControlPaint.LightLight(penRuler.GroupColor);
+                //	penGrid10.GroupColor = ControlPaint.Light(penRuler.GroupColor);
 
                 penTool.Color = Properties.Settings.Default.gui2DColorTool;
                 penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
@@ -1145,11 +1148,11 @@ namespace GrblPlotter
 
         private void CmsPicBoxMoveToMarkedPosition_Click(object sender, EventArgs e)
         {
-            if (cBMoveG0.Checked)
+   /*         if (cBMoveG0.Checked)
                 SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
             else
                 SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-        }
+    */    }
 
         private void CmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
         {
@@ -1572,8 +1575,11 @@ namespace GrblPlotter
             pictureBox1.ContextMenuStrip = cmsPictureBox;
             moveTimer.Enabled = false;
             Rb2DViewMode1.BackColor = Color.Yellow;
-            Rb2DViewMode2.BackColor = Color.WhiteSmoke;
-            Rb2DViewMode3.BackColor = Color.WhiteSmoke;
+            Rb2DViewMode1.ForeColor = Colors.ContrastColor(Color.Yellow);
+            Rb2DViewMode2.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
+            Rb2DViewMode2.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
+            Rb2DViewMode3.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
+            Rb2DViewMode3.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
         }
 
         private void Rb2DViewMode2_CheckedChanged(object sender, EventArgs e)
@@ -1581,20 +1587,25 @@ namespace GrblPlotter
             ResetPicBoxSelections();
             pictureBox1.ContextMenuStrip = cmsPictureBox2;
             moveTimer.Enabled = false;
-            Rb2DViewMode1.BackColor = Color.WhiteSmoke;
+            Rb2DViewMode1.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
+            Rb2DViewMode1.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
             if (Rb2DViewMode2.Checked)
             {
                 Rb2DViewMode2.BackColor = Color.Yellow;
-                Rb2DViewMode3.BackColor = Color.WhiteSmoke;
+                Rb2DViewMode2.ForeColor = Colors.ContrastColor( Color.Yellow);
+                Rb2DViewMode3.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
+                Rb2DViewMode3.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
             }
             else
             {
                 Rb2DViewMode3.BackColor = Color.Yellow;
-                Rb2DViewMode2.BackColor = Color.WhiteSmoke;
+                Rb2DViewMode3.ForeColor = Colors.ContrastColor(Color.Yellow);
+                Rb2DViewMode2.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
+                Rb2DViewMode2.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
             }
         }
 
-        private void moveBetweenLastPositionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MoveBetweenLastPositionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (moveBetweenLastPositionsToolStripMenuItem.Checked)
             {
@@ -1602,15 +1613,15 @@ namespace GrblPlotter
             }
         }
 
-        private void moveTimer_Tick(object sender, EventArgs e)
+        private void MoveTimer_Tick(object sender, EventArgs e)
         {
             if (Grbl.Status == GrblState.idle)
             {
-                if (cBMoveG0.Checked)
+    /*            if (cBMoveG0.Checked)
                     SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
                 else
                     SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
-
+    */
                 picAbsPos = picAbsPosLast1;
                 picAbsPosLast1 = picAbsPosLast2;
                 picAbsPosLast2 = picAbsPos;

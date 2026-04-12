@@ -293,304 +293,11 @@
     <value>(G-Code yapıştırın veya dosya yükleyin)</value>
     <comment>Editor</comment>
   </data>
-  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
-    <value>Yarım simülasyon hızı</value>
-  </data>
-  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
-    <value>Çift simülasyon hızı</value>
-  </data>
-  <data name="btnSimulate.Text" xml:space="preserve">
-    <value>Yol simülasyonunu başlat</value>
-  </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>İleti</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>GRBL'ye kod göndermeyi durdur</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Kodu kontrol et</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>Bu, Grbl'nin gcode ayrıştırıcısını normal çalışmada olduğu gibi tüm gelen blokları alacak ve tamamen işleyecek şekilde değiştirir, ancak eksenlerin hiçbirini hareket ettirmez, beklemeleri yok sayar ve iş milini ve soğutma sıvısını kapatır. Bu, kullanıcıya yeni G-kodu programının Grbl'ın ayrıştırıcısı ile nasıl çalıştığını kontrol etmesi ve herhangi bir hatayı izlemesi (ve etkinleştirilmişse yumuşak limit ihlallerini kontrol etmesi) için bir yol sağlamayı amaçlamaktadır.</value>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>Zaman</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>İlerlemek</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Metin düzenleyiciden GRBL'ye kod gönderin
-Başlangıç ​​satırı numarasını seçmek için sağ tıklayın</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="gBoxStream.Text" xml:space="preserve">
-    <value>G Kodu Akışı</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnLimitExceed.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Ofset Uygula</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Ofset Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value>Ofset Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Ofset X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Ofset X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Menşei XY</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>boyutlar</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>G Kodu Boyutu</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>Ani</value>
-    <comment>groupBox_Override1</comment>
-  </data>
-  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
-    <value>D3 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P3 (açık)' veya 'M65 P3 (kapalı)' gönder seçeneğine tıklayın</value>
-  </data>
-  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
-    <value>D2 pininin (grbl-Mega-5X) durumunu gösterir, duruma bağlı olarak 'M64 P2 (açık)' veya 'M65 P2 (kapalı)' gönder üzerine tıklayın</value>
-  </data>
-  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
-    <value>D1 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P1 (açık)' veya 'M65 P1 (kapalı)' gönder seçeneğine tıklayın</value>
-  </data>
-  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
-    <value>D0 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P0 (açık)' veya 'M65 P0 (kapalı)' gönder seçeneğine tıklayın</value>
-  </data>
-  <data name="btnOverrideSpindle.Text" xml:space="preserve">
-    <value>Mil CW</value>
-  </data>
-  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>Yalnızca HOLD durumunda çalışır</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>M7, grbl'de etkin olmayabilir</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="gBOverrideASGB.Text" xml:space="preserve">
-    <value>Aksesuar Durumlarını Değiştir</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="lblStatusFeed.Text" xml:space="preserve">
-    <value>gerçek besleme</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>Mm/dak veya inç/dak cinsinden gerçek ilerleme hızı (13 $'a bağlı olarak)</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>Beslemek</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.Text" xml:space="preserve">
-    <value>gerçek hız</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>RPM cinsinden gerçek iş mili hızı</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>Mil Hızı</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Geçersiz kılmalar (yalnızca grbl 1.1) - genişletmek / küçültmek için tıklayın</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>Jogging'i DURDUR</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Geçerli hızlı hareket hareketini durdur</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>G90 G0 A(veya B,C)0 gönder</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>G90 G0 X0 gönder</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>G90 G0 X0 Y0 gönder</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>G90 G0 Y0 gönder</value>
-  </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>G90 G0 Z0 gönder</value>
-  </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>G0 hızlı hareket komutunu kullanın - hızlı hareket DURDUR çalışmaz</value>
-  </data>
-  <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>Taşınmak</value>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>4. ekseni hareket ettir</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>X ve Y eksenini hareket ettirin</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>Z eksenini hareket ettir</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>4. ekseni hareket ettir</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>4. ekseni hareket ettir</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>Fare yukarı kaldırıldığında Jogging'i DURDUR</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Kapı</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>Bir güvenlik kapısının açılmasını algılamak için tipik olarak bir giriş pimine bağlı olmasına rağmen, bu komut bir GUI'nin bu komutla güvenlik kapısı davranışını etkinleştirmesine izin verir.
-Hemen KAPI durumuna geçer ve iş mili ile soğutma sıvısını devre dışı bırakır. Hareket halindeyken makine yavaşlayarak durur ve ardından askıya alınır.
-Hedef arama sırasında yürütülürse, Grbl bunun yerine hareketi durduracak ve bir hedef arama alarmı verecektir.
-Halihazırda askıda veya HOLD durumundaysa, KAPI durumu onun yerine geçer.
-Park derleme zamanı seçeneği etkinleştirilirse, Grbl iş milini belirli bir konuma park eder.
-Komut, Grbl bir BOŞTA, HOLD, RUN, HOMING veya JOG durumundayken yürütülür. Aksi halde göz ardı edilir.
-Yavaş hareket ediliyorsa, bir güvenlik kapısı yavaş hareketi ve planlayıcı arabelleğindeki tüm sıralı hareketleri iptal eder. Güvenlik kapısı kapatılıp devam ettirildiğinde, Grbl IDLE durumuna geri dönecektir.
-Bir derleme zamanı seçeneğiyle etkinleştirildiyse, bir düğmeyi veya anahtarı bağlamak için bir giriş pini mevcuttur.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>Sürdürmek</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>Gerçek zamanlı bir komut olduğu için döngü başlatma veya devam ettirme komutu '~' herhangi bir zamanda verilebilir.
-Grbl, arabelleğinde sıraya alınmış hareketlere sahip olduğunda ve gitmeye hazır olduğunda, ~ döngü başlatma komutu
-tamponu çalıştırmaya başlayın ve Grbl eksenleri hareket ettirmeye başlayacaktır.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Besleme Bekletme</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>Besleme tutma komutu '!' konumu kaybetmemek için kontrollü bir yavaşlama yoluyla aktif çevrimi durduracaktır.
-Aynı zamanda gerçek zamanlı ve herhangi bir zamanda etkinleştirilebilir. Bittiğinde veya duraklatıldığında, Grbl bir döngü başlatma komutu gelene kadar bekleyecektir.
-programı devam ettirmek için verilir. Besleme tutma yalnızca bir döngüyü duraklatabilir ve hedef aramayı veya başka herhangi bir işlemi etkilemez.
-Programın ortasında bir döngüyü durdurmanız gerekiyorsa ve konum kaybetmeyi göze alamıyorsanız, Grbl'nin
-her şey kontrollü bir şekilde durdurulur. Bittiğinde, bir sıfırlama düzenleyebilirsiniz. Her zaman bir besleme bekletmeyi yürütmeye çalışın.
-Makine, elbette bazı acil durumlar dışında, sıfırlamaya basmadan önce çalışıyor.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Alarmı Kapat</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Grbl'ın alarm modu, bir şeylerin kritik derecede yanlış gittiği bir durumdur.
-bir döngü sırasında sabit limit veya iptal gibi veya Grbl konumunu bilmiyorsa.
-Varsayılan olarak, hedef aramayı etkinleştirdiyseniz ve Arduino'yu açtıysanız, Grbl girer
-alarm durumu, çünkü konumunu bilmiyor. Alarm modu tümünü kilitleyecektir.
-'$H' hedef arama döngüsü gerçekleştirilene kadar G kodu komutları. Veya bir kullanıcının ihtiyacı varsa
-eksenlerini limit anahtarlarından çıkarmak için alarm kilidini geçersiz kılmak için, örneğin '$X' alarm kilidini öldür
-kilitleri geçersiz kılacak ve G kodu işlevlerinin tekrar çalışmasına izin verecektir.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>Bu, Grbl'nin 'Ctrl-x' yazılım sıfırlama komutudur. Gerçek zamanlı ve herhangi bir zamanda gönderilebilir.
-Adından da anlaşılacağı gibi, Grbl'yi sıfırlar, ancak kontrollü bir şekilde makine konumunuzu korur,
-ve hepsi Arduino'nuzu kapatmadan yapılır. Yumuşak sıfırlamanın yapabileceği tek zamanlar
-Pozisyon kaybetmek, sorunların ortaya çıktığı ve adım atanların hareket ederken öldürüldüğü zamandır.
-Eğer öyleyse, Grbl'nin makine konumunu izlemesinin kaybolup kaybolmadığını bildirecektir.
-Bunun nedeni, kontrolsüz bir yavaşlamanın adımların kaybedilmesine yol açabilmesi ve Grbl'in geri bildiriminin olmamasıdır.
-ne kadar kaybettiğine göre (genel olarak steplerin sorunu budur). Aksi takdirde, Grbl yeniden başlatılacak,
- başlangıç ​​satırlarını çalıştırın ve neşeli yoluna devam edin.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbSpindle.Text" xml:space="preserve">
-    <value>Mil Açık</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbCoolant.Text" xml:space="preserve">
-    <value>soğutma sıvısı</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbTool.Text" xml:space="preserve">
-    <value>Takım Milde</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Yönlendirici</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Z ve PWM için etkin Pen -up/ -down çevirisinin değerlerini uygular</value>
-  </data>
-  <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>Kalem Sıfır</value>
-  </data>
-  <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>Kalem Yukarı</value>
-  </data>
-  <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>Setup-Servo-PWM'deki ayarları kullanın</value>
-  </data>
-  <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>Kalem Aşağı</value>
-  </data>
-  <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>Setup-Servo-PWM'deki ayarları kullanın</value>
-  </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>çizici</value>
-  </data>
-  <data name="CbLasermode.Text" xml:space="preserve">
-    <value>lazer modu</value>
-  </data>
-  <data name="RbLaserM4.Text" xml:space="preserve">
-    <value>M4 Dinamik güç</value>
-  </data>
-  <data name="RbLaserM3.Text" xml:space="preserve">
-    <value>M3 Sabit güç</value>
-  </data>
-  <data name="CbLaser.Text" xml:space="preserve">
-    <value>Lazer Açık</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Lazer</value>
@@ -715,109 +422,6 @@ ne kadar kaybettiğine göre (genel olarak steplerin sorunu budur). Aksi takdird
   <data name="CbAddGraphic.ToolTip" xml:space="preserve">
     <value>Etkinleştirilirse, içe aktarılan yeni G-Kodu mevcut koda eklenecektir.
 İlk içe aktarmadan sonra içe aktarma ayarlarının değiştirilmesi istenmeyen etkilere neden olabilir.</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Özel Düğmeler</value>
-    <comment>groupBox_Custom</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>Sıfır C</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>İş C koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>Sıfır B</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>İş B koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="lblCurrentG.ToolTip" xml:space="preserve">
-    <value>Varsayılan koordinat sistemi = G54
-Kamera koordinat sistemi = G59
-'G54;' ekleyin G-Code akışından önce otomatik olarak G54'e geri dönmek için G-Code başlığına</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status0.Text" xml:space="preserve">
-    <value>Durum:</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>Sıfır Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>İş koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.Text" xml:space="preserve">
-    <value>Ev</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>Hedef Aramayı Başlat (GRBL'de etkinleştirilmişse)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>sıfır XYZ</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>İş X,Y,Z koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>sıfır XY</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>İş X,Y koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Z</value>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Sıfır Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>İş Z koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>Sıfır Y</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>İş Y koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>Sıfır X</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>İş X koordinatını sıfıra ayarla</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>Durum</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>Takım Koordinatları (İş / Makine)</value>
-    <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Açık dosya</value>
@@ -1195,19 +799,6 @@ Kamera koordinat sistemi = G59
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
     <value>Sıcak tel kesici</value>
   </data>
-  <data name="BtnJogAbsZ.Text" xml:space="preserve">
-    <value>Şuraya taşı:</value>
-  </data>
-  <data name="BtnJogAbsY.Text" xml:space="preserve">
-    <value>Şuraya taşı:</value>
-  </data>
-  <data name="BtnJogAbsX.Text" xml:space="preserve">
-    <value>Şuraya taşı:</value>
-  </data>
-  <data name="Gb_Jogging.Text" xml:space="preserve">
-    <value>Kontrol / Jogging - genişletmek için tıklayın</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
     <value>Son dönüşümü uygula</value>
   </data>
@@ -1220,20 +811,8 @@ Kamera koordinat sistemi = G59
   <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
     <value>Kutupsal koordinatlara dönüştür</value>
   </data>
-  <data name="CbMist.ToolTip" xml:space="preserve">
-    <value>'M7'yi ayarlayın, 'M9'u silin</value>
-  </data>
-  <data name="CbSpindle.ToolTip" xml:space="preserve">
-    <value>'M3' veya 'M4'ü ayarlayın, 'M5'i temizleyin</value>
-  </data>
-  <data name="CbCoolant.ToolTip" xml:space="preserve">
-    <value>'M8'i ayarlayın, 'M9'u silin</value>
-  </data>
-  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
-    <value>Koordinat Sistemini Ayarla</value>
-  </data>
-  <data name="gBoxDRO.Text" xml:space="preserve">
-    <value>Takım Koordinatları (İş / Makine)</value>
+  <data name="cmsPictureBox.Text" xml:space="preserve">
+    <value>İşaretleyici konumunu 0;0'a kaydır</value>
   </data>
   <data name="Rb2DViewMode1.Text" xml:space="preserve">
     <value>Şekli düzenle</value>
@@ -1289,5 +868,23 @@ Alt-tıklama konumu 0,1 rastere yuvarlar,</value>
   </data>
   <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
     <value>Grafik tablet</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>'Adım genişliği'ni [Kurulum - Grafik içe aktarma - Yol içe aktarma - Genel seçenekler - İçe aktarma parametresi - Yayların çevresinde adım genişliği] bölümünde ayarlayın.</value>
+  </data>
+  <data name="IndividualSettings.Text" xml:space="preserve">
+    <value>Yalnızca bu sekme görünür olduğunda, kurulumdan gelen içe aktarma ayarları tamamen uygulanacaktır.</value>
+  </data>
+  <data name="tabPageLaser.Text" xml:space="preserve">
+    <value>Lazer</value>
+  </data>
+  <data name="tabPagePlotter.Text" xml:space="preserve">
+    <value>Çizici</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>-Bireysel olarak-</value>
   </data>
 </root>

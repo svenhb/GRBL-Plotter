@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 /* MainFormUpdate
  * Update controls etc.
  * 2021-07-26 new
- * 2021-09-19 line 389 change order of virtualJoystickXY.Enabled
+ * 2021-09-19 line 389 change order of virtualJoystickXY.Enable
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
  * 2021-11-22 change reg-key to get data-path from installation
  * 2021-12-14 change log path
@@ -28,8 +28,10 @@
  * 2025-03-04 l:185 f:SetGUISize replace this.Text by showFormText();
  *            l:611 f:UpdateControlEnablesInvoked add showFormText()
  * 2025-03-14 l:235 f:LoadSettings skip if shutDown
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
+using GrblPlotter.UserControls;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -184,11 +186,11 @@ namespace GrblPlotter
             int splitDist = Properties.Settings.Default.mainFormSplitDistance;
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
                 splitContainer1.SplitterDistance = splitDist;
+            splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance;
 
+            Logger.Trace("SetGUISize X:{0}  Y:{1}  Split1:{2}  Split2:{3}", Width, Height, splitContainer1.SplitterDistance, splitContainer2.SplitterDistance);
             ShowFormText();
             toolTip1.SetToolTip(this, this.Text);
-
-            SplitContainer1_SplitterMoved(null, null);
         }
 
         private void RemoveCursorNavigation(Control.ControlCollection controls)
@@ -269,33 +271,26 @@ namespace GrblPlotter
 
             fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
             fCTBCode.LineInterval = (int)Properties.Settings.Default.FCTBLineInterval;
-            tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
+            //tbFile.Text
+            lastLoadedFileName = Properties.Settings.Default.guiLastFileLoaded;
 
-            CustomButtonsFillWithContent();		// fill and resize custom buttons			
+            CustomButtonsFillWithContent();		// FillToolListElements and resize custom buttons			
             GraphicPropertiesSetup();			// pen / brush colors
             MenuTranslateSetup();				// set rotary info in menu item 'translate'
 
             GuiEnableAxisABC();					// enable and resize axis ABC GUI buttons (set 0)
-            virtualJoystickA.Visible |= ctrl4thAxis || Grbl.axisA;
-            virtualJoystickA.JoystickText = ctrl4thName;
-            JoystickSetup();					// Joystick step and speed
-            JoystickResize();                   // relative size
+            JoystickSetup();                    // Joystick step and speed
+                                                //        JoystickResize();                   // relative size
+
+            CommandProtocol cp = CommandProtocol.grblCanJog;
+            if (Grbl.isMarlin) { cp = CommandProtocol.Marlin; }
+            else if (Grbl.isVersion_0) { cp = CommandProtocol.grblOld; }
+            UserControlsSetAxisCount(Grbl.axisCount, cp);
 
             // 2-D view settings
             toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
             toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
             toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
-
-            if (Properties.Settings.Default.importGCSDirM3)
-            {
-                RbSpindleCW.Checked = true;//CbSpindle.Text = "Spindle CW";
-                RbLaserM3.Checked = true;
-            }
-            else
-            {
-                RbSpindleCCW.Checked = true;//CbSpindle.Text = "Spindle CCW";
-                RbLaserM4.Checked = true;
-            }
 
             // grbl communication
             int[] interval = new int[] { 500, 250, 200, 125, 100 };
@@ -308,97 +303,30 @@ namespace GrblPlotter
             LoadHotkeys();
 
             // changed PWM settings			
-            toolTip1.SetToolTip(BtnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
-            toolTip1.SetToolTip(BtnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
             GuiVariables.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
             GuiVariables.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             GuiVariables.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
             GuiVariables.WriteSettingsToRegistry(); // for use within external scripts
 
-            // override buttons D0-D3 descriptions
-            if (Properties.Settings.Default.grblDescriptionDxEnable)
-            {
-                BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = true;
-                BtnOverrideD0.Text = Properties.Settings.Default.grblDescriptionD0;
-                BtnOverrideD1.Text = Properties.Settings.Default.grblDescriptionD1;
-                BtnOverrideD2.Text = Properties.Settings.Default.grblDescriptionD2;
-                BtnOverrideD3.Text = Properties.Settings.Default.grblDescriptionD3;
-            }
-            else
-            { BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = false; }
         }   // end load settings
 
         private void GuiEnableAxisABC()
         {
-            Label[] axisLabels = { label_x, label_y, label_z, label_a, label_b, label_c };
             string axisChars = "XYZABC";
-            for (int i = 0; i < 6; i++)
-            {
-                axisLabels[i].Text = axisChars[i].ToString();
-            }
 
             ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
             ctrl4thName = Properties.Settings.Default.ctrl4thName;
-            label_a.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
-            label_a.Text = ctrl4thName;
-            label_wa.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
-            label_ma.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
-            btnZeroA.Visible = ctrl4thAxis || Grbl.axisA;
-            LblSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
-            NudSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
-            BtnSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
-            gBoxDROSetCoord.Height = Grbl.axisA ? 116 : 96;
-
             mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
-            btnZeroA.Text = "Zero " + ctrl4thName;
-            if (Properties.Settings.Default.guiLanguage == "de-DE")
-                btnZeroA.Text = ctrl4thName + " nullen";
-
-            btnJogZeroA.Visible = ctrl4thAxis || Grbl.axisA;
-            btnJogZeroA.Text = ctrl4thName + "=0";
 
             if (Grbl.axisB || Grbl.axisC)
             {
-                label_a.Location = new Point(230, 14);      // move A controls to upper right
-                label_wa.Location = new Point(251, 14);
-                label_ma.Location = new Point(263, 32);
-                btnZeroA.Location = new Point(335, 14);
-                label_status0.Location = new Point(1, 118); // keep home and status
-                label_status.Location = new Point(1, 138);
-                btnHome.Location = new Point(106, 111);
-                btnHome.Size = new Size(122, 57);
-                gBoxDRO.Width = 394;            // extend width
                 tLPRechtsOben.ColumnStyles[0].Width = 400;
 
-                label_c.Visible = Grbl.axisC;
-                label_wc.Visible = Grbl.axisC;
-                label_mc.Visible = Grbl.axisC;
-                btnZeroC.Visible = Grbl.axisC;
             }
             else
             {
-                label_a.Location = new Point(1, 110);      // move A controls to lower left
-                label_wa.Location = new Point(22, 110);
-                label_ma.Location = new Point(34, 128);
-                btnZeroA.Location = new Point(106, 110);
-                gBoxDRO.Width = 230;
                 tLPRechtsOben.ColumnStyles[0].Width = 236;
-
-                if (ctrl4thAxis || Grbl.axisA || simulateA)
-                {
-                    label_status0.Location = new Point(1, 128);
-                    label_status.Location = new Point(1, 148);
-                    btnHome.Location = new Point(106, 138);
-                    btnHome.Size = new Size(122, 30);
-                }
-                else
-                {
-                    label_status0.Location = new Point(1, 118);
-                    label_status.Location = new Point(1, 138);
-                    btnHome.Location = new Point(106, 111);
-                    btnHome.Size = new Size(122, 57);
-                }
             }
             Logger.Trace("GuiEnableAxisABC {0}", Grbl.GetInfo("AXS1", "-"));
             if (Grbl.GetInfo("AXS1", "") != "")
@@ -407,21 +335,21 @@ namespace GrblPlotter
                 char[] chars = Grbl.GetInfo("AXS1", "").ToCharArray();  // [AXS:5:XYYZA]
                 for (int i = 0; i < Math.Min(6, chars.Length); i++)
                 {
-                    axisLabels[i].Text = chars[i].ToString();
+                    //        axisLabels[i].Text = chars[i].ToString();
                 }
                 if (chars.Length < 4)
                 {
-                    label_a.Visible = label_wa.Visible = label_ma.Visible = btnZeroA.Visible = false;
+                    //          label_a.Visible = label_wa.Visible = label_ma.Visible = btnZeroA.Visible = false;
                     Grbl.axisA = false;
                 }
                 if (chars.Length < 5)
                 {
-                    label_b.Visible = label_wb.Visible = label_mb.Visible = btnZeroB.Visible = false;
+                    //         label_b.Visible = label_wb.Visible = label_mb.Visible = btnZeroB.Visible = false;
                     Grbl.axisB = false;
                 }
                 if (chars.Length < 6)
                 {
-                    label_c.Visible = label_wc.Visible = label_mc.Visible = btnZeroC.Visible = false;
+                    //          label_c.Visible = label_wc.Visible = label_mc.Visible = btnZeroC.Visible = false;
                     Grbl.axisC = false;
                 }
             }
@@ -515,25 +443,6 @@ namespace GrblPlotter
             joystickASpeed[3] = (double)Properties.Settings.Default.guiJoystickASpeed3;
             joystickASpeed[4] = (double)Properties.Settings.Default.guiJoystickASpeed4;
             joystickASpeed[5] = (double)Properties.Settings.Default.guiJoystickASpeed5;
-            virtualJoystickXY.JoystickLabel = joystickXYStep;
-            virtualJoystickZ.JoystickLabel = joystickZStep;
-            virtualJoystickA.JoystickLabel = joystickAStep;
-            virtualJoystickB.JoystickLabel = joystickAStep;
-            virtualJoystickC.JoystickLabel = joystickAStep;
-
-            int raster = 5;
-            if (!Properties.Settings.Default.guiJoystickApperance1)
-            {
-                raster = 1;
-                cBSendJogStop.Enabled = false;
-            }
-            else
-            { cBSendJogStop.Enabled = true; }
-            virtualJoystickXY.JoystickRaster = raster;
-            virtualJoystickZ.JoystickRaster = raster;
-            virtualJoystickA.JoystickRaster = raster;
-            virtualJoystickB.JoystickRaster = raster;
-            virtualJoystickC.JoystickRaster = raster;
         }
 
         // update controls on Main form (disable if streaming or no serial)
@@ -559,101 +468,15 @@ namespace GrblPlotter
             bool allowControl = isStreamingPause;
             Logger.Trace("◯◯◯ updateControls isConnected:{0} isStreaming:{1} streamingAllowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
             timerUpdateControlSource = "";
-
-            virtualJoystickC.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickB.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickXY.Invalidate();
-
-            btnHome.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroA.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroB.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroC.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroXY.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroXYZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroX.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroY.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroA.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroXY.Enabled = isConnected & !isStreaming | allowControl;
-
-            BtnJogAbsX.Enabled = isConnected & !isStreaming | allowControl;
-            BtnJogAbsY.Enabled = isConnected & !isStreaming | allowControl;
-            BtnJogAbsZ.Enabled = isConnected & !isStreaming | allowControl;
-            NudJogAbsX.Enabled = isConnected & !isStreaming | allowControl;
-            NudJogAbsY.Enabled = isConnected & !isStreaming | allowControl;
-            NudJogAbsZ.Enabled = isConnected & !isStreaming | allowControl;
-
-            NudSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
-            NudSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
-            NudSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
-            NudSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
-            BtnSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
-            BtnSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
-            BtnSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
-            BtnSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
-            LblSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
-            LblSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
-            LblSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
-            LblSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
-
-            btnOffsetApply.Enabled = !isStreaming;
             gCodeToolStripMenuItem.Enabled = !isStreaming;
+            ucFlowControl.EnableButtons(isConnected);
+            ucOverrides.EnableButtons(isConnected);
 
-            CbSpindle.Enabled = isConnected & !isStreaming | allowControl;
-            BtnPenUp.Enabled = isConnected & !isStreaming | allowControl;
-            BtnPenZero.Enabled = isConnected & !isStreaming | allowControl;
-            BtnPenDown.Enabled = isConnected & !isStreaming | allowControl;
-
-            NudSpeed.Enabled = isConnected & !isStreaming | allowControl;
-            lblSpeed.Enabled = isConnected & !isStreaming | allowControl;
-            RbSpindleCW.Enabled = isConnected & !isStreaming | allowControl;
-            RbSpindleCCW.Enabled = isConnected & !isStreaming | allowControl;
-
-            CbLasermode.Enabled = isConnected & !isStreaming | allowControl;
-            CbLaser.Enabled = isConnected & !isStreaming | allowControl;
-            RbLaserM3.Enabled = isConnected & !isStreaming | allowControl;
-            RbLaserM4.Enabled = isConnected & !isStreaming | allowControl;
-            TbLaser.Enabled = isConnected & !isStreaming | allowControl;
-
-            gB_Jog0.Enabled = isConnected & !isStreaming | allowControl;
-            CbCoolant.Enabled = isConnected & !isStreaming | allowControl;
-            CbMist.Enabled = isConnected & !isStreaming | allowControl;
-            CbTool.Enabled = isConnected & !isStreaming | allowControl;
-            //    btnReset.Enabled = isConnected;
-            btnFeedHold.Enabled = isConnected;
-            btnResume.Enabled = isConnected;
-            btnKillAlarm.Enabled = isConnected;
-            btnOverrideDoor.Enabled = isConnected;
-
-            btnStreamStart.Enabled = false;     // sometimes nok
-            btnStreamStart.Enabled = isConnected;// & isFileLoaded;
-            btnStreamStop.Enabled = isConnected; // & isFileLoaded;
-            btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
-
-            if (!Grbl.isVersion_0)
-            {
-                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop = btnJogStop.Visible = true;
-                virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = true;
-                gBoxOverride.Enabled = isConnected;
-                tableLayoutPanel4.RowStyles[0].Height = 30f;
-                tableLayoutPanel4.RowStyles[1].Height = 30f;
-                tableLayoutPanel4.RowStyles[2].Height = 40f;
-            }
-            else
-            {
-                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop = btnJogStop.Visible = false;
-                virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = false;
-                gBoxOverride.Enabled = false;
-                tableLayoutPanel4.RowStyles[0].Height = 40f;
-                tableLayoutPanel4.RowStyles[1].Height = 0f;
-                tableLayoutPanel4.RowStyles[2].Height = 60f;
-            }
+            ucMoveToGraphic.EnableButtons(isConnected);
+            ucSetCoordinateSystem.EnableButtons(isConnected);
+            ucMoveToZero.EnableButtons(isConnected);
+            ucStreaming.EnableButtonsStreaming(isConnected);
+            ucJogControlAll.EnableButtons(isConnected);
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             ShowFormText();
         }
@@ -702,7 +525,7 @@ namespace GrblPlotter
             }
 
             string[] tmp = Properties.Settings.Default.guiCustomBtn17.Split('|');
-            if (tmp[0].Length > 1)      //Properties.Settings.Default.guiCustomBtn17.ToString().Length > 2)
+            if (tmp[0].Length > 1)      //Properties.ListSettings.Default.guiCustomBtn17.ToString().Length > 2)
             {
                 if (customButtonUse == 0)
                 {

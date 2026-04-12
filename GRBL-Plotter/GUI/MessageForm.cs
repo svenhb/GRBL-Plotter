@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2023-03-31 l:65 f:ShowMessage reduce size if there is no color to show / check if hex-num / replace label by textBox
  * 2023-04-16 add guiLanguage
  * 2023-06-20 f:ShowMessage remove mode, select type via form size
+ * 2026-03-05 add logger
 */
 using System;
 using System.Drawing;
@@ -40,6 +41,9 @@ namespace GrblPlotter
         private bool colorChange = false;
         private int progressStep = 10;
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public MessageForm()
         {
             this.Icon = Properties.Resources.Icon;
@@ -51,7 +55,7 @@ namespace GrblPlotter
 
         public void ShowMessage(int newWidth, int newHeight, string headline, string text, int delay)
         {
-
+			Logger.Info("ShowMessage size:{0} {1}  Headline:{2}  Delay:{3}",newWidth, newHeight, headline, delay);
             this.Width = newWidth;
             this.Height = newHeight;
             if (newWidth >= 500)         // Form or MessageBox
@@ -69,7 +73,6 @@ namespace GrblPlotter
                 }
                 else
                     statusStrip1.Visible = false;
-
             }
             else
             {
@@ -78,10 +81,8 @@ namespace GrblPlotter
                 btnContinue.Width = 2 * Width / 3 - 20;
                 btnClose.Left = 2 * Width / 3;
                 btnClose.Width = Width / 3 - 20;
-            //    webBrowser1.ScrollBarsEnabled = false;
                 statusStrip1.Visible = false;
             }
-
             this.Text = headline;
             if (!text.Contains("html"))
                 text = MessageText.HtmlHeader + "<body>\r\n" + text + "</body></html>\r\n";
@@ -95,7 +96,7 @@ namespace GrblPlotter
         }
 
 
-    /*    private static Color ContrastColor(Color myColor)
+    /*    private static GroupColor ContrastColor(GroupColor myColor)
         {
             int d;
             // Counting the perceptive luminance - human eye favors green color... 
@@ -104,7 +105,7 @@ namespace GrblPlotter
                 d = 0; // bright colors - black font
             else
                 d = 255; // dark colors - white font
-            return Color.FromArgb(d, d, d);
+            return GroupColor.FromArgb(d, d, d);
         }*/
 
         void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -135,7 +136,7 @@ namespace GrblPlotter
         private void MessageForm_MouseEnter(object sender, EventArgs e)
         {
             DontClose = true;
-            //       tBInfo2.BackColor = Color.WhiteSmoke;
+            //       tBInfo2.BackColor = GroupColor.WhiteSmoke;
         }
 
         private void MessageForm_MouseLeave(object sender, EventArgs e)
@@ -159,7 +160,10 @@ namespace GrblPlotter
             if (val >= 0)
                 toolStripProgressBar1.Value = val;
             if ((val < 0) && !DontClose)
-                this.Close();
+            {
+				Logger.Info("ShowMessage - close by timer");
+				this.Close();
+			}
         }
     }
 }

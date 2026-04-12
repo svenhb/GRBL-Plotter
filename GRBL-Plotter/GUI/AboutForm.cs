@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
  * 2021-07-26 code clean up / code quality
  * 2023-01-02 GetLinkerTimestampUtc add try catch
  * 2023-09-08 move function GetLinkerTimestampUtc to class MyApplication in MainFormObjects.cs
+ * 2026-01-05 in .designer set	this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+								this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 */
 
 
@@ -56,7 +58,7 @@ namespace GrblPlotter
         /* show actual verison */
         private void AboutForm_Load(object sender, EventArgs e)
         {
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+    //        AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             lblVersion.Text = string.Format("{0}    {1}", MyApplication.GetVersion(), MyApplication.GetCompilationDate());   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 

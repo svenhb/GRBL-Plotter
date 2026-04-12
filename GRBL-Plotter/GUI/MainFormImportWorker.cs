@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2020-12-07 new https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker?view=net-5.0
  * 2021-07-26 code clean up / code quality
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System.ComponentModel;

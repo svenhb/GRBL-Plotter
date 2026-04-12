@@ -141,13 +141,4 @@
   <data name="linkLabel2.ToolTip" xml:space="preserve">
     <value>打开文件夹</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>© 2015-2024 svenhb@web.de</value>
-  </data>
-  <data name="linkLabel3.Text" xml:space="preserve">
-    <value>GRBL-Plotter</value>
-  </data>
 </root>

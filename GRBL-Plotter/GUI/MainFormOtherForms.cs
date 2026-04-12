@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
  * 2024-02-07 l:698 f:OnRaiseProcessEvent add Barcode, CreatText, 2D-View
  * 2024-02-12 split file, new  MainFormProcessAutomation.cs
  * 2025-06-03 add _tablet_form
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 //using GrblPlotter.GCodeCreation.CreateFromForm;
@@ -45,26 +46,28 @@ namespace GrblPlotter
          * Handle additional Forms, which can be opened via Menu strip
          * Handles just open, close, add event handler
          ********************************************************************/
-        GCodeFromText _text_form = null;
-        GCodeFromImage _image_form = null;
-        GCodeFromShape _shape_form = null;
-        GCodeForBarcode _barcode_form = null;
-        GCodeFromTablet _tablet_form = null;
-        GCodeForWireCutter _wireCutter_form = null;
+        GCodeFromText _text_form = null;					// 11
+        GCodeForBarcode _barcode_form = null;				// 12
+        GCodeFromImage _image_form = null;					// 13
+        GCodeFromShape _shape_form = null;					// 14
+        GCodeFromTablet _tablet_form = null;				// 15
+        GCodeForWireCutter _wireCutter_form = null;			// 16
+        ControlJogPathCreator _jogPathCreator_form = null;	// 17
 
-        ControlStreamingForm _streaming_form = null;
-        ControlStreamingForm2 _streaming_form2 = null;
+        ControlProbing _probing_form = null;				// 21
+        ControlHeightMapForm _heightmap_form = null;		// 22
+
+        ControlLaser _laser_form = null;					// 31
+        ControlCoordSystem _coordSystem_form = null;		// 32
+        ControlDiyControlPad _diyControlPad = null;			// 33
+        ControlCameraForm _camera_form = null;				// 34
+        ControlStreamingForm _streaming_form = null;		// 35
+        ControlStreamingForm2 _streaming_form2 = null;		// 36
+		
         ControlSerialForm _serial_form2 = null;
         SimpleSerialForm _serial_form3 = null;
         Control2ndGRBL _2ndGRBL_form = null;
-        ControlCameraForm _camera_form = null;
-        ControlDiyControlPad _diyControlPad = null;
-        ControlCoordSystem _coordSystem_form = null;
-        ControlLaser _laser_form = null;
-        ControlProbing _probing_form = null;
-        ControlHeightMapForm _heightmap_form = null;
         ControlSetupForm _setup_form = null;
-        ControlJogPathCreator _jogPathCreator_form = null;
         ControlProjector _projector_form = null;
         ProcessAutomation _process_form = null;
         GrblSetupForm _grbl_setup_form = null;
@@ -117,6 +120,7 @@ namespace GrblPlotter
                 _text_form.FormClosed += FormClosed_TextToGCode;
                 _text_form.btnApply.Click += GetGCodeFromText;      // assign btn-click event
                 EventCollector.SetOpenForm("Ftxt");
+                _text_form.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
             }
             else
             {
@@ -142,6 +146,7 @@ namespace GrblPlotter
             {
                 _image_form = new GCodeFromImage();
                 _image_form.FormClosed += FormClosed_ImageToGCode;
+                _image_form.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
                 _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event in MainFormgetCodetransform.cs
                 _image_form.BtnReloadPattern.Click += LoadLastGraphic;
                 _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
@@ -200,6 +205,8 @@ namespace GrblPlotter
                 _tablet_form.FormClosed += FormClosed_Tablet;
                 //    _tablet_form.BtnImport.Click += GetGCodeFromTablet;      // assign btn-click event
                 _tablet_form.importWholeDrawingToolStripMenuItem.Click += GetGCodeFromTablet;
+                _tablet_form.BtnCreateGcode.Click += GetGCodeFromTablet;
+                _tablet_form.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
                 EventCollector.SetOpenForm("Ftab");
             }
             else
@@ -263,7 +270,7 @@ namespace GrblPlotter
                 InsertCodeFromForm(tmpCode, "from tablet");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Iink";
-                if (Properties.Settings.Default.fromFormInsertEnable)
+                if (LoadProperties.MultipleImportFromForm)
                     source = "I" + source;
                 AfterImport(source);
             }

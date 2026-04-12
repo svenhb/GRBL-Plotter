@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
  * 2023-01-29 line 719 GotoNextBookmark(fCTBCodeClickedLineNow-1), FctbSetBookmark add=10, if (fCTBCodeClickedLineNow < 20)
  * 2023-02-18 line 375 check  if (selStartGrp.iLine < 0)
  * 2023-03-11 l:777/790 Requested Clipboard operation did not succeed. 
- * 2023-03-15 l:740 f:CmsFctb_ItemClicked - if (e.ClickedItem.Name == "cmsCodeCopy") -> if no selection copy all to clipboard
+ * 2023-03-15 l:740 f:CmsFctb_ItemClicked - if (e.ClickedItem.ToolName == "cmsCodeCopy") -> if no selection copy all to clipboard
  * 2023-04-12 f:FctbCode_Click / FctbCode_KeyDown replace FctbSetBookmark to avoid collapse blocks
  * 2023-04-13 l:592; 675 f:FctbCode_KeyDown add Tile
  * 2023-06-20 l:380 f:InsertCodeToFctb check if xmlLine is in range
@@ -58,6 +58,8 @@
  * 2024-06-01 l:712 check range
  * 2024-09-04 l:893 f:ShowMessageForm try/catch Except: Cannot access a disposed object
  * 2024-11-27 l:735 f:SelectNextFigureGroupTile  check if LineIsInRange
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-04-09 l:520 f:InsertCodeToFctb  add fCTBCode.Text = sourceGCode; to use new code even if no insertion possible
 */
 
 using FastColoredTextBoxNS;
@@ -223,13 +225,12 @@ namespace GrblPlotter
                     { FoldBlocks2(); }
 
                     FctbSetBookmark();         // set Bookmark and marker in 2D-View
-                                               //	FindFigureMarkSelection(markedBlockType, fCTBCodeClickedLineNow, new DistanceByLine(0));//);
-                                               //               fCTBCode.DoCaretVisible();
                 }
                 catch (Exception err)
                 { Logger.Error(err, "FctbCode_TextChangedDelayed "); }
             }
             resetView = false;
+            ucToolList.BtnReloadGraphicDelayed();
         }
 
         private void FctbCode_ToolTipNeeded(object sender, FastColoredTextBoxNS.ToolTipNeededEventArgs e)
@@ -329,8 +330,8 @@ namespace GrblPlotter
 
             CmsPicBoxEnable();
             ClearErrorLines();
-            Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, Properties.Settings.Default.fromFormInsertEnable);
-            if (insertCode && (Properties.Settings.Default.fromFormInsertEnable || Properties.Settings.Default.multipleLoadAllwaysLoad))
+            Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, LoadProperties.MultipleImportFromForm);
+            if (insertCode && (LoadProperties.MultipleImportFromForm || LoadProperties.MultipleImportAlways))
             { return InsertCodeToFctb(code, true, 0, 0, 0); }
             else
             { fCTBCode.Text = code; }
@@ -515,7 +516,8 @@ namespace GrblPlotter
 				Logger.Warn("....InsertCodeToFctb FAILED insertLineNr:{0}  lineSelected:{1}",insertLineNr, lineSelected);
 				XmlMarker.ListAllFigures();
 				XmlMarker.ListAllGroups();				
-                codeInsert = new System.Drawing.Point(-1, -1);
+             //   codeInsert = new System.Drawing.Point(-1, -1);
+                fCTBCode.Text = sourceGCode;
                 return -1;
             }
         }
@@ -537,7 +539,7 @@ namespace GrblPlotter
             EnableBlockCommands(false);       // disable CMS-Menu block-move items 
             fCTBCode.DoCaretVisible();
 
-            if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
+            if (expandGCode)    //Properties.ListSettings.Default.FCTBBlockExpandOnSelect)
             { foldLevel = foldLevelSelected; }
 
             if (Panel.ModifierKeys == Keys.Alt)
@@ -903,7 +905,7 @@ namespace GrblPlotter
                 return;
 
             manualEdit = set;
-            //      fCTBCode.BackColor = set? Color.FromArgb(255, 255, 255, 100): Color.White;
+            //      fCTBCode.BackColor = set? GroupColor.FromArgb(255, 255, 255, 100): GroupColor.White;
             if (set)
             {
                 fCTBCode.BackColor = Color.FromArgb(255, 255, 255, 100);
@@ -1165,7 +1167,7 @@ namespace GrblPlotter
             Range range = fCTBCode.Selection.Clone();
             FctbSetBookmark(true);
 
-            bool changeFoldStatus = toggleBlockExpansionToolStripMenuItem.Checked;//Properties.Settings.Default.FCTBBlockExpandOnSelect;
+            bool changeFoldStatus = toggleBlockExpansionToolStripMenuItem.Checked;//Properties.ListSettings.Default.FCTBBlockExpandOnSelect;
             int lineCollection = 0;
             int lineGroup = 0;
             int lineFigure = 0;

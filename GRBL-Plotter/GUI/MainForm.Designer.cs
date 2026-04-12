@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,6 +15,10 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2026-01-05 in .designer set	this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+								this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 */
 namespace GrblPlotter
 {
@@ -112,9 +116,7 @@ namespace GrblPlotter
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
-            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
+            GrblPlotter.Properties.Settings settings1 = new GrblPlotter.Properties.Settings();
             this.cmsFCTB = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unDo3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
@@ -160,166 +162,6 @@ namespace GrblPlotter
             this.cmsCodeSendLine = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnSimulateSlower = new System.Windows.Forms.Button();
-            this.btnSimulateFaster = new System.Windows.Forms.Button();
-            this.btnStreamStop = new System.Windows.Forms.Button();
-            this.btnStreamCheck = new System.Windows.Forms.Button();
-            this.btnStreamStart = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BtnOverrideD3 = new System.Windows.Forms.Button();
-            this.BtnOverrideD2 = new System.Windows.Forms.Button();
-            this.BtnOverrideD1 = new System.Windows.Forms.Button();
-            this.BtnOverrideD0 = new System.Windows.Forms.Button();
-            this.btnOverrideSpindle = new System.Windows.Forms.Button();
-            this.btnOverrideMist = new System.Windows.Forms.Button();
-            this.lblStatusFeed = new System.Windows.Forms.Label();
-            this.lblStatusSpeed = new System.Windows.Forms.Label();
-            this.btnJogStop = new System.Windows.Forms.Button();
-            this.btnJogZeroA = new System.Windows.Forms.Button();
-            this.btnJogZeroX = new System.Windows.Forms.Button();
-            this.btnJogZeroXY = new System.Windows.Forms.Button();
-            this.btnJogZeroY = new System.Windows.Forms.Button();
-            this.btnJogZeroZ = new System.Windows.Forms.Button();
-            this.cBMoveG0 = new System.Windows.Forms.CheckBox();
-            this.virtualJoystickA = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickB = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickC = new virtualJoystick.virtualJoystick();
-            this.LblSpeedSet = new System.Windows.Forms.Label();
-            this.LblSpeedMax = new System.Windows.Forms.Label();
-            this.LblSpeedMin = new System.Windows.Forms.Label();
-            this.BtnPenUp = new System.Windows.Forms.Button();
-            this.BtnPenDown = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tBURL = new System.Windows.Forms.TextBox();
-            this.btnZeroC = new System.Windows.Forms.Button();
-            this.btnZeroB = new System.Windows.Forms.Button();
-            this.lblCurrentG = new System.Windows.Forms.Label();
-            this.btnZeroA = new System.Windows.Forms.Button();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.btnZeroXYZ = new System.Windows.Forms.Button();
-            this.btnZeroXY = new System.Windows.Forms.Button();
-            this.btnZeroZ = new System.Windows.Forms.Button();
-            this.btnZeroY = new System.Windows.Forms.Button();
-            this.btnZeroX = new System.Windows.Forms.Button();
-            this.CbMist = new System.Windows.Forms.CheckBox();
-            this.CbSpindle = new System.Windows.Forms.CheckBox();
-            this.CbCoolant = new System.Windows.Forms.CheckBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnKillAlarm = new System.Windows.Forms.Button();
-            this.btnFeedHold = new System.Windows.Forms.Button();
-            this.btnResume = new System.Windows.Forms.Button();
-            this.btnOverrideDoor = new System.Windows.Forms.Button();
-            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
-            this.Rb2DViewMode1 = new System.Windows.Forms.RadioButton();
-            this.Rb2DViewMode2 = new System.Windows.Forms.RadioButton();
-            this.Rb2DViewMode3 = new System.Windows.Forms.RadioButton();
-            this.gBoxStream = new System.Windows.Forms.GroupBox();
-            this.btnSimulatePause = new System.Windows.Forms.Button();
-            this.btnSimulate = new System.Windows.Forms.Button();
-            this.lbInfo = new System.Windows.Forms.Label();
-            this.pbBuffer = new System.Windows.Forms.ProgressBar();
-            this.lblRemaining = new System.Windows.Forms.Label();
-            this.pbFile = new System.Windows.Forms.ProgressBar();
-            this.lblElapsed = new System.Windows.Forms.Label();
-            this.lblFileProgress = new System.Windows.Forms.Label();
-            this.tbFile = new System.Windows.Forms.TextBox();
-            this.gBoxDimension = new System.Windows.Forms.GroupBox();
-            this.btnLimitExceed = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnOffsetApply = new System.Windows.Forms.Button();
-            this.tbOffsetY = new System.Windows.Forms.TextBox();
-            this.tbOffsetX = new System.Windows.Forms.TextBox();
-            this.rBOrigin9 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin8 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin7 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin6 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin5 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin4 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin3 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin2 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin1 = new System.Windows.Forms.RadioButton();
-            this.lbDimension = new System.Windows.Forms.TextBox();
-            this.gBoxOverride = new System.Windows.Forms.GroupBox();
-            this.gBOverrideRGB = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnOverrideRapid0 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btnOverrideRapid2 = new System.Windows.Forms.Button();
-            this.lblOverrideRapidValue = new System.Windows.Forms.Label();
-            this.btnOverrideRapid1 = new System.Windows.Forms.Button();
-            this.gBOverrideASGB = new System.Windows.Forms.GroupBox();
-            this.btnOverrideFlood = new System.Windows.Forms.Button();
-            this.gBOverrideFRGB = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblOverrideFRValue = new System.Windows.Forms.Label();
-            this.btnOverrideFR1 = new System.Windows.Forms.Button();
-            this.btnOverrideFR2 = new System.Windows.Forms.Button();
-            this.btnOverrideFR0 = new System.Windows.Forms.Button();
-            this.btnOverrideFR4 = new System.Windows.Forms.Button();
-            this.btnOverrideFR3 = new System.Windows.Forms.Button();
-            this.gBOverrideSSGB = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblOverrideSSValue = new System.Windows.Forms.Label();
-            this.btnOverrideSS2 = new System.Windows.Forms.Button();
-            this.btnOverrideSS0 = new System.Windows.Forms.Button();
-            this.btnOverrideSS1 = new System.Windows.Forms.Button();
-            this.btnOverrideSS4 = new System.Windows.Forms.Button();
-            this.btnOverrideSS3 = new System.Windows.Forms.Button();
-            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
-            this.tC_RouterPlotterLaser = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.LblSpeedSetVal = new System.Windows.Forms.Label();
-            this.RbSpindleCCW = new System.Windows.Forms.RadioButton();
-            this.RbSpindleCW = new System.Windows.Forms.RadioButton();
-            this.LblSpeedMaxVal = new System.Windows.Forms.Label();
-            this.LblSpeedMinVal = new System.Windows.Forms.Label();
-            this.NudSpeed = new System.Windows.Forms.NumericUpDown();
-            this.lblTool = new System.Windows.Forms.Label();
-            this.CbTool = new System.Windows.Forms.CheckBox();
-            this.lblSpeed = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.BtnPenZero = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.PbLaser = new System.Windows.Forms.PictureBox();
-            this.CbLasermodeVal = new System.Windows.Forms.Label();
-            this.CbLasermode = new System.Windows.Forms.CheckBox();
-            this.LblLaserSetVal = new System.Windows.Forms.Label();
-            this.LblLaserMaxVal = new System.Windows.Forms.Label();
-            this.LblLaserMinVal = new System.Windows.Forms.Label();
-            this.RbLaserM4 = new System.Windows.Forms.RadioButton();
-            this.RbLaserM3 = new System.Windows.Forms.RadioButton();
-            this.CbLaser = new System.Windows.Forms.CheckBox();
-            this.TbLaser = new System.Windows.Forms.TrackBar();
-            this.Gb_Jogging = new System.Windows.Forms.GroupBox();
-            this.BtnJogAbsZ = new System.Windows.Forms.Button();
-            this.BtnJogAbsY = new System.Windows.Forms.Button();
-            this.BtnJogAbsX = new System.Windows.Forms.Button();
-            this.NudJogAbsZ = new System.Windows.Forms.NumericUpDown();
-            this.NudJogAbsY = new System.Windows.Forms.NumericUpDown();
-            this.NudJogAbsX = new System.Windows.Forms.NumericUpDown();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.gB_Jog0 = new System.Windows.Forms.GroupBox();
-            this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
-            this.tLP_cB_StopJogging = new System.Windows.Forms.TableLayoutPanel();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyLastTransformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -349,62 +191,6 @@ namespace GrblPlotter
             this.cmsPicBoxSetGCodeAsBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxClearBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.copyContentTroClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tLPMitteUnten1Zeile = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tLPCustomButton1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPCustomButton2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCustom1 = new System.Windows.Forms.Button();
-            this.btnCustom2 = new System.Windows.Forms.Button();
-            this.btnCustom3 = new System.Windows.Forms.Button();
-            this.btnCustom4 = new System.Windows.Forms.Button();
-            this.btnCustom5 = new System.Windows.Forms.Button();
-            this.btnCustom6 = new System.Windows.Forms.Button();
-            this.btnCustom7 = new System.Windows.Forms.Button();
-            this.btnCustom8 = new System.Windows.Forms.Button();
-            this.btnCustom9 = new System.Windows.Forms.Button();
-            this.btnCustom10 = new System.Windows.Forms.Button();
-            this.btnCustom11 = new System.Windows.Forms.Button();
-            this.btnCustom12 = new System.Windows.Forms.Button();
-            this.btnCustom13 = new System.Windows.Forms.Button();
-            this.btnCustom14 = new System.Windows.Forms.Button();
-            this.btnCustom15 = new System.Windows.Forms.Button();
-            this.btnCustom16 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.gBoxDRO = new System.Windows.Forms.GroupBox();
-            this.gBoxDROSetCoord = new System.Windows.Forms.GroupBox();
-            this.BtnSetCoordA = new System.Windows.Forms.Button();
-            this.NudSetCoordA = new System.Windows.Forms.NumericUpDown();
-            this.LblSetCoordA = new System.Windows.Forms.Label();
-            this.BtnSetCoordZ = new System.Windows.Forms.Button();
-            this.BtnSetCoordY = new System.Windows.Forms.Button();
-            this.BtnSetCoordX = new System.Windows.Forms.Button();
-            this.NudSetCoordZ = new System.Windows.Forms.NumericUpDown();
-            this.NudSetCoordY = new System.Windows.Forms.NumericUpDown();
-            this.NudSetCoordX = new System.Windows.Forms.NumericUpDown();
-            this.LblSetCoordZ = new System.Windows.Forms.Label();
-            this.LblSetCoordY = new System.Windows.Forms.Label();
-            this.LblSetCoordX = new System.Windows.Forms.Label();
-            this.label_c = new System.Windows.Forms.Label();
-            this.label_mc = new System.Windows.Forms.Label();
-            this.label_wc = new System.Windows.Forms.Label();
-            this.label_b = new System.Windows.Forms.Label();
-            this.label_mb = new System.Windows.Forms.Label();
-            this.label_wb = new System.Windows.Forms.Label();
-            this.label_status0 = new System.Windows.Forms.Label();
-            this.label_a = new System.Windows.Forms.Label();
-            this.label_ma = new System.Windows.Forms.Label();
-            this.label_wa = new System.Windows.Forms.Label();
-            this.label_z = new System.Windows.Forms.Label();
-            this.label_y = new System.Windows.Forms.Label();
-            this.label_x = new System.Windows.Forms.Label();
-            this.label_status = new System.Windows.Forms.Label();
-            this.label_mx = new System.Windows.Forms.Label();
-            this.label_my = new System.Windows.Forms.Label();
-            this.label_mz = new System.Windows.Forms.Label();
-            this.label_wz = new System.Windows.Forms.Label();
-            this.label_wx = new System.Windows.Forms.Label();
-            this.label_wy = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -436,10 +222,10 @@ namespace GrblPlotter
             this.createBarcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wireCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createJogPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.directControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useOrigin = new System.Windows.Forms.ToolStripMenuItem();
@@ -529,128 +315,108 @@ namespace GrblPlotter
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.moveBetweenLastPositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveTimer = new System.Windows.Forms.Timer(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
+            this.ucStreaming = new GrblPlotter.UserControls.UCStreaming();
+            this.ucOverrides = new GrblPlotter.UserControls.UCOverrides();
+            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tBURL = new System.Windows.Forms.TextBox();
+            this.Rb2DViewMode1 = new System.Windows.Forms.RadioButton();
+            this.Rb2DViewMode2 = new System.Windows.Forms.RadioButton();
+            this.Rb2DViewMode3 = new System.Windows.Forms.RadioButton();
+            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
+            this.ucFlowControl = new GrblPlotter.UserControls.UCFlowControl();
+            this.ucSetOffset = new GrblPlotter.UserControls.UCSetOffset();
+            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.ucMoveToGraphic = new GrblPlotter.UserControls.UCMoveToGraphic();
+            this.ucMoveToZero = new GrblPlotter.UserControls.UCMoveToZero();
+            this.ucJogControlAll = new GrblPlotter.UserControls.UCJogControlAll();
+            this.tC_RouterPlotterLaser2 = new System.Windows.Forms.TabControl();
+            this.tabPageLaser = new System.Windows.Forms.TabPage();
+            this.ucDeviceLaser2 = new GrblPlotter.UserControls.UCDeviceLaser2();
+            this.tabPagePlotter = new System.Windows.Forms.TabPage();
+            this.ucDevicePlotter2 = new GrblPlotter.UserControls.UCDevicePlotter2();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ucDeviceRouter2 = new GrblPlotter.UserControls.UCDeviceRouter2();
+            this.ucSetCoordinateSystem = new GrblPlotter.UserControls.UCSetCoordinateSystem();
+            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tLPMitteUnten1Zeile = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
+            this.ucdro = new GrblPlotter.UserControls.UCDRO();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.GbCustomButtons = new System.Windows.Forms.GroupBox();
+            this.tLPCustomButton1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPCustomButton2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCustom1 = new System.Windows.Forms.Button();
+            this.btnCustom2 = new System.Windows.Forms.Button();
+            this.btnCustom3 = new System.Windows.Forms.Button();
+            this.btnCustom4 = new System.Windows.Forms.Button();
+            this.btnCustom5 = new System.Windows.Forms.Button();
+            this.btnCustom6 = new System.Windows.Forms.Button();
+            this.btnCustom7 = new System.Windows.Forms.Button();
+            this.btnCustom8 = new System.Windows.Forms.Button();
+            this.btnCustom9 = new System.Windows.Forms.Button();
+            this.btnCustom10 = new System.Windows.Forms.Button();
+            this.btnCustom11 = new System.Windows.Forms.Button();
+            this.btnCustom12 = new System.Windows.Forms.Button();
+            this.btnCustom13 = new System.Windows.Forms.Button();
+            this.btnCustom14 = new System.Windows.Forms.Button();
+            this.btnCustom15 = new System.Windows.Forms.Button();
+            this.btnCustom16 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ucToolList = new GrblPlotter.UserControls.UCToolList();
+            this.tC_RouterPlotterLaser = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ucDeviceLaser = new GrblPlotter.UserControls.UCDeviceLaser();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucDevicePlotter = new GrblPlotter.UserControls.UCDevicePlotter();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ucDeviceRouter = new GrblPlotter.UserControls.UCDeviceRouter();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.IndividualSettings = new System.Windows.Forms.Label();
+            this.cmsFCTB.SuspendLayout();
+            this.cmsPictureBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.cmsPictureBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tLPLinks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
-            this.cmsFCTB.SuspendLayout();
-            this.gBoxStream.SuspendLayout();
-            this.gBoxDimension.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.gBoxOverride.SuspendLayout();
-            this.gBOverrideRGB.SuspendLayout();
-            this.gBOverrideASGB.SuspendLayout();
-            this.gBOverrideFRGB.SuspendLayout();
-            this.gBOverrideSSGB.SuspendLayout();
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
-            this.tC_RouterPlotterLaser.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSpeed)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).BeginInit();
-            this.Gb_Jogging.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsX)).BeginInit();
-            this.gB_Jog0.SuspendLayout();
-            this.tLPRechtsUntenRechtsMitte.SuspendLayout();
-            this.tLP_cB_StopJogging.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
+            this.tC_RouterPlotterLaser2.SuspendLayout();
+            this.tabPageLaser.SuspendLayout();
+            this.tabPagePlotter.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tLPMitteUnten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.cmsPictureBox.SuspendLayout();
             this.tLPMitteUnten1Zeile.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.GbCustomButtons.SuspendLayout();
             this.tLPCustomButton1.SuspendLayout();
             this.tLPCustomButton2.SuspendLayout();
-            this.gBoxDRO.SuspendLayout();
-            this.gBoxDROSetCoord.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordX)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.cmsPictureBox2.SuspendLayout();
+            this.tC_RouterPlotterLaser.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tLPLinks);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.SplitContainer1_SplitterMoved);
-            // 
-            // tLPLinks
-            // 
-            resources.ApplyResources(this.tLPLinks, "tLPLinks");
-            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 3);
-            this.tLPLinks.Controls.Add(this.gBoxStream, 0, 0);
-            this.tLPLinks.Controls.Add(this.gBoxDimension, 0, 2);
-            this.tLPLinks.Controls.Add(this.gBoxOverride, 0, 1);
-            this.tLPLinks.Name = "tLPLinks";
-            // 
-            // fCTBCode
-            // 
-            this.fCTBCode.AllowMacroRecording = false;
-            this.fCTBCode.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fCTBCode.AutoIndent = false;
-            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
-            resources.ApplyResources(this.fCTBCode, "fCTBCode");
-            this.fCTBCode.BackBrush = null;
-            this.fCTBCode.CharCnWidth = 13;
-            this.fCTBCode.CharHeight = 12;
-            this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsFCTB;
-            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fCTBCode.DelayedTextChangedInterval = 200;
-            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fCTBCode.Hotkeys = resources.GetString("fCTBCode.Hotkeys");
-            this.fCTBCode.IsReplaceMode = false;
-            this.fCTBCode.Name = "fCTBCode";
-            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
-            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
-            this.fCTBCode.ShowFoldingLines = true;
-            this.fCTBCode.ToolTip = this.toolTip1;
-            this.fCTBCode.Zoom = 100;
-            this.fCTBCode.ToolTipNeeded += new System.EventHandler<FastColoredTextBoxNS.ToolTipNeededEventArgs>(this.FctbCode_ToolTipNeeded);
-            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.FctbCode_TextChanged);
-            this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.FctbCode_TextChangedDelayed);
-            this.fCTBCode.Click += new System.EventHandler(this.FctbCode_Click);
-            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FctbCode_KeyDown);
-            this.fCTBCode.MouseHover += new System.EventHandler(this.FCTBCode_MouseHover);
             // 
             // cmsFCTB
             // 
+            this.cmsFCTB.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsFCTB.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDo3ToolStripMenuItem,
             this.toolStripSeparator13,
@@ -950,1380 +716,9 @@ namespace GrblPlotter
             resources.ApplyResources(this.cmsUpdate2DView, "cmsUpdate2DView");
             this.cmsUpdate2DView.Name = "cmsUpdate2DView";
             // 
-            // btnSimulateSlower
-            // 
-            resources.ApplyResources(this.btnSimulateSlower, "btnSimulateSlower");
-            this.btnSimulateSlower.Name = "btnSimulateSlower";
-            this.toolTip1.SetToolTip(this.btnSimulateSlower, resources.GetString("btnSimulateSlower.ToolTip"));
-            this.btnSimulateSlower.UseVisualStyleBackColor = true;
-            this.btnSimulateSlower.Click += new System.EventHandler(this.BtnSimulateSlower_Click);
-            // 
-            // btnSimulateFaster
-            // 
-            resources.ApplyResources(this.btnSimulateFaster, "btnSimulateFaster");
-            this.btnSimulateFaster.Name = "btnSimulateFaster";
-            this.toolTip1.SetToolTip(this.btnSimulateFaster, resources.GetString("btnSimulateFaster.ToolTip"));
-            this.btnSimulateFaster.UseVisualStyleBackColor = true;
-            this.btnSimulateFaster.Click += new System.EventHandler(this.BtnSimulateFaster_Click);
-            // 
-            // btnStreamStop
-            // 
-            this.btnStreamStop.Image = global::GrblPlotter.Properties.Resources.btn_stop;
-            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
-            this.btnStreamStop.Name = "btnStreamStop";
-            this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
-            this.btnStreamStop.UseVisualStyleBackColor = true;
-            this.btnStreamStop.Click += new System.EventHandler(this.BtnStreamStop_Click);
-            // 
-            // btnStreamCheck
-            // 
-            resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
-            this.btnStreamCheck.Name = "btnStreamCheck";
-            this.toolTip1.SetToolTip(this.btnStreamCheck, resources.GetString("btnStreamCheck.ToolTip"));
-            this.btnStreamCheck.UseVisualStyleBackColor = true;
-            this.btnStreamCheck.Click += new System.EventHandler(this.BtnStreamCheck_Click);
-            // 
-            // btnStreamStart
-            // 
-            this.btnStreamStart.Image = global::GrblPlotter.Properties.Resources.btn_play;
-            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
-            this.btnStreamStart.Name = "btnStreamStart";
-            this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
-            this.btnStreamStart.UseVisualStyleBackColor = true;
-            this.btnStreamStart.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnStreamStart_Click);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
-            // 
-            // BtnOverrideD3
-            // 
-            resources.ApplyResources(this.BtnOverrideD3, "BtnOverrideD3");
-            this.BtnOverrideD3.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.BtnOverrideD3.Name = "BtnOverrideD3";
-            this.BtnOverrideD3.Tag = "off";
-            this.toolTip1.SetToolTip(this.BtnOverrideD3, resources.GetString("BtnOverrideD3.ToolTip"));
-            this.BtnOverrideD3.UseVisualStyleBackColor = true;
-            this.BtnOverrideD3.Click += new System.EventHandler(this.BtnOverrideD3_Click);
-            // 
-            // BtnOverrideD2
-            // 
-            resources.ApplyResources(this.BtnOverrideD2, "BtnOverrideD2");
-            this.BtnOverrideD2.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.BtnOverrideD2.Name = "BtnOverrideD2";
-            this.BtnOverrideD2.Tag = "off";
-            this.toolTip1.SetToolTip(this.BtnOverrideD2, resources.GetString("BtnOverrideD2.ToolTip"));
-            this.BtnOverrideD2.UseVisualStyleBackColor = true;
-            this.BtnOverrideD2.Click += new System.EventHandler(this.BtnOverrideD2_Click);
-            // 
-            // BtnOverrideD1
-            // 
-            resources.ApplyResources(this.BtnOverrideD1, "BtnOverrideD1");
-            this.BtnOverrideD1.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.BtnOverrideD1.Name = "BtnOverrideD1";
-            this.BtnOverrideD1.Tag = "off";
-            this.toolTip1.SetToolTip(this.BtnOverrideD1, resources.GetString("BtnOverrideD1.ToolTip"));
-            this.BtnOverrideD1.UseVisualStyleBackColor = true;
-            this.BtnOverrideD1.Click += new System.EventHandler(this.BtnOverrideD1_Click);
-            // 
-            // BtnOverrideD0
-            // 
-            resources.ApplyResources(this.BtnOverrideD0, "BtnOverrideD0");
-            this.BtnOverrideD0.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.BtnOverrideD0.Name = "BtnOverrideD0";
-            this.BtnOverrideD0.Tag = "off";
-            this.toolTip1.SetToolTip(this.BtnOverrideD0, resources.GetString("BtnOverrideD0.ToolTip"));
-            this.BtnOverrideD0.UseVisualStyleBackColor = true;
-            this.BtnOverrideD0.Click += new System.EventHandler(this.BtnOverrideD0_Click);
-            // 
-            // btnOverrideSpindle
-            // 
-            resources.ApplyResources(this.btnOverrideSpindle, "btnOverrideSpindle");
-            this.btnOverrideSpindle.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.btnOverrideSpindle.Name = "btnOverrideSpindle";
-            this.toolTip1.SetToolTip(this.btnOverrideSpindle, resources.GetString("btnOverrideSpindle.ToolTip"));
-            this.btnOverrideSpindle.UseVisualStyleBackColor = true;
-            this.btnOverrideSpindle.Click += new System.EventHandler(this.BtnOverrideSpindle_Click);
-            // 
-            // btnOverrideMist
-            // 
-            resources.ApplyResources(this.btnOverrideMist, "btnOverrideMist");
-            this.btnOverrideMist.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.btnOverrideMist.Name = "btnOverrideMist";
-            this.toolTip1.SetToolTip(this.btnOverrideMist, resources.GetString("btnOverrideMist.ToolTip"));
-            this.btnOverrideMist.UseVisualStyleBackColor = true;
-            this.btnOverrideMist.Click += new System.EventHandler(this.BtnOverrideMist_Click);
-            // 
-            // lblStatusFeed
-            // 
-            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
-            this.lblStatusFeed.Name = "lblStatusFeed";
-            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
-            // 
-            // lblStatusSpeed
-            // 
-            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
-            this.lblStatusSpeed.Name = "lblStatusSpeed";
-            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
-            // 
-            // btnJogStop
-            // 
-            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.btnJogStop, "btnJogStop");
-            this.btnJogStop.Name = "btnJogStop";
-            this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
-            this.btnJogStop.UseVisualStyleBackColor = false;
-            this.btnJogStop.Click += new System.EventHandler(this.BtnJogStop_Click);
-            // 
-            // btnJogZeroA
-            // 
-            resources.ApplyResources(this.btnJogZeroA, "btnJogZeroA");
-            this.btnJogZeroA.Name = "btnJogZeroA";
-            this.toolTip1.SetToolTip(this.btnJogZeroA, resources.GetString("btnJogZeroA.ToolTip"));
-            this.btnJogZeroA.UseVisualStyleBackColor = true;
-            this.btnJogZeroA.Click += new System.EventHandler(this.BtnJogZeroA_Click);
-            // 
-            // btnJogZeroX
-            // 
-            resources.ApplyResources(this.btnJogZeroX, "btnJogZeroX");
-            this.btnJogZeroX.Name = "btnJogZeroX";
-            this.toolTip1.SetToolTip(this.btnJogZeroX, resources.GetString("btnJogZeroX.ToolTip"));
-            this.btnJogZeroX.UseVisualStyleBackColor = true;
-            this.btnJogZeroX.Click += new System.EventHandler(this.BtnJogX_Click);
-            // 
-            // btnJogZeroXY
-            // 
-            resources.ApplyResources(this.btnJogZeroXY, "btnJogZeroXY");
-            this.btnJogZeroXY.Name = "btnJogZeroXY";
-            this.toolTip1.SetToolTip(this.btnJogZeroXY, resources.GetString("btnJogZeroXY.ToolTip"));
-            this.btnJogZeroXY.UseVisualStyleBackColor = true;
-            this.btnJogZeroXY.Click += new System.EventHandler(this.BtnJogXY_Click);
-            // 
-            // btnJogZeroY
-            // 
-            resources.ApplyResources(this.btnJogZeroY, "btnJogZeroY");
-            this.btnJogZeroY.Name = "btnJogZeroY";
-            this.toolTip1.SetToolTip(this.btnJogZeroY, resources.GetString("btnJogZeroY.ToolTip"));
-            this.btnJogZeroY.UseVisualStyleBackColor = true;
-            this.btnJogZeroY.Click += new System.EventHandler(this.BtnJogY_Click);
-            // 
-            // btnJogZeroZ
-            // 
-            resources.ApplyResources(this.btnJogZeroZ, "btnJogZeroZ");
-            this.btnJogZeroZ.Name = "btnJogZeroZ";
-            this.toolTip1.SetToolTip(this.btnJogZeroZ, resources.GetString("btnJogZeroZ.ToolTip"));
-            this.btnJogZeroZ.UseVisualStyleBackColor = true;
-            this.btnJogZeroZ.Click += new System.EventHandler(this.BtnJogZ_Click);
-            // 
-            // cBMoveG0
-            // 
-            resources.ApplyResources(this.cBMoveG0, "cBMoveG0");
-            this.cBMoveG0.Name = "cBMoveG0";
-            this.toolTip1.SetToolTip(this.cBMoveG0, resources.GetString("cBMoveG0.ToolTip"));
-            this.cBMoveG0.UseVisualStyleBackColor = true;
-            // 
-            // virtualJoystickA
-            // 
-            resources.ApplyResources(this.virtualJoystickA, "virtualJoystickA");
-            this.virtualJoystickA.Joystick2Dimension = false;
-            this.virtualJoystickA.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickA.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickA.JoystickRaster = 5;
-            this.virtualJoystickA.JoystickRasterMark = 0;
-            this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickA.JoystickText = "A";
-            this.virtualJoystickA.Name = "virtualJoystickA";
-            this.virtualJoystickA.ShowStop = true;
-            this.virtualJoystickA.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickA, resources.GetString("virtualJoystickA.ToolTip"));
-            this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickA_JoyStickEvent);
-            this.virtualJoystickA.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickA.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            this.virtualJoystickA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
-            this.virtualJoystickA.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
-            // 
-            // virtualJoystickXY
-            // 
-            resources.ApplyResources(this.virtualJoystickXY, "virtualJoystickXY");
-            this.virtualJoystickXY.Joystick2Dimension = true;
-            this.virtualJoystickXY.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickXY.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickXY.JoystickRaster = 5;
-            this.virtualJoystickXY.JoystickRasterMark = 0;
-            this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickXY.JoystickText = "X / Y";
-            this.virtualJoystickXY.Name = "virtualJoystickXY";
-            this.virtualJoystickXY.ShowStop = true;
-            this.virtualJoystickXY.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
-            this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickXY_JoyStickEvent);
-            this.virtualJoystickXY.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickXY.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            this.virtualJoystickXY.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
-            this.virtualJoystickXY.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
-            // 
-            // virtualJoystickZ
-            // 
-            resources.ApplyResources(this.virtualJoystickZ, "virtualJoystickZ");
-            this.virtualJoystickZ.Joystick2Dimension = false;
-            this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickZ.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickZ.JoystickRaster = 5;
-            this.virtualJoystickZ.JoystickRasterMark = 0;
-            this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickZ.JoystickText = "Z";
-            this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.virtualJoystickZ.ShowStop = true;
-            this.virtualJoystickZ.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
-            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickZ_JoyStickEvent);
-            this.virtualJoystickZ.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickZ.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            this.virtualJoystickZ.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
-            this.virtualJoystickZ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
-            // 
-            // virtualJoystickB
-            // 
-            resources.ApplyResources(this.virtualJoystickB, "virtualJoystickB");
-            this.virtualJoystickB.Joystick2Dimension = false;
-            this.virtualJoystickB.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickB.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickB.JoystickRaster = 5;
-            this.virtualJoystickB.JoystickRasterMark = 0;
-            this.virtualJoystickB.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickB.JoystickText = "B";
-            this.virtualJoystickB.Name = "virtualJoystickB";
-            this.virtualJoystickB.ShowStop = true;
-            this.virtualJoystickB.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickB, resources.GetString("virtualJoystickB.ToolTip"));
-            this.virtualJoystickB.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickB_JoyStickEvent);
-            this.virtualJoystickB.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickB.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            this.virtualJoystickB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
-            this.virtualJoystickB.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
-            // 
-            // virtualJoystickC
-            // 
-            resources.ApplyResources(this.virtualJoystickC, "virtualJoystickC");
-            this.virtualJoystickC.Joystick2Dimension = false;
-            this.virtualJoystickC.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickC.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickC.JoystickRaster = 5;
-            this.virtualJoystickC.JoystickRasterMark = 0;
-            this.virtualJoystickC.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickC.JoystickText = "C";
-            this.virtualJoystickC.Name = "virtualJoystickC";
-            this.virtualJoystickC.ShowStop = true;
-            this.virtualJoystickC.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickC, resources.GetString("virtualJoystickC.ToolTip"));
-            this.virtualJoystickC.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickC_JoyStickEvent);
-            this.virtualJoystickC.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickC.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            this.virtualJoystickC.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
-            this.virtualJoystickC.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
-            // 
-            // LblSpeedSet
-            // 
-            resources.ApplyResources(this.LblSpeedSet, "LblSpeedSet");
-            this.LblSpeedSet.Name = "LblSpeedSet";
-            this.toolTip1.SetToolTip(this.LblSpeedSet, resources.GetString("LblSpeedSet.ToolTip"));
-            // 
-            // LblSpeedMax
-            // 
-            resources.ApplyResources(this.LblSpeedMax, "LblSpeedMax");
-            this.LblSpeedMax.Name = "LblSpeedMax";
-            this.toolTip1.SetToolTip(this.LblSpeedMax, resources.GetString("LblSpeedMax.ToolTip"));
-            // 
-            // LblSpeedMin
-            // 
-            resources.ApplyResources(this.LblSpeedMin, "LblSpeedMin");
-            this.LblSpeedMin.Name = "LblSpeedMin";
-            this.toolTip1.SetToolTip(this.LblSpeedMin, resources.GetString("LblSpeedMin.ToolTip"));
-            // 
-            // BtnPenUp
-            // 
-            resources.ApplyResources(this.BtnPenUp, "BtnPenUp");
-            this.BtnPenUp.Name = "BtnPenUp";
-            this.toolTip1.SetToolTip(this.BtnPenUp, resources.GetString("BtnPenUp.ToolTip"));
-            this.BtnPenUp.UseVisualStyleBackColor = true;
-            this.BtnPenUp.Click += new System.EventHandler(this.BtnPenUp_Click);
-            // 
-            // BtnPenDown
-            // 
-            resources.ApplyResources(this.BtnPenDown, "BtnPenDown");
-            this.BtnPenDown.Name = "BtnPenDown";
-            this.toolTip1.SetToolTip(this.BtnPenDown, resources.GetString("BtnPenDown.ToolTip"));
-            this.BtnPenDown.UseVisualStyleBackColor = true;
-            this.BtnPenDown.Click += new System.EventHandler(this.BtnPenDown_Click);
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            this.toolTip1.SetToolTip(this.label17, resources.GetString("label17.ToolTip"));
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            this.toolTip1.SetToolTip(this.label18, resources.GetString("label18.ToolTip"));
-            // 
-            // tBURL
-            // 
-            resources.ApplyResources(this.tBURL, "tBURL");
-            this.tBURL.Name = "tBURL";
-            this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
-            this.tBURL.TextChanged += new System.EventHandler(this.TbURL_TextChanged);
-            // 
-            // btnZeroC
-            // 
-            resources.ApplyResources(this.btnZeroC, "btnZeroC");
-            this.btnZeroC.Name = "btnZeroC";
-            this.toolTip1.SetToolTip(this.btnZeroC, resources.GetString("btnZeroC.ToolTip"));
-            this.btnZeroC.UseVisualStyleBackColor = true;
-            this.btnZeroC.Click += new System.EventHandler(this.BtnZeroC_Click);
-            // 
-            // btnZeroB
-            // 
-            resources.ApplyResources(this.btnZeroB, "btnZeroB");
-            this.btnZeroB.Name = "btnZeroB";
-            this.toolTip1.SetToolTip(this.btnZeroB, resources.GetString("btnZeroB.ToolTip"));
-            this.btnZeroB.UseVisualStyleBackColor = true;
-            this.btnZeroB.Click += new System.EventHandler(this.BtnZeroB_Click);
-            // 
-            // lblCurrentG
-            // 
-            resources.ApplyResources(this.lblCurrentG, "lblCurrentG");
-            this.lblCurrentG.Name = "lblCurrentG";
-            this.toolTip1.SetToolTip(this.lblCurrentG, resources.GetString("lblCurrentG.ToolTip"));
-            // 
-            // btnZeroA
-            // 
-            resources.ApplyResources(this.btnZeroA, "btnZeroA");
-            this.btnZeroA.Name = "btnZeroA";
-            this.toolTip1.SetToolTip(this.btnZeroA, resources.GetString("btnZeroA.ToolTip"));
-            this.btnZeroA.UseVisualStyleBackColor = true;
-            this.btnZeroA.Click += new System.EventHandler(this.BtnZeroA_Click);
-            // 
-            // btnHome
-            // 
-            resources.ApplyResources(this.btnHome, "btnHome");
-            this.btnHome.Name = "btnHome";
-            this.toolTip1.SetToolTip(this.btnHome, resources.GetString("btnHome.ToolTip"));
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.BtnHome_Click);
-            // 
-            // btnZeroXYZ
-            // 
-            resources.ApplyResources(this.btnZeroXYZ, "btnZeroXYZ");
-            this.btnZeroXYZ.Name = "btnZeroXYZ";
-            this.toolTip1.SetToolTip(this.btnZeroXYZ, resources.GetString("btnZeroXYZ.ToolTip"));
-            this.btnZeroXYZ.UseVisualStyleBackColor = true;
-            this.btnZeroXYZ.Click += new System.EventHandler(this.BtnZeroXYZ_Click);
-            // 
-            // btnZeroXY
-            // 
-            resources.ApplyResources(this.btnZeroXY, "btnZeroXY");
-            this.btnZeroXY.Name = "btnZeroXY";
-            this.toolTip1.SetToolTip(this.btnZeroXY, resources.GetString("btnZeroXY.ToolTip"));
-            this.btnZeroXY.UseVisualStyleBackColor = true;
-            this.btnZeroXY.Click += new System.EventHandler(this.BtnZeroXY_Click);
-            // 
-            // btnZeroZ
-            // 
-            resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
-            this.btnZeroZ.Name = "btnZeroZ";
-            this.toolTip1.SetToolTip(this.btnZeroZ, resources.GetString("btnZeroZ.ToolTip"));
-            this.btnZeroZ.UseVisualStyleBackColor = true;
-            this.btnZeroZ.Click += new System.EventHandler(this.BtnZeroZ_Click);
-            // 
-            // btnZeroY
-            // 
-            resources.ApplyResources(this.btnZeroY, "btnZeroY");
-            this.btnZeroY.Name = "btnZeroY";
-            this.toolTip1.SetToolTip(this.btnZeroY, resources.GetString("btnZeroY.ToolTip"));
-            this.btnZeroY.UseVisualStyleBackColor = true;
-            this.btnZeroY.Click += new System.EventHandler(this.BtnZeroY_Click);
-            // 
-            // btnZeroX
-            // 
-            resources.ApplyResources(this.btnZeroX, "btnZeroX");
-            this.btnZeroX.Name = "btnZeroX";
-            this.toolTip1.SetToolTip(this.btnZeroX, resources.GetString("btnZeroX.ToolTip"));
-            this.btnZeroX.UseVisualStyleBackColor = true;
-            this.btnZeroX.Click += new System.EventHandler(this.BtnZeroX_Click);
-            // 
-            // CbMist
-            // 
-            resources.ApplyResources(this.CbMist, "CbMist");
-            this.CbMist.Name = "CbMist";
-            this.toolTip1.SetToolTip(this.CbMist, resources.GetString("CbMist.ToolTip"));
-            this.CbMist.UseVisualStyleBackColor = true;
-            this.CbMist.CheckedChanged += new System.EventHandler(this.CbMist_CheckedChanged);
-            // 
-            // CbSpindle
-            // 
-            resources.ApplyResources(this.CbSpindle, "CbSpindle");
-            this.CbSpindle.Name = "CbSpindle";
-            this.toolTip1.SetToolTip(this.CbSpindle, resources.GetString("CbSpindle.ToolTip"));
-            this.CbSpindle.UseVisualStyleBackColor = true;
-            this.CbSpindle.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
-            // 
-            // CbCoolant
-            // 
-            resources.ApplyResources(this.CbCoolant, "CbCoolant");
-            this.CbCoolant.Name = "CbCoolant";
-            this.toolTip1.SetToolTip(this.CbCoolant, resources.GetString("CbCoolant.ToolTip"));
-            this.CbCoolant.UseVisualStyleBackColor = true;
-            this.CbCoolant.CheckedChanged += new System.EventHandler(this.CbCoolant_CheckedChanged);
-            // 
-            // btnReset
-            // 
-            resources.ApplyResources(this.btnReset, "btnReset");
-            this.btnReset.Name = "btnReset";
-            this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // btnKillAlarm
-            // 
-            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
-            this.btnKillAlarm.Name = "btnKillAlarm";
-            this.toolTip1.SetToolTip(this.btnKillAlarm, resources.GetString("btnKillAlarm.ToolTip"));
-            this.btnKillAlarm.UseVisualStyleBackColor = true;
-            this.btnKillAlarm.Click += new System.EventHandler(this.BtnKillAlarm_Click);
-            // 
-            // btnFeedHold
-            // 
-            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
-            this.btnFeedHold.Name = "btnFeedHold";
-            this.toolTip1.SetToolTip(this.btnFeedHold, resources.GetString("btnFeedHold.ToolTip"));
-            this.btnFeedHold.UseVisualStyleBackColor = true;
-            this.btnFeedHold.Click += new System.EventHandler(this.BtnFeedHold_Click);
-            // 
-            // btnResume
-            // 
-            resources.ApplyResources(this.btnResume, "btnResume");
-            this.btnResume.Name = "btnResume";
-            this.toolTip1.SetToolTip(this.btnResume, resources.GetString("btnResume.ToolTip"));
-            this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Click += new System.EventHandler(this.BtnResume_Click);
-            // 
-            // btnOverrideDoor
-            // 
-            resources.ApplyResources(this.btnOverrideDoor, "btnOverrideDoor");
-            this.btnOverrideDoor.Name = "btnOverrideDoor";
-            this.toolTip1.SetToolTip(this.btnOverrideDoor, resources.GetString("btnOverrideDoor.ToolTip"));
-            this.btnOverrideDoor.UseVisualStyleBackColor = true;
-            this.btnOverrideDoor.Click += new System.EventHandler(this.BtnOverrideDoor_Click);
-            // 
-            // CbAddGraphic
-            // 
-            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
-            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
-            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbAddGraphic.Name = "CbAddGraphic";
-            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
-            this.CbAddGraphic.UseVisualStyleBackColor = true;
-            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
-            // 
-            // Rb2DViewMode1
-            // 
-            resources.ApplyResources(this.Rb2DViewMode1, "Rb2DViewMode1");
-            this.Rb2DViewMode1.BackColor = System.Drawing.Color.Yellow;
-            this.Rb2DViewMode1.Checked = true;
-            this.Rb2DViewMode1.Name = "Rb2DViewMode1";
-            this.Rb2DViewMode1.TabStop = true;
-            this.toolTip1.SetToolTip(this.Rb2DViewMode1, resources.GetString("Rb2DViewMode1.ToolTip"));
-            this.Rb2DViewMode1.UseVisualStyleBackColor = false;
-            this.Rb2DViewMode1.CheckedChanged += new System.EventHandler(this.Rb2DViewMode1_CheckedChanged);
-            // 
-            // Rb2DViewMode2
-            // 
-            resources.ApplyResources(this.Rb2DViewMode2, "Rb2DViewMode2");
-            this.Rb2DViewMode2.Name = "Rb2DViewMode2";
-            this.toolTip1.SetToolTip(this.Rb2DViewMode2, resources.GetString("Rb2DViewMode2.ToolTip"));
-            this.Rb2DViewMode2.UseVisualStyleBackColor = true;
-            this.Rb2DViewMode2.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
-            // 
-            // Rb2DViewMode3
-            // 
-            resources.ApplyResources(this.Rb2DViewMode3, "Rb2DViewMode3");
-            this.Rb2DViewMode3.Name = "Rb2DViewMode3";
-            this.toolTip1.SetToolTip(this.Rb2DViewMode3, resources.GetString("Rb2DViewMode3.ToolTip"));
-            this.Rb2DViewMode3.UseVisualStyleBackColor = true;
-            this.Rb2DViewMode3.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
-            // 
-            // gBoxStream
-            // 
-            this.gBoxStream.Controls.Add(this.btnSimulatePause);
-            this.gBoxStream.Controls.Add(this.btnSimulateSlower);
-            this.gBoxStream.Controls.Add(this.btnSimulateFaster);
-            this.gBoxStream.Controls.Add(this.btnSimulate);
-            this.gBoxStream.Controls.Add(this.lbInfo);
-            this.gBoxStream.Controls.Add(this.pbBuffer);
-            this.gBoxStream.Controls.Add(this.btnStreamStop);
-            this.gBoxStream.Controls.Add(this.btnStreamCheck);
-            this.gBoxStream.Controls.Add(this.lblRemaining);
-            this.gBoxStream.Controls.Add(this.pbFile);
-            this.gBoxStream.Controls.Add(this.lblElapsed);
-            this.gBoxStream.Controls.Add(this.lblFileProgress);
-            this.gBoxStream.Controls.Add(this.btnStreamStart);
-            this.gBoxStream.Controls.Add(this.tbFile);
-            resources.ApplyResources(this.gBoxStream, "gBoxStream");
-            this.gBoxStream.Name = "gBoxStream";
-            this.gBoxStream.TabStop = false;
-            // 
-            // btnSimulatePause
-            // 
-            this.btnSimulatePause.Image = global::GrblPlotter.Properties.Resources.btn_pause;
-            resources.ApplyResources(this.btnSimulatePause, "btnSimulatePause");
-            this.btnSimulatePause.Name = "btnSimulatePause";
-            this.btnSimulatePause.UseVisualStyleBackColor = true;
-            this.btnSimulatePause.Click += new System.EventHandler(this.BtnSimulatePause_Click);
-            // 
-            // btnSimulate
-            // 
-            resources.ApplyResources(this.btnSimulate, "btnSimulate");
-            this.btnSimulate.Name = "btnSimulate";
-            this.btnSimulate.UseVisualStyleBackColor = true;
-            this.btnSimulate.Click += new System.EventHandler(this.BtnSimulate_Click);
-            // 
-            // lbInfo
-            // 
-            resources.ApplyResources(this.lbInfo, "lbInfo");
-            this.lbInfo.Name = "lbInfo";
-            // 
-            // pbBuffer
-            // 
-            resources.ApplyResources(this.pbBuffer, "pbBuffer");
-            this.pbBuffer.Name = "pbBuffer";
-            // 
-            // lblRemaining
-            // 
-            resources.ApplyResources(this.lblRemaining, "lblRemaining");
-            this.lblRemaining.Name = "lblRemaining";
-            // 
-            // pbFile
-            // 
-            resources.ApplyResources(this.pbFile, "pbFile");
-            this.pbFile.Name = "pbFile";
-            // 
-            // lblElapsed
-            // 
-            resources.ApplyResources(this.lblElapsed, "lblElapsed");
-            this.lblElapsed.Name = "lblElapsed";
-            // 
-            // lblFileProgress
-            // 
-            resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
-            this.lblFileProgress.Name = "lblFileProgress";
-            // 
-            // tbFile
-            // 
-            resources.ApplyResources(this.tbFile, "tbFile");
-            this.tbFile.Name = "tbFile";
-            // 
-            // gBoxDimension
-            // 
-            this.gBoxDimension.Controls.Add(this.btnLimitExceed);
-            this.gBoxDimension.Controls.Add(this.groupBox4);
-            this.gBoxDimension.Controls.Add(this.lbDimension);
-            resources.ApplyResources(this.gBoxDimension, "gBoxDimension");
-            this.gBoxDimension.Name = "gBoxDimension";
-            this.gBoxDimension.TabStop = false;
-            // 
-            // btnLimitExceed
-            // 
-            this.btnLimitExceed.BackColor = System.Drawing.Color.Yellow;
-            resources.ApplyResources(this.btnLimitExceed, "btnLimitExceed");
-            this.btnLimitExceed.Name = "btnLimitExceed";
-            this.btnLimitExceed.UseVisualStyleBackColor = false;
-            this.btnLimitExceed.Click += new System.EventHandler(this.BtnLimitExceed_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnOffsetApply);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.tbOffsetY);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.tbOffsetX);
-            this.groupBox4.Controls.Add(this.rBOrigin9);
-            this.groupBox4.Controls.Add(this.rBOrigin8);
-            this.groupBox4.Controls.Add(this.rBOrigin7);
-            this.groupBox4.Controls.Add(this.rBOrigin6);
-            this.groupBox4.Controls.Add(this.rBOrigin5);
-            this.groupBox4.Controls.Add(this.rBOrigin4);
-            this.groupBox4.Controls.Add(this.rBOrigin3);
-            this.groupBox4.Controls.Add(this.rBOrigin2);
-            this.groupBox4.Controls.Add(this.rBOrigin1);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // btnOffsetApply
-            // 
-            resources.ApplyResources(this.btnOffsetApply, "btnOffsetApply");
-            this.btnOffsetApply.Name = "btnOffsetApply";
-            this.btnOffsetApply.UseVisualStyleBackColor = true;
-            this.btnOffsetApply.Click += new System.EventHandler(this.BtnOffsetApply_Click);
-            // 
-            // tbOffsetY
-            // 
-            resources.ApplyResources(this.tbOffsetY, "tbOffsetY");
-            this.tbOffsetY.Name = "tbOffsetY";
-            // 
-            // tbOffsetX
-            // 
-            resources.ApplyResources(this.tbOffsetX, "tbOffsetX");
-            this.tbOffsetX.Name = "tbOffsetX";
-            // 
-            // rBOrigin9
-            // 
-            resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
-            this.rBOrigin9.Name = "rBOrigin9";
-            this.rBOrigin9.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin8
-            // 
-            resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
-            this.rBOrigin8.Name = "rBOrigin8";
-            this.rBOrigin8.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin7
-            // 
-            resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
-            this.rBOrigin7.Checked = true;
-            this.rBOrigin7.Name = "rBOrigin7";
-            this.rBOrigin7.TabStop = true;
-            this.rBOrigin7.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin6
-            // 
-            resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
-            this.rBOrigin6.Name = "rBOrigin6";
-            this.rBOrigin6.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin5
-            // 
-            resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
-            this.rBOrigin5.Name = "rBOrigin5";
-            this.rBOrigin5.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin4
-            // 
-            resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
-            this.rBOrigin4.Name = "rBOrigin4";
-            this.rBOrigin4.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin3
-            // 
-            resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
-            this.rBOrigin3.Name = "rBOrigin3";
-            this.rBOrigin3.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin2
-            // 
-            resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
-            this.rBOrigin2.Name = "rBOrigin2";
-            this.rBOrigin2.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin1
-            // 
-            resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
-            this.rBOrigin1.Name = "rBOrigin1";
-            this.rBOrigin1.UseVisualStyleBackColor = true;
-            // 
-            // lbDimension
-            // 
-            this.lbDimension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            resources.ApplyResources(this.lbDimension, "lbDimension");
-            this.lbDimension.HideSelection = false;
-            this.lbDimension.Name = "lbDimension";
-            this.lbDimension.ReadOnly = true;
-            // 
-            // gBoxOverride
-            // 
-            this.gBoxOverride.Controls.Add(this.gBOverrideRGB);
-            this.gBoxOverride.Controls.Add(this.gBOverrideASGB);
-            this.gBoxOverride.Controls.Add(this.gBOverrideFRGB);
-            this.gBoxOverride.Controls.Add(this.gBOverrideSSGB);
-            resources.ApplyResources(this.gBoxOverride, "gBoxOverride");
-            this.gBoxOverride.Name = "gBoxOverride";
-            this.gBoxOverride.TabStop = false;
-            // 
-            // gBOverrideRGB
-            // 
-            this.gBOverrideRGB.Controls.Add(this.label12);
-            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid0);
-            this.gBOverrideRGB.Controls.Add(this.label13);
-            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid2);
-            this.gBOverrideRGB.Controls.Add(this.lblOverrideRapidValue);
-            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid1);
-            resources.ApplyResources(this.gBOverrideRGB, "gBOverrideRGB");
-            this.gBOverrideRGB.Name = "gBOverrideRGB";
-            this.gBOverrideRGB.TabStop = false;
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // btnOverrideRapid0
-            // 
-            resources.ApplyResources(this.btnOverrideRapid0, "btnOverrideRapid0");
-            this.btnOverrideRapid0.Name = "btnOverrideRapid0";
-            this.btnOverrideRapid0.UseVisualStyleBackColor = true;
-            this.btnOverrideRapid0.Click += new System.EventHandler(this.BtnOverrideRapid0_Click);
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // btnOverrideRapid2
-            // 
-            resources.ApplyResources(this.btnOverrideRapid2, "btnOverrideRapid2");
-            this.btnOverrideRapid2.Name = "btnOverrideRapid2";
-            this.btnOverrideRapid2.UseVisualStyleBackColor = true;
-            this.btnOverrideRapid2.Click += new System.EventHandler(this.BtnOverrideRapid2_Click);
-            // 
-            // lblOverrideRapidValue
-            // 
-            resources.ApplyResources(this.lblOverrideRapidValue, "lblOverrideRapidValue");
-            this.lblOverrideRapidValue.Name = "lblOverrideRapidValue";
-            // 
-            // btnOverrideRapid1
-            // 
-            resources.ApplyResources(this.btnOverrideRapid1, "btnOverrideRapid1");
-            this.btnOverrideRapid1.Name = "btnOverrideRapid1";
-            this.btnOverrideRapid1.UseVisualStyleBackColor = true;
-            this.btnOverrideRapid1.Click += new System.EventHandler(this.BtnOverrideRapid1_Click);
-            // 
-            // gBOverrideASGB
-            // 
-            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD3);
-            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD2);
-            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD1);
-            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD0);
-            this.gBOverrideASGB.Controls.Add(this.btnOverrideSpindle);
-            this.gBOverrideASGB.Controls.Add(this.btnOverrideMist);
-            this.gBOverrideASGB.Controls.Add(this.btnOverrideFlood);
-            resources.ApplyResources(this.gBOverrideASGB, "gBOverrideASGB");
-            this.gBOverrideASGB.Name = "gBOverrideASGB";
-            this.gBOverrideASGB.TabStop = false;
-            // 
-            // btnOverrideFlood
-            // 
-            resources.ApplyResources(this.btnOverrideFlood, "btnOverrideFlood");
-            this.btnOverrideFlood.Image = global::GrblPlotter.Properties.Resources.led_off;
-            this.btnOverrideFlood.Name = "btnOverrideFlood";
-            this.btnOverrideFlood.UseVisualStyleBackColor = true;
-            this.btnOverrideFlood.Click += new System.EventHandler(this.BtnOverrideFlood_Click);
-            // 
-            // gBOverrideFRGB
-            // 
-            this.gBOverrideFRGB.Controls.Add(this.lblStatusFeed);
-            this.gBOverrideFRGB.Controls.Add(this.label5);
-            this.gBOverrideFRGB.Controls.Add(this.label7);
-            this.gBOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR1);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR2);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR0);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR4);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR3);
-            resources.ApplyResources(this.gBOverrideFRGB, "gBOverrideFRGB");
-            this.gBOverrideFRGB.Name = "gBOverrideFRGB";
-            this.gBOverrideFRGB.TabStop = false;
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // lblOverrideFRValue
-            // 
-            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
-            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
-            // 
-            // btnOverrideFR1
-            // 
-            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
-            this.btnOverrideFR1.Name = "btnOverrideFR1";
-            this.btnOverrideFR1.UseVisualStyleBackColor = true;
-            this.btnOverrideFR1.Click += new System.EventHandler(this.BtnOverrideFR1_Click);
-            // 
-            // btnOverrideFR2
-            // 
-            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
-            this.btnOverrideFR2.Name = "btnOverrideFR2";
-            this.btnOverrideFR2.UseVisualStyleBackColor = true;
-            this.btnOverrideFR2.Click += new System.EventHandler(this.BtnOverrideFR2_Click);
-            // 
-            // btnOverrideFR0
-            // 
-            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
-            this.btnOverrideFR0.Name = "btnOverrideFR0";
-            this.btnOverrideFR0.UseVisualStyleBackColor = true;
-            this.btnOverrideFR0.Click += new System.EventHandler(this.BtnOverrideFR0_Click);
-            // 
-            // btnOverrideFR4
-            // 
-            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
-            this.btnOverrideFR4.Name = "btnOverrideFR4";
-            this.btnOverrideFR4.UseVisualStyleBackColor = true;
-            this.btnOverrideFR4.Click += new System.EventHandler(this.BtnOverrideFR4_Click);
-            // 
-            // btnOverrideFR3
-            // 
-            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
-            this.btnOverrideFR3.Name = "btnOverrideFR3";
-            this.btnOverrideFR3.UseVisualStyleBackColor = true;
-            this.btnOverrideFR3.Click += new System.EventHandler(this.BtnOverrideFR3_Click);
-            // 
-            // gBOverrideSSGB
-            // 
-            this.gBOverrideSSGB.Controls.Add(this.lblStatusSpeed);
-            this.gBOverrideSSGB.Controls.Add(this.label8);
-            this.gBOverrideSSGB.Controls.Add(this.label10);
-            this.gBOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS2);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS0);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS1);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS4);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS3);
-            resources.ApplyResources(this.gBOverrideSSGB, "gBOverrideSSGB");
-            this.gBOverrideSSGB.Name = "gBOverrideSSGB";
-            this.gBOverrideSSGB.TabStop = false;
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // lblOverrideSSValue
-            // 
-            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
-            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
-            // 
-            // btnOverrideSS2
-            // 
-            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
-            this.btnOverrideSS2.Name = "btnOverrideSS2";
-            this.btnOverrideSS2.UseVisualStyleBackColor = true;
-            this.btnOverrideSS2.Click += new System.EventHandler(this.BtnOverrideSS2_Click);
-            // 
-            // btnOverrideSS0
-            // 
-            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
-            this.btnOverrideSS0.Name = "btnOverrideSS0";
-            this.btnOverrideSS0.UseVisualStyleBackColor = true;
-            this.btnOverrideSS0.Click += new System.EventHandler(this.BtnOverrideSS0_Click);
-            // 
-            // btnOverrideSS1
-            // 
-            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
-            this.btnOverrideSS1.Name = "btnOverrideSS1";
-            this.btnOverrideSS1.UseVisualStyleBackColor = true;
-            this.btnOverrideSS1.Click += new System.EventHandler(this.BtnOverrideSS1_Click);
-            // 
-            // btnOverrideSS4
-            // 
-            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
-            this.btnOverrideSS4.Name = "btnOverrideSS4";
-            this.btnOverrideSS4.UseVisualStyleBackColor = true;
-            this.btnOverrideSS4.Click += new System.EventHandler(this.BtnOverrideSS4_Click);
-            // 
-            // btnOverrideSS3
-            // 
-            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
-            this.btnOverrideSS3.Name = "btnOverrideSS3";
-            this.btnOverrideSS3.UseVisualStyleBackColor = true;
-            this.btnOverrideSS3.Click += new System.EventHandler(this.BtnOverrideSS3_Click);
-            // 
-            // tLPRechts
-            // 
-            resources.ApplyResources(this.tLPRechts, "tLPRechts");
-            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
-            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
-            this.tLPRechts.Name = "tLPRechts";
-            // 
-            // tLPRechtsUnten
-            // 
-            resources.ApplyResources(this.tLPRechtsUnten, "tLPRechtsUnten");
-            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
-            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
-            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
-            // 
-            // tLPRechtsUntenRechts
-            // 
-            resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
-            this.tLPRechtsUntenRechts.Controls.Add(this.tC_RouterPlotterLaser, 0, 0);
-            this.tLPRechtsUntenRechts.Controls.Add(this.Gb_Jogging, 0, 1);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 2);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tLP_cB_StopJogging, 0, 3);
-            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
-            // 
-            // tC_RouterPlotterLaser
-            // 
-            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage1);
-            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage2);
-            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage3);
-            resources.ApplyResources(this.tC_RouterPlotterLaser, "tC_RouterPlotterLaser");
-            this.tC_RouterPlotterLaser.Name = "tC_RouterPlotterLaser";
-            this.tC_RouterPlotterLaser.SelectedIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.LblSpeedSetVal);
-            this.tabPage1.Controls.Add(this.LblSpeedSet);
-            this.tabPage1.Controls.Add(this.RbSpindleCCW);
-            this.tabPage1.Controls.Add(this.RbSpindleCW);
-            this.tabPage1.Controls.Add(this.LblSpeedMaxVal);
-            this.tabPage1.Controls.Add(this.LblSpeedMinVal);
-            this.tabPage1.Controls.Add(this.CbMist);
-            this.tabPage1.Controls.Add(this.LblSpeedMax);
-            this.tabPage1.Controls.Add(this.LblSpeedMin);
-            this.tabPage1.Controls.Add(this.NudSpeed);
-            this.tabPage1.Controls.Add(this.CbSpindle);
-            this.tabPage1.Controls.Add(this.CbCoolant);
-            this.tabPage1.Controls.Add(this.lblTool);
-            this.tabPage1.Controls.Add(this.CbTool);
-            this.tabPage1.Controls.Add(this.lblSpeed);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // LblSpeedSetVal
-            // 
-            resources.ApplyResources(this.LblSpeedSetVal, "LblSpeedSetVal");
-            this.LblSpeedSetVal.Name = "LblSpeedSetVal";
-            // 
-            // RbSpindleCCW
-            // 
-            resources.ApplyResources(this.RbSpindleCCW, "RbSpindleCCW");
-            this.RbSpindleCCW.Name = "RbSpindleCCW";
-            this.RbSpindleCCW.TabStop = true;
-            this.RbSpindleCCW.UseVisualStyleBackColor = true;
-            this.RbSpindleCCW.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
-            // 
-            // RbSpindleCW
-            // 
-            resources.ApplyResources(this.RbSpindleCW, "RbSpindleCW");
-            this.RbSpindleCW.Checked = true;
-            this.RbSpindleCW.Name = "RbSpindleCW";
-            this.RbSpindleCW.TabStop = true;
-            this.RbSpindleCW.UseVisualStyleBackColor = true;
-            this.RbSpindleCW.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
-            // 
-            // LblSpeedMaxVal
-            // 
-            resources.ApplyResources(this.LblSpeedMaxVal, "LblSpeedMaxVal");
-            this.LblSpeedMaxVal.Name = "LblSpeedMaxVal";
-            // 
-            // LblSpeedMinVal
-            // 
-            resources.ApplyResources(this.LblSpeedMinVal, "LblSpeedMinVal");
-            this.LblSpeedMinVal.Name = "LblSpeedMinVal";
-            // 
-            // NudSpeed
-            // 
-            this.NudSpeed.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudSpeed, "NudSpeed");
-            this.NudSpeed.Name = "NudSpeed";
-            this.NudSpeed.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.NudSpeed.ValueChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
-            // 
-            // lblTool
-            // 
-            resources.ApplyResources(this.lblTool, "lblTool");
-            this.lblTool.Name = "lblTool";
-            // 
-            // CbTool
-            // 
-            resources.ApplyResources(this.CbTool, "CbTool");
-            this.CbTool.Name = "CbTool";
-            this.CbTool.UseVisualStyleBackColor = true;
-            this.CbTool.CheckedChanged += new System.EventHandler(this.CbTool_CheckedChanged);
-            // 
-            // lblSpeed
-            // 
-            resources.ApplyResources(this.lblSpeed, "lblSpeed");
-            this.lblSpeed.Name = "lblSpeed";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.BtnPenZero);
-            this.tabPage2.Controls.Add(this.BtnPenUp);
-            this.tabPage2.Controls.Add(this.BtnPenDown);
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // BtnPenZero
-            // 
-            resources.ApplyResources(this.BtnPenZero, "BtnPenZero");
-            this.BtnPenZero.Name = "BtnPenZero";
-            this.BtnPenZero.UseVisualStyleBackColor = true;
-            this.BtnPenZero.Click += new System.EventHandler(this.BtnPenZero_Click);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.PbLaser);
-            this.tabPage3.Controls.Add(this.CbLasermodeVal);
-            this.tabPage3.Controls.Add(this.CbLasermode);
-            this.tabPage3.Controls.Add(this.LblLaserSetVal);
-            this.tabPage3.Controls.Add(this.label14);
-            this.tabPage3.Controls.Add(this.LblLaserMaxVal);
-            this.tabPage3.Controls.Add(this.LblLaserMinVal);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.RbLaserM4);
-            this.tabPage3.Controls.Add(this.RbLaserM3);
-            this.tabPage3.Controls.Add(this.CbLaser);
-            this.tabPage3.Controls.Add(this.TbLaser);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // PbLaser
-            // 
-            resources.ApplyResources(this.PbLaser, "PbLaser");
-            this.PbLaser.Name = "PbLaser";
-            this.PbLaser.TabStop = false;
-            // 
-            // CbLasermodeVal
-            // 
-            resources.ApplyResources(this.CbLasermodeVal, "CbLasermodeVal");
-            this.CbLasermodeVal.Name = "CbLasermodeVal";
-            // 
-            // CbLasermode
-            // 
-            resources.ApplyResources(this.CbLasermode, "CbLasermode");
-            this.CbLasermode.Name = "CbLasermode";
-            this.CbLasermode.UseVisualStyleBackColor = true;
-            this.CbLasermode.CheckedChanged += new System.EventHandler(this.CbLasermode_CheckedChanged);
-            // 
-            // LblLaserSetVal
-            // 
-            resources.ApplyResources(this.LblLaserSetVal, "LblLaserSetVal");
-            this.LblLaserSetVal.Name = "LblLaserSetVal";
-            // 
-            // LblLaserMaxVal
-            // 
-            resources.ApplyResources(this.LblLaserMaxVal, "LblLaserMaxVal");
-            this.LblLaserMaxVal.Name = "LblLaserMaxVal";
-            // 
-            // LblLaserMinVal
-            // 
-            resources.ApplyResources(this.LblLaserMinVal, "LblLaserMinVal");
-            this.LblLaserMinVal.Name = "LblLaserMinVal";
-            // 
-            // RbLaserM4
-            // 
-            resources.ApplyResources(this.RbLaserM4, "RbLaserM4");
-            this.RbLaserM4.Name = "RbLaserM4";
-            this.RbLaserM4.TabStop = true;
-            this.RbLaserM4.UseVisualStyleBackColor = true;
-            this.RbLaserM4.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
-            // 
-            // RbLaserM3
-            // 
-            resources.ApplyResources(this.RbLaserM3, "RbLaserM3");
-            this.RbLaserM3.Checked = true;
-            this.RbLaserM3.Name = "RbLaserM3";
-            this.RbLaserM3.TabStop = true;
-            this.RbLaserM3.UseVisualStyleBackColor = true;
-            this.RbLaserM3.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
-            // 
-            // CbLaser
-            // 
-            resources.ApplyResources(this.CbLaser, "CbLaser");
-            this.CbLaser.Name = "CbLaser";
-            this.CbLaser.UseVisualStyleBackColor = true;
-            this.CbLaser.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
-            // 
-            // TbLaser
-            // 
-            resources.ApplyResources(this.TbLaser, "TbLaser");
-            this.TbLaser.LargeChange = 10;
-            this.TbLaser.Maximum = 100;
-            this.TbLaser.Name = "TbLaser";
-            this.TbLaser.SmallChange = 5;
-            this.TbLaser.TickFrequency = 5;
-            this.TbLaser.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.TbLaser.Scroll += new System.EventHandler(this.CbLaser_CheckedChanged);
-            this.TbLaser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbLaser_MouseDown);
-            // 
-            // Gb_Jogging
-            // 
-            resources.ApplyResources(this.Gb_Jogging, "Gb_Jogging");
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsZ);
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsY);
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsX);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsZ);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsY);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsX);
-            this.Gb_Jogging.Controls.Add(this.label19);
-            this.Gb_Jogging.Controls.Add(this.label16);
-            this.Gb_Jogging.Controls.Add(this.label15);
-            this.Gb_Jogging.Controls.Add(this.btnJogStop);
-            this.Gb_Jogging.Controls.Add(this.gB_Jog0);
-            this.Gb_Jogging.Name = "Gb_Jogging";
-            this.Gb_Jogging.TabStop = false;
-            this.Gb_Jogging.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.Gb_Jogging.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // BtnJogAbsZ
-            // 
-            resources.ApplyResources(this.BtnJogAbsZ, "BtnJogAbsZ");
-            this.BtnJogAbsZ.Name = "BtnJogAbsZ";
-            this.BtnJogAbsZ.UseVisualStyleBackColor = true;
-            this.BtnJogAbsZ.Click += new System.EventHandler(this.BtnJogAbsZ_Click);
-            // 
-            // BtnJogAbsY
-            // 
-            resources.ApplyResources(this.BtnJogAbsY, "BtnJogAbsY");
-            this.BtnJogAbsY.Name = "BtnJogAbsY";
-            this.BtnJogAbsY.UseVisualStyleBackColor = true;
-            this.BtnJogAbsY.Click += new System.EventHandler(this.BtnJogAbsY_Click);
-            // 
-            // BtnJogAbsX
-            // 
-            resources.ApplyResources(this.BtnJogAbsX, "BtnJogAbsX");
-            this.BtnJogAbsX.Name = "BtnJogAbsX";
-            this.BtnJogAbsX.UseVisualStyleBackColor = true;
-            this.BtnJogAbsX.Click += new System.EventHandler(this.BtnJogAbsX_Click);
-            // 
-            // NudJogAbsZ
-            // 
-            this.NudJogAbsZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsZ.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsZ, "NudJogAbsZ");
-            this.NudJogAbsZ.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsZ.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsZ.Name = "NudJogAbsZ";
-            this.NudJogAbsZ.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToZ;
-            // 
-            // NudJogAbsY
-            // 
-            this.NudJogAbsY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsY.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsY, "NudJogAbsY");
-            this.NudJogAbsY.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsY.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsY.Name = "NudJogAbsY";
-            this.NudJogAbsY.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToY;
-            // 
-            // NudJogAbsX
-            // 
-            this.NudJogAbsX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsX.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsX, "NudJogAbsX");
-            this.NudJogAbsX.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsX.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsX.Name = "NudJogAbsX";
-            this.NudJogAbsX.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToX;
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // gB_Jog0
-            // 
-            this.gB_Jog0.Controls.Add(this.btnJogZeroA);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroX);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroXY);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroY);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroZ);
-            this.gB_Jog0.Controls.Add(this.cBMoveG0);
-            resources.ApplyResources(this.gB_Jog0, "gB_Jog0");
-            this.gB_Jog0.Name = "gB_Jog0";
-            this.gB_Jog0.TabStop = false;
-            // 
-            // tLPRechtsUntenRechtsMitte
-            // 
-            resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickA, 2, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickXY, 0, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickB, 3, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickC, 4, 0);
-            this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
-            this.tLPRechtsUntenRechtsMitte.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.tLPRechtsUntenRechtsMitte.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // tLP_cB_StopJogging
-            // 
-            resources.ApplyResources(this.tLP_cB_StopJogging, "tLP_cB_StopJogging");
-            this.tLP_cB_StopJogging.Controls.Add(this.cBSendJogStop, 0, 0);
-            this.tLP_cB_StopJogging.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tLP_cB_StopJogging.Name = "tLP_cB_StopJogging";
-            // 
-            // cBSendJogStop
-            // 
-            this.cBSendJogStop.Checked = global::GrblPlotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            // 
-            // tableLayoutPanel4
-            // 
-            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
-            this.tableLayoutPanel4.Controls.Add(this.btnOverrideDoor, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            // 
-            // tableLayoutPanel5
-            // 
-            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.btnKillAlarm, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            // 
-            // tLPMitteUnten
-            // 
-            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
-            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
-            this.tLPMitteUnten.Controls.Add(this.CbAddGraphic, 0, 2);
-            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 3);
-            this.tLPMitteUnten.Controls.Add(this.tLPMitteUnten1Zeile, 0, 1);
-            this.tLPMitteUnten.Name = "tLPMitteUnten";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BackgroundImage = global::GrblPlotter.Properties.Resources.modell;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.SizeChanged += new System.EventHandler(this.PictureBox1_SizeChanged);
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.PictureBox1_MouseLeave);
-            this.pictureBox1.MouseHover += new System.EventHandler(this.PictureBox1_MouseHover);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
-            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseWheel);
-            // 
             // cmsPictureBox
             // 
+            this.cmsPictureBox.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDo2ToolStripMenuItem,
             this.applyLastTransformToolStripMenuItem,
@@ -2523,451 +918,9 @@ namespace GrblPlotter
             resources.ApplyResources(this.copyContentTroClipboardToolStripMenuItem, "copyContentTroClipboardToolStripMenuItem");
             this.copyContentTroClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToClipboardToolStripMenuItem_Click);
             // 
-            // tLPMitteUnten1Zeile
-            // 
-            resources.ApplyResources(this.tLPMitteUnten1Zeile, "tLPMitteUnten1Zeile");
-            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode1, 0, 0);
-            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode2, 1, 0);
-            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode3, 2, 0);
-            this.tLPMitteUnten1Zeile.Name = "tLPMitteUnten1Zeile";
-            // 
-            // tLPRechtsOben
-            // 
-            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
-            this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
-            this.tLPRechtsOben.Controls.Add(this.gBoxDRO, 0, 0);
-            this.tLPRechtsOben.Name = "tLPRechtsOben";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.tLPCustomButton1);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.TabStop = false;
-            // 
-            // tLPCustomButton1
-            // 
-            resources.ApplyResources(this.tLPCustomButton1, "tLPCustomButton1");
-            this.tLPCustomButton1.Controls.Add(this.tLPCustomButton2, 0, 0);
-            this.tLPCustomButton1.Controls.Add(this.flowLayoutPanel1, 1, 0);
-            this.tLPCustomButton1.Name = "tLPCustomButton1";
-            // 
-            // tLPCustomButton2
-            // 
-            resources.ApplyResources(this.tLPCustomButton2, "tLPCustomButton2");
-            this.tLPCustomButton2.Controls.Add(this.btnCustom1, 0, 0);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom2, 0, 1);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom3, 0, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom4, 0, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom5, 1, 0);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom6, 1, 1);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom7, 1, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom8, 1, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom9, 2, 0);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom10, 2, 1);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom11, 2, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom12, 2, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom13, 3, 0);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom14, 3, 1);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom15, 3, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom16, 3, 3);
-            this.tLPCustomButton2.Name = "tLPCustomButton2";
-            // 
-            // btnCustom1
-            // 
-            resources.ApplyResources(this.btnCustom1, "btnCustom1");
-            this.btnCustom1.Name = "btnCustom1";
-            this.btnCustom1.UseVisualStyleBackColor = true;
-            this.btnCustom1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom2
-            // 
-            resources.ApplyResources(this.btnCustom2, "btnCustom2");
-            this.btnCustom2.Name = "btnCustom2";
-            this.btnCustom2.UseVisualStyleBackColor = true;
-            this.btnCustom2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom3
-            // 
-            resources.ApplyResources(this.btnCustom3, "btnCustom3");
-            this.btnCustom3.Name = "btnCustom3";
-            this.btnCustom3.UseVisualStyleBackColor = true;
-            this.btnCustom3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom4
-            // 
-            resources.ApplyResources(this.btnCustom4, "btnCustom4");
-            this.btnCustom4.Name = "btnCustom4";
-            this.btnCustom4.UseVisualStyleBackColor = true;
-            this.btnCustom4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom5
-            // 
-            resources.ApplyResources(this.btnCustom5, "btnCustom5");
-            this.btnCustom5.Name = "btnCustom5";
-            this.btnCustom5.UseVisualStyleBackColor = true;
-            this.btnCustom5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom6
-            // 
-            resources.ApplyResources(this.btnCustom6, "btnCustom6");
-            this.btnCustom6.Name = "btnCustom6";
-            this.btnCustom6.UseVisualStyleBackColor = true;
-            this.btnCustom6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom7
-            // 
-            resources.ApplyResources(this.btnCustom7, "btnCustom7");
-            this.btnCustom7.Name = "btnCustom7";
-            this.btnCustom7.UseVisualStyleBackColor = true;
-            this.btnCustom7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom8
-            // 
-            resources.ApplyResources(this.btnCustom8, "btnCustom8");
-            this.btnCustom8.Name = "btnCustom8";
-            this.btnCustom8.UseVisualStyleBackColor = true;
-            this.btnCustom8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom9
-            // 
-            resources.ApplyResources(this.btnCustom9, "btnCustom9");
-            this.btnCustom9.Name = "btnCustom9";
-            this.btnCustom9.UseVisualStyleBackColor = true;
-            this.btnCustom9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom10
-            // 
-            resources.ApplyResources(this.btnCustom10, "btnCustom10");
-            this.btnCustom10.Name = "btnCustom10";
-            this.btnCustom10.UseVisualStyleBackColor = true;
-            this.btnCustom10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom11
-            // 
-            resources.ApplyResources(this.btnCustom11, "btnCustom11");
-            this.btnCustom11.Name = "btnCustom11";
-            this.btnCustom11.UseVisualStyleBackColor = true;
-            this.btnCustom11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom12
-            // 
-            resources.ApplyResources(this.btnCustom12, "btnCustom12");
-            this.btnCustom12.Name = "btnCustom12";
-            this.btnCustom12.UseVisualStyleBackColor = true;
-            this.btnCustom12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom13
-            // 
-            resources.ApplyResources(this.btnCustom13, "btnCustom13");
-            this.btnCustom13.Name = "btnCustom13";
-            this.btnCustom13.UseVisualStyleBackColor = true;
-            this.btnCustom13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom14
-            // 
-            resources.ApplyResources(this.btnCustom14, "btnCustom14");
-            this.btnCustom14.Name = "btnCustom14";
-            this.btnCustom14.UseVisualStyleBackColor = true;
-            this.btnCustom14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom15
-            // 
-            resources.ApplyResources(this.btnCustom15, "btnCustom15");
-            this.btnCustom15.Name = "btnCustom15";
-            this.btnCustom15.UseVisualStyleBackColor = true;
-            this.btnCustom15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // btnCustom16
-            // 
-            resources.ApplyResources(this.btnCustom16, "btnCustom16");
-            this.btnCustom16.Name = "btnCustom16";
-            this.btnCustom16.UseVisualStyleBackColor = true;
-            this.btnCustom16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            // 
-            // gBoxDRO
-            // 
-            this.gBoxDRO.Controls.Add(this.gBoxDROSetCoord);
-            this.gBoxDRO.Controls.Add(this.label_c);
-            this.gBoxDRO.Controls.Add(this.btnZeroC);
-            this.gBoxDRO.Controls.Add(this.label_mc);
-            this.gBoxDRO.Controls.Add(this.label_wc);
-            this.gBoxDRO.Controls.Add(this.label_b);
-            this.gBoxDRO.Controls.Add(this.btnZeroB);
-            this.gBoxDRO.Controls.Add(this.label_mb);
-            this.gBoxDRO.Controls.Add(this.label_wb);
-            this.gBoxDRO.Controls.Add(this.lblCurrentG);
-            this.gBoxDRO.Controls.Add(this.label_status0);
-            this.gBoxDRO.Controls.Add(this.label_a);
-            this.gBoxDRO.Controls.Add(this.btnZeroA);
-            this.gBoxDRO.Controls.Add(this.label_ma);
-            this.gBoxDRO.Controls.Add(this.label_wa);
-            this.gBoxDRO.Controls.Add(this.btnHome);
-            this.gBoxDRO.Controls.Add(this.btnZeroXYZ);
-            this.gBoxDRO.Controls.Add(this.btnZeroXY);
-            this.gBoxDRO.Controls.Add(this.label_z);
-            this.gBoxDRO.Controls.Add(this.btnZeroZ);
-            this.gBoxDRO.Controls.Add(this.label_y);
-            this.gBoxDRO.Controls.Add(this.btnZeroY);
-            this.gBoxDRO.Controls.Add(this.label_x);
-            this.gBoxDRO.Controls.Add(this.btnZeroX);
-            this.gBoxDRO.Controls.Add(this.label_status);
-            this.gBoxDRO.Controls.Add(this.label_mx);
-            this.gBoxDRO.Controls.Add(this.label_my);
-            this.gBoxDRO.Controls.Add(this.label_mz);
-            this.gBoxDRO.Controls.Add(this.label_wz);
-            this.gBoxDRO.Controls.Add(this.label_wx);
-            this.gBoxDRO.Controls.Add(this.label_wy);
-            resources.ApplyResources(this.gBoxDRO, "gBoxDRO");
-            this.gBoxDRO.Name = "gBoxDRO";
-            this.gBoxDRO.TabStop = false;
-            // 
-            // gBoxDROSetCoord
-            // 
-            this.gBoxDROSetCoord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordX);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordX);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordX);
-            resources.ApplyResources(this.gBoxDROSetCoord, "gBoxDROSetCoord");
-            this.gBoxDROSetCoord.Name = "gBoxDROSetCoord";
-            this.gBoxDROSetCoord.TabStop = false;
-            // 
-            // BtnSetCoordA
-            // 
-            resources.ApplyResources(this.BtnSetCoordA, "BtnSetCoordA");
-            this.BtnSetCoordA.Name = "BtnSetCoordA";
-            this.BtnSetCoordA.UseVisualStyleBackColor = true;
-            this.BtnSetCoordA.Click += new System.EventHandler(this.BtnSetCoordA_Click);
-            // 
-            // NudSetCoordA
-            // 
-            this.NudSetCoordA.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordA.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordA, "NudSetCoordA");
-            this.NudSetCoordA.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordA.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordA.Name = "NudSetCoordA";
-            this.NudSetCoordA.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordA;
-            // 
-            // LblSetCoordA
-            // 
-            resources.ApplyResources(this.LblSetCoordA, "LblSetCoordA");
-            this.LblSetCoordA.Name = "LblSetCoordA";
-            // 
-            // BtnSetCoordZ
-            // 
-            resources.ApplyResources(this.BtnSetCoordZ, "BtnSetCoordZ");
-            this.BtnSetCoordZ.Name = "BtnSetCoordZ";
-            this.BtnSetCoordZ.UseVisualStyleBackColor = true;
-            this.BtnSetCoordZ.Click += new System.EventHandler(this.BtnSetCoordZ_Click);
-            // 
-            // BtnSetCoordY
-            // 
-            resources.ApplyResources(this.BtnSetCoordY, "BtnSetCoordY");
-            this.BtnSetCoordY.Name = "BtnSetCoordY";
-            this.BtnSetCoordY.UseVisualStyleBackColor = true;
-            this.BtnSetCoordY.Click += new System.EventHandler(this.BtnSetCoordY_Click);
-            // 
-            // BtnSetCoordX
-            // 
-            resources.ApplyResources(this.BtnSetCoordX, "BtnSetCoordX");
-            this.BtnSetCoordX.Name = "BtnSetCoordX";
-            this.BtnSetCoordX.UseVisualStyleBackColor = true;
-            this.BtnSetCoordX.Click += new System.EventHandler(this.BtnSetCoordX_Click);
-            // 
-            // NudSetCoordZ
-            // 
-            this.NudSetCoordZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordZ.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordZ, "NudSetCoordZ");
-            this.NudSetCoordZ.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordZ.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordZ.Name = "NudSetCoordZ";
-            this.NudSetCoordZ.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordZ;
-            // 
-            // NudSetCoordY
-            // 
-            this.NudSetCoordY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordY.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordY, "NudSetCoordY");
-            this.NudSetCoordY.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordY.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordY.Name = "NudSetCoordY";
-            this.NudSetCoordY.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordY;
-            // 
-            // NudSetCoordX
-            // 
-            this.NudSetCoordX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordX.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordX, "NudSetCoordX");
-            this.NudSetCoordX.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordX.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordX.Name = "NudSetCoordX";
-            this.NudSetCoordX.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordX;
-            // 
-            // LblSetCoordZ
-            // 
-            resources.ApplyResources(this.LblSetCoordZ, "LblSetCoordZ");
-            this.LblSetCoordZ.Name = "LblSetCoordZ";
-            // 
-            // LblSetCoordY
-            // 
-            resources.ApplyResources(this.LblSetCoordY, "LblSetCoordY");
-            this.LblSetCoordY.Name = "LblSetCoordY";
-            // 
-            // LblSetCoordX
-            // 
-            resources.ApplyResources(this.LblSetCoordX, "LblSetCoordX");
-            this.LblSetCoordX.Name = "LblSetCoordX";
-            // 
-            // label_c
-            // 
-            resources.ApplyResources(this.label_c, "label_c");
-            this.label_c.Name = "label_c";
-            // 
-            // label_mc
-            // 
-            resources.ApplyResources(this.label_mc, "label_mc");
-            this.label_mc.Name = "label_mc";
-            // 
-            // label_wc
-            // 
-            resources.ApplyResources(this.label_wc, "label_wc");
-            this.label_wc.Name = "label_wc";
-            // 
-            // label_b
-            // 
-            resources.ApplyResources(this.label_b, "label_b");
-            this.label_b.Name = "label_b";
-            // 
-            // label_mb
-            // 
-            resources.ApplyResources(this.label_mb, "label_mb");
-            this.label_mb.Name = "label_mb";
-            // 
-            // label_wb
-            // 
-            resources.ApplyResources(this.label_wb, "label_wb");
-            this.label_wb.Name = "label_wb";
-            // 
-            // label_status0
-            // 
-            resources.ApplyResources(this.label_status0, "label_status0");
-            this.label_status0.Name = "label_status0";
-            // 
-            // label_a
-            // 
-            resources.ApplyResources(this.label_a, "label_a");
-            this.label_a.Name = "label_a";
-            // 
-            // label_ma
-            // 
-            resources.ApplyResources(this.label_ma, "label_ma");
-            this.label_ma.Name = "label_ma";
-            // 
-            // label_wa
-            // 
-            resources.ApplyResources(this.label_wa, "label_wa");
-            this.label_wa.Name = "label_wa";
-            // 
-            // label_z
-            // 
-            resources.ApplyResources(this.label_z, "label_z");
-            this.label_z.Name = "label_z";
-            // 
-            // label_y
-            // 
-            resources.ApplyResources(this.label_y, "label_y");
-            this.label_y.Name = "label_y";
-            // 
-            // label_x
-            // 
-            resources.ApplyResources(this.label_x, "label_x");
-            this.label_x.Name = "label_x";
-            // 
-            // label_status
-            // 
-            resources.ApplyResources(this.label_status, "label_status");
-            this.label_status.Name = "label_status";
-            // 
-            // label_mx
-            // 
-            resources.ApplyResources(this.label_mx, "label_mx");
-            this.label_mx.Name = "label_mx";
-            // 
-            // label_my
-            // 
-            resources.ApplyResources(this.label_my, "label_my");
-            this.label_my.Name = "label_my";
-            // 
-            // label_mz
-            // 
-            resources.ApplyResources(this.label_mz, "label_mz");
-            this.label_mz.Name = "label_mz";
-            // 
-            // label_wz
-            // 
-            resources.ApplyResources(this.label_wz, "label_wz");
-            this.label_wz.Name = "label_wz";
-            // 
-            // label_wx
-            // 
-            resources.ApplyResources(this.label_wx, "label_wx");
-            this.label_wx.Name = "label_wx";
-            // 
-            // label_wy
-            // 
-            resources.ApplyResources(this.label_wy, "label_wy");
-            this.label_wy.Name = "label_wy";
-            // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.createGCodeToolStripMenuItem,
@@ -3190,6 +1143,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.createSimpleShapesToolStripMenuItem, "createSimpleShapesToolStripMenuItem");
             this.createSimpleShapesToolStripMenuItem.Click += new System.EventHandler(this.CreateSimpleShapesToolStripMenuItem_Click);
             // 
+            // directControlToolStripMenuItem
+            // 
+            this.directControlToolStripMenuItem.Name = "directControlToolStripMenuItem";
+            resources.ApplyResources(this.directControlToolStripMenuItem, "directControlToolStripMenuItem");
+            this.directControlToolStripMenuItem.Click += new System.EventHandler(this.DirectControlToolStripMenuItem_Click);
+            // 
             // wireCutterToolStripMenuItem
             // 
             this.wireCutterToolStripMenuItem.Name = "wireCutterToolStripMenuItem";
@@ -3206,12 +1165,6 @@ namespace GrblPlotter
             // 
             this.startExtensionToolStripMenuItem.Name = "startExtensionToolStripMenuItem";
             resources.ApplyResources(this.startExtensionToolStripMenuItem, "startExtensionToolStripMenuItem");
-            // 
-            // directControlToolStripMenuItem
-            // 
-            this.directControlToolStripMenuItem.Name = "directControlToolStripMenuItem";
-            resources.ApplyResources(this.directControlToolStripMenuItem, "directControlToolStripMenuItem");
-            this.directControlToolStripMenuItem.Click += new System.EventHandler(this.DirectControlToolStripMenuItem_Click);
             // 
             // gCodeToolStripMenuItem
             // 
@@ -3655,7 +1608,7 @@ namespace GrblPlotter
             // 
             // toolStripViewRuler
             // 
-            this.toolStripViewRuler.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DRulerShow;
+            this.toolStripViewRuler.Checked = true;
             this.toolStripViewRuler.CheckOnClick = true;
             this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewRuler.Name = "toolStripViewRuler";
@@ -3664,7 +1617,7 @@ namespace GrblPlotter
             // 
             // toolStripViewInfo
             // 
-            this.toolStripViewInfo.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DInfoShow;
+            this.toolStripViewInfo.Checked = true;
             this.toolStripViewInfo.CheckOnClick = true;
             this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewInfo.Name = "toolStripViewInfo";
@@ -3673,7 +1626,7 @@ namespace GrblPlotter
             // 
             // toolStripViewPenUp
             // 
-            this.toolStripViewPenUp.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DPenUpShow;
+            this.toolStripViewPenUp.Checked = true;
             this.toolStripViewPenUp.CheckOnClick = true;
             this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewPenUp.Name = "toolStripViewPenUp";
@@ -3707,7 +1660,6 @@ namespace GrblPlotter
             // 
             // toolStripViewTool
             // 
-            this.toolStripViewTool.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DToolTableShow;
             this.toolStripViewTool.CheckOnClick = true;
             this.toolStripViewTool.Name = "toolStripViewTool";
             resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
@@ -3715,7 +1667,7 @@ namespace GrblPlotter
             // 
             // toolStripViewBackground
             // 
-            this.toolStripViewBackground.Checked = global::GrblPlotter.Properties.Settings.Default.guiBackgroundShow;
+            this.toolStripViewBackground.Checked = true;
             this.toolStripViewBackground.CheckOnClick = true;
             this.toolStripViewBackground.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewBackground.Name = "toolStripViewBackground";
@@ -3761,6 +1713,7 @@ namespace GrblPlotter
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel0,
             this.toolStripStatusLabel1,
@@ -3798,6 +1751,7 @@ namespace GrblPlotter
             // 
             // cmsPictureBox2
             // 
+            this.cmsPictureBox2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsPictureBox2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cms2ToolStripMenuItem,
             this.offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem,
@@ -3828,18 +1782,2802 @@ namespace GrblPlotter
             this.moveBetweenLastPositionsToolStripMenuItem.CheckOnClick = true;
             this.moveBetweenLastPositionsToolStripMenuItem.Name = "moveBetweenLastPositionsToolStripMenuItem";
             resources.ApplyResources(this.moveBetweenLastPositionsToolStripMenuItem, "moveBetweenLastPositionsToolStripMenuItem");
-            this.moveBetweenLastPositionsToolStripMenuItem.Click += new System.EventHandler(this.moveBetweenLastPositionsToolStripMenuItem_Click);
+            this.moveBetweenLastPositionsToolStripMenuItem.Click += new System.EventHandler(this.MoveBetweenLastPositionsToolStripMenuItem_Click);
             // 
             // moveTimer
             // 
             this.moveTimer.Interval = 200;
-            this.moveTimer.Tick += new System.EventHandler(this.moveTimer_Tick);
+            this.moveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tLPLinks);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
+            // 
+            // tLPLinks
+            // 
+            resources.ApplyResources(this.tLPLinks, "tLPLinks");
+            this.tLPLinks.Controls.Add(this.ucStreaming, 0, 0);
+            this.tLPLinks.Controls.Add(this.ucOverrides, 0, 1);
+            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 4);
+            this.tLPLinks.Controls.Add(this.ucFlowControl, 0, 2);
+            this.tLPLinks.Controls.Add(this.ucSetOffset, 0, 3);
+            this.tLPLinks.Name = "tLPLinks";
+            // 
+            // ucStreaming
+            // 
+            this.ucStreaming.BackColor = System.Drawing.Color.WhiteSmoke;
+            resources.ApplyResources(this.ucStreaming, "ucStreaming");
+            this.ucStreaming.Name = "ucStreaming";
+            // 
+            // ucOverrides
+            // 
+            resources.ApplyResources(this.ucOverrides, "ucOverrides");
+            this.ucOverrides.Name = "ucOverrides";
+            // 
+            // fCTBCode
+            // 
+            this.fCTBCode.AllowMacroRecording = false;
+            this.fCTBCode.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fCTBCode.AutoIndent = false;
+            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.fCTBCode, "fCTBCode");
+            this.fCTBCode.BackBrush = null;
+            this.fCTBCode.CharCnWidth = 13;
+            this.fCTBCode.CharHeight = 12;
+            this.fCTBCode.CharWidth = 7;
+            this.fCTBCode.ContextMenuStrip = this.cmsFCTB;
+            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DelayedTextChangedInterval = 200;
+            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.Hotkeys = resources.GetString("fCTBCode.Hotkeys");
+            this.fCTBCode.IsReplaceMode = false;
+            this.fCTBCode.Name = "fCTBCode";
+            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
+            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.ShowFoldingLines = true;
+            this.fCTBCode.ToolTip = this.toolTip1;
+            this.fCTBCode.Zoom = 100;
+            this.fCTBCode.ToolTipNeeded += new System.EventHandler<FastColoredTextBoxNS.ToolTipNeededEventArgs>(this.FctbCode_ToolTipNeeded);
+            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.FctbCode_TextChanged);
+            this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.FctbCode_TextChangedDelayed);
+            this.fCTBCode.Click += new System.EventHandler(this.FctbCode_Click);
+            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FctbCode_KeyDown);
+            this.fCTBCode.MouseHover += new System.EventHandler(this.FCTBCode_MouseHover);
+            // 
+            // tBURL
+            // 
+            resources.ApplyResources(this.tBURL, "tBURL");
+            this.tBURL.Name = "tBURL";
+            this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
+            this.tBURL.TextChanged += new System.EventHandler(this.TbURL_TextChanged);
+            // 
+            // Rb2DViewMode1
+            // 
+            resources.ApplyResources(this.Rb2DViewMode1, "Rb2DViewMode1");
+            this.Rb2DViewMode1.BackColor = System.Drawing.Color.Yellow;
+            this.Rb2DViewMode1.Checked = true;
+            this.Rb2DViewMode1.Name = "Rb2DViewMode1";
+            this.Rb2DViewMode1.TabStop = true;
+            this.toolTip1.SetToolTip(this.Rb2DViewMode1, resources.GetString("Rb2DViewMode1.ToolTip"));
+            this.Rb2DViewMode1.UseVisualStyleBackColor = false;
+            this.Rb2DViewMode1.CheckedChanged += new System.EventHandler(this.Rb2DViewMode1_CheckedChanged);
+            // 
+            // Rb2DViewMode2
+            // 
+            resources.ApplyResources(this.Rb2DViewMode2, "Rb2DViewMode2");
+            this.Rb2DViewMode2.Name = "Rb2DViewMode2";
+            this.toolTip1.SetToolTip(this.Rb2DViewMode2, resources.GetString("Rb2DViewMode2.ToolTip"));
+            this.Rb2DViewMode2.UseVisualStyleBackColor = true;
+            this.Rb2DViewMode2.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
+            // 
+            // Rb2DViewMode3
+            // 
+            resources.ApplyResources(this.Rb2DViewMode3, "Rb2DViewMode3");
+            this.Rb2DViewMode3.Name = "Rb2DViewMode3";
+            this.toolTip1.SetToolTip(this.Rb2DViewMode3, resources.GetString("Rb2DViewMode3.ToolTip"));
+            this.Rb2DViewMode3.UseVisualStyleBackColor = true;
+            this.Rb2DViewMode3.CheckedChanged += new System.EventHandler(this.Rb2DViewMode2_CheckedChanged);
+            // 
+            // CbAddGraphic
+            // 
+            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
+            settings1.cameraColorCross = System.Drawing.Color.Yellow;
+            settings1.cameraColorText = System.Drawing.Color.DimGray;
+            settings1.cameraDistortionEnable = true;
+            settings1.cameraDistortionFixP0 = new System.Drawing.Point(64, 53);
+            settings1.cameraDistortionFixP1 = new System.Drawing.Point(579, 43);
+            settings1.cameraDistortionFixP2 = new System.Drawing.Point(602, 436);
+            settings1.cameraDistortionFixP3 = new System.Drawing.Point(33, 433);
+            settings1.cameraDistortionXyP0 = new System.Drawing.Point(0, 0);
+            settings1.cameraDistortionXyP1 = new System.Drawing.Point(640, 0);
+            settings1.cameraDistortionXyP2 = new System.Drawing.Point(640, 480);
+            settings1.cameraDistortionXyP3 = new System.Drawing.Point(0, 480);
+            settings1.cameraFilterIndex = "0";
+            settings1.cameraFilterIndexFix = ((byte)(0));
+            settings1.cameraFilterIndexXy = ((byte)(0));
+            settings1.cameraIndexFix = ((byte)(0));
+            settings1.cameraIndexNameFix = "";
+            settings1.cameraIndexNameXy = "";
+            settings1.cameraIndexXy = ((byte)(0));
+            settings1.cameraMount = 0;
+            settings1.cameraPosBot = -50D;
+            settings1.cameraPosTop = 0D;
+            settings1.cameraRotateArround0 = true;
+            settings1.cameraRotationFix = 180D;
+            settings1.cameraRotationXy = 0D;
+            settings1.cameraScaleOnRotate = false;
+            settings1.cameraScalingFix = 2.274D;
+            settings1.cameraScalingXy = 20D;
+            settings1.cameraScalingXyzBot = 15D;
+            settings1.cameraScalingXyzTop = 20D;
+            settings1.cameraShowPathDimension = false;
+            settings1.cameraShowPathLimits = false;
+            settings1.cameraShowPathPenUp = false;
+            settings1.cameraSimulateImage = false;
+            settings1.cameraTeachRadiusFix = 200D;
+            settings1.cameraTeachRadiusXy = 20D;
+            settings1.cameraTeachRadiusXyzBot = 20D;
+            settings1.cameraTeachRadiusXyzTop = 30D;
+            settings1.cameraToolOffsetX = 0D;
+            settings1.cameraToolOffsetY = 0D;
+            settings1.cameraZeroFixMachineX = 0D;
+            settings1.cameraZeroFixMachineY = 0D;
+            settings1.cameraZeroFixX = 96D;
+            settings1.cameraZeroFixY = 420D;
+            settings1.camFilterBlue1 = 0;
+            settings1.camFilterBlue2 = 64;
+            settings1.camFilterGreen1 = 0;
+            settings1.camFilterGreen2 = 64;
+            settings1.camFilterOutside = false;
+            settings1.camFilterRed1 = 0;
+            settings1.camFilterRed2 = 64;
+            settings1.camShapeAutoTimeout = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.camShapeCircle = true;
+            settings1.camShapeDist = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.camShapeDistMax = new decimal(new int[] {
+            3,
+            0,
+            0,
+            131072});
+            settings1.camShapeRect = true;
+            settings1.camShapeSet1 = "Fiducials|0|90|0|90|0|120|False|True|False|8|14|2|2|";
+            settings1.camShapeSet2 = "Paper|0|100|0|100|0|100|True|True|True|5|50|0.5|1|";
+            settings1.camShapeSet3 = "PCB|0|150|0|150|0|150|False|False|True|1|6|0.5|1|";
+            settings1.camShapeSet4 = "Wood|0|106|0|237|123|246|True|True|False|5|20|0.5|2.0|";
+            settings1.camShapeSize = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.camShapeSizeMax = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            settings1.camShapeSizeMin = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            settings1.colorPaletteLastLoaded = "GRBL-Plotter_Watercolor.txt";
+            settings1.convertZtoSMax = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.convertZtoSMin = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.convertZtoSOff = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.counterImportBarcode = ((uint)(0u));
+            settings1.counterImportCSV = ((uint)(0u));
+            settings1.counterImportDrill = ((uint)(0u));
+            settings1.counterImportDXF = ((uint)(0u));
+            settings1.counterImportExtension = ((uint)(0u));
+            settings1.counterImportGCode = ((uint)(0u));
+            settings1.counterImportGerber = ((uint)(0u));
+            settings1.counterImportHPGL = ((uint)(0u));
+            settings1.counterImportImage = ((uint)(0u));
+            settings1.counterImportPDNJson = ((uint)(0u));
+            settings1.counterImportShape = ((uint)(0u));
+            settings1.counterImportSVG = ((uint)(0u));
+            settings1.counterImportText = ((uint)(0u));
+            settings1.counterUseHeightMap = ((uint)(0u));
+            settings1.counterUseLaserSetup = ((uint)(0u));
+            settings1.counterUseProbing = ((uint)(0u));
+            settings1.crcValue = 2.5D;
+            settings1.createJogPathCodeEnd = "STOP";
+            settings1.createJogPathCodeStart = "M3 S1000;G4 P1;";
+            settings1.createJogPathFeedrate = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.createJogPathRaster = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.createShapeMovo00 = false;
+            settings1.createShapeNoZUp = false;
+            settings1.createShapeOrigin = 5;
+            settings1.createShapeR = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.createShapeRZRadius = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.createShapeRZStep = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.createShapeRZWidth = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.createShapeToolDiameter = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.createShapeToolFeedXY = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.createShapeToolFeedZ = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            settings1.createShapeToolOverlap = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            settings1.createShapeToolPath = 1;
+            settings1.createShapeToolSpindleSpeed = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            settings1.createShapeToolZStep = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.createShapeType = 1;
+            settings1.createShapeX = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.createShapeY = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.createTextAlignment = 1;
+            settings1.createTextFontColor = "WindowText";
+            settings1.createTextFontIndex = 0;
+            settings1.createTextFontText = "Test";
+            settings1.createTextHersheyFontName = "cBFont";
+            settings1.createTextHersheyFontSize = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.createTextHersheyLetterDistance = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.createTextHersheyLineBreak = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.createTextHersheyLineBreakEnable = false;
+            settings1.createTextHersheyLineDistance = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            settings1.createTextHersheySelect = true;
+            settings1.createTextSystemFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            settings1.createTextSystemFontSize = 16F;
+            settings1.createTextSystemSizeX = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.createTextSystemSizeY = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.ctrl4thInvert = false;
+            settings1.ctrl4thName = "A";
+            settings1.ctrl4thOverX = true;
+            settings1.ctrl4thUse = false;
+            settings1.ctrlColorizeGCode = true;
+            settings1.ctrlCommentOut = true;
+            settings1.ctrlConnectMarlin = false;
+            settings1.ctrlDIYShowFeedback = true;
+            settings1.ctrlImportSkip = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.ctrlLaserMode = false;
+            settings1.ctrlLineEndEnable = false;
+            settings1.ctrlLineEndText = ";";
+            settings1.ctrlLineNumbers = false;
+            settings1.ctrlReplaceEnable = false;
+            settings1.ctrlReplaceM3 = true;
+            settings1.ctrlSendStopJog = true;
+            settings1.ctrlToolChange = false;
+            settings1.ctrlToolChangeEmpty = false;
+            settings1.ctrlToolChangeEmptyNr = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.ctrlToolChangeM6PassThrough = false;
+            settings1.ctrlToolScriptDelay = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.ctrlToolScriptGet = "data\\scripts\\script_v1583_brush_select.nc";
+            settings1.ctrlToolScriptProbe = "data\\scripts\\";
+            settings1.ctrlToolScriptPut = "data\\scripts\\";
+            settings1.ctrlToolScriptSelect = "data\\scripts\\script_v1583_brush_clean.nc";
+            settings1.ctrlUpgradeRequired = true;
+            settings1.ctrlUseSerial2 = false;
+            settings1.ctrlUseSerial3 = false;
+            settings1.ctrlUseSerialDIY = false;
+            settings1.ctrlUseSerialPortFixer = true;
+            settings1.DeviceLaserAir = false;
+            settings1.DeviceLaserCmndAirOff = "M9";
+            settings1.DeviceLaserCmndAirOn = "M8";
+            settings1.DeviceLaserCmndPilotOff = "M9";
+            settings1.DeviceLaserCmndPilotOn = "M7";
+            settings1.DeviceLaserHatchFillAngle = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserHatchFillAngleIncrement = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserHatchFillAngleIncrementEnable = false;
+            settings1.DeviceLaserHatchFillDeletePath = false;
+            settings1.DeviceLaserHatchFillDistance = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.DeviceLaserHatchFillEnable = false;
+            settings1.DeviceLaserHatchFillInsetDistance = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.DeviceLaserM3 = true;
+            settings1.DeviceLaserPasses = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserPower = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserPowerLow = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserPowerMin = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserSpeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserSplitterDistance = 285;
+            settings1.DeviceLaserToolDiameter = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.DeviceLaserZDown = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserZEnable = false;
+            settings1.DeviceLaserZFeed = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.DeviceLaserZSave = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterControlIndex = 0;
+            settings1.DevicePlotterDepthControl = false;
+            settings1.DevicePlotterHatchFillAngle = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterHatchFillAngleIncrement = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterHatchFillAngleIncrementEnable = false;
+            settings1.DevicePlotterHatchFillDeletePath = false;
+            settings1.DevicePlotterHatchFillDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.DevicePlotterHatchFillEnable = false;
+            settings1.DevicePlotterHatchFillInsetDistance = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.DevicePlotterPenChangeRBAutomatic = false;
+            settings1.DevicePlotterPenChangeRBManual = false;
+            settings1.DevicePlotterPenChangeRBNo = true;
+            settings1.DevicePlotterPenInHolder = false;
+            settings1.DevicePlotterSpeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterSpeedZ = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterToolDiameter = new decimal(new int[] {
+            8,
+            0,
+            0,
+            65536});
+            settings1.DevicePlotterZDown = new decimal(new int[] {
+            2,
+            0,
+            0,
+            -2147483648});
+            settings1.DevicePlotterZP93 = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterZP94 = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterZUp = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.DeviceRouterSpeedXY = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.DeviceRouterSpeedZ = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.DeviceRouterSpindle = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.DeviceRouterToolDiameter = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.DeviceRouterZDown = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            settings1.DeviceRouterZUp = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.DeviceSplitterDistance = 300;
+            settings1.FCTBBlockExpandKeepLastOpen = false;
+            settings1.FCTBBlockExpandOnSelect = true;
+            settings1.FCTBLineInterval = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.FCTBSaveEncodingIndex = 0;
+            settings1.FCTBSaveWithoutComments = false;
+            settings1.flowCheckRegistryChange = true;
+            settings1.flowControlEnable = true;
+            settings1.flowControlText = "M5; M9";
+            settings1.fromFormInsertEnable = false;
+            settings1.gamePadAnalogDead = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.gamePadAnalogMinFeed = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.gamePadAnalogMinimum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            settings1.gamePadAnalogMinStep = new decimal(new int[] {
+            10,
+            0,
+            0,
+            196608});
+            settings1.gamePadAnalogOffset = new decimal(new int[] {
+            32757,
+            0,
+            0,
+            0});
+            settings1.gamePadButtons0 = "#Start (Start streaming)";
+            settings1.gamePadButtons1 = "#F+10 (Feedrate +10%)";
+            settings1.gamePadButtons10 = "G92 X0 Y0 (Zero X and Y)";
+            settings1.gamePadButtons11 = "";
+            settings1.gamePadButtons12 = "";
+            settings1.gamePadButtons13 = "";
+            settings1.gamePadButtons14 = "";
+            settings1.gamePadButtons15 = "";
+            settings1.gamePadButtons2 = "#F100 (Feedrate =100%)";
+            settings1.gamePadButtons3 = "#F-10 (Feedrate -10%)";
+            settings1.gamePadButtons4 = "G92 X0 (Zero X)";
+            settings1.gamePadButtons5 = "G92 Z0 (Zero Z)";
+            settings1.gamePadButtons6 = "G92 Y0 (Zero Y)";
+            settings1.gamePadButtons7 = "G92 X0 Y0 Z0 (Zero all)";
+            settings1.gamePadButtons8 = "$H (Homing)";
+            settings1.gamePadButtons9 = "#Start (Start streaming)";
+            settings1.gamePadEnable = false;
+            settings1.gamePadPOVC00 = "$J=G91 Y1.000 F100";
+            settings1.gamePadPOVC01 = "$J=G91 X1.000 Y1.000 F100";
+            settings1.gamePadPOVC02 = "$J=G91 X1.000 F100";
+            settings1.gamePadPOVC03 = "$J=G91 X1.000 Y-1.000 F100";
+            settings1.gamePadPOVC04 = "$J=G91 Y-1.000 F100";
+            settings1.gamePadPOVC05 = "$J=G91 X-1.000 Y-1.000 F100";
+            settings1.gamePadPOVC06 = "$J=G91 X-1.000 F100";
+            settings1.gamePadPOVC07 = "$J=G91 X-1.000 Y1.000 F100";
+            settings1.gamePadRAxis = "A";
+            settings1.gamePadRInvert = false;
+            settings1.gamePadXAxis = "X";
+            settings1.gamePadXInvert = false;
+            settings1.gamePadYAxis = "Y";
+            settings1.gamePadYInvert = false;
+            settings1.gamePadZAxis = "Z";
+            settings1.gamePadZInvert = false;
+            settings1.grblBufferAutomatic = true;
+            settings1.grblBufferSize = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            settings1.grblDescriptionD0 = "D0";
+            settings1.grblDescriptionD1 = "D1";
+            settings1.grblDescriptionD2 = "D2";
+            settings1.grblDescriptionD3 = "D3";
+            settings1.grblDescriptionDxEnable = false;
+            settings1.grblLastOffsetA = 0D;
+            settings1.grblLastOffsetB = 0D;
+            settings1.grblLastOffsetC = 0D;
+            settings1.grblLastOffsetCoord = 54;
+            settings1.grblLastOffsetX = 0D;
+            settings1.grblLastOffsetY = 0D;
+            settings1.grblLastOffsetZ = 0D;
+            settings1.grblPollIntervalIndex = 2;
+            settings1.grblPollIntervalReduce = false;
+            settings1.grblRunTimeFlood = ((long)(0));
+            settings1.grblRunTimeMist = ((long)(0));
+            settings1.grblRunTimeSpindle = ((long)(0));
+            settings1.grblStreamingProtocol1 = true;
+            settings1.grblTranslateMessage = false;
+            settings1.gui2DColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            settings1.gui2DColorBackgroundPath = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            settings1.gui2DColorDimension = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            settings1.gui2DColorHeightMap = System.Drawing.Color.Yellow;
+            settings1.gui2DColorMachineLimit = System.Drawing.Color.Fuchsia;
+            settings1.gui2DColorMarker = System.Drawing.Color.DeepPink;
+            settings1.gui2DColorPenDown = System.Drawing.Color.Red;
+            settings1.gui2DColorPenDownModeEnable = true;
+            settings1.gui2DColorPenDownModeWidth = true;
+            settings1.gui2DColorPenUp = System.Drawing.Color.Green;
+            settings1.gui2DColorRotaryInfo = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            settings1.gui2DColorRuler = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            settings1.gui2DColorSimulation = System.Drawing.Color.Lime;
+            settings1.gui2DColorTool = System.Drawing.Color.Black;
+            settings1.gui2DDuplicateAddDimensionX = true;
+            settings1.gui2DDuplicateAddDimensionY = false;
+            settings1.gui2DDuplicateOffsetX = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.gui2DDuplicateOffsetY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.gui2DInfoShow = true;
+            settings1.gui2DInfoSize1 = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            settings1.gui2DInfoSize2 = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            settings1.gui2DInfoTranparency = 128;
+            settings1.gui2DKeepPenWidth = false;
+            settings1.gui2DPenUpArrow = true;
+            settings1.gui2DPenUpId = true;
+            settings1.gui2DPenUpShow = false;
+            settings1.gui2DRulerShow = true;
+            settings1.gui2DShowVertexEnable = false;
+            settings1.gui2DShowVertexSize = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.gui2DShowVertexType = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.gui2DSizeTool = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            settings1.gui2DToolTableShow = false;
+            settings1.gui2DWidthHeightMap = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthMarker = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthPenDown = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthPenUp = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthRotaryInfo = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthRuler = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthSimulation = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.gui2DWidthTool = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.guiBackgroundImageEnable = false;
+            settings1.guiBackgroundShow = true;
+            settings1.guiCheckUpdate = true;
+            settings1.guiCheckUpdateURL = "https://GRBL-Plotter.de";
+            settings1.guiColorSchemeEnable = false;
+            settings1.guiColorThemeButton = System.Drawing.Color.Empty;
+            settings1.guiColorThemeButtonH = 0;
+            settings1.guiColorThemeButtonS = 100;
+            settings1.guiColorThemeButtonV = 100;
+            settings1.guiColorThemeEnable = false;
+            settings1.guiColorThemePanel = System.Drawing.Color.Empty;
+            settings1.guiColorThemePanelH = 0;
+            settings1.guiColorThemePanelS = 100;
+            settings1.guiColorThemePanelV = 100;
+            settings1.guiCustomBtn1 = "🡴 Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#" +
+    "GMAY|#80FFFF";
+            settings1.guiCustomBtn10 = "▼  Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080";
+            settings1.guiCustomBtn11 = "🡶 Graphic Bottom-Right|(Move to lower right corner - jog fast);$J=G90 F5000 X#GM" +
+    "AX Y#GMIY|#80FFFF";
+            settings1.guiCustomBtn12 = "▼ Pen down Servo|(Move Pen to lower position);M3 S#GMIS|#FF8080";
+            settings1.guiCustomBtn13 = " |";
+            settings1.guiCustomBtn14 = " | ";
+            settings1.guiCustomBtn15 = " | ";
+            settings1.guiCustomBtn16 = " | ";
+            settings1.guiCustomBtn17 = " |";
+            settings1.guiCustomBtn18 = " | ";
+            settings1.guiCustomBtn19 = " | ";
+            settings1.guiCustomBtn2 = "▲ Pen up Zmax|(Move Pen to upper position);$J=G90 F5000 Z#GMAZ|#80FF80";
+            settings1.guiCustomBtn20 = " | ";
+            settings1.guiCustomBtn21 = " | ";
+            settings1.guiCustomBtn22 = " | ";
+            settings1.guiCustomBtn23 = " | ";
+            settings1.guiCustomBtn24 = " | ";
+            settings1.guiCustomBtn25 = " | ";
+            settings1.guiCustomBtn26 = " | ";
+            settings1.guiCustomBtn27 = " | ";
+            settings1.guiCustomBtn28 = " | ";
+            settings1.guiCustomBtn29 = " | ";
+            settings1.guiCustomBtn3 = "🡷 Graphic Bottom-Left|(Move to lower left corner - jog fast);$J=G90 F5000 X#GMIX" +
+    " Y#GMIY|#80FFFF";
+            settings1.guiCustomBtn30 = " | ";
+            settings1.guiCustomBtn31 = " | ";
+            settings1.guiCustomBtn32 = " | ";
+            settings1.guiCustomBtn4 = "▲ Pen up Servo|(Move Pen to upper position);M3 S#GMAS|#80FF80";
+            settings1.guiCustomBtn5 = "↻ Move around graphic|(Move around graphic dimension - jog fast);G90G1F5000X#GMIX" +
+    "Y#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80";
+            settings1.guiCustomBtn6 = "◎ Graphic Center|(Move to graphic center - fast);$J=G90 F5000 X#GCTX Y#GCTY|#00FF" +
+    "FF";
+            settings1.guiCustomBtn7 = "Add Logo|data\\scripts\\script_my_logo.nc|#FFFFC0";
+            settings1.guiCustomBtn8 = "► Pen zero Servo|(Move Pen to zero position);M3 S#GZES|#e6f7ff";
+            settings1.guiCustomBtn9 = "🡵 Graphic Top-Right|(Move to upper right corner - jog fast);$J=G90 F5000 X#GMAX " +
+    "Y#GMAY|#80FFFF";
+            settings1.guiDimensionShow = true;
+            settings1.guiDisableProgramPause = false;
+            settings1.guiExtendedLoggingCOMEnabled = false;
+            settings1.guiExtendedLoggingEnabled = false;
+            settings1.guiJoystickASpeed1 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.guiJoystickASpeed2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.guiJoystickASpeed3 = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.guiJoystickASpeed4 = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.guiJoystickASpeed5 = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.guiJoystickAStep1 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.guiJoystickAStep2 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.guiJoystickAStep3 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.guiJoystickAStep4 = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            settings1.guiJoystickAStep5 = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            settings1.guiJoystickRaster = 5;
+            settings1.guiJoystickXYSpeed1 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYSpeed2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYSpeed3 = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYSpeed4 = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYSpeed5 = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYStep1 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.guiJoystickXYStep2 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.guiJoystickXYStep3 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYStep4 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.guiJoystickXYStep5 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZSpeed1 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZSpeed2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZSpeed3 = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZSpeed4 = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZSpeed5 = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZStep1 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.guiJoystickZStep2 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.guiJoystickZStep3 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZStep4 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.guiJoystickZStep5 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.guiLanguage = "en";
+            settings1.guiLastEnd = ((long)(0));
+            settings1.guiLastEndReason = "-";
+            settings1.guiLastFileLoaded = "D:\\";
+            settings1.guiLastStart = ((long)(0));
+            settings1.guiPathSaveCode = "";
+            settings1.guiPenUpDownButtonsShow = false;
+            settings1.guiProgressShow = true;
+            settings1.guiShowFormInFront = false;
+            settings1.guiSpindleSpeed = "1000";
+            settings1.guiToolSelection = 0;
+            settings1.heightMapDeltaX = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.heightMapDeltaY = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.heightMapExtrudeEnable = false;
+            settings1.heightMapExtrudeScanX = true;
+            settings1.heightMapGridX = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.heightMapGridY = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.heightMapProbeDepth = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
+            settings1.heightMapProbeG1 = false;
+            settings1.heightMapProbeHeight = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.heightMapProbeSpeed = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            settings1.heightMapProbeSpeedXY = new decimal(new int[] {
+            1200,
+            0,
+            0,
+            0});
+            settings1.heightMapProbeUseZ = true;
+            settings1.heightMapX1 = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.heightMapX2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.heightMapY1 = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.heightMapY2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.importAssumeAsEqualDistance = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            settings1.importBarcode1DHeight = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.importBarcode1DLines = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            settings1.importBarcode1DName = "";
+            settings1.importBarcode1DScanGap = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.importBarcode1DSelect = true;
+            settings1.importBarcode1DText = "123";
+            settings1.importBarcode2DBorder = true;
+            settings1.importBarcode2DFacebook = "";
+            settings1.importBarcode2DHeight = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.importBarcode2DLines = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            settings1.importBarcode2DScanGap = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.importBarcode2DText = "123";
+            settings1.importBarcode2DTwitter = "#plottertwitter";
+            settings1.importBarcode2DURL = "https://grbl-plotter.de/";
+            settings1.importBarcode2DWlanPass = "unknown";
+            settings1.importBarcode2DWlanSSID = "my_wlan";
+            settings1.importBarcode2DYoutube = "UCxiLZDTcWmNzBk5ksgC7_Rg";
+            settings1.importBezierLineSegmentsCnt = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            settings1.importCircleToDotScript = "data\\scripts\\script_stamp_refresh.nc";
+            settings1.importCircleToDotScriptCount = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importCodeFold = true;
+            settings1.importCSVAutomatic = true;
+            settings1.importCSVColumnX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importCSVColumnY = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importCSVColumnZ = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importCSVDelimeter = ";";
+            settings1.importCSVProzessAsLine = true;
+            settings1.importCSVProzessZ = false;
+            settings1.importCSVScaleX = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importCSVScaleY = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importCSVScaleZ = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importCSVStartLine = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importDepthFromWidth = false;
+            settings1.importDepthFromWidthMax = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
+            settings1.importDepthFromWidthMin = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            settings1.importDepthFromWidthRamp = false;
+            settings1.importDXFDontPlot = false;
+            settings1.ImportDXFSize = true;
+            settings1.importDXFSwitchWhite = true;
+            settings1.importDXFToolIndex = false;
+            settings1.importDXFUseZ = false;
+            settings1.importFiducialLabel = "fiducial";
+            settings1.importFiducialSkipCode = false;
+            settings1.importFigureMaxAmount = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.importGCAddComments = false;
+            settings1.importGCAux1Axis = "A";
+            settings1.importGCAux1Enable = false;
+            settings1.importGCAux1Factor = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCAux1Source = 1;
+            settings1.importGCAux1SumUp = true;
+            settings1.importGCAux1ZFactor = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCAux1ZMode = 0;
+            settings1.importGCAux1ZUse = false;
+            settings1.importGCAux2Axis = "B";
+            settings1.importGCAux2Enable = false;
+            settings1.importGCAux2Factor = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCAux2Source = 1;
+            settings1.importGCAux2SumUp = true;
+            settings1.importGCAux2ZFactor = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCAux2ZMode = 0;
+            settings1.importGCAux2ZUse = false;
+            settings1.importGCCompress = false;
+            settings1.importGCConvertToPolar = false;
+            settings1.importGCConvertToPolarAccuracy = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.importGCDecPlaces = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.importGCDragKnifeAngle = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.importGCDragKnifeEnable = false;
+            settings1.importGCDragKnifeLength = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGCDragKnifePercent = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.importGCDragKnifePercentEnable = false;
+            settings1.importGCDragKnifeUse = false;
+            settings1.importGCFooter = "";
+            settings1.importGCHeader = "G54; ";
+            settings1.importGCIndEnable = false;
+            settings1.importGCIndPenDown = "(Pen Down command);(Cmd2)";
+            settings1.importGCIndPenUp = "(Pen Up command);(Cmd2)";
+            settings1.importGCLineSegmentation = false;
+            settings1.importGCLineSegmentEquidistant = false;
+            settings1.importGCLineSegmentLength = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.importGCNoArcs = false;
+            settings1.importGCPWMDlyDown = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGCPWMDlyP93 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGCPWMDlyP94 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGCPWMDlyUp = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGCPWMDown = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.importGCPWMEnable = false;
+            settings1.importGCPWMP93 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCPWMP94 = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            settings1.importGCPWMSkipM30 = false;
+            settings1.importGCPWMTextP93 = "Far up";
+            settings1.importGCPWMTextP94 = "Down stir";
+            settings1.importGCPWMUp = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.importGCPWMZero = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            settings1.importGCRelative = false;
+            settings1.importGCSDirM3 = true;
+            settings1.importGCSegment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGCSpindleCmd = true;
+            settings1.importGCSpindleDelay = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGCSpindleToggle = false;
+            settings1.importGCSpindleToggleLaser = false;
+            settings1.importGCSSpeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.importGCSubEnable = false;
+            settings1.importGCSubFirst = false;
+            settings1.importGCSubPenUpDown = true;
+            settings1.importGCSubroutine = "data\\scripts\\script_v1583_brush_refresh.nc";
+            settings1.importGCTangentialAngle = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.importGCTangentialAngleDevi = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGCTangentialAxis = "A";
+            settings1.importGCTangentialEnable = false;
+            settings1.importGCTangentialRange = false;
+            settings1.importGCTangentialShortening = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCTangentialShorteningEnable = false;
+            settings1.importGCTangentialTurn = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            settings1.importGCTool = false;
+            settings1.importGCToolChangeCode = "Z10 (move upwards)";
+            settings1.importGCToolDefNr = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCToolDefNrUse = false;
+            settings1.importGCToolListUse = false;
+            settings1.importGCToolM0 = false;
+            settings1.importGCToolUseRouter = false;
+            settings1.importGCTTSSpeed = false;
+            settings1.importGCTTXYFeed = false;
+            settings1.importGCTTZAxis = false;
+            settings1.importGCXYFeed = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            settings1.importGCZDown = new decimal(new int[] {
+            2,
+            0,
+            0,
+            -2147483648});
+            settings1.importGCZEnable = true;
+            settings1.importGCZFeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.importGCZIncEnable = false;
+            settings1.importGCZIncNoZUp = false;
+            settings1.importGCZIncrement = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGCZIncStartZero = false;
+            settings1.importGCZPreventSpindle = false;
+            settings1.importGCZUp = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGerberTypeEnable = true;
+            settings1.importGerberTypeKnife = "knife";
+            settings1.importGerberTypeM19 = "notch";
+            settings1.importGerberTypePen = "pen";
+            settings1.importGraphicAddFrameApplyRadius = false;
+            settings1.importGraphicAddFrameDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicAddFrameEnable = false;
+            settings1.importGraphicAddFramePenColor = "black";
+            settings1.importGraphicAddFramePenLayer = "Frame";
+            settings1.importGraphicAddFramePenWidth = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.importGraphicClip = true;
+            settings1.importGraphicClipAngle = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicClipAngleEnable = false;
+            settings1.importGraphicClipEnable = false;
+            settings1.importGraphicClipGCode = "(^2 G0 X#OFFX Y#OFFY)  (set offset via 2nd grbl)";
+            settings1.importGraphicClipGetDimAuto = false;
+            settings1.importGraphicClipOffsetApply = true;
+            settings1.importGraphicClipOffsetX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicClipOffsetY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicClipShowOrigPosition = false;
+            settings1.importGraphicClipShowOrigPositionShiftTileProcessed = true;
+            settings1.importGraphicClipSkipCode = false;
+            settings1.importGraphicDevelopmentEnable = false;
+            settings1.importGraphicDevelopmentFeedAfter = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGraphicDevelopmentFeedInvert = false;
+            settings1.importGraphicDevelopmentFeedX = true;
+            settings1.importGraphicDevelopmentNoCurve = false;
+            settings1.importGraphicDevelopmentNotchDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicDevelopmentNotchLift = true;
+            settings1.importGraphicDevelopmentNotchWidth = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.importGraphicDevelopmentNotchZCut = new decimal(new int[] {
+            15,
+            0,
+            0,
+            -2147418112});
+            settings1.importGraphicDevelopmentNotchZNotch = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            settings1.importGraphicDevelopmentToolAngle = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            settings1.importGraphicExtendPathEnable = false;
+            settings1.importGraphicExtendPathValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGraphicFilterChoiceRemove = true;
+            settings1.importGraphicFilterEnable = false;
+            settings1.importGraphicFilterListKeep = "FFFFFF;BBBBBB";
+            settings1.importGraphicFilterListRemove = "FFFFFF;BBBBBB";
+            settings1.importGraphicHatchFillAngle = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.importGraphicHatchFillAngle2 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.importGraphicHatchFillAngleInc = false;
+            settings1.importGraphicHatchFillCross = false;
+            settings1.importGraphicHatchFillDash = false;
+            settings1.importGraphicHatchFillDeletePath = false;
+            settings1.importGraphicHatchFillDistance = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGraphicHatchFillEnable = false;
+            settings1.importGraphicHatchFillInset = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importGraphicHatchFillInsetEnable = true;
+            settings1.importGraphicHatchFillInsetEnable2 = false;
+            settings1.importGraphicHatchFillNoise = false;
+            settings1.importGraphicHatchFillOffset = new decimal(new int[] {
+            3,
+            0,
+            0,
+            65536});
+            settings1.importGraphicHatchFillOffsetInc = false;
+            settings1.importGraphicLargestLast = true;
+            settings1.importGraphicLeadInDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicLeadInEnable = false;
+            settings1.importGraphicLeadOutDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicLeadOutEnable = false;
+            settings1.importGraphicLeadTopZUp = false;
+            settings1.importGraphicMultiplyGraphicsDimX = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGraphicMultiplyGraphicsDimY = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGraphicMultiplyGraphicsDistance = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicMultiplyGraphicsEnable = false;
+            settings1.importGraphicNoiseAmplitude = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGraphicNoiseDensity = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importGraphicNoiseEnable = false;
+            settings1.importGraphicOffsetLargestLast = true;
+            settings1.importGraphicOffsetLargestRemove = false;
+            settings1.importGraphicOffsetOrigin = true;
+            settings1.importGraphicOffsetOriginX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicOffsetOriginY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicSortDimension = false;
+            settings1.importGraphicSortDistance = true;
+            settings1.importGraphicSortDistanceAllowRotate = true;
+            settings1.importGraphicSortDistanceStart = 0;
+            settings1.importGraphicTileAddOnX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGraphicTileX = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.importGraphicTileY = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.importGraphicWireBenderAngleAbsolute = true;
+            settings1.importGraphicWireBenderAngleAddOn = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.importGraphicWireBenderAxisAngle = "Y";
+            settings1.importGraphicWireBenderAxisFeed = "X";
+            settings1.importGraphicWireBenderCodeCut = "( cut wire )";
+            settings1.importGraphicWireBenderCodePegOff = "( disable bending pegs )";
+            settings1.importGraphicWireBenderCodePegOn = "( activate bending pegs )";
+            settings1.importGraphicWireBenderDiameter = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGraphicWireBenderEnable = false;
+            settings1.importGraphicWireBenderRadius = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importGroupItem = 1;
+            settings1.importGroupObjects = false;
+            settings1.importGroupSort = 1;
+            settings1.importGroupSortInvert = false;
+            settings1.importImage2DViewHideZero = true;
+            settings1.importImageColorMode = true;
+            settings1.importImageEngravingAngle = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importImageEngravingCross = false;
+            settings1.importImageEngravingOneDirection = true;
+            settings1.importImageEngravingTopDown = true;
+            settings1.importImageGrayAsMode = 0;
+            settings1.importImageGrayVectorize = false;
+            settings1.importImageHeight = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.importImageKeepRatio = true;
+            settings1.importImagePixelArt = false;
+            settings1.importImagePixelArtDotSize = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importImagePixelArtDotsPerPixel = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importImagePixelArtDrawDot = true;
+            settings1.importImagePixelArtDrawShapeCircle = true;
+            settings1.importImagePixelArtDrawShapeScript = false;
+            settings1.importImagePixelArtDrawShapeScriptText = "";
+            settings1.importImagePixelArtGapSize = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importImagePixelArtShapeFill = false;
+            settings1.importImagePixelArtShapePenDiameter = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            settings1.importImageProcessingMode = 0;
+            settings1.importImageReso = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.importImageResoApply = false;
+            settings1.importImageResoY = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importImageSLasermodeEnd = false;
+            settings1.importImageSLasermodeStart = false;
+            settings1.importImageSLaserOnly = false;
+            settings1.importImageSMax = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.importImageSMin = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.importImageSpecialCodeAfter = "G90 G0 Z5";
+            settings1.importImageSpecialCodeBefore = "G90 G1 Z1 F1000";
+            settings1.importImageSpecialCodeValue1 = "G91 A";
+            settings1.importImageSpecialCodeValue2 = "F10000";
+            settings1.importImageSpecialMax = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importImageSpecialMin = new decimal(new int[] {
+            2,
+            0,
+            0,
+            -2147483648});
+            settings1.importImageWidth = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.importImageZMax = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importImageZMin = new decimal(new int[] {
+            2,
+            0,
+            0,
+            -2147483648});
+            settings1.importLineDashPattern = false;
+            settings1.importLineDashPatternG0 = true;
+            settings1.importLoggerSettings = ((uint)(0u));
+            settings1.importMessageDelay = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            settings1.importPauseElement = false;
+            settings1.importPausePenDown = false;
+            settings1.importPDNDpi = new decimal(new int[] {
+            96,
+            0,
+            0,
+            0});
+            settings1.importPDNLayerVisible = true;
+            settings1.importPDNWidth = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            settings1.importPWMFromWidth = false;
+            settings1.importRemoveShortMovesEnable = true;
+            settings1.importRemoveShortMovesLimit = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.importRepeatCnt = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importRepeatComplete = true;
+            settings1.importRepeatEnable = false;
+            settings1.importRepeatEnableAll = false;
+            settings1.importShowUseCaseDialog = true;
+            settings1.importSVGAddComments = false;
+            settings1.importSVGAddOnEnable = false;
+            settings1.importSVGAddOnFile = "data\\examples\\addon_frame_stamp1.svg";
+            settings1.importSVGAddOnPosition = 1;
+            settings1.importSVGAddOnScale = new decimal(new int[] {
+            9,
+            0,
+            0,
+            65536});
+            settings1.importSVGApplyFill = false;
+            settings1.importSVGCircleToDot = false;
+            settings1.importSVGCircleToDotS = false;
+            settings1.importSVGCircleToDotZ = false;
+            settings1.importSVGDontPlot = false;
+            settings1.importSVGDPI96 = true;
+            settings1.importSVGMaxSize = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.importSVGMetaData = false;
+            settings1.importSVGNodesOnly = false;
+            settings1.importSVGPathExtend = false;
+            settings1.importSVGPathNewFigure = false;
+            settings1.importSVGRezise = false;
+            settings1.importSVGUseElement = true;
+            settings1.importUnitGCode = false;
+            settings1.importUnitmm = true;
+            settings1.importUseCaseInfo = "Information about current use case";
+            settings1.importVectorizeAlgorithmPoTrace = true;
+            settings1.importVectorizeDetectTransparency = true;
+            settings1.importVectorizeDpiFromImage = true;
+            settings1.importVectorizeFromClipboard = false;
+            settings1.importVectorizeInvertResult = false;
+            settings1.importVectorizeOptimize1 = false;
+            settings1.importVectorizeOptimize2 = false;
+            settings1.importVectorizeOptimize3 = false;
+            settings1.importVectorizeOptimize4 = false;
+            settings1.importVectorizePoTraceAlphamax = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.importVectorizePoTraceCurveoptimizing = true;
+            settings1.importVectorizePoTraceOpttolerance = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.importVectorizePoTraceTurdsize = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importVectorizeSetWidthOfImage = false;
+            settings1.importVectorizeSmoothCycles = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.importVectorizeThreshold = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            settings1.importVectorizeTypeBmp = false;
+            settings1.importVectorizeTypeGif = false;
+            settings1.importVectorizeTypeJpg = false;
+            settings1.importVectorizeTypePng = false;
+            settings1.laserMotionDelay = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.laserMotionDelayPower = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.laserMotionX = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.laserMotionY = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.laserScanPowerFeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.laserScanPowerFrom = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.laserScanPowerStep = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.laserScanPowerTo = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.laserScanSpeedFrom = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            settings1.laserScanSpeedPower = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.laserScanSpeedStep = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.laserScanSpeedTo = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.laserScanZFeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.laserScanZPower = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.laserScanZRange = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.location2ndGRBLForm = new System.Drawing.Point(100, 200);
+            settings1.locationCamForm = new System.Drawing.Point(-30, 0);
+            settings1.locationCntrlCoordForm = new System.Drawing.Point(-30, 0);
+            settings1.locationHeightForm = new System.Drawing.Point(-30, 0);
+            settings1.locationImageForm = new System.Drawing.Point(-30, 0);
+            settings1.locationJogCreatorForm = new System.Drawing.Point(250, 0);
+            settings1.locationMForm = new System.Drawing.Point(-30, 0);
+            settings1.locationProbingForm = new System.Drawing.Point(-30, 0);
+            settings1.locationSerForm1 = new System.Drawing.Point(-30, 0);
+            settings1.locationSerForm2 = new System.Drawing.Point(50, 50);
+            settings1.locationSerForm3 = new System.Drawing.Point(250, 50);
+            settings1.locationSerForm4 = new System.Drawing.Point(0, 0);
+            settings1.locationSetForm = new System.Drawing.Point(-30, 0);
+            settings1.locationShapeForm = new System.Drawing.Point(-30, 0);
+            settings1.locationStreamForm = new System.Drawing.Point(-30, 0);
+            settings1.locationTextForm = new System.Drawing.Point(-30, 0);
+            settings1.locationWireCutterForm = new System.Drawing.Point(0, 0);
+            settings1.machineLimitsAlarm = false;
+            settings1.machineLimitsFix = false;
+            settings1.machineLimitsHomeX = new decimal(new int[] {
+            20,
+            0,
+            0,
+            -2147483648});
+            settings1.machineLimitsHomeY = new decimal(new int[] {
+            20,
+            0,
+            0,
+            -2147483648});
+            settings1.machineLimitsHomeZ = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.machineLimitsRangeX = new decimal(new int[] {
+            220,
+            0,
+            0,
+            0});
+            settings1.machineLimitsRangeY = new decimal(new int[] {
+            220,
+            0,
+            0,
+            0});
+            settings1.machineLimitsRangeZ = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.machineLimitsShow = false;
+            settings1.machineLoadDefaults = false;
+            settings1.mainFormMovoToX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormMovoToY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormMovoToZ = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormSetCoordA = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormSetCoordX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormSetCoordY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormSetCoordZ = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.mainFormSize = new System.Drawing.Size(900, 680);
+            settings1.mainFormSplitDistance = 296;
+            settings1.mainFormWinState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.multipleLoadAllwaysClear = false;
+            settings1.multipleLoadAllwaysLoad = true;
+            settings1.multipleLoadByX = true;
+            settings1.multipleLoadGap = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.multipleLoadLimitNo = true;
+            settings1.multipleLoadNoX = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.multipleLoadNoY = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.notifierMailClientAdr = "smtp.gmail.com";
+            settings1.notifierMailClientPass = "pass";
+            settings1.notifierMailClientPort = new decimal(new int[] {
+            587,
+            0,
+            0,
+            0});
+            settings1.notifierMailClientUser = "user";
+            settings1.notifierMailEnable = false;
+            settings1.notifierMailSendFrom = "from@gmail.com";
+            settings1.notifierMailSendSubject = "GRBL-Plotter ";
+            settings1.notifierMailSendTo = "to@gmail.com";
+            settings1.notifierMessageFinish = "Streaming via GRBL-Plotter finished";
+            settings1.notifierMessageProgress = "Progress";
+            settings1.notifierMessageProgressEnable = true;
+            settings1.notifierMessageProgressInterval = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.notifierMessageProgressTitle = true;
+            settings1.notifierPushbulletChannel = "";
+            settings1.notifierPushbulletEnable = false;
+            settings1.notifierPushbulletToken = "";
+            settings1.overrideFRBtm = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.overrideFRTop = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            settings1.overrideFRValue = 1000;
+            settings1.overrideSSBtm = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.overrideSSTop = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            settings1.overrideSSValue = 5000;
+            settings1.probingCoordG10 = true;
+            settings1.probingEdgeCenter = false;
+            settings1.probingEdgeZ = false;
+            settings1.probingFeedXY = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.probingFeedZ = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.probingFiducial2ndChance = true;
+            settings1.probingFiducialCodeEnd = "G54";
+            settings1.probingFiducialCodeStart = "G59";
+            settings1.probingFiducialOffsetX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.probingFiducialOffsetY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.probingFiducialSkip1stMove = true;
+            settings1.probingFinalX = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.probingFinalY = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.probingFinalZ = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.probingInvertLogic = false;
+            settings1.probingOffsetX = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.probingOffsetY = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.probingOffsetZ = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.probingSaveX = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.probingSaveY = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.probingSaveZ = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.probingToolDiameter = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.probingTravelX = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.probingTravelY = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.probingTravelZ = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            settings1.probingWorkpieceDiameter = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.processCounter = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.processCounterDigits = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            settings1.processCounterFill = "0";
+            settings1.processCounterFront = "Fixed front - ";
+            settings1.processCounterRear = " - Fixed rear";
+            settings1.processDataDelimeter = "; Semicolon";
+            settings1.processDataIndex = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.processDataLastFile = "";
+            settings1.processLastFile = "";
+            settings1.processLocation = new System.Drawing.Point(0, 0);
+            settings1.processOpenOnProgStart = false;
+            settings1.processSize = new System.Drawing.Size(0, 0);
+            settings1.processSplitDistance = 400;
+            settings1.processTimerInterval = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.projectorColorBackground = System.Drawing.Color.Black;
+            settings1.projectorColorDimension = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            settings1.projectorColorMarker = System.Drawing.Color.DeepPink;
+            settings1.projectorColorPenDown = System.Drawing.Color.White;
+            settings1.projectorColorPenUp = System.Drawing.Color.Green;
+            settings1.projectorColorRuler = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            settings1.projectorColorTool = System.Drawing.Color.LightGray;
+            settings1.projectorDisplayOffsetX = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.projectorDisplayOffsetY = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.projectorDisplayScale = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.projectorMonitorIndex = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.projectorShowDimension = false;
+            settings1.projectorShowMarker = false;
+            settings1.projectorShowPenUp = false;
+            settings1.projectorShowRuler = true;
+            settings1.projectorShowSetup = true;
+            settings1.projectorShowTool = false;
+            settings1.projectorWidthDimension = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.projectorWidthMarker = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.projectorWidthPenDown = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.projectorWidthPenUp = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.projectorWidthRuler = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.projectorWidthTool = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.resetRestoreWorkCoordinates = false;
+            settings1.resetSendCode = "G10 L20 P0 X0 Y0 Z0";
+            settings1.resetSendCodeEnable = false;
+            settings1.rotarySubstitutionDiameter = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.rotarySubstitutionEnable = false;
+            settings1.rotarySubstitutionScale = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            settings1.rotarySubstitutionSetupEnable = false;
+            settings1.rotarySubstitutionSetupOff = "$100=1600;$110=1000;$120=50";
+            settings1.rotarySubstitutionSetupOn = "$100=4.444;$110=10000;$120=1000";
+            settings1.rotarySubstitutionX = true;
+            settings1.selectionPropertyIncrement = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.serial3Ready = "ready";
+            settings1.serial3Timeout = 10;
+            settings1.serialBaud1 = "115200";
+            settings1.serialBaud2 = "115200";
+            settings1.serialBaud3 = "115200";
+            settings1.serialBaudDIY = "115200";
+            settings1.serialEthernetIP1 = "192.168.1.121";
+            settings1.serialEthernetIP2 = "192.168.1.122";
+            settings1.serialEthernetPort1 = 34000;
+            settings1.serialEthernetPort2 = 34000;
+            settings1.serialEthernetUse1 = false;
+            settings1.serialEthernetUse2 = false;
+            settings1.serialMinimize = true;
+            settings1.serialPort1 = "COM1";
+            settings1.serialPort2 = "COM2";
+            settings1.serialPort3 = "COM3";
+            settings1.serialPortDIY = "COM9";
+            settings1.SettingsKey = "";
+            settings1.setupPWMIncrement = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.sizeSerForm1 = new System.Drawing.Size(342, 480);
+            settings1.sizeUseCase = new System.Drawing.Size(600, 500);
+            settings1.tabletFitToCurve = true;
+            settings1.tabletFormLocation = new System.Drawing.Point(0, 0);
+            settings1.tabletFormSize = new System.Drawing.Size(500, 480);
+            settings1.tabletPlotterMoveAir = false;
+            settings1.tabletPlotterMoveMouse = false;
+            settings1.tabletPointDistance = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.tabletShowTransparency = true;
+            settings1.tabletSizePen = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.tabletSizeX = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.tabletSizeY = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.toolTableLastLoaded = "empty";
+            settings1.toolTableOffsetA = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.toolTableOffsetX = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.toolTableOffsetY = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            settings1.toolTableOffsetZ = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.toolTableOriginal = false;
+            settings1.useCaseLastLoaded = "?";
+            settings1.UserControlFlowControlIsLarge = true;
+            settings1.UserControlJogControlAllIsLarge = true;
+            settings1.UserControlJogControlAutomaticUnfold = false;
+            settings1.UserControlJogControlShowArrow = true;
+            settings1.UserControlJogControlShowButtons = false;
+            settings1.UserControlJogControlShowLabel = true;
+            settings1.UserControlJogControlSize = 100;
+            settings1.UserControlMoveToGraphicAutomaticUnfold = false;
+            settings1.UserControlMoveToGraphicCenterX = true;
+            settings1.UserControlMoveToGraphicCenterY = true;
+            settings1.UserControlMoveToGraphicFeed = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            settings1.UserControlMoveToGraphicIsLarge = true;
+            settings1.UserControlMoveToGraphicSize = 100;
+            settings1.UserControlMoveToZeroAutomaticUnfold = false;
+            settings1.UserControlMoveToZeroIsLarge = true;
+            settings1.UserControlOffsetIsLarge = true;
+            settings1.UserControlOverrideIsLarge = false;
+            settings1.UserControlOverrideShow1 = true;
+            settings1.UserControlOverrideShow2 = true;
+            settings1.UserControlOverrideShow3 = true;
+            settings1.UserControlOverrideShow4 = false;
+            settings1.UserControlSetCoordinateAutomaticUnfold = false;
+            settings1.UserControlSetCoordinateIsLarge = false;
+            settings1.wirecutterArrayX = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.wirecutterArrayY = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.wirecutterGapX = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.wirecutterGapY = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.wirecutterRingDiameterIn = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            settings1.wirecutterRingDiameterOut = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.wirecutterRingSections = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.wirecutterToolDiameter = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbAddGraphic.Name = "CbAddGraphic";
+            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
+            this.CbAddGraphic.UseVisualStyleBackColor = true;
+            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
+            // 
+            // ucFlowControl
+            // 
+            resources.ApplyResources(this.ucFlowControl, "ucFlowControl");
+            this.ucFlowControl.Name = "ucFlowControl";
+            // 
+            // ucSetOffset
+            // 
+            resources.ApplyResources(this.ucSetOffset, "ucSetOffset");
+            this.ucSetOffset.Name = "ucSetOffset";
+            // 
+            // tLPRechts
+            // 
+            resources.ApplyResources(this.tLPRechts, "tLPRechts");
+            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
+            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
+            this.tLPRechts.Name = "tLPRechts";
+            // 
+            // tLPRechtsUnten
+            // 
+            resources.ApplyResources(this.tLPRechtsUnten, "tLPRechtsUnten");
+            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
+            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
+            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
+            // 
+            // tLPRechtsUntenRechts
+            // 
+            resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
+            this.tLPRechtsUntenRechts.Controls.Add(this.ucMoveToGraphic, 0, 1);
+            this.tLPRechtsUntenRechts.Controls.Add(this.ucMoveToZero, 0, 3);
+            this.tLPRechtsUntenRechts.Controls.Add(this.ucJogControlAll, 0, 4);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tC_RouterPlotterLaser2, 0, 0);
+            this.tLPRechtsUntenRechts.Controls.Add(this.ucSetCoordinateSystem, 0, 2);
+            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
+            // 
+            // ucMoveToGraphic
+            // 
+            resources.ApplyResources(this.ucMoveToGraphic, "ucMoveToGraphic");
+            this.ucMoveToGraphic.Name = "ucMoveToGraphic";
+            // 
+            // ucMoveToZero
+            // 
+            resources.ApplyResources(this.ucMoveToZero, "ucMoveToZero");
+            this.ucMoveToZero.Name = "ucMoveToZero";
+            // 
+            // ucJogControlAll
+            // 
+            resources.ApplyResources(this.ucJogControlAll, "ucJogControlAll");
+            this.ucJogControlAll.Name = "ucJogControlAll";
+            // 
+            // tC_RouterPlotterLaser2
+            // 
+            this.tC_RouterPlotterLaser2.Controls.Add(this.tabPageLaser);
+            this.tC_RouterPlotterLaser2.Controls.Add(this.tabPagePlotter);
+            this.tC_RouterPlotterLaser2.Controls.Add(this.tabPage5);
+            resources.ApplyResources(this.tC_RouterPlotterLaser2, "tC_RouterPlotterLaser2");
+            this.tC_RouterPlotterLaser2.Name = "tC_RouterPlotterLaser2";
+            this.tC_RouterPlotterLaser2.SelectedIndex = 0;
+            this.tC_RouterPlotterLaser2.SelectedIndexChanged += new System.EventHandler(this.TC_RouterPlotterLaser2_SelectedIndexChanged);
+            // 
+            // tabPageLaser
+            // 
+            this.tabPageLaser.Controls.Add(this.ucDeviceLaser2);
+            resources.ApplyResources(this.tabPageLaser, "tabPageLaser");
+            this.tabPageLaser.Name = "tabPageLaser";
+            this.tabPageLaser.UseVisualStyleBackColor = true;
+            // 
+            // ucDeviceLaser2
+            // 
+            resources.ApplyResources(this.ucDeviceLaser2, "ucDeviceLaser2");
+            this.ucDeviceLaser2.Name = "ucDeviceLaser2";
+            // 
+            // tabPagePlotter
+            // 
+            this.tabPagePlotter.Controls.Add(this.ucDevicePlotter2);
+            resources.ApplyResources(this.tabPagePlotter, "tabPagePlotter");
+            this.tabPagePlotter.Name = "tabPagePlotter";
+            this.tabPagePlotter.UseVisualStyleBackColor = true;
+            // 
+            // ucDevicePlotter2
+            // 
+            resources.ApplyResources(this.ucDevicePlotter2, "ucDevicePlotter2");
+            this.ucDevicePlotter2.Name = "ucDevicePlotter2";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.ucDeviceRouter2);
+            resources.ApplyResources(this.tabPage5, "tabPage5");
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ucDeviceRouter2
+            // 
+            resources.ApplyResources(this.ucDeviceRouter2, "ucDeviceRouter2");
+            this.ucDeviceRouter2.Name = "ucDeviceRouter2";
+            // 
+            // ucSetCoordinateSystem
+            // 
+            resources.ApplyResources(this.ucSetCoordinateSystem, "ucSetCoordinateSystem");
+            this.ucSetCoordinateSystem.Name = "ucSetCoordinateSystem";
+            // 
+            // tLPMitteUnten
+            // 
+            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
+            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
+            this.tLPMitteUnten.Controls.Add(this.CbAddGraphic, 0, 2);
+            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 3);
+            this.tLPMitteUnten.Controls.Add(this.tLPMitteUnten1Zeile, 0, 1);
+            this.tLPMitteUnten.Name = "tLPMitteUnten";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.SizeChanged += new System.EventHandler(this.PictureBox1_SizeChanged);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.PictureBox1_MouseLeave);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.PictureBox1_MouseHover);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
+            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseWheel);
+            // 
+            // tLPMitteUnten1Zeile
+            // 
+            resources.ApplyResources(this.tLPMitteUnten1Zeile, "tLPMitteUnten1Zeile");
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode1, 0, 0);
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode2, 1, 0);
+            this.tLPMitteUnten1Zeile.Controls.Add(this.Rb2DViewMode3, 2, 0);
+            this.tLPMitteUnten1Zeile.Name = "tLPMitteUnten1Zeile";
+            // 
+            // tLPRechtsOben
+            // 
+            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
+            this.tLPRechtsOben.Controls.Add(this.ucdro, 0, 0);
+            this.tLPRechtsOben.Controls.Add(this.splitContainer2, 1, 0);
+            this.tLPRechtsOben.Name = "tLPRechtsOben";
+            // 
+            // ucdro
+            // 
+            resources.ApplyResources(this.ucdro, "ucdro");
+            this.ucdro.MainWidth = 900;
+            this.ucdro.Name = "ucdro";
+            this.ucdro.ZeroCommand = "G10L20P0";
+            this.ucdro.ZeroString = "0.000";
+            // 
+            // splitContainer2
+            // 
+            resources.ApplyResources(this.splitContainer2, "splitContainer2");
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.GbCustomButtons);
+            this.splitContainer2.Panel1.Controls.Add(this.ucToolList);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.tC_RouterPlotterLaser);
+            // 
+            // GbCustomButtons
+            // 
+            this.GbCustomButtons.Controls.Add(this.tLPCustomButton1);
+            resources.ApplyResources(this.GbCustomButtons, "GbCustomButtons");
+            this.GbCustomButtons.Name = "GbCustomButtons";
+            this.GbCustomButtons.TabStop = false;
+            // 
+            // tLPCustomButton1
+            // 
+            resources.ApplyResources(this.tLPCustomButton1, "tLPCustomButton1");
+            this.tLPCustomButton1.Controls.Add(this.tLPCustomButton2, 0, 0);
+            this.tLPCustomButton1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tLPCustomButton1.Name = "tLPCustomButton1";
+            // 
+            // tLPCustomButton2
+            // 
+            resources.ApplyResources(this.tLPCustomButton2, "tLPCustomButton2");
+            this.tLPCustomButton2.Controls.Add(this.btnCustom1, 0, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom2, 0, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom3, 0, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom4, 0, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom5, 1, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom6, 1, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom7, 1, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom8, 1, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom9, 2, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom10, 2, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom11, 2, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom12, 2, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom13, 3, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom14, 3, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom15, 3, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom16, 3, 3);
+            this.tLPCustomButton2.Name = "tLPCustomButton2";
+            // 
+            // btnCustom1
+            // 
+            resources.ApplyResources(this.btnCustom1, "btnCustom1");
+            this.btnCustom1.Name = "btnCustom1";
+            this.btnCustom1.UseVisualStyleBackColor = true;
+            this.btnCustom1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom2
+            // 
+            resources.ApplyResources(this.btnCustom2, "btnCustom2");
+            this.btnCustom2.Name = "btnCustom2";
+            this.btnCustom2.UseVisualStyleBackColor = true;
+            this.btnCustom2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom3
+            // 
+            resources.ApplyResources(this.btnCustom3, "btnCustom3");
+            this.btnCustom3.Name = "btnCustom3";
+            this.btnCustom3.UseVisualStyleBackColor = true;
+            this.btnCustom3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom4
+            // 
+            resources.ApplyResources(this.btnCustom4, "btnCustom4");
+            this.btnCustom4.Name = "btnCustom4";
+            this.btnCustom4.UseVisualStyleBackColor = true;
+            this.btnCustom4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom5
+            // 
+            resources.ApplyResources(this.btnCustom5, "btnCustom5");
+            this.btnCustom5.Name = "btnCustom5";
+            this.btnCustom5.UseVisualStyleBackColor = true;
+            this.btnCustom5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom6
+            // 
+            resources.ApplyResources(this.btnCustom6, "btnCustom6");
+            this.btnCustom6.Name = "btnCustom6";
+            this.btnCustom6.UseVisualStyleBackColor = true;
+            this.btnCustom6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom7
+            // 
+            resources.ApplyResources(this.btnCustom7, "btnCustom7");
+            this.btnCustom7.Name = "btnCustom7";
+            this.btnCustom7.UseVisualStyleBackColor = true;
+            this.btnCustom7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom8
+            // 
+            resources.ApplyResources(this.btnCustom8, "btnCustom8");
+            this.btnCustom8.Name = "btnCustom8";
+            this.btnCustom8.UseVisualStyleBackColor = true;
+            this.btnCustom8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom9
+            // 
+            resources.ApplyResources(this.btnCustom9, "btnCustom9");
+            this.btnCustom9.Name = "btnCustom9";
+            this.btnCustom9.UseVisualStyleBackColor = true;
+            this.btnCustom9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom10
+            // 
+            resources.ApplyResources(this.btnCustom10, "btnCustom10");
+            this.btnCustom10.Name = "btnCustom10";
+            this.btnCustom10.UseVisualStyleBackColor = true;
+            this.btnCustom10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom11
+            // 
+            resources.ApplyResources(this.btnCustom11, "btnCustom11");
+            this.btnCustom11.Name = "btnCustom11";
+            this.btnCustom11.UseVisualStyleBackColor = true;
+            this.btnCustom11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom12
+            // 
+            resources.ApplyResources(this.btnCustom12, "btnCustom12");
+            this.btnCustom12.Name = "btnCustom12";
+            this.btnCustom12.UseVisualStyleBackColor = true;
+            this.btnCustom12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom13
+            // 
+            resources.ApplyResources(this.btnCustom13, "btnCustom13");
+            this.btnCustom13.Name = "btnCustom13";
+            this.btnCustom13.UseVisualStyleBackColor = true;
+            this.btnCustom13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom14
+            // 
+            resources.ApplyResources(this.btnCustom14, "btnCustom14");
+            this.btnCustom14.Name = "btnCustom14";
+            this.btnCustom14.UseVisualStyleBackColor = true;
+            this.btnCustom14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom15
+            // 
+            resources.ApplyResources(this.btnCustom15, "btnCustom15");
+            this.btnCustom15.Name = "btnCustom15";
+            this.btnCustom15.UseVisualStyleBackColor = true;
+            this.btnCustom15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // btnCustom16
+            // 
+            resources.ApplyResources(this.btnCustom16, "btnCustom16");
+            this.btnCustom16.Name = "btnCustom16";
+            this.btnCustom16.UseVisualStyleBackColor = true;
+            this.btnCustom16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustomButton_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // ucToolList
+            // 
+            resources.ApplyResources(this.ucToolList, "ucToolList");
+            this.ucToolList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucToolList.Name = "ucToolList";
+            // 
+            // tC_RouterPlotterLaser
+            // 
+            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage3);
+            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage2);
+            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage1);
+            this.tC_RouterPlotterLaser.Controls.Add(this.tabPage4);
+            resources.ApplyResources(this.tC_RouterPlotterLaser, "tC_RouterPlotterLaser");
+            this.tC_RouterPlotterLaser.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tC_RouterPlotterLaser.Name = "tC_RouterPlotterLaser";
+            this.tC_RouterPlotterLaser.SelectedIndex = 0;
+            this.tC_RouterPlotterLaser.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tc_RouterPlotterLaser_DrawItem);
+            this.tC_RouterPlotterLaser.SelectedIndexChanged += new System.EventHandler(this.TC_RouterPlotterLaser_SelectedIndexChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucDeviceLaser);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ucDeviceLaser
+            // 
+            this.ucDeviceLaser.AllowDrop = true;
+            resources.ApplyResources(this.ucDeviceLaser, "ucDeviceLaser");
+            this.ucDeviceLaser.LaserMode = false;
+            this.ucDeviceLaser.Name = "ucDeviceLaser";
+            this.ucDeviceLaser.SpindleMax = 1000;
+            this.ucDeviceLaser.SpindleMin = 0;
+            this.ucDeviceLaser.SpindleSet = "0";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucDevicePlotter);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ucDevicePlotter
+            // 
+            resources.ApplyResources(this.ucDevicePlotter, "ucDevicePlotter");
+            this.ucDevicePlotter.Name = "ucDevicePlotter";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ucDeviceRouter);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ucDeviceRouter
+            // 
+            resources.ApplyResources(this.ucDeviceRouter, "ucDeviceRouter");
+            this.ucDeviceRouter.Name = "ucDeviceRouter";
+            this.ucDeviceRouter.SpindleMax = 1000;
+            this.ucDeviceRouter.SpindleMin = 0;
+            this.ucDeviceRouter.SpindleSet = "0";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.IndividualSettings);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // IndividualSettings
+            // 
+            resources.ApplyResources(this.IndividualSettings, "IndividualSettings");
+            this.IndividualSettings.Name = "IndividualSettings";
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -3859,76 +4597,45 @@ namespace GrblPlotter
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MainForm_PreviewKeyDown);
+            this.cmsFCTB.ResumeLayout(false);
+            this.cmsPictureBox.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.cmsPictureBox2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
-            this.cmsFCTB.ResumeLayout(false);
-            this.gBoxStream.ResumeLayout(false);
-            this.gBoxStream.PerformLayout();
-            this.gBoxDimension.ResumeLayout(false);
-            this.gBoxDimension.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.gBoxOverride.ResumeLayout(false);
-            this.gBOverrideRGB.ResumeLayout(false);
-            this.gBOverrideRGB.PerformLayout();
-            this.gBOverrideASGB.ResumeLayout(false);
-            this.gBOverrideFRGB.ResumeLayout(false);
-            this.gBOverrideFRGB.PerformLayout();
-            this.gBOverrideSSGB.ResumeLayout(false);
-            this.gBOverrideSSGB.PerformLayout();
             this.tLPRechts.ResumeLayout(false);
             this.tLPRechtsUnten.ResumeLayout(false);
             this.tLPRechtsUnten.PerformLayout();
             this.tLPRechtsUntenRechts.ResumeLayout(false);
-            this.tLPRechtsUntenRechts.PerformLayout();
-            this.tC_RouterPlotterLaser.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSpeed)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).EndInit();
-            this.Gb_Jogging.ResumeLayout(false);
-            this.Gb_Jogging.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsX)).EndInit();
-            this.gB_Jog0.ResumeLayout(false);
-            this.gB_Jog0.PerformLayout();
-            this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
-            this.tLP_cB_StopJogging.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tC_RouterPlotterLaser2.ResumeLayout(false);
+            this.tabPageLaser.ResumeLayout(false);
+            this.tabPagePlotter.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.cmsPictureBox.ResumeLayout(false);
             this.tLPMitteUnten1Zeile.ResumeLayout(false);
             this.tLPMitteUnten1Zeile.PerformLayout();
             this.tLPRechtsOben.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.GbCustomButtons.ResumeLayout(false);
             this.tLPCustomButton1.ResumeLayout(false);
             this.tLPCustomButton2.ResumeLayout(false);
-            this.gBoxDRO.ResumeLayout(false);
-            this.gBoxDRO.PerformLayout();
-            this.gBoxDROSetCoord.ResumeLayout(false);
-            this.gBoxDROSetCoord.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordX)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.cmsPictureBox2.ResumeLayout(false);
+            this.tC_RouterPlotterLaser.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3937,36 +4644,10 @@ namespace GrblPlotter
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Label label_mx;
-        private System.Windows.Forms.Label label_my;
-        private System.Windows.Forms.Label label_mz;
-        private System.Windows.Forms.Label label_wx;
-        private System.Windows.Forms.Label label_wy;
-        private System.Windows.Forms.Label label_wz;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Timer MainTimer;
-        private System.Windows.Forms.GroupBox gBoxStream;
-        private System.Windows.Forms.ProgressBar pbFile;
-        private System.Windows.Forms.Label lblElapsed;
-        private System.Windows.Forms.Label lblFileProgress;
-        private System.Windows.Forms.ProgressBar pbBuffer;
-        private System.Windows.Forms.Button btnStreamStart;
-        private System.Windows.Forms.TextBox tbFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.GroupBox gBoxDRO;
-        private System.Windows.Forms.Label label_status;
-        private System.Windows.Forms.Label lblRemaining;
-        private System.Windows.Forms.Label label_status0;
-        private System.Windows.Forms.Label label_z;
-        private System.Windows.Forms.Label label_y;
-        private System.Windows.Forms.Label label_x;
-        private System.Windows.Forms.Button btnZeroXYZ;
-        private System.Windows.Forms.Button btnZeroXY;
-        private System.Windows.Forms.Button btnZeroZ;
-        private System.Windows.Forms.Button btnZeroY;
-        private System.Windows.Forms.Button btnZeroX;
-        private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox GbCustomButtons;
         private System.Windows.Forms.Button btnCustom1;
         private System.Windows.Forms.Button btnCustom2;
         private System.Windows.Forms.Button btnCustom3;
@@ -3984,7 +4665,6 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnCustom15;
         private System.Windows.Forms.Button btnCustom16;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.ContextMenuStrip cmsFCTB;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSelect;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeCopy;
@@ -4002,8 +4682,6 @@ namespace GrblPlotter
         private System.Windows.Forms.TableLayoutPanel tLPMitteUnten;
         private System.Windows.Forms.TextBox tBURL;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Button btnStreamCheck;
-        private System.Windows.Forms.Button btnStreamStop;
         private System.Windows.Forms.ContextMenuStrip cmsPictureBox;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMarkFirstPos;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxDeletePath;
@@ -4053,22 +4731,6 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_Y_Y_scale;
         private System.Windows.Forms.ToolStripMenuItem skaliereYAufDrehachseToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_Y_A_scale;
-        private System.Windows.Forms.TextBox lbDimension;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton rBOrigin9;
-        private System.Windows.Forms.RadioButton rBOrigin8;
-        private System.Windows.Forms.RadioButton rBOrigin7;
-        private System.Windows.Forms.RadioButton rBOrigin6;
-        private System.Windows.Forms.RadioButton rBOrigin5;
-        private System.Windows.Forms.RadioButton rBOrigin4;
-        private System.Windows.Forms.RadioButton rBOrigin3;
-        private System.Windows.Forms.RadioButton rBOrigin2;
-        private System.Windows.Forms.RadioButton rBOrigin1;
-        private System.Windows.Forms.Button btnOffsetApply;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbOffsetY;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbOffsetX;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem rotaryDimaeterToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_rotary_diameter;
@@ -4078,40 +4740,14 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem heightMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxResetZooming;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.Label label_a;
-        private System.Windows.Forms.Button btnZeroA;
-        private System.Windows.Forms.Label label_ma;
-        private System.Windows.Forms.Label label_wa;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxPasteFromClipboard;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.GroupBox gBOverrideFRGB;
-        private System.Windows.Forms.Button btnOverrideFR1;
-        private System.Windows.Forms.Button btnOverrideFR2;
-        private System.Windows.Forms.Button btnOverrideFR0;
-        private System.Windows.Forms.Button btnOverrideFR4;
-        private System.Windows.Forms.Button btnOverrideFR3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblOverrideFRValue;
-        private System.Windows.Forms.GroupBox gBOverrideSSGB;
-        private System.Windows.Forms.Button btnOverrideSS2;
-        private System.Windows.Forms.Button btnOverrideSS0;
-        private System.Windows.Forms.Button btnOverrideSS1;
-        private System.Windows.Forms.Button btnOverrideSS4;
-        private System.Windows.Forms.Button btnOverrideSS3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblOverrideSSValue;
         private System.Windows.Forms.ToolStripMenuItem cmsCommentOut;
         private System.Windows.Forms.Timer gamePadTimer;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMoveToMarkedPosition;
-        private System.Windows.Forms.Label lblCurrentG;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReloadFile;
-        private System.Windows.Forms.Button btnLimitExceed;
         private System.Windows.Forms.ToolStripMenuItem startStreamingAtLineToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_StreamLine;
-        private System.Windows.Forms.Label lblStatusSpeed;
-        private System.Windows.Forms.Label lblStatusFeed;
         private System.Windows.Forms.ToolStripMenuItem coordinateSystemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewMachine;
@@ -4132,51 +4768,11 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem cmsFindDialog;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechts;
-        private System.Windows.Forms.GroupBox Gb_Jogging;
-        private virtualJoystick.virtualJoystick virtualJoystickA;
-        private System.Windows.Forms.Button btnJogStop;
-        private System.Windows.Forms.GroupBox gB_Jog0;
-        private System.Windows.Forms.Button btnJogZeroA;
-        private System.Windows.Forms.Button btnJogZeroX;
-        private System.Windows.Forms.Button btnJogZeroXY;
-        private System.Windows.Forms.Button btnJogZeroY;
-        private System.Windows.Forms.Button btnJogZeroZ;
-        private System.Windows.Forms.Label lblTool;
-        private System.Windows.Forms.CheckBox CbTool;
-        private virtualJoystick.virtualJoystick virtualJoystickZ;
-        private virtualJoystick.virtualJoystick virtualJoystickXY;
-        private System.Windows.Forms.Label lblSpeed;
-        private System.Windows.Forms.CheckBox CbCoolant;
-        private System.Windows.Forms.CheckBox CbSpindle;
-        private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechtsMitte;
         private System.Windows.Forms.ToolStripMenuItem mirrorRotaryToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label_c;
-        private System.Windows.Forms.Button btnZeroC;
-        private System.Windows.Forms.Label label_mc;
-        private System.Windows.Forms.Label label_wc;
-        private System.Windows.Forms.Label label_b;
-        private System.Windows.Forms.Button btnZeroB;
-        private System.Windows.Forms.Label label_mb;
-        private System.Windows.Forms.Label label_wb;
-        private virtualJoystick.virtualJoystick virtualJoystickB;
-        private virtualJoystick.virtualJoystick virtualJoystickC;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripMenuItem convertZToSspindleSpeedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rotate180ToolStripMenuItem;
-        private System.Windows.Forms.GroupBox gBoxDimension;
-        private System.Windows.Forms.GroupBox gBoxOverride;
-        private System.Windows.Forms.Button btnOverrideSpindle;
-        private System.Windows.Forms.Button btnOverrideMist;
-        private System.Windows.Forms.Button btnOverrideFlood;
-        private System.Windows.Forms.GroupBox gBOverrideRGB;
-        private System.Windows.Forms.GroupBox gBOverrideASGB;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button btnOverrideRapid0;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button btnOverrideRapid2;
-        private System.Windows.Forms.Label lblOverrideRapidValue;
-        private System.Windows.Forms.Button btnOverrideRapid1;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxCropSelectedPath;
         private System.Windows.Forms.ToolStripMenuItem unDoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
@@ -4210,14 +4806,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem portuguêsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem arabischToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem japanischToolStripMenuItem;
-        private System.Windows.Forms.Button btnSimulate;
         private System.Windows.Forms.Timer simulationTimer;
-        private System.Windows.Forms.Button btnSimulateSlower;
-        private System.Windows.Forms.Button btnSimulateFaster;
-        private System.Windows.Forms.Button btnSimulatePause;
-        private System.Windows.Forms.Button BtnPenDown;
-        private System.Windows.Forms.Button BtnPenUp;
-        private System.Windows.Forms.CheckBox cBMoveG0;
         private System.Windows.Forms.ToolStripMenuItem startExtensionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewDimension;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -4258,40 +4847,11 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem createJogPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem control3rdGRBLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxRotateSelectedPath;
-        private System.Windows.Forms.Button BtnOverrideD3;
-        private System.Windows.Forms.Button BtnOverrideD2;
-        private System.Windows.Forms.Button BtnOverrideD1;
-        private System.Windows.Forms.Button BtnOverrideD0;
         private System.Windows.Forms.ToolStripMenuItem czechToolStripMenuItem;
         private System.Windows.Forms.TabControl tC_RouterPlotterLaser;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TrackBar TbLaser;
-        private System.Windows.Forms.Label LblSpeedMax;
-        private System.Windows.Forms.Label LblSpeedMin;
-        private System.Windows.Forms.NumericUpDown NudSpeed;
-        private System.Windows.Forms.Button BtnPenZero;
-        private System.Windows.Forms.CheckBox CbMist;
-        private System.Windows.Forms.RadioButton RbSpindleCCW;
-        private System.Windows.Forms.RadioButton RbSpindleCW;
-        private System.Windows.Forms.Label LblSpeedMaxVal;
-        private System.Windows.Forms.Label LblSpeedMinVal;
-        private System.Windows.Forms.Label LblSpeedSetVal;
-        private System.Windows.Forms.Label LblSpeedSet;
-        private System.Windows.Forms.CheckBox CbLaser;
-        private System.Windows.Forms.RadioButton RbLaserM4;
-        private System.Windows.Forms.RadioButton RbLaserM3;
-        private System.Windows.Forms.Label LblLaserSetVal;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label LblLaserMaxVal;
-        private System.Windows.Forms.Label LblLaserMinVal;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.CheckBox CbLasermode;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label CbLasermodeVal;
-        private System.Windows.Forms.PictureBox PbLaser;
         private System.Windows.Forms.ToolStripMenuItem showFormsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectorToolStripMenuItem;
         private System.Windows.Forms.CheckBox CbAddGraphic;
@@ -4308,38 +4868,6 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem convertToPolarCoordinatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem applyLastTransformToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wireCutterToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tLP_cB_StopJogging;
-        private System.Windows.Forms.CheckBox cBSendJogStop;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnOverrideDoor;
-        private System.Windows.Forms.Button btnResume;
-        private System.Windows.Forms.Button btnFeedHold;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnKillAlarm;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.NumericUpDown NudJogAbsZ;
-        private System.Windows.Forms.NumericUpDown NudJogAbsY;
-        private System.Windows.Forms.NumericUpDown NudJogAbsX;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button BtnJogAbsZ;
-        private System.Windows.Forms.Button BtnJogAbsY;
-        private System.Windows.Forms.Button BtnJogAbsX;
-        private System.Windows.Forms.GroupBox gBoxDROSetCoord;
-        private System.Windows.Forms.Button BtnSetCoordZ;
-        private System.Windows.Forms.Button BtnSetCoordY;
-        private System.Windows.Forms.Button BtnSetCoordX;
-        private System.Windows.Forms.NumericUpDown NudSetCoordZ;
-        private System.Windows.Forms.NumericUpDown NudSetCoordY;
-        private System.Windows.Forms.NumericUpDown NudSetCoordX;
-        private System.Windows.Forms.Label LblSetCoordZ;
-        private System.Windows.Forms.Label LblSetCoordY;
-        private System.Windows.Forms.Label LblSetCoordX;
-        private System.Windows.Forms.Button BtnSetCoordA;
-        private System.Windows.Forms.NumericUpDown NudSetCoordA;
-        private System.Windows.Forms.Label LblSetCoordA;
         private System.Windows.Forms.ToolStripMenuItem useOrigin;
         private System.Windows.Forms.TableLayoutPanel tLPMitteUnten1Zeile;
         private System.Windows.Forms.RadioButton Rb2DViewMode1;
@@ -4353,6 +4881,29 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         private System.Windows.Forms.ToolStripMenuItem offsetGraphicsMarkerPositionTolastToolPositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directControlToolStripMenuItem;
+        private UserControls.UCStreaming ucStreaming;
+        private UserControls.UCOverrides ucOverrides;
+        private UserControls.UCFlowControl ucFlowControl;
+        private UserControls.UCSetOffset ucSetOffset;
+        private UserControls.UCDRO ucdro;
+        private System.Windows.Forms.TabPage tabPage4;
+        private UserControls.UCMoveToGraphic ucMoveToGraphic;
+        private UserControls.UCMoveToZero ucMoveToZero;
+        private UserControls.UCJogControlAll ucJogControlAll;
+        private UserControls.UCDeviceLaser2 ucDeviceLaser2;
+        private UserControls.UCDevicePlotter ucDevicePlotter;
+        private System.Windows.Forms.TabControl tC_RouterPlotterLaser2;
+        private System.Windows.Forms.TabPage tabPageLaser;
+        private System.Windows.Forms.TabPage tabPagePlotter;
+        private UserControls.UCDevicePlotter2 ucDevicePlotter2;
+        private UserControls.UCToolList ucToolList;
+        private UserControls.UCDeviceLaser ucDeviceLaser;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private UserControls.UCDeviceRouter ucDeviceRouter;
+        private UserControls.UCDeviceRouter2 ucDeviceRouter2;
+        private System.Windows.Forms.Label IndividualSettings;
+        private UserControls.UCSetCoordinateSystem ucSetCoordinateSystem;
     }
 }
 

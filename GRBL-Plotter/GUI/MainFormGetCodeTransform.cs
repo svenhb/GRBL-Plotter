@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
  * 2024-05-06 l:385 f:GetGCodeJogCreator2 check if form != null
  * 2024-05-28 l:103 f:ApplyHeightMap add log
  * 2024-11-27 l:517 f:TransformStart	add try catch
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 using FastColoredTextBoxNS;
 using System;
@@ -57,7 +58,7 @@ namespace GrblPlotter
                 {
                     string[] commands = _heightmap_form.GetCode.ToString().Split('\r');
                     _serial_form.IsHeightProbing = true;
-                    foreach (string cmd in commands)            // fill up send queue
+                    foreach (string cmd in commands)            // FillToolListElements up send queue
                     {
                         if (machineStatus == GrblState.alarm)
                             break;
@@ -85,8 +86,8 @@ namespace GrblPlotter
         private void LoadHeightMap(object sender, EventArgs e)
         { LoadHeightMap(); }
         private void LoadHeightMap()
-        { 
-            if ((_heightmap_form!=null) && _heightmap_form.mapIsLoaded)
+        {
+            if ((_heightmap_form != null) && _heightmap_form.mapIsLoaded)
             {
                 VisuGCode.DrawHeightMap(_heightmap_form.Map);
                 VisuGCode.CreateMarkerPath();
@@ -103,7 +104,7 @@ namespace GrblPlotter
         private void ApplyHeightMap(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-			Logger.Debug("ApplyHeightMap  isApplied:{0}", isHeightMapApplied);
+            Logger.Debug("ApplyHeightMap  isApplied:{0}", isHeightMapApplied);
             if (!isHeightMapApplied)
             {
                 LoadHeightMap(sender, e);
@@ -150,7 +151,7 @@ namespace GrblPlotter
 
         private void InsertCodeFromForm(string sourceGCode, string sourceForm, GraphicsPath backgroundPath = null)
         {
-            bool insertCode = Properties.Settings.Default.fromFormInsertEnable;
+            bool insertCode = LoadProperties.MultipleImportFromForm;
             importOptions = "";
             SimuStop();
             bool createGroup = false;
@@ -295,9 +296,9 @@ namespace GrblPlotter
                     tmpCode = Graphic.GCode.ToString();
                 }
                 InsertCodeFromForm(tmpCode, "for wirecutter", _wireCutter_form.PathBackground);
-         //       Properties.Settings.Default.counterImportText += 1;
+                //       Properties.ListSettings.Default.counterImportText += 1;
                 string source = "Iwi";
-                if (Properties.Settings.Default.fromFormInsertEnable)
+                if (LoadProperties.MultipleImportFromForm)
                     source = "I" + source;
                 AfterImport(source);
             }
@@ -317,7 +318,7 @@ namespace GrblPlotter
                 InsertCodeFromForm(tmpCode, "from text");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Itxt";
-                if (Properties.Settings.Default.fromFormInsertEnable)
+                if (LoadProperties.MultipleImportFromForm)
                     source = "I" + source;
                 AfterImport(source);
             }
@@ -338,7 +339,7 @@ namespace GrblPlotter
                 InsertCodeFromForm(tmpCode, "from barcode");
                 Properties.Settings.Default.counterImportBarcode += 1;
                 string source = "Ibqr";
-                if (Properties.Settings.Default.fromFormInsertEnable)
+                if (LoadProperties.MultipleImportFromForm)
                     source = "I" + source;
                 AfterImport(source);
             }
@@ -353,22 +354,33 @@ namespace GrblPlotter
             Logger.Info("▀▀▀▀▀▀ GetGCodeFromImage");
             if (!isStreaming)
             {
-                if ((_image_form != null) && (!String.IsNullOrEmpty(_image_form.ImageGCode)))
+                if (_image_form != null)
                 {
                     SimuStop();
-                    VisuGCode.pathBackground.Reset();
-                    NewCodeStart(false);             // GetGCodeFromImage
-                    SetFctbCodeText(_image_form.ImageGCode);
-                    if (Properties.Settings.Default.importImageResoApply)
-                        penDown.Width = (float)Properties.Settings.Default.importImageReso;
-                    else
-                        penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
-                    //    SetLastLoadedFile("from image", "");
-                    NewCodeEnd();                   // GetGCodeFromImage
-                    FoldCodeOnLoad();
-                    Properties.Settings.Default.counterImportImage += 1;
-                    AfterImport("Iimg");
-                    CalculatePicScaling();          // update picScaling
+                    if (Graphic.GCode != null)
+                    {
+                        InsertCodeFromForm(Graphic.GCode.ToString(), "from shape");
+                        Properties.Settings.Default.counterImportImage += 1;
+                        AfterImport("Iimg");
+                    }
+                    else if (!String.IsNullOrEmpty(_image_form.ImageGCode))
+                    {
+
+                        VisuGCode.pathBackground.Reset();
+                        NewCodeStart(false);             // GetGCodeFromImage
+                        SetFctbCodeText(_image_form.ImageGCode);
+                        if (Properties.Settings.Default.importImageResoApply)
+                            penDown.Width = (float)Properties.Settings.Default.importImageReso;
+                        else
+                            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+                        //    SetLastLoadedFile("from image", "");
+                        NewCodeEnd();                   // GetGCodeFromImage
+                        FoldCodeOnLoad();
+                        Properties.Settings.Default.counterImportImage += 1;
+                        AfterImport("Iimg");
+                        CalculatePicScaling();          // update picScaling
+                    }
+                    SetLastLoadedFile("Data from image", "");
                 }
                 else
                 { Logger.Error("GetGCodeFromImage form is already closed or string is empty"); }
@@ -387,7 +399,7 @@ namespace GrblPlotter
                     InsertCodeFromForm(_shape_form.ShapeGCode, "from shape", _shape_form.PathBackground);
                     Properties.Settings.Default.counterImportShape += 1;
                     string source = "Ishp";
-                    if (Properties.Settings.Default.fromFormInsertEnable)
+                    if (LoadProperties.MultipleImportFromForm)
                         source = "I" + source;
                     AfterImport(source);
                 }
@@ -504,24 +516,24 @@ namespace GrblPlotter
         private void TransformStart(string action, bool setUndo = true)//, bool resetMark = true)
         {
             Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
-        //    showPaths = false;
+            //    showPaths = false;
             try
             {
-				StatusStripClear();
-				StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
-				Application.DoEvents();
+                StatusStripClear();
+                StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
+                Application.DoEvents();
 
-            	Cursor.Current = Cursors.WaitCursor;
-				if (setUndo)
-					UnDo.SetCode(fCTBCode.Text, action, this);
-				showPicBoxBgImage = false;                      // don't show background image anymore
-				pictureBox1.BackgroundImage = null;
-				pBoxTransform.Reset();
-			}
+                Cursor.Current = Cursors.WaitCursor;
+                if (setUndo)
+                    UnDo.SetCode(fCTBCode.Text, action, this);
+                showPicBoxBgImage = false;                      // don't show background image anymore
+                pictureBox1.BackgroundImage = null;
+                pBoxTransform.Reset();
+            }
             catch (Exception err)
             {
-				Logger.Error(err," TransformStart failed ");
-			}
+                Logger.Error(err, " TransformStart failed ");
+            }
         }
 
         private void TransformEnd()
@@ -548,42 +560,6 @@ namespace GrblPlotter
                 StatusStripClear();
             showPaths = true;
             Application.DoEvents();
-        }
-
-        private void BtnOffsetApply_Click(object sender, EventArgs e)
-        {
-            //     double offsetx = 0, offsety = 0;
-            if (!Double.TryParse(tbOffsetX.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double offsetx))
-            {
-                MessageBox.Show(Localization.GetString("mainParseError"), Localization.GetString("mainAttention"));
-                offsetx = 0;
-                tbOffsetX.Text = string.Format("{0:0.00}", offsetx);
-            }
-            if (!Double.TryParse(tbOffsetY.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double offsety))
-            {
-                MessageBox.Show(Localization.GetString("mainParseError"), Localization.GetString("mainAttention"));
-                offsety = 0;
-                tbOffsetY.Text = string.Format("{0:0.00}", offsety);
-            }
-            if (fCTBCode.Lines.Count > 1)
-            {
-                TransformStart("Apply Offset");
-                zoomFactor = 1;
-                if (rBOrigin1.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset1); }
-                if (rBOrigin2.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset2); }
-                if (rBOrigin3.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset3); }
-                if (rBOrigin4.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset4); }
-                if (rBOrigin5.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset5); }
-                if (rBOrigin6.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset6); }
-                if (rBOrigin7.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset7); }
-                if (rBOrigin8.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset8); }
-                if (rBOrigin9.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset9); }
-                fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
-                fCTBCodeClickedLineLast = 0;
-
-                TransformEnd();
-            }
-            Cursor.Current = Cursors.Default;
         }
 
         private void MirrorXToolStripMenuItem_Click(object sender, EventArgs e)
@@ -960,11 +936,7 @@ namespace GrblPlotter
         private void Update_GCode_Depending_Controls()
         {
             string dimensions = VisuGCode.xyzSize.GetMinMaxString() + "\r\n" + VisuGCode.GetProcessingTime(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
-            if (lbDimension.InvokeRequired) { lbDimension.BeginInvoke((MethodInvoker)delegate () { lbDimension.Text = dimensions; }); }
-            else { lbDimension.Text = dimensions; }
-            if (!string.IsNullOrEmpty(lbDimension.Text))
-                lbDimension.Select(0, 0);
-            //            toolTip1.SetToolTip(lbDimension, visuGCode.getProcessingTime());
+            ucSetOffset.SetDimensionText(dimensions);
             CheckMachineLimit();
             try
             {
@@ -978,12 +950,13 @@ namespace GrblPlotter
                 Logger.Error(err, "Update_GCode_Depending_Controls toolStrip_tb_XY_X_scale ");
                 EventCollector.StoreException("Update_GCode_Depending_Controls " + err.Message);
             }
-
-            btnSimulate.Enabled = true;
+            ucStreaming.EnableButtonsSimulation(true);
+            //    btnSimulate.Enable = true;
             SetGcodeVariables();
+            ucMoveToGraphic.SetDimension(VisuGCode.xyzSize);
 
             if (VisuGCode.ContainsG2G3Command())                        // disable X/Y independend scaling if G2 or G3 GCode is in use
-            {                                                           // because it's not possible to stretch (convert 1st to G1 GCode)                skaliereXUmToolStripMenuItem.Enabled = false;
+            {                                                           // because it's not possible to stretch (convert 1st to G1 GCode)                skaliereXUmToolStripMenuItem.Enable = false;
                 skaliereXUmToolStripMenuItem.Enabled = false;
                 skaliereYUmToolStripMenuItem.Enabled = false;
                 skaliereAufXUnitsToolStripMenuItem.Enabled = false;
@@ -1008,22 +981,12 @@ namespace GrblPlotter
             if ((Properties.Settings.Default.machineLimitsShow) && (pictureBox1.BackgroundImage == null))
             {
                 if (!VisuGCode.xyzSize.WithinLimits(Grbl.posMachine, Grbl.posWork))
-                {
-                    lbDimension.BackColor = Color.Fuchsia;
-                    btnLimitExceed.Visible = true;
-                }
+                { ucSetOffset.SetDimensionStatus(2); }
                 else
-                {
-                    lbDimension.BackColor = Color.Lime;
-                    toolTip1.SetToolTip(lbDimension, "");
-                    btnLimitExceed.Visible = false;
-                }
+                { ucSetOffset.SetDimensionStatus(1); }
             }
             else
-            {
-                lbDimension.BackColor = Color.FromArgb(255, 255, 128);
-                btnLimitExceed.Visible = false;
-            }
+            { ucSetOffset.SetDimensionStatus(0); }
         }
 
         private void BtnLimitExceed_Click(object sender, EventArgs e)

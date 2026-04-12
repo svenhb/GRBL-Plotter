@@ -82,7 +82,7 @@ namespace GrblPlotter.GUI
                     if (Files[i].ToLower().EndsWith("ini"))
                     {
                         string value = GetContent(Files[i]);
-                        //                        Logger.Trace("Fill {0}   {1}", Files[i], value);
+                        //                        Logger.Trace("FillToolListElements {0}   {1}", Files[i], value);
                         if (value.Length > 1)
                         {
                             cBPresets.Items.Add(Path.GetFileName(Files[i]));

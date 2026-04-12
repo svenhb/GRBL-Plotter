@@ -181,229 +181,8 @@
     <value>(لصق رمز G أو ملف التحميل)</value>
     <comment>Editor</comment>
   </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>رسالة</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>التوقف عن إرسال رمز إلى GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>التحقق من الشفرة</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>زمن</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>تقدم</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>إرسال رمز من محرر النصوص إلى GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="gBoxStream.Text" xml:space="preserve">
-    <value>G- كود الجري</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnLimitExceed.Text" xml:space="preserve">
-    <value>؟</value>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>تطبيق الأوفست</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>إزاحة Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value>إزاحة Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>إزاحة X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>إزاحة X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>الأصل س ص</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>الأبعاد</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>G- كود البعد</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>جلس:</value>
-  </data>
-  <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>سريعون</value>
-    <comment>groupBox_Override1</comment>
-  </data>
-  <data name="btnOverrideSpindle.Text" xml:space="preserve">
-    <value>المغزل CW</value>
-  </data>
-  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>يعمل فقط في حالة HOLD</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideMist.Text" xml:space="preserve">
-    <value>ضباب</value>
-  </data>
-  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>قد لا يتم تمكين M7 في grbl</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideFlood.Text" xml:space="preserve">
-    <value>فيضان</value>
-  </data>
-  <data name="gBOverrideASGB.Text" xml:space="preserve">
-    <value>تبديل الدول التبعي</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="lblStatusFeed.Text" xml:space="preserve">
-    <value>تغذية الفعلية</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>معدل التغذية الفعلي بالملليمتر / دقيقة أو البوصة / الدقيقة (اعتمادًا على 13 دولارًا)</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>جلس:</value>
-  </data>
-  <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>تغذية</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.Text" xml:space="preserve">
-    <value>السرعة الفعلية</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>سرعة المغزل الفعلية في دورة في الدقيقة</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>جلس:</value>
-  </data>
-  <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>سرعة المغزل</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Overrides (grbl 1.1 فقط) - انقر لتوسيع / تقليص</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>وقف الركض</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>وقف حركة الركض الحالية</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>هرول المحور الرابع</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>محور Jog X و Y</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>هرول Z المحور</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>هرول المحور الرابع</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>هرول المحور الرابع</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>وقف الركض على الماوس لأعلى</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>باب</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>على الرغم من أن عادةً ما تكون متصلة بمسمار إدخال للكشف عن فتح باب الأمان ، فإن هذا الأمر يسمح لـ GUI بتفعيل سلوك باب الأمان باستخدام هذا الأمر.
-يعلق على الفور في حالة الباب ويعطل المغزل والمبرد. في حالة الحركة ، ستتباطأ الماكينة وتوقف بعد ذلك.
-إذا تم تنفيذ أثناء صاروخ موجه ، فإن Grbl ستوقف الحركة وتلقي إنذارًا صارخًا.
-إذا كانت موجودة بالفعل في حالة تعليق مؤقت أو HOLD ، فإن حالة DOOR ستحل محلها.
-إذا تم تمكين خيار وقت إيقاف السيارات ، فسيقوم Grbl بإيقاف المغزل إلى موقع محدد.
-يتم تنفيذ الأمر عندما يكون Grbl في حالة IDLE أو HOLD أو RUN أو HOMING أو JOG. يتم تجاهله بطريقة أخرى.
-إذا كان الركض ، فإن باب السلامة سوف يلغي الركض وجميع حركات الانتظار في المخزن المؤقت للمخطط. عند إغلاق باب الأمان واستئنافه ، سيعود Grbl إلى حالة IDLE.
-يتوفر دبوس إدخال لتوصيل زر أو مفتاح ، إذا تم تمكينه باستخدام خيار وقت الترجمة.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>استئنف</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>يمكن إصدار أمر بدء الدورة أو استئنافها "~" في أي وقت ، حيث إنه أمر في الوقت الفعلي.
-عندما يكون لدى Grbl حركات قائمة الانتظار في المخزن المؤقت الخاص به ويكون جاهزًا للذهاب ، فإن الأمر ~ cycle start سوف
-البدء في تنفيذ المخزن المؤقت وسيبدأ Grbl في تحريك المحاور.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>تغذية تعليق</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>أمر تعليق التغذية '!' سيؤدي إلى توقف الدورة النشطة عن طريق التباطؤ المتحكم به ، حتى لا تفقد مركزك.
-إنه أيضًا وقت حقيقي ويمكن تنشيطه في أي وقت. بمجرد الانتهاء أو الإيقاف المؤقت ، سوف ينتظر Grbl حتى أمر بدء دورة
-صدر لاستئناف البرنامج. تعليق الخلاصة يمكن أن يوقف دورة فقط ولن يؤثر على صاروخ موجه أو أي عملية أخرى.
-إذا كنت بحاجة إلى إيقاف دورة منتصف البرنامج ولا يمكنك تحمل خسارة المركز ، فقم بإجراء تعليق لتلقي Grbl
-كل شيء إلى توقف تسيطر عليها. بمجرد الانتهاء ، يمكنك حينئذ إصدار إعادة تعيين. حاول دائمًا تنفيذ تعليق تغذية متى
-يتم تشغيل الجهاز قبل الضغط على إعادة التعيين ، إلا إذا كان هناك بعض حالات الطوارئ.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>اقتل المنبه</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>وضع التنبيه Grbl هو حالة عندما يكون هناك شيء خاطئ بشكل خطير ،
-مثل الحد الصلب أو الإجهاض أثناء الدورة ، أو إذا كان Grbl لا يعرف موقعه.
-افتراضيًا ، إذا قمت بتمكين صاروخ موجه وإدخال Arduino ، يدخل Grbl
-حالة الإنذار ، لأنها لا تعرف موقفها. وضع المنبه قفل كل شيء
-أوامر G-code حتى يتم تنفيذ دورة التوجيه "$ H". أو إذا كان يحتاج المستخدم
-لتجاوز قفل المنبه لتحريك محاورهم عن مفاتيح الحد الخاصة بهم ، على سبيل المثال ، قفل المنبه "$ X"
-سيتجاوز الأقفال ويسمح لوظائف G-code بالعمل مرة أخرى.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.Text" xml:space="preserve">
-    <value>إعادة تعيين</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>هذا هو أمر إعادة تعيين Grbl الناعم 'Ctrl-x'. إنه وقت حقيقي ويمكن إرساله في أي وقت.
-كما يوحي الاسم ، فإنه يعيد تعيين Grbl ، ولكن بطريقة محكومة ، يحتفظ بموضع جهازك ،
-ويتم كل ذلك دون التقليل من اردوينو الخاص بك. الأوقات الوحيدة التي يمكن إعادة تعيين لينة
-الموقف المفقود هو عندما تنشأ مشاكل وقتل السائر بينما كانوا يتحركون.
-إذا كان الأمر كذلك ، فستبلغ إذا كان تتبع Grbl لموضع الماكينة قد فقد.
-وذلك لأن التباطؤ غير المنضبط يمكن أن يؤدي إلى خطوات ضائعة ، وليس لدى Grbl أي ملاحظات
-إلى مقدار خسارتها (هذه هي المشكلة مع السائر بشكل عام). خلاف ذلك ، سوف Grbl مجرد إعادة تهيئة ،
-تشغيل خطوط بدء التشغيل ، والاستمرار في طريقها مرح.</value>
-    <comment>groupBox_Jogging</comment>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>قم بتعيين "عرض الخطوة" في [الإعداد - استيراد الرسومات - استيراد المسار - الخيارات العامة - معلمات الاستيراد - عرض الخطوة على محيط الأقواس]</value>
   </data>
   <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
     <value>التراجع عن آخر إجراء</value>
@@ -420,100 +199,6 @@
   <data name="tBURL.Text" xml:space="preserve">
     <value>لصق عنوان URL لملف SVG / DXF هنا</value>
     <comment>2DView</comment>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>أزرار مخصصة</value>
-    <comment>groupBox_Custom</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>صفر جيم</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>ضبط العمل C إحداثي إلى صفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>صفر ب</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>تعيين العمل B إحداثي إلى الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="lblCurrentG.ToolTip" xml:space="preserve">
-    <value>نظام الإحداثيات الافتراضي = G54
-نظام إحداثيات الكاميرا = G59
-أضف "G54 ؛" إلى رأس G-Code للتبديل تلقائيًا إلى G54 قبل دفق G-Code</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status0.Text" xml:space="preserve">
-    <value>الحالة:</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>صفر Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>ضبط تنسيق العمل على الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.Text" xml:space="preserve">
-    <value>الصفحة الرئيسية</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>بدء صاروخ موجه (إذا تم تمكين GRBL)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>صفر XYZ</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>تعيين العمل X ، Y ، Z تنسيق إلى الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>صفر XY</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>تعيين العمل X ، Y تنسيق إلى الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>صفر Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>اضبط إحداثي Z إلى صفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>صفر Y</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>تعيين العمل Y إحداثي إلى الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>صفر X</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>تعيين العمل X تنسيق إلى الصفر</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>الحالة</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>إحداثيات الأداة (العمل / الجهاز)</value>
-    <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
     <value>فتح الملف</value>
@@ -831,37 +516,6 @@
     <value>حول</value>
     <comment>Menu16</comment>
   </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>لغة</value>
-    <comment>Menu117</comment>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>يعمل هذا على تبديل المحلل اللغوي الخاص بـ Grbl لأخذ جميع الكتل الواردة ومعالجتها تمامًا ، كما هو الحال في التشغيل العادي ، لكنه لا يحرك أي من المحاور ، ويتجاهل المساكن ، ويفصل الطاقة عن المغزل والمبرد. الغرض من ذلك هو توفير وسيلة للمستخدم للتحقق من كيفية حصول برنامج G-code الجديد على محلل Grbl ومراقبته عن أي أخطاء (والتحقق من انتهاكات الحد المسموح به ، إذا كان ممكّنًا).</value>
-  </data>
-  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
-    <value>نصف سرعة المحاكاة</value>
-  </data>
-  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
-    <value>سرعة محاكاة مزدوجة</value>
-  </data>
-  <data name="btnSimulate.Text" xml:space="preserve">
-    <value>بدء محاكاة المسار</value>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>أرسل G90 G0 A (أو B ، C) 0</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>أرسل G90 G0 X0</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>أرسل G90 G0 X0 Y0</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>أرسل G90 G0 Y0</value>
-  </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>أرسل G90 G0 Z0</value>
-  </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>البعد G- كود</value>
   </data>
@@ -870,9 +524,6 @@
   </data>
   <data name="cmsEditMode.Text" xml:space="preserve">
     <value>تبديل وضع التحرير</value>
-  </data>
-  <data name="cBServoButtons.Text" xml:space="preserve">
-    <value>إظهار القلم لأعلى / لأسفل</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>الانتقال إلى الموضع المميز G0</value>
@@ -1033,18 +684,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>خروج</value>
   </data>
-  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
-    <value>يعرض حالة D3 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P3 (تشغيل)" أو "M65 P3 (إيقاف)" اعتمادًا على الحالة</value>
-  </data>
-  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
-    <value>يعرض حالة D2 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P2 (تشغيل)" أو "M65 P2 (إيقاف)" اعتمادًا على الحالة</value>
-  </data>
-  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
-    <value>يعرض حالة D1 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P1 (تشغيل)" أو "M65 P1 (إيقاف)" اعتمادًا على الحالة</value>
-  </data>
-  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
-    <value>يعرض حالة D0 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P0 (on)" أو "M65 P0 (off)" اعتمادًا على الحالة</value>
-  </data>
   <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
     <value>تدوير المسار المحدد</value>
   </data>
@@ -1054,65 +693,17 @@
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>لغة</value>
   </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>استخدم أمر النقل السريع G0 - لن يعمل إيقاف الركض</value>
-  </data>
-  <data name="CbSpindle.Text" xml:space="preserve">
-    <value>المغزل CW</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbCoolant.Text" xml:space="preserve">
-    <value>المبرد</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbTool.Text" xml:space="preserve">
-    <value>الأداة في المغزل</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>قلم لأعلى</value>
-  </data>
-  <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
-  </data>
-  <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>القلم لأسفل</value>
-  </data>
-  <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>جهاز التوجيه</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>يطبق قيم ترجمة Pen -up / -down الممكّنة لـ Z و PWM</value>
-  </data>
-  <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>القلم صفر</value>
-  </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>متآمر</value>
-  </data>
-  <data name="CbLasermode.Text" xml:space="preserve">
-    <value>وضع الليزر</value>
-  </data>
-  <data name="RbLaserM4.Text" xml:space="preserve">
-    <value>M4 ديناميكي PWR.</value>
-  </data>
-  <data name="RbLaserM3.Text" xml:space="preserve">
-    <value>M3 ثابت pwr.</value>
-  </data>
-  <data name="CbLaser.Text" xml:space="preserve">
-    <value>الليزر في</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>الليزر</value>
   </data>
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>التحكم الثالث المسلسل COM</value>
-  </data>
-  <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>الانتقال إلى</value>
   </data>
   <data name="CbAddGraphic.Text" xml:space="preserve">
     <value>أضف الرسم الذي تم استيراده إلى طريقة العرض ثنائية الأبعاد</value>
@@ -1208,19 +799,6 @@
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
     <value>قاطع الاسلاك</value>
   </data>
-  <data name="BtnJogAbsZ.Text" xml:space="preserve">
-    <value>انتقل الى</value>
-  </data>
-  <data name="BtnJogAbsY.Text" xml:space="preserve">
-    <value>انتقل الى</value>
-  </data>
-  <data name="BtnJogAbsX.Text" xml:space="preserve">
-    <value>انتقل الى</value>
-  </data>
-  <data name="Gb_Jogging.Text" xml:space="preserve">
-    <value>التحكم / الركض - انقر للتوسيع</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
     <value>تطبيق التحويل الأخير</value>
   </data>
@@ -1233,20 +811,8 @@
   <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
     <value>تحويل إلى الإحداثيات القطبية</value>
   </data>
-  <data name="CbMist.ToolTip" xml:space="preserve">
-    <value>اضبط "M7" وامسح "M9"</value>
-  </data>
-  <data name="CbSpindle.ToolTip" xml:space="preserve">
-    <value>اضبط "M3" أو "M4"، وامسح "M5"</value>
-  </data>
-  <data name="CbCoolant.ToolTip" xml:space="preserve">
-    <value>اضبط "M8"، امسح "M9"</value>
-  </data>
-  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
-    <value>ضبط نظام الإحداثيات</value>
-  </data>
-  <data name="gBoxDRO.Text" xml:space="preserve">
-    <value>إحداثيات الأداة (العمل / الجهاز)</value>
+  <data name="cmsPictureBox.Text" xml:space="preserve">
+    <value>قم بإزاحة موضع العلامة إلى 0؛0</value>
   </data>
   <data name="Rb2DViewMode1.Text" xml:space="preserve">
     <value>تحرير الشكل</value>
@@ -1301,5 +867,20 @@
   </data>
   <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
     <value>قرص الرسم</value>
+  </data>
+  <data name="IndividualSettings.Text" xml:space="preserve">
+    <value>لن يتم تطبيق إعدادات الاستيراد من برنامج الإعداد بالكامل إلا إذا كانت هذه العلامة مرئية.</value>
+  </data>
+  <data name="tabPageLaser.Text" xml:space="preserve">
+    <value>ليزر</value>
+  </data>
+  <data name="tabPagePlotter.Text" xml:space="preserve">
+    <value>راسمة</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>موجّه</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>-بشكل فردي-</value>
   </data>
 </root>

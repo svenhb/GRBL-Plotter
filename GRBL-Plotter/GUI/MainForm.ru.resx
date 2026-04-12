@@ -165,189 +165,6 @@
     <value>Обновить 2D вид</value>
     <comment>Editor_Menu</comment>
   </data>
-  <data name="gBoxStream.Text" xml:space="preserve">
-    <value>G-код потоковой передачи</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>Сообщение</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Прекратить отправку кода в GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Проверьте код</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>продолжительность</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>прогресс</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Отправить код из текстового редактора в GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>Размер G-кода</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Нулевая точка XY</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Применить смещение</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Смещ. Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Смещ. X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Размеры</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Переопределения (только для grbl 1.1) - нажмите, чтобы увеличить / уменьшить</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>быстрое</value>
-    <comment>groupBox_Override1</comment>
-  </data>
-  <data name="gBOverrideASGB.Text" xml:space="preserve">
-    <value>переключать вспомогательные состояния</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>Работает только в состоянии HOLD</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>M7 может не включен в grbl</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>подача</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>Фактическая скорость подачи в мм / мин или дюйм / мин (в зависимости от $ 13)</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>скорость вращения шпинделя</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>Фактическая скорость шпинделя в об / мин</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>Остановить перемещение</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Остановить текущее беговое движение</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>Jog X и Y ось</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>Оставока при отажатии кнопки</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Дверь</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>Хотя эта команда обычно подключается к входному контакту для обнаружения открытия защитной двери, эта команда позволяет графическому интерфейсу пользователя управлять поведением защитной двери с помощью этой команды.
-Немедленно приостанавливается в состояние DOOR и отключает шпиндель и охлаждающую жидкость. В случае движения машина замедлится до остановки, а затем будет приостановлена.
-Если выполнено во время возврата в исходное положение, Grbl остановит движение и выдаст сигнал возврата в исходное положение.
-Если уже в состоянии приостановки или HOLD, состояние DOOR заменяет его.
-Если опция компиляции при парковке включена, Grbl будет парковать шпиндель в указанном месте.
-Команда выполняется, когда Grbl находится в состоянии IDLE, HOLD, RUN, HOMING или JOG. В противном случае игнорируется.
-При пробежке защитная дверь отменит пробежку и все движения в очереди в буфере планировщика. Когда защитная дверь будет закрыта и возобновлена, Grbl вернется в состояние ожидания.
-Входной контакт доступен для подключения кнопки или переключателя, если он включен с опцией времени компиляции.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>Резюме</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>Команда запуска или возобновления цикла '~' может быть введена в любое время, так как это команда реального времени.
-Когда Grbl поставит в очередь движения в своем буфере и готов к работе, команда ~ цикл запуска
-начать выполнение буфера, и Grbl начнет движение осей.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Остановить подачу</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>Команда удержания подачи '!' остановит активный цикл с помощью управляемого замедления, чтобы не потерять позицию.
-Это также в режиме реального времени и может быть активировано в любое время. После завершения или приостановки Grbl будет ждать, пока команда запуска цикла
-выдается для возобновления программы. Удержание подачи может только приостановить цикл и не повлияет на возвращение в исходное положение или любой другой процесс.
-Если вам нужно остановить среднюю программу цикла и вы не можете позволить себе потерять позицию, выполните удержание подачи, чтобы Grbl принес
-все до контролируемой остановки. После завершения вы можете выполнить сброс. Всегда пытайтесь выполнить удержание подачи всякий раз, когда
-машина работает до сброса, за исключением, конечно, чрезвычайной ситуации.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Снять тревогу</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Режим тревоги Grbl - это состояние, когда что-то пошло не так,
-например, жесткий лимит или прерывание во время цикла, или если Grbl не знает свою позицию.
-По умолчанию, если у вас включен самонаведения и включения Arduino, Grbl вводит
-состояние тревоги, потому что он не знает свою позицию. Режим тревоги заблокирует все
-Команды G-кода до тех пор, пока не будет выполнен цикл возврата $ H. Или если пользователю нужно
-переопределить блокировку сигнализации, чтобы переместить их оси от концевых выключателей, например, '$ X' kill lock alarm
-переопределит блокировки и позволит функциям G-кода снова работать.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.Text" xml:space="preserve">
-    <value>СБРОС</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>Это команда мягкого сброса Grbl 'Ctrl-x'. Это в режиме реального времени и может быть отправлено в любое время.
-Как следует из названия, он сбрасывает Grbl, но контролируемым образом сохраняет положение вашей машины,
-и все делается без выключения вашего Arduino. Единственный раз, когда программный сброс мог
-Потеря позиции происходит, когда возникают проблемы, и степперы были убиты во время движения.
-Если это так, он сообщит, что отслеживание положения машины Grbl было потеряно.
-Это потому, что неконтролируемое замедление может привести к потерянным шагам, а Grbl не имеет обратной связи
-насколько это потеряно (это проблема со степперами в целом). В противном случае, Grbl просто переинициализируется,
-  запустить линии запуска и продолжить свой веселый путь.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Отменить последнее действие</value>
     <comment>Menu131</comment>
@@ -363,100 +180,6 @@
   <data name="tBURL.Text" xml:space="preserve">
     <value>Вставьте URL файла SVG / DXF сюда</value>
     <comment>2DView</comment>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Пользовательские кнопки</value>
-    <comment>groupBox_Custom</comment>
-  </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>Координаты инструмента (работа / станок)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>Ноль C</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату C на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>Ноль B</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату B на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="lblCurrentG.ToolTip" xml:space="preserve">
-    <value>Система координат по умолчанию = G54
-Система координат камеры = G59
-Добавьте «G54;» в заголовок G-Code для автоматического переключения на G54 перед потоковой передачей G-Code</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status0.Text" xml:space="preserve">
-    <value>Статус</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>Ноль A</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.Text" xml:space="preserve">
-    <value>Дом (аппаратный 0)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>Запустите Homing (если включен в GRBL)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>Ноль XYZ</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>Установить координаты X, Y, Z на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>Ноль XY</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>Установить координаты X, Y на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Ноль Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату Z на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>Ноль Y</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>Установить координату Y работы на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>Ноль X</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату X на ноль</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>Статус</value>
-    <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>файл</value>
@@ -501,10 +224,6 @@
   <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Импорт настроек GUI (определения кнопок, параметры джойстика) из INI-файла</value>
     <comment>Menu116</comment>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>язык</value>
-    <comment>Menu117</comment>
   </data>
   <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Создать G-Code</value>
@@ -794,49 +513,6 @@
     <value>Сложите кодовые блоки 3-го уровня</value>
     <comment>Editor_Menu</comment>
   </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value>Смещ. Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Смещ. X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="lblStatusFeed.Text" xml:space="preserve">
-    <value>текущий канал</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.Text" xml:space="preserve">
-    <value>текущая скорость</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>Это переключает анализатор g-кода Grbl на прием всех входящих блоков и их полную обработку, как при обычной работе, но он не перемещает ни одну из осей, игнорирует задержки и отключает шпиндель и охлаждающую жидкость. Это предназначено для того, чтобы предоставить пользователю способ проверить, как его новая программа G-кода работает с парсером Grbl, и следить за любыми ошибками (и проверять нарушения мягкого лимита, если они включены).</value>
-  </data>
-  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
-    <value>Половина скорости симуляции</value>
-  </data>
-  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
-    <value>Двойная скорость симуляции</value>
-  </data>
-  <data name="btnSimulate.Text" xml:space="preserve">
-    <value>Начать симуляцию пути</value>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>Отправить G90 G0 A (или B, C) 0</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>Отправить G90 G0 X0</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>Отправить G90 G0 X0 Y0</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>Отправить G90 G0 Y0</value>
-  </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>Отправить G90 G0 Z0</value>
-  </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>Размер G-кода</value>
   </data>
@@ -845,9 +521,6 @@
   </data>
   <data name="cmsEditMode.Text" xml:space="preserve">
     <value>Переключить режим редактирования</value>
-  </data>
-  <data name="cBServoButtons.Text" xml:space="preserve">
-    <value>Показать перо вверх / вниз</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Переместиться в отмеченную позицию G0</value>
@@ -1008,18 +681,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Выход</value>
   </data>
-  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
-    <value>Показывает состояние контакта D3 (grbl-Mega-5X), при нажатии отправляется 'M64 P3 (on)' или 'M65 P3 (off)' в зависимости от статуса</value>
-  </data>
-  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
-    <value>Показывает состояние контакта D2 (grbl-Mega-5X), при нажатии отправляется «M64 P2 (вкл.)» Или «M65 P2 (выкл.)» В зависимости от статуса</value>
-  </data>
-  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
-    <value>Показывает состояние вывода D1 (grbl-Mega-5X), при нажатии отправляется 'M64 P1 (on)' или 'M65 P1 (off)' в зависимости от статуса</value>
-  </data>
-  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
-    <value>Показывает состояние вывода D0 (grbl-Mega-5X), при нажатии отправляется 'M64 P0 (on)' или 'M65 P0 (off)' в зависимости от статуса</value>
-  </data>
   <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
     <value>Повернуть выбранный путь</value>
   </data>
@@ -1029,61 +690,17 @@
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Язык</value>
   </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>Используйте команду быстрого перемещения G0 — толчковый режим STOP не будет работать.</value>
-  </data>
-  <data name="CbSpindle.Text" xml:space="preserve">
-    <value>Шпиндель</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbTool.Text" xml:space="preserve">
-    <value>Инструмент в шпинделе</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>Используйте настройки из Setup-Servo-PWM</value>
-  </data>
-  <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>Pen Down</value>
-  </data>
-  <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>Используйте настройки из Setup-Servo-PWM</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Маршрутизатор</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Применяет значения включенного перевода пера вверх/вниз для Z и ШИМ.</value>
-  </data>
-  <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>Pen Zero</value>
-  </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Плоттер</value>
-  </data>
-  <data name="CbLasermode.Text" xml:space="preserve">
-    <value>Лазерный режим</value>
-  </data>
-  <data name="RbLaserM4.Text" xml:space="preserve">
-    <value>M4 Динамическая мощность.</value>
-  </data>
-  <data name="RbLaserM3.Text" xml:space="preserve">
-    <value>M3 Постоянная мощность.</value>
-  </data>
-  <data name="CbLaser.Text" xml:space="preserve">
-    <value>Лазер включен</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Лазер</value>
   </data>
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>Управление 3-м серийным COM</value>
-  </data>
-  <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>Перейти к</value>
   </data>
   <data name="CbAddGraphic.Text" xml:space="preserve">
     <value>Добавить импортированную графику в 2D-просмотр</value>
@@ -1179,19 +796,6 @@
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
     <value>Резак для горячей проволоки</value>
   </data>
-  <data name="BtnJogAbsZ.Text" xml:space="preserve">
-    <value>Перейти к</value>
-  </data>
-  <data name="BtnJogAbsY.Text" xml:space="preserve">
-    <value>Перейти к</value>
-  </data>
-  <data name="BtnJogAbsX.Text" xml:space="preserve">
-    <value>Перейти к</value>
-  </data>
-  <data name="Gb_Jogging.Text" xml:space="preserve">
-    <value>Контроль / Бег – нажмите, чтобы развернуть</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
     <value>Применить последнее преобразование</value>
   </data>
@@ -1204,20 +808,8 @@
   <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
     <value>Преобразовать в полярные координаты</value>
   </data>
-  <data name="CbMist.ToolTip" xml:space="preserve">
-    <value>Установите «M7», очистите «M9».</value>
-  </data>
-  <data name="CbSpindle.ToolTip" xml:space="preserve">
-    <value>Установите «M3» или «M4», очистите «M5».</value>
-  </data>
-  <data name="CbCoolant.ToolTip" xml:space="preserve">
-    <value>Установите «M8», очистите «M9».</value>
-  </data>
-  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
-    <value>Установить систему координат</value>
-  </data>
-  <data name="gBoxDRO.Text" xml:space="preserve">
-    <value>Координаты инструмента (работа / станок)</value>
+  <data name="cmsPictureBox.Text" xml:space="preserve">
+    <value>Смещение маркера в положение 0;0</value>
   </data>
   <data name="Rb2DViewMode1.Text" xml:space="preserve">
     <value>Редактировать фигуру</value>
@@ -1273,5 +865,23 @@ Alt-щелчок округляет позицию до 0,1 растра,</value
   </data>
   <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
     <value>Графический планшет</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Установите параметр «Шаг» в разделе [Настройки - Импорт графики - Импорт контуров - Общие параметры - Параметр импорта - Шаг по окружности дуг].</value>
+  </data>
+  <data name="IndividualSettings.Text" xml:space="preserve">
+    <value>Только если эта вкладка видна, будут полностью применены настройки импорта из настроек.</value>
+  </data>
+  <data name="tabPageLaser.Text" xml:space="preserve">
+    <value>Лазерный</value>
+  </data>
+  <data name="tabPagePlotter.Text" xml:space="preserve">
+    <value>плоттер</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Маршрутизатор</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>-Индивидуально-</value>
   </data>
 </root>

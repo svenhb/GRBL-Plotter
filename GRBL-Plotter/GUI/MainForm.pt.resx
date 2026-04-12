@@ -173,210 +173,6 @@
     <value>(Cole o código G ou carregue o arquivo)</value>
     <comment>Editor</comment>
   </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>mensagem</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Parar de enviar código para GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Verificar código</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>Tempo</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>Progresso</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Enviar código do editor de texto para GRBL</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="gBoxStream.Text" xml:space="preserve">
-    <value>Streaming de código G</value>
-    <comment>groupBox_Streaming</comment>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Aplicar deslocamento</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Offset Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value>Offset Y</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Offset X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Offset X</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Origem XY</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Dimensões</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>Dimensão do código G</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
-  <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>Rápido</value>
-    <comment>groupBox_Override1</comment>
-  </data>
-  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>Funciona apenas no estado HOLD</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>M7 pode não estar ativado no grbl</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="gBOverrideASGB.Text" xml:space="preserve">
-    <value>Alternar estados acessórios</value>
-    <comment>groupBox_Override2</comment>
-  </data>
-  <data name="lblStatusFeed.Text" xml:space="preserve">
-    <value>alimentação atual</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>Taxa de alimentação real em mm / min ou polegada / min (dependendo de US $ 13)</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>alimentação</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.Text" xml:space="preserve">
-    <value>velocidade atual</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>Velocidade real do fuso em RPM</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>Velocidade do eixo</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Substituições (somente grbl 1.1) - clique para expandir / reduzir</value>
-    <comment>groupBox_Override3</comment>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>Parar Movimento</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Pare o movimento de corrida atual</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>Jog X e Y eixos</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>Jog Z axis</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>Ativa Parar com um Toque</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Porta</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>Embora normalmente esteja conectado a um pino de entrada para detectar a abertura de uma porta de segurança, esse comando permite que uma GUI decida o comportamento da porta de segurança com esse comando.
-Suspende imediatamente a condição de PORTA e desativa o eixo e o líquido de refrigeração. Se estiver em movimento, a máquina desacelerará até parar e depois será suspensa.
-Se executado durante o retorno ao local, o Grbl interromperá o movimento e acionará um alarme de retorno.
-Se já estiver em um estado de suspensão ou HOLD, o estado DOOR substitui-o.
-Se a opção de tempo de compilação do estacionamento estiver ativada, o Grbl estacionará o eixo em um local especificado.
-O comando é executado quando o Grbl está nos estados IDLE, HOLD, RUN, HOMING ou JOG. Caso contrário, é ignorado.
-Se correr, uma porta de segurança cancelará o movimento e todos os movimentos na fila no buffer do planejador. Quando a porta de segurança é fechada e retomada, o Grbl retornará ao estado de inatividade.
-Um pino de entrada está disponível para conectar um botão ou comutador, se ativado com uma opção em tempo de compilação.
-</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>Continua</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>O comando de início ou retomada do ciclo '~' pode ser emitido a qualquer momento, pois é um comando em tempo real.
-Quando o Grbl tiver movimentos na fila do buffer e estiver pronto, o comando ~ cycle start
-começará a executar o buffer e o Grbl começará a mover os eixos.
-</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Pause</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>O comando de retenção de feed '!' interromperá o ciclo ativo por meio de uma desaceleração controlada, para não perder a posição.
-Também é em tempo real e pode ser ativado a qualquer momento. Uma vez terminado ou pausado, o Grbl aguardará até que um comando de início do ciclo
-seja emitido para retomar o programa. A retenção de alimentação pode pausar apenas um ciclo e não afetará a homing ou qualquer outro processo.
-Se você precisar interromper um ciclo no meio do programa e não puder perder a posição, realize uma espera de alimentação para que o Grbl leve
-tudo a uma parada controlada. Depois de concluído, você poderá emitir uma redefinição. Sempre tente executar uma retenção de alimentação sempre que
-a máquina estiver funcionando antes de reiniciar, exceto, é claro, se houver alguma situação de emergência.
-</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Destrava</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>O modo de alarme do Grbl é um estado em que algo deu errado,
-como um limite rígido ou um aborto durante um ciclo, ou se o Grbl não souber sua posição.
-Por padrão, se você tiver o retorno à posição inicial ativado e inicializar o Arduino, o Grbl entra
-no estado de alarme, porque não conhece sua posição. O modo de alarme bloqueará todos
-os comandos do código G até que o ciclo de retorno '$ H' seja executado. Ou, se um usuário precisar
-substituir a trava de alarme para mover seus eixos para fora de suas chaves fim de curso, por exemplo, a trava de alarme matança '$ X'
-substituirá as travas e permitirá que as funções do código G funcionem novamente.
-</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>Este é o comando de redefinição suave do Grbl 'Ctrl-x'. É em tempo real e pode ser enviado a qualquer momento.
-Como o nome indica, ele redefine o Grbl, mas de maneira controlada, mantém a posição da sua máquina
-e tudo é feito sem desligar o seu Arduino. As únicas vezes em que uma reinicialização suave pode
-perder a posição é quando surgem problemas e os steppers foram mortos enquanto estavam em movimento.
-Nesse caso, ele informará se o rastreamento do Grbl da posição da máquina foi perdido.
-Isso ocorre porque uma desaceleração descontrolada pode levar a etapas perdidas, e o Grbl não tem feedback
-sobre o quanto perdeu (esse é o problema dos steppers em geral). Caso contrário, o Grbl irá apenas reinicializar,
-executar as linhas de inicialização e continuar em seu caminho alegre.
-</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Desfazer a última ação</value>
     <comment>Menu131</comment>
@@ -392,26 +188,6 @@ executar as linhas de inicialização e continuar em seu caminho alegre.
   <data name="tBURL.Text" xml:space="preserve">
     <value>Cole aqui o URL do arquivo SVG / DXF</value>
     <comment>2DView</comment>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Botões personalizados</value>
-    <comment>groupBox_Custom</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>Zero C</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada C do trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>Zero B</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada do trabalho B como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
     <value>Abrir arquivo</value>
@@ -581,49 +357,6 @@ executar as linhas de inicialização e continuar em seu caminho alegre.
     <value>Sobre</value>
     <comment>Menu16</comment>
   </data>
-  <data name="lblCurrentG.ToolTip" xml:space="preserve">
-    <value>Sistema de coordenadas padrão = G54
-Sistema de coordenadas da câmera = G59
-Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54 antes de transmitir o código G
-</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status0.Text" xml:space="preserve">
-    <value>Estado:</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>Zero Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>Defina as coordenadas X, Y, Z do trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>Zero XY</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada X, Y do trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Zero Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>Zero Y</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>Zero X</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>Status</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
   <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Salve o código G exibido em um arquivo</value>
     <comment>Menu113</comment>
@@ -719,41 +452,9 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <value>O limite e o deslocamento podem ser definidos através de 'Configuração' - 'Configuração de troca de ferramenta' - 'Tabela de ferramentas'</value>
     <comment>Menu151</comment>
   </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>Definir coordenada de trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>Iniciar Homing (se ativado no GRBL)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>Zero XYZ</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada Z de trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada Y do trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>Defina a coordenada X do trabalho como zero</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>Coordenadas da ferramenta (Trabalho / Máquina)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
   <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Abrir arquivo G-Code ou SVG</value>
     <comment>Menu111</comment>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>Língua</value>
-    <comment>Menu117</comment>
   </data>
   <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
     <value>Escala XY definida Y = ... unidades</value>
@@ -813,33 +514,6 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <value>Blocos de código dobrável 3º nível</value>
     <comment>Editor_Menu</comment>
   </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>Isso alterna o analisador gcode do Grbl para pegar todos os blocos recebidos e processá-los completamente, como faria na operação normal, mas não move nenhum dos eixos, ignora as interrupções e desliga o eixo e o líquido de arrefecimento. Isso tem como objetivo fornecer ao usuário uma maneira de verificar como o seu novo programa de código G se sai bem com o analisador do Grbl e monitorar se há erros (e verifica se há violações de limites suaves, se ativado).</value>
-  </data>
-  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
-    <value>Meia velocidade de simulação</value>
-  </data>
-  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
-    <value>Velocidade de simulação dupla</value>
-  </data>
-  <data name="btnSimulate.Text" xml:space="preserve">
-    <value>Iniciar simulação de caminho</value>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>Enviar G90 G0 A (ou B, C) 0</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>Enviar G90 G0 X0</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>Enviar G90 G0 X0 Y0</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>Enviar G90 G0 Y0</value>
-  </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>Enviar G90 G0 Z0</value>
-  </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>Dimensão do código G</value>
   </data>
@@ -848,9 +522,6 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   </data>
   <data name="cmsEditMode.Text" xml:space="preserve">
     <value>Alternar modo de edição</value>
-  </data>
-  <data name="cBServoButtons.Text" xml:space="preserve">
-    <value>Mostrar caneta para cima / para baixo</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Mover para a posição marcada G0</value>
@@ -1011,18 +682,6 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Saída</value>
   </data>
-  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
-    <value>Mostra o status do pino D3 (grbl-Mega-5X), ao clicar em enviar 'M64 P3 (ligado)' ou 'M65 P3 (desligado)' dependendo do status</value>
-  </data>
-  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
-    <value>Mostra o status do pino D2 (grbl-Mega-5X), ao clicar em enviar 'M64 P2 (ligado)' ou 'M65 P2 (desligado)' dependendo do status</value>
-  </data>
-  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
-    <value>Mostra o status do pino D1 (grbl-Mega-5X), ao clicar em enviar 'M64 P1 (ligado)' ou 'M65 P1 (desligado)' dependendo do status</value>
-  </data>
-  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
-    <value>Mostra o status do pino D0 (grbl-Mega-5X), ao clicar em enviar 'M64 P0 (ligado)' ou 'M65 P0 (desligado)' dependendo do status</value>
-  </data>
   <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
     <value>Girar caminho selecionado</value>
   </data>
@@ -1032,58 +691,14 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Língua</value>
   </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>Use o comando de movimento rápido G0 - STOP jogging não funcionará</value>
-  </data>
-  <data name="CbCoolant.Text" xml:space="preserve">
-    <value>Ativar Refrigerante </value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="CbTool.Text" xml:space="preserve">
-    <value>Ferramenta no Eixo</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>Use as configurações do Setup-Servo-PWM</value>
-  </data>
-  <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>Pen Down</value>
-  </data>
-  <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>Use as configurações do Setup-Servo-PWM</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Roteador</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Aplica valores de tradução Pen-up/-down habilitada para Z e PWM</value>
-  </data>
-  <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>Pen Zero</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Plotadora</value>
   </data>
-  <data name="CbLasermode.Text" xml:space="preserve">
-    <value>Modo laser</value>
-  </data>
-  <data name="RbLaserM4.Text" xml:space="preserve">
-    <value>M4 Dinâmico Pwr.</value>
-  </data>
-  <data name="RbLaserM3.Text" xml:space="preserve">
-    <value>M3 constante pwr.</value>
-  </data>
-  <data name="CbLaser.Text" xml:space="preserve">
-    <value>Laser ligado</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Laser</value>
-  </data>
-  <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>Mover para</value>
   </data>
   <data name="CbAddGraphic.Text" xml:space="preserve">
     <value>Adicionar gráfico importado à visualização 2D</value>
@@ -1179,19 +794,6 @@ Alterar as configurações de importação após a primeira importação pode le
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
     <value>Cortador de fio quente</value>
   </data>
-  <data name="BtnJogAbsZ.Text" xml:space="preserve">
-    <value>Mover para</value>
-  </data>
-  <data name="BtnJogAbsY.Text" xml:space="preserve">
-    <value>Mover para</value>
-  </data>
-  <data name="BtnJogAbsX.Text" xml:space="preserve">
-    <value>Mover para</value>
-  </data>
-  <data name="Gb_Jogging.Text" xml:space="preserve">
-    <value>Controle / Jogging - clique para expandir</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
     <value>Aplicar a última transformação</value>
   </data>
@@ -1204,20 +806,8 @@ Alterar as configurações de importação após a primeira importação pode le
   <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
     <value>Converter para coordenadas polares</value>
   </data>
-  <data name="CbMist.ToolTip" xml:space="preserve">
-    <value>Defina 'M7', limpe 'M9'</value>
-  </data>
-  <data name="CbSpindle.ToolTip" xml:space="preserve">
-    <value>Defina 'M3' ou 'M4', limpe 'M5'</value>
-  </data>
-  <data name="CbCoolant.ToolTip" xml:space="preserve">
-    <value>Defina 'M8', limpe 'M9'</value>
-  </data>
-  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
-    <value>Definir sistema de coordenadas</value>
-  </data>
-  <data name="gBoxDRO.Text" xml:space="preserve">
-    <value>Coordenadas da ferramenta (Trabalho / Máquina)</value>
+  <data name="cmsPictureBox.Text" xml:space="preserve">
+    <value>Pozycja znacznika przesunięcia na 0;0</value>
   </data>
   <data name="Rb2DViewMode1.Text" xml:space="preserve">
     <value>Editar figura</value>
@@ -1273,5 +863,17 @@ A tecla Alt-clique arredonda a posição para 0,1 raster.</value>
   </data>
   <data name="directControlToolStripMenuItem.Text" xml:space="preserve">
     <value>Mesa digitalizadora</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Defina 'Largura do passo' em [Configuração - Importação de gráficos - Importação de caminho - Opções gerais - Parâmetro de importação - Largura do passo na circunferência dos arcos]</value>
+  </data>
+  <data name="IndividualSettings.Text" xml:space="preserve">
+    <value>Tylko jeśli ta zakładka jest widoczna, ustawienia importu z konfiguracji zostaną w pełni zastosowane.</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Roteador</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>-Individualmente-</value>
   </data>
 </root>

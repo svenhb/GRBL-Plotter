@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,8 +27,11 @@
  * 2023-03-09 simplify NULL check; case GrblState.unknown: UpdateControlEnables();
  * 2024-02-14 l:160 f:ProcessStatusMessage add grblDigialIn -Out
  * 2024-02-24 l:61 f:OnRaisePosEvent submit Grbl.StatMsg
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
+using GrblPlotter.Helper;
+using GrblPlotter.UserControls;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -117,100 +120,75 @@ namespace GrblPlotter
             if (StatMsg.FS.Length > 1)
             { ProcessOverrideCurrentFeedSpeed(StatMsg.FS); }
 
-            /***** if no Accessory State character is given, no accessory is set and D is 0000 *****/
-            CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
-            CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
             if (StatMsg.A.Contains("S"))
             {
-                btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
-                RbSpindleCW.Checked = true;
-    //            CbSpindle.Checked = CbLaser.Checked = true;
+                ucOverrides.SetStateSpindle(true);
+                ucDeviceRouter2.SetStatusSpindle(true);
+                ucDeviceLaser2.SetStatusSpindle(true);
             }
             if (StatMsg.A.Contains("C"))
             {
-                btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CCW
-                RbSpindleCCW.Checked = true;
-      //          CbSpindle.Checked = CbLaser.Checked = true;
+                ucOverrides.SetStateSpindle(true);
+                ucDeviceRouter2.SetStatusSpindle(true);
+                ucDeviceLaser2.SetStatusSpindle(true);
             }
             if (!StatMsg.A.Contains("S") && !StatMsg.A.Contains("C"))
             {
-                btnOverrideSpindle.Image = Properties.Resources.led_off;
-     //           CbSpindle.Checked = CbLaser.Checked = false;
+                ucOverrides.SetStateSpindle(false);
+                ucDeviceRouter2.SetStatusSpindle(false);
+                ucDeviceLaser2.SetStatusSpindle(false);
             }  // Spindle off
-            CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
-            CbLaser.CheckedChanged += CbLaser_CheckedChanged;
 
             if (StatMsg.A.Contains("F"))
             {
-                btnOverrideFlood.Image = Properties.Resources.led_on;
-                CbCoolant.BackColor = Color.Lime;
+                ucOverrides.SetStateFlood(true);
+                ucDeviceRouter2.SetStatusFlood(true);
+                ucDeviceLaser2.SetStatusMWord("M8");
             }   // Flood on
             else
             {
-                btnOverrideFlood.Image = Properties.Resources.led_off;
-                CbCoolant.BackColor = Color.Transparent;    // Color.Fuchsia;
+                ucOverrides.SetStateFlood(false);
+                ucDeviceRouter2.SetStatusFlood(false);
+                ucDeviceLaser2.SetStatusMWord("M9");
             }
 
             if (StatMsg.A.Contains("M"))
             {
-                btnOverrideMist.Image = Properties.Resources.led_on;
-                CbMist.BackColor = Color.Lime;
+                ucOverrides.SetStateMist(true);
+                ucDeviceRouter2.SetStatusMist(true);
+                ucDeviceLaser2.SetStatusMWord("M7");
             } // Mist on
             else
             {
-                btnOverrideMist.Image = Properties.Resources.led_off;
-                CbMist.BackColor = Color.Transparent;    // Color.Fuchsia;
+                ucOverrides.SetStateMist(false);
+                ucDeviceRouter2.SetStatusMist(false);
+                ucDeviceLaser2.SetStatusMWord("M9");
             }
+
 
             if (Properties.Settings.Default.grblDescriptionDxEnable)
             {
                 if (StatMsg.A.Contains("D"))
                 {
                     string digits = StatMsg.A.Substring(StatMsg.A.IndexOf("D") + 1);     // Digital pins in order '3210'
+
+                    ucOverrides.SetStateDx(digits);
                     int din = 0;
                     int dout = 0;
                     if (digits.Length == 4)
                     {
                         for (int i = 0; i < 4; i++)
                         { dout |= ((digits[i] == '1') ? 1 : 0) << (3 - i); }
-                        /*    SetAccessoryButton(BtnOverrideD3, (dout & 8));
-                            SetAccessoryButton(BtnOverrideD2, (dout & 4));
-                            SetAccessoryButton(BtnOverrideD1, (dout & 2));
-                            SetAccessoryButton(BtnOverrideD0, (dout & 1));
-    */
-                        SetAccessoryButton(BtnOverrideD3, (digits[0] == '1'));
-                        SetAccessoryButton(BtnOverrideD2, (digits[1] == '1'));
-                        SetAccessoryButton(BtnOverrideD1, (digits[2] == '1'));
-                        SetAccessoryButton(BtnOverrideD0, (digits[3] == '1'));
-                        BtnOverrideD3.BackColor = default;
-                        BtnOverrideD2.BackColor = default;
-                        BtnOverrideD1.BackColor = default;
-                        BtnOverrideD0.BackColor = default;
                     }
                     else if (digits.Length == 8)
                     {
                         for (int i = 0; i < 4; i++)
                         { din |= ((digits[i] == '1') ? 1 : 0) << i; }
-                        BtnOverrideD3.BackColor = (digits[0] == '1') ? Color.Honeydew : Color.LightPink;
-                        BtnOverrideD2.BackColor = (digits[1] == '1') ? Color.Honeydew : Color.LightPink;
-                        BtnOverrideD1.BackColor = (digits[2] == '1') ? Color.Honeydew : Color.LightPink;
-                        BtnOverrideD0.BackColor = (digits[3] == '1') ? Color.Honeydew : Color.LightPink;
                         for (int i = 4; i < 8; i++)
                         { dout |= ((digits[i] == '1') ? 1 : 0) << (7 - i - 4); }
-                        SetAccessoryButton(BtnOverrideD3, (digits[4] == '1'));
-                        SetAccessoryButton(BtnOverrideD2, (digits[5] == '1'));
-                        SetAccessoryButton(BtnOverrideD1, (digits[6] == '1'));
-                        SetAccessoryButton(BtnOverrideD0, (digits[7] == '1'));
                     }
                     Grbl.grblDigitalIn = (byte)din;
                     Grbl.grblDigitalOut = (byte)dout;
-                }
-                else
-                {
-                    SetAccessoryButton(BtnOverrideD3, false);
-                    SetAccessoryButton(BtnOverrideD2, false);
-                    SetAccessoryButton(BtnOverrideD1, false);
-                    SetAccessoryButton(BtnOverrideD0, false);
                 }
             }
 
@@ -220,13 +198,6 @@ namespace GrblPlotter
             }
 
         }
-        private void SetAccessoryButton(Button Btn, bool setOn)
-        {
-            if (setOn)
-            { Btn.Image = Properties.Resources.led_on; Btn.Tag = "on"; }
-            else
-            { Btn.Image = Properties.Resources.led_off; ; Btn.Tag = "off"; }
-        }
         private void ProcessOverrideValues(string txt)
         {
             _streaming_form2?.ShowOverrideValues(txt);
@@ -234,9 +205,9 @@ namespace GrblPlotter
             string[] value = txt.Split(',');
             if (value.Length > 2)
             {
-                SetTextThreadSave(lblOverrideFRValue, value[0]);
-                SetTextThreadSave(lblOverrideRapidValue, value[1]);
-                SetTextThreadSave(lblOverrideSSValue, value[2]);
+                ucOverrides.SetLabelFeedSet(value[0]);
+                ucOverrides.SetLabelRapidSet(value[1]);
+                ucOverrides.SetLabelSpindleSet(value[2]);
             }
         }
 
@@ -247,49 +218,21 @@ namespace GrblPlotter
             string[] value = txt.Split(',');
             if (value.Length > 1)
             {
-                SetTextThreadSave(lblStatusFeed, value[0]);  // + " mm/min";
-                SetTextThreadSave(lblStatusSpeed, value[1]); // + " RPM";
-                SetTextThreadSave(LblSpeedSetVal, value[1], Color.Lime);
-                SetTextThreadSave(LblLaserSetVal, value[1], Color.Lime);
+                ucOverrides.SetLabelFeedValue(value[0]);
+                ucOverrides.SetLabelSpindleValue(value[1]);
+                ucDeviceLaser.SpindleSet = ucDeviceRouter.SpindleSet = value[1];
             }
             else if (value.Length > 0)
             {
-                SetTextThreadSave(lblStatusFeed, value[0]);  // + " mm/min";
-                SetTextThreadSave(lblStatusSpeed, "-");      // + " RPM";
+                ucOverrides.SetLabelFeedValue(value[0]);
+                ucOverrides.SetLabelSpindleValue("-");
             }
         }
-
 
         private void UpdateDRO()
         {
-            if (label_mx.InvokeRequired)
-            { label_mx.BeginInvoke((MethodInvoker)delegate () { UpdateDROText(); }); }
-            else
-            { UpdateDROText(); }
-        }
-        private void UpdateDROText()
-        {
-            label_mx.Text = string.Format("{0:0.000}", Grbl.posMachine.X);
-            label_my.Text = string.Format("{0:0.000}", Grbl.posMachine.Y);
-            label_mz.Text = string.Format("{0:0.000}", Grbl.posMachine.Z);
-            label_wx.Text = string.Format("{0:0.000}", Grbl.posWork.X);
-            label_wy.Text = string.Format("{0:0.000}", Grbl.posWork.Y);
-            label_wz.Text = string.Format("{0:0.000}", Grbl.posWork.Z);
-            if (Grbl.axisA)
-            {
-                label_ma.Text = string.Format("{0:0.000}", Grbl.posMachine.A);
-                label_wa.Text = string.Format("{0:0.000}", Grbl.posWork.A);
-            }
-            if (Grbl.axisB)
-            {
-                label_mb.Text = string.Format("{0:0.000}", Grbl.posMachine.B);
-                label_wb.Text = string.Format("{0:0.000}", Grbl.posWork.B);
-            }
-            if (Grbl.axisC)
-            {
-                label_mc.Text = string.Format("{0:0.000}", Grbl.posMachine.C);
-                label_wc.Text = string.Format("{0:0.000}", Grbl.posWork.C);
-            }
+            ucdro.SetWCO(Grbl.posWork);
+            ucdro.SetMCO(Grbl.posMachine);
         }
 
         /***************************************************************
@@ -305,12 +248,7 @@ namespace GrblPlotter
                 Logger.Trace("processStatus  Status:{0}", machineStatus.ToString());
             if ((machineStatus != lastMachineStatus) || (Grbl.lastMessage.Length > 5))
             {
-                // label at DRO
-                if (label_status.InvokeRequired)
-                { label_status.BeginInvoke((MethodInvoker)delegate () { label_status.Text = Grbl.StatusToText(machineStatus); }); }
-                else
-                { label_status.Text = Grbl.StatusToText(machineStatus); }
-                label_status.BackColor = Grbl.GrblStateColor(machineStatus);
+                ucStreaming.SetStatusTextGrbl(Grbl.StatusToText(machineStatus), Grbl.GrblStateColor(machineStatus));
 
                 switch (machineStatus)
                 {
@@ -318,7 +256,7 @@ namespace GrblPlotter
                         if ((lastMachineStatus == GrblState.hold) || (lastMachineStatus == GrblState.alarm))
                         {
                             StatusStripClear(1, 2);//, "grblState.idle");
-                            SetTextThreadSave(lbInfo, lastInfoText, SystemColors.Control);
+                            SetInfoLabel(lastInfoText, SystemColors.Control);
 
                             if (!_serial_form.CheckGRBLSettingsOk())   // check 30 kHz limit
                             {
@@ -326,11 +264,12 @@ namespace GrblPlotter
                                 StatusStripSet(2, Localization.GetString("statusStripeCheckCOM"), Color.Yellow);
                             }
                         }
-                        signalResume = 0;
-                        btnResume.BackColor = SystemColors.Control;
-                        CbTool.Checked = _serial_form.ToolInSpindle;
-                        if (signalLock > 0)
-                        { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
+                        ucFlowControl.HighlightResume(false);
+                        Properties.Settings.Default.DevicePlotterPenInHolder = _serial_form.ToolInSpindle;
+                        //           CbTool.Checked = _serial_form.ToolInSpindle;
+                        //     if (signalLock > 0)
+                        //     { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
+                        ucFlowControl.HighlightKillAlarm(false);
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
 
@@ -340,15 +279,17 @@ namespace GrblPlotter
                     case GrblState.run:
                         if (lastMachineStatus == GrblState.hold)
                         {
-                            SetTextThreadSave(lbInfo, lastInfoText, SystemColors.Control);
+                            SetInfoLabel(lastInfoText, SystemColors.Control);
                         }
-                        signalResume = 0;
-                        btnResume.BackColor = SystemColors.Control;
+                     //   signalResume = 0;
+                    //    btnResume.BackColor = SystemColors.Control;
+                        ucFlowControl.HighlightResume(false);
                         break;
 
                     case GrblState.hold:
-                        btnResume.BackColor = Color.Yellow;
-                        lastInfoText = lbInfo.Text;
+                   //     btnResume.BackColor = GroupColor.Yellow;
+                        ucFlowControl.HighlightResume(true);
+                        lastInfoText = ucStreaming.GetStatusTextStreaming();// lbInfo.Text;
                         lblInfoText = Localization.GetString("mainInfoResume");     //"Press 'Resume' to proceed";
 
                         if (Grbl.lastErrorNr > 0)
@@ -356,21 +297,22 @@ namespace GrblPlotter
                         else
                             lblInfoColor = Color.Yellow;
 
-                        SetTextThreadSave(lbInfo, lblInfoText, lblInfoColor);
+                        SetInfoLabel(lblInfoText, lblInfoColor);
 
                         StatusStripSet(1, Grbl.StatusToText(machineStatus), Grbl.GrblStateColor(machineStatus));
                         StatusStripSet(2, lblInfoText, lblInfoColor);
-                        if (signalResume == 0) { signalResume = 1; }
+                //        if (signalResume == 0) { signalResume = 1; }
                         break;
 
                     case GrblState.home:
                         break;
 
                     case GrblState.alarm:
-                        signalLock = 1;
-                        btnKillAlarm.BackColor = Color.Yellow;
+                   //     signalLock = 1;
+                   //     btnKillAlarm.BackColor = GroupColor.Yellow;
+                        ucFlowControl.HighlightKillAlarm(true);
                         lblInfoText = Localization.GetString("mainInfoKill");     //"Press 'Kill Alarm' to proceed";
-                        SetTextThreadSave(lbInfo, lblInfoText, Color.Yellow);
+                        SetInfoLabel(lblInfoText, Color.Yellow);
 
                         StatusStripSet(1, Grbl.StatusToText(machineStatus) + " " + Grbl.lastMessage, Grbl.GrblStateColor(machineStatus));
                         StatusStripSet(2, lblInfoText, Color.Yellow);
@@ -382,14 +324,14 @@ namespace GrblPlotter
                         break;
 
                     case GrblState.door:
-                        btnResume.BackColor = Color.Yellow;
-                        lastInfoText = lbInfo.Text;
+                        ucFlowControl.HighlightResume(true);
+                        lastInfoText = ucStreaming.GetStatusTextStreaming(); //lbInfo.Text;
                         lblInfoText = Localization.GetString("mainInfoResume");     //"Press 'Resume' to proceed";
-                        SetTextThreadSave(lbInfo, lblInfoText, Color.Yellow);
+                        SetInfoLabel(lblInfoText, Color.Yellow);
 
                         StatusStripSet(1, Grbl.StatusToText(machineStatus), Grbl.GrblStateColor(machineStatus));
                         StatusStripSet(2, lblInfoText, Color.Yellow);
-                        if (signalResume == 0) { signalResume = 1; }
+                    //    if (signalResume == 0) { signalResume = 1; }
                         break;
 
                     case GrblState.probe:
@@ -408,8 +350,8 @@ namespace GrblPlotter
                             _probing_form.SetPosProbe = Grbl.GetCoord("PRB");
                         }
 
-                        lastInfoText = lbInfo.Text;
-                        SetTextThreadSave(lbInfo, string.Format("{0}: X:{1:0.00} Y:{2:0.00} Z:{3:0.00}", Localization.GetString("mainInfoProbing"), posProbe.X, posProbe.Y, posProbe.Z), Color.Yellow);
+                        lastInfoText = ucStreaming.GetStatusTextStreaming(); //lbInfo.Text;
+                        SetInfoLabel(string.Format("{0}: X:{1:0.00} Y:{2:0.00} Z:{3:0.00}", Localization.GetString("mainInfoProbing"), posProbe.X, posProbe.Y, posProbe.Z), Color.Yellow);
                         break;
 
                     case GrblState.unknown:
@@ -417,7 +359,7 @@ namespace GrblPlotter
                         break;
 
                     case GrblState.notConnected:
-                        SetTextThreadSave(lbInfo, "No connection - press 'RESET'", Color.Fuchsia);
+                        SetInfoLabel("No connection - press 'RESET'", Color.Fuchsia);
                         StatusStripSet(1, "No connection - press 'RESET'", Color.Fuchsia);
                         StatusStripSet(2, msg, Color.Fuchsia);
                         isStreaming = false;
@@ -451,24 +393,12 @@ namespace GrblPlotter
                 actualSS = cmd.SS.ToString();
                 _streaming_form?.ShowValueSS(actualSS);
 
-                if (Grbl.isVersion_0)
-                {
-                    if (cmd.spindle <= 4) CbSpindle.BackColor = Color.Lime;
-                    else CbSpindle.BackColor = Color.Transparent;
-                    if (cmd.spindle <= 8) CbCoolant.BackColor = Color.Lime;
-                    else CbCoolant.BackColor = Color.Transparent;
-
-                }
-                if (cmd.toolchange)
-                    lblTool.Text = cmd.tool.ToString();
-
-                lblCurrentG.Text = "G" + cmd.coord_select.ToString();
-                lblCurrentG.BackColor = (cmd.coord_select == 54) ? Color.Lime : Color.Fuchsia;
+                ucdro.SetGLabel(cmd.coord_select);
                 if (_camera_form != null)
                     _camera_form.SetCoordG = cmd.coord_select;
                 if (_coordSystem_form != null)
                 {
-                    _coordSystem_form.MarkActiveCoordSystem(lblCurrentG.Text);
+                    _coordSystem_form.MarkActiveCoordSystem("G" + cmd.coord_select.ToString());// lblCurrentG.Text);
                     _coordSystem_form.UpdateTLO(cmd.TLOactive, cmd.tool_length);
                 }
             }
@@ -596,26 +526,13 @@ namespace GrblPlotter
             switch (id)
             {
                 case 30:
-                    SetTextThreadSave(LblSpeedMaxVal, Grbl.GetSetting(id).ToString(), Color.Lime);
-                    SetTextThreadSave(LblLaserMaxVal, Grbl.GetSetting(id).ToString(), Color.Lime);
+                    ucDeviceLaser.SpindleMax = ucDeviceRouter.SpindleMax = (int)Grbl.GetSetting(id);
                     break;
                 case 31:
-                    SetTextThreadSave(LblSpeedMinVal, Grbl.GetSetting(id).ToString(), Color.Lime);
-                    SetTextThreadSave(LblLaserMinVal, Grbl.GetSetting(id).ToString(), Color.Lime);
+                    ucDeviceLaser.SpindleMin = ucDeviceRouter.SpindleMin = (int)Grbl.GetSetting(id);
                     break;
                 case 32:
-                    CbLasermode.CheckedChanged -= CbLasermode_CheckedChanged;
-                    if (Grbl.GetSetting(id) == 1)
-                    {
-                        SetTextThreadSave(CbLasermodeVal, "ON", Color.Lime);
-                        CbLasermode.Checked = true;
-                    }
-                    else
-                    {
-                        SetTextThreadSave(CbLasermodeVal, "OFF", Color.Lime);
-                        CbLasermode.Checked = false;
-                    }
-                    CbLasermode.CheckedChanged += CbLasermode_CheckedChanged;
+                    ucDeviceLaser.LaserMode = (Grbl.GetSetting(id) == 1);
                     break;
 
                 default:

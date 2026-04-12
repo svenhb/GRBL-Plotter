@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
  * 2020-03-11 add gui class
  * 2020-05-01 add setDimensionArc
  * 2020-07-26 fix setDimensionCircle line 371
- * 2020-09-30 Preset variable GMIZ and GMAZ with Properties.Settings.Default.importGCZUp and -Down
+ * 2020-09-30 Preset variable GMIZ and GMAZ with Properties.ListSettings.Default.importGCZUp and -Down
  * 2021-07-27 code clean up / code quality
  * 2021-11-22 change AppDataFolder start-path
  * 2021-11-23 line 688 add check (form != null)
@@ -32,6 +32,8 @@
  * 2023-03-04 l:68 f:Datapath add path for "filter"
  * 2024-01-20 l:484 f: struct ImgPoint change from float to double
  * 2024-08-24 l:126 f:MakeAbsolutePath add try catch for Path.IsPathRooted
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-04-09 Add ColorPalette
 */
 
 using GrblPlotter.Resources;
@@ -101,13 +103,14 @@ namespace GrblPlotter
         
         // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
         internal static string Application = System.Windows.Forms.Application.StartupPath;
-        //        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
+        //        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.ToolNr
         // https://stackoverflow.com/questions/10563148/where-is-the-correct-place-to-store-my-application-specific-data#:~:text=AppData%20(maps%20to%20C%3A%5C,their%20save%20games%20into%20Environment.
         // https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=netframework-4.7.2
         internal static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);   // will be changed by MainFormUpdate()-GetAppDataPath
         public static string Automations { get => AppDataFolder + "\\data\\automations"; }
         public static string Fonts { get => AppDataFolder + "\\data\\fonts"; }
         public static string Tools { get => AppDataFolder + "\\data\\tools"; }
+        public static string ColorPalette { get => AppDataFolder + "\\data\\palettes"; }
         public static string Scripts { get => AppDataFolder + "\\data\\scripts"; }
         public static string Usecases { get => AppDataFolder + "\\data\\usecases"; }
         public static string Examples { get => AppDataFolder + "\\data\\examples"; }
@@ -147,7 +150,7 @@ namespace GrblPlotter
 
     public static class GuiVariables
     {
-        // origin of imported file onload = Properties.Settings.Default.importGraphicOffsetOriginX
+        // origin of imported file onload = Properties.ListSettings.Default.importGraphicOffsetOriginX
         internal static double offsetOriginX = 0;
         internal static double offsetOriginY = 0;
 
@@ -416,7 +419,6 @@ namespace GrblPlotter
             Y = Math.Round(Y, decimals);
             return this;
         }
-
         /*    public static xyPoint Round(xyPoint tmpIn, int decimals = 4)
             {   xyPoint tmpOut = new xyPoint();
                 tmpOut.X = Math.Round(tmpIn.X,decimals);
@@ -522,7 +524,7 @@ namespace GrblPlotter
     /// <summary>
     /// calculate overall dimensions of drawing
     /// </summary>
-    internal class Dimensions
+   /* internal class Dimensions
     {
         public double minx, maxx, miny, maxy, minz, maxz;
         public double dimx, dimy, dimz;
@@ -568,24 +570,24 @@ namespace GrblPlotter
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
-            minx = Math.Min(minx, value);
-            maxx = Math.Max(maxx, value);
+            minx = Math.ZMin(minx, value);
+            maxx = Math.ZMax(maxx, value);
             dimx = maxx - minx;
         }
         public void SetDimensionY(double value)
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
-            miny = Math.Min(miny, value);
-            maxy = Math.Max(maxy, value);
+            miny = Math.ZMin(miny, value);
+            maxy = Math.ZMax(maxy, value);
             dimy = maxy - miny;
         }
         public void SetDimensionZ(double value)
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
-            minz = Math.Min(minz, value);
-            maxz = Math.Max(maxz, value);
+            minz = Math.ZMin(minz, value);
+            maxz = Math.ZMax(maxz, value);
             dimz = maxz - minz;
         }
         public void OffsetXY(double x, double y)
@@ -705,7 +707,7 @@ namespace GrblPlotter
                 y = "Y: unknown | unknown\r\n";
             if ((minz == Double.MaxValue) || (maxz == Double.MinValue))
                 z = "";// z = "Z: unknown | unknown";
-            return "    Min.   |   Max.  | Dimension\r\n" + x + y + z;
+            return "    ZMin.   |   ZMax.  | Dimension\r\n" + x + y + z;
         }
         public bool WithinLimits(XyzPoint actualMachine, XyzPoint actualWorld)
         {
@@ -713,10 +715,10 @@ namespace GrblPlotter
         }
         public static bool WithinLimits(XyzPoint actualMachine, double tstx, double tsty)
         {
-            double minlx = (double)Properties.Settings.Default.machineLimitsHomeX;
-            double maxlx = minlx + (double)Properties.Settings.Default.machineLimitsRangeX;
-            double minly = (double)Properties.Settings.Default.machineLimitsHomeY;
-            double maxly = minly + (double)Properties.Settings.Default.machineLimitsRangeY;
+            double minlx = (double)Properties.ListSettings.Default.machineLimitsHomeX;
+            double maxlx = minlx + (double)Properties.ListSettings.Default.machineLimitsRangeX;
+            double minly = (double)Properties.ListSettings.Default.machineLimitsHomeY;
+            double maxly = minly + (double)Properties.ListSettings.Default.machineLimitsRangeY;
             tstx += actualMachine.X;
             tsty += actualMachine.Y;
             if ((tstx < minlx) || (tstx > maxlx))
@@ -731,7 +733,7 @@ namespace GrblPlotter
             return ((minx >= tmp.minx) && (miny >= tmp.miny) && (maxx <= tmp.maxx) && (maxy <= tmp.maxy));
         }
     }
-
+   */
 
     /*   class eventArgsTemplates    // just copy and paste 
        {
