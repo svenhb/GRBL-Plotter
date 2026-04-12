@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnFeedHold.ToolTip" xml:space="preserve">
+    <value>Grblをサスペンドまたはホールド状態にします。動作中の場合、機械は減速して停止し、その後サスペンド状態になります。
+
+このコマンドは、GrblがIDLE、RUN、またはJOG状態にあるときに実行されます。それ以外の場合は無視されます。
+
+ジョギング中の場合、フィードホールドはジョギング動作をキャンセルし、プレーナーバッファに残っているすべてのジョギング動作をフラッシュします。アクティブなホールド中にドアが開いていると検出された場合、状態はJOGからIDLEまたはDOORに戻ります。
+
+機械制御の定義により、フィードホールドはスピンドルやクーラントを無効にしません。動作のみを無効にします。
+
+ボタンまたはスイッチを接続するための入力ピンが用意されています。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnResume.ToolTip" xml:space="preserve">
+    <value>送り停止状態、ドアが閉じているときの安全ドア/パーキング状態、およびM0プログラムの一時停止状態を再開します。
+
+それ以外の場合は、コマンドは無視されます。
+
+パーキングコンパイル時オプションが有効で、安全ドア状態が再開可能な状態の場合、Grblはスピンドルとクーラントを再度有効にし、元の位置に戻してから再開します。
+
+ボタンまたはスイッチを接続するための入力ピンが用意されています。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnSafetyDoor.ToolTip" xml:space="preserve">
+    <value>通常は安全ドアの開閉を検出するために入力ピンに接続されるコマンドですが、このコマンドを使用すると、GUIから安全ドアの動作を制御できます。
+
+直ちにDOOR状態に移行し、スピンドルとクーラントを停止します。動作中の場合は、機械は減速して停止し、その後停止状態になります。
+
+ホーミング中に実行された場合、Grblは動作を停止し、ホーミングアラームを発します。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnReset.ToolTip" xml:space="preserve">
+    <value>電源の再投入なしに、Grblを即座に停止させ、安全にリセットします。
+
+このコマンドはいつでも受け付けて実行します。
+
+動作中にリセットした場合、Grblはアラームを発し、動作停止によって位置情報が失われる可能性があることを知らせます。
+
+動作していない状態でリセットした場合、位置情報は保持され、再ホーミングは不要です。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnKillAlarm.ToolTip" xml:space="preserve">
+    <value>La modalità di allarme di Grbl si attiva quando si verifica un errore critico, come ad esempio un limite massimo o un'interruzione durante un ciclo, oppure se Grbl non conosce la propria posizione.
+Di default, se la funzione di homing è abilitata e si accende Arduino, Grbl entra in modalità di allarme perché non conosce la propria posizione.
+La modalità di allarme blocca tutti i comandi G-code fino al completamento del ciclo di homing '$H'.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbFlowControl.Text" xml:space="preserve">
+    <value>流量制御</value>
+    <comment>gb</comment>
+  </data>
+  <data name="GbFlowControl.ToolTip" xml:space="preserve">
+    <value>クリックして折りたたみ／展開</value>
+    <comment>gb</comment>
+  </data>
+  <data name="BtnFeedHold.Text" xml:space="preserve">
+    <value>フィードホールド</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnResume.Text" xml:space="preserve">
+    <value>再開</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnSafetyDoor.Text" xml:space="preserve">
+    <value>ドア</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnReset.Text" xml:space="preserve">
+    <value>リセット</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnKillAlarm.Text" xml:space="preserve">
+    <value>キルアラーム</value>
+    <comment>btn</comment>
+  </data>
+</root>

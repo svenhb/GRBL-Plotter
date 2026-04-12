@@ -1,0 +1,1580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnSetCoordA.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnSetCoordA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 85</value>
+  </data>
+  <data name="BtnSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="BtnSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="BtnSetCoordA.Text" xml:space="preserve">
+    <value>Set A</value>
+    <comment>btn</comment>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Name" xml:space="preserve">
+    <value>BtnSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="NudSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 86</value>
+  </data>
+  <data name="NudSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="NudSetCoordA.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Name" xml:space="preserve">
+    <value>NudSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblSetCoordA.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 88</value>
+  </data>
+  <data name="LblSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="LblSetCoordA.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Name" xml:space="preserve">
+    <value>LblSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnSetCoordZ.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BtnSetCoordZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 63</value>
+  </data>
+  <data name="BtnSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="BtnSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="BtnSetCoordZ.Text" xml:space="preserve">
+    <value>Set Z</value>
+    <comment>btn</comment>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Name" xml:space="preserve">
+    <value>BtnSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtnSetCoordY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BtnSetCoordY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 41</value>
+  </data>
+  <data name="BtnSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="BtnSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="BtnSetCoordY.Text" xml:space="preserve">
+    <value>Set Y</value>
+    <comment>btn</comment>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Name" xml:space="preserve">
+    <value>BtnSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnSetCoordX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BtnSetCoordX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 19</value>
+  </data>
+  <data name="BtnSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="BtnSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="BtnSetCoordX.Text" xml:space="preserve">
+    <value>Set X</value>
+    <comment>btn</comment>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Name" xml:space="preserve">
+    <value>BtnSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="NudSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 64</value>
+  </data>
+  <data name="NudSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="NudSetCoordZ.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Name" xml:space="preserve">
+    <value>NudSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="NudSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 42</value>
+  </data>
+  <data name="NudSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="NudSetCoordY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Name" xml:space="preserve">
+    <value>NudSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="NudSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 20</value>
+  </data>
+  <data name="NudSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="NudSetCoordX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Name" xml:space="preserve">
+    <value>NudSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LblSetCoordZ.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 66</value>
+  </data>
+  <data name="LblSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="LblSetCoordZ.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Name" xml:space="preserve">
+    <value>LblSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LblSetCoordY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 44</value>
+  </data>
+  <data name="LblSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="LblSetCoordY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Name" xml:space="preserve">
+    <value>LblSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="LblSetCoordX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <data name="LblSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="LblSetCoordX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Name" xml:space="preserve">
+    <value>LblSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="gBoxDROSetCoord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 18</value>
+  </data>
+  <data name="gBoxDROSetCoord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 116</value>
+  </data>
+  <data name="gBoxDROSetCoord.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Preset Coordinate</value>
+    <comment>gb</comment>
+  </data>
+  <data name="gBoxDROSetCoord.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Name" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnZeroC.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>342, 82</value>
+  </data>
+  <data name="BtnZeroC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroC.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="BtnZeroC.Text" xml:space="preserve">
+    <value>Zero C</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroC.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroC.ToolTip" xml:space="preserve">
+    <value>Set C axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroC.Name" xml:space="preserve">
+    <value>BtnZeroC</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroC.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroC.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnZeroB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>342, 50</value>
+  </data>
+  <data name="BtnZeroB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroB.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="BtnZeroB.Text" xml:space="preserve">
+    <value>Zero B</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroB.ToolTip" xml:space="preserve">
+    <value>Set B axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroB.Name" xml:space="preserve">
+    <value>BtnZeroB</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroB.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroB.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Lbl_mc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_mc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_mc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 102</value>
+  </data>
+  <data name="Lbl_mc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_mc.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="Lbl_mc.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_mc.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mc.Name" xml:space="preserve">
+    <value>Lbl_mc</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mc.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mc.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Lbl_mb.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_mb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_mb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 70</value>
+  </data>
+  <data name="Lbl_mb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_mb.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="Lbl_mb.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_mb.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mb.Name" xml:space="preserve">
+    <value>Lbl_mb</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mb.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mb.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Lbl_wc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="Lbl_wc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 82</value>
+  </data>
+  <data name="Lbl_wc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wc.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="Lbl_wc.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wc.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wc.Name" xml:space="preserve">
+    <value>Lbl_wc</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wc.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wc.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Lbl_wb.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="Lbl_wb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 50</value>
+  </data>
+  <data name="Lbl_wb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wb.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="Lbl_wb.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wb.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wb.Name" xml:space="preserve">
+    <value>Lbl_wb</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wb.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wb.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="LblC.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblC.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblC.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 78</value>
+  </data>
+  <data name="LblC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="LblC.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="LblC.Text" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="&gt;&gt;LblC.Name" xml:space="preserve">
+    <value>LblC</value>
+  </data>
+  <data name="&gt;&gt;LblC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblC.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblC.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="LblB.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblB.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 48</value>
+  </data>
+  <data name="LblB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="LblB.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="LblB.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="&gt;&gt;LblB.Name" xml:space="preserve">
+    <value>LblB</value>
+  </data>
+  <data name="&gt;&gt;LblB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblB.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblB.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="BtnSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 0</value>
+  </data>
+  <data name="BtnSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="BtnSetup.Text" xml:space="preserve">
+    <value>⚙</value>
+  </data>
+  <data name="BtnSetup.ToolTip" xml:space="preserve">
+    <value>Setup</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnSetup.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Name" xml:space="preserve">
+    <value>BtnSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="BtnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>348, 0</value>
+  </data>
+  <data name="BtnHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="BtnHelp.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Help</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnHelp.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Name" xml:space="preserve">
+    <value>BtnHelp</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblCurrentG.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrentG.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCurrentG.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 8</value>
+  </data>
+  <data name="lblCurrentG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="lblCurrentG.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="lblCurrentG.Text" xml:space="preserve">
+    <value>G54</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentG.Name" xml:space="preserve">
+    <value>lblCurrentG</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentG.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentG.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentG.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="BtnHome.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="BtnHome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnHome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 150</value>
+  </data>
+  <data name="BtnHome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 31</value>
+  </data>
+  <data name="BtnHome.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="BtnHome.Text" xml:space="preserve">
+    <value>Home</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnHome.ToolTip" xml:space="preserve">
+    <value>Start homing $H</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnHome.Name" xml:space="preserve">
+    <value>BtnHome</value>
+  </data>
+  <data name="&gt;&gt;BtnHome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnHome.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnHome.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="BtnZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 114</value>
+  </data>
+  <data name="BtnZeroA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroA.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="BtnZeroA.Text" xml:space="preserve">
+    <value>Zero A</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroA.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroA.ToolTip" xml:space="preserve">
+    <value>Set A axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroA.Name" xml:space="preserve">
+    <value>BtnZeroA</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroA.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroA.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="Lbl_ma.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_ma.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_ma.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 134</value>
+  </data>
+  <data name="Lbl_ma.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_ma.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="Lbl_ma.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="&gt;&gt;Lbl_ma.Name" xml:space="preserve">
+    <value>Lbl_ma</value>
+  </data>
+  <data name="&gt;&gt;Lbl_ma.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_ma.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_ma.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="Lbl_wa.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="Lbl_wa.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wa.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 114</value>
+  </data>
+  <data name="Lbl_wa.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wa.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="Lbl_wa.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wa.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;Lbl_wa.Name" xml:space="preserve">
+    <value>Lbl_wa</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wa.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wa.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wa.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="LblA.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblA.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 114</value>
+  </data>
+  <data name="LblA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="LblA.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="LblA.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="LblA.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;LblA.Name" xml:space="preserve">
+    <value>LblA</value>
+  </data>
+  <data name="&gt;&gt;LblA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblA.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblA.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="BtnZeroXYZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 64</value>
+  </data>
+  <data name="BtnZeroXYZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 23</value>
+  </data>
+  <data name="BtnZeroXYZ.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="BtnZeroXYZ.Text" xml:space="preserve">
+    <value>Zero XYZ</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroXYZ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>Set XYZ axis work-coordinates to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroXYZ.Name" xml:space="preserve">
+    <value>BtnZeroXYZ</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXYZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXYZ.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXYZ.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="BtnZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroXY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 34</value>
+  </data>
+  <data name="BtnZeroXY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 23</value>
+  </data>
+  <data name="BtnZeroXY.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="BtnZeroXY.Text" xml:space="preserve">
+    <value>Zero XY</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroXY.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroXY.ToolTip" xml:space="preserve">
+    <value>Set XY axis work-coordinates to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroXY.Name" xml:space="preserve">
+    <value>BtnZeroXY</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXY.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroXY.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="BtnZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 82</value>
+  </data>
+  <data name="BtnZeroZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroZ.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="BtnZeroZ.Text" xml:space="preserve">
+    <value>Zero Z</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroZ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroZ.ToolTip" xml:space="preserve">
+    <value>Set Z axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroZ.Name" xml:space="preserve">
+    <value>BtnZeroZ</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroZ.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroZ.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="BtnZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 50</value>
+  </data>
+  <data name="BtnZeroY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroY.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="BtnZeroY.Text" xml:space="preserve">
+    <value>Zero Y</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroY.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroY.ToolTip" xml:space="preserve">
+    <value>Set Y axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroY.Name" xml:space="preserve">
+    <value>BtnZeroY</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroY.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroY.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="BtnZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZeroX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 18</value>
+  </data>
+  <data name="BtnZeroX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BtnZeroX.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="BtnZeroX.Text" xml:space="preserve">
+    <value>Zero X</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnZeroX.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnZeroX.ToolTip" xml:space="preserve">
+    <value>Set X axis work-coordinate to zero</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnZeroX.Name" xml:space="preserve">
+    <value>BtnZeroX</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroX.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;BtnZeroX.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="Lbl_mz.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_mz.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_mz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 102</value>
+  </data>
+  <data name="Lbl_mz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_mz.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="Lbl_mz.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_mz.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mz.Name" xml:space="preserve">
+    <value>Lbl_mz</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mz.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mz.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="Lbl_my.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_my.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_my.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 70</value>
+  </data>
+  <data name="Lbl_my.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_my.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="Lbl_my.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_my.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_my.Name" xml:space="preserve">
+    <value>Lbl_my</value>
+  </data>
+  <data name="&gt;&gt;Lbl_my.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_my.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_my.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="Lbl_mx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="Lbl_mx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_mx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 38</value>
+  </data>
+  <data name="Lbl_mx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="Lbl_mx.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Lbl_mx.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_mx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mx.Name" xml:space="preserve">
+    <value>Lbl_mx</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mx.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_mx.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="Lbl_wz.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="Lbl_wz.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 82</value>
+  </data>
+  <data name="Lbl_wz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wz.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="Lbl_wz.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wz.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="Lbl_wz.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;Lbl_wz.Name" xml:space="preserve">
+    <value>Lbl_wz</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wz.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wz.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="Lbl_wy.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="Lbl_wy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 50</value>
+  </data>
+  <data name="Lbl_wy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wy.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="Lbl_wy.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wy.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="Lbl_wy.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;Lbl_wy.Name" xml:space="preserve">
+    <value>Lbl_wy</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wy.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wy.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="Lbl_wx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="Lbl_wx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_wx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 18</value>
+  </data>
+  <data name="Lbl_wx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="Lbl_wx.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="Lbl_wx.Text" xml:space="preserve">
+    <value>00000.000</value>
+  </data>
+  <data name="Lbl_wx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="Lbl_wx.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;Lbl_wx.Name" xml:space="preserve">
+    <value>Lbl_wx</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wx.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;Lbl_wx.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="LblZ.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZ.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 82</value>
+  </data>
+  <data name="LblZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 20</value>
+  </data>
+  <data name="LblZ.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LblZ.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="LblZ.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;LblZ.Name" xml:space="preserve">
+    <value>LblZ</value>
+  </data>
+  <data name="&gt;&gt;LblZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZ.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblZ.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="LblY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblY.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 50</value>
+  </data>
+  <data name="LblY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="LblY.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="LblY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="LblY.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;LblY.Name" xml:space="preserve">
+    <value>LblY</value>
+  </data>
+  <data name="&gt;&gt;LblY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblY.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblY.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="LblX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblX.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="LblX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="LblX.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LblX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="LblX.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;LblX.Name" xml:space="preserve">
+    <value>LblX</value>
+  </data>
+  <data name="&gt;&gt;LblX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblX.Parent" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;LblX.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="GbDRO.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="GbDRO.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="GbDRO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 200</value>
+  </data>
+  <data name="GbDRO.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="GbDRO.Text" xml:space="preserve">
+    <value>Tool Coordinates (Work / Machine)</value>
+    <comment>gb</comment>
+  </data>
+  <data name="GbDRO.ToolTip" xml:space="preserve">
+    <value>Click to preset coordinates</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;GbDRO.Name" xml:space="preserve">
+    <value>GbDRO</value>
+  </data>
+  <data name="&gt;&gt;GbDRO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbDRO.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GbDRO.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 200</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCDRO</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>
