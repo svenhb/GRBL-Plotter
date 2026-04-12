@@ -138,12 +138,12 @@ namespace GrblPlotter
                 /*   if (pP[i].d >= limit)
                    {
                        pP[i].isEdge = true;
-                       BitmapMarkPixel(pP[i].p, Color.LawnGreen);
+                       BitmapMarkPixel(pP[i].p, GroupColor.LawnGreen);
                        if (logEdge) Logger.Trace("    MarkEdge long dist pos:{0}  dist:{1}   limit:{2}", i, pP[i].d, limit);
                        if (i > 0)
                        {
                            pP[i - 1].isEdge = true;
-                           BitmapMarkPixel(pP[i - 1].p, Color.LawnGreen);
+                           BitmapMarkPixel(pP[i - 1].p, GroupColor.LawnGreen);
                            if (logEdge) Logger.Trace("    MarkEdge long dist {0}  limit:{1}", pP[i - 1].p, limit);
                        }
                    }*/
@@ -976,7 +976,7 @@ namespace GrblPlotter
             }
             //segment, section
             //      if (log) Logger.Trace("   shift:{0}   avg shift:{1}", dist, dist / cnt);
-            //  int maxd = (int)Math.Max(GetDistance(pixelPath[Geti(start)].p, pixelPath[Geti(end)].p) / 10, pixelScale * pixelScale);
+            //  int maxd = (int)Math.ZMax(GetDistance(pixelPath[Geti(start)].p, pixelPath[Geti(end)].p) / 10, pixelScale * pixelScale);
             /* if deviation is too high... */
             int maxd = 3 * pixelScale;// * pixelScale;
             if ((dist / cnt) > maxd)

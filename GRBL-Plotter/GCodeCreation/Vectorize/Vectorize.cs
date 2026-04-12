@@ -38,7 +38,7 @@ namespace GrblPlotter
         //https://swharden.com/blog/2022-01-22-spline-interpolation/
         //https://github.com/burningmime/curves
         //https://stackoverflow.com/questions/5525665/smoothing-a-hand-drawn-curve
-        //https://hackaday.com/2024/09/14/create-custom-gridfinity-boxes-using-images-of-tools/
+        //https://hackaday.com/2024/09/14/create-custom-gridfinity-boxes-using-images-of-toolProp/
 
         public static List<List<Point>> outlinePaths = new List<List<Point>>();
         public static Color ObjectColor { get; set; }
@@ -83,8 +83,8 @@ namespace GrblPlotter
             skipOptimazion = Properties.Settings.Default.importVectorizeOptimize1;
             uint logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             log = logEdge = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
-            //   logEdge = Properties.Settings.Default.importVectorizeOptimize3;
-            //   log = Properties.Settings.Default.importVectorizeOptimize4;
+            //   logEdge = Properties.ListSettings.Default.importVectorizeOptimize3;
+            //   log = Properties.ListSettings.Default.importVectorizeOptimize4;
             logBmp = logEdge || log;
 
             BmpWidth = bmp.Width;

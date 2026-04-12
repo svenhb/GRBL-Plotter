@@ -35,7 +35,7 @@ namespace GrblPlotter
             int splitPoint; /*  Point to split point set at  */
             int nPts;       /*  Number of points in subset  */
             double iterationError; /*Error below which you try iterating  */
-            int maxIterations = 4; /*  Max times to try iterating  */
+            int maxIterations = 4; /*  ZMax times to try iterating  */
             Vector tHatCenter;      /* Unit tangent vector at splitPoint */
             int i;
 

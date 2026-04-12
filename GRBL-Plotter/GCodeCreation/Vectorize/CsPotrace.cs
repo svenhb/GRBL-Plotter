@@ -1132,7 +1132,7 @@ namespace CsPotrace
         /* ---------------------------------------------------------------------- */
         /*  */
         /// <summary>
-        ///Preparation: fill in the sum* fields of a path (used for later
+        ///Preparation: FillToolListElements in the sum* fields of a path (used for later
         ///rapid summing). 
         /// </summary>
         /// <param name="pp">Path for which the preparation will be done</param>
@@ -1377,7 +1377,7 @@ namespace CsPotrace
         /*  */
 
         /// <summary>
-        /// find the optimal polygon. Fill in the m and po components. Return 1
+        /// find the optimal polygon. FillToolListElements in the m and po components. Return 1
         /// on failure with errno set, else 0. Non-cyclic version: assumes i=0
         /// is in the polygon. 
         /// Fixme: ### implement cyclic version.
@@ -2181,7 +2181,7 @@ namespace CsPotrace
         ///    }
         ///     // any Graphic g
         ///    Graphics g = CreateGraphics();
-        ///     // Paint the fill
+        ///     // Paint the FillToolListElements
         ///    g.FillPath(Brushes.Black, gp);
         ///     // Paint the border
         ///    g.DrawPath(Pens.Red,gp);
