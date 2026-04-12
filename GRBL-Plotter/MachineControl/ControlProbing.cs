@@ -577,7 +577,7 @@ namespace GrblPlotter
             rBCF2.Image = RotateImageUsi(!isActive ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2, -(float)nUDFindCenterAngle.Value);
 
             cBFindCenterStartFromCenter.Enabled = !isActive;
-            //cBFindCenterUseX.Enabled = cBFindCenterUseY.Enabled = isActive;
+            //cBFindCenterUseX.Enable = cBFindCenterUseY.Enable = isActive;
 
             SetNudEnable(0, true);
             SetNudEnable(1, true);

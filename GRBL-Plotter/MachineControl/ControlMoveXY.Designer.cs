@@ -29,40 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlMoveXY));
-            this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.ucJogControlXY = new GrblPlotter.UserControls.UCJogControlXY();
             this.SuspendLayout();
-            // 
-            // virtualJoystickXY
-            // 
-            this.virtualJoystickXY.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickXY.BackgroundImage")));
-            this.virtualJoystickXY.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.virtualJoystickXY.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.virtualJoystickXY.Joystick2Dimension = true;
-            this.virtualJoystickXY.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickXY.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickXY.JoystickRaster = 5;
-            this.virtualJoystickXY.JoystickRasterMark = 0;
-            this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickXY.JoystickText = "X / Y";
-            this.virtualJoystickXY.Location = new System.Drawing.Point(0, 0);
-            this.virtualJoystickXY.MaximumSize = new System.Drawing.Size(400, 400);
-            this.virtualJoystickXY.MinimumSize = new System.Drawing.Size(180, 180);
-            this.virtualJoystickXY.Name = "virtualJoystickXY";
-            this.virtualJoystickXY.ShowStop = true;
-            this.virtualJoystickXY.Size = new System.Drawing.Size(187, 188);
-            this.virtualJoystickXY.TabIndex = 24;
-            this.virtualJoystickXY.TabStop = false;
-            this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickXY_JoyStickEvent);
-            this.virtualJoystickXY.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickXY.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
             // 
             // label1
             // 
@@ -74,7 +44,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 145);
+            this.button1.Location = new System.Drawing.Point(3, 236);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 38);
             this.button1.TabIndex = 26;
@@ -82,12 +52,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ucJogControlXY
+            // 
+            this.ucJogControlXY.Location = new System.Drawing.Point(3, 50);
+            this.ucJogControlXY.Name = "ucJogControlXY";
+            this.ucJogControlXY.Size = new System.Drawing.Size(180, 180);
+            this.ucJogControlXY.TabIndex = 27;
+            this.ucJogControlXY.RaiseCmdEvent += new System.EventHandler<GrblPlotter.UserControls.UserControlCmdEventArgs>(this.ucJogControlXY_RaiseCmdEvent);
+            // 
             // ControlMoveXY
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(187, 188);
-            this.Controls.Add(this.virtualJoystickXY);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(187, 272);
+            this.Controls.Add(this.ucJogControlXY);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -106,8 +84,9 @@
 
         #endregion
 
-        private virtualJoystick.virtualJoystick virtualJoystickXY;
+   //     private virtualJoystick.virtualJoystick virtualJoystickXY;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private UserControls.UCJogControlXY ucJogControlXY;
     }
 }

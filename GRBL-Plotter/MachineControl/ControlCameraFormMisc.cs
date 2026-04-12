@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2023-01-04 send process events
  * 2023-01-06 line 734 check list.count
  * 2023-06-11 f:ProcessShapeDetection l:683, 716 check for empty lists
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using AForge;
@@ -252,8 +253,8 @@ namespace GrblPlotter
             double actualScaling = GetActualScaling();
             if (CameraMount == CameraMounting.Fix)
             {
-                tmp.X = Convert.ToDouble(picCoordinate.X - cameraZeroFixXInPx) / actualScaling / cameraZoom;// - Properties.Settings.Default.cameraZeroFixMachineX;
-                tmp.Y = (cameraZeroFixYInPx - Convert.ToDouble(picCoordinate.Y)) / actualScaling / cameraZoom;// - Properties.Settings.Default.cameraZeroFixMachineY;
+                tmp.X = Convert.ToDouble(picCoordinate.X - cameraZeroFixXInPx) / actualScaling / cameraZoom;// - Properties.ListSettings.Default.cameraZeroFixMachineX;
+                tmp.Y = (cameraZeroFixYInPx - Convert.ToDouble(picCoordinate.Y)) / actualScaling / cameraZoom;// - Properties.ListSettings.Default.cameraZeroFixMachineY;
                 XyPoint fixMachineOffset = new XyPoint(Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
                 tmp += fixMachineOffset - (XyPoint)Grbl.posWCO;
             }
@@ -393,7 +394,7 @@ namespace GrblPlotter
                             {
                                 // move to fiducial position if automatic recognition for more accuracy
                                 //double dist = teachPoint1.DistanceTo(new XyPoint(Grbl.posWork));
-                                //double time = dist / 60 / Math.Min(Grbl.GetSetting(110), Grbl.GetSetting(111));  // mm/min
+                                //double time = dist / 60 / Math.ZMin(Grbl.GetSetting(110), Grbl.GetSetting(111));  // mm/min
                                 OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1, "G90 G0"));
                                 if (showLog) Logger.Trace("1) Move to X:{0}  Y:{1}", teachPoint1.X, teachPoint1.Y);
                                 fiducialDetectionProgressCounter++;

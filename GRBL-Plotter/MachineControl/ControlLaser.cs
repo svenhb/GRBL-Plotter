@@ -34,13 +34,14 @@ using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {
     public partial class ControlLaser : Form
     {
         internal string gcode;
-        private ToolProp tprop = new ToolProp();
+        private ToolProperty tprop = new ToolProperty();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -224,27 +225,27 @@ namespace GrblPlotter
         float tool_spindle;
         private void CbTool_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tmp = cBTool.SelectedItem.ToString();
-            if (tmp.IndexOf(")") > 0)
-            {
-                int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
-                Properties.Settings.Default.importGCToolDefNr = tnr;
-                tprop = ToolTable.GetToolProperties(tnr);
-                tool_xyfeed = tprop.FeedXY;
-                tool_spindle = tprop.SpindleSpeed;
+      //      string tmp = cBTool.SelectedItem.ToString();
+     //       if (tmp.IndexOf(")") > 0)
+     //       {
+        //        int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
+       //         Properties.Settings.Default.importGCToolDefNr = tnr;
+                tprop = new ToolProperty();//  ToolList.GetToolProperties(tnr);
+                tool_xyfeed = tprop.Laser.FeedXY;
+                tool_spindle = tprop.Laser.FinalS;
                 lblToolProp.Text = string.Format("XY-Feed F={0}, Laser pow. S={1}", tool_xyfeed, tool_spindle);
-            }
+      //      }
         }
 
         private void BtnToolUpdate_Click(object sender, EventArgs e)
         {
-            int toolCount = ToolTable.Init(" (BtnToolUpdate)");
-            ToolProp tmpTool;
+            int toolCount = ToolList.Init(" (BtnToolUpdate)");
+            ToolProperty tmpTool;
             cBTool.Items.Clear();
             for (int i = 1; i < toolCount; i++)
             {
-                tmpTool = ToolTable.GetToolProperties(i);
-                cBTool.Items.Add(i.ToString() + ") " + tmpTool.Name);
+                tmpTool = ToolList.GetToolProperties(i);
+                cBTool.Items.Add(i.ToString() + ") " + tmpTool.ToolName);
             }
             if (cBTool.Items.Count == 0)
             {
@@ -253,7 +254,7 @@ namespace GrblPlotter
             else
             {
                 cBTool.SelectedIndex = 0;
-                tprop = ToolTable.GetToolProperties(1);
+                tprop = ToolList.GetToolProperties(1);
             }
             CbTool_SelectedIndexChanged(sender, e);
         }

@@ -83,7 +83,7 @@ namespace GrblPlotter
         {
             Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}, info: '{4}'", replaceG23, splitMoves, applyNewZ, specialCmd, info);
             if (replaceG23)
-                Logger.Debug("--- CreateGCodeProg replaceG23 Arc circumfence step:{0}, segmentLength:{1}, equidistance:{2}", Properties.Settings.Default.importGCSegment, Properties.Settings.Default.importGCLineSegmentLength, Properties.Settings.Default.importGCLineSegmentEquidistant);
+                Logger.Debug("--- CreateGCodeProg replaceG23 Arc circumfence step:{0}, segmentLength:{1}, equidistance:{2}", ImportParameter.ArcCircumfenceStep, Properties.Settings.Default.importGCLineSegmentLength, Properties.Settings.Default.importGCLineSegmentEquidistant);
             if (splitMoves)
                 Logger.Debug("--- CreateGCodeProg splitMoves heightMapGridWidth:{0}", heightMapGridWidth);
 
@@ -151,9 +151,9 @@ namespace GrblPlotter
                     Gcode.SetLastxyz(lastActual.X, lastActual.Y, lastActual.Z);
                     Gcode.GcodeXYFeed = gcline.feedRate;
                     if (gcline.isdistanceModeG90)
-                        Gcode.GcodeRelative = false;
+                        Gcode.Control.GcodeRelative = false;
                     else
-                        Gcode.GcodeRelative = true;
+                        Gcode.Control.GcodeRelative = true;
 
                     if ((gcline.motionMode > 1) && (gcline.motionMode <= 3))    // handle arc
                     {

@@ -731,7 +731,7 @@ namespace GrblPlotter
             // 
             this.timerFreezFrame.Tick += new System.EventHandler(this.TimerFreezFrame_Tick);
             // 
-            // tabControl1
+            // TcServoZAxis
             // 
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -815,7 +815,8 @@ namespace GrblPlotter
             // ControlCameraForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBoxVideo);

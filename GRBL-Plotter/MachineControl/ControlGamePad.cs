@@ -61,7 +61,7 @@ namespace GrblPlotter
                 // Query all suported ForceFeedback effects
                 //	var allEffects = gamePad.GetEffects();
                 //	foreach (var effectInfo in allEffects)
-                //		logstring += string.Format("Effect available {0}", effectInfo.Name);
+                //		logstring += string.Format("Effect available {0}", effectInfo.ToolName);
 
                 // Set BufferSize in order to use buffered data.
                 gamePad.Properties.BufferSize = 128;

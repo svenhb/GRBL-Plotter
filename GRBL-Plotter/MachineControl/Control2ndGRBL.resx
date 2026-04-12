@@ -117,14 +117,173 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;ucJogControludZ.Name" xml:space="preserve">
+    <value>ucJogControludZ</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Name" xml:space="preserve">
+    <value>ucJogControludY</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Name" xml:space="preserve">
+    <value>ucJogControludX</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Name" xml:space="preserve">
+    <value>btnJogZeroZ</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Name" xml:space="preserve">
+    <value>btnJogZeroY</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Name" xml:space="preserve">
+    <value>btnJogZeroX</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 148</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 225</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Control / Jogging</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ucJogControludZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 40</value>
+  </data>
+  <data name="ucJogControludZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 175</value>
+  </data>
+  <data name="ucJogControludZ.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.Name" xml:space="preserve">
+    <value>ucJogControludZ</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludZ.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ucJogControludY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 40</value>
+  </data>
+  <data name="ucJogControludY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 175</value>
+  </data>
+  <data name="ucJogControludY.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Name" xml:space="preserve">
+    <value>ucJogControludY</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludY.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ucJogControludX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 40</value>
+  </data>
+  <data name="ucJogControludX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 175</value>
+  </data>
+  <data name="ucJogControludX.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Name" xml:space="preserve">
+    <value>ucJogControludX</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Type" xml:space="preserve">
+    <value>GrblPlotter.UserControls.UCJogControlUD, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;ucJogControludX.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 53</value>
+    <value>107, 16</value>
   </data>
   <data name="btnJogZeroZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnJogZeroZ.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -141,10 +300,10 @@
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 53</value>
+    <value>55, 16</value>
   </data>
   <data name="btnJogZeroY.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -165,10 +324,10 @@
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 53</value>
+    <value>4, 16</value>
   </data>
   <data name="btnJogZeroX.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -189,190 +348,7 @@
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="virtualJoystickY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC0AAAC0CAYAAAAAc6URAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALTSURBVHhe7Zw9btwwFIT3Bi5TGXDlJoBdpHLldgufIIDb
-        HCBQ64MY0DHc6wI5BG+ijFZ/pJ6wcePRMBhgv7fUiMVHLi1wQdunvserMlBjqA5qDNVBjaE6qDFUB3W6
-        SKf+fEIw0XRj3p6nDO9p7nswqNMFpJt2vXEB4ucpS3ifB3I0qNMFhOZZnme1EM0GcDSoMRxkB8GuwfLA
-        J3DJh+WD623fI0CN4SwoP9PDrM6C80zrr2nQbNb0kGk/PSoCNYbqoMZQHdQYqoMaQ3VQY6gO6g806sLS
-        LCzNIkin9gYbo/n6Idt73GHvUfY9ikz6ftkwLdLdN+zyHi7tcjDHcnWmC9FsAEdzVbprbvDNZbqX7vDF
-        4L7oexT/30xXuaYreHrUg6VZWJpFrdK/0KgLS7OwNItVOj1vzlzKjkoU0k37M3RQZJXuHpdZPp2fsaMr
-        Oyqxu6ZTe4t9tO6s7/8gDuu7eYm5CIv0eOYytiua6ZfszKXCNa2OpVlYmkWt0u9o1IWlWViaRZBO7Xds
-        nMpMjUz6d3bmUnZSo/aZHrH0F2FpFkG6BizNwtIsapX+g0ZdWJqFpVlk0h/Z73a89SnrdCG9bc5kNveJ
-        rNLda39uPy7t1D5FKUg30/2jWaQL0WwAC8jmWd79JIgs0l3z1LdpujEshWZ4kK8dc4YBhkER+fxM5/xj
-        UF/Np9f0eCYztmVmevfpUczoe3YmI7KmdxF6YuRclxbF0iwszcLSLCzNwtIsLM3C0iwszcLSLCzNwtIs
-        IL0ewNSCpVlYmoWlWViahaVZWJqFpVlYmkWt0vt/AKOMpVlYmoWlWViahaVZWJqFpVlYmkWt0vv/dEwZ
-        S7OwNAtLs7A0C0uzsDQLS7OwNItapfGqDNQYqoMaQ3VQY6gOagzVQY2hOqgxVAc1huqgxlAd1BiqgxpD
-        dVBjqA5qDNVBjaE6qDFUBzWG6qDGUB3UGGpz6v8CnK9hg/hrX8wAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 79</value>
-  </data>
-  <data name="virtualJoystickY.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickY.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 180</value>
-  </data>
-  <data name="virtualJoystickY.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickY.Name" xml:space="preserve">
-    <value>virtualJoystickY</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickY.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickY.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="virtualJoystickX.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC0AAAC0CAYAAAAAc6URAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALTSURBVHhe7Zw9btwwFIT3Bi5TGXDlJoBdpHLldgufIIDb
-        HCBQ64MY0DHc6wI5BG+ijFZ/pJ6wcePRMBhgv7fUiMVHLi1wQdunvserMlBjqA5qDNVBjaE6qDFUB3W6
-        SKf+fEIw0XRj3p6nDO9p7nswqNMFpJt2vXEB4ucpS3ifB3I0qNMFhOZZnme1EM0GcDSoMRxkB8GuwfLA
-        J3DJh+WD623fI0CN4SwoP9PDrM6C80zrr2nQbNb0kGk/PSoCNYbqoMZQHdQYqoMaQ3VQY6gO6g806sLS
-        LCzNIkin9gYbo/n6Idt73GHvUfY9ikz6ftkwLdLdN+zyHi7tcjDHcnWmC9FsAEdzVbprbvDNZbqX7vDF
-        4L7oexT/30xXuaYreHrUg6VZWJpFrdK/0KgLS7OwNItVOj1vzlzKjkoU0k37M3RQZJXuHpdZPp2fsaMr
-        Oyqxu6ZTe4t9tO6s7/8gDuu7eYm5CIv0eOYytiua6ZfszKXCNa2OpVlYmkWt0u9o1IWlWViaRZBO7Xds
-        nMpMjUz6d3bmUnZSo/aZHrH0F2FpFkG6BizNwtIsapX+g0ZdWJqFpVlk0h/Z73a89SnrdCG9bc5kNveJ
-        rNLda39uPy7t1D5FKUg30/2jWaQL0WwAC8jmWd79JIgs0l3z1LdpujEshWZ4kK8dc4YBhkER+fxM5/xj
-        UF/Np9f0eCYztmVmevfpUczoe3YmI7KmdxF6YuRclxbF0iwszcLSLCzNwtIsLM3C0iwszcLSLCzNwtIs
-        IL0ewNSCpVlYmoWlWViahaVZWJqFpVlYmkWt0vt/AKOMpVlYmoWlWViahaVZWJqFpVlYmkWt0vv/dEwZ
-        S7OwNAtLs7A0C0uzsDQLS7OwNItapfGqDNQYqoMaQ3VQY6gOagzVQY2hOqgxVAc1huqgxlAd1BiqgxpD
-        dVBjqA5qDNVBjaE6qDFUBzWG6qDGUB3UGGpz6v8CnK9hg/hrX8wAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 79</value>
-  </data>
-  <data name="virtualJoystickX.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickX.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 180</value>
-  </data>
-  <data name="virtualJoystickX.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickX.Name" xml:space="preserve">
-    <value>virtualJoystickX</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickX.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickX.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickX.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnJogStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 19</value>
-  </data>
-  <data name="btnJogStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
-  </data>
-  <data name="btnJogStop.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>STOP Jogging</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Name" xml:space="preserve">
-    <value>btnJogStop</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC0AAAC0CAYAAAAAc6URAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALTSURBVHhe7Zw9btwwFIT3Bi5TGXDlJoBdpHLldgufIIDb
-        HCBQ64MY0DHc6wI5BG+ijFZ/pJ6wcePRMBhgv7fUiMVHLi1wQdunvserMlBjqA5qDNVBjaE6qDFUB3W6
-        SKf+fEIw0XRj3p6nDO9p7nswqNMFpJt2vXEB4ucpS3ifB3I0qNMFhOZZnme1EM0GcDSoMRxkB8GuwfLA
-        J3DJh+WD623fI0CN4SwoP9PDrM6C80zrr2nQbNb0kGk/PSoCNYbqoMZQHdQYqoMaQ3VQY6gO6g806sLS
-        LCzNIkin9gYbo/n6Idt73GHvUfY9ikz6ftkwLdLdN+zyHi7tcjDHcnWmC9FsAEdzVbprbvDNZbqX7vDF
-        4L7oexT/30xXuaYreHrUg6VZWJpFrdK/0KgLS7OwNItVOj1vzlzKjkoU0k37M3RQZJXuHpdZPp2fsaMr
-        Oyqxu6ZTe4t9tO6s7/8gDuu7eYm5CIv0eOYytiua6ZfszKXCNa2OpVlYmkWt0u9o1IWlWViaRZBO7Xds
-        nMpMjUz6d3bmUnZSo/aZHrH0F2FpFkG6BizNwtIsapX+g0ZdWJqFpVlk0h/Z73a89SnrdCG9bc5kNveJ
-        rNLda39uPy7t1D5FKUg30/2jWaQL0WwAC8jmWd79JIgs0l3z1LdpujEshWZ4kK8dc4YBhkER+fxM5/xj
-        UF/Np9f0eCYztmVmevfpUczoe3YmI7KmdxF6YuRclxbF0iwszcLSLCzNwtIsLM3C0iwszcLSLCzNwtIs
-        IL0ewNSCpVlYmoWlWViahaVZWJqFpVlYmkWt0vt/AKOMpVlYmoWlWViahaVZWJqFpVlYmkWt0vv/dEwZ
-        S7OwNAtLs7A0C0uzsDQLS7OwNItapfGqDNQYqoMaQ3VQY6gOagzVQY2hOqgxVAc1huqgxlAd1BiqgxpD
-        dVBjqA5qDNVBjaE6qDFUBzWG6qDGUB3UGGpz6v8CnK9hg/hrX8wAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 79</value>
-  </data>
-  <data name="virtualJoystickZ.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickZ.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 180</value>
-  </data>
-  <data name="virtualJoystickZ.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Name" xml:space="preserve">
-    <value>virtualJoystickZ</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 148</value>
-  </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 266</value>
-  </data>
-  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Control / Jogging</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 325</value>
@@ -469,6 +445,210 @@
   </data>
   <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnHome.Name" xml:space="preserve">
+    <value>btnHome</value>
+  </data>
+  <data name="&gt;&gt;btnHome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHome.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnZeroZ.Name" xml:space="preserve">
+    <value>btnZeroZ</value>
+  </data>
+  <data name="&gt;&gt;btnZeroZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZeroZ.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnZeroZ.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnZeroY.Name" xml:space="preserve">
+    <value>btnZeroY</value>
+  </data>
+  <data name="&gt;&gt;btnZeroY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZeroY.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnZeroY.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnZeroX.Name" xml:space="preserve">
+    <value>btnZeroX</value>
+  </data>
+  <data name="&gt;&gt;btnZeroX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZeroX.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnZeroX.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;label_status.Name" xml:space="preserve">
+    <value>label_status</value>
+  </data>
+  <data name="&gt;&gt;label_status.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_status.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_status.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;label_mx.Name" xml:space="preserve">
+    <value>label_mx</value>
+  </data>
+  <data name="&gt;&gt;label_mx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_mx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_mx.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;label_my.Name" xml:space="preserve">
+    <value>label_my</value>
+  </data>
+  <data name="&gt;&gt;label_my.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_my.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_my.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;label_mz.Name" xml:space="preserve">
+    <value>label_mz</value>
+  </data>
+  <data name="&gt;&gt;label_mz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_mz.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_mz.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;label_wz.Name" xml:space="preserve">
+    <value>label_wz</value>
+  </data>
+  <data name="&gt;&gt;label_wz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_wz.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_wz.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;label_wx.Name" xml:space="preserve">
+    <value>label_wx</value>
+  </data>
+  <data name="&gt;&gt;label_wx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_wx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_wx.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;label_wy.Name" xml:space="preserve">
+    <value>label_wy</value>
+  </data>
+  <data name="&gt;&gt;label_wy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_wy.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_wy.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 140</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Tool Coordinates (World / Machine)</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 107</value>
@@ -927,38 +1107,14 @@
   <data name="&gt;&gt;label_wy.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 2</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 140</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Tool Coordinates (World / Machine)</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>284, 421</value>
+    <value>284, 376</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3973,7 +4129,7 @@
     <value>300, 460</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>300, 460</value>
+    <value>300, 415</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Control2ndGRBL</value>

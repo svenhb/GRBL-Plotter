@@ -39,6 +39,8 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
 namespace GrblPlotter
 {
@@ -962,7 +964,7 @@ namespace GrblPlotter
 			/*
 					{
 						SendProcessEvent(new ProcessEventArgs(action, value));
-						SetCellColor(processStep, Color.Yellow);
+						SetCellColor(processStep, GroupColor.Yellow);
 						//   stepCompleted = true;       /* check for IDLE should be enough */
 					/*	if (action.Contains("Send"))
 						{
@@ -1212,7 +1214,7 @@ namespace GrblPlotter
             {
                 bool ok = CheckData();
                 if (ok) { BtnStart.BackColor = Color.Lime; }
-                //else { BtnStart.BackColor = Color.Fuchsia; }
+                //else { BtnStart.BackColor = GroupColor.Fuchsia; }
             }
         }
         #endregion
@@ -1326,7 +1328,7 @@ namespace GrblPlotter
         #region XML
         private void LoadXML(string file)
         {
-            //   BtnStart.Enabled = false;
+            //   BtnStart.Enable = false;
             //isRunning = false;
             try
             {

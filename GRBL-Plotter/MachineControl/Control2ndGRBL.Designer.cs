@@ -30,13 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Control2ndGRBL));
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.ucJogControludZ = new GrblPlotter.UserControls.UCJogControlUD();
+            this.ucJogControludY = new GrblPlotter.UserControls.UCJogControlUD();
+            this.ucJogControludX = new GrblPlotter.UserControls.UCJogControlUD();
             this.btnJogZeroZ = new System.Windows.Forms.Button();
             this.btnJogZeroY = new System.Windows.Forms.Button();
             this.btnJogZeroX = new System.Windows.Forms.Button();
-            this.virtualJoystickY = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickX = new virtualJoystick.virtualJoystick();
-            this.btnJogStop = new System.Windows.Forms.Button();
-            this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
             this.btnKillAlarm = new System.Windows.Forms.Button();
             this.btnFeedHold = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
@@ -63,16 +62,33 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.ucJogControludZ);
+            this.groupBox6.Controls.Add(this.ucJogControludY);
+            this.groupBox6.Controls.Add(this.ucJogControludX);
             this.groupBox6.Controls.Add(this.btnJogZeroZ);
             this.groupBox6.Controls.Add(this.btnJogZeroY);
             this.groupBox6.Controls.Add(this.btnJogZeroX);
-            this.groupBox6.Controls.Add(this.virtualJoystickY);
-            this.groupBox6.Controls.Add(this.virtualJoystickX);
-            this.groupBox6.Controls.Add(this.btnJogStop);
-            this.groupBox6.Controls.Add(this.virtualJoystickZ);
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // ucJogControludZ
+            // 
+            resources.ApplyResources(this.ucJogControludZ, "ucJogControludZ");
+            this.ucJogControludZ.Name = "ucJogControludZ";
+            this.ucJogControludZ.RaiseCmdEvent += new System.EventHandler<GrblPlotter.UserControls.UserControlCmdEventArgs>(this.ucJogControlUD1_RaiseCmdEvent);
+            // 
+            // ucJogControludY
+            // 
+            resources.ApplyResources(this.ucJogControludY, "ucJogControludY");
+            this.ucJogControludY.Name = "ucJogControludY";
+            this.ucJogControludY.RaiseCmdEvent += new System.EventHandler<GrblPlotter.UserControls.UserControlCmdEventArgs>(this.ucJogControlUD1_RaiseCmdEvent);
+            // 
+            // ucJogControludX
+            // 
+            resources.ApplyResources(this.ucJogControludX, "ucJogControludX");
+            this.ucJogControludX.Name = "ucJogControludX";
+            this.ucJogControludX.RaiseCmdEvent += new System.EventHandler<GrblPlotter.UserControls.UserControlCmdEventArgs>(this.ucJogControlUD1_RaiseCmdEvent);
             // 
             // btnJogZeroZ
             // 
@@ -94,71 +110,6 @@
             this.btnJogZeroX.Name = "btnJogZeroX";
             this.btnJogZeroX.UseVisualStyleBackColor = true;
             this.btnJogZeroX.Click += new System.EventHandler(this.BtnJogX_Click);
-            // 
-            // virtualJoystickY
-            // 
-            resources.ApplyResources(this.virtualJoystickY, "virtualJoystickY");
-            this.virtualJoystickY.Joystick2Dimension = false;
-            this.virtualJoystickY.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickY.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickY.JoystickRaster = 5;
-            this.virtualJoystickY.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickY.Name = "virtualJoystickY";
-            this.virtualJoystickY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickY_JoyStickEvent);
-            this.virtualJoystickY.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickY.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // virtualJoystickX
-            // 
-            resources.ApplyResources(this.virtualJoystickX, "virtualJoystickX");
-            this.virtualJoystickX.Joystick2Dimension = false;
-            this.virtualJoystickX.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickX.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickX.JoystickRaster = 5;
-            this.virtualJoystickX.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickX.Name = "virtualJoystickX";
-            this.virtualJoystickX.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickX_JoyStickEvent);
-            this.virtualJoystickX.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickX.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // btnJogStop
-            // 
-            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.btnJogStop, "btnJogStop");
-            this.btnJogStop.Name = "btnJogStop";
-            this.btnJogStop.UseVisualStyleBackColor = false;
-            this.btnJogStop.Click += new System.EventHandler(this.BtnJogStop_Click);
-            // 
-            // virtualJoystickZ
-            // 
-            resources.ApplyResources(this.virtualJoystickZ, "virtualJoystickZ");
-            this.virtualJoystickZ.Joystick2Dimension = false;
-            this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickZ.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickZ.JoystickRaster = 5;
-            this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickZ_JoyStickEvent);
-            this.virtualJoystickZ.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.virtualJoystickZ.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
             // 
             // btnKillAlarm
             // 
@@ -295,7 +246,7 @@
             // Control2ndGRBL
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnFeedHold);
@@ -315,17 +266,16 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button btnJogStop;
         private System.Windows.Forms.Button btnJogZeroX;
         private System.Windows.Forms.Button btnJogZeroY;
         private System.Windows.Forms.Button btnJogZeroZ;
-        private virtualJoystick.virtualJoystick virtualJoystickZ;
+    //    private virtualJoystick.virtualJoystick virtualJoystickZ;
         private System.Windows.Forms.Button btnKillAlarm;
         private System.Windows.Forms.Button btnFeedHold;
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.Button btnReset;
-        private virtualJoystick.virtualJoystick virtualJoystickY;
-        private virtualJoystick.virtualJoystick virtualJoystickX;
+      //  private virtualJoystick.virtualJoystick virtualJoystickY;
+     //   private virtualJoystick.virtualJoystick virtualJoystickX;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label label5;
@@ -342,5 +292,8 @@
         private System.Windows.Forms.Label label_wz;
         private System.Windows.Forms.Label label_wx;
         private System.Windows.Forms.Label label_wy;
+        private UserControls.UCJogControlUD ucJogControludZ;
+        private UserControls.UCJogControlUD ucJogControludY;
+        private UserControls.UCJogControlUD ucJogControludX;
     }
 }

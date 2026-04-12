@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 /*
  * 2019-08-15 add logger
  * 2021-07-26 code clean up / code quality
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-04-09 use new UCJogControlUD instead of VirtualJoystick
 */
 
 using System;
@@ -26,9 +28,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using virtualJoystick;
-
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -37,7 +36,7 @@ namespace GrblPlotter
         ControlSerialForm _serial_form2;
         private XyzPoint posMachine = new XyzPoint(0, 0, 0);
         private XyzPoint posWorld = new XyzPoint(0, 0, 0);
-        //     private XyzPoint posProbe = new XyzPoint(0, 0, 0);
+
         private GrblState machineStatus;
         private readonly double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
         private readonly double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
@@ -82,7 +81,6 @@ namespace GrblPlotter
                 if ((jogging) && (_serial_form2.IsGrblVers0 == false))
                     txt = "$J=" + txt;
                 _serial_form2.RequestSend(txt);
-                btnJogStop.Visible = !_serial_form2.IsGrblVers0;
             }
         }
 
@@ -117,8 +115,6 @@ namespace GrblPlotter
         { SendCommand("G90 Y0 F" + joystickXYSpeed[5].ToString(), true); }
         private void BtnJogZ_Click(object sender, EventArgs e)
         { SendCommand("G90 Z0 F" + joystickZSpeed[5].ToString(), true); }
-        private void BtnJogStop_Click(object sender, EventArgs e)
-        { SendRealtimeCommand(133); }    //0x85
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
@@ -135,47 +131,6 @@ namespace GrblPlotter
         private void BtnKillAlarm_Click(object sender, EventArgs e)
         {
             SendCommand("$X");
-        }
-
-        private void VirtualJoystickXY_Enter(object sender, EventArgs e)
-        { if (_serial_form2.IsGrblVers0) SendCommand("G91G1F100"); }
-        private void VirtualJoystickXY_Leave(object sender, EventArgs e)
-        { if (_serial_form2.IsGrblVers0) SendCommand("G90"); }
-        private void VirtualJoystickX_JoyStickEvent(object sender, JogEventArgs e)
-        {
-            int indexZ = Math.Abs(e.JogPosY);
-            int dirZ = Math.Sign(e.JogPosY);
-            int speed = (int)joystickXYSpeed[indexZ];
-            String strZ = Gcode.FrmtNum(joystickXYStep[indexZ] * dirZ);
-            if (speed > 0)
-            {
-                String s = String.Format("G91 X{0} F{1}", strZ, speed).Replace(',', '.');
-                SendCommand(s, true);
-            }
-        }
-        private void VirtualJoystickY_JoyStickEvent(object sender, JogEventArgs e)
-        {
-            int indexZ = Math.Abs(e.JogPosY);
-            int dirZ = Math.Sign(e.JogPosY);
-            int speed = (int)joystickXYSpeed[indexZ];
-            String strZ = Gcode.FrmtNum(joystickXYStep[indexZ] * dirZ);
-            if (speed > 0)
-            {
-                String s = String.Format("G91 Y{0} F{1}", strZ, speed).Replace(',', '.');
-                SendCommand(s, true);
-            }
-        }
-        private void VirtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
-        {
-            int indexZ = Math.Abs(e.JogPosY);
-            int dirZ = Math.Sign(e.JogPosY);
-            int speed = (int)joystickZSpeed[indexZ];
-            String strZ = Gcode.FrmtNum(joystickZStep[indexZ] * dirZ);
-            if (speed > 0)
-            {
-                String s = String.Format("G91 Z{0} F{1}", strZ, speed).Replace(',', '.');
-                SendCommand(s, true);
-            }
         }
 
         private void Control2ndGRBL_Load(object sender, EventArgs e)
@@ -200,21 +155,32 @@ namespace GrblPlotter
             joystickZSpeed[3] = (double)Properties.Settings.Default.guiJoystickZSpeed3;
             joystickZSpeed[4] = (double)Properties.Settings.Default.guiJoystickZSpeed4;
             joystickZSpeed[5] = (double)Properties.Settings.Default.guiJoystickZSpeed5;
-            virtualJoystickX.JoystickLabel = joystickXYStep;
-            virtualJoystickY.JoystickLabel = joystickXYStep;
-            virtualJoystickZ.JoystickLabel = joystickZStep;
-
-            btnJogStop.Visible = !_serial_form2.IsGrblVers0;
 
             Location = Properties.Settings.Default.location2ndGRBLForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(50, 50); }
+
+            bool useClassic = Properties.Settings.Default.UserControlJogControlShowButtons;
+            ucJogControludX.SetApperance(useClassic);
+            ucJogControludY.SetApperance(useClassic);
+            ucJogControludZ.SetApperance(useClassic);
+            ucJogControludX.SetAxisName("X");
+            ucJogControludY.SetAxisName("Y");
+            ucJogControludZ.SetAxisName("Z");
+            ucJogControludX.SetEnabled(true);
+            ucJogControludY.SetEnabled(true);
+            ucJogControludZ.SetEnabled(true);
         }
 
         private void Control2ndGRBL_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Trace("++++++ Control2ndGRBL Stop ++++++");
             Properties.Settings.Default.location2ndGRBLForm = Location;
+        }
+
+        private void ucJogControlUD1_RaiseCmdEvent(object sender, UserControls.UserControlCmdEventArgs e)
+        {
+            SendCommand(e.Command,false);
         }
     }
 }

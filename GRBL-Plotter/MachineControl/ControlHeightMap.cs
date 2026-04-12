@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
  * 2019-04-06 limit digits to 3, bugfix x3d export '.'-','
  * 2019-08-15 add logger
  * 2020-03-18 bug fix: abort btnLoad_Click - causes main GUI to load an empty map
- * 2021-04-30 after cancel, fill up missing coordinates line 561
+ * 2021-04-30 after cancel, FillToolListElements up missing coordinates line 561
  * 2021-07-14 code clean up / code quality
  * 2021-07-23 add notifier (by pushbullet or email)
  * 2021-12-15 InterpolateZ check index range
@@ -36,12 +36,13 @@
  * 2022-11-15 line 1332 check if ((x < map.SizeX) && (y < map.SizeY))
  * 2022-11-29 SavePictureAsBMP: size=Map-size; importSTL; GetCoordinates round to 4 decimals
  * 2022-12-05 seperate class into new file "ControlHeightMapClass"
- * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / Max
+ * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / ZMax
  * 2023-02-20 optional y-x scan
  * 2023-05-08 l:996 f:AddScanCode add axis-string for X/Y seperation
  * 2023-08-01 check if (!ImageSize.IsEmpty)
  * 2023-11-02 l:1412 f:LoadMap Bug fix "Value was either too large or too small for a Decimal"
  * 2024-05-28 l:266 f:SetBtnApply reset mapIsLoaded after changing applied status
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -315,7 +316,7 @@ namespace GrblPlotter
         {
             bool interpolate = CbInterpolate.Checked;
             //    lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
-            //lblProgress.BackColor = Color.Transparent;
+            //lblProgress.BackColor = GroupColor.Transparent;
             progressBar1.Value = 0;
             if (Map != null)
             {
@@ -974,7 +975,7 @@ namespace GrblPlotter
                 refreshPictureBox = false;
                 notifierEnable = false;
                 ControlPowerSaving.EnableStandby();
-                if ((Map != null) && (cntReceived < cntSent))   // fill missing coordiantes
+                if ((Map != null) && (cntReceived < cntSent))   // FillToolListElements missing coordiantes
                 {
 
                     double worldZ = 0 - (Grbl.posMachine.Z - Grbl.posWork.Z);

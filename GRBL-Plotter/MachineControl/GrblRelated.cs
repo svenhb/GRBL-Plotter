@@ -35,6 +35,7 @@
  * 2024-02-24 add Grbl.StatMsg
  * 2025-03-04 add $I customization string
  * 2025-03-24 l:401 f:GetPosition revision
+ 2026-02-20
 */
 
 using NLog;
@@ -62,7 +63,7 @@ namespace GrblPlotter
         public static bool isMarlin = false;
         public static bool isConnected = false;
 
-        public static int axisCount = 0;
+        public static int axisCount = 3;
         public static bool axisA = false;       // axis A available?
         public static bool axisB = false;       // axis B available?
         public static bool axisC = false;       // axis C available?
@@ -481,6 +482,10 @@ namespace GrblPlotter
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
 */
+
+
+
+
         internal static void GetOtherFeedbackMessage(string[] dataField)
         {   // MSG, VER, OPT, AXS	-	key=AXS and AXS0
             string key;

@@ -3471,7 +3471,7 @@ Dibuja una firma en el margen inferior derecho: escala 0,1 o menos y usa “abaj
     <value>Genera líneas tambaleantes</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Ruido</value>
+    <value>Líneas tambaleantes</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Añadir ruido</value>
@@ -3694,7 +3694,7 @@ Si está marcado, cada comando 'm' crea una nueva figura.</value>
     <value>Solicitar</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Vectorización automática</value>
+    <value>Vectorización automática (solo en blanco y negro)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Establecer el ancho de la imagen en</value>
@@ -3798,5 +3798,23 @@ Utilice "Exportar configuración de la máquina" para guardar los "valores prede
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Transparencia del fondo del texto</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Tema de color</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Color del botón Tono</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Color del panel Tono</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Aplicar tema de color al inicio del programa</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Saturación</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Brillo</value>
   </data>
 </root>

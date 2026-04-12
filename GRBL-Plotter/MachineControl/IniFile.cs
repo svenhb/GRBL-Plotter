@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@
  * 2019-08-15 add logger
  * 2019-09-17 update settings
  * 2019-11-16 add gamepad
- * 2019-12-07 showIniSettings -> selection between actual (Properties.Settings.Default.x) and ini-file values
+ * 2019-12-07 showIniSettings -> selection between actual (Properties.ListSettings.Default.x) and ini-file values
  * 2020-03-10 add tangential axis
- * 2020-07-08 add hatch fill
+ * 2020-07-08 add hatch FillToolListElements
  * 2020-09-21 add 'Button' at end of last used button 1-32 line 960
  * 2020-10-05 add 2D-view widths and colors
  * 2021-01-22 add missing settings
@@ -40,11 +40,12 @@
  * 2023-04-26 add importGraphicFilterEnable
  * 2023-06-05 add further simple shape variables
  * 2024-02-10 add create text and barcode
- * 2024-07-22 l:281/841 f: add Hatch fill distance offset
+ * 2024-07-22 l:281/841 f: add Hatch FillToolListElements distance offset
  * 2024-12-19 l:950 f:ReadImport bug fix #429
  * 2025-02-23 add M6PassThrough #435
- * 2025-03-06 l:112 f:Write Value.Replace ',' by '.'
+ * 2025-03-06 l:112 f:WriteXML Value.Replace ',' by '.'
  * 2025-03-14 outsourcing of ini-key variable storage - e.g. ControlSetupFormIni.cs
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -292,7 +293,7 @@ namespace GrblPlotter
             string section = "Info";
             string localDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            if (!File.Exists(iniPath))  // Write entry manually to force UTF-16 encoding
+            if (!File.Exists(iniPath))  // WriteXML entry manually to force UTF-16 encoding
             {
                 string myunicode = string.Format("[{0}]\r\nDate={1}\r\n", section, localDate);
                 File.WriteAllText(iniPath, myunicode, Encoding.Unicode);
@@ -443,7 +444,7 @@ namespace GrblPlotter
                         if ((tmp[0].Length > 1) && (i < 32))
                         {
                             setup["guiCustomBtn" + (i + 1).ToString()] = tmpstr;
-                            //Properties.Settings.Default["guiCustomBtn" + (i+1).ToString()] =  tmpstr;
+                            //Properties.ListSettings.Default["guiCustomBtn" + (i+1).ToString()] =  tmpstr;
                             Logger.Trace("Button {0}  set {1}", (i + 1), tmpstr);
                             btn_set = true;
                             break;
@@ -587,11 +588,11 @@ namespace GrblPlotter
 
             if (fromSettings)
             {
-                fromTTZ = Properties.Settings.Default.importGCTTZAxis;
-                fromTTXY = Properties.Settings.Default.importGCTTXYFeed;
-                fromTTSS = Properties.Settings.Default.importGCTTSSpeed;
+            //    fromTTZ = Properties.Settings.Default.importGCTTZAxis;
+            //    fromTTXY = Properties.Settings.Default.importGCTTXYFeed;
+            //    fromTTSS = Properties.Settings.Default.importGCTTSSpeed;
                 ZEnable = Properties.Settings.Default.importGCZEnable;
-                TTImport = Properties.Settings.Default.importGCToolTableUse;
+                TTImport = Properties.Settings.Default.importGCToolListUse;
                 TangEnable = Properties.Settings.Default.importGCTangentialEnable;
             }
             //           string state;
@@ -642,8 +643,8 @@ namespace GrblPlotter
                 tmp.AppendFormat("  Tang. range  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialRange.ToString() : Read("Tangential axis range", "GCode modification"));
             }
             tmp.AppendLine();
-            AddInfo(tmp, "Tool table enable : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCToolTableUse.ToString() : Read("Tool table enable", "Graphics Import"));
-            AddInfo(tmp, "Tool table apply  : {0}\r\n", fromSettings ? Properties.Settings.Default.toolTableLastLoaded.ToString() : Read("Tool table loaded", "Tool change"));
+            AddInfo(tmp, "Tool table enable : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCToolListUse.ToString() : Read("Tool list enable", "Graphics Import"));
+            AddInfo(tmp, "Tool table apply  : {0}\r\n", fromSettings ? Properties.Settings.Default.toolTableLastLoaded.ToString() : Read("Tool list loaded", "Tool change"));
             AddInfo(tmp, "Tool change enable: {0}\r\n", fromSettings ? Properties.Settings.Default.ctrlToolChange.ToString() : Read("Tool change enable", "Tool change"));
             return tmp.ToString();
         }

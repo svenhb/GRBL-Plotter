@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,9 +34,9 @@
  * 2021-04-12 line 876 only send setup-command '$...' if system is IDLE
  * 2021-10-14 grbl 0.9 fix $10=3
  * 2021-11-23 line 446 check dataField.Length, line 793 add if (serialPort.IsOpen) 
- * 2021-12-13 replace serialPort.Write by SerialPortDataSend (in ControlSerialForm.cs)
+ * 2021-12-13 replace serialPort.WriteXML by SerialPortDataSend (in ControlSerialForm.cs)
  * 2021-12-14 add run time for spindle, flood, mist
- * 2021-12-21 line 819 replace serialPort.Write by 	SerialPortDataSend
+ * 2021-12-21 line 819 replace serialPort.WriteXML by 	SerialPortDataSend
  * 2022-01-03 InsertVariable error handling
  * 2022-01-07 rework ResetVariables
  * 2022-02-14 line 1035 use of 3rd, reset counter
@@ -54,6 +54,7 @@
  * 2023-08-03 l:1642 f:MissingConfirmationLength lock loop
  * 2024-02-25 add some locks to secure buffer
  * 2024-03-20 l:952 f:RequestSend take care of (^2
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -332,7 +333,7 @@ namespace GrblPlotter
             else if (rxString.ToUpper().IndexOf("ERROR") >= 0)
             { ProcessGrblErrorMessage(rxString); }   // https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#grbl-response-messages
 
-            /***** Show GRBL Settings Info if Version is >= 1.0  *****/
+            /***** Show GRBL ListSettings Info if Version is >= 1.0  *****/
             else if ((rxString.IndexOf("$") >= 0) && (rxString.IndexOf("=") >= 0))
             { ProcessGrblUserQuery(rxString); }
 
@@ -494,9 +495,9 @@ namespace GrblPlotter
                             { this.machineState.Bf = lblSrBf.Text = data[1]; continue; }
                             if (data[0].Contains("Ln"))            // Line number - needs to be enabled in config.h file
                             { this.machineState.Ln = lblSrLn.Text = data[1]; continue; }
-                            if (data[0].Contains("FS"))            // Current Feed and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
+                            if (data[0].Contains("FS"))            // Current FeedXY and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
-                            if (data[0].Contains("F"))             // Current Feed - see above is speed is disabled in config.h
+                            if (data[0].Contains("F"))             // Current FeedXY - see above is speed is disabled in config.h
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
                             if (data[0].Contains("Pn"))            // Input Pin State - will not appear if No input pins are detected as triggered.
                             { this.machineState.Pn = data[1]; continue; } //else { this.machineState.Pn = lblSrPn.Text = ""; }
@@ -668,7 +669,7 @@ namespace GrblPlotter
             if (Grbl.isVersion_0)
                 RequestSend("$10=3");   // grbl v 0.9 get WPos and MPos
             else
-                RequestSend("$10=2");   // grbl v 1.1 Enable WPos: Disable MPos: Enabled Buf:
+                RequestSend("$10=2");   // grbl v 1.1 Enable WPos: Disable MPos: Enable Buf:
             ReadSettings();
             return;
         }
@@ -706,7 +707,7 @@ namespace GrblPlotter
 
         /****************************************************************
          * processGrblFeedbackMessage
-         * Feed back values in [ ] G54-G59,G28,G92,TLO,PRB,GC 
+         * FeedXY back values in [ ] G54-G59,G28,G92,TLO,PRB,GC 
          ****************************************************************/
         private void ProcessGrblFeedbackMessage(string[] dataField)  // dataField = rxString.Trim(charsToTrim).Split(':')
         {
@@ -929,7 +930,7 @@ namespace GrblPlotter
         }
 
         /**********************************************************************************
-         * requestSend fill up send buffer, called by main-prog for single commands or by preProcessStreaming
+         * requestSend FillToolListElements up send buffer, called by main-prog for single commands or by preProcessStreaming
          * or called by preProcessStreaming to stream GCode data
          * requestSend -> processSend -> sendLine
          **********************************************************************************/
@@ -1113,7 +1114,7 @@ namespace GrblPlotter
                         int cmdTNr = Gcode.GetCodeNrFromGCode('T', line);
                         if (cmdTNr >= 0)
                         {
-                            ToolTable.Init(" (ProcessSend)");       // fill structure
+        //                    ToolList.Init(" (ProcessSend)");       // FillToolListElements structure
                             SetToolChangeCoordinates(cmdTNr, line);
                             // save actual tool info as last tool info
                             gcodeVariable["TOLN"] = gcodeVariable["TOAN"];

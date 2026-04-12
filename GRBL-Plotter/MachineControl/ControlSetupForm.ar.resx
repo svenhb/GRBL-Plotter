@@ -3733,7 +3733,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>توليد خطوط متذبذبة</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>ضوضاء</value>
+    <value>خطوط متذبذبة</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>زد الضوضاء</value>
@@ -3980,7 +3980,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>تقدم بطلب للحصول على</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>المتجهات التلقائية</value>
+    <value>التحويل التلقائي إلى متجه (أبيض وأسود فقط)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>اضبط عرض الصورة على</value>
@@ -4081,5 +4081,23 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>شفافية خلفية النص</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>سمة الألوان</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>لون زر Hue</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>لون لوحة Hue</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>تطبيق سمة الألوان عند بدء البرنامج</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>التشبع</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>السطوع</value>
   </data>
 </root>

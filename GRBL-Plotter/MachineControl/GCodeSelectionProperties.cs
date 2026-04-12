@@ -64,8 +64,8 @@ namespace GrblPlotter.MachineControl
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
-            //    BtnAttributeColor.Enabled = false;
-            //    NudAttributeWidth.Enabled = false;
+            //    BtnAttributeColor.Enable = false;
+            //    NudAttributeWidth.Enable = false;
             //    AttributePenColor = "000000";
         }
         private void GCodeSelectionProperties_Load(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace GrblPlotter.MachineControl
         { return c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2"); }
 
         private Color GetColor(string pencolor)
-        {   //return (Color)System.Windows.Media.ColorConverter.ConvertFromString("#" + tmp);
+        {   //return (GroupColor)System.Windows.Media.ColorConverter.ConvertFromString("#" + tmp);
             if (UInt32.TryParse(pencolor, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out uint clr))  // try Hex code #00ff00
             {
                 clr |= 0xff000000; // remove alpha

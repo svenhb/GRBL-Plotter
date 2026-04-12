@@ -489,7 +489,8 @@ namespace GrblPlotter
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.splitContainer1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::GrblPlotter.Properties.Settings.Default, "processLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::GrblPlotter.Properties.Settings.Default.processLocation;

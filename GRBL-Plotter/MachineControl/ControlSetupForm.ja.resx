@@ -3757,7 +3757,7 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
     <value>ぐらついた線を生成する</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>ノイズ</value>
+    <value>線がぐらつく</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>ノイズを追加</value>
@@ -3989,7 +3989,7 @@ X は半径値を取得し、Y は角度値を取得します。
     <value>申し込む</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>自動ベクトル化</value>
+    <value>自動ベクトル化（白黒のみ）</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>画像の幅を次のように設定します</value>
@@ -4090,5 +4090,23 @@ X は半径値を取得し、Y は角度値を取得します。
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>テキスト背景の透明度</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>カラーテーマ</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Hueボタンの色</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Hueパネルの色</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>プログラム開始時にカラーテーマを適用</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>彩度</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>明るさ</value>
   </data>
 </root>

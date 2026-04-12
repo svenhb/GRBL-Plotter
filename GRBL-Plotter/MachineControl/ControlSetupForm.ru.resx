@@ -3685,7 +3685,7 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <value>Создание шатких линий</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Шум</value>
+    <value>Шаткие линии</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Добавлять шум</value>
@@ -3911,7 +3911,7 @@ X получает значения радиуса, Y получает знач�
     <value>Подать заявку на</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Автоматическая векторизация</value>
+    <value>Автоматическая векторизация (только для черно-белого изображения)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Установите ширину изображения на</value>
@@ -4012,5 +4012,23 @@ X получает значения радиуса, Y получает знач�
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Прозрачность фона текста</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Цветовая тема</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Цвет кнопки "Оттенок"</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Цвет панели "Оттенок"</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Применить цветовую тему при запуске программы</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Насыщенность</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Яркость</value>
   </data>
 </root>

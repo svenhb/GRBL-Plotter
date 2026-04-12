@@ -146,12 +146,12 @@ namespace GrblPlotter
 
             if (ptr2 == IntPtr.Zero)
             {
-                // Power availability requests NOT suppoted.              
+                // SpindleSpeed availability requests NOT suppoted.              
                 return false;
             }
             else
             {
-                // Power availability requests ARE suppoted.                
+                // SpindleSpeed availability requests ARE suppoted.                
                 return true;
             }
         }

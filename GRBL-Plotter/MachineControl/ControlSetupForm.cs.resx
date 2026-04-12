@@ -3756,7 +3756,7 @@ Nakreslete podpis na pravý dolní okraj: měřítko 0,1 nebo nižší a použij
     <value>Vytvářejte vratké čáry</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Hluk</value>
+    <value>Kolísavé čáry</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Přidat šum</value>
@@ -3982,7 +3982,7 @@ Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
     <value>Požádejte o</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Automatická vektorizace</value>
+    <value>Automatická vektorizace (pouze černobíle)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Nastavte šířku obrázku na</value>
@@ -4080,5 +4080,23 @@ Použijte „Exportovat nastavení stroje“ k uložení „výchozích nastaven
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Průhlednost pozadí textu</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Barevný motiv</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Barva tlačítka Odstín</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Barva panelu Odstín</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Použít barevný motiv při spuštění programu</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Sytost</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Jas</value>
   </data>
 </root>

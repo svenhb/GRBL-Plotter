@@ -54,6 +54,7 @@
  * 2025-02-01 l:98 f:GetProcessingTime move 'Est. time' to next line
 */
 
+using GrblPlotter.Helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -217,7 +218,7 @@ namespace GrblPlotter
             if (logDetailed)
                 Logger.Trace("SetPosMarkerNearBy findNode:{0}  checkDistanceToLine:{1}  x:{2:0.00} y:{3:0.00}  ", findNode, checkDistanceToLine, pos.X, pos.Y);
 
-            /* fill list with coordByLine with actual distance to given point */
+            /* FillToolListElements list with coordByLine with actual distance to given point */
             if ((coordList == null) || (coordList.Count == 0))
             {
                 DistanceByLine tmp = new DistanceByLine(0)

@@ -3411,7 +3411,7 @@ Zeichne eine Signatur in den unteren rechten Rand: Maßstab 0,1 oder kleiner und
     <value>Erzeugen Sie wackelige Linien</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Lärm</value>
+    <value>Wackelige Linien</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Rauschen hinzufügen</value>
@@ -3634,7 +3634,7 @@ Wenn diese Option aktiviert ist, erstellt jeder „m“-Befehl eine neue Figur.<
     <value>Anwenden für</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Automatische Vektorisierung</value>
+    <value>Automatische Vektorisierung (nur S/W)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Setze Bildbreite auf</value>
@@ -3732,5 +3732,23 @@ Nutze  „Maschineneinstellungen exportieren“ um 'Defaults' zu speichern.</val
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Transparenz des Texthintergrunds</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Farbthema</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Farbe der Farbton-Schaltfläche</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Farbe des Farbton-Bedienfelds</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Farbthema beim Programmstart anwenden</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Sättigung</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Helligkeit</value>
   </data>
 </root>

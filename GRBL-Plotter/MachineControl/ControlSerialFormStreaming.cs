@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,7 +43,8 @@
  * 2023-06-14 l:344 f:StartStreaming add try/catch for writing log files
  * 2023-11-28 l:290 f:StartStreaming add info about missing subroutine
  * 2025-02-23 l:311 f:StartStreaming add M6PassThrough #435
- */
+  * 2026-04-09 GUI rework for vers. 1.8.0.0
+*/
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
 // OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
@@ -129,7 +130,7 @@ namespace GrblPlotter
             lastError = "";
             countGrblError = 0;
             lastSentToCOM.Clear();
-            ToolTable.Init(" (StartStreaming)");       // fill structure
+            ToolList.Init(" (StartStreaming)");       // FillToolListElements structure
             rtbLog.Clear();
 
             // check if other serial are still alive
@@ -553,7 +554,7 @@ namespace GrblPlotter
                 }
 
                 AddToLog(string.Format("[Start streaming line:{0} - no echo]", streamingBuffer.GetSentLineNr()));
-                //       AddToLog("[Restore Settings: "+ parserStateGC+" ]");
+                //       AddToLog("[Restore ListSettings: "+ parserStateGC+" ]");
                 Logger.Info("▲▼▲▼▲ pauseStreaming start streaming ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
                 streamingStateNow = GrblStreaming.ok;
 
@@ -836,8 +837,8 @@ namespace GrblPlotter
         ***************************************************************/
         private void StreamingIDLE()
         {
-            // in main GUI: send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
-            // OnRaiseStreamEvent - case grblStreaming.pause: if (isStreamingPauseFirst && Properties.Settings.Default.flowControlEnable) delayedSend = 2;
+            // in main GUI: send extra Pause-Code in MainTimer_Tick from Properties.ListSettings.Default.flowControlText
+            // OnRaiseStreamEvent - case grblStreaming.pause: if (isStreamingPauseFirst && Properties.ListSettings.Default.flowControlEnable) delayedSend = 2;
             if (countPreventIdle <= 1)
             {
                 waitForIdle = false;
@@ -905,9 +906,9 @@ namespace GrblPlotter
 
         private void SetToolChangeCoordinates(int cmdTNr, string line = "")
         {
-            ToolProp toolInfo = ToolTable.GetToolProperties(cmdTNr);
+            ToolProperty toolInfo = ToolList.GetToolProperties(cmdTNr);
             gcodeVariable["TOAN"] = cmdTNr;
-            if (toolInfo.Toolnr != cmdTNr)
+            if (toolInfo.ToolNr != cmdTNr)
             {
                 gcodeVariable["TOAX"] = gcodeVariable["TOAY"] = gcodeVariable["TOAZ"] = gcodeVariable["TOAA"] = 0;
                 if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[Tool change: " + cmdTNr.ToString() + " no Information found! (" + line + ")]");

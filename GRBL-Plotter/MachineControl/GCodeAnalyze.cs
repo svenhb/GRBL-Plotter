@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,8 +41,10 @@
 			  l:841 f:CalculateProcessTime take acceleration into account 
  * 2025-04-02 use PixelArt attribute 'Source' to get GcodeByLine.lastAxisVal to calc markerSize in 2D view
  * 2025-06-06 l:264 f:CalcWidth	set default to max (not -1)
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
+using GrblPlotter.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -449,7 +451,7 @@ namespace GrblPlotter
 
                         if (countZ == 0)
                             HalfTone.lastZ = double.MaxValue;
-                        penProp = ToolTable.FindToolByFSZ(HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ, penProp);
+                 //       penProp = ToolTable.FindToolByFSZ(HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ, penProp);
                         PathData tmp = new PathData(penProp.Color, penProp.Diameter, offset2DView);
                         pathObject.Add(tmp);
                         pathActualDown = pathObject[pathObject.Count - 1].path;
@@ -965,7 +967,7 @@ namespace GrblPlotter
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
                     else
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
-                    Logger.Trace("⛭ FigureStart color:{0}  width:{1}", XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);
+                 //   Logger.Trace("⛭ FigureStart color:{0}  width:{1}", XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);
 
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;

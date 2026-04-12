@@ -752,7 +752,7 @@
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
             // 
-            // tabControl1
+            // TcServoZAxis
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -1215,7 +1215,8 @@
             // ControlProbing
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gBCoordinates);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.gBMovement);

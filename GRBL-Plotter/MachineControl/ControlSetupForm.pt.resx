@@ -3479,7 +3479,7 @@ Desenhe uma assinatura na margem inferior direita: escala 0,1 ou inferior e use 
     <value>Gerar linhas instáveis</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Barulho</value>
+    <value>Linhas instáveis</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Adicionar ruído</value>
@@ -3702,7 +3702,7 @@ Se marcada, cada comando 'm' cria uma nova figura.</value>
     <value>Inscreva-se para</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Vetorização automática</value>
+    <value>Vetorização automática (somente em preto e branco)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Defina a largura da imagem como</value>
@@ -3810,5 +3810,23 @@ Use “Exportar configurações da máquina” para salvar os ‘padrões’.</v
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Transparência do fundo do texto</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Tema de cores</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Cor do botão Matiz</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Cor do painel Matiz</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Aplicar tema de cores ao iniciar o programa</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Saturação</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Brilho</value>
   </data>
 </root>

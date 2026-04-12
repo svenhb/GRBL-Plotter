@@ -117,7 +117,7 @@ namespace GrblPlotter
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
-        public int SetCoordG	// called by other form to set actual G-Nr.
+        public int SetCoordG	// called by other form to set actual G-ToolNr.
         {
             set
             {
@@ -163,7 +163,7 @@ namespace GrblPlotter
 
             this.Text = Localization.GetString(mountingText[(int)CameraMount]);
 
-            // find cams, fill toolstrip
+            // find cams, FillToolListElements toolstrip
             videosources = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (videosources != null)
             {
@@ -270,8 +270,8 @@ namespace GrblPlotter
 
             /*    if (false)  // perhaps needed in future
                 {
-                    positionOffsetMachine.X = (double)Properties.Settings.Default.machineLimitsHomeX;
-                    positionOffsetMachine.Y = (double)Properties.Settings.Default.machineLimitsHomeY;
+                    positionOffsetMachine.X = (double)Properties.ListSettings.Default.machineLimitsHomeX;
+                    positionOffsetMachine.Y = (double)Properties.ListSettings.Default.machineLimitsHomeY;
                 }
                 else*/
             //        positionOffsetMachine = new XyPoint();
@@ -400,7 +400,7 @@ namespace GrblPlotter
         {
             double actualScaling = GetActualScaling();
 
-            //     XyPoint fixMachineOffset = new XyPoint(Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
+            //     XyPoint fixMachineOffset = new XyPoint(Properties.ListSettings.Default.cameraZeroFixMachineX, Properties.ListSettings.Default.cameraZeroFixMachineY);
 
             realPosition = TranslateFromPicCoordinate(pictureBoxVideo.PointToClient(MousePosition));// - (XyPoint)Grbl.posWCO;
             if (CameraMount == CameraMounting.Fix)
@@ -526,8 +526,8 @@ namespace GrblPlotter
             if (CameraMount == CameraMounting.Fix)
             {
                 e.Graphics.ScaleTransform((float)actualScaling, -(float)actualScaling);
-                //           float offX = (float)(cameraZeroFixXInPx / actualScaling) + (float)Grbl.posWCO.X;// - (float)Properties.Settings.Default.cameraZeroFixMachineX;
-                //           float offY = (float)(-cameraZeroFixYInPx / actualScaling) + (float)Grbl.posWCO.Y;// - (float)Properties.Settings.Default.cameraZeroFixMachineY;
+                //           float offX = (float)(cameraZeroFixXInPx / actualScaling) + (float)Grbl.posWCO.X;// - (float)Properties.ListSettings.Default.cameraZeroFixMachineX;
+                //           float offY = (float)(-cameraZeroFixYInPx / actualScaling) + (float)Grbl.posWCO.Y;// - (float)Properties.ListSettings.Default.cameraZeroFixMachineY;
                 float offX = (float)(cameraZeroFixXInPx / actualScaling) + (float)Grbl.posWCO.X - (float)Properties.Settings.Default.cameraZeroFixMachineX;
                 float offY = (float)(-cameraZeroFixYInPx / actualScaling) + (float)Grbl.posWCO.Y - (float)Properties.Settings.Default.cameraZeroFixMachineY;
                 e.Graphics.TranslateTransform(offX, offY);       // apply offset

@@ -1129,7 +1129,7 @@
             // ControlLaser
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl1);
             this.Name = "ControlLaser";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlLaser_FormClosing);

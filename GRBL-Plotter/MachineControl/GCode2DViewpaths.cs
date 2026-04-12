@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*  GCode2DViewPaths.cs
-	Fill GraphicPaths
+	FillToolListElements GraphicPaths
 */
 /* 
  * 2021-07-08 split code from GCodeVisuAndTransform
  * 2021-07-27 code clean up / code quality
  * 2021-09-02 CreateDrawingPathFromGCode add viewOffset for tiles
  * 2021-09-29 update fiducialDimension
- * 2021-09-30 take care for inch:  if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
+ * 2021-09-30 take care for inch:  if (!Properties.ListSettings.Default.importUnitmm || (modal.unitsMode == 20))
  * 2021-11-18 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start	 
  * 2022-04-07 DrawHeightMap add side-view of shape at y=0 and x=0 (below and left of hight-map grid)
  * 2023-04-11 l:683 f:CreateRuler lock object to avoid 'object is currently in use elsewhere'
@@ -36,6 +36,7 @@
  * 2024-12-09 l:282 f:CreateDrawingPathFromGCode add pixelArtEnable
  * 2025-06-08 l:287 check if !halfToneEnable
  * 2025-06-18 l:308 remove if (newL.i == null) { newL.i = 0; } done during parsing in GCodeParser.cs 386
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -399,26 +400,28 @@ namespace GrblPlotter
             }
 
             pathToolTable.Reset();
-            if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
+            if ((ToolList.toolListArray != null) && (ToolList.toolListArray.Count > 0))
+//                if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
             {
                 double wx, wy;
                 XyzPoint tmppos;
-                ToolProp tmpTool;
-                for (int i = 1; i < ToolTable.toolTableArray.Count; i++)
+                ToolProperty tmpTool;
+                for (int i = 0; i < ToolList.toolListArray.Count; i++)
+//                    for (int i = 1; i < ToolTable.toolTableArray.Count; i++)
                 {
-                    tmpTool = ToolTable.toolTableArray[i];
+                    tmpTool = ToolList.toolListArray[i];
                     tmppos = tmpTool.Position;
                     wx = tmppos.X - offsetX + (double)Properties.Settings.Default.toolTableOffsetX;
                     wy = tmppos.Y - offsetY + (double)Properties.Settings.Default.toolTableOffsetY;
                     try
                     {
                         FontFamily myFont = new FontFamily("Arial");
-                        if ((tmpTool.Name != null) && (tmpTool.Name.Length > 1) && (tmpTool.Toolnr >= 0))
+                        if ((tmpTool.ToolName != null) && (tmpTool.ToolName.Length > 1) && (tmpTool.ToolNr >= 0))
                         {
                             pathToolTable.StartFigure();
                             pathToolTable.AddEllipse((float)(wx - 4), (float)(wy - 4), 8, 8);
                             pathToolTable.Transform(matrix);
-                            pathToolTable.AddString(tmpTool.Toolnr.ToString() + ") " + tmpTool.Name, myFont, (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
+                            pathToolTable.AddString(tmpTool.ToolNr.ToString() + ") " + tmpTool.ToolName, myFont, (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
                             pathToolTable.Transform(matrix);
                         }
                         myFont.Dispose();
@@ -453,7 +456,7 @@ namespace GrblPlotter
 
             // show X shape -> Z on Y axis
             double z, zOld, offsetX = -10, offsetY = -10;
-            //	double dimX = Map.Max.X - Map.Min.X;
+            //	double dimX = Map.ZMax.X - Map.ZMin.X;
             float emSize = 2;
             float emOffset = emSize / 2;
             GraphicsPath pathToDraw = pathBackground;
@@ -486,9 +489,9 @@ namespace GrblPlotter
 
             pathToDraw.StartFigure();
             pathToDraw.AddLine((float)(Map.Min.X + offsetX), (float)Map.Min.Y, (float)(Map.Min.X + offsetX), (float)Map.Max.Y);     // zreo Z
-                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
-                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX - emSize), (float)(Map.Min.Y - emSize/2)), emSize, "Z= 0.00", true);
-                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX + zOld - emOffset), (float)(Map.Min.Y - emSize/2)), emSize, string.Format("Z= {0:0.00}",zOld), true);
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)Map.ZMin.X, (float)(offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.ZMax.X + offsetX - emSize), (float)(Map.ZMin.Y - emSize/2)), emSize, "Z= 0.00", true);
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.ZMax.X + offsetX + zOld - emOffset), (float)(Map.ZMin.Y - emSize/2)), emSize, string.Format("Z= {0:0.00}",zOld), true);
 
             pathToDraw.StartFigure();
             for (y = 1; y < Map.SizeY; y++)

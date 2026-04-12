@@ -966,7 +966,7 @@
             -2147483648});
             this.nUDOffsetZ.Name = "nUDOffsetZ";
             // 
-            // tabControl1
+            // TcServoZAxis
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -1090,7 +1090,8 @@
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnApply);

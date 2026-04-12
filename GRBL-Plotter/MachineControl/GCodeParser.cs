@@ -188,7 +188,7 @@ namespace GrblPlotter
         public byte planeSelect;        // G17,18,19
         public bool isunitModeG21;      // G20,21
         public bool isdistanceModeG90;  // G90,91
-        public bool isfeedrateModeG94;  // Feed Rate Modes: G93, G94
+        public bool isfeedrateModeG94;  // FeedXY Rate Modes: G93, G94
         public bool isDwell;
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
@@ -342,7 +342,7 @@ namespace GrblPlotter
         }
 
         /// <summary>
-        /// fill current gcode line structure
+        /// FillToolListElements current gcode line structure
         /// </summary>
         private void ParseGCodeToken(char cmd, double value, ref ModalGroup modalState)
         {
@@ -442,7 +442,7 @@ namespace GrblPlotter
                         modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = false;
                         modalState.containsG91 = true;
                     }
-                    else if ((value == 93) || (value == 94))             // Feed Rate Mode
+                    else if ((value == 93) || (value == 94))             // FeedXY Rate Mode
                     {
                         modalState.feedRateMode = (byte)value;
                         isfeedrateModeG94 = (value == 94);

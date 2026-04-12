@@ -1455,6 +1455,9 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Use values from tool table</value>
   </data>
+  <data name="groupBox6.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
     <value>groupBox6</value>
   </data>
@@ -2548,7 +2551,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>564, 381</value>

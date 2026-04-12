@@ -3697,7 +3697,7 @@ Narysuj podpis na prawym dolnym marginesie: skala 0,1 lub niższa i użyj „pra
     <value>Generuj chwiejne linie</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Hałas</value>
+    <value>Chwiejne linie</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Dodać hałas</value>
@@ -3924,7 +3924,7 @@ Jeśli zaznaczone, każde polecenie „m” tworzy nową cyfrę.</value>
     <value>Złóż wniosek</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Automatyczna wektoryzacja</value>
+    <value>Automatyczna wektoryzacja (tylko czarno-biała)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Ustaw szerokość obrazu na</value>
@@ -4022,5 +4022,23 @@ Użyj „Eksportuj ustawienia urządzenia”, aby zapisać „ustawienia domyśl
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Przezroczystość tła tekstu</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Motyw kolorów</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Kolor przycisku odcienia</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Kolor panelu odcienia</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Zastosuj motyw kolorów przy starcie programu</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Nasycenie</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Jasność</value>
   </data>
 </root>

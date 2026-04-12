@@ -3470,7 +3470,7 @@ Dessinez une signature dans la marge inférieure droite : échelle 0,1 ou infér
     <value>Générer des lignes bancales</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Bruit</value>
+    <value>Lignes bancales</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Ajoute du bruit</value>
@@ -3693,7 +3693,7 @@ Si coché, chaque commande 'm' crée une nouvelle figure.</value>
     <value>Demander</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Vectorisation automatique</value>
+    <value>Vectorisation automatique (uniquement en noir et blanc)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Définissez la largeur de l'image sur</value>
@@ -3801,5 +3801,23 @@ Utilisez « Exporter les paramètres de la machine » pour enregistrer les « va
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Transparence de l'arrière-plan du texte</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Thème de couleurs</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Couleur du bouton Teinte</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Couleur du panneau Teinte</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Appliquer le thème de couleurs au démarrage du programme</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Luminosité</value>
   </data>
 </root>

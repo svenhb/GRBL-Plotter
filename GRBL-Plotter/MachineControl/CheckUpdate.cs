@@ -86,7 +86,7 @@ namespace GrblPlotter
                     Properties.Settings.Default.Save();
                     Logger.Info(culture, "Reset URL:{0}", Properties.Settings.Default.guiCheckUpdateURL);
                 }
-                CheckSite2(Properties.Settings.Default.guiCheckUpdateURL + "/GRBL-Plotter.php" + get);   // get Version-Nr and count individual ip to get an idea of amount of users
+                CheckSite2(Properties.Settings.Default.guiCheckUpdateURL + "/GRBL-Plotter.php" + get);   // get Version-ToolNr and count individual ip to get an idea of amount of users
             }
             catch (Exception ex)
             {

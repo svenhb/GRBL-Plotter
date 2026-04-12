@@ -195,7 +195,8 @@ namespace GrblPlotter.MachineControl
             // 
             this.AcceptButton = this.BtnOK;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.BtnCancel;
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);

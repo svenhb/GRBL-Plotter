@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -93,26 +93,37 @@ namespace GrblPlotter
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
-            this.TbEthernetIP = new System.Windows.Forms.TextBox();
             this.CbEthernetUse = new System.Windows.Forms.CheckBox();
+            this.BtnOpenPortEthernet = new System.Windows.Forms.Button();
+            this.TbEthernetIP = new System.Windows.Forms.TextBox();
             this.TbEthernetPort = new System.Windows.Forms.TextBox();
             this.LblEthernetIP = new System.Windows.Forms.Label();
             this.LblEthernetPort = new System.Windows.Forms.Label();
-            this.BtnOpenPortEthernet = new System.Windows.Forms.Button();
             this.rtbLog = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelEthernet = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelSeriell = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.PanelEthernet.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.PanelSeriell.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbPort
             // 
-            this.cbPort.FormattingEnabled = true;
             resources.ApplyResources(this.cbPort, "cbPort");
+            this.cbPort.FormattingEnabled = true;
             this.cbPort.Name = "cbPort";
             this.toolTipSerial.SetToolTip(this.cbPort, resources.GetString("cbPort.ToolTip"));
             // 
             // cbBaud
             // 
+            resources.ApplyResources(this.cbBaud, "cbBaud");
             this.cbBaud.FormattingEnabled = true;
             this.cbBaud.Items.AddRange(new object[] {
             resources.GetString("cbBaud.Items"),
@@ -121,7 +132,6 @@ namespace GrblPlotter
             resources.GetString("cbBaud.Items3"),
             resources.GetString("cbBaud.Items4"),
             resources.GetString("cbBaud.Items5")});
-            resources.ApplyResources(this.cbBaud, "cbBaud");
             this.cbBaud.Name = "cbBaud";
             this.toolTipSerial.SetToolTip(this.cbBaud, resources.GetString("cbBaud.ToolTip"));
             // 
@@ -183,6 +193,7 @@ namespace GrblPlotter
             // 
             // btnClear
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.btnClear, 2);
             resources.ApplyResources(this.btnClear, "btnClear");
             this.btnClear.Name = "btnClear";
             this.toolTipSerial.SetToolTip(this.btnClear, resources.GetString("btnClear.ToolTip"));
@@ -379,6 +390,8 @@ namespace GrblPlotter
             // 
             // cBCommand
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.cBCommand, 6);
+            resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.FormattingEnabled = true;
             this.cBCommand.Items.AddRange(new object[] {
             resources.GetString("cBCommand.Items"),
@@ -386,14 +399,16 @@ namespace GrblPlotter
             resources.GetString("cBCommand.Items2"),
             resources.GetString("cBCommand.Items3"),
             resources.GetString("cBCommand.Items4")});
-            resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.Name = "cBCommand";
             this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbCommand_KeyPress);
             // 
             // groupBox1
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 9);
             this.groupBox1.Controls.Add(this.cBStatus1);
             this.groupBox1.Controls.Add(this.btnCheckGRBLResult);
+            this.groupBox1.Controls.Add(this.CbEthernetUse);
+            this.groupBox1.Controls.Add(this.BtnOpenPortEthernet);
             this.groupBox1.Controls.Add(this.btnCheckGRBL);
             this.groupBox1.Controls.Add(this.cBStatus);
             this.groupBox1.Controls.Add(this.lblSrA);
@@ -421,16 +436,23 @@ namespace GrblPlotter
             this.btnCheckGRBLResult.UseVisualStyleBackColor = true;
             this.btnCheckGRBLResult.Click += new System.EventHandler(this.BtnCheckGRBLResult_Click);
             // 
-            // TbEthernetIP
-            // 
-            resources.ApplyResources(this.TbEthernetIP, "TbEthernetIP");
-            this.TbEthernetIP.Name = "TbEthernetIP";
-            // 
             // CbEthernetUse
             // 
             resources.ApplyResources(this.CbEthernetUse, "CbEthernetUse");
             this.CbEthernetUse.Name = "CbEthernetUse";
             this.CbEthernetUse.CheckedChanged += new System.EventHandler(this.CbEthernetUse_CheckedChanged);
+            // 
+            // BtnOpenPortEthernet
+            // 
+            resources.ApplyResources(this.BtnOpenPortEthernet, "BtnOpenPortEthernet");
+            this.BtnOpenPortEthernet.Name = "BtnOpenPortEthernet";
+            this.BtnOpenPortEthernet.UseVisualStyleBackColor = true;
+            this.BtnOpenPortEthernet.Click += new System.EventHandler(this.BtnOpenPortEthernet_Click);
+            // 
+            // TbEthernetIP
+            // 
+            resources.ApplyResources(this.TbEthernetIP, "TbEthernetIP");
+            this.TbEthernetIP.Name = "TbEthernetIP";
             // 
             // TbEthernetPort
             // 
@@ -447,49 +469,72 @@ namespace GrblPlotter
             resources.ApplyResources(this.LblEthernetPort, "LblEthernetPort");
             this.LblEthernetPort.Name = "LblEthernetPort";
             // 
-            // BtnOpenPortEthernet
-            // 
-            resources.ApplyResources(this.BtnOpenPortEthernet, "BtnOpenPortEthernet");
-            this.BtnOpenPortEthernet.Name = "BtnOpenPortEthernet";
-            this.BtnOpenPortEthernet.UseVisualStyleBackColor = true;
-            this.BtnOpenPortEthernet.Click += new System.EventHandler(this.BtnOpenPortEthernet_Click);
-            // 
             // rtbLog
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.rtbLog, 9);
             this.rtbLog.ContextMenuStrip = this.contextMenuStrip1;
             resources.ApplyResources(this.rtbLog, "rtbLog");
             this.rtbLog.Name = "rtbLog";
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.PanelEthernet, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCommand0, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.PanelSeriell, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCommand1, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCommand2, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCmndParser, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCmndBuild, 4, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLHardReset, 8, 5);
+            this.tableLayoutPanel1.Controls.Add(this.cBCommand, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCommand3, 5, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnSend, 8, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLCommand4, 6, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnClear, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnGRBLReset, 7, 5);
+            this.tableLayoutPanel1.Controls.Add(this.rtbLog, 0, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // PanelEthernet
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.PanelEthernet, 9);
+            this.PanelEthernet.Controls.Add(this.tableLayoutPanel3);
+            resources.ApplyResources(this.PanelEthernet, "PanelEthernet");
+            this.PanelEthernet.Name = "PanelEthernet";
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.LblEthernetIP, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.LblEthernetPort, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.TbEthernetIP, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.TbEthernetPort, 3, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // PanelSeriell
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.PanelSeriell, 9);
+            this.PanelSeriell.Controls.Add(this.tableLayoutPanel2);
+            resources.ApplyResources(this.PanelSeriell, "PanelSeriell");
+            this.PanelSeriell.Name = "PanelSeriell";
+            // 
+            // tableLayoutPanel2
+            // 
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.btnScanPort, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbPort, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnOpenPortSerial, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbBaud, 1, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ContextMenuStrip = this.contextMenuStrip1;
-            this.Controls.Add(this.TbEthernetPort);
-            this.Controls.Add(this.BtnOpenPortEthernet);
-            this.Controls.Add(this.LblEthernetPort);
-            this.Controls.Add(this.LblEthernetIP);
-            this.Controls.Add(this.TbEthernetIP);
-            this.Controls.Add(this.btnScanPort);
-            this.Controls.Add(this.CbEthernetUse);
-            this.Controls.Add(this.btnGRBLCmndBuild);
-            this.Controls.Add(this.btnGRBLCmndParser);
-            this.Controls.Add(this.btnGRBLHardReset);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cBCommand);
-            this.Controls.Add(this.btnGRBLReset);
-            this.Controls.Add(this.btnGRBLCommand4);
-            this.Controls.Add(this.btnGRBLCommand3);
-            this.Controls.Add(this.btnGRBLCommand2);
-            this.Controls.Add(this.btnGRBLCommand1);
-            this.Controls.Add(this.btnGRBLCommand0);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.rtbLog);
-            this.Controls.Add(this.BtnOpenPortSerial);
-            this.Controls.Add(this.cbBaud);
-            this.Controls.Add(this.cbPort);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "ControlSerialForm";
@@ -499,8 +544,14 @@ namespace GrblPlotter
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.PanelEthernet.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.PanelSeriell.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -556,5 +607,10 @@ namespace GrblPlotter
         private System.Windows.Forms.Label LblEthernetPort;
         private System.Windows.Forms.Button BtnOpenPortEthernet;
         private System.Windows.Forms.TextBox rtbLog;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel PanelSeriell;
+        private System.Windows.Forms.Panel PanelEthernet;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

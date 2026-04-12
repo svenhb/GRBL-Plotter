@@ -3775,7 +3775,7 @@ Sağ alt kenar boşluğuna bir imza çizin: 0,1 veya daha düşük ölçeklendir
     <value>Titrek çizgiler oluşturun</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Gürültü</value>
+    <value>Titrek çizgiler</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Gürültü ekle</value>
@@ -4001,7 +4001,7 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
     <value>Başvur</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Otomatik vektörleştirme</value>
+    <value>Otomatik vektörleştirme (sadece siyah beyaz)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Görüntü genişliğini şuna ayarla:</value>
@@ -4099,5 +4099,23 @@ Bu dizeyi ayarlamak için Grbl $I=xxx gönderin; burada xxx, 80 karakterden kıs
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Metin arka planının şeffaflığı</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Renk teması</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Ton düğmesi rengi</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Ton paneli rengi</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Program başlangıcında renk temasını uygula</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Doygunluk</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Parlaklık</value>
   </data>
 </root>

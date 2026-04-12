@@ -3801,7 +3801,7 @@ Disegna una firma nel margine inferiore destro: scala 0,1 o inferiore e utilizza
     <value>Genera linee traballanti</value>
   </data>
   <data name="gBNoise.Text" xml:space="preserve">
-    <value>Rumore</value>
+    <value>Linee traballanti</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
     <value>Aggiungi del rumore</value>
@@ -4027,7 +4027,7 @@ Se selezionato, ogni comando 'm' crea una nuova figura.</value>
     <value>Richiedi</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Vettorializzazione automatica</value>
+    <value>Vettorizzazione automatica (solo in bianco e nero)</value>
   </data>
   <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
     <value>Imposta la larghezza dell'immagine su</value>
@@ -4125,5 +4125,23 @@ Utilizzare "Esporta impostazioni macchina" per salvare le "predefinite".</value>
   </data>
   <data name="HsbInfoTransparency.ToolTip" xml:space="preserve">
     <value>Trasparenza dello sfondo del testo</value>
+  </data>
+  <data name="GbColorTheme.Text" xml:space="preserve">
+    <value>Tema colore</value>
+  </data>
+  <data name="label119.Text" xml:space="preserve">
+    <value>Colore del pulsante Tonalità</value>
+  </data>
+  <data name="label120.Text" xml:space="preserve">
+    <value>Colore del pannello Tonalità</value>
+  </data>
+  <data name="CbColorThemeEnable.Text" xml:space="preserve">
+    <value>Applica il tema colore all'avvio del programma</value>
+  </data>
+  <data name="label125.Text" xml:space="preserve">
+    <value>Saturazione</value>
+  </data>
+  <data name="label130.Text" xml:space="preserve">
+    <value>Luminosità</value>
   </data>
 </root>
