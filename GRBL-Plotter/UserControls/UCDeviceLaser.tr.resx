@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LblPasses.ToolTip" xml:space="preserve">
+    <value>Tekrarlar</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblMin.ToolTip" xml:space="preserve">
+    <value>grbl 31$ ayarı</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPower.ToolTip" xml:space="preserve">
+    <value>S Değeri; iş mili hızı</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFill.ToolTip" xml:space="preserve">
+    <value>Kapalı şekilleri doldurma</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnUseZ.ToolTip" xml:space="preserve">
+    <value>Daha derin kesimler için Z eksenini kullanın</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbLaserpower.ToolTip" xml:space="preserve">
+    <value>grbl $32 ayarı
+M3 Sabit Lazer Gücü Modu: Sabit lazer gücü modu, makine hareket halindeyken veya hareket etmediğinde lazer gücünü programlandığı gibi korur.
+M4 Dinamik Lazer Gücü Modu: Dinamik lazer gücü modu, programlanan hıza göre mevcut hıza bağlı olarak lazer gücünü otomatik olarak ayarlar.</value>
+  </data>
+  <data name="NudDeviceLaserPasses.ToolTip" xml:space="preserve">
+    <value>Tekrarlama sayısı</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDeviceLaserSpeed.ToolTip" xml:space="preserve">
+    <value>F değeri (Besleme)</value>
+  </data>
+  <data name="LblMax.ToolTip" xml:space="preserve">
+    <value>grbl 30$ ayarı</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbPowerSettings.Text" xml:space="preserve">
+    <value>Lazer gücü</value>
+  </data>
+  <data name="LblZFinal.Text" xml:space="preserve">
+    <value>Z Son (aşağı)</value>
+  </data>
+  <data name="LblZSave.Text" xml:space="preserve">
+    <value>Z Güvenli (yukarı)</value>
+  </data>
+  <data name="LbLZFeed.Text" xml:space="preserve">
+    <value>Z Besleme</value>
+  </data>
+  <data name="LbLZEnable.Text" xml:space="preserve">
+    <value>Z eksenini etkinleştir</value>
+  </data>
+  <data name="LblZInfo.Text" xml:space="preserve">
+    <value>Geçiş sayısı, nihai z konumuna ulaşmak için gereken z adım boyutunu belirler.
+Geçiş sayısı=1 -&gt; Z[1]=0
+Geçiş sayısı=2 -&gt; Z[1]=0; Z[2]=Nihai-Z
+Geçiş sayısı=n -&gt; Z[1]=0; Z[x]=x*Nihai-Z/n, Z[n]=Nihai-Z</value>
+  </data>
+  <data name="LblZHeadline.Text" xml:space="preserve">
+    <value>Z eksenini etkinleştir</value>
+  </data>
+  <data name="LblOverlapInfo.Text" xml:space="preserve">
+    <value>Kesim sırasında lazerin yolunu kapalı bir şeklin gerçek bitiş noktasının biraz ötesine uzatır. Bu, malzemenin tamamen kesilmesini sağlar. Ayrıca nesneler boyutlarına göre sıralanır, en büyük en sona gelir.</value>
+  </data>
+  <data name="LblOverlapValue.Text" xml:space="preserve">
+    <value>Z eksenini kullan</value>
+  </data>
+  <data name="LblOverlapEnable.Text" xml:space="preserve">
+    <value>Kapalı bir şeklin yolunu uzat</value>
+  </data>
+  <data name="LblOverlapHeadline.Text" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="BtnOverlap.ToolTip" xml:space="preserve">
+    <value>Kapalı yolu uzat</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDeviceLaserPowerMin.ToolTip" xml:space="preserve">
+    <value>S değeri (mil)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblSpeed.ToolTip" xml:space="preserve">
+    <value>XY için F değeri (Besleme)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblPowerMin.ToolTip" xml:space="preserve">
+    <value>S-Değeri; değişken güç hesaplanırsa minimum değer</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Lazer Ayarları</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Işın Çapı</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Komut Havası Açık</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Komut Havası Kapalı</value>
+  </data>
+</root>

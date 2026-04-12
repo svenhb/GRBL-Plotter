@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label9.Text" xml:space="preserve">
+    <value>XY-Vorschub</value>
+    <comment>l1</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Obere Position</value>
+    <comment>l4</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Untere Position</value>
+    <comment>l5</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Z-Vorschub</value>
+    <comment>l2</comment>
+  </data>
+  <data name="LblSpindleSpeed.Text" xml:space="preserve">
+    <value>Spindeldrehzahl</value>
+    <comment>l3</comment>
+  </data>
+  <data name="LblDragToolInfo.Text" xml:space="preserve">
+    <value>Compensa el desplazamiento al usar una cuchilla de arrastre o un pincel.
+Ten en cuenta que la trayectoria se modificará para que la punta de la herramienta se alinee con la trayectoria deseada.</value>
+  </data>
+  <data name="LblDragToolHeadline.Text" xml:space="preserve">
+    <value>Compensación de la herramienta de arrastre</value>
+  </data>
+  <data name="LblDragToolTangentialEnable.Text" xml:space="preserve">
+    <value>Uso de la cuchilla de arrastre en el eje tangencial</value>
+  </data>
+  <data name="LblDragToolAngle.Text" xml:space="preserve">
+    <value>Ángulo de giro</value>
+  </data>
+  <data name="LblDragToolPercent.Text" xml:space="preserve">
+    <value>Desplazamiento en % desde la profundidad Z</value>
+  </data>
+  <data name="LblDragToolPercentEnable.Text" xml:space="preserve">
+    <value>Habilitar desplazamiento en % desde Z</value>
+  </data>
+  <data name="LblDragToolLength.Text" xml:space="preserve">
+    <value>Desplazamiento desde el centro</value>
+  </data>
+  <data name="LblDragToolEnable.Text" xml:space="preserve">
+    <value>Habilitar la herramienta de arrastre</value>
+  </data>
+  <data name="LblTangentialInfo.Text" xml:space="preserve">
+    <value>Añadir comandos GCode para un eje tangencial, por ejemplo, para una cuchilla.</value>
+  </data>
+  <data name="LblTangentialHeadline.Text" xml:space="preserve">
+    <value>Crear comandos para el eje tangencial</value>
+  </data>
+  <data name="LblTangentialPathShortening.Text" xml:space="preserve">
+    <value>Acortamiento de trayectoria</value>
+  </data>
+  <data name="LblTangentialPathShorteningEnable.Text" xml:space="preserve">
+    <value>Habilitar el acortamiento de trayectoria</value>
+  </data>
+  <data name="LblTangentialLimitAngle.Text" xml:space="preserve">
+    <value>Limitar el ángulo de la herramienta a &gt;= 0°, &lt; 360°</value>
+  </data>
+  <data name="LblTangentialUnitsPerTurn.Text" xml:space="preserve">
+    <value>Unidades por giro completo</value>
+  </data>
+  <data name="LblTangentialDeviAngle.Text" xml:space="preserve">
+    <value>Corregir el ángulo inicial si la desviación es &gt;</value>
+  </data>
+  <data name="LblTangentialSwivelAngle.Text" xml:space="preserve">
+    <value>Ángulo de giro</value>
+  </data>
+  <data name="LblTangentialAxisName.Text" xml:space="preserve">
+    <value>Nombre del eje</value>
+  </data>
+  <data name="LblTangentialEnable.Text" xml:space="preserve">
+    <value>Habilitar el eje tangencial</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Código G</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Diámetro de la herramienta</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Configuración del router</value>
+  </data>
+</root>

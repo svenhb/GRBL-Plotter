@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnSetup.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="BtnSetup.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnSetup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="BtnSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 0</value>
+  </data>
+  <data name="BtnSetup.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="BtnSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="BtnSetup.Text" xml:space="preserve">
+    <value>⚙</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="BtnSetup.ToolTip" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Name" xml:space="preserve">
+    <value>BtnSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableLayoutPanel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="TableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="Panel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="CbLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbLaser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbLaser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="CbLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbLaser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="CbLaser.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>Laser On</value>
+  </data>
+  <data name="CbLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbLaser.ToolTip" xml:space="preserve">
+    <value>Switch on laser with low energy: </value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Name" xml:space="preserve">
+    <value>CbLaser</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Parent" xml:space="preserve">
+    <value>Panel</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Panel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="Panel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 18</value>
+  </data>
+  <data name="Panel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Panel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="Panel.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="&gt;&gt;Panel.Name" xml:space="preserve">
+    <value>Panel</value>
+  </data>
+  <data name="&gt;&gt;Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Panel.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CbPilotLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbPilotLaser.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbPilotLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbPilotLaser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 48</value>
+  </data>
+  <data name="CbPilotLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbPilotLaser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 27</value>
+  </data>
+  <data name="CbPilotLaser.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="CbPilotLaser.Text" xml:space="preserve">
+    <value>Pilot laser</value>
+  </data>
+  <data name="CbPilotLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbPilotLaser.ToolTip" xml:space="preserve">
+    <value>Switch on pilot laser</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Name" xml:space="preserve">
+    <value>CbPilotLaser</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbAirAssist.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbAirAssist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAirAssist.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbAirAssist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 48</value>
+  </data>
+  <data name="CbAirAssist.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbAirAssist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 27</value>
+  </data>
+  <data name="CbAirAssist.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>Air</value>
+  </data>
+  <data name="CbAirAssist.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbAirAssist.ToolTip" xml:space="preserve">
+    <value>Switch on air assist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Name" xml:space="preserve">
+    <value>CbAirAssist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LblUptime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblUptime.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LblUptime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="LblUptime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 18</value>
+  </data>
+  <data name="LblUptime.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="LblUptime.Text" xml:space="preserve">
+    <value>Uptime: 0</value>
+  </data>
+  <data name="LblUptime.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="LblUptime.ToolTip" xml:space="preserve">
+    <value>Laser up time counter (hh:mm:ss)</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Name" xml:space="preserve">
+    <value>LblUptime</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PbLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="PbLaser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhZABYAIcAAAEBAYGBAf///8HBAUFBAeHhAaGhAWFhASEhAdHRAbGxATExAXFxAVFRAZGRAfHx
+        ARERAeHhF9HRFcnJAbm5AYmJAampASkpATk5AXl5AUlJAWlpAVlZAZmZARkZAenpGdnZF/HxGbKxEwkJ
+        AYGBDcHBEzU1AcnJFaqpES0tAXp5DUVFAaKhEWJhCyUlAXJxDVVVAbm5E4qJDz09AU1NAWlpC1pZCR0d
+        AZSTD5mZD+npAdnZAfn5ARUVAeXlF9fVF+7tGd7dF7W1E/b1GQ0NAYWFDcbFFTU1Bc7NFa2tEX19DUJB
+        ByMjBSkpBTo5B6WlEWVlC3Z1Db29E42ND01NB25tC11dCSMjAVFRCRsbAS4tBVVVCR8fAZeXD56dETc3
+        BQUFAYWFAcXFAeXlAaWlAWVlAdXVAbW1ATExBXV1AZWVAfX1ARMTAeTjF9XTFc3NAb29AY2NAa2tAX19
+        AUlJB21tAV1dAZ2dAezrGdzbF/TzGbSzE8TDFczLFayrEXx7DUVFB+3tAd3dAf39AT09ByUlBYmHD1BP
+        CU1LCZubERcXAQ8PAa+vE19fCwsLAYSDDaOjEby7E1tbCZaVD+jnF9fXF/DvGeDfF7i3E4B/DUNDBysr
+        BTw7B7+/E5CPD1RTCVhXCQMDAYODAcPDAUNDAePjAaOjAWNjAdPTAbOzATMzAXNzAVNTAZOTAfPzAcvL
+        Abu7AYuLAaurASsrATs7AXt7AUtLAWtrAVtbAZubATc3AS8vAUdHAWNjCycnAXNzDVdXAYuLDz8/AU9P
+        AWtrC+vrAdvbAfv7Aff3GcfHFc/PFaenEWdnC3d3DW9vCy8vBZ+fEQcHAYeHAcfHAefnAaenAWdnAdfX
+        Abe3ATMzBXd3AZeXAff3Ac/PAb+/AY+PAa+vAX9/AW9vAV9fAZ+fAUdHB+/vAd/fAf//AT8/BycnBcPB
+        FR4dAyQjAxsbAzg3ByEhAxERAxkZAxUVA4WFD62tE01NCR8fAxMTAxcXAw8PA+PhF9PRFevpGdvZF/Px
+        GSH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAZABYAAAI/wAFCBxIsKDBgwgTDqzmak2qWQoj
+        SpxIsaLFgecSnLIz4MHFjyBDgkx1zREAAGBGkRHJsqVLAaTQ8Tp5ctexGS9z6pQ4LRVNmh3e7BxKVKAd
+        Hr5+nuxhrkzRpy9LxVFKc5UOqFhDBtCxiOpJMDu+ZR1LkQs3a15p2joGkaxbhBa6hfrpi5BSbBTe6iU4
+        YxABpSKSzaV54diwvXtfyVFKZwiyFkodGEP89hQ3BD/B8EM2ZF9XmhCKZaBMlloYpVUcOzak9JZH0lil
+        jSHyswclzpz/ufgZCpUB2E+v8BinFAdu1UmUrhikCzhROa+UatGj+jggpQqmOd9JahAtpZiOH//nN/ik
+        C252tudMQEbpIfHVh9RQGquUepcbXN34Ge0H/OOUsPHTItRIcx9LxYSjVBT/xeeJUpZdcSBI3xRgEk2K
+        9NPgcXpcwNsbckx4UWHAKOVFfBvuoZQwg5AiYkVnjKLUEXpsiCIiSlmAyosT2TKIKkpJYSN8bkTzExdr
+        bMBjRNfcoRQoKEYp3gtKiVLMkgkx8IAHPzmSh5RgIkOJIl2OIRaWBpmjjVJKhBnmJErhwhaaBHVgjJE0
+        3QDEkGAOgQZv02BDp0ALDNKAUpDwaWMkSukyCA2DegOLUpwM4SafnyhlwA50wnBMCkoZceml/ozwUxau
+        rILmOWoo1YKio6r/oFQt5mBJq4A0EXHJqIrikcVPI5zTwZKuiKPUI7DCCo1SMAyywIumXAPGT+1Ywiuv
+        enyhlDfeiOioBkqhkOy1fCi1wDGsTDjNGUotce24yEiiVC6CHHhUUjSF0key/1AHaxAXnqTIA6OpZ6ZS
+        zIzbDiDjPqLUKq6oF4YOEPwEQRvvwqPJuJbcw98OvwGHADcbKBVMg5NAEaXG8A2BBQpSPqEUDYOYAJws
+        CZQHgC//NAhZJChqjGIOACAb5RB2/USBGLARgM5fP4mwoWfP1Fgdy9X14wE8lmx4gs6zHMMBad0s9lNj
+        NrI2iXhCHxcFADDb2ItSrdiHmDXcXJEZP9X9/2eJC/nchkQMyLDMSCXI/BCNu0N69hMbxQSAmA7SKOVM
+        fFL6AcALyGyySeGahLAIFUMcAsYJfA7B2k91rLFXHLPVRkl8kfgbHyBguFEFAEEgoIkUAHiCCQBQ/AdE
+        J5Yio7xumaFSzVu+8HBAcccN0Ucoz0SCGzJCJIMEGFQwAoAXGv8BABJaQLCPCPuqhkI7ROzDmaVDJPcT
+        L4Ng4FYqr+hcdXz/MERXPuGPIQAhCxBIxnyWEQ1JaMwJ7MABAGQggmgcwTF9WAIAFJGIGinvg9f5iQJe
+        QRYNeAc8DdpHC0Ixgj8AgQ/xgIAQ2LCJL7jjHkcA3zx84YcRsOMHbWAGGP+iEQUN0e+I36MLN8YxFjNU
+        wz1DMoITAMAOFpQAAvhoBADkgZJpcZEY0biHGzyBDwAgwg3b+6Aa5/OTWIwhK+JYw35oMgL/9IkzLGAH
+        ADiBA30sYlpKcUQYJ7EJAFxgD9U74hF9gKuTLEIHYcBKIBT0kyiE6YNS6AMeVDCCUIAqLaHQAgAgMAVL
+        GOEEjlGjKpX3oJ+UYQ0IeIoaSmEqmngAD32iXzYA4A4bZIITaclXOUjwCQFtQZHItNQ/CpmvbsiiKCk4
+        Bi6UkojkoUiV68gEIfCkM6oMxhGAMAQSVklO7q1oEMIgCgVk9BMTpFI8SICEPOc5zy5Iwh3BpAk8epH/
+        CHr685/zbIdSZNGNoQyjZkE64nEykc+GOvShSkHAGpyikx2Q40mrVM0PMIGJPWBCCB8VghASIQkuNhQB
+        vWCBSDvKUY+ylKMwhSlkfjIxnaRhS8D6kiJtJIIqMBMMgEwLGOYSimxEQUhHQ6aYyEQTR5QiFjkxRwaU
+        kolygklbmyBGEY7gUE3IAArwAIAN/lNOznRBKePggQtcQi88nURPyQxTH/LQhhqEIhq7BOURQuGIP+Ch
+        EnxrWVyRoYcFKGUa4GjJLgylFBaUtUFD+AcZzYiDEbAhqE0lAgenWEUpPXYIjPoJBgaxApZwi1Jxpd9/
+        MCHKQ2LCEe6AjB5HYCSP/1WBCD1AAgt+xQkjCHawQ9iCUkyxo5Cw4hi74I1vHyueHxxilFP4RwxG4IEY
+        ECEbR7jHPZwQDSrcUAiaRQIQOBmKFlwijZ8t1alccYuQCGIbSmlEanfaj2ZEIxRQwNgBPcAPLSYBDC3w
+        HSHkkQgAZEIKjsiGY/yRKX0Y4h/zVe0QZPWTOVzpIxkwRw8GdF7mfvB76ehDddbBDyOEAhQoAAALNMbQ
+        PnzBEUHoBBpTGYldQOA2HuaMr4B1Dgd85AEMUEoRIoxMEUeJEyPwx3z2obF1ACAYnQiFJJSnGkvpwchE
+        Vs2yfuKpC1jkDjvAbLVyTM6+sQAAfxiCOnYBOj1AgP8OyLABANbRNzKr0lLa+skABEWRc9kiXFkGLmeA
+        cAN24AEZQUjGEITWCYwB7AvWDLRSh1Cun/iZIntul52tyhklqJjKnGGZGhkKjXduWo2OkddPwDwRGPDA
+        Q/nCsqR3OoQ8OMIJEgadIoHABXfgctaTDgJtMARkiZzjGwg7tVVBEQo+oBp0q4QEAFSg7Iwig6E/SUOt
+        FJKBYlQMNBgDdlwhYUmFLloTyWwBJsQ9aUtwgT/G2IZCHlCyn0yh2psegu/wTWbHyOwnw0AuQu6QAMzy
+        jN3A1gLpEB5ozqRDKbDolkEKRQrA8PviGC/rEL72k2jCwCDeAAdjGE7yks+XM3Pv+0krzlGQBvBAbzSJ
+        xmYyTvOacyYCn1lKIGpBEEFUwHImD7rQFbo6mtQhYgJJAzWGvRQc2/zpGP9bZsxgCoGYY3o/2UQvts71
+        rnv962APu9jHTvayd52r90NnULoJ0ba7/e1wz+cZ3uAKtMT97njP+0NtgQ5XnELvgA884DVwjGq8wq2C
+        T7zi8xmKM8DiBtR4Qx3sQPnKW/7ymM+85jfP+c57/vN22MAA1mBYLljAFdwwh+rNEYjWu/71sI99IFZP
+        e3M84Pa4v70rds/73vve97nHvepfX4zi6+D41KDGGEpRigIU4ByCEIQxsAGkgAAAOw==
+</value>
+  </data>
+  <data name="PbLaser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PbLaser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 3</value>
+  </data>
+  <data name="PbLaser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 42</value>
+  </data>
+  <data name="PbLaser.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="PbLaser.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="PbLaser.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;PbLaser.Name" xml:space="preserve">
+    <value>PbLaser</value>
+  </data>
+  <data name="&gt;&gt;PbLaser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PbLaser.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;PbLaser.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="TableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="TableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="TableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 75</value>
+  </data>
+  <data name="TableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Name" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="Panel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbPilotLaser" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbAirAssist" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="LblUptime" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="PbLaser" Row="0" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,50" /&gt;&lt;Rows Styles="Absolute,18,Absolute,30,Absolute,22,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 75</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCDeviceLaser2</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

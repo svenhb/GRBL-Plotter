@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnAdvancedS.Text" xml:space="preserve">
+    <value>Impostazioni avanzate</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnAdvancedS.ToolTip" xml:space="preserve">
+    <value>Imposta le posizioni per 'molto in alto' e 'mescola'</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Zero</value>
+    <comment>btn</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Sposta la penna verso il basso, la penna tocca la carta</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Imposta il valore S per la posizione zero.
+Sottoprogramma P91</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Ritardo</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Ritardo</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Giù</value>
+    <comment>btns3</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Sposta la penna verso il basso per premere sulla carta</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Imposta il valore S per la posizione verso il basso.
+Sottoprogramma P92</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Su</value>
+    <comment>btn</comment>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Sposta la penna verso l'alto, sopra il foglio</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Imposta il valore S per la posizione superiore.
+Sottoprogramma P90</value>
+    <comment>tt</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Asse Z</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Molto in alto</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Mescolamento verso il basso</value>
+  </data>
+  <data name="NudDevicePlotterZP94.ToolTip" xml:space="preserve">
+    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZP93.ToolTip" xml:space="preserve">
+    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnAdvancedZ.Text" xml:space="preserve">
+    <value>Impostazioni avanzate</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnAdvancedZ.ToolTip" xml:space="preserve">
+    <value>Imposta le posizioni per 'molto in alto' e 'mescolamento'</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Posizione verso l'alto</value>
+  </data>
+  <data name="CbUseLaser.Text" xml:space="preserve">
+    <value>Usa laser</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Posizione verso il basso</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Avanzamento Z</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value>Velocità Z</value>
+  </data>
+  <data name="NudDevicePlotterFeedZ.ToolTip" xml:space="preserve">
+    <value>Valore F (Avanzamento)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZDown.ToolTip" xml:space="preserve">
+    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZUp.ToolTip" xml:space="preserve">
+    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>Velocità XY</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFill.ToolTip" xml:space="preserve">
+    <value>Imposta il riempimento tratteggiato per forme chiuse</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnSplit.ToolTip" xml:space="preserve">
+    <value>Dividi il percorso per inserire una subroutine</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPenChange.ToolTip" xml:space="preserve">
+    <value>Imposta lo scambio penna</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnNoise.ToolTip" xml:space="preserve">
+    <value>Converti linee rette in linee ondulate</value>
+  </data>
+  <data name="NudDevicePlotterFeedXY.ToolTip" xml:space="preserve">
+    <value>Valore F (Avanzamento)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblNoiseDistance.Text" xml:space="preserve">
+    <value>Distanza</value>
+  </data>
+  <data name="LblNoiseAmplitude.Text" xml:space="preserve">
+    <value>Ampiezza</value>
+  </data>
+  <data name="LblNoiseEnable.Text" xml:space="preserve">
+    <value>Abilita linea ondulata</value>
+  </data>
+  <data name="LblNoiseInfo.Text" xml:space="preserve">
+    <value>Modifica le linee rette per ottenere linee ondulate</value>
+  </data>
+  <data name="LblNoiseHeadline.Text" xml:space="preserve">
+    <value>Linea ondulata</value>
+  </data>
+  <data name="LblSplitSubPenUpDown.Text" xml:space="preserve">
+    <value>Applica Penna - su - giù</value>
+  </data>
+  <data name="LblSplitSubFirst.Text" xml:space="preserve">
+    <value>Inserisci all'inizio</value>
+  </data>
+  <data name="LblSplitSubroutine.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LblSplitSubEnable.Text" xml:space="preserve">
+    <value>Inserisci subroutine</value>
+  </data>
+  <data name="LblSplitSegmentEquidistant.Text" xml:space="preserve">
+    <value>Equidistante</value>
+  </data>
+  <data name="LblSplitSegmentLength.Text" xml:space="preserve">
+    <value>Lunghezza sezione</value>
+  </data>
+  <data name="LblSplitEnable.Text" xml:space="preserve">
+    <value>Abilita divisione percorso</value>
+  </data>
+  <data name="LblSplitInfo.Text" xml:space="preserve">
+    <value>Dividi percorso per inserire una subroutine, ad esempio per la pulizia della spazzola</value>
+  </data>
+  <data name="LblSplitHeadline.Text" xml:space="preserve">
+    <value>Dividi percorso per subroutine</value>
+  </data>
+  <data name="LblSetupFlowControlText.Text" xml:space="preserve">
+    <value>Codice G</value>
+  </data>
+  <data name="LblSetupFlowControlEnable.Text" xml:space="preserve">
+    <value>Applica il codice G all'interruzione</value>
+  </data>
+  <data name="LblSetupPenChangeRBAutomatic.Text" xml:space="preserve">
+    <value>Cambio penna automatico</value>
+  </data>
+  <data name="LblSetupPenChangeRBManual.Text" xml:space="preserve">
+    <value>Cambio penna manuale, aggiungi interruzione</value>
+  </data>
+  <data name="LblSetupPenChangeRBNo.Text" xml:space="preserve">
+    <value>Nessun cambio penna</value>
+  </data>
+  <data name="LblSetupToolDiameter.Text" xml:space="preserve">
+    <value>Diametro penna</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Configura plotter</value>
+  </data>
+  <data name="CbDepthControl.ToolTip" xml:space="preserve">
+    <value>Varia il valore S o Z a seconda dello spessore della penna</value>
+    <comment>tt</comment>
+  </data>
+</root>

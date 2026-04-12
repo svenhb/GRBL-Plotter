@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>محرك سيرفو</value>
+    <comment>tab1</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>إدخال G4: تأخير بالثواني قبل الأمر التالي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>إدخال G4: تأخير بالثواني قبل الأمر التالي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnAdvancedS.Text" xml:space="preserve">
+    <value>إعدادات متقدمة</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnAdvancedS.ToolTip" xml:space="preserve">
+    <value>تحديد موضعَي "الرفع العالي" و"التحريك"</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>صفر</value>
+    <comment>btn</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>تحريك القلم للأسفل حتى يلامس الورقة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>قم بتعيين قيمة S للوضع الصفري.
+الروتين الفرعي P91</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>تأخير</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>تأخير</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>أسفل</value>
+    <comment>btns3</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>حرك القلم لأسفل للضغط على الورقة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>التأخير بالثواني بعد تطبيق قيمة s</value>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>حدد قيمة S لوضعية الأسفل.
+الروتين الفرعي P92</value>
+    <comment>tt</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>التأخير بالثواني بعد تطبيق قيمة s</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>أعلى</value>
+    <comment>btn</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>حدد قيمة S لوضعية الأعلى.
+الروتين الفرعي P90</value>
+    <comment>tt</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>المحور Z</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>أعلى</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>تحريك لأسفل</value>
+  </data>
+  <data name="NudDevicePlotterZP94.ToolTip" xml:space="preserve">
+    <value>ضبط قيمة Z للوضع السفلي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZP93.ToolTip" xml:space="preserve">
+    <value>ضبط قيمة Z للوضع العلوي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnAdvancedZ.Text" xml:space="preserve">
+    <value>إعدادات متقدمة</value>
+    <comment>btn</comment>
+  </data>
+  <data name="BtnAdvancedZ.ToolTip" xml:space="preserve">
+    <value>ضبط مواضع "أعلى" و"تحريك"</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>الوضع العلوي</value>
+  </data>
+  <data name="CbUseLaser.Text" xml:space="preserve">
+    <value>استخدام الليزر</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>الوضع السفلي</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>تغذية المحور Z</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value>سرعة المحور Z</value>
+  </data>
+  <data name="NudDevicePlotterFeedZ.ToolTip" xml:space="preserve">
+    <value>قيمة F (التغذية)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZDown.ToolTip" xml:space="preserve">
+    <value>ضبط قيمة Z للوضع السفلي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudDevicePlotterZUp.ToolTip" xml:space="preserve">
+    <value>ضبط قيمة Z للوضع العلوي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>سرعة المحورين XY</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFill.ToolTip" xml:space="preserve">
+    <value>إعداد تعبئة التظليل للأشكال المغلقة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnSplit.ToolTip" xml:space="preserve">
+    <value>تقسيم المسار لإدراج إجراء فرعي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPenChange.ToolTip" xml:space="preserve">
+    <value>ضبط تبديل القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnNoise.ToolTip" xml:space="preserve">
+    <value>تحويل الخطوط المستقيمة إلى خطوط متعرجة</value>
+  </data>
+  <data name="NudDevicePlotterFeedXY.ToolTip" xml:space="preserve">
+    <value>قيمة F (التغذية)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="LblNoiseDistance.Text" xml:space="preserve">
+    <value>المسافة</value>
+  </data>
+  <data name="LblNoiseAmplitude.Text" xml:space="preserve">
+    <value>السعة</value>
+  </data>
+  <data name="LblNoiseEnable.Text" xml:space="preserve">
+    <value>تفعيل الخط المتعرج</value>
+  </data>
+  <data name="LblNoiseInfo.Text" xml:space="preserve">
+    <value>تعديل الخطوط المستقيمة للحصول على خطوط متعرجة</value>
+  </data>
+  <data name="LblNoiseHeadline.Text" xml:space="preserve">
+    <value>خط متعرج</value>
+  </data>
+  <data name="LblSplitSubPenUpDown.Text" xml:space="preserve">
+    <value>تطبيق رفع القلم وخفضه</value>
+  </data>
+  <data name="LblSplitSubFirst.Text" xml:space="preserve">
+    <value>إدراج في البداية</value>
+  </data>
+  <data name="LblSplitSubroutine.Text" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="LblSplitSubEnable.Text" xml:space="preserve">
+    <value>إدراج روتين فرعي</value>
+  </data>
+  <data name="LblSplitSegmentEquidistant.Text" xml:space="preserve">
+    <value>متساوية المسافة</value>
+  </data>
+  <data name="LblSplitSegmentLength.Text" xml:space="preserve">
+    <value>طول المقطع</value>
+  </data>
+  <data name="LblSplitEnable.Text" xml:space="preserve">
+    <value>تمكين تقسيم المسار</value>
+  </data>
+  <data name="LblSplitInfo.Text" xml:space="preserve">
+    <value>تقسيم المسار لإدراج روتين فرعي، على سبيل المثال، لتنظيف الفرشاة</value>
+  </data>
+  <data name="LblSplitHeadline.Text" xml:space="preserve">
+    <value>تقسيم المسار للروتين الفرعي</value>
+  </data>
+  <data name="LblSetupFlowControlText.Text" xml:space="preserve">
+    <value>رمز G</value>
+  </data>
+  <data name="LblSetupFlowControlEnable.Text" xml:space="preserve">
+    <value>تطبيق رمز G عند التوقف</value>
+  </data>
+  <data name="LblSetupPenChangeRBAutomatic.Text" xml:space="preserve">
+    <value>تغيير القلم تلقائيًا</value>
+  </data>
+  <data name="LblSetupPenChangeRBManual.Text" xml:space="preserve">
+    <value>تغيير القلم يدويًا، إضافة توقف</value>
+  </data>
+  <data name="LblSetupPenChangeRBNo.Text" xml:space="preserve">
+    <value>عدم تغيير القلم</value>
+  </data>
+  <data name="LblSetupToolDiameter.Text" xml:space="preserve">
+    <value>قطر القلم</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>إعداد الراسمة</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>حرك القلم لأعلى فوق الورقة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbDepthControl.ToolTip" xml:space="preserve">
+    <value>يُغير قيمة S أو Z حسب عرض القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbDepthControl.Text" xml:space="preserve">
+    <value>التحكم في العمق</value>
+    <comment>cb</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>تغذية XY</value>
+    <comment>l1</comment>
+  </data>
+  <data name="BtnFill.Text" xml:space="preserve">
+    <value>املأ</value>
+    <comment>b1</comment>
+  </data>
+  <data name="BtnSplit.Text" xml:space="preserve">
+    <value>انقسم</value>
+    <comment>b2</comment>
+  </data>
+  <data name="BtnPenChange.Text" xml:space="preserve">
+    <value>تغيير القلم</value>
+    <comment>b4</comment>
+  </data>
+  <data name="BtnNoise.Text" xml:space="preserve">
+    <value>تذبذب</value>
+    <comment>b3</comment>
+  </data>
+</root>

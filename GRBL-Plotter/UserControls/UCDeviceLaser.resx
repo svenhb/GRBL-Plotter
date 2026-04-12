@@ -1,0 +1,1605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LblMax.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LblMax.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LblMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
+  </data>
+  <data name="LblMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="LblMax.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="LblMax.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="LblMax.ToolTip" xml:space="preserve">
+    <value>grbl $30 setting</value>
+  </data>
+  <data name="&gt;&gt;LblMax.Name" xml:space="preserve">
+    <value>LblMax</value>
+  </data>
+  <data name="&gt;&gt;LblMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblMax.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblMax.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblMin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblMin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="LblMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 13</value>
+  </data>
+  <data name="LblMin.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="LblMin.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="LblMin.ToolTip" xml:space="preserve">
+    <value>grbl $31 setting</value>
+  </data>
+  <data name="&gt;&gt;LblMin.Name" xml:space="preserve">
+    <value>LblMin</value>
+  </data>
+  <data name="&gt;&gt;LblMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblMin.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblMin.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="LblPasses.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblPasses.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblPasses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 71</value>
+  </data>
+  <data name="LblPasses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="LblPasses.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="LblPasses.Text" xml:space="preserve">
+    <value>Passes</value>
+  </data>
+  <data name="LblPasses.ToolTip" xml:space="preserve">
+    <value>Repetitions</value>
+  </data>
+  <data name="&gt;&gt;LblPasses.Name" xml:space="preserve">
+    <value>LblPasses</value>
+  </data>
+  <data name="&gt;&gt;LblPasses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblPasses.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblPasses.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="LblPowerMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblPowerMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblPowerMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 116</value>
+  </data>
+  <data name="LblPowerMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="LblPowerMode.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="LblPowerMode.Text" xml:space="preserve">
+    <value>Power mode</value>
+  </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Constant Laser Power Mode
+M4 Dynamic Laser Power Mode</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMode.Name" xml:space="preserve">
+    <value>LblPowerMode</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMode.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LblSpeed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSpeed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 5</value>
+  </data>
+  <data name="LblSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="LblSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="LblSpeed.Text" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="LblSpeed.ToolTip" xml:space="preserve">
+    <value>FeedXY</value>
+  </data>
+  <data name="&gt;&gt;LblSpeed.Name" xml:space="preserve">
+    <value>LblSpeed</value>
+  </data>
+  <data name="&gt;&gt;LblSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSpeed.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblSpeed.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="LblPower.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblPower.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblPower.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 49</value>
+  </data>
+  <data name="LblPower.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="LblPower.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="LblPower.Text" xml:space="preserve">
+    <value>Power</value>
+  </data>
+  <data name="LblPower.ToolTip" xml:space="preserve">
+    <value>S-Value; (spindle speed) power to use</value>
+  </data>
+  <data name="&gt;&gt;LblPower.Name" xml:space="preserve">
+    <value>LblPower</value>
+  </data>
+  <data name="&gt;&gt;LblPower.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblPower.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblPower.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="BtnFill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnFill.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 23</value>
+  </data>
+  <data name="BtnFill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnFill.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="BtnFill.Text" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="BtnFill.ToolTip" xml:space="preserve">
+    <value>Fill closed shapes</value>
+  </data>
+  <data name="&gt;&gt;BtnFill.Name" xml:space="preserve">
+    <value>BtnFill</value>
+  </data>
+  <data name="&gt;&gt;BtnFill.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnFill.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnFill.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="BtnUseZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnUseZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 69</value>
+  </data>
+  <data name="BtnUseZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnUseZ.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="BtnUseZ.Text" xml:space="preserve">
+    <value>Z axis</value>
+  </data>
+  <data name="BtnUseZ.ToolTip" xml:space="preserve">
+    <value>Use Z axis for deeper cuts</value>
+  </data>
+  <data name="&gt;&gt;BtnUseZ.Name" xml:space="preserve">
+    <value>BtnUseZ</value>
+  </data>
+  <data name="&gt;&gt;BtnUseZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnUseZ.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnUseZ.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="BtnOverlap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOverlap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 46</value>
+  </data>
+  <data name="BtnOverlap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnOverlap.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="BtnOverlap.Text" xml:space="preserve">
+    <value>Overcut</value>
+  </data>
+  <data name="BtnOverlap.ToolTip" xml:space="preserve">
+    <value>Extend closed path </value>
+  </data>
+  <data name="&gt;&gt;BtnOverlap.Name" xml:space="preserve">
+    <value>BtnOverlap</value>
+  </data>
+  <data name="&gt;&gt;BtnOverlap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOverlap.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnOverlap.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="LblPowerMin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblPowerMin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblPowerMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 27</value>
+  </data>
+  <data name="LblPowerMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="LblPowerMin.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="LblPowerMin.Text" xml:space="preserve">
+    <value>Pow. Min</value>
+  </data>
+  <data name="LblPowerMin.ToolTip" xml:space="preserve">
+    <value>S-Value; minimum value if variable power is calculated</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMin.Name" xml:space="preserve">
+    <value>LblPowerMin</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblPowerMin.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="BtnSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>243, 0</value>
+  </data>
+  <data name="BtnSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnSetup.Text" xml:space="preserve">
+    <value>⚙</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Name" xml:space="preserve">
+    <value>BtnSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Name" xml:space="preserve">
+    <value>LblSet</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblSet.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Name" xml:space="preserve">
+    <value>LblLaserMinVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Name" xml:space="preserve">
+    <value>LblLaserMaxVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Name" xml:space="preserve">
+    <value>LblLaserSetVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="GbPowerSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 0</value>
+  </data>
+  <data name="GbPowerSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 64</value>
+  </data>
+  <data name="GbPowerSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="GbPowerSettings.Text" xml:space="preserve">
+    <value>Laser power</value>
+  </data>
+  <data name="GbPowerSettings.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;GbPowerSettings.Name" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;GbPowerSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbPowerSettings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GbPowerSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblSet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 30</value>
+  </data>
+  <data name="LblSet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="LblSet.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="LblSet.Text" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Name" xml:space="preserve">
+    <value>LblSet</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSet.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblSet.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblLaserMinVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblLaserMinVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 16</value>
+  </data>
+  <data name="LblLaserMinVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblLaserMinVal.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="LblLaserMinVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblLaserMinVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Name" xml:space="preserve">
+    <value>LblLaserMinVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMinVal.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblLaserMaxVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblLaserMaxVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 44</value>
+  </data>
+  <data name="LblLaserMaxVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblLaserMaxVal.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="LblLaserMaxVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblLaserMaxVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Name" xml:space="preserve">
+    <value>LblLaserMaxVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserMaxVal.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LblLaserSetVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblLaserSetVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 30</value>
+  </data>
+  <data name="LblLaserSetVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblLaserSetVal.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="LblLaserSetVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblLaserSetVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Name" xml:space="preserve">
+    <value>LblLaserSetVal</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.Parent" xml:space="preserve">
+    <value>GbPowerSettings</value>
+  </data>
+  <data name="&gt;&gt;LblLaserSetVal.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="BtnGetMaterial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnGetMaterial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 84</value>
+  </data>
+  <data name="BtnGetMaterial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="BtnGetMaterial.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="BtnGetMaterial.Text" xml:space="preserve">
+    <value>Material DB</value>
+  </data>
+  <data name="BtnGetMaterial.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnGetMaterial.Name" xml:space="preserve">
+    <value>BtnGetMaterial</value>
+  </data>
+  <data name="&gt;&gt;BtnGetMaterial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnGetMaterial.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnGetMaterial.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Name" xml:space="preserve">
+    <value>LblSetup3</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Name" xml:space="preserve">
+    <value>LblSetup2</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Name" xml:space="preserve">
+    <value>LblSetup1</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
+    <value>LblSetupHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Name" xml:space="preserve">
+    <value>LblZFinal</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Name" xml:space="preserve">
+    <value>LblZSave</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Name" xml:space="preserve">
+    <value>LbLZFeed</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Name" xml:space="preserve">
+    <value>LbLZEnable</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Name" xml:space="preserve">
+    <value>LblZInfo</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Name" xml:space="preserve">
+    <value>LblZHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Name" xml:space="preserve">
+    <value>LblOverlapInfo</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Name" xml:space="preserve">
+    <value>LblOverlapValue</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Name" xml:space="preserve">
+    <value>LblOverlapEnable</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Name" xml:space="preserve">
+    <value>LblOverlapHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="PanelTranslation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 105</value>
+  </data>
+  <data name="PanelTranslation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 198</value>
+  </data>
+  <data name="PanelTranslation.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="PanelTranslation.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;PanelTranslation.Name" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;PanelTranslation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelTranslation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PanelTranslation.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="LblZFinal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZFinal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZFinal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 82</value>
+  </data>
+  <data name="LblZFinal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="LblZFinal.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="LblZFinal.Text" xml:space="preserve">
+    <value>Z Final Down</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Name" xml:space="preserve">
+    <value>LblZFinal</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZFinal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="LblZSave.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZSave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 69</value>
+  </data>
+  <data name="LblZSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="LblZSave.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="LblZSave.Text" xml:space="preserve">
+    <value>Z Save (Up)</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Name" xml:space="preserve">
+    <value>LblZSave</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZSave.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="LbLZFeed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LbLZFeed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LbLZFeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 95</value>
+  </data>
+  <data name="LbLZFeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="LbLZFeed.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="LbLZFeed.Text" xml:space="preserve">
+    <value>Z Feed</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Name" xml:space="preserve">
+    <value>LbLZFeed</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LbLZFeed.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="LbLZEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LbLZEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LbLZEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 85</value>
+  </data>
+  <data name="LbLZEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="LbLZEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="LbLZEnable.Text" xml:space="preserve">
+    <value>Enable Z axis</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Name" xml:space="preserve">
+    <value>LbLZEnable</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LbLZEnable.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="LblZInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 72</value>
+  </data>
+  <data name="LblZInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 52</value>
+  </data>
+  <data name="LblZInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LblZInfo.Text" xml:space="preserve">
+    <value>The number of passes determines the z step size to reach final z position.
+Passes=1 -&gt; Z[1]=0
+Passes=2 -&gt; Z[1]=0; Z[2]=Final-Z
+Passes=n -&gt; Z[1]=0; Z[x]=x*Final-Z/n, Z[n]=Final-Z</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Name" xml:space="preserve">
+    <value>LblZInfo</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZInfo.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LblZHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZHeadline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 59</value>
+  </data>
+  <data name="LblZHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="LblZHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="LblZHeadline.Text" xml:space="preserve">
+    <value>Use Z axis</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Name" xml:space="preserve">
+    <value>LblZHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZHeadline.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LblOverlapInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblOverlapInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblOverlapInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 45</value>
+  </data>
+  <data name="LblOverlapInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>937, 13</value>
+  </data>
+  <data name="LblOverlapInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="LblOverlapInfo.Text" xml:space="preserve">
+    <value>Extends the laser’s path slightly beyond the actual endpoint of a closed shape during cutting. This ensures the material is completely severed. Aditionally objects will be sort by size, largest comes last.</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Name" xml:space="preserve">
+    <value>LblOverlapInfo</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapInfo.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="LblOverlapValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblOverlapValue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblOverlapValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 32</value>
+  </data>
+  <data name="LblOverlapValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="LblOverlapValue.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LblOverlapValue.Text" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Name" xml:space="preserve">
+    <value>LblOverlapValue</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapValue.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="LblOverlapEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblOverlapEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblOverlapEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="LblOverlapEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="LblOverlapEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="LblOverlapEnable.Text" xml:space="preserve">
+    <value>Enable overcut</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Name" xml:space="preserve">
+    <value>LblOverlapEnable</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapEnable.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="LblOverlapHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblOverlapHeadline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblOverlapHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="LblOverlapHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="LblOverlapHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LblOverlapHeadline.Text" xml:space="preserve">
+    <value>Path overcut</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Name" xml:space="preserve">
+    <value>LblOverlapHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblOverlapHeadline.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="BtnLaserTools.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnLaserTools.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 110</value>
+  </data>
+  <data name="BtnLaserTools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="BtnLaserTools.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="BtnLaserTools.Text" xml:space="preserve">
+    <value>Laser tools</value>
+  </data>
+  <data name="&gt;&gt;BtnLaserTools.Name" xml:space="preserve">
+    <value>BtnLaserTools</value>
+  </data>
+  <data name="&gt;&gt;BtnLaserTools.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnLaserTools.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnLaserTools.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="LblSetupHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetupHeadline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetupHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 134</value>
+  </data>
+  <data name="LblSetupHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="LblSetupHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Setup Laser</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
+    <value>LblSetupHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblSetup1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetup1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetup1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 147</value>
+  </data>
+  <data name="LblSetup1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="LblSetup1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Beam diameter</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Name" xml:space="preserve">
+    <value>LblSetup1</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LblSetup2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetup2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetup2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 160</value>
+  </data>
+  <data name="LblSetup2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="LblSetup2.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Command Air on</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Name" xml:space="preserve">
+    <value>LblSetup2</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblSetup3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetup3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetup3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 173</value>
+  </data>
+  <data name="LblSetup3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="LblSetup3.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Command Air off</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Name" xml:space="preserve">
+    <value>LblSetup3</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblSetup3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 0</value>
+  </data>
+  <data name="BtnHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="BtnHelp.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Name" xml:space="preserve">
+    <value>BtnHelp</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudDeviceLaserPowerMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 25</value>
+  </data>
+  <data name="NudDeviceLaserPowerMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="NudDeviceLaserPowerMin.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="NudDeviceLaserPowerMin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudDeviceLaserPowerMin.ToolTip" xml:space="preserve">
+    <value>S value (spindle)</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPowerMin.Name" xml:space="preserve">
+    <value>NudDeviceLaserPowerMin</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPowerMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPowerMin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPowerMin.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="CbAirAssist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAirAssist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAirAssist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 93</value>
+  </data>
+  <data name="CbAirAssist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="CbAirAssist.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>Air assist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Name" xml:space="preserve">
+    <value>CbAirAssist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="CbLaserpower.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbLaserpower.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbLaserpower.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbLaserpower.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 111</value>
+  </data>
+  <data name="CbLaserpower.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="CbLaserpower.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="CbLaserpower.Text" xml:space="preserve">
+    <value>M3</value>
+  </data>
+  <data name="CbLaserpower.ToolTip" xml:space="preserve">
+    <value>grbl $32 setting
+M3 Constant Laser Power Mode: Constant laser power mode simply keeps the laser power as programmed, regardless if the machine is moving,
+M4 Dynamic Laser Power Mode: Dynamic laser power mode will automatically adjust laser power based on the current speed relative to the programmed rate. </value>
+  </data>
+  <data name="&gt;&gt;CbLaserpower.Name" xml:space="preserve">
+    <value>CbLaserpower</value>
+  </data>
+  <data name="&gt;&gt;CbLaserpower.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbLaserpower.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CbLaserpower.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="NudDeviceLaserPasses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 69</value>
+  </data>
+  <data name="NudDeviceLaserPasses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="NudDeviceLaserPasses.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="NudDeviceLaserPasses.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudDeviceLaserPasses.ToolTip" xml:space="preserve">
+    <value>Amount of repetitions</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPasses.Name" xml:space="preserve">
+    <value>NudDeviceLaserPasses</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPasses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPasses.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPasses.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="NudDeviceLaserSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="NudDeviceLaserSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="NudDeviceLaserSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="NudDeviceLaserSpeed.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudDeviceLaserSpeed.ToolTip" xml:space="preserve">
+    <value>F value (Feed)</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserSpeed.Name" xml:space="preserve">
+    <value>NudDeviceLaserSpeed</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserSpeed.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserSpeed.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="NudDeviceLaserPower.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 47</value>
+  </data>
+  <data name="NudDeviceLaserPower.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="NudDeviceLaserPower.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="NudDeviceLaserPower.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>S value (spindle)</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPower.Name" xml:space="preserve">
+    <value>NudDeviceLaserPower</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPower.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPower.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceLaserPower.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="BtnOffsetSort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOffsetSort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 23</value>
+  </data>
+  <data name="BtnOffsetSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnOffsetSort.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="BtnOffsetSort.Text" xml:space="preserve">
+    <value>Offset</value>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Fill closed shapes</value>
+  </data>
+  <data name="BtnOffsetSort.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnOffsetSort.Name" xml:space="preserve">
+    <value>BtnOffsetSort</value>
+  </data>
+  <data name="&gt;&gt;BtnOffsetSort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOffsetSort.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnOffsetSort.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 145</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCDeviceLaser</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
