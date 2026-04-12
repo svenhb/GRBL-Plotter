@@ -1,9 +1,10 @@
-data\examples\bunny_new.pdn-json
-data\examples\graphic_fiducial_circle.svg
-data\examples\graphic_grbl.svg
+data\examples\graphic_grbl_4colors.svg
+data\examples\graphic_grbl_5colors.svg
 data\examples\graphic_grbl_popup.svg
 data\examples\graphic_bunny.dxf
 data\examples\graphic_bunny_string_art.svg
+data\examples\bunny_new.pdn-json
+data\examples\graphic_fiducial_circle.svg
 data\examples\image_flying_devil.png
 data\examples\graphic_Hershey_Fonts.svg
 data\examples\fonts-in-librecad-examples-sheet1.dxf

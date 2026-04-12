@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GrblPlotter</RootNamespace>
     <AssemblyName>GRBL-Plotter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -30,7 +30,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.7.6.0</ApplicationVersion>
+    <ApplicationVersion>1.8.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -153,10 +153,6 @@
     <Reference Include="TabletControl">
       <HintPath>DLLs\TabletControl.dll</HintPath>
     </Reference>
-    <Reference Include="virtualJoystick, Version=0.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLLs\virtualJoystick.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +182,7 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromTablet.Designer.cs">
       <DependentUpon>GCodeFromTablet.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCodeCreation\Graphic2GCodeRelatedDevice.cs" />
     <Compile Include="GCodeCreation\GraphicClasses.cs" />
     <Compile Include="GCodeCreation\GraphicCollectText.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateMisc.cs" />
@@ -206,7 +203,7 @@
     <Compile Include="GCodeCreation\Vectorize\Vectorize.cs" />
     <Compile Include="GCodeCreation\Vectorize\Vectorize_FitCurves.cs" />
     <Compile Include="GCodeCreation\Vectorize\Vectorize_Helper.cs" />
-    <Compile Include="GCodeCreation\XmlMarker.cs" />
+    <Compile Include="Helper\XmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +271,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\MainFormUserControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\MessageText.cs" />
     <Compile Include="GUI\Notifier.cs" />
     <Compile Include="GUI\Splashscreen.cs">
@@ -282,6 +282,7 @@
     <Compile Include="GUI\Splashscreen.Designer.cs">
       <DependentUpon>Splashscreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\XML.cs" />
     <Compile Include="MachineControl\ControlCameraFormMisc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -426,7 +427,6 @@
     </Compile>
     <Compile Include="GUI\MainFormLoadFile.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormPictureBox.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -476,7 +476,7 @@
     <Compile Include="MachineControl\ControlStreamingForm2.Designer.cs">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\ToolTable.cs" />
+    <Compile Include="Helper\ToolTable.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSvg.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromText.cs">
       <SubType>Form</SubType>
@@ -496,6 +496,125 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Colors.cs" />
+    <Compile Include="Helper\Dimensions.cs" />
+    <Compile Include="Helper\GrblPoint.cs" />
+    <Compile Include="Helper\ToolList.cs" />
+    <Compile Include="UserControls\UCDeviceLaser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceLaser.Designer.cs">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceLaser2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceLaser2.Designer.cs">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDevicePlotter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDevicePlotter.Designer.cs">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDevicePlotter2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDevicePlotter2.Designer.cs">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceRouter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceRouter.Designer.cs">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceRouter2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDeviceRouter2.Designer.cs">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDRO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDRO.Designer.cs">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCFlowControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCFlowControl.Designer.cs">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlAll.Designer.cs">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlUD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlUD.Designer.cs">
+      <DependentUpon>UCJogControlUD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlXY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCJogControlXY.Designer.cs">
+      <DependentUpon>UCJogControlXY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCMoveToGraphic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCMoveToGraphic.Designer.cs">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCMoveToZero.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCMoveToZero.Designer.cs">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCOverrides.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCOverrides.Designer.cs">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSetCoordinateSystem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSetCoordinateSystem.Designer.cs">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSetOffset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSetOffset.Designer.cs">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCStreaming.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCStreaming.Designer.cs">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCToolList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCToolList.Designer.cs">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCToolListElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCToolListElement.Designer.cs">
+      <DependentUpon>UCToolListElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl.cs" />
     <Content Include="data\automations\example_beep_melody.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -539,6 +658,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\graphic_fiducial_circle.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\graphic_grbl_4colors.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\graphic_grbl_5colors.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\pattern_spiral.svg">
@@ -718,6 +843,21 @@
     <Content Include="data\jogpaths\L_50mm_1.5.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\palettes\GRBL-Plotter_StabiloPoint88.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\GRBL-Plotter_StabiloPower.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\GRBL-Plotter_Watercolor.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\PaintDotNet_Default.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\PaintDotNet_Herlitz_Zettel.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\papersize.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -890,6 +1030,582 @@
     <Content Include="data\automations\Name_tag\Name_tag_setup_use_laser.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="DLLs\AForge.dll" />
+    <Content Include="DLLs\AForge.Imaging.dll" />
+    <Content Include="DLLs\AForge.Math.dll" />
+    <Content Include="DLLs\AForge.Video.DirectShow.dll" />
+    <Content Include="DLLs\AForge.Video.dll" />
+    <Content Include="DLLs\DXFLib.dll" />
+    <Content Include="DLLs\FastColoredTextBox.dll" />
+    <Content Include="DLLs\NLog.dll" />
+    <Content Include="DLLs\QRCoder.dll" />
+    <Content Include="DLLs\SharpDX.DirectInput.dll" />
+    <Content Include="DLLs\SharpDX.dll" />
+    <Content Include="DLLs\TabletControl.dll" />
+    <Content Include="Resources\framing.png" />
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.cs.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.de.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.es.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.fr.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.it.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.ja.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.pl.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.pt.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.ru.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.tr.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.zh.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.ar.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.cs.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.de.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.es.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.fr.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.it.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.ja.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.pl.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.pt.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.ru.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.tr.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.zh.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.ar.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.cs.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.de.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.es.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.fr.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.it.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.ja.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.pl.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.pt.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.ru.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.tr.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.zh.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.ar.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.cs.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.de.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.es.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.fr.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.it.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.ja.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.pl.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.pt.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.ru.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.tr.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.zh.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.ar.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.cs.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.de.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.es.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.fr.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.it.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.ja.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.pl.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.pt.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.ru.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.tr.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.zh.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.ar.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.cs.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.de.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.es.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.fr.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.it.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.ja.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.pl.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.pt.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.ru.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.tr.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.zh.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.ar.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.cs.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.de.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.es.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.fr.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.it.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.ja.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.pl.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.pt.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.ru.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.tr.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.zh.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.ar.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.cs.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.de.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.es.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.fr.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.it.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.ja.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.pl.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.pt.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.ru.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.tr.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.zh.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.ar.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.cs.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.de.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.es.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.fr.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.it.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.ja.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.pl.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.pt.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.ru.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.tr.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.zh.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.ar.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.cs.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.de.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.es.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.fr.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.it.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.ja.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.pl.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.pt.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.ru.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.tr.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.zh.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.ar.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.cs.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.de.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.es.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.fr.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.it.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.ja.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.pl.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.pt.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.ru.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.tr.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.zh.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.ar.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.cs.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.de.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.es.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.fr.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.it.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.ja.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.pl.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.pt.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.ru.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.tr.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.zh.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.ar.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.cs.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.de.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.es.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.fr.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.it.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.ja.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.pl.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.pt.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.ru.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.tr.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.zh.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.ar.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.cs.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.de.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.es.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.fr.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.it.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.ja.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.pl.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.pt.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.ru.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.tr.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.zh.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolListElement.resx">
+      <DependentUpon>UCToolListElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="data\palettes\Inkscape_svg.gpl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\setup.png" />
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.resx">
+      <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.resx">
+      <DependentUpon>UCDevicePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.resx">
+      <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.resx">
+      <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCToolList.resx">
+      <DependentUpon>UCToolList.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\stop.png" />
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDRO.resx">
+      <DependentUpon>UCDRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFlowControl.resx">
+      <DependentUpon>UCFlowControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlAll.resx">
+      <DependentUpon>UCJogControlAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlUD.resx">
+      <DependentUpon>UCJogControlUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJogControlXY.resx">
+      <DependentUpon>UCJogControlXY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.resx">
+      <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMoveToZero.resx">
+      <DependentUpon>UCMoveToZero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOverrides.resx">
+      <DependentUpon>UCOverrides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetOffset.resx">
+      <DependentUpon>UCSetOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStreaming.resx">
+      <DependentUpon>UCStreaming.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="data\automations\automation_File_load.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -948,7 +1664,11 @@
     <None Include="Resources\barcode.png" />
     <None Include="Resources\bevOff.png" />
     <None Include="Resources\bevOn.png" />
-    <Content Include="Newtonsoft.Json.dll" />
+    <None Include="Resources\a_ce.png" />
+    <None Include="Resources\a_de.png" />
+    <None Include="Resources\a_re.png" />
+    <None Include="Resources\a_d.png" />
+    <None Include="Resources\a_r.png" />
     <Content Include="Resources\efOff1.png" />
     <Content Include="Resources\efOff2.png" />
     <Content Include="Resources\efOff3.png" />
@@ -2209,9 +2929,6 @@
     <Content Include="Icon.ico" />
     <Content Include="data\examples\image_modell.png" />
     <Content Include="data\examples\image_cent.bmp" />
-    <Content Include="data\examples\graphic_grbl.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="data\examples\graphic_Testbild.svg" />
     <None Include="Resources\inv2.png" />
     <None Include="Resources\turn_r.png" />
