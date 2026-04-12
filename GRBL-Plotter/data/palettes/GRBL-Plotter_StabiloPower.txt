@@ -1,0 +1,13 @@
+# paint_Stabilopower
+FFFF00,yellow
+FAD780,apricot
+FFA500,orange
+4CBED9,light blu
+14B43C,lime
+FF0000,red
+D90385,pink
+8C5F96,lilac
+008000,green
+0000FF,blue
+5F311E,brown
+000000,black
