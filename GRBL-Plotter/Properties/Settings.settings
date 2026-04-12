@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -187,6 +187,9 @@
     </Setting>
     <Setting Name="camShapeSizeMin" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="colorPaletteLastLoaded" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GRBL-Plotter_Watercolor.txt</Value>
     </Setting>
     <Setting Name="convertZtoSMax" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1000</Value>
@@ -445,6 +448,156 @@
     </Setting>
     <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DeviceLaserAir" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeviceLaserCmndAirOff" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M9</Value>
+    </Setting>
+    <Setting Name="DeviceLaserCmndAirOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M8</Value>
+    </Setting>
+    <Setting Name="DeviceLaserCmndPilotOff" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M9</Value>
+    </Setting>
+    <Setting Name="DeviceLaserCmndPilotOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M7</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillAngleIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillAngleIncrementEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillDeletePath" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillInsetDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DeviceLaserPasses" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserPower" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="DeviceLaserPowerLow" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserPowerMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceLaserSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="DeviceLaserSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">496</Value>
+    </Setting>
+    <Setting Name="DeviceLaserToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserZDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceLaserZEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeviceLaserZFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="DeviceLaserZSave" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="DevicePlotterControlIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterDepthControl" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillAngleIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillAngleIncrementEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillDeletePath" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterPenChangeRBAutomatic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterPenChangeRBManual" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterPenChangeRBNo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DevicePlotterPenInHolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="DevicePlotterSpeedZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="DevicePlotterToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.8</Value>
+    </Setting>
+    <Setting Name="DevicePlotterZDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-2</Value>
+    </Setting>
+    <Setting Name="DevicePlotterZP93" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterZP94" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterZUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="DeviceRouterSpeedXY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="DeviceRouterSpeedZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="DeviceRouterSpindle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="DeviceRouterToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="DeviceRouterZDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="DeviceRouterZUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="DeviceSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="FCTBBlockExpandKeepLastOpen" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -782,6 +935,36 @@
     <Setting Name="guiCheckUpdateURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://GRBL-Plotter.de</Value>
     </Setting>
+    <Setting Name="guiColorSchemeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="guiColorThemeButton" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="guiColorThemeButtonH" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="guiColorThemeButtonS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiColorThemeButtonV" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiColorThemeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="guiColorThemePanel" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="guiColorThemePanelH" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="guiColorThemePanelS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiColorThemePanelV" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
     <Setting Name="guiCustomBtn1" Type="System.String" Scope="User">
       <Value Profile="(Default)">🡴 Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMAY|#80FFFF</Value>
     </Setting>
@@ -890,9 +1073,6 @@
     <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="guiJoystickApperance1" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="guiJoystickASpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
@@ -923,8 +1103,8 @@
     <Setting Name="guiJoystickAStep5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">180</Value>
     </Setting>
-    <Setting Name="guiJoystickSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">120</Value>
+    <Setting Name="guiJoystickRaster" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="guiJoystickXYSpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -1421,10 +1601,10 @@
     <Setting Name="importGCToolDefNrUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="importGCToolM0" Type="System.Boolean" Scope="User">
+    <Setting Name="importGCToolListUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="importGCToolTableUse" Type="System.Boolean" Scope="User">
+    <Setting Name="importGCToolM0" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCToolUseRouter" Type="System.Boolean" Scope="User">
@@ -1961,6 +2141,9 @@
     <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGUseElement" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importUnitGCode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -2178,7 +2361,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 680</Value>
+      <Value Profile="(Default)">1366, 768</Value>
     </Setting>
     <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">296</Value>
@@ -2606,6 +2789,75 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
+    <Setting Name="UserControlFlowControlIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlAllIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlAutomaticUnfold" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlShowArrow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlShowButtons" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlShowLabel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlJogControlSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicAutomaticUnfold" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicCenterX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicCenterY" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToGraphicSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToZeroAutomaticUnfold" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlMoveToZeroIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlOffsetIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlOverrideIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlOverrideShow1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlOverrideShow2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlOverrideShow3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UserControlOverrideShow4" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlSetCoordinateAutomaticUnfold" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserControlSetCoordinateIsLarge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="wirecutterArrayX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
@@ -2629,6 +2881,15 @@
     </Setting>
     <Setting Name="wirecutterToolDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillInsetDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="DeviceLaserHatchFillCross" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillCross" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
