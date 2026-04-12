@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2023-06-01 New file, split from Graphic2GCodeRelated.cs
  * 2023-11-11 replace float by double
  * 2024-04-13 l:178, 241 bug fix process time calculation
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -31,20 +32,20 @@ namespace GrblPlotter
     {
         public static void SetTangential(StringBuilder gcodeValue, double angle, bool writeCode)
         {
-            gcodeTangentialAngle = ((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
-            if (gcodeTangentialEnable)
+            ModificationTangential.Angle = ((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
+            if (ModificationTangential.Enable)
             {
-                gcodeTangentialCommand = string.Format(" {0}{1}", gcodeTangentialName, FrmtNum(gcodeTangentialAngle));
-                if (writeCode && (Math.Abs(lasta - angle) > gcodeTangentialAngleDevi))
-                { gcodeValue?.AppendFormat("G{0}{1}\r\n", FrmtCode(1), gcodeTangentialCommand); }
+                ModificationTangential.Command = string.Format(" {0}{1}", ModificationTangential.Name, FrmtNum(ModificationTangential.Angle));
+                if (writeCode && (Math.Abs(lasta - angle) > ModificationTangential.AngleDevi))
+                { gcodeValue?.AppendFormat("G{0}{1}\r\n", FrmtCode(1), ModificationTangential.Command); }
                 lasta = angle;
             }
-            else gcodeTangentialCommand = "";
+            else ModificationTangential.Command = "";
         }
 
         public static void SetSValue(double sVal)
         {
-            if (gcodeSValueEnable)
+            if (DepthFromWidth.SEnable)
             {
                 gcodeSValueCommand = string.Format("S{0:0}", sVal);
             }
@@ -53,22 +54,22 @@ namespace GrblPlotter
 
         public static void SetAux1DistanceCommand(double distance)
         {
-            if (gcodeAuxiliaryValue1Enable)
+            if (ModificationAux.Value1Enable)
             {
-                gcodeAuxiliaryValue1Command = string.Format(" {0}{1}", gcodeAuxiliaryValue1Name, FrmtNum(distance));
-                //        Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
+                ModificationAux.Value1Command = string.Format(" {0}{1}", ModificationAux.Value1Name, FrmtNum(distance));
+                //        Logger.Info("SetAux1Distance {0}", Value1Command);
             }
-            else { gcodeAuxiliaryValue1Command = ""; }
+            else { ModificationAux.Value1Command = ""; }
         }
 
         public static void SetAux2DistanceCommand(double distance)
         {
-            if (gcodeAuxiliaryValue2Enable)
+            if (ModificationAux.Value2Enable)
             {
-                gcodeAuxiliaryValue2Command = string.Format(" {0}{1}", gcodeAuxiliaryValue2Name, FrmtNum(distance));
-                //        Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
+                ModificationAux.Value2Command = string.Format(" {0}{1}", ModificationAux.Value2Name, FrmtNum(distance));
+                //        Logger.Info("SetAux2Distance {0}", Value2Command);
             }
-            else { gcodeAuxiliaryValue2Command = ""; }
+            else { ModificationAux.Value2Command = ""; }
         }
 
 
@@ -82,7 +83,7 @@ namespace GrblPlotter
             StringBuilder gcodeString = gcodeValueFinal;
             if (gnr != 0)
             {
-                if (GcodeZApply && repeatZ)
+                if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
                 { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
             }
             string feed = "";
@@ -98,7 +99,7 @@ namespace GrblPlotter
             if (mz != null)
             { zCmd = (double)mz; tz = (double)mz; }
 
-            if (GcodeRelative)
+            if (Control.GcodeRelative)
             {
                 xCmd = mx - lastx;
                 yCmd = my - lasty;
@@ -119,7 +120,7 @@ namespace GrblPlotter
 
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
 
-            if (gcodeCompress)
+            if (Control.gcodeCompress)
             {
                 if (((gnr > 0) || (lastx != mx) || (lasty != my) || (lastz != tz)))  // else nothing to do
                 {
@@ -131,11 +132,11 @@ namespace GrblPlotter
                     {
                         if (lastz != mz) { gcodeTmp.AppendFormat("Z{0}", FrmtNum(zCmd)); isneeded = true; }
                     }
-                    gcodeTmp.AppendFormat("{0}", gcodeTangentialCommand);
+                    gcodeTmp.AppendFormat("{0}", ModificationTangential.Command);
 
                     if (gnr != 0)
                     {
-                        gcodeTmp.AppendFormat("{0}{1}{2}", gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, gcodeSValueCommand);
+                        gcodeTmp.AppendFormat("{0}{1}{2}", ModificationAux.Value1Command, ModificationAux.Value2Command, gcodeSValueCommand);
                     }
 
                     if ((gnr == 1) && (lastf != GcodeXYFeed) || applyFeed)
@@ -158,25 +159,25 @@ namespace GrblPlotter
                 if (mz != null)
                     gcodeTmp.AppendFormat(" Z{0}", FrmtNum(zCmd));
 
-                gcodeTmp.AppendFormat("{0}", gcodeTangentialCommand);
+                gcodeTmp.AppendFormat("{0}", ModificationTangential.Command);
                 if (gnr != 0)
                 {
-                    gcodeTmp.AppendFormat("{0}{1}{2}", gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, gcodeSValueCommand);
+                    gcodeTmp.AppendFormat("{0}{1}{2}", ModificationAux.Value1Command, ModificationAux.Value2Command, gcodeSValueCommand);
                 }
                 gcodeTmp.AppendFormat(" {0} {1}\r\n", feed, cmt);
 
                 gcodeString?.Append(gcodeTmp);
             }
 
-            if (GcodeZApply && repeatZ)
+            if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
             {
-                gcodeFigureTime += 60 * delta / GcodeXYFeed; ;
-                gcodeFigureLines++;
+                Tracker.gcodeFigureTime += 60 * delta / GcodeXYFeed; ;
+                Tracker.gcodeFigureLines++;
             }
             else
             {
-                gcodeExecutionSeconds += 0;// delta / GcodeXYFeed;
-                gcodeLines++;
+                Tracker.gcodeExecutionSeconds += 0;// delta / GcodeXYFeed;
+                Tracker.gcodeLines++;
             }
             lastx = mx; lasty = my; lastg = gnr; // lastz = tz;
         }
@@ -193,7 +194,7 @@ namespace GrblPlotter
             if (gcodeStringFinal == null) return;
 
             StringBuilder gcodeString = gcodeStringFinal;
-            if (GcodeZApply && repeatZ)
+            if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
             { gcodeString = figureString; if (LoggerTraceImport) Logger.Trace("    gcodeString = figureString"); }
 
             string feed = "";
@@ -202,7 +203,7 @@ namespace GrblPlotter
             double xCmd = x;
             double yCmd = y;
 
-            if (GcodeRelative)
+            if (Control.GcodeRelative)
             {
                 xCmd = x - lastx;
                 yCmd = y - lasty;
@@ -214,7 +215,7 @@ namespace GrblPlotter
                 ApplyXYFeedRate = false;                        // don't set feed next time
             }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            if (gcodeNoArcs || avoidG23)
+            if (Control.gcodeNoArcs || avoidG23)
             {
                 XyzabcuvwPoint last = new XyzabcuvwPoint();
                 last.X = lastx; last.Y = lasty;
@@ -225,24 +226,24 @@ namespace GrblPlotter
             else
             {
                 gcodeTmp.AppendFormat("G{0} X{1} Y{2} I{3} J{4}", FrmtCode(gnr), FrmtNum(xCmd), FrmtNum(yCmd), FrmtNum(i), FrmtNum(j));
-                gcodeTmp.AppendFormat(" {0}{1}{2}{3}", gcodeTangentialCommand, gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, gcodeSValueCommand);
+                gcodeTmp.AppendFormat(" {0}{1}{2}{3}", ModificationTangential.Command, ModificationAux.Value1Command, ModificationAux.Value2Command, gcodeSValueCommand);
                 gcodeTmp.AppendFormat(" {0} {1}\r\n", feed, cmt);
 
                 gcodeString?.Append(gcodeTmp);
                 lastg = gnr;
             }
-            if (GcodeZApply && repeatZ)
+            if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
             {
-                gcodeFigureTime += 60 * Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
-                gcodeFigureLines++;
+                Tracker.gcodeFigureTime += 60 * Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
+                Tracker.gcodeFigureLines++;
             }
             else
             {
-                gcodeExecutionSeconds += 0;// Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
-                gcodeLines++;
+                Tracker.gcodeExecutionSeconds += 0;// Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
+                Tracker.gcodeLines++;
             }
             lastx = x; lasty = y; lastf = GcodeXYFeed;
-            LastMovewasG0 = false;
+            Control.LastMovewasG0 = false;
         }
 
     }

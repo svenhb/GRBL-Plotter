@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2022-12-29 new function to add text from windows font
  * 2023-01-26 SetGeometry, remove \r
  * 2024-03-19 l:73 f:DrawGlyphPath remove StringFormatFlags.MeasureTrailingSpaces to get lines centered
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using NLog;
@@ -73,11 +74,32 @@ namespace GrblPlotter
         {
             var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap);// | StringFormatFlags.MeasureTrailingSpaces);
             format.Alignment = alignment;
-        //    format.LineAlignment = alignment;
+            //    format.LineAlignment = alignment;
 
             myPath.Reset();
-            myPath.AddString(text, fontFamily, (int)fontStyle, fontSize,
+
+            if (true)
+            {
+                myPath.AddString(text, fontFamily, (int)fontStyle, fontSize,
                              origin, format);
+            }
+         /*   else
+            {
+                float currentX = origin.X;
+                float distanceBetweenChars = -2f;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    //using (var path = new GraphicsPath())
+                    {
+                        myPath.AddString(text.Substring(i, 1), fontFamily, (int)fontStyle, fontSize,
+                                           new PointF(currentX, origin.Y),
+                                           format);
+                        RectangleF bounds = myPath.GetBounds();
+                        currentX = bounds.Width + distanceBetweenChars;
+                        //	graphics.FillPath(new SolidBrush(Color.Black), myPath);
+                    }
+                }
+            }*/
 
             if (angle != 0)
             {
@@ -85,7 +107,7 @@ namespace GrblPlotter
                 rotation_matrix.RotateAt(angle, originR);
                 myPath.Transform(rotation_matrix);
             }
-        //    VisuGCode.pathBackground = (GraphicsPath)myPath.Clone();
+            //    VisuGCode.pathBackground = (GraphicsPath)myPath.Clone();
 
             Matrix flip_matrix = new Matrix();
             flip_matrix.Scale(1, -1);

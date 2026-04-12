@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
  * 2023-05-19 l:440 f:DragToolModification bug fix #340: rotate knife if path does not start with 0° degree
  * 2024-04-07 l:484 f:InsertArcMove set fix value for stepwidth to avoid out of memory
  * 2024-04-17 rotary cutter - avoid overcut
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using System;
@@ -530,14 +531,14 @@ namespace GrblPlotter
             Point p2 = Round(endPoint);
             double x, y;
             arcMove = GcodeMath.GetArcMoveProperties(p1, p2, center, isCW);
-            double stepwidth = arcMove.radius / 6; //(double)Properties.Settings.Default.importGCSegment;
+            double stepwidth = arcMove.radius / 6; //(double)Properties.ListSettings.Default.importGCSegment;
 
             int insertCounter = 1;
 
             //    if (stepwidth > arcMove.radius / 2)
             //    { stepwidth = arcMove.radius / 5; }
             double step = Math.Asin(stepwidth / arcMove.radius);     // in RAD
-                                                                     //                    double step = Math.Asin((double)Properties.Settings.Default.importGCSegment / arcMove.radius);     // in RAD
+                                                                     //                    double step = Math.Asin((double)Properties.ListSettings.Default.importGCSegment / arcMove.radius);     // in RAD
             if (step > Math.Abs(arcMove.angleDiff))
                 step = Math.Abs(arcMove.angleDiff / 2);
 

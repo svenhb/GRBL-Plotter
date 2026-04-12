@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 
 /* 2019-11-24 new
  * 2024-03-19 l:60 f:CalcArc replace float by double
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 using AForge.Math;
@@ -114,7 +115,7 @@ namespace GrblPlotter
                 points[1] = new Point((startX + dx1), (startY + dy1));
                 points[2] = new Point((endpointX + dxe), (endpointY + dye));
                 points[3] = new Point(endpointX, endpointY);
-                var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
+                var b = GetBezierApproximation(points, ImportParameter.BezierControlPointsCnt);
                 if (moveTo != null)
                     for (int k = 1; k < b.Points.Count; k++)
                         moveTo(b.Points[k], "arc"); //svgMoveTo(b.Points[k], "arc");
@@ -143,7 +144,7 @@ namespace GrblPlotter
             points[1] = (Point)qp1;     // new Point(qpx1, qpy1);
             points[2] = (Point)qp2;     // new Point(qpx2, qpy2);
             points[3] = c3;             // new Point(cx3, cy3);
-            var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
+            var b = GetBezierApproximation(points, ImportParameter.BezierControlPointsCnt);
             if (moveTo != null)
                 for (int i = 1; i < b.Points.Count; i++)
                     moveTo(b.Points[i], cmt);
@@ -156,7 +157,7 @@ namespace GrblPlotter
             points[1] = c1;
             points[2] = c2;
             points[3] = c3;             // new Point(cx3, cy3);
-            var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
+            var b = GetBezierApproximation(points, ImportParameter.BezierControlPointsCnt);
             if (moveTo != null)
                 for (int i = 1; i < b.Points.Count; i++)
                     moveTo(b.Points[i], cmt);

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,9 +24,10 @@
  * 2021-12-10 line 447 try/catch
  * 2021-12-10 line 443 add logger
  * 2022-04-23 add wire bender
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
-
+using GrblPlotter.Helper;
 using System;
 using System.Collections.Generic;
 using System.Windows;

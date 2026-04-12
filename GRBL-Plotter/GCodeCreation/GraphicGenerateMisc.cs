@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,13 +32,18 @@
  * 2023-08-16 l:1370 f:SortByDistance pull request Speed up merge and sort #348
  * 2023-08-16 l:1490 f:HasSameProperties pull request Speed up merge and sort #348
  * 2023-09-01 l:915  f:RemoveOffset check index before shifting largest object
- * 2023-11-09 l:1067 f:AddFrame -> SetPenFill("none") to avoid hatch-fill
+ * 2023-11-09 l:1067 f:AddFrame -> SetPenFill("none") to avoid hatch-FillToolListElements
  * 2023-11-11 l_1030 f:Scale scale also ((GCodeArc)entity).CenterIJ
  * 2024-04-17 l:1144 f:ExtendClosedPaths also allow path-shortening (negative value)
  * 2024-07-25 l:896/1568 f:RemoveOffset/SortByDistance move all largset (same size) objects to the end -> List<int> iLargest = new List<int>();
  * 2024-08-11 l:1684 f:HasSameProperties at least compare color
+ * 2026-03-01 l:954 f:RemoveOffset seperate "move largest object to the end"
+ * 2026-03-02 l:1214 f:RepeatPaths add tool specific repetitions
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
+using GrblPlotter.Helper;
+using GrblPlotter.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -175,6 +180,8 @@ namespace GrblPlotter
             int groupCount = -1;
             int toolNr = (int)Properties.Settings.Default.importGCToolDefNr;
             string toolName = "";
+            bool applyToolList = Properties.Settings.Default.importGCToolListUse;
+            bool useToolList = MyControl.UseToolList();
 
             if (logEnable) Logger.Trace("...GroupAllGraphics by:{0}  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++", graphicInformation.GroupOption.ToString());
             if (logEnable)
@@ -218,26 +225,35 @@ namespace GrblPlotter
                     groupCount++;
                     keyToIndex.Add(tmpKey, groupCount);
 
-                    switch (graphicInformation.GroupOption)
+                    if (applyToolList)
                     {
-                        case GroupOption.ByColor:
-                            toolNr = ToolTable.GetToolNRByToolColor(pathObject.Info.GroupAttributes[(int)GroupOption.ByColor], 0);
-                            toolName = ToolTable.GetToolName(toolNr);
-                            break;
-                        case GroupOption.ByWidth:
-                            toolNr = ToolTable.GetToolNRByToolDiameter(pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth]);
-                            toolName = ToolTable.GetToolName(toolNr);
-                            break;
-                        case GroupOption.ByLayer:
-                            toolNr = ToolTable.GetToolNRByToolName(pathObject.Info.GroupAttributes[(int)GroupOption.ByLayer]);
-                            toolName = ToolTable.GetToolName(toolNr);
-                            break;
-                        default: break;
+                        switch (graphicInformation.GroupOption)
+                        {
+                            case GroupOption.ByColor:
+                                toolNr = ToolList.GetToolNRByToolColor(pathObject.Info.GroupAttributes[(int)GroupOption.ByColor], 0);
+                                toolName = ToolList.GetToolName(toolNr);
+                                break;
+                            case GroupOption.ByWidth:
+                                toolNr = ToolList.GetToolNRByToolWidth(pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                                toolName = ToolList.GetToolName(toolNr);
+                                break;
+                            case GroupOption.ByLayer:
+                                toolNr = ToolList.GetToolNRByToolLayer(pathObject.Info.GroupAttributes[(int)GroupOption.ByLayer]);
+                                toolName = ToolList.GetToolName(toolNr);
+                                break;
+                            default: break;
+                        }
+                    }
+                    else
+                    {
+                        toolNr = groupCount + 1;
+                        toolName = graphicInformation.GroupOption.ToString() + ": " + pathObject.Info.GroupAttributes[(int)graphicInformation.GroupOption];
                     }
 
                     tmpGroup = new GroupObject(tmpKey, toolNr, toolName, pathObject);
                     groupedGraphicLocal.Add(tmpGroup);
-                    if (log) Logger.Trace("     Create {0} new key:'{1}'", pathObject.Info.Id, tmpKey);
+                    if (log)
+                        Logger.Trace("     Create {0} new key:'{1}'    nr:{2}  name:{3}", pathObject.Info.Id, tmpKey, toolNr, toolNr);
                 }
             }
 
@@ -245,6 +261,7 @@ namespace GrblPlotter
             {
                 // Sort Groups by		
                 bool invert = Properties.Settings.Default.importGroupSortInvert;
+                Logger.Trace("    Sort by {0}  invert:{1}", graphicInformation.SortOption, invert);
                 if (graphicInformation.SortOption != SortOption.none)       // 		public enum SortOption  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
                 {
                     if (log) Logger.Trace("    Sort by {0}", graphicInformation.SortOption);
@@ -280,12 +297,12 @@ namespace GrblPlotter
                 }
 
                 // Sort paths in group by distance		
-                if (Properties.Settings.Default.importGraphicSortDistance)
+                if (graphicInformation.OptionCodeSortDimension) //                Properties.Settings.Default.importGraphicSortDistance)
                 {
                     foreach (GroupObject groupObject in groupedGraphicLocal)
                     {
                         if (groupObject.GroupPath.Count > 1)
-                            SortByDistance(groupObject.GroupPath, new Point(0, 0), preventReversal);     // GroupAllGraphics
+                            SortByDistance(groupObject.GroupPath, new Point(0, 0), graphicInformation.OptionCodeSortDistanceNewStartOnClosedPath, graphicInformation.OptionCodeSortDistanceLargestLast, preventReversal);     // GroupAllGraphics
                     }
                 }
             }
@@ -435,7 +452,7 @@ namespace GrblPlotter
 
             int tileShowNr = 1;
 
-            //	bool applyOffset = Properties.Settings.Default.importGraphicClipOffsetX;
+            //	bool applyOffset = Properties.ListSettings.Default.importGraphicClipOffsetX;
 
             int clippedLines = 0;
             int clipCalls = 0;
@@ -604,7 +621,7 @@ namespace GrblPlotter
                         RemoveOffset(finalPathList, clipMin.X, clipMin.Y);
                     }
 
-                    SortByDistance(finalPathList, new Point(0, 0), false);      // ClipCode - sort objects of current tile
+                    SortByDistance(finalPathList, new Point(0, 0), graphicInformation.OptionCodeSortDistanceNewStartOnClosedPath, graphicInformation.OptionCodeSortDistanceLargestLast, false);      // ClipCode - sort objects of current tile
 
                     tiledGraphic.Add(new TileObject(tileID, tileCommand, tileOffset));          // new 2020-12-14
                     foreach (PathObject tile in finalPathList)      // add tile to full graphic
@@ -893,11 +910,9 @@ namespace GrblPlotter
 
         private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY, int start = 0)
         {
+            // 2026-03-01 seperate "move largest object to the end"
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
             List<int> iLargest = new List<int>();
-            double tlarge, largest = 0;
-
-            //    logEnable = true;
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
 
             PathObject item;
@@ -907,52 +922,85 @@ namespace GrblPlotter
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
                 item.End = new Point(item.End.X - offsetX, item.End.Y - offsetY);
                 item.Dimension.OffsetXY(-offsetX, -offsetY);
-                //   Logger.Trace("RemoveOffset {0}  {1}", item.FigureId, item.Info.PenColorId);
+                //      Logger.Trace("RemoveOffset i:{0}   id:{1}   geo:{2}", i, item.FigureId, item.Info.Id);
                 if (item is ItemPath PathData)
                 {
                     foreach (GCodeMotion entity in PathData.Path)
                     { entity.MoveTo = new Point(entity.MoveTo.X - offsetX, entity.MoveTo.Y - offsetY); }
-                    tlarge = Math.Round(PathData.Dimension.dimx + PathData.Dimension.dimy);
-                    if (tlarge > largest)
-                    {
-                        iLargest.Clear();
-                        largest = tlarge;
-                        iLargest.Add(i);
-                        //        Logger.Trace("RemoveOffset clear/add {0} ", i);
-                    }
-                    else if (tlarge == largest)
-                    {
-                        iLargest.Add(i);
-                        //        Logger.Trace("RemoveOffset add {0} ", i);
-                    }
                 }
             }
             actualDimension.OffsetXY(-offsetX, -offsetY);
-            //ListGraphicObjects(graphicToOffset);
-
-            if ((graphicToOffset.Count > 1) && (Properties.Settings.Default.importGraphicOffsetLargestLast || Properties.Settings.Default.importGraphicOffsetLargestRemove))   // move largest object to the end
+        }
+        private static void LargestLast(List<PathObject> graphicToOffset, bool removeLast)
+        {
+            // only move/remove objects with a single ID
+            if (graphicToOffset.Count < 3)
             {
-                if (!Properties.Settings.Default.importGraphicOffsetLargestRemove)
+                Logger.Trace("LargestLast nothing to do Count:{0}", graphicToOffset.Count);
+                return;
+            }
+            List<int> iLargest = new List<int>();
+            double tlarge, largest = 0;
+
+            int pathIdLast = graphicToOffset[0].Info.Id;
+            int pathIdNow = graphicToOffset[1].Info.Id;
+            int pathIdNext;
+            PathObject item;
+            for (int i = 2; i < graphicToOffset.Count; i++)
+            {
+                item = graphicToOffset[i];
+                //        Logger.Trace("LargestLast i:{0}   id:{1}   geo:{2}", i, item.FigureId, item.Info.Id);
+
+                pathIdNext = item.Info.Id;
+                if (item is ItemPath PathData)
                 {
-                    if (logEnable) Logger.Trace("...RemoveOffset move largest objects to the end ({0}), ids:{1}", iLargest.Count, String.Join("; ", iLargest));
+                    if ((pathIdNow != pathIdLast) && (pathIdNow != pathIdNext))
+                    {
+                        tlarge = Math.Round(PathData.Dimension.dimx + PathData.Dimension.dimy);
+                        if (tlarge > largest)
+                        {
+                            iLargest.Clear();
+                            largest = tlarge;
+                            iLargest.Add(i);
+                            //        Logger.Trace("LargestLast clear/add {0} ", i);
+                        }
+                        else if (tlarge == largest)
+                        {
+                            iLargest.Add(i);
+                            //        Logger.Trace("LargestLast add {0} ", i);
+                        }
+                    }
+                    pathIdLast = pathIdNow;
+                    pathIdNow = pathIdNext;
+                }
+            }
+            {
+                if (!removeLast)
+                {
+                    //  if (logEnable) 
+                    Logger.Trace("...LargestLast move largest objects to the end ({0}), ids:{1}  figures:{2}", iLargest.Count, String.Join("; ", iLargest), graphicToOffset.Count);
                     for (int li = 0; li < iLargest.Count; li++)
                     {
-                        if (graphicToOffset.Count > iLargest[li])
+                        if (iLargest[li] < graphicToOffset.Count)
+                        {
+                            //  graphicToOffset[iLargest[li]].FigureId
                             graphicToOffset.Add(graphicToOffset[iLargest[li]]); //  1st add largest at the end
+                            Logger.Trace("...LargestLast add largest objects to the end {0} figures:{1}  geo:{2}", li, graphicToOffset.Count, graphicToOffset[iLargest[li]].Info.AuxInfo);
+                        }
                     }
                 }
                 else
-                   if (logEnable) Logger.Trace("...RemoveOffset remove largest objects ({0}), ids:{1}", iLargest.Count, String.Join("; ", iLargest));
+                   if (logEnable) Logger.Trace("...LargestLast remove largest objects ({0}), ids:{1}", iLargest.Count, String.Join("; ", iLargest));
 
                 for (int li = iLargest.Count - 1; li >= 0; li--)
                 {
                     if (graphicToOffset.Count > iLargest[li])
                     {
                         graphicToOffset.RemoveAt(iLargest[li]);                 // 2nd remove largest from origin index
+                        Logger.Trace("...LargestLast remove largest objects {0}  {1}", li, graphicToOffset.Count);
                     }
                 }
             }
-            //ListGraphicObjects(graphicToOffset);
         }
         #endregion
 
@@ -1128,17 +1176,152 @@ namespace GrblPlotter
             }
         }
 
-        private static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions)
+        private static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions, bool addZ, double zMax)
         {
-            if (logEnable) Logger.Trace("...RepeatPaths({0})", repetitions);
+            // if (logEnable) 
+            Logger.Trace("...RepeatPaths({0})  addZ:{1}  zMax:{2:0.00}", repetitions, addZ, zMax);
             if (logDetailed) ListGraphicObjects(graphicToRepeat, true);
-
+            bool DeviceSpecificOptions = MyControl.UseToolList();
+            if (!DeviceSpecificOptions && (repetitions <= 1))
+            {
+                Logger.Warn("RepeatPaths repetitions:{0} - abort", repetitions);
+                return;
+            }
             List<PathObject> repeatedGraphic = new List<PathObject>();
 
+            /* get amount of repetitions by toolNr */
             foreach (PathObject item in graphicToRepeat)      // replace original list
             {
-                for (int i = 0; i < repetitions; i++)
-                { repeatedGraphic.Add(item.Copy()); }
+                if (DeviceSpecificOptions)
+                {
+                    int toolNr = 1;
+                    switch (graphicInformation.GroupOption)
+                    {
+                        case GroupOption.ByColor:
+                            toolNr = ToolList.GetToolNRByToolColor(item.Info.GroupAttributes[(int)GroupOption.ByColor], 0);
+                            break;
+                        case GroupOption.ByWidth:
+                            toolNr = ToolList.GetToolNRByToolWidth(item.Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                            break;
+                        case GroupOption.ByLayer:
+                            toolNr = ToolList.GetToolNRByToolLayer(item.Info.GroupAttributes[(int)GroupOption.ByLayer]);
+                            break;
+                        default: break;
+                    }
+                    repetitions = ToolList.GetToolRepetition(toolNr, MyControl.SelectedDevice);
+                    //       Logger.Trace("....RepeatPaths  toolNr:{0}  device:{1}  repetitions:{2}", toolNr, MyControl.SelectedDevice,repetitions);
+                }
+
+                if (repetitions <= 0)
+                    continue;
+                //     if (addZ)
+                {
+                    double[] deepth = new double[repetitions];
+                    deepth[0] = 0;
+                    if (repetitions == 2) { deepth[1] = zMax; }
+                    else if (repetitions > 2)
+                    {
+                        double stp = zMax / (repetitions - 1);
+                        for (int i = 1; i < repetitions; i++)
+                        { deepth[i] = i * stp; }
+                    }
+
+
+                    if (item is ItemPath PathData)
+                    {
+                        foreach (GCodeMotion entity in PathData.Path)
+                        {
+                            entity.Depth = deepth[0];
+                        }
+                        if (PathData.IsClosed)
+                        {
+                            int origLength = PathData.Path.Count;
+                            for (int i = 1; i < repetitions; i++)
+                            {
+                                for (int k = 0; k < origLength; k++)
+                                {
+                                    if (PathData.Path[k] is GCodeLine line)
+                                    {
+                                        PathData.AddMotion(new GCodeLine(line));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[i];
+                                    }
+                                    else if (PathData.Path[k] is GCodeArc arc)
+                                    {
+                                        PathData.AddMotion(new GCodeArc(arc));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[i];
+                                    }
+                                }
+                            }
+                            repeatedGraphic.Add(item.Copy());
+                        }
+                        else // not closed
+                        {
+                            int origLength = PathData.Path.Count;
+                            int reps = 1;
+                            while (reps < repetitions)
+                            {
+                                for (int k = origLength - 1; k >= 0; k--)
+                                {
+                                    if (PathData.Path[k] is GCodeLine line)
+                                    {
+                                        PathData.AddMotion(new GCodeLine(line));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[reps];
+                                    }
+                                    else if (PathData.Path[k] is GCodeArc arc)
+                                    {
+                                        PathData.AddMotion(new GCodeArc(arc));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[reps];
+                                    }
+                                }
+                                reps++;
+                                if (reps == repetitions)
+                                    break;
+                                for (int k = 0; k < origLength; k++)
+                                {
+                                    if (PathData.Path[k] is GCodeLine line)
+                                    {
+                                        PathData.AddMotion(new GCodeLine(line));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[reps];
+                                    }
+                                    else if (PathData.Path[k] is GCodeArc arc)
+                                    {
+                                        PathData.AddMotion(new GCodeArc(arc));
+                                        if (addZ)
+                                            PathData.Path[PathData.Path.Count - 1].Depth = deepth[reps];
+                                    }
+                                }
+                                reps++;
+                            }
+                            PathData.End = PathData.Path[PathData.Path.Count - 1].MoveTo;
+                            repeatedGraphic.Add(item.Copy());
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < repetitions; i++)
+                        {
+                            if (item is ItemDot PathDot)
+                            {
+                                if (addZ)
+                                {
+                                    PathDot.OptZ = deepth[i];
+                                    PathDot.UseZ = true;
+                                }
+                            }
+                            repeatedGraphic.Add(item.Copy());
+                        }
+                    }
+                }
+                /*     else // if (addZ)
+                     {
+                         for (int i = 0; i < repetitions; i++)
+                         { repeatedGraphic.Add(item.Copy()); }
+                     }*/
             }
 
             graphicToRepeat.Clear();
@@ -1483,9 +1666,10 @@ namespace GrblPlotter
             if (logEnable) Logger.Trace("...SortByDimension()  finish");
         }
 
-        private static void SortByDistance(List<PathObject> graphicToSort, Point actualPos, bool preventReversal)
+        private static void SortByDistance(List<PathObject> graphicToSort, Point actualPos, bool closedPathRotate, bool largestLast, bool preventReversal)
         {
-            if (logEnable) Logger.Trace("...SortByDistance() count:{0}  start X:{1:0.00} y:{2:0.00}", graphicToSort.Count, actualPos.X, actualPos.Y);
+            // if (logEnable) 
+            Logger.Trace("...SortByDistance() count:{0}  start X:{1:0.00} y:{2:0.00}  rotate:{3}  largestlast:{4}  preventReverse:{5}", graphicToSort.Count, actualPos.X, actualPos.Y, closedPathRotate, largestLast, preventReversal);
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -1494,11 +1678,11 @@ namespace GrblPlotter
             double distanceReverse;
             bool allowReverse = false;
             PathObject tmp;
-            bool closedPathRotate = false;
+            //    bool closedPathRotate = false;
             if (!graphicInformation.OptionTangentialAxis)   // angle calc is not ok
             {
                 allowReverse = true;
-                closedPathRotate = Properties.Settings.Default.importGraphicSortDistanceAllowRotate;
+                //        closedPathRotate = Properties.Settings.Default.importGraphicSortDistanceAllowRotate;
             }
             int maxElements = graphicToSort.Count;
 
@@ -1632,7 +1816,7 @@ namespace GrblPlotter
 
             sortedGraphic.Clear();
 
-            if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
+            if (largestLast)	//Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
             {
                 if (logEnable) Logger.Trace("...SortByDistance move largest objects to the end id:{0}", String.Join("; ", iLargest));
                 for (int i = 0; i < iLargest.Count; i++)
