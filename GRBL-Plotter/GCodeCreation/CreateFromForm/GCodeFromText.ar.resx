@@ -117,14 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>خط المسافة</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>الأداة:</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>مسافة الرسالة</value>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>إعدادات أخرى لـ G-Code في إعداد استيراد SVG</value>
+    <comment>8</comment>
   </data>
   <data name="cBPauseWord.Text" xml:space="preserve">
     <value>إضافة وقفة قبل كلمة</value>
@@ -138,11 +133,13 @@
   <data name="$this.Text" xml:space="preserve">
     <value>إنشاء G- رمز من النص</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>إعدادات G-Code الأخرى في إعداد SVG-Import</value>
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
+    <value>مساحة إضافية بين الحروف</value>
+    <comment>6</comment>
   </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>المسافة بين الخطوط</value>
+  <data name="LblLetterDistance.Text" xml:space="preserve">
+    <value>مسافة الرسالة</value>
+    <comment>5</comment>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>قريب</value>
@@ -153,26 +150,30 @@
   <data name="cBToolTable.ToolTip" xml:space="preserve">
     <value>داخل كلمة ربط النقطة الأخيرة من الرسالة مع النقطة الأولى من الرسالة التالية</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>ارتفاع الرسالة</value>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>المسافة بين الخطوط</value>
+    <comment>4</comment>
   </data>
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>إضافة وقفة قبل الرسالة</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-كود</value>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>خط المسافة</value>
+    <comment>3</comment>
   </data>
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>داخل كلمة ربط النقطة الأخيرة من الرسالة مع النقطة الأولى من الرسالة التالية</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
     <value>ارتفاع الحروف</value>
+    <comment>2</comment>
   </data>
   <data name="cBToolTable.Text" xml:space="preserve">
     <value>الحصول على القيم من جدول الأدوات</value>
   </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value>مساحة إضافية بين الحروف</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>ارتفاع الرسالة</value>
+    <comment>1</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>إنشاء النص</value>
@@ -290,5 +291,31 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>يُنشئ خطوطًا متذبذبة، وإعدادات في [الإعداد - استيراد الرسومات - استيراد المسار - تعديلات المسار]</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>إعدادات G-Code للجهاز:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>الأداة:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>رمز GCode</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>قطر الأداة للشاشة:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>إعدادات رمز GCode للجهاز:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>خطأ في ملاءمة المنحنى</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>مسار سلس (Hershey فقط)</value>
   </data>
 </root>

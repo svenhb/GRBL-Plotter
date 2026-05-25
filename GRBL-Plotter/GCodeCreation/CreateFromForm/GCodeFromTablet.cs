@@ -301,7 +301,7 @@ namespace GrblPlotter
                 return;
             figureStarted = true;
 
-            /* for 2D view update, set XML tag
+            /* for 2D view UpdateToolTip, set XML tag
             string fColor = string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}",
                      figureColor.A, figureColor.R, figureColor.G, figureColor.B);
             if (!CbTransparency.Checked)
@@ -536,7 +536,7 @@ namespace GrblPlotter
             }
         }
 
-        /* reload file list and update tool buttons */
+        /* reload file list and UpdateToolTip tool buttons */
         private void UpdateToolTableList()
         {
             FillToolTableFileList(Datapath.ColorPalette);           // list tool table files

@@ -117,11 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Výška písmen</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Výška písmen</value>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Další nastavení G-kódu v nastavení SVG-Importu</value>
+    <comment>8</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Vytvořte G-Code</value>
@@ -141,23 +139,24 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>Odhadne délku slova a za zadanou délku přidá konec řádku</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Vzdálenost čáry</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Vzdálenost mezi řádky</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Vzdálenost písmen</value>
-  </data>
-  <data name="label10.ToolTip" xml:space="preserve">
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
     <value>Dodatečná mezera mezi písmeny</value>
+    <comment>6</comment>
+  </data>
+  <data name="LblLetterDistance.Text" xml:space="preserve">
+    <value>Vzdálenost písmen</value>
+    <comment>5</comment>
+  </data>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>Vzdálenost mezi řádky</value>
+    <comment>4</comment>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Zavřít</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-kód</value>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>Vzdálenost čáry</value>
+    <comment>3</comment>
   </data>
   <data name="cBToolTable.Text" xml:space="preserve">
     <value>Získejte hodnoty z tabulky nástrojů</value>
@@ -171,8 +170,9 @@
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>V rámci slova spojte poslední bod písmene s prvním bodem dalšího písmene</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Nástroj:</value>
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
+    <value>Výška písmen</value>
+    <comment>2</comment>
   </data>
   <data name="cBPauseLine.Text" xml:space="preserve">
     <value>Přidat pauzu před řádek</value>
@@ -183,8 +183,9 @@
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Přidat pauzu před písmeno</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Další nastavení G-kódu v Setup SVG-Import</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Výška písmen</value>
+    <comment>1</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Tvorba textu</value>
@@ -290,5 +291,31 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>Generuje vratké čáry, nastavení v [Nastavení - Import grafiky - Import cesty - Úpravy cesty]</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>Nastavení G-kódu pro zařízení:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Nástroj:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>G-kód</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Průměr nástroje pro zobrazení:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>Nastavení G-kódu pro zařízení:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Chyba aproximace křivky</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Hladká cesta (pouze Hershey)</value>
   </data>
 </root>

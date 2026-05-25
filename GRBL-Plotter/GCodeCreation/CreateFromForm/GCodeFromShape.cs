@@ -128,7 +128,7 @@ namespace GrblPlotter
             }
             else
             {
-                penWidth = MyControl.GetActualWidth();
+                penWidth = MyControl.GetActualToolDiameter();
             }
 
             Logger.Debug(culture, "Create GCode {0}", Gcode.GetSettings());

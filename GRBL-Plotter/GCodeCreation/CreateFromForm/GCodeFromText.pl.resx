@@ -117,26 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Wysokośc znaku</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Wysokość znaków</value>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Inne ustawienia kodu G w Ustawieniach importu SVG</value>
+    <comment>8</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Utwórz G-Code</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Odstęp linii</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Odstęp między liniami</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Odstęp między znakami</value>
-  </data>
-  <data name="label10.ToolTip" xml:space="preserve">
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
     <value>Dodatkowy odstęp między znakami</value>
+    <comment>6</comment>
+  </data>
+  <data name="LblLetterDistance.Text" xml:space="preserve">
+    <value>Odstęp między znakami</value>
+    <comment>5</comment>
+  </data>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>Odstęp między liniami</value>
+    <comment>4</comment>
   </data>
   <data name="RbAlign3.Text" xml:space="preserve">
     <value>po prawej</value>
@@ -174,8 +172,9 @@
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>Połącz ostatni punkt litery z pierwszym punktem następnej litery w obrębie słowa</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Narz.:</value>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>Odstęp linii</value>
+    <comment>3</comment>
   </data>
   <data name="cBPauseLine.Text" xml:space="preserve">
     <value>Dodaj pauzę przed linią</value>
@@ -186,11 +185,13 @@
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Dodaj pauzę przed znakiem</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Inne ustawienia G-Code w ustawieniach importu SVG</value>
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
+    <value>Wysokość znaków</value>
+    <comment>2</comment>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Wysokośc znaku</value>
+    <comment>1</comment>
   </data>
   <data name="CbWordWrap.Text" xml:space="preserve">
     <value>Zawijanie wyrazów</value>
@@ -290,5 +291,31 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>Generuje chwiejne linie, ustawienia w [Konfiguracja - Import grafiki - Import ścieżki - Modyfikacje ścieżki]</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>Ustawienia kodu G dla urządzenia:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Narzędzie:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>GCode</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Średnica narzędzia do wyświetlania:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>Ustawienia GCode dla urządzenia:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Błąd dopasowania krzywej</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Wygładzanie ścieżki (tylko Hershey)</value>
   </data>
 </root>

@@ -19,9 +19,9 @@
 /*
  * 2021-04-17 new
  * 2021-07-02 code clean up / code quality
- * 2022-01-02 update
+ * 2022-01-02 UpdateToolTip
  * 2024-01-17 laser engraving useLaser
- * 2024-12-11 update
+ * 2024-12-11 UpdateToolTip
  * 2025-04-02 change PixelArt attribute from 'Width' to 'Source' = axis-name or 'S' value
 */
 

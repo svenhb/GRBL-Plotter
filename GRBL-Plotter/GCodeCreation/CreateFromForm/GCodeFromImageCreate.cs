@@ -195,7 +195,7 @@ namespace GrblPlotter
                     colorStart = tmpX;
                     colorMap[myToolNumber][tmpY].Add(colorStart);   // start new line
                 }
-                colorEnd = tmpX;    // still same line and same tool, just update end-pos
+                colorEnd = tmpX;    // still same line and same tool, just UpdateToolTip end-pos
             }
             lastTool = myToolNumber;
             lastLine = tmpY;

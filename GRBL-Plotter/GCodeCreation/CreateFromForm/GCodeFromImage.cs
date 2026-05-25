@@ -477,7 +477,7 @@ namespace GrblPlotter
         }
 
         /// <summary>
-        /// update result after deselecting toolProp
+        /// UpdateToolTip result after deselecting toolProp
         /// </summary>
         private void CheckedListBoxTools_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -910,7 +910,7 @@ namespace GrblPlotter
         /// <summary>
         /// Count usage of tool-colors
         /// </summary>
-        private void CountResultColors()    	// update pixelCounts for specific tool-colors in ToolTable
+        private void CountResultColors()    	// UpdateToolTip pixelCounts for specific tool-colors in ToolTable
         {
             Color originalColor;
             Colors.Clear();                  // Use = false; PixelCount = 0; Diff = int.MaxValue;
@@ -966,7 +966,7 @@ namespace GrblPlotter
             if (logEnable) Logger.Info(" CountResultColors - different colors: {0}", lookUpToolNr.Count);
         }
 
-        private void CountResultColorsGray()    // update pixelCounts for specific gray values in GrayValueMap
+        private void CountResultColorsGray()    // UpdateToolTip pixelCounts for specific gray values in GrayValueMap
         {
             BitmapData dataAdjusted = null;
 
@@ -1301,7 +1301,7 @@ namespace GrblPlotter
             { pictureBox1.Image = adjustedImage; lblImageSource.Text = "modified"; }
         }
 
-        /* update textbox */
+        /* UpdateToolTip textbox */
 
         /*****************************************************************
         ********************* Generate GCode *****************************

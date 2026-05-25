@@ -117,26 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Zeichenhöhe</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Höhe der Buchstaben</value>
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
+    <value>Zusätzlicher Abstand zwischen Buchstaben</value>
+    <comment>6</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Erzeuge G-Code</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Zeilenabstand</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Abstand zwischen Zeilen</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
+  <data name="LblLetterDistance.Text" xml:space="preserve">
     <value>Zeichenabstand</value>
+    <comment>5</comment>
   </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value>Zusätzlicher Abstand zwischen Buchstaben</value>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>Abstand zwischen Zeilen</value>
+    <comment>4</comment>
+  </data>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>Zeilenabstand</value>
+    <comment>3</comment>
+  </data>
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
+    <value>Höhe der Buchstaben</value>
+    <comment>2</comment>
   </data>
   <data name="cBToolTable.Text" xml:space="preserve">
     <value>Übernehme Werte aus Werkzeugliste</value>
@@ -159,9 +161,9 @@
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Pause nach Buchstaben</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Weitere G-Code Einstellungen
-in Setup SVG-Import </value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Zeichenhöhe</value>
+    <comment>1</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge G-Code aus Text</value>
@@ -285,5 +287,35 @@ in Setup SVG-Import </value>
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>Erzeugt wackelige Linien, Einstellungen in [Setup – Grafikimport – Pfadimport – Pfadänderungen]</value>
+  </data>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Weitere G-Code-Einstellungen unter „SVG-Import einrichten“ </value>
+    <comment>8</comment>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>G-Code-Einstellungen für das Gerät:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Werkzeug:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>G-Code</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Werkzeugdurchmesser für die Anzeige:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>G-Code-Einstellungen für das Gerät:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Kurvenanpassungsfehler</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Pfad glätten (nur Hershey)</value>
   </data>
 </root>

@@ -117,26 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Altura de la letra</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Altura de las letras</value>
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
+    <value>Espacio adicional entre letras</value>
+    <comment>6</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Crear G-Code</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>interlineado</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Distancia entre lineas</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
+  <data name="LblLetterDistance.Text" xml:space="preserve">
     <value>Distancia de la carta</value>
+    <comment>5</comment>
   </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value>Espacio adicional entre letras</value>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>Distancia entre lineas</value>
+    <comment>4</comment>
+  </data>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>interlineado</value>
+    <comment>3</comment>
+  </data>
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
+    <value>Altura de las letras</value>
+    <comment>2</comment>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cerrar</value>
@@ -162,8 +164,9 @@
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Agregar pausa antes de la carta</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Otras configuraciones de código G en Configuración SVG-Importar</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Altura de la letra</value>
+    <comment>1</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Crear G-Code a partir del texto</value>
@@ -284,5 +287,35 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>Genera líneas tambaleantes, configuraciones en [Configuración - Importación de gráficos - Importación de ruta - Modificaciones de ruta]</value>
+  </data>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Otras opciones de configuración de G-code en Configuración de importación de SVG</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>Configuración de G-code para el dispositivo:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Herramienta:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>GCode</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Diámetro de la herramienta para la pantalla:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>Configuración de GCode para el dispositivo:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Error de ajuste de curvas</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Trayectoria suavizada (solo Hershey)</value>
   </data>
 </root>

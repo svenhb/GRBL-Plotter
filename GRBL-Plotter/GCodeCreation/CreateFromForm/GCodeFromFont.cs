@@ -67,6 +67,7 @@ namespace GrblPlotter
         public static bool GCPauseWord { get; set; }
         public static bool GCPauseChar { get; set; }
         public static bool GCConnectLetter { get; set; }
+        public static bool GCSmoothPath { get; set; }
         public static bool GenerateGCodeOnly { get; set; }
         public static StringBuilder GCode { get; set; }
 
@@ -132,6 +133,7 @@ namespace GrblPlotter
             GCFontName = "\\lff\\standard.lff"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
             GCHeight = 4; GCWidth = 0; GCAngleRad = 0; GCSpacing = 1; GCOffX = 0; GCOffY = 0;
             GCPauseLine = false; GCPauseWord = false; GCPauseChar = false;
+            GCSmoothPath = false;
             useLFF = false; GCLineDistance = 1.5; GCFontDistance = 0;
             useSVGFile = true; GenerateGCodeOnly = false; GCode = new StringBuilder();
         }
@@ -676,7 +678,7 @@ namespace GrblPlotter
         }
 
         private static void GcodePenUp(string cmt)
-        { if (!GenerateGCodeOnly) Graphic.StopPath(cmt); }
+        { if (!GenerateGCodeOnly) Graphic.StopPath(cmt, GCSmoothPath); }
         private static void GcodePause()//string cmt)
         { if (!GenerateGCodeOnly) Graphic.OptionInsertPause(); }
 

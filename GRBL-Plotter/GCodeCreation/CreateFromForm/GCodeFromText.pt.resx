@@ -117,11 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Distância da linha</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Distância da letra</value>
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
+    <value>Espaço adicional entre letras</value>
+    <comment>6</comment>
   </data>
   <data name="cBPauseWord.Text" xml:space="preserve">
     <value>Adicionar Pausa antes da palavra</value>
@@ -135,11 +133,13 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Criar código G a partir do texto</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Outras configurações do código G em Setup SVG-Import</value>
+  <data name="LblLetterDistance.Text" xml:space="preserve">
+    <value>Distância da letra</value>
+    <comment>5</comment>
   </data>
-  <data name="label11.ToolTip" xml:space="preserve">
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
     <value>Distância entre linhas</value>
+    <comment>4</comment>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Fechar</value>
@@ -150,8 +150,9 @@
   <data name="cBToolTable.ToolTip" xml:space="preserve">
     <value>Dentro de uma palavra, conecte o último ponto da letra ao primeiro ponto da próxima letra</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Altura da letra</value>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>Distância da linha</value>
+    <comment>3</comment>
   </data>
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Adicionar Pausa antes da letra</value>
@@ -159,14 +160,16 @@
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>Dentro de uma palavra, conecte o último ponto da letra ao primeiro ponto da próxima letra</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
     <value>Altura das letras</value>
+    <comment>2</comment>
   </data>
   <data name="cBToolTable.Text" xml:space="preserve">
     <value>Obter valores da tabela de ferramentas</value>
   </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value>Espaço adicional entre letras</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Altura da letra</value>
+    <comment>1</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Criação de texto</value>
@@ -284,5 +287,35 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>Gera linhas instáveis, configurações em [Configuração - Importação de gráficos - Importação de caminho - Modificações de caminho]</value>
+  </data>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Outras configurações de G-Code em Configurar Importação de SVG</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>Configurações de G-Code para o dispositivo:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Ferramenta: </value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>GCode</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Diâmetro da ferramenta para exibição:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>Configurações do GCode para o dispositivo:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Erro de Ajuste de Curva</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Caminho Suave (Apenas Hershey)</value>
   </data>
 </root>

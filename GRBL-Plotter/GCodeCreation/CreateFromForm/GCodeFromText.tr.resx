@@ -117,26 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Harf yüksekliği</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Harflerin yüksekliği</value>
+  <data name="LblOtherGCode.Text" xml:space="preserve">
+    <value>Kurulum SVG İçe Aktarma bölümündeki diğer G-Code ayarları</value>
+    <comment>8</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>G Kodu Oluştur</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Hat mesafesi</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Çizgiler arasındaki mesafe</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Harf mesafesi</value>
-  </data>
-  <data name="label10.ToolTip" xml:space="preserve">
+  <data name="LblLetterDistance.ToolTip" xml:space="preserve">
     <value>Harfler arasında ek boşluk</value>
+    <comment>6</comment>
+  </data>
+  <data name="LblLetterDistance.Text" xml:space="preserve">
+    <value>Harf mesafesi</value>
+    <comment>5</comment>
+  </data>
+  <data name="LblLineDistance.ToolTip" xml:space="preserve">
+    <value>Çizgiler arasındaki mesafe</value>
+    <comment>4</comment>
   </data>
   <data name="RbAlign3.Text" xml:space="preserve">
     <value>Sağ</value>
@@ -174,8 +172,9 @@
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>Bir kelime içinde, harfin son noktasını sonraki harfin ilk noktasıyla birleştirin</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Alet:</value>
+  <data name="LblLineDistance.Text" xml:space="preserve">
+    <value>Hat mesafesi</value>
+    <comment>3</comment>
   </data>
   <data name="cBPauseLine.Text" xml:space="preserve">
     <value>Satırdan Önce Duraklat Ekle</value>
@@ -186,11 +185,13 @@
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Harften önce duraklama ekle</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>SVG-Import Kurulumundaki diğer G Kodu ayarları</value>
+  <data name="LblLetterHeight.ToolTip" xml:space="preserve">
+    <value>Harflerin yüksekliği</value>
+    <comment>2</comment>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G Kodu</value>
+  <data name="LblLetterHeight.Text" xml:space="preserve">
+    <value>Harf yüksekliği</value>
+    <comment>1</comment>
   </data>
   <data name="CbWordWrap.Text" xml:space="preserve">
     <value>kelime sarma</value>
@@ -290,5 +291,31 @@
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>[Ayar - Grafikleri içe aktarma - Yolu içe aktarma - Yol değişiklikleri] bölümünde titrek çizgiler ve ayarlar oluşturur</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>Cihaz için G-Code ayarları:</value>
+    <comment>8</comment>
+  </data>
+  <data name="LblTool.Text" xml:space="preserve">
+    <value>Araç:</value>
+    <comment>n</comment>
+  </data>
+  <data name="GbCodeSettings.Text" xml:space="preserve">
+    <value>GCode</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblToolDiameter1.Text" xml:space="preserve">
+    <value>Görüntülenecek araç çapı:</value>
+    <comment>n</comment>
+  </data>
+  <data name="LblDevice1.Text" xml:space="preserve">
+    <value>Cihaz için GCode ayarları:</value>
+    <comment>n</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Eğri Uydurma Hatası</value>
+  </data>
+  <data name="CbSmoothPath.Text" xml:space="preserve">
+    <value>Yumuşak Yol (Sadece Hershey)</value>
   </data>
 </root>
