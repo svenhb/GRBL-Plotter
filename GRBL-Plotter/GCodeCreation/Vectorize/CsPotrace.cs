@@ -1287,7 +1287,7 @@ namespace CsPotrace
                         goto constraint_viol;
                     }
 
-                    /* else, update constraint */
+                    /* else, UpdateToolTip constraint */
                     if( abs( cur.X ) <= 1 && abs( cur.Y ) <= 1 )
                     {
                         /* no constraint */
