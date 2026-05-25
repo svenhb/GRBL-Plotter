@@ -406,7 +406,7 @@ namespace GrblPlotter
                 Reverse = false
             };
             tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = -1;
-            tmp.PenWidth = MyControl.GetActualWidth();
+            tmp.PenWidth = MyControl.GetActualToolDiameter();
             tmp.PathLength = tmp.PathArea = -1;
             tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = tmp.PathId = "";
             tmp.FigureNr = figNr;

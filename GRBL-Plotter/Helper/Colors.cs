@@ -75,7 +75,7 @@ namespace GrblPlotter.Helper
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
             double f = hue / 60 - Math.Floor(hue / 60);
 
-            value = value * 255;
+            value *= 255;
             int v = Convert.ToInt32(value);
             int p = Convert.ToInt32(value * (1 - saturation));
             int q = Convert.ToInt32(value * (1 - f * saturation));
@@ -98,9 +98,11 @@ namespace GrblPlotter.Helper
         public static Color TryConvertColor(string txt)
         {
             Color ctmp = Color.Black;
-            long clr = 0xff000000;
             if (txt.Length > 1)
             {
+				if (txt.Contains("none"))
+					return Color.Transparent;
+				
                 ctmp = Color.FromName(txt.Trim());
                 if (ctmp.ToArgb() == 0)
                 {
@@ -114,13 +116,15 @@ namespace GrblPlotter.Helper
 
         internal static PaletteEntry ExtractPaletteEntry(string txt, bool isToolTable = false)
         {
-            PaletteEntry tmp = new PaletteEntry();
-            tmp.Col = Color.FromArgb(0, 0, 0);
-            tmp.Name = "black";
-            tmp.ToolNr = 1;
-            tmp.PixelCount = 0;
-            tmp.Use = true;
-            tmp.Diff = 0;
+            PaletteEntry tmp = new PaletteEntry
+            {
+                Col = Color.FromArgb(0, 0, 0),
+                Name = "black",
+                ToolNr = 1,
+                PixelCount = 0,
+                Use = true,
+                Diff = 0
+            };
 
             string hex;
             string[] splt, splt2;

@@ -121,13 +121,13 @@ namespace GrblPlotter
 
     internal static class ToolList
     {
+        private static readonly bool log = true;
         private const int toolTableMax = 260;            // max amount of ToolProperty
         internal static List<ToolProperty> toolListArray = new List<ToolProperty>();   // load color palette into this array
         private static readonly int toolTableIndex = 0;            // last index
         private static readonly bool useException = false;
         public const string DefaultFileName = "_current_.csv";
         public const string DefaultFileNameXML = "_currentToolList.xml";
-        private static readonly bool log = false;
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
@@ -170,7 +170,19 @@ namespace GrblPlotter
             {
                 if (index == tool.ToolNr)
                 {
-                    return tool.GroupWidth;
+                    if (!MyControl.ApplyToolList)
+                        return tool.GroupWidth;
+                    else
+                    { 
+                        if (MyControl.SelectedDevice==DeviceSelection.Laser)
+                            return tool.Laser.Diameter;
+                        else if (MyControl.SelectedDevice == DeviceSelection.Plotter)
+                            return tool.Plotter.Diameter;
+                        else if (MyControl.SelectedDevice == DeviceSelection.Router)
+                            return tool.Router.Diameter;
+                        else
+                            return tool.GroupWidth;
+                    }
                 }
             }
             return 1.23;
@@ -196,12 +208,13 @@ namespace GrblPlotter
         }
         public static ToolProperty GetToolProperties(int toolNr)
         {
+            int index = toolNr - 1;
             if ((toolListArray == null) || (toolListArray.Count == 0))
             {
                 Logger.Warn("GetToolProperties toolTableArray is empty - do Init toolNr:{0}  count {1}", toolNr, toolListArray.Count);
                 Init(" (GetToolProperties)");
             }
-            if ((toolNr <= 0) || toolNr > toolListArray.Count)
+            if ((index < 0) || index >= toolListArray.Count)
             {
                 Logger.Warn("GetToolProperties toolTableArray toolNr nok toolNr:{0}  count {1}", toolNr, toolListArray.Count);
                 return toolListArray[0];
@@ -495,11 +508,6 @@ namespace GrblPlotter
                             case "ToolList":
                                 if (log) Logger.Trace("XMLread ToolList: {0}   {1}", reader["Device"], reader["Amount"]);
                                 string tmpDevice = XML.GetString(reader, "Device", "");
-                                /*	if (tmpDevice=="Laser")
-                                        Control.
-                                    else if (tmpDevice=="Plotter")
-
-                                    else if (tmpDevice=="Router")*/
                                 break;
                             case "ToolChange":
                                 if (log) Logger.Trace("XMLread ToolChange: {0}   {1}   {2}   {3}  ", reader["Off-X"], reader["Off-Y"], reader["Off-Z"], reader["Off-A"]);
@@ -587,12 +595,19 @@ namespace GrblPlotter
                 }
                 catch (Exception err)
                 { Logger.Error(err, "ReadXML nok"); }
+
+                if (toolListArray.Count == 0)
+                {
+                    Logger.Trace("ReadXML nok - no tool added");
+                    toolListArray.Add(new ToolProperty());
+                }
             }
             else
             {
                 Logger.Error("ReadXML file doesn't exist: {0} - create one default tool", FileName);
                 toolListArray.Add(new ToolProperty());
             }
+            Logger.Trace(" ReadXML eng");
             return toolCnt;
         }
 
@@ -704,7 +719,7 @@ namespace GrblPlotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        private static bool log = false;
+        private static readonly bool log = false;
         public DeviceToolProperties()
         {
             Reset();
@@ -775,6 +790,7 @@ namespace GrblPlotter
             public float Distance { get; set; }
             public bool DistanceOffsetEnable { get; set; }
             public float DistanceOffset { get; set; }
+            public float Gradient { get; set; }
             public float Angle { get; set; }
             public bool AngleIncrementEnable { get; set; }
             public float AngleIncrement { get; set; }
@@ -802,7 +818,7 @@ namespace GrblPlotter
             }
             public OptionPropHatchFill()
             {
-                Enable = false; Cross = false; Distance = 1; DistanceOffsetEnable = false; DistanceOffset = 0.1f;
+                Enable = false; Cross = false; Distance = 1; Gradient = 0; DistanceOffsetEnable = false; DistanceOffset = 0.1f;
                 Angle = 0; AngleIncrementEnable = false; AngleIncrement = 5; InsetEnable = true; InsetDistance = 0.1f;
                 InsetShrink = true; DeletePath = false; //AddNoise = false;
             }
@@ -813,13 +829,14 @@ namespace GrblPlotter
             }
             public string ListSettings()
             {
-                return string.Format("Fill Enable:{0}  Distance:{1}  Angle:{2}  InsetDistance:{3}", Enable, Distance, Angle, InsetDistance);
+                return string.Format("Fill Enable:{0}  Distance:{1}  Gradient:{2}  Angle:{3}  InsetDistance:{4}", Enable, Distance, Gradient, Angle, InsetDistance);
             }
             public static void ControlDefaultsSetList(List<ControlDefaults> list)
             {
                 list.Add(new ControlDefaults(Localization.GetString("optionFillEnable"), "Enable"));              //  min, max, inc
                 list.Add(new ControlDefaults(Localization.GetString("optionFillCross"), "Cross"));              //  min, max, inc
                 list.Add(new ControlDefaults(Localization.GetString("optionFillDistance"), "Distance", new decimal[] { 0.01m, 10m, 0.1m, 2m }));
+                list.Add(new ControlDefaults(Localization.GetString("optionFillGradient"), "Gradient", new decimal[] { 0m, 10m, 0.5m, 1m }));
                 list.Add(new ControlDefaults(Localization.GetString("optionFillAngle"), "Angle", new decimal[] { 0m, 180m, 15m, 1m }));
                 list.Add(new ControlDefaults(Localization.GetString("optionFillAngleIncrementEnable"), "AngleIncrementEnable"));              //  min, max, inc
                 list.Add(new ControlDefaults(Localization.GetString("optionFillAngleIncrement"), "AngleIncrement", new decimal[] { 0m, 90m, 5m, 1m }));
@@ -831,6 +848,7 @@ namespace GrblPlotter
                 w.WriteStartElement("HatchFill");
                 w.WriteAttributeString("Enable", Enable.ToString());
                 w.WriteAttributeString("Distance", Distance.ToString().Replace(',', '.'));
+                w.WriteAttributeString("Gradient", Gradient.ToString().Replace(',', '.'));
                 w.WriteAttributeString("Angle", Angle.ToString().Replace(',', '.'));
                 w.WriteAttributeString("IncAngleEnable", AngleIncrementEnable.ToString());
                 w.WriteAttributeString("IncAngle", AngleIncrement.ToString().Replace(',', '.'));
@@ -844,6 +862,7 @@ namespace GrblPlotter
                 if (log) Logger.Trace("Fill ReadXML Enable:'{0}'", reader["Enable"]);
                 Enable = XML.GetBool(reader, "Enable", false);
                 Distance = XML.GetFloat(reader, "Distance", 1);
+                Gradient = XML.GetFloat(reader, "Gradient", 0);
                 Angle = XML.GetFloat(reader, "Angle", 0);
                 AngleIncrementEnable = XML.GetBool(reader, "IncAngleEnable", false);
                 AngleIncrement = XML.GetFloat(reader, "IncAngle", 5);
