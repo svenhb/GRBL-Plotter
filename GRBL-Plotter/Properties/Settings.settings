@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -347,6 +347,9 @@
     <Setting Name="createTextHersheySelect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="createTextHersheySmoothCurveFittingError" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
     <Setting Name="createTextSystemFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 12pt</Value>
     </Setting>
@@ -473,6 +476,9 @@
     <Setting Name="DeviceLaserHatchFillAngleIncrementEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DeviceLaserHatchFillCross" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="DeviceLaserHatchFillDeletePath" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -482,14 +488,29 @@
     <Setting Name="DeviceLaserHatchFillEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DeviceLaserHatchFillGradient" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="DeviceLaserHatchFillInsetDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="DeviceLaserM3" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DeviceLaserOffsetOrigin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DeviceLaserOffsetOriginX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceLaserOffsetOriginY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="DeviceLaserPasses" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DeviceLaserPathOptimation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DeviceLaserPower" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
@@ -504,7 +525,7 @@
       <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="DeviceLaserSplitterDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">496</Value>
+      <Value Profile="(Default)">385</Value>
     </Setting>
     <Setting Name="DeviceLaserToolDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -521,6 +542,15 @@
     <Setting Name="DeviceLaserZSave" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="DevicePlotterAddZGradientEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterAddZGradientRampLength" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="DevicePlotterAddZGradientStepWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
     <Setting Name="DevicePlotterControlIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -536,6 +566,9 @@
     <Setting Name="DevicePlotterHatchFillAngleIncrementEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DevicePlotterHatchFillCross" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="DevicePlotterHatchFillDeletePath" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -544,6 +577,24 @@
     </Setting>
     <Setting Name="DevicePlotterHatchFillEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillGradient" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterHatchFillInsetDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="DevicePlotterOffsetOrigin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DevicePlotterOffsetOriginX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterOffsetOriginY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevicePlotterPathOptimation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DevicePlotterPenChangeRBAutomatic" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -577,6 +628,18 @@
     </Setting>
     <Setting Name="DevicePlotterZUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="DeviceRouterOffsetOrigin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DeviceRouterOffsetOriginX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceRouterOffsetOriginY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DeviceRouterPathOptimation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DeviceRouterSpeedXY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">200</Value>
@@ -2361,7 +2424,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">1366, 768</Value>
+      <Value Profile="(Default)">900, 680</Value>
     </Setting>
     <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">296</Value>
@@ -2822,6 +2885,9 @@
     <Setting Name="UserControlMoveToGraphicFeed" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10000</Value>
     </Setting>
+    <Setting Name="UserControlMoveToGraphicFramingCircle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="UserControlMoveToGraphicIsLarge" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -2881,15 +2947,6 @@
     </Setting>
     <Setting Name="wirecutterToolDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="DevicePlotterHatchFillInsetDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
-    <Setting Name="DeviceLaserHatchFillCross" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="DevicePlotterHatchFillCross" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

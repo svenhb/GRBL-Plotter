@@ -477,6 +477,16 @@ namespace GrblPlotter.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap framing_c {
+            get {
+                object obj = ResourceManager.GetObject("framing_c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
         /// </summary>
         public static System.Drawing.Icon Icon {

@@ -1910,6 +1910,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DeviceLaserHatchFillCross {
+            get {
+                return ((bool)(this["DeviceLaserHatchFillCross"]));
+            }
+            set {
+                this["DeviceLaserHatchFillCross"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DeviceLaserHatchFillDeletePath {
             get {
                 return ((bool)(this["DeviceLaserHatchFillDeletePath"]));
@@ -1940,6 +1952,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["DeviceLaserHatchFillEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceLaserHatchFillGradient {
+            get {
+                return ((decimal)(this["DeviceLaserHatchFillGradient"]));
+            }
+            set {
+                this["DeviceLaserHatchFillGradient"] = value;
             }
         }
         
@@ -2029,7 +2053,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("496")]
+        [global::System.Configuration.DefaultSettingValueAttribute("385")]
         public int DeviceLaserSplitterDistance {
             get {
                 return ((int)(this["DeviceLaserSplitterDistance"]));
@@ -2101,6 +2125,42 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DevicePlotterAddZGradientEnable {
+            get {
+                return ((bool)(this["DevicePlotterAddZGradientEnable"]));
+            }
+            set {
+                this["DevicePlotterAddZGradientEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal DevicePlotterAddZGradientRampLength {
+            get {
+                return ((decimal)(this["DevicePlotterAddZGradientRampLength"]));
+            }
+            set {
+                this["DevicePlotterAddZGradientRampLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal DevicePlotterAddZGradientStepWidth {
+            get {
+                return ((decimal)(this["DevicePlotterAddZGradientStepWidth"]));
+            }
+            set {
+                this["DevicePlotterAddZGradientStepWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int DevicePlotterControlIndex {
             get {
@@ -2162,6 +2222,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DevicePlotterHatchFillCross {
+            get {
+                return ((bool)(this["DevicePlotterHatchFillCross"]));
+            }
+            set {
+                this["DevicePlotterHatchFillCross"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DevicePlotterHatchFillDeletePath {
             get {
                 return ((bool)(this["DevicePlotterHatchFillDeletePath"]));
@@ -2192,6 +2264,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["DevicePlotterHatchFillEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DevicePlotterHatchFillGradient {
+            get {
+                return ((decimal)(this["DevicePlotterHatchFillGradient"]));
+            }
+            set {
+                this["DevicePlotterHatchFillGradient"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal DevicePlotterHatchFillInsetDistance {
+            get {
+                return ((decimal)(this["DevicePlotterHatchFillInsetDistance"]));
+            }
+            set {
+                this["DevicePlotterHatchFillInsetDistance"] = value;
             }
         }
         
@@ -9461,7 +9557,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1366, 768")]
+        [global::System.Configuration.DefaultSettingValueAttribute("900, 680")]
         public global::System.Drawing.Size mainFormSize {
             get {
                 return ((global::System.Drawing.Size)(this["mainFormSize"]));
@@ -11309,6 +11405,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UserControlMoveToGraphicFramingCircle {
+            get {
+                return ((bool)(this["UserControlMoveToGraphicFramingCircle"]));
+            }
+            set {
+                this["UserControlMoveToGraphicFramingCircle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UserControlMoveToGraphicIsLarge {
             get {
@@ -11549,37 +11657,157 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
-        public decimal DevicePlotterHatchFillInsetDistance {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceLaserOffsetOrigin {
             get {
-                return ((decimal)(this["DevicePlotterHatchFillInsetDistance"]));
+                return ((bool)(this["DeviceLaserOffsetOrigin"]));
             }
             set {
-                this["DevicePlotterHatchFillInsetDistance"] = value;
+                this["DeviceLaserOffsetOrigin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DeviceLaserHatchFillCross {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DevicePlotterOffsetOrigin {
             get {
-                return ((bool)(this["DeviceLaserHatchFillCross"]));
+                return ((bool)(this["DevicePlotterOffsetOrigin"]));
             }
             set {
-                this["DeviceLaserHatchFillCross"] = value;
+                this["DevicePlotterOffsetOrigin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DevicePlotterHatchFillCross {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceRouterOffsetOrigin {
             get {
-                return ((bool)(this["DevicePlotterHatchFillCross"]));
+                return ((bool)(this["DeviceRouterOffsetOrigin"]));
             }
             set {
-                this["DevicePlotterHatchFillCross"] = value;
+                this["DeviceRouterOffsetOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceLaserOffsetOriginX {
+            get {
+                return ((decimal)(this["DeviceLaserOffsetOriginX"]));
+            }
+            set {
+                this["DeviceLaserOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DevicePlotterOffsetOriginX {
+            get {
+                return ((decimal)(this["DevicePlotterOffsetOriginX"]));
+            }
+            set {
+                this["DevicePlotterOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceRouterOffsetOriginX {
+            get {
+                return ((decimal)(this["DeviceRouterOffsetOriginX"]));
+            }
+            set {
+                this["DeviceRouterOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceLaserOffsetOriginY {
+            get {
+                return ((decimal)(this["DeviceLaserOffsetOriginY"]));
+            }
+            set {
+                this["DeviceLaserOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DevicePlotterOffsetOriginY {
+            get {
+                return ((decimal)(this["DevicePlotterOffsetOriginY"]));
+            }
+            set {
+                this["DevicePlotterOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceRouterOffsetOriginY {
+            get {
+                return ((decimal)(this["DeviceRouterOffsetOriginY"]));
+            }
+            set {
+                this["DeviceRouterOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceLaserPathOptimation {
+            get {
+                return ((bool)(this["DeviceLaserPathOptimation"]));
+            }
+            set {
+                this["DeviceLaserPathOptimation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DevicePlotterPathOptimation {
+            get {
+                return ((bool)(this["DevicePlotterPathOptimation"]));
+            }
+            set {
+                this["DevicePlotterPathOptimation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceRouterPathOptimation {
+            get {
+                return ((bool)(this["DeviceRouterPathOptimation"]));
+            }
+            set {
+                this["DeviceRouterPathOptimation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal createTextHersheySmoothCurveFittingError {
+            get {
+                return ((decimal)(this["createTextHersheySmoothCurveFittingError"]));
+            }
+            set {
+                this["createTextHersheySmoothCurveFittingError"] = value;
             }
         }
     }
