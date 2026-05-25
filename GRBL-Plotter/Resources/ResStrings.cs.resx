@@ -765,4 +765,19 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Křížový poklop</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Začátek gradientu (0=vypnuto)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Nastavit grafický počátek na </value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Grafický počátek X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Grafický počátek Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Optimalizovat dráhu nástroje</value>
+  </data>
 </root>

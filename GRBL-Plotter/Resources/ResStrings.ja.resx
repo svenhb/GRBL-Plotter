@@ -765,4 +765,19 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="optionFillCross" xml:space="preserve">
     <value>クロスハッチ</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>グラデーション開始（0＝オフ）</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>グラフィック原点を設定</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>グラフィック原点 X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>グラフィック原点 Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>ツールパスを最適化</value>
+  </data>
 </root>

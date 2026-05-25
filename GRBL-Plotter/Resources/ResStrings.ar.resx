@@ -765,4 +765,19 @@
   <data name="optionFillCross" xml:space="preserve">
     <value>فتحة متقاطعة</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>بداية التدرج (0=إيقاف)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>تعيين أصل الرسم إلى</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>أصل الرسم (X)</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>أصل الرسم (Y)</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>تحسين مسار الأداة</value>
+  </data>
 </root>

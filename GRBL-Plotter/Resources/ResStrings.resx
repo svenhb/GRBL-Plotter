@@ -780,4 +780,19 @@ Possible workaround: try to convert object to path.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Cross hatch</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Gradient start (0=off)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Set graphic origin to </value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Graphic origin X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Graphic origin Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Optimize tool path</value>
+  </data>
 </root>

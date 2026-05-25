@@ -769,4 +769,19 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Tratteggio incrociato</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Démarrage progressif (0=désactivé)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Imposta l'origine grafica su</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Origine grafica X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Origine grafica Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Ottimizza il percorso utensile</value>
+  </data>
 </root>

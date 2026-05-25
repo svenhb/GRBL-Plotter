@@ -765,4 +765,19 @@
   <data name="optionFillCross" xml:space="preserve">
     <value>Крестовой люк</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Начало градиента (0 = выключено)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Установить начало координат графики в</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Начало координат графики по X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Начало координат графики по Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Оптимизировать траекторию инструмента</value>
+  </data>
 </root>

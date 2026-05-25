@@ -696,4 +696,19 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   <data name="optionFillCross" xml:space="preserve">
     <value>Kreuzschraffur</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Gradientenstart (0=aus)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Grafikursprung festlegen auf</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Grafikursprung X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Grafikursprung Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Werkzeugbahn optimieren</value>
+  </data>
 </root>

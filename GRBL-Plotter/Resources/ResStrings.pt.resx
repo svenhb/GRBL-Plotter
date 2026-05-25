@@ -765,4 +765,19 @@ Possível solução alternativa: tente converter o objeto em caminho.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Hachura cruzada</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Início do gradiente (0=desligado)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Definir origem gráfica para</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Origem gráfica X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Origem gráfica Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Otimizar trajetória da ferramenta</value>
+  </data>
 </root>

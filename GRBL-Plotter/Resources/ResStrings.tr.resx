@@ -777,4 +777,19 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Çapraz kapak</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Eğim başlangıcı (0=kapalı)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Grafik başlangıç ​​noktasını ayarla</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Grafik başlangıç ​​noktası X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Grafik başlangıç ​​noktası Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Takım yolunu optimize et</value>
+  </data>
 </root>

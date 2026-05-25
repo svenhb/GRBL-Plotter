@@ -765,4 +765,19 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   <data name="optionFillCross" xml:space="preserve">
     <value>Tramado cruzado</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>Inicio gradual (0=apagado)</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>Establecer origen gráfico en</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>Origen gráfico X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>Origen gráfico Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>Optimizar trayectoria de la herramienta</value>
+  </data>
 </root>

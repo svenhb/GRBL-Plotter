@@ -774,4 +774,19 @@
   <data name="optionFillCross" xml:space="preserve">
     <value>十字线</value>
   </data>
+  <data name="optionFillGradient" xml:space="preserve">
+    <value>梯度启动（0=关闭）</value>
+  </data>
+  <data name="deviceSetupOffsetOrigin" xml:space="preserve">
+    <value>设置图形原点为</value>
+  </data>
+  <data name="deviceSetupOffsetOriginX" xml:space="preserve">
+    <value>图形原点 X</value>
+  </data>
+  <data name="deviceSetupOffsetOriginY" xml:space="preserve">
+    <value>图形原点 Y</value>
+  </data>
+  <data name="deviceSetupPathOptimation" xml:space="preserve">
+    <value>优化刀具路径</value>
+  </data>
 </root>
