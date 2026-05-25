@@ -104,7 +104,8 @@
  * 2024-07-22 l:710  f:ParseAttributs if is stroke not set, use FillToolListElements color
  * 2024-12-16 l:1160 take care of Properties.ListSettings.Default.importSVGCircleToDotS
  * 2025-02-26 l:1054 f:ParseBasicElement also check for FillToolListElements-opacity="0" to exclude objects #436
- * 2025-04-04 l.441  f:ParseGlobals accept ',' in viewbox parameter #440
+ * 2025-04-04 l:441  f:ParseGlobals accept ',' in viewbox parameter #440
+ * 2026-05-18 l:1086 f:ParseBasicElement remove all leading and trailing white-space characters		LaserGRBL: LINES MISSING FROM SVG FILE LOAD INTO LASERGRBL  #2763
 */
 
 /* SetHeaderMessages...
@@ -125,7 +126,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml.Linq;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -139,7 +139,7 @@ namespace GrblPlotter
         private static bool svgNodesOnly = true;            // if true only do pen-down -up on given coordinates
         private static bool svgComments = true;             // if true insert additional comments into GCode
         private static bool svgConvertCircleToDot = false;  // if true, a dot with deptj of circle radius will be created
-        private static bool svgPathStartNewFigure = false;  // if true, each 'm' in the path, creates a new figure
+        private static readonly bool svgPathStartNewFigure = false;  // if true, each 'm' in the path, creates a new figure
 
         private static bool svgConvertToMM = true;
         private static double gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
@@ -728,7 +728,7 @@ namespace GrblPlotter
                         Graphic.SetPenColor(globalTextProp.fill = attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                     Graphic.SetPenFill(globalTextProp.fill = attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                 }
-                /*    attributeStrokeWidth = GetStyleProperty(element, "stroke-width"); -> globalTextProp.Update(element);
+                /*    attributeStrokeWidth = GetStyleProperty(element, "stroke-width"); -> globalTextProp.UpdateToolTip(element);
                     logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
                     if (attributeStrokeWidth.Length > 0)
                         filterKeepWidth = SetPenWidth(attributeStrokeWidth);
@@ -755,7 +755,7 @@ namespace GrblPlotter
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                 }
             }
-            /*    if (element.Attribute("stroke-width") != null)    -> globalTextProp.Update(element);
+            /*    if (element.Attribute("stroke-width") != null)    -> globalTextProp.UpdateToolTip(element);
                 {
                     attributeStrokeWidth = element.Attribute("stroke-width").Value;
                     logSource = "ParseAttributs: stroke-width2: " + attributeStrokeWidth;
@@ -1054,7 +1054,7 @@ namespace GrblPlotter
                 string visibility = "";
                 if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
                 if (pathElement.Attribute("fill-opacity") != null) { visibility = pathElement.Attribute("fill-opacity").Value; }
-                if (Properties.Settings.Default.importSVGDontPlot && (visibility.Contains("hidden")||visibility.Contains("0")))
+                if (Properties.Settings.Default.importSVGDontPlot && (visibility.Contains("hidden") || visibility.Contains("0")))
                 {
                     Graphic.SetHeaderInfo(string.Format(" Hide SVG Element:{0}   Id:{1}", form, attrId));
                     Graphic.SetHeaderMessage(string.Format(" {0}-1102: SVG Element '{1}' is not visible and will not be imported", CodeMessage.Attention, form));
@@ -1083,7 +1083,7 @@ namespace GrblPlotter
                 if (pathElement.Attribute("r") != null) r = ConvertToPixel(pathElement.Attribute("r").Value);
                 if (pathElement.Attribute("points") != null)
                 {
-                    points = pathElement.Attribute("points").Value.Split(' ');
+                    points = pathElement.Attribute("points").Value.Trim().Split(' ');	// 2026-05-18 remove all leading and trailing white-space characters
                     if (points.Length == 1)     // not separated by ' '
                     {
                         string[] values = pathElement.Attribute("points").Value.Split(',');

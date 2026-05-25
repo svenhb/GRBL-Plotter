@@ -37,7 +37,7 @@
  * 2024-08-20 option to find white background
  * 2024-09-20 add paste from clipboard
  * 2024-10-08 support PoTrace with different DPIs
- * 2026-03-20 get penWidth from selected device default - MyControl.GetActualWidth()
+ * 2026-03-20 get penWidth from selected device default - MyControl.GetActualToolDiameter()
 */
 
 using CsPotrace;
@@ -192,7 +192,7 @@ namespace GrblPlotter
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
             bool usePoTrace = Properties.Settings.Default.importVectorizeAlgorithmPoTrace;
 
-			penWidth = MyControl.GetActualWidth().ToString();
+			penWidth = MyControl.GetActualToolDiameter().ToString();
             Logger.Info("▼▼▼▼  ConvertBitmaps Start {0}  Pen width {1:0.000}  from {2}", filePath, penWidth, MyControl.GetSelectedDeviceName());
             Logger.Trace("►►►► pjsFile width:{0}  height:{1}  layers:{2}", pjsFile.width, pjsFile.height, pjsFile.layers.Count);
 
@@ -261,7 +261,7 @@ namespace GrblPlotter
             ConversionInfo = "";
             shapeCounter = 0;
 
-			penWidth = MyControl.GetActualWidth().ToString();
+			penWidth = MyControl.GetActualToolDiameter().ToString();
             Logger.Info("▼▼▼▼  ConvertBitmap Start  use PoTrace:{0}  path:{1}  Pen width {2:0.000}  from {3}", usePoTrace, filePath, penWidth, MyControl.GetSelectedDeviceName());
 
             Graphic.Init(Graphic.SourceType.PDNJson, filePath, backgroundWorker, backgroundEvent);
