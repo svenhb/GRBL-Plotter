@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnFeedHold.ToolTip" xml:space="preserve">
+    <value>Versetzt Grbl in den Ruhe- oder Haltezustand. Befindet sich die Maschine in Bewegung, wird sie abgebremst und anschließend angehalten.
+Der Befehl wird ausgeführt, wenn sich Grbl im Leerlauf-, Lauf- oder Tippbetriebszustand befindet. Andernfalls wird er ignoriert.
+Beim Tippbetrieb bricht ein Vorschubstopp die Tippbewegung ab und löscht alle verbleibenden Tippbewegungen im Planerpuffer. Der Zustand wechselt von Tippbetrieb zu Leerlauf oder Tür, falls die Tür während des aktiven Stopps als nicht richtig geschlossen erkannt wurde.
+Laut Maschinensteuerungsdefinition deaktiviert ein Vorschubstopp weder Spindel noch Kühlmittel. Nur die Bewegung wird unterbrochen.
+Ein Eingangspin zum Anschluss eines Tasters oder Schalters ist verfügbar.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnResume.ToolTip" xml:space="preserve">
+    <value>Setzt den Vorschubstopp, den Sicherheits-/Parkzustand (wenn die Tür geschlossen ist) und die M0-Programmpausenzustände fort.
+Ansonsten wird der Befehl ignoriert.
+Wenn die Option „Parken zur Kompilierzeit“ aktiviert ist und der Sicherheitszustand zum Fortsetzen bereit ist, aktiviert Grbl die Spindel und das Kühlmittel wieder, fährt in die Ausgangsposition zurück und setzt den Vorgang fort.
+Ein Eingangspin zum Anschluss eines Tasters oder Schalters ist verfügbar.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnSafetyDoor.ToolTip" xml:space="preserve">
+    <value>Dieser Befehl, der üblicherweise an einen Eingangspin angeschlossen ist, um das Öffnen einer Sicherheitstür zu erkennen, ermöglicht es einer grafischen Benutzeroberfläche (GUI), das Verhalten der Sicherheitstür mit diesem Befehl zu steuern.
+Die Maschine wechselt sofort in den Türzustand und deaktiviert Spindel und Kühlmittel. Befindet sie sich in Bewegung, bremst sie ab und wird anschließend angehalten. Wird der Befehl während des Referenzvorgangs ausgeführt, stoppt Grbl die Bewegung und löst einen Referenzalarm aus.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnReset.ToolTip" xml:space="preserve">
+    <value>Hält Grbl sofort an und setzt es sicher zurück, ohne dass ein Neustart erforderlich ist.
+Dieser Befehl kann jederzeit ausgeführt werden. Wird Grbl während der Bewegung zurückgesetzt, gibt er eine Warnung aus, dass die Position durch den Stillstand verloren gehen kann. Wird Grbl im Stillstand zurückgesetzt, bleibt die Position erhalten und eine erneute Referenzierung ist nicht erforderlich.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnKillAlarm.ToolTip" xml:space="preserve">
+    <value>Der Alarmmodus von Grbl tritt ein, wenn ein kritischer Fehler aufgetreten ist, z. B. ein Endanschlag, ein Abbruch während eines Zyklus oder wenn Grbl seine Position nicht kennt.
+Standardmäßig wechselt Grbl in den Alarmmodus, sobald die Referenzfahrt aktiviert ist und der Arduino eingeschaltet wird, da die Position unbekannt ist.
+Im Alarmmodus werden alle G-Code-Befehle gesperrt, bis die Referenzfahrt mit dem Befehl „$H“ abgeschlossen ist.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbFlowControl.Text" xml:space="preserve">
+    <value>Ablaufsteuerung</value>
+    <comment>gb</comment>
+  </data>
+  <data name="GbFlowControl.ToolTip" xml:space="preserve">
+    <value>Zum Ein-/Ausklappen klicken</value>
+    <comment>gb</comment>
+  </data>
+</root>
