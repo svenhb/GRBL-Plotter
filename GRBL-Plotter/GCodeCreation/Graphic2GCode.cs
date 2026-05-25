@@ -290,7 +290,7 @@ namespace GrblPlotter
                     {
                         figColor = string.Format(" PenColor=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
                         //    figWidth = string.Format(" PenWidth=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
-                        //       if (useToolTable)                                                   // 2021-08-26 #217
+                         //      if (useToolTable)                                                   // 2021-08-26 #217
                         figWidth = string.Format(" PenWidth=\"{0}\"", ToolList.GetToolDiameter(groupObject.ToolNr));
 
                     }
@@ -617,7 +617,7 @@ namespace GrblPlotter
                             InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
                         }
                     }
-                    if (ModificationAux.Value1Enable) { CalculateAux1(entity); }	// update setAux1FinalDistance
+                    if (ModificationAux.Value1Enable) { CalculateAux1(entity); }	// UpdateToolTip setAux1FinalDistance
                     if (ModificationAux.Value2Enable) { CalculateAux2(entity); }
 
                     /* Create Line */
@@ -719,8 +719,44 @@ namespace GrblPlotter
             }
         }
 
-        /*Input: min, max and actual pen-width value from graphics import*/
-        public static double CalculateZFromRange(double min, double max, double penWidth)
+        /*Input: penWidthMin, penWidthMax and actual pen-width value from graphics import*/
+        public static double CalculateZFromRange(double penWidthMin, double penWidthMax, double depthToConvertToZ)
+        {
+            if (logDetailed)
+                Logger.Trace("----calculateZFromRange: min:{0:0.00}  max:{1:0.00}  input: {2:0.00}", penWidthMin, penWidthMax, depthToConvertToZ);
+            if (depthToConvertToZ == 0)
+                return (double)DepthFromWidth.ZMin;
+
+            double penMin = Math.Abs(penWidthMin);
+            double penMax = Math.Abs(penWidthMax);
+            double penDelta = (penMax - penMin);
+
+            if (penDelta == 0)
+                return (double)DepthFromWidth.ZMin;
+            double nPen = (Math.Abs(depthToConvertToZ) - penMin) / penDelta;
+
+            /*Get desired range, where to transform the pen-width*/
+            double zMin = Math.Abs((double)DepthFromWidth.ZMin);
+            double zMax = Math.Abs((double)DepthFromWidth.ZMax);
+            double zDelta = (zMax - zMin);
+            if (logDetailed)
+                Logger.Trace("----calculateZFromRange: Zmin:{0:0.00}  Zmax:{1:0.00}  input: {2:0.00}", zMin, zMax, depthToConvertToZ);
+
+            if (zDelta == 0)
+                return (double)DepthFromWidth.ZMin;
+
+            double z;
+            if (zDelta > 0)
+                z = nPen * zDelta + Math.Min(zMin, zMax);       // penWidthMin to penWidthMin, penWidthMax to penWidthMax
+            else
+                z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin, zMax);                // penWidthMin to penWidthMax, penWidthMax to penWidthMin
+
+            if (logDetailed)
+                Logger.Trace("---calculateZFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  zDelta:{2:0.00}   z:{3:0.00}", depthToConvertToZ, nPen, zDelta, z);
+
+            return -z;
+        }
+        public static double CalculateZFromRangeBackup(double min, double max, double penWidth)
         {
             if (logDetailed)
                 Logger.Trace("----calculateZFromRange: min:{0:0.00}  max:{1:0.00}  input: {2:0.00}", min, max, penWidth);
@@ -747,9 +783,9 @@ namespace GrblPlotter
 
             double z;
             if (zDelta > 0)
-                z = nPen * zDelta + Math.Min(zMin, zMax);       // min to min, max to max
+                z = nPen * zDelta + Math.Min(zMin, zMax);       // penWidthMin to penWidthMin, penWidthMax to penWidthMax
             else
-                z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin, zMax);                // min to max, max to min
+                z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin, zMax);                // penWidthMin to penWidthMax, penWidthMax to penWidthMin
 
             if (logDetailed)
                 Logger.Trace("---calculateZFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  zDelta:{2:0.00}   z:{3:0.00}", penWidth, nPen, zDelta, z);
@@ -757,7 +793,7 @@ namespace GrblPlotter
             return -z;
         }
 
-        /*Input: min, max and actual pen-width value from graphics import*/
+        /*Input: penWidthMin, penWidthMax and actual pen-width value from graphics import*/
         public static double CalculateSFromRange(double min, double max, double penWidth)
         {
             if (logDetailed)
@@ -783,9 +819,9 @@ namespace GrblPlotter
 
             double z;
             if (zDelta > 0)
-                z = nPen * zDelta + Math.Min(zMin, zMax);       // min to min, max to max
+                z = nPen * zDelta + Math.Min(zMin, zMax);       // penWidthMin to penWidthMin, penWidthMax to penWidthMax
             else
-                z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin, zMax);                // min to max, max to min
+                z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin, zMax);                // penWidthMin to penWidthMax, penWidthMax to penWidthMin
 
             if (logDetailed)
                 Logger.Trace("---calculateSFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  SDelta:{2:0.00}   S:{3:0.00}", penWidth, nPen, zDelta, z);

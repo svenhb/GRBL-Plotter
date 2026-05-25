@@ -165,6 +165,7 @@ namespace GrblPlotter
             public bool OptionSFromWidth { get; set; }
             public bool OptionDotFromCircle { get; set; }	// will be processed in GCodeFromSVG 702
             public bool OptionZFromRadius { get; set; }		// will select GCodeDotOnlyWithZ or GCodeDotOnly
+            public bool OptionAddZProfile { get; set; }
 
             public bool OptionRampOnPenDown { get; set; }   // Path add ons
 
@@ -220,6 +221,7 @@ namespace GrblPlotter
                     OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
                     OptionRepeatCodeZEnable = false;
                     OptionRepeatCodeZValue = 0;
+                    OptionAddZProfile = false;
 
                     OptionRepeatCodeComplete = Properties.Settings.Default.importRepeatComplete;
                     OptionMultiplyGraphicsEnable = Properties.Settings.Default.importGraphicMultiplyGraphicsEnable;
@@ -244,7 +246,7 @@ namespace GrblPlotter
                 OptionCodeSortDistanceLargestLast = Properties.Settings.Default.importGraphicLargestLast;
                 OptionCodeSortDimension = Properties.Settings.Default.importGraphicSortDimension;
 
-                ConvertArcToLine = ImportParameter.AvoidArcCommand || OptionClipCode || OptionDragTool || OptionHatchFill || OptionNoise;// only for SVG: || ApplyHatchFillSVG;
+                ConvertArcToLine = ImportParameter.AvoidArcCommand || OptionClipCode || OptionDragTool || OptionHatchFill || OptionNoise || OptionAddZProfile;// only for SVG: || ApplyHatchFillSVG;
                 ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBender || OptionSpecialDevelopment || OptionRampOnPenDown || OptionSpecialConvertToPolar;// || OptionDashPattern;
             }
             public void ResetOptions(bool enableFigures)

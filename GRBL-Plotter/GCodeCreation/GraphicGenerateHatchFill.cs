@@ -43,17 +43,20 @@ namespace GrblPlotter
         {
             if (graphicToFill == null) return;
 
-            OptionPropHatchFill Fill = new OptionPropHatchFill();
-            Fill.Cross = Properties.Settings.Default.importGraphicHatchFillCross;
-            Fill.Distance = (float)Properties.Settings.Default.importGraphicHatchFillDistance;
-            Fill.DistanceOffsetEnable = Properties.Settings.Default.importGraphicHatchFillOffsetInc;
-            Fill.DistanceOffset = (float)Properties.Settings.Default.importGraphicHatchFillOffset;
-            Fill.Angle = (float)Properties.Settings.Default.importGraphicHatchFillAngle;
-            Fill.AngleIncrementEnable = Properties.Settings.Default.importGraphicHatchFillAngleInc;
-            Fill.AngleIncrement = (float)Properties.Settings.Default.importGraphicHatchFillAngle2;
-            Fill.InsetEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable && Properties.Settings.Default.importGraphicHatchFillInsetEnable2;
-            Fill.InsetDistance = (float)Properties.Settings.Default.importGraphicHatchFillInset;
-            Fill.DeletePath = Properties.Settings.Default.importGraphicHatchFillDeletePath;
+            OptionPropHatchFill Fill = new OptionPropHatchFill
+            {
+                Cross = Properties.Settings.Default.importGraphicHatchFillCross,
+                Distance = (float)Properties.Settings.Default.importGraphicHatchFillDistance,
+                DistanceOffsetEnable = Properties.Settings.Default.importGraphicHatchFillOffsetInc,
+                DistanceOffset = (float)Properties.Settings.Default.importGraphicHatchFillOffset,
+                Gradient = 0,
+                Angle = (float)Properties.Settings.Default.importGraphicHatchFillAngle,
+                AngleIncrementEnable = Properties.Settings.Default.importGraphicHatchFillAngleInc,
+                AngleIncrement = (float)Properties.Settings.Default.importGraphicHatchFillAngle2,
+                InsetEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable && Properties.Settings.Default.importGraphicHatchFillInsetEnable2,
+                InsetDistance = (float)Properties.Settings.Default.importGraphicHatchFillInset,
+                DeletePath = Properties.Settings.Default.importGraphicHatchFillDeletePath
+            };
 
             bool shortenLines = Properties.Settings.Default.importGraphicHatchFillInsetEnable && !Properties.Settings.Default.importGraphicHatchFillInsetEnable2;
             double distOffset = 0;
@@ -168,9 +171,9 @@ namespace GrblPlotter
 
                         // create hatch pattern
                         hatchPattern.Clear();
-                        hatchPattern.AddRange(CreateLinePattern(pathDimension, Fill.Angle, Fill.Distance, distOffset));
+                        hatchPattern.AddRange(CreateLinePattern(pathDimension, Fill.Angle, Fill.Distance, distOffset, Fill.Gradient));
                         if (Fill.Cross)
-                            hatchPattern.AddRange(CreateLinePattern(pathDimension, Fill.Angle + 90, Fill.Distance, distOffset));
+                            hatchPattern.AddRange(CreateLinePattern(pathDimension, Fill.Angle + 90, Fill.Distance, distOffset, Fill.Gradient));
 
                         if (Fill.DistanceOffsetEnable) distOffset += Fill.DistanceOffset;
                         if (Fill.AngleIncrementEnable) Fill.Angle += Fill.AngleIncrement;
@@ -212,13 +215,15 @@ namespace GrblPlotter
         }
 
 
-        private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance, double offset)
-        { return CreateLinePattern(dim.minx, dim.miny, dim.maxx, dim.maxy, angle, distance, offset); }
-        private static List<Point[]> CreateLinePattern(double minx, double miny, double maxx, double maxy, double angle, double distance, double offset)
+        private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance, double offset, double gradient)
+        { return CreateLinePattern(dim.minx, dim.miny, dim.maxx, dim.maxy, angle, distance, offset, gradient); }
+        private static List<Point[]> CreateLinePattern(double minx, double miny, double maxx, double maxy, double angle, double distance, double offset, double gradientStart)
         {
             double width = maxx - minx;
             double height = maxy - miny;
             double r = Math.Sqrt(width * width + height * height) / 2;
+            distance = Math.Abs(distance);
+            double gap = distance;
 
             // Rotation information
             double ca = Math.Cos((angle - 90) * Math.PI / 180);
@@ -231,15 +236,30 @@ namespace GrblPlotter
             double x1, y1, x2, y2;
             List<Point[]> lines = new List<Point[]>();
 
-            //     int count = 0;
-            for (double i = -(r + offset); i < r; i += distance)
+            bool incrementDistance = false;
+            gradientStart = Math.Abs(gradientStart);
+            if ((gradientStart >= 0.1))
+            {
+                incrementDistance = true;
+                if (gradientStart >= gap)
+                    gradientStart= gap;
+            }
+            double gapByPercent;
+            for (double i = -(r + offset); i < r; i += gap)
             {
                 x1 = cx + (i * ca) + (r * sa);//  # i * ca - (-r) * sa
                 y1 = cy + (i * sa) - (r * ca);  //# i * sa + (-r) * ca
                 x2 = cx + (i * ca) - (r * sa);  //# i * ca - (+r) * sa
                 y2 = cy + (i * sa) + (r * ca);  //# i * sa + (+r) * ca
-                                                // Remove any potential hatch lines which are entirely
-                                                // outside of the bounding box
+
+                if (incrementDistance)
+                {
+                    gapByPercent = distance * ((2 * r) - (i + r)) / (2 * r);
+                    gap = Math.Max(gradientStart, gapByPercent);
+                }
+
+                // Remove any potential hatch lines which are entirely
+                // outside of the bounding box
                 if ((x1 < minx && x2 < minx) || (x1 > maxx && x2 > maxx))
                     continue;
                 if ((y1 < miny && y2 < miny) || (y1 > maxy && y2 > maxy))

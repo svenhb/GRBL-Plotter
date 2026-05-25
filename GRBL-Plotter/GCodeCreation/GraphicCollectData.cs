@@ -298,9 +298,9 @@ namespace GrblPlotter
 
             countWarnDimNotSet = 0;
 
-/**********************************************************************************/
+            /**********************************************************************************/
             MyControl.ChangeGraphicOptionsDeviceSpecific(graphicInformation);
-/**********************************************************************************/
+            /**********************************************************************************/
 
         }
 
@@ -375,7 +375,7 @@ namespace GrblPlotter
         public static void StopPath()
         { StopPath(""); }
 
-        public static void StopPath(string cmt)
+        public static void StopPath(string cmt, bool smooth = false)
         {
             if (!actualPath.Dimension.IsXYSet())                    // 2020-10-31
             {
@@ -392,6 +392,7 @@ namespace GrblPlotter
                     if (graphicInformation.OptionNoise)
                         actualPath.Add(lastPoint, GetActualZ(), 0);
 
+                    if (smooth) SmoothPath(actualPath);
                     completeGraphic.Add(actualPath);
                     if (logCoordinates) { Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
                 }
@@ -947,6 +948,8 @@ namespace GrblPlotter
             int actOpt = 0;
             string loggerTag = "►►►";
 
+            //    SmoothPath(completeGraphic);
+
             /* remove short moves*/
             if (!cancelByWorker && graphicInformation.ImportRemoveShortMoves)
             {
@@ -960,6 +963,9 @@ namespace GrblPlotter
                 else
                     Logger.Info("{0} NO Remove of short moves", loggerTag, graphicInformation.ImportRemoveShortMovesLimit);
             }
+
+            Logger.Info("{0} Merge figures     - Count:{1}", loggerTag, completeGraphic.Count);
+            MergeFigures(completeGraphic);
 
             /* process add-on data - frame, sign, watermark */
             if (pathAddOnCompletion && graphicInformation.ImportSVGAddOnEnable)
@@ -1078,8 +1084,6 @@ namespace GrblPlotter
                 SetHeaderInfo(string.Format(" Option: Multiply graphics X:{0} Y:{1} distance:{2:0.00}", nX, nY, dist));
             }     // repititions in x and y direction
 
-            //           if (Properties.ListSettings.Default.importSVGNodesOnly)         { SetDotOnly(); }
-
             /* show original graphics in 2D-view */
             backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Create backgroud graphic..." });
             object lockObject = new object();
@@ -1105,12 +1109,8 @@ namespace GrblPlotter
             if (!cancelByWorker && (graphicInformation.ApplyHatchFillSVG || graphicInformation.OptionHatchFill || MyControl.UseToolList()))
             {
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
-           //     Logger.Info("{0} Hatch fill  distance:{1:0.00} angle:{2:0.00}", loggerTag, Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle);
                 HatchFill(completeGraphic);
-           //     SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}", Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle));
             }
-
-            //    AddPressure(completeGraphic); not implemented
 
             /* repeate paths */
             if (!cancelByWorker && graphicInformation.OptionRepeatCode && !graphicInformation.OptionRepeatCodeComplete)
@@ -1122,21 +1122,17 @@ namespace GrblPlotter
             }
 
             /* sort by distance and merge paths with same start / end coordinates*/
-            if (!cancelByWorker && graphicInformation.OptionCodeSortDistance)
+            bool allowSortNow = !graphicInformation.GroupEnable || graphicInformation.OptionTangentialAxis || graphicInformation.OptionDragTool;
+            if (!cancelByWorker && graphicInformation.OptionCodeSortDistance && allowSortNow)
             {
-                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 1) merge paths (" + countGeometry.ToString() + " elements)" });
-                Logger.Info("{0} Merge figures", loggerTag);
-                MergeFigures(completeGraphic);
-                if (!cancelByWorker)
-                {
-                    backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 2) sort by distance (" + countGeometry.ToString() + " elements)" });
-                    Logger.Info("{0} Sort by distance", loggerTag);
-                    SortByDistance(completeGraphic, GetStartPos(graphicInformation.OptionCodeSortDistanceStartIndex), graphicInformation.OptionCodeSortDistanceNewStartOnClosedPath, graphicInformation.OptionCodeSortDistanceLargestLast, graphicInformation.OptionRepeatCodeZEnable);            // CreateGCode
-                }
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements sort by distance (" + countGeometry.ToString() + " elements)" });
+                Logger.Info("{0} Sort by distance- Count:{1}", loggerTag, completeGraphic.Count);
+                SortByDistance(completeGraphic, GetStartPos(graphicInformation.OptionCodeSortDistanceStartIndex), graphicInformation.OptionCodeSortDistanceNewStartOnClosedPath, graphicInformation.OptionCodeSortDistanceLargestLast, graphicInformation.OptionRepeatCodeZEnable);            // CreateGCode
             }
 
-            if (!cancelByWorker && graphicInformation.OptionCodeSortDimension)
+            if (!cancelByWorker && graphicInformation.OptionCodeSortDimension && allowSortNow)
             {
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements sort by dimension (" + countGeometry.ToString() + " elements)" });
                 Logger.Info("{0} Sort by dimension - Count:{1}", loggerTag, completeGraphic.Count);
                 SortByDimension(completeGraphic);
             }
@@ -1197,6 +1193,17 @@ namespace GrblPlotter
                 Logger.Info("●●● CalculateDistances ");
                 CalculateDistances();
             }
+
+            /* add z information */
+            if (!cancelByWorker && graphicInformation.OptionAddZProfile)
+            {
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Extend closed paths..." });
+                Logger.Info("◆◆◆ Add Z information");
+                AddZProfile(completeGraphic);//, -3, 5);// maxDepth, rampLength);
+                                             //   SmoothPath(completeGraphic);
+                                             //    SetHeaderInfo(string.Format(" Option: Add Z info"));// {0:0.00}", Properties.Settings.Default.importGraphicExtendPathValue));
+            }
+
 
             /* List option data */
             if (!cancelByWorker && (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius)))
@@ -1294,7 +1301,7 @@ namespace GrblPlotter
 
         internal static Point GetStartPos(int sort)
         {
-        //    int sort = Properties.Settings.Default.importGraphicSortDistanceStart;
+            //    int sort = Properties.Settings.Default.importGraphicSortDistanceStart;
             Point start;
             if (sort == 1) { start = new Point(actualDimension.maxx, actualDimension.maxy); }
             else if (sort == 2) { start = new Point(actualDimension.maxx, actualDimension.miny); }

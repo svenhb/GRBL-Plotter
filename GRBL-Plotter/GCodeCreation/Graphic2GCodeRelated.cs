@@ -658,7 +658,7 @@ namespace GrblPlotter
                 Up = GcodeDefaults.ZUp;         //(float)Properties.ListSettings.Default.importGCZUp;
                 Down = GcodeDefaults.ZDown;     //(float)Properties.ListSettings.Default.importGCZDown;
                 Feed = GcodeDefaults.FeedZ;     //(float)Properties.ListSettings.Default.importGCZFeed;
-            //    gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
+                                                //    gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
                 IncrementStep = (float)Properties.Settings.Default.importGCZIncrement;             // depth per pass
                 IncrementNoToolUp = Properties.Settings.Default.importGCZIncNoZUp;
                 PreventSpindle = Properties.Settings.Default.importGCZPreventSpindle;
@@ -1193,7 +1193,7 @@ namespace GrblPlotter
             tmpString = new StringBuilder();
             string cmt = cmto;
             bool penDownApplied = false;
-        //    if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool-table"; }
+            //    if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool-table"; }
             if (Control.GcodeRelative) { cmt += string.Format("rel {0}", lastz); }
             if (cmt.Length > 0) { cmt = string.Format("({0})", cmt); }
 
@@ -1830,6 +1830,8 @@ namespace GrblPlotter
                             Spindle.LasermodeEnable = true;
                             OptionZAxis.Enable = false;
                             dtp = toolProperty.Laser;
+                            Spindle.Speed = dtp.FinalS;
+                            Spindle.SpindleCmd = dtp.UseM3 ? "3" : "4";
                             airCmd = dtp.UseAir ? Properties.Settings.Default.DeviceLaserCmndAirOn : Properties.Settings.Default.DeviceLaserCmndAirOff;
                             gcode = airCmd + ";";
                         }
@@ -1842,12 +1844,12 @@ namespace GrblPlotter
                 }
                 else if (Import.SelectedDevice == DeviceSelection.Router)
                     dtp = toolProperty.Router;
-				
+
                 if (LoggerTraceImport) Logger.Trace("   from ToolList device {0} tool nr {1} ", Import.SelectedDevice, toolnr);
-                GetValuesFromToolList(dtp,Import.SelectedDevice.ToString(), toolnr);
+                GetValuesFromToolList(dtp, Import.SelectedDevice.ToString(), toolnr);
 
 
-				/* create additional GCode */
+                /* create additional GCode */
                 if (Import.SelectedDevice == DeviceSelection.Laser)
                 {
                     airCmd = dtp.UseAir ? Properties.Settings.Default.DeviceLaserCmndAirOn : Properties.Settings.Default.DeviceLaserCmndAirOff;
@@ -2070,7 +2072,7 @@ namespace GrblPlotter
             OptionZAxis.finalZ = OptionZAxis.Down;
             string cmt = "";
             bool fromTT = false;
-      //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
+            //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
             //     if (Properties.ListSettings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
             if (OptionZAxis.gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
             if (fromTT && gcodeComments) { cmt += " from tool-table"; }
@@ -2115,7 +2117,7 @@ namespace GrblPlotter
             string cmt = "";
             string xml;
             bool fromTT = false;
-      //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
+            //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
             //     if (Properties.ListSettings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
             if (OptionZAxis.gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
             if (fromTT && gcodeComments) { cmt += " from tool-table"; }
