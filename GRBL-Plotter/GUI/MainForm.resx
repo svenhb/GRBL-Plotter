@@ -1790,7 +1790,7 @@ Dil
     <value>ucStreaming</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1817,7 +1817,7 @@ Dil
     <value>ucOverrides</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1901,7 +1901,7 @@ Dil
     <value>ucFlowControl</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1928,7 +1928,7 @@ Dil
     <value>ucSetOffset</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -2021,7 +2021,7 @@ Dil
     <value>ucMoveToGraphic</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2048,7 +2048,7 @@ Dil
     <value>ucMoveToZero</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2075,7 +2075,7 @@ Dil
     <value>ucJogControlAll</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2105,7 +2105,7 @@ Dil
     <value>ucDeviceLaser2</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Parent" xml:space="preserve">
     <value>tabPageLaser</value>
@@ -2159,7 +2159,7 @@ Dil
     <value>ucDevicePlotter2</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Parent" xml:space="preserve">
     <value>tabPagePlotter</value>
@@ -2210,7 +2210,7 @@ Dil
     <value>ucDeviceRouter2</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2288,7 +2288,7 @@ Dil
     <value>ucSetCoordinateSystem</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -3092,7 +3092,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucdro</value>
   </data>
   <data name="&gt;&gt;ucdro.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucdro.Parent" xml:space="preserve">
     <value>tLPRechtsOben</value>
@@ -3788,7 +3788,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucToolList</value>
   </data>
   <data name="&gt;&gt;ucToolList.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucToolList.Parent" xml:space="preserve">
     <value>splitContainer2.Panel1</value>
@@ -3833,7 +3833,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucDeviceLaser</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -3878,7 +3878,7 @@ Alt-click rounds position to 0.1 raster,
     <value>0, 0, 0, 0</value>
   </data>
   <data name="ucDevicePlotter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 144</value>
+    <value>201, 144</value>
   </data>
   <data name="ucDevicePlotter.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3887,7 +3887,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucDevicePlotter</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -3902,7 +3902,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 150</value>
+    <value>207, 150</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3929,7 +3929,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 3</value>
   </data>
   <data name="ucDeviceRouter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 144</value>
+    <value>201, 144</value>
   </data>
   <data name="ucDeviceRouter.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3938,7 +3938,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucDeviceRouter</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -3953,7 +3953,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 150</value>
+    <value>207, 150</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3986,7 +3986,7 @@ Alt-click rounds position to 0.1 raster,
     <value>0, 0</value>
   </data>
   <data name="IndividualSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 150</value>
+    <value>207, 150</value>
   </data>
   <data name="IndividualSettings.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4010,7 +4010,7 @@ Alt-click rounds position to 0.1 raster,
     <value>4, 20</value>
   </data>
   <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 150</value>
+    <value>207, 150</value>
   </data>
   <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>

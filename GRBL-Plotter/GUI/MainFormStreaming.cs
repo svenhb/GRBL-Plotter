@@ -41,6 +41,7 @@
  * 2023-04-07 l:368 f:OnRaiseStreamEvent check for "tool" in different languages (de, fr, it) 
  * 2023-04-10 l:368 f:OnRaiseStreamEvent check LineIsInRange(tmpLine) first
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-05-15 l:617 f:StartStreaming don't set lastrecentfile to lastProcessed.nc
 */
 
 using GrblPlotter.GUI;
@@ -613,8 +614,8 @@ namespace GrblPlotter
                             MessageBox.Show("Could not save the file: \r\n" + err.Message, "Error");
                         }
 
-                        SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
-                        SetLastLoadedFile("Start streaming", fileName);
+                    //    SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
+                    //    SetLastLoadedFile("Start streaming", fileName);
                     }
                     catch (IOException err)
                     {

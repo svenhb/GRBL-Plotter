@@ -60,10 +60,12 @@ namespace GrblPlotter
             ucDeviceLaser2.RaiseCmdEvent += OnRaiseCmdEvent;
             ucDevicePlotter.RaiseCmdEvent += OnRaiseCmdEvent;
             ucDevicePlotter2.RaiseCmdEvent += OnRaiseCmdEvent;
+            ucDevicePlotter2.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucDeviceRouter.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucDeviceRouter2.RaiseCmdEvent += OnRaiseCmdEvent;
 
             ucToolList.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
+            ucToolList.RaiseCmdEvent += OnRaiseCmdEvent;
             //     _setup_form.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
 
             MyControl.NotifyYellow = Color.Yellow;
@@ -72,11 +74,12 @@ namespace GrblPlotter
             MyControl.ButtonActive = Color.Lime;
             MyControl.ButtonInactive = Color.LightGray;
             MyControl.PanelHighlight = Color.FromArgb(255, 255, 128);
+			MyControl.SetupFormBackColor = Color.FromArgb(255, 255, 192);
         }
 
         private void UserControlsMainFormLoad()
         {
-            Logger.Trace("############################### UserControlsMainFormLoad ");
+            Logger.Trace("▼▲▼▲▼▲▼▲▼▲ UserControlsMainFormLoad ");
             UserControlsSetAxisCount(3, CommandProtocol.grblOld);
             SetTableLayoutPanelLeftSizes();
             ucDevicePlotter.TcServoZAxis.SelectedIndexChanged += TC_RouterPlotterLaser_SelectedIndexChanged;
@@ -143,7 +146,7 @@ namespace GrblPlotter
             int w = ucJogControlAll.GetControlWidth();
             w = Math.Max(w, ucMoveToGraphic.GetControlWidth());
 
-            Logger.Trace("ResizeRightSide {0}  {1}", w, src);
+            //    Logger.Trace("ResizeRightSide {0}  {1}", w, src);
 
             tLPRechtsUntenRechts.Width = w;
             tC_RouterPlotterLaser2.Width = w;
@@ -156,7 +159,7 @@ namespace GrblPlotter
 
         private void UserControlsSetAxisCount(int nr, CommandProtocol cp)
         {
-            Logger.Trace("UserControlsSetAxisCount  axis:{0}  protocol:{1}", nr, cp);
+            //    Logger.Trace("UserControlsSetAxisCount  axis:{0}  protocol:{1}", nr, cp);
             ucdro.SetAxisCount(nr, cp);
             ucMoveToZero.SetAxisCount(nr, cp);
             ucJogControlAll.SetAxisCount(nr, cp);
@@ -194,8 +197,11 @@ namespace GrblPlotter
             { SendRealtimeCommand(e.Realtime); }
             else                                                // send regular command
             {
-                if ((_serial_form != null) && (!_serial_form.RequestSend(e.Command, true)))     // check if COM is still open
-                { }
+                if (!isStreaming || isStreamingPause)
+                {
+                    if ((_serial_form != null) && (!_serial_form.RequestSend(e.Command, true)))     // check if COM is still open
+                    { }
+                }
             }
         }
 
@@ -294,7 +300,7 @@ namespace GrblPlotter
             {
                 if (XmlMarker.GetGroupCount() > 0)                                                      // is Group-Tag present
                 {
-                //   Logger.Trace("Highlight clicked {0}", e.IntVal);
+                    //   Logger.Trace("Highlight clicked {0}", e.IntVal);
                     bool gcodeIsSeleced = false;
                     EnableBlockCommands(gcodeIsSeleced);
                     int clickedLine = XmlMarker.GetStartLineOfGroup(e.IntVal);
@@ -346,6 +352,18 @@ namespace GrblPlotter
                 if (e.IntVal == 22)
                 { HeightMapToolStripMenuItem_Click(sender, e); }
             }
+            else if (e.Gc == GuiControl.customButton)
+            {
+                Logger.Trace("customButton {0}", e.IntVal);
+                BtnCustomButtonProcess(Math.Abs(e.IntVal), e.IntVal < 0, "123");
+            }
+            else if (e.Gc == GuiControl.useToolList)
+            {
+                bool enable = (e.IntVal == 0) ? true : false;
+                ucDeviceLaser.Enabled = enable;
+                ucDevicePlotter.Enabled = enable;
+                ucDeviceRouter.Enabled = enable;
+            }
         }
 
         private void TC_RouterPlotterLaser_SelectedIndexChanged(object sender, EventArgs e)
@@ -357,15 +375,20 @@ namespace GrblPlotter
                 ucToolList.Visible = true;
                 GbCustomButtons.Visible = false;
                 tC_RouterPlotterLaser2.SelectedIndex = tC_RouterPlotterLaser.SelectedIndex;
+                //    MyControl.SettingWasChanged(true);
                 ucToolList.SwitchView(tC_RouterPlotterLaser.SelectedIndex, MyControl.SelectedPlotterMode);
-                ucToolList.ReloadNeded();
+                if (!MyControl.ApplyToolList)
+                    ucToolList.FillToolListElements();
+                //    ucToolList.ReloadNeded();
                 LoadProperties.Off();
                 if (tC_RouterPlotterLaser.SelectedIndex == 1)   // Plotter
                 {
-                    Logger.Trace("Set width:{0}  Split2:{1}   2-width:{2}", splitContainer2.Width,splitContainer2.SplitterDistance, splitContainer2.Panel2.Width);
+                    //    Logger.Trace("Set width:{0}  Split2:{1}   2-width:{2}", splitContainer2.Width,splitContainer2.SplitterDistance, splitContainer2.Panel2.Width);
                     if (splitContainer2.Panel2.Width < 250)
-                    {   
-                        splitContainer2.SplitterDistance = splitContainer2.Width - 285;
+                    {
+                        int ndis = splitContainer2.Width - 285;
+                        if (ndis > 0)
+                            splitContainer2.SplitterDistance = splitContainer2.Width - 285;
                     }
                 }
             }

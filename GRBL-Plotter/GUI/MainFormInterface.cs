@@ -20,7 +20,7 @@
  * 2020-09-18 split file
  * 2020-12-28 add Marlin support (replace commands)
  * 2021-07-02 code clean up / code quality
- * 2021-09-29 update Grbl.Status line 60
+ * 2021-09-29 Update Grbl.Status line 60
  * 2021-09-30 no VisuGCode.ProcessedPath.ProcessedPathDraw if VisuGCode.largeDataAmount
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 139
  * 2022-02-24
@@ -81,7 +81,7 @@ namespace GrblPlotter
             /***** parser state Spinde/Coolant on/off, on other Forms: FeedRate, SpindleSpeed, G54-Coord *****/
             ProcessParserState(e.ParserState);
 
-            /***** update 2D view *****/
+            /***** Update 2D view *****/
             if (Grbl.posChanged)
             {
                 VisuGCode.CreateMarkerPath();
@@ -270,7 +270,7 @@ namespace GrblPlotter
                         //     if (signalLock > 0)
                         //     { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
                         ucFlowControl.HighlightKillAlarm(false);
-                        if (!isStreaming)                       // update drawing if G91 is used
+                        if (!isStreaming)                       // Update drawing if G91 is used
                             updateDrawingPath = true;
 
                         Grbl.lastMessage = "";
@@ -381,7 +381,7 @@ namespace GrblPlotter
         /********************************************************
          * handle last sent commands from serial form
          * FeedRate, SpindleSpeed, Spinde/Coolant on/off, G54-Coord
-         * update other forms
+         * Update other forms
          ********************************************************/
         private void ProcessParserState(ParsState cmd)
         {

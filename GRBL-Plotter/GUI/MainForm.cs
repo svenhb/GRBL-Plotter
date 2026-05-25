@@ -43,7 +43,7 @@
  * 2020-01-13 convert GCodeVisuAndTransform to a static class
  * 2020-03-10 add gui.variable GMIX,Y,Z GMAX,Y,Z - graphics dimensions
  * 2020-03-12 outsourcing GamePad, SimulatePath
- * 2020-05-06 add status strip info during check for Prog-update
+ * 2020-05-06 add status strip info during check for Prog-Update
  * 2020-09-18 split
  * 2020-12-28 add Marlin support
  * 2021-01-13 add 3rd serial com
@@ -155,7 +155,7 @@ namespace GrblPlotter
             _splashscreen = new Splashscreen();		// shows splash screen
             _splashscreen.Show();                   // will be closed if SplashScreenTimer >= 1500
 
-            if (Properties.Settings.Default.ctrlUpgradeRequired)		// check if update of settings are needed
+            if (Properties.Settings.Default.ctrlUpgradeRequired)		// check if Update of settings are needed
             {
                 Logger.Info("MainForm_Load - Properties.Settings.Default.ctrlUpgradeRequired");
                 Properties.Settings.Default.Upgrade();
@@ -235,7 +235,7 @@ namespace GrblPlotter
             if (Properties.Settings.Default.guiCheckUpdate)
             {
                 StatusStripSet(2, Localization.GetString("statusStripeCheckUpdate"), Color.LightGreen);
-                CheckUpdate.CheckVersion(false, Properties.Settings.Default.guiLastEndReason);     // check update
+                CheckUpdate.CheckVersion(false, Properties.Settings.Default.guiLastEndReason);     // check Update
             }
             UserControlsMainFormLoad();     // apply visible height
 
@@ -311,7 +311,8 @@ namespace GrblPlotter
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
 
                 splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance;
-             
+                ucToolList.UpdateToolList();
+
                 MainTimer.Stop();
                 MainTimer.Start();
             }
@@ -447,7 +448,7 @@ namespace GrblPlotter
                 SetInfoLabel(Localization.GetString("mainInfoLaserModeOff"), Color.Lime);
             }
         }
-        // update 500ms
+        // Update 500ms
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             if (shutDown) { return; }
@@ -748,10 +749,14 @@ namespace GrblPlotter
                 index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
             }
             catch (Exception err) { Logger.Error(err, "BtnCustomButton_Click {0}", clickedButton.Name); return; }
-
+            BtnCustomButtonProcess(index, (e.Button == MouseButtons.Right), clickedButton.Text);
+        }
+        private void BtnCustomButtonProcess(int index, bool right, string btnText)
+        {
+            Logger.Trace("BtnCustomButtonProcess i:{0}  right:{1}  txt:{2}", index, right, btnText);
             if ((index >= 0) && (index < btnCustomCommand.Length))		// < 32
             {
-                if (e.Button == MouseButtons.Right)
+                if (right)
                 {
                     using (ButtonEdit f = new ButtonEdit(index))
                     {
@@ -765,13 +770,13 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(clickedButton.Text))
+                    if (!string.IsNullOrEmpty(btnText))
                     { ProcessCommands(btnCustomCommand[index]); }
                 }
             }
         }
 
-     
+
         private void BtnJogStop_Click(object sender, EventArgs e)
         { if (!Grbl.isVersion_0) SendRealtimeCommand(133); }    //0x85
 
@@ -797,7 +802,7 @@ namespace GrblPlotter
             UpdateControlEnables();
             ControlPowerSaving.EnableStandby();
         }
-     
+
         private void GrblFeedHold()
         {
             SendRealtimeCommand('!');
@@ -806,7 +811,7 @@ namespace GrblPlotter
             timerUpdateControlSource = "grblFeedHold";
             UpdateControlEnables();	// true overwrite streaming
         }
-     
+
 
         private void GrblResume()
         {
@@ -821,7 +826,7 @@ namespace GrblPlotter
             timerUpdateControlSource = "grblResume";
             UpdateControlEnables();
         }
-      
+
         private void GrblKillAlarm()
         {
             SendCommand("$X");
@@ -837,7 +842,7 @@ namespace GrblPlotter
         }
         #endregion
 
- 
+
 
         private void ProcessCommands(string command)
         {
@@ -1147,7 +1152,7 @@ namespace GrblPlotter
         private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down) ||
-                (e.KeyCode == Keys.Alt) || (e.KeyCode == Keys.Shift) || (e.KeyCode == Keys.Control)))
+                 (e.KeyCode == Keys.Alt) || (e.KeyCode == Keys.Shift) || (e.KeyCode == Keys.Control)))
             { e.IsInputKey = true; }
         }
 

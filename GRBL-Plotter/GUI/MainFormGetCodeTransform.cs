@@ -378,7 +378,7 @@ namespace GrblPlotter
                         FoldCodeOnLoad();
                         Properties.Settings.Default.counterImportImage += 1;
                         AfterImport("Iimg");
-                        CalculatePicScaling();          // update picScaling
+                        CalculatePicScaling();          // Update picScaling
                     }
                     SetLastLoadedFile("Data from image", "");
                 }
@@ -543,9 +543,9 @@ namespace GrblPlotter
             VisuGCode.DrawMachineLimit();
             showPaths = true;
             pictureBox1.Invalidate();                                   // resfresh view
-            Update_GCode_Depending_Controls();                          // update GUI controls
+            Update_GCode_Depending_Controls();                          // Update GUI controls
             timerUpdateControlSource = "transformEnd";
-            UpdateControlEnables();                                     // update control enable 
+            UpdateControlEnables();                                     // Update control enable 
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             this.Cursor = Cursors.Default;
             manualEdit = false;
@@ -1091,12 +1091,12 @@ namespace GrblPlotter
                                 }
                                 cmd = cil;                     	// set actual command
                                 num = "";						// clear digits
-                                posStart = pos;					// update command pos
+                                posStart = pos;					// Update command pos
                             }
                             else if (System.Char.IsNumber(cil) || cil == '.' || cil == '-')  // char is not letter but number
                             {
                                 num += cil;						// collect digits
-                                posEnd = pos;					// update last pos
+                                posEnd = pos;					// Update last pos
                             }
                         }
 

@@ -101,24 +101,24 @@ namespace GrblPlotter
 {
     internal static class LoadProperties
     {
-		internal static bool MultipleImportAlways { get; set; }//prop.multipleLoadAllwaysLoad
-		internal static bool MultipleImportFromForm { get; set; }	//prop.fromFormInsertEnable
-		internal static bool ClearWorkSpace { get; set; }	//prop.multipleLoadAllwaysClear
+        internal static bool MultipleImportAlways { get; set; }//prop.multipleLoadAllwaysLoad
+        internal static bool MultipleImportFromForm { get; set; }   //prop.fromFormInsertEnable
+        internal static bool ClearWorkSpace { get; set; }   //prop.multipleLoadAllwaysClear
 
-		internal static void Init()
-		{
-			MultipleImportAlways = Properties.Settings.Default.multipleLoadAllwaysLoad;
-			MultipleImportFromForm = Properties.Settings.Default.fromFormInsertEnable;
-			ClearWorkSpace = Properties.Settings.Default.multipleLoadAllwaysClear;
-		}
-		internal static void Off()
-		{
-			MultipleImportAlways = false;
-			MultipleImportFromForm = false;
-			ClearWorkSpace = true;
-		}
-	}
-	
+        internal static void Init()
+        {
+            MultipleImportAlways = Properties.Settings.Default.multipleLoadAllwaysLoad;
+            MultipleImportFromForm = Properties.Settings.Default.fromFormInsertEnable;
+            ClearWorkSpace = Properties.Settings.Default.multipleLoadAllwaysClear;
+        }
+        internal static void Off()
+        {
+            MultipleImportAlways = false;
+            MultipleImportFromForm = false;
+            ClearWorkSpace = true;
+        }
+    }
+
     public partial class MainForm : Form
     {
         private const string extensionGCode = ".nc,.cnc,.ngc,.gcode,.tap";
@@ -693,7 +693,7 @@ namespace GrblPlotter
             {
                 bool addFiles = LoadProperties.MultipleImportFromForm || LoadProperties.MultipleImportAlways;
                 Logger.Info("");
-                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}   insert:{1}   multiple:{2}", fileName, LoadProperties.MultipleImportFromForm , LoadProperties.MultipleImportAlways);
+                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}   insert:{1}   multiple:{2}", fileName, LoadProperties.MultipleImportFromForm, LoadProperties.MultipleImportAlways);
                 if (addFiles) { importOptions = "<ADD files> "; }
             }
 
@@ -1170,7 +1170,7 @@ namespace GrblPlotter
                     }
                     /* Show import options */
                     DisplayImportOptions("SVG from clipboard");
-					
+
                     GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), false, false);   // changed 'replaceUnitToPixel' to false (plotterfun mismatch between clipboard and load) 2023-07-11	
                                                                                         // replaceUnitByPixel = true,  import as mm
                                                                                         // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
@@ -1179,7 +1179,7 @@ namespace GrblPlotter
                         Logger.Trace("LoadFromClipboard SVG-1, save tmpFile:{0}", tempFile);
                         File.WriteAllText(tempFile, txt.Trim((char)0x00));
                     }
-                    catch(Exception err) {Logger.Error(err, " LoadFromClipboard, could not save SVG-1 data to temporary file {0} ", tempFile);}
+                    catch (Exception err) { Logger.Error(err, " LoadFromClipboard, could not save SVG-1 data to temporary file {0} ", tempFile); }
 
                     Properties.Settings.Default.counterImportSVG += 1;
                     NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
@@ -1210,7 +1210,7 @@ namespace GrblPlotter
 
                     /* Show import options */
                     DisplayImportOptions("HPGL from clipboard");
-					
+
                     GCodeFromHpgl.ConvertFromText(txt);
                     SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard HPGL
 
@@ -1246,7 +1246,7 @@ namespace GrblPlotter
 
                     /* Show import options */
                     DisplayImportOptions("DXF from clipboard");
-					
+
                     GCodeFromDxf.ConvertFromText(txt);
                     // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
                     try
@@ -1254,7 +1254,7 @@ namespace GrblPlotter
                         Logger.Trace("LoadFromClipboard DXF, save tmpFile:{0}", tempFile);
                         File.WriteAllText(tempFile, txt.Trim((char)0x00));
                     }
-                    catch(Exception err) {Logger.Error(err, " LoadFromClipboard, could not save DXF data to temporary file {0} ", tempFile);}
+                    catch (Exception err) { Logger.Error(err, " LoadFromClipboard, could not save DXF data to temporary file {0} ", tempFile); }
 
                     SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard DXF
 
@@ -1354,9 +1354,9 @@ namespace GrblPlotter
                         GcodeSummary.MetadataUse = true;
                     }
                 }
-				/* Show import options */
-				DisplayImportOptions("SVG from clipboard");
-				
+                /* Show import options */
+                DisplayImportOptions("SVG from clipboard");
+
                 GCodeFromSvg.ConvertFromText(txt, false, false);       // replaceUnitByPixel = false
                                                                        // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
                 try
@@ -1364,7 +1364,7 @@ namespace GrblPlotter
                     Logger.Trace("LoadFromClipboard SVG-2, save tmpFile:{0}", tempFile);
                     File.WriteAllText(tempFile, txt);
                 }
-                catch(Exception err) {Logger.Error(err, " LoadFromClipboard, could not save SVG-2 data to temporary file {0} ", tempFile);}
+                catch (Exception err) { Logger.Error(err, " LoadFromClipboard, could not save SVG-2 data to temporary file {0} ", tempFile); }
 
                 SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG2
 
@@ -1521,7 +1521,7 @@ namespace GrblPlotter
                     }
                     if ((tempFile != "") && (lastLoadSource.Contains("Data from Clipboard")))
                     {
-						Logger.Info("●●●● Last graphic source was {0}, temporary saved in {1}",lastLoadSource, tempFile);
+                        Logger.Info("●●●● Last graphic source was {0}, temporary saved in {1}", lastLoadSource, tempFile);
                         bool found = false;
                         string[] extension = { "SVG", "DXF", "HTML" };
                         string newFile = "";
@@ -1535,12 +1535,12 @@ namespace GrblPlotter
                         Logger.Trace("2 tempFile:{0}   newFile:{1}", tempFile, newFile);
                         if (found)
                         {
-							Logger.Info("●●●● rename temp file to {0} and load",newFile);
+                            Logger.Info("●●●● rename temp file to {0} and load", newFile);
                             System.IO.File.Move(tempFile, newFile);
                             LoadFile(newFile);
                             tempFile = "";
-							this.Cursor = Cursors.Default;
-							return;
+                            this.Cursor = Cursors.Default;
+                            return;
                         }
                     }
                     // LoadFile(lastLoadFile);
@@ -1587,7 +1587,7 @@ namespace GrblPlotter
                 _message_form.ShowMessage(600, 800, "Import options", GcodeSummary.Get(), importMessageDelayTime);     // show graphic import options
             }
         }
-		
+
         private void StartConvert(Graphic.SourceType type, string source)
         {
             MyControl.StartConvert(type);
@@ -1597,7 +1597,7 @@ namespace GrblPlotter
 
             if (Properties.Settings.Default.importGroupObjects)
             {
-        //        ToolList.Init(" (StartConvert with GroupObjects)");
+                //        ToolList.Init(" (StartConvert with GroupObjects)");
             }
             NewCodeStart();             // StartConvert
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
@@ -2200,10 +2200,20 @@ namespace GrblPlotter
         }
 
         #endregion
-
+        public static Control FindFocusedControl(Control control)
+        {
+            var container = control as IContainerControl;
+            while (container != null)
+            {
+                control = container.ActiveControl;
+                container = control as IContainerControl;
+            }
+            return control;
+        }
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            //    Logger.Trace("MainForm_KeyDown  {0}   focus:{1}", e.KeyCode, FindFocusedControl(this).Name);
             MyApplication.ESCwasPressed = false;
             if (pictureBox1.Focused)
             {
@@ -2263,6 +2273,10 @@ namespace GrblPlotter
                 e.Handled = true;
                 return;
             }
+            else if (e.KeyCode.ToString().StartsWith("NumPad"))
+            {
+                return; // allow NumPad-Number for NumericUpDown input
+            }
             else if (e.KeyCode == Keys.NumLock)
             {
                 /*        virtualJoystickXY.Focus();
@@ -2272,7 +2286,7 @@ namespace GrblPlotter
                         virtualJoystickB.JoystickRasterMark = virtualJoystickA_lastIndex;
                         virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
                 */
-                e.SuppressKeyPress = true;
+                //    e.SuppressKeyPress = true;
             }
             else if (fCTBCode.Focused && !manualEdit)
             {
@@ -2284,7 +2298,10 @@ namespace GrblPlotter
                 }
                 return;
             }
-            e.SuppressKeyPress = ProcessHotkeys(e.KeyData.ToString(), true);
+
+            bool result = ProcessHotkeys(e.KeyData.ToString(), true);
+            Logger.Trace("ProcessHotkeys  {0}   {1}", result, e.KeyData);
+            e.SuppressKeyPress = result;
             //   e.SuppressKeyPress = true;
         }
 
@@ -2443,7 +2460,7 @@ namespace GrblPlotter
                                  else if (action.Contains("Spindle")) { CbSpindle.Checked = !CbSpindle.Checked; }
                                  else if (action.Contains("Coolant")) { CbCoolant.Checked = !CbCoolant.Checked; }
                         */
-                        return true;
+                        //    return true;
                     }
                 }
             }
@@ -2613,7 +2630,7 @@ namespace GrblPlotter
 
                 startExtensionToolStripMenuItem.DropDownItems.Add(new ToolStripSeparator());
 
-                string[] links = { "Plotterfun classic", "Plotterfun color", "Plotterfun pen-width","Fish draw" };
+                string[] links = { "Plotterfun classic", "Plotterfun color", "Plotterfun pen-width", "Fish draw" };
                 foreach (string item in links)
                 {
                     ToolStripMenuItem linkExtension = new ToolStripMenuItem(item, null, ExtensionLink_click);
@@ -2634,7 +2651,7 @@ namespace GrblPlotter
         private void ExtensionLink_click(object sender, EventArgs e)
         {
             string[] urls = { "plotterfun", "plotterfun-color", "plotterfun-width", "fishdraw" };
-            string url0= "https://grbl-plotter.de/";
+            string url0 = "https://grbl-plotter.de/";
             string url = urls[0];
             if (sender.ToString().Contains("classic"))
                 url = urls[0];

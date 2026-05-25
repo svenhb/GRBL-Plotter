@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* MainFormUpdate
- * Update controls etc.
+ * update controls etc.
  * 2021-07-26 new
  * 2021-09-19 line 389 change order of virtualJoystickXY.Enable
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
@@ -197,8 +197,13 @@ namespace GrblPlotter
         {
             foreach (Control ctrl in controls)
             {
-                ctrl.PreviewKeyDown += new PreviewKeyDownEventHandler(MainForm_PreviewKeyDown);
-                RemoveCursorNavigation(ctrl.Controls);
+                if ((ctrl.Name == ucDeviceLaser.Name) || (ctrl.Name == ucDevicePlotter.Name)|| (ctrl.Name == ucDeviceRouter.Name))
+                { }
+                else
+                {
+                    ctrl.PreviewKeyDown += new PreviewKeyDownEventHandler(MainForm_PreviewKeyDown);
+                    RemoveCursorNavigation(ctrl.Controls);
+                }
             }
         }
 
@@ -263,7 +268,7 @@ namespace GrblPlotter
         }
 
         private void UpdateWholeApplication()	// after ini file, setup change, update controls
-        {	// Update everything which could be changed via Setup or INI-file
+        {	// update everything which could be changed via Setup or INI-file
             Logger.Info("UpdateWholeApplication");
             UpdateLogging();
 
@@ -499,6 +504,8 @@ namespace GrblPlotter
             SetCustomButton(btnCustom10, Properties.Settings.Default.guiCustomBtn10);//, 10);
             SetCustomButton(btnCustom11, Properties.Settings.Default.guiCustomBtn11);//, 11);
             SetCustomButton(btnCustom12, Properties.Settings.Default.guiCustomBtn12);//, 12);
+
+            ucDevicePlotter2.SetButtonProp(1, Properties.Settings.Default.guiCustomBtn30);
 
             customButtonUse += SetCustomButton(btnCustom13, Properties.Settings.Default.guiCustomBtn13);//, 13);
             customButtonUse += SetCustomButton(btnCustom14, Properties.Settings.Default.guiCustomBtn14);//, 14);

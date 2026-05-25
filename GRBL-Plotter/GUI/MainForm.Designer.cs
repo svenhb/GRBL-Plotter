@@ -2196,6 +2196,7 @@ namespace GrblPlotter
             0,
             0});
             settings1.DeviceLaserHatchFillAngleIncrementEnable = false;
+            settings1.DeviceLaserHatchFillCross = false;
             settings1.DeviceLaserHatchFillDeletePath = false;
             settings1.DeviceLaserHatchFillDistance = new decimal(new int[] {
             1,
@@ -2203,6 +2204,11 @@ namespace GrblPlotter
             0,
             65536});
             settings1.DeviceLaserHatchFillEnable = false;
+            settings1.DeviceLaserHatchFillGradient = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             settings1.DeviceLaserHatchFillInsetDistance = new decimal(new int[] {
             1,
             0,
@@ -2234,7 +2240,7 @@ namespace GrblPlotter
             0,
             0,
             0});
-            settings1.DeviceLaserSplitterDistance = 285;
+            settings1.DeviceLaserSplitterDistance = 385;
             settings1.DeviceLaserToolDiameter = new decimal(new int[] {
             1,
             0,
@@ -2256,6 +2262,17 @@ namespace GrblPlotter
             0,
             0,
             0});
+            settings1.DevicePlotterAddZGradientEnable = false;
+            settings1.DevicePlotterAddZGradientRampLength = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.DevicePlotterAddZGradientStepWidth = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             settings1.DevicePlotterControlIndex = 0;
             settings1.DevicePlotterDepthControl = false;
             settings1.DevicePlotterHatchFillAngle = new decimal(new int[] {
@@ -2269,6 +2286,7 @@ namespace GrblPlotter
             0,
             0});
             settings1.DevicePlotterHatchFillAngleIncrementEnable = false;
+            settings1.DevicePlotterHatchFillCross = false;
             settings1.DevicePlotterHatchFillDeletePath = false;
             settings1.DevicePlotterHatchFillDistance = new decimal(new int[] {
             5,
@@ -2276,6 +2294,11 @@ namespace GrblPlotter
             0,
             65536});
             settings1.DevicePlotterHatchFillEnable = false;
+            settings1.DevicePlotterHatchFillGradient = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             settings1.DevicePlotterHatchFillInsetDistance = new decimal(new int[] {
             2,
             0,
@@ -4123,6 +4146,7 @@ namespace GrblPlotter
             0,
             0,
             0});
+            settings1.UserControlMoveToGraphicFramingCircle = false;
             settings1.UserControlMoveToGraphicIsLarge = true;
             settings1.UserControlMoveToGraphicSize = 100;
             settings1.UserControlMoveToZeroAutomaticUnfold = false;
