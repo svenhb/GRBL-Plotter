@@ -117,231 +117,263 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>伺服</value>
+    <comment>tab1</comment>
+  </data>
   <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
-    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <value>插入 G4：下次命令前的延迟时间（秒）</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
-    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <value>插入 G4：下次命令前的延迟时间（秒）</value>
     <comment>tt</comment>
   </data>
   <data name="BtnAdvancedS.Text" xml:space="preserve">
-    <value>Impostazioni avanzate</value>
+    <value>高级设置</value>
     <comment>btn</comment>
   </data>
   <data name="BtnAdvancedS.ToolTip" xml:space="preserve">
-    <value>Imposta le posizioni per 'molto in alto' e 'mescola'</value>
+    <value>设置“向上移动”和“搅拌”的位置</value>
     <comment>tt</comment>
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
-    <value>Zero</value>
+    <value>归零</value>
     <comment>btn</comment>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso il basso, la penna tocca la carta</value>
+    <value>笔向下移动，笔触碰到纸张</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione zero.
-Sottoprogramma P91</value>
+    <value>设置零位 S 值。
+子程序 P91</value>
     <comment>tt</comment>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Ritardo</value>
+    <value>延迟</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Ritardo</value>
+    <value>延迟</value>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
-    <value>Giù</value>
+    <value>向下</value>
     <comment>btns3</comment>
   </data>
   <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso il basso per premere sulla carta</value>
+    <value>将笔向下移动，使笔尖压在纸上</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
-    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+    <value>应用 s 值后的延迟时间（秒）</value>
   </data>
   <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione verso il basso.
-Sottoprogramma P92</value>
+    <value>设置 S 值为向下位置。
+子程序 P92</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
-    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+    <value>应用 s 值后的延迟时间（秒）</value>
     <comment>tt</comment>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
-    <value>Su</value>
+    <value>向上</value>
     <comment>btn</comment>
   </data>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso l'alto, sopra il foglio</value>
+    <value>将笔向上移动到纸面上方</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione superiore.
-Sottoprogramma P90</value>
+    <value>设置向上位置的 S 值。
+子程序 P90</value>
     <comment>tt</comment>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Asse Z</value>
+    <value>Z 轴</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Molto in alto</value>
+    <value>向上移动</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Mescolamento verso il basso</value>
+    <value>向下搅拌</value>
   </data>
   <data name="NudDevicePlotterZP94.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <value>设置向下位置的 Z 值</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZP93.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <value>设置向上位置的 Z 值</value>
     <comment>tt</comment>
   </data>
   <data name="BtnAdvancedZ.Text" xml:space="preserve">
-    <value>Impostazioni avanzate</value>
+    <value>高级设置</value>
     <comment>btn</comment>
   </data>
   <data name="BtnAdvancedZ.ToolTip" xml:space="preserve">
-    <value>Imposta le posizioni per 'molto in alto' e 'mescolamento'</value>
+    <value>设置“向上移动”和“搅拌”的位置</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Posizione verso l'alto</value>
+    <value>向上位置</value>
   </data>
   <data name="CbUseLaser.Text" xml:space="preserve">
-    <value>Usa laser</value>
+    <value>使用激光</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Posizione verso il basso</value>
+    <value>向下位置</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Avanzamento Z</value>
+    <value>Z 轴进给</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
-    <value>Velocità Z</value>
+    <value>Z轴速度</value>
   </data>
   <data name="NudDevicePlotterFeedZ.ToolTip" xml:space="preserve">
-    <value>Valore F (Avanzamento)</value>
+    <value>进给量（F值）</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZDown.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <value>设置Z轴向下位置的值</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZUp.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <value>设置Z轴向上位置的值</value>
     <comment>tt</comment>
   </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>XY轴进给量</value>
+    <comment>l1</comment>
+  </data>
   <data name="label9.ToolTip" xml:space="preserve">
-    <value>Velocità XY</value>
+    <value>XY轴速度</value>
     <comment>tt</comment>
   </data>
   <data name="BtnFill.ToolTip" xml:space="preserve">
-    <value>Imposta il riempimento tratteggiato per forme chiuse</value>
+    <value>设置封闭形状的阴影填充</value>
     <comment>tt</comment>
   </data>
   <data name="BtnSplit.ToolTip" xml:space="preserve">
-    <value>Dividi il percorso per inserire una subroutine</value>
+    <value>分割路径以插入子程序</value>
     <comment>tt</comment>
   </data>
   <data name="BtnPenChange.ToolTip" xml:space="preserve">
-    <value>Imposta lo scambio penna</value>
+    <value>设置换笔</value>
     <comment>tt</comment>
   </data>
   <data name="BtnNoise.ToolTip" xml:space="preserve">
-    <value>Converti linee rette in linee ondulate</value>
+    <value>将直线转换为波浪线</value>
   </data>
   <data name="NudDevicePlotterFeedXY.ToolTip" xml:space="preserve">
-    <value>Valore F (Avanzamento)</value>
+    <value>F 值（进给）</value>
     <comment>tt</comment>
   </data>
   <data name="LblNoiseDistance.Text" xml:space="preserve">
-    <value>Distanza</value>
+    <value>距离</value>
   </data>
   <data name="LblNoiseAmplitude.Text" xml:space="preserve">
-    <value>Ampiezza</value>
+    <value>振幅</value>
   </data>
   <data name="LblNoiseEnable.Text" xml:space="preserve">
-    <value>Abilita linea ondulata</value>
+    <value>启用波浪线</value>
   </data>
   <data name="LblNoiseInfo.Text" xml:space="preserve">
-    <value>Modifica le linee rette per ottenere linee ondulate</value>
+    <value>修改直线以获得波浪线</value>
   </data>
   <data name="LblNoiseHeadline.Text" xml:space="preserve">
-    <value>Linea ondulata</value>
+    <value>波浪线</value>
   </data>
   <data name="LblSplitSubPenUpDown.Text" xml:space="preserve">
-    <value>Applica Penna - su - giù</value>
+    <value>应用抬笔-落笔</value>
   </data>
   <data name="LblSplitSubFirst.Text" xml:space="preserve">
-    <value>Inserisci all'inizio</value>
+    <value>插入起始位置</value>
   </data>
   <data name="LblSplitSubroutine.Text" xml:space="preserve">
-    <value>File</value>
+    <value>文件</value>
   </data>
   <data name="LblSplitSubEnable.Text" xml:space="preserve">
-    <value>Inserisci subroutine</value>
+    <value>插入子程序</value>
   </data>
   <data name="LblSplitSegmentEquidistant.Text" xml:space="preserve">
-    <value>Equidistante</value>
+    <value>等距</value>
   </data>
   <data name="LblSplitSegmentLength.Text" xml:space="preserve">
-    <value>Lunghezza sezione</value>
+    <value>段长度</value>
   </data>
   <data name="LblSplitEnable.Text" xml:space="preserve">
-    <value>Abilita divisione percorso</value>
+    <value>启用分割路径</value>
   </data>
   <data name="LblSplitInfo.Text" xml:space="preserve">
-    <value>Dividi percorso per inserire una subroutine, ad esempio per la pulizia della spazzola</value>
+    <value>分割路径以插入子程序，例如用于刷头清洁</value>
   </data>
   <data name="LblSplitHeadline.Text" xml:space="preserve">
-    <value>Dividi percorso per subroutine</value>
+    <value>分割路径以执行子程序</value>
   </data>
   <data name="LblSetupFlowControlText.Text" xml:space="preserve">
-    <value>Codice G</value>
+    <value>G 代码</value>
   </data>
   <data name="LblSetupFlowControlEnable.Text" xml:space="preserve">
-    <value>Applica il codice G all'interruzione</value>
+    <value>断点处应用 G 代码</value>
   </data>
   <data name="LblSetupPenChangeRBAutomatic.Text" xml:space="preserve">
-    <value>Cambio penna automatico</value>
+    <value>自动换笔</value>
   </data>
   <data name="LblSetupPenChangeRBManual.Text" xml:space="preserve">
-    <value>Cambio penna manuale, aggiungi interruzione</value>
+    <value>手动换笔，添加断点</value>
   </data>
   <data name="LblSetupPenChangeRBNo.Text" xml:space="preserve">
-    <value>Nessun cambio penna</value>
+    <value>不换笔</value>
   </data>
   <data name="LblSetupToolDiameter.Text" xml:space="preserve">
-    <value>Diametro penna</value>
+    <value>笔径</value>
   </data>
   <data name="LblSetupHeadline.Text" xml:space="preserve">
-    <value>Configura plotter</value>
+    <value>设置绘图仪</value>
+  </data>
+  <data name="CbDepthControl.Text" xml:space="preserve">
+    <value>深度控制</value>
+    <comment>cb</comment>
   </data>
   <data name="CbDepthControl.ToolTip" xml:space="preserve">
-    <value>Varia il valore S o Z a seconda dello spessore della penna</value>
+    <value>根据笔尖宽度改变 S 或 Z 值。</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnFill.Text" xml:space="preserve">
+    <value>填充</value>
+    <comment>b1</comment>
+  </data>
+  <data name="BtnSplit.Text" xml:space="preserve">
+    <value>分叉</value>
+    <comment>b2</comment>
+  </data>
+  <data name="BtnPenChange.Text" xml:space="preserve">
+    <value>换笔</value>
+    <comment>b4</comment>
+  </data>
+  <data name="BtnNoise.Text" xml:space="preserve">
+    <value>摇晃</value>
+    <comment>b3</comment>
+  </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
-    <value>Guida in linea</value>
+    <value>在线帮助</value>
   </data>
   <data name="LblZProfileRampLength.Text" xml:space="preserve">
-    <value>Lunghezza rampa</value>
+    <value>坡道长度</value>
   </data>
   <data name="LblZProfileStep.Text" xml:space="preserve">
-    <value>Larghezza gradino</value>
+    <value>步宽</value>
   </data>
   <data name="LblZProfileEnable.Text" xml:space="preserve">
-    <value>Abilita profilo Z</value>
+    <value>启用 Z 轴剖面</value>
   </data>
   <data name="LblZProfileInfo.Text" xml:space="preserve">
-    <value>Aumenta la pressione della penna all'inizio di una linea e la riduce alla fine della linea.</value>
+    <value>在线条起始处增加笔压，在线条末端减小笔压。</value>
   </data>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
-    <value>Profilo Z</value>
+    <value>Z 轴剖面</value>
+  </data>
+  <data name="BtnZProfile.Text" xml:space="preserve">
+    <value>Z型材</value>
+    <comment>b3</comment>
   </data>
 </root>

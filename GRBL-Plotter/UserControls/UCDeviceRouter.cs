@@ -24,13 +24,7 @@ using GrblPlotter.Helper;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static GrblPlotter.DeviceToolProperties;
 
@@ -43,6 +37,7 @@ namespace GrblPlotter.UserControls
         private int _SpindleMax = 1000;
         private string _SpindleSet = "0";
         private readonly ToolProperty toolProp = new ToolProperty();
+        private OptionPropHatchFill fill = new OptionPropHatchFill();
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -53,19 +48,20 @@ namespace GrblPlotter.UserControls
         public event EventHandler<UserControlGuiControlEventArgs> RaiseGuiControlEvent;
         protected virtual void OnRaiseGuiControlEvent(UserControlGuiControlEventArgs e)
         { RaiseGuiControlEvent?.Invoke(this, e); }
-        
+
         public UCDeviceRouter()
         {
             InitializeComponent();
             DpiScaling = (float)DeviceDpi / 96;
-    //        UpdateOptions();
+            Logger.Trace("Init");
+            fill.Enable = false;
             UpdateTools();
         }
         private void UCDeviceRouter_Load(object sender, EventArgs e)
         {
+            Logger.Trace("Load");
             MyControl.SetSetupBtnAppearance(BtnSetup);
             SetBtnFillColor();
-            UpdateTools();
         }
 
         public int SpindleMin
@@ -98,7 +94,7 @@ namespace GrblPlotter.UserControls
 
         private void UpdateTools()
         {
-            toolProp.Router.Diameter= (float)Properties.Settings.Default.DeviceRouterToolDiameter;
+            toolProp.Router.Diameter = (float)Properties.Settings.Default.DeviceRouterToolDiameter;
             toolProp.Router.FeedXY = (float)NudDeviceRouterFeedXY.Value;
             toolProp.Router.FeedZ = (float)NudDeviceRouterFeedZ.Value;
             toolProp.Router.FinalZ = (float)NudDeviceRouterZDown.Value;
@@ -107,9 +103,11 @@ namespace GrblPlotter.UserControls
             toolProp.Router.UseAir = false;
             toolProp.Router.Passes = 1;
             toolProp.Router.UseSorZ = false;
+            toolProp.Router.Fill = fill.Copy();
+
             toolProp.Laser.UseSorZ = false;
 
-            MyControl.SetToolsProperties(2, toolProp);
+            MyControl.SetToolsProperties(DeviceSelection.Router, toolProp);
         }
         private void NudDeviceRouter_ValueChanged(object sender, EventArgs e)
         {
@@ -123,7 +121,7 @@ namespace GrblPlotter.UserControls
             BtnDragTool.BackColor = Properties.Settings.Default.importGCDragKnifeEnable ? MyControl.ButtonActive : MyControl.ButtonInactive;
             BtnDragTool.ForeColor = Colors.ContrastColor(BtnDragTool.BackColor);
         }
-		
+
         private void UCDeviceRouter_Resize(object sender, EventArgs e)
         {
             BtnSetup.Left = (Width + 3) - (int)(DpiScaling * MyControl.BtnSetupRight);
@@ -158,9 +156,14 @@ namespace GrblPlotter.UserControls
         #region buttons
         private void BtnSetup_Click(object sender, EventArgs e)
         {
-            List<ControlDefaults> cd = new List<ControlDefaults>();
-            cd.Add(new ControlDefaults(LblSetup1.Text, "DeviceRouterToolDiameter", new decimal[] { 0.01m, 10m, 0.1m, 2m }));
-        //    cd.Add(new ControlDefaults(LblSetup2.Text, "flowControlText"));
+            List<ControlDefaults> cd = new List<ControlDefaults>
+            {
+                new ControlDefaults(LblSetup1.Text, "DeviceRouterToolDiameter", new decimal[] { 0.01m, 10m, 0.1m, 2m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOrigin"), "DeviceRouterOffsetOrigin"),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginX"), "DeviceRouterOffsetOriginX", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginY"), "DeviceRouterOffsetOriginY", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupPathOptimation"), "DeviceRouterPathOptimation")
+            };
             MyControl.ShowSimpleSetup(LblSetupHeadline.Text, "", Cursor.Position, cd);
             MyControl.SettingWasChanged(true);
             UpdateTools();
@@ -174,7 +177,7 @@ namespace GrblPlotter.UserControls
             LblSpindleSpeed.ForeColor = BtnSetup.ForeColor = Colors.ContrastColor(MyControl.NotifyYellow);
             MyControl.ChangeColor(GbSpindleSpeed, MyControl.PanelHighlight, Colors.ContrastColor(MyControl.PanelHighlight));
         }
-				
+
         private void BtnTangential_Click(object sender, EventArgs e)
         {
             List<ControlDefaults> cd = new List<ControlDefaults>
@@ -187,7 +190,7 @@ namespace GrblPlotter.UserControls
                 new ControlDefaults(LblTangentialLimitAngle.Text, "importGCTangentialRange"),
                 new ControlDefaults(LblTangentialPathShorteningEnable.Text, "importGCTangentialShorteningEnable"),
                 new ControlDefaults(LblTangentialPathShortening.Text, "importGCTangentialShortening", new decimal[] { 0m, 100m, 1m, 1m })
-			};
+            };
             MyControl.ShowSimpleSetup(LblTangentialHeadline.Text, LblTangentialInfo.Text, Cursor.Position, cd);
             MyControl.SettingWasChanged(true);
             SetBtnFillColor();
@@ -202,21 +205,21 @@ namespace GrblPlotter.UserControls
                 new ControlDefaults(LblDragToolPercent.Text, "importGCDragKnifePercent", new decimal[] { 1m, 100m, 1m, 0m }),
                 new ControlDefaults(LblDragToolAngle.Text, "importGCDragKnifeAngle", new decimal[] { 0m, 180m, 1m, 0m }),
                 new ControlDefaults(LblDragToolTangentialEnable.Text, "importGCDragKnifeUse")
-			};
+            };
             MyControl.ShowSimpleSetup(LblDragToolHeadline.Text, LblDragToolInfo.Text, Cursor.Position, cd);
             MyControl.SettingWasChanged(true);
             SetBtnFillColor();
         }
 
         private void BtnStartProbing_Click(object sender, EventArgs e)
-		{
-            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 21));			
-		}
+        {
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 21));
+        }
 
         private void BtnStartHeightmap_Click(object sender, EventArgs e)
-		{
-            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 22));			
-		}
-		#endregion
+        {
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 22));
+        }
+        #endregion
     }
 }

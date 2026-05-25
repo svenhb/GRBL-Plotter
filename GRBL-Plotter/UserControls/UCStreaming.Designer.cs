@@ -232,6 +232,7 @@ namespace GrblPlotter.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.GbStreaming);
             this.Name = "UCStreaming";
+            this.Load += new System.EventHandler(this.UCStreaming_Load);
             this.Resize += new System.EventHandler(this.UCStreaming_Resize);
             this.GbStreaming.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

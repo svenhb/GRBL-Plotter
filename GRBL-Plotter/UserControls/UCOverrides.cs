@@ -130,7 +130,10 @@ namespace GrblPlotter.UserControls
         }
 
         internal void SetStateSpindle(bool on)
-        { SetAccessoryButton(BtnToggleSpindle, on); }
+        { 
+            SetAccessoryButton(BtnToggleSpindle, on);
+        //    BtnToggleSpindle.BackColor = on ? Color.Lime : Color.Transparent;
+        }
         internal void SetStateFlood(bool on)
         {
             SetAccessoryButton(BtnToggleFlood, on);

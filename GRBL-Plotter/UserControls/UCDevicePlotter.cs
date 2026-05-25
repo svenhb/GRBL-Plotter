@@ -46,17 +46,19 @@ namespace GrblPlotter.UserControls
         {
             InitializeComponent();
             DpiScaling = (float)DeviceDpi / 96;
+            Logger.Trace("Init");
+            UpdateOptions();
+            UpdateTools();
         }
         private void UCDevicePlotter_Load(object sender, EventArgs e)
         {
+            Logger.Trace("Load");
             MyControl.SetSetupBtnAppearance(BtnSetup);
             int i = Properties.Settings.Default.DevicePlotterControlIndex;
             if (i < TcServoZAxis.TabCount)
                 TcServoZAxis.SelectedIndex = i;
             MyControl.SelectedPlotterMode = TcServoZAxis.SelectedIndex;
             CbDepthControl_CheckedChanged(sender, e);
-            UpdateOptions();
-            UpdateTools();
             SetBtnFillColor();
         }
 
@@ -134,7 +136,7 @@ namespace GrblPlotter.UserControls
             toolProp.Plotter.Passes = 1;
             toolProp.Plotter.Fill = fill.Copy();
 
-            MyControl.SetToolsProperties(1, toolProp);
+            MyControl.SetToolsProperties(DeviceSelection.Plotter, toolProp);
         }
 
         private void UpdateOptions()
@@ -142,6 +144,7 @@ namespace GrblPlotter.UserControls
             fill.Enable = Properties.Settings.Default.DevicePlotterHatchFillEnable;
             fill.Cross = Properties.Settings.Default.DevicePlotterHatchFillCross;
             fill.Distance = (float)Properties.Settings.Default.DevicePlotterHatchFillDistance;
+            fill.Gradient = (float)Properties.Settings.Default.DevicePlotterHatchFillGradient;
             // DistanceOffsetEnable
             // DistanceOffset
             fill.Angle = (float)Properties.Settings.Default.DevicePlotterHatchFillAngle;
@@ -158,6 +161,7 @@ namespace GrblPlotter.UserControls
             Properties.Settings.Default.DevicePlotterHatchFillEnable = fill.Enable;
             Properties.Settings.Default.DevicePlotterHatchFillCross = fill.Cross;
             Properties.Settings.Default.DevicePlotterHatchFillDistance = (decimal)fill.Distance;
+            Properties.Settings.Default.DevicePlotterHatchFillGradient = (decimal)fill.Gradient;
             // DistanceOffsetEnable
             // DistanceOffset
             Properties.Settings.Default.DevicePlotterHatchFillAngle = (decimal)fill.Angle;
@@ -192,7 +196,11 @@ namespace GrblPlotter.UserControls
         {
             List<ControlDefaults> cd = new List<ControlDefaults>
             {
-                new ControlDefaults(LblSetupToolDiameter.Text, "DevicePlotterToolDiameter", new decimal[] { 0.01m, 10m, 0.1m, 2m })
+                new ControlDefaults(LblSetupToolDiameter.Text, "DevicePlotterToolDiameter", new decimal[] { 0.01m, 10m, 0.1m, 2m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOrigin"), "DevicePlotterOffsetOrigin"),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginX"), "DevicePlotterOffsetOriginX", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginY"), "DevicePlotterOffsetOriginY", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupPathOptimation"), "DevicePlotterPathOptimation"),
             };
             MyControl.ShowSimpleSetup(LblSetupHeadline.Text, "", Cursor.Position, cd);
             UpdateTools();
@@ -238,6 +246,18 @@ namespace GrblPlotter.UserControls
             MyControl.SettingWasChanged(true);
             SetBtnFillColor();
         }
+        private void BtnZProfile_Click(object sender, EventArgs e)
+        {
+            List<ControlDefaults> cd = new List<ControlDefaults>
+            {
+                new ControlDefaults(LblZProfileEnable.Text, "DevicePlotterAddZGradientEnable"),
+                new ControlDefaults(LblZProfileStep.Text, "DevicePlotterAddZGradientStepWidth", new decimal[] { 0.1m, 10m, 0.1m, 1m }),
+                new ControlDefaults(LblZProfileRampLength.Text, "DevicePlotterAddZGradientRampLength", new decimal[] { 1m, 10000m, 10m, 1m })
+            };
+            MyControl.ShowSimpleSetup(LblZProfileHeadline.Text, LblZProfileInfo.Text, Cursor.Position, cd);
+            MyControl.SettingWasChanged(true);
+            SetBtnFillColor();
+        }
 
         private void BtnPenChange_Click(object sender, EventArgs e)
         {
@@ -272,8 +292,6 @@ namespace GrblPlotter.UserControls
             SetBtnFillColor();
             MyControl.SettingWasChanged(true);
         }
-
-
         #endregion
 
         private void SetBtnFillColor()
@@ -284,6 +302,8 @@ namespace GrblPlotter.UserControls
             BtnNoise.ForeColor = Colors.ContrastColor(BtnNoise.BackColor);
             BtnSplit.BackColor = Properties.Settings.Default.importGCLineSegmentation ? MyControl.ButtonActive : MyControl.ButtonInactive;
             BtnSplit.ForeColor = Colors.ContrastColor(BtnSplit.BackColor);
+            BtnZProfile.BackColor = Properties.Settings.Default.DevicePlotterAddZGradientEnable ? MyControl.ButtonActive : MyControl.ButtonInactive;
+            BtnZProfile.ForeColor = Colors.ContrastColor(BtnSplit.BackColor);
             BtnPenChange.BackColor = !Properties.Settings.Default.DevicePlotterPenChangeRBNo ? MyControl.ButtonActive : MyControl.ButtonInactive;
             BtnPenChange.ForeColor = Colors.ContrastColor(BtnPenChange.BackColor);
         }
@@ -340,6 +360,7 @@ namespace GrblPlotter.UserControls
                 CbDepthControl.BackColor = MyControl.NotifyYellow;
             else
                 CbDepthControl.BackColor = SystemColors.Control;
+            MyControl.SettingWasChanged(true);
         }
     }
 }

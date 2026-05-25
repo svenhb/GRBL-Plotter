@@ -326,4 +326,22 @@ Sous-programme P90</value>
     <value>La valeur S ou Z varie en fonction de la largeur du stylo</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Longueur de la rampe</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Largeur du pas</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Activer le profil Z</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Augmente la pression du stylo au début d'une ligne et la diminue à la fin de la ligne.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Profil Z</value>
+  </data>
 </root>

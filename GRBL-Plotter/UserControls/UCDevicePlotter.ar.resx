@@ -354,4 +354,26 @@
     <value>تذبذب</value>
     <comment>b3</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>المساعدة عبر الإنترنت</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>طول المنحدر</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>عرض الخطوة</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>تفعيل ملف تعريف Z</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>يزيد من ضغط القلم في بداية الخط ويخفضه في نهايته.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>ملف تعريف Z</value>
+  </data>
+  <data name="BtnZProfile.Text" xml:space="preserve">
+    <value>ملف تعريف Z</value>
+    <comment>b3</comment>
+  </data>
 </root>

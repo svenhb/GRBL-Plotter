@@ -326,4 +326,22 @@
     <value>Изменяет значение S или Z в зависимости от ширины пера.</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Длина рампы</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Ширина шага</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Включить Z-профиль</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Увеличивает нажим пера в начале линии и уменьшает его в конце.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Z-профиль</value>
+  </data>
 </root>

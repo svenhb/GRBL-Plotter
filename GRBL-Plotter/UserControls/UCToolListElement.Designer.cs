@@ -218,6 +218,7 @@
             // tbName
             // 
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.Location = new System.Drawing.Point(24, 2);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(85, 20);
@@ -594,7 +595,7 @@
             this.CmsMoveTo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TsmiMoveToPosition});
             this.CmsMoveTo.Name = "CmsMoveTo";
-            this.CmsMoveTo.Size = new System.Drawing.Size(182, 48);
+            this.CmsMoveTo.Size = new System.Drawing.Size(182, 26);
             // 
             // TsmiMoveToPosition
             // 

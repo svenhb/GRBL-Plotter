@@ -36,6 +36,7 @@
             this.BtnPenZero = new System.Windows.Forms.Button();
             this.BtnPenDownUp = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnCustom1 = new System.Windows.Forms.Button();
             this.TableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             this.TableLayoutPanel1.Controls.Add(this.BtnPenDown, 0, 2);
             this.TableLayoutPanel1.Controls.Add(this.BtnPenZero, 0, 1);
             this.TableLayoutPanel1.Controls.Add(this.BtnPenDownUp, 1, 1);
+            this.TableLayoutPanel1.Controls.Add(this.btnCustom1, 1, 0);
             this.TableLayoutPanel1.Name = "TableLayoutPanel1";
             // 
             // BtnPenUp
@@ -81,6 +83,13 @@
             this.BtnPenDownUp.UseVisualStyleBackColor = true;
             this.BtnPenDownUp.Click += new System.EventHandler(this.BtnPenDownUp_Click);
             // 
+            // btnCustom1
+            // 
+            resources.ApplyResources(this.btnCustom1, "btnCustom1");
+            this.btnCustom1.Name = "btnCustom1";
+            this.btnCustom1.UseVisualStyleBackColor = true;
+            this.btnCustom1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnCustom1_MouseDown);
+            // 
             // UCDevicePlotter2
             // 
             resources.ApplyResources(this, "$this");
@@ -101,5 +110,6 @@
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanel1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button BtnPenDownUp;
+        private System.Windows.Forms.Button btnCustom1;
     }
 }

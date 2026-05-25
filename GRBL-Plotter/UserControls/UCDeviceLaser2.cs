@@ -34,6 +34,7 @@ namespace GrblPlotter.UserControls
         private readonly bool isLarge = true;
         private int neededWidth = 230;
         private string toolTipLaserOn = "";
+        private int statusUpdateInhibit = 0;
 
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
@@ -49,26 +50,30 @@ namespace GrblPlotter.UserControls
             this.updateTimer.Interval = 1000;
             this.updateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
         }
-        public void SetStatusSpindle(bool on)
+        public void SetStatusSpindle(bool on)	// called in MainFormInterface.cs ProcessStatusMessage
         {
             CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
-            PbLaser.Visible = CbLaser.Checked = on;
+            if (statusUpdateInhibit <= 0)
+                PbLaser.Visible = CbLaser.Checked = on;
             CbLaser.CheckedChanged += CbLaser_CheckedChanged;
         }
         public void SetStatusMWord(string m)
         {
-            CbPilotLaser.CheckedChanged-= CbPilotLaser_CheckedChanged;
+            CbPilotLaser.CheckedChanged -= CbPilotLaser_CheckedChanged;
             CbAirAssist.CheckedChanged -= CbAirAssist_CheckedChanged;
-            /*
-            if (Properties.Settings.Default.DeviceLaserCmndPilotOn.Contains(m))
-                CbPilotLaser.Checked = true;
-            if (Properties.Settings.Default.DeviceLaserCmndPilotOff.Contains(m))
-                CbPilotLaser.Checked = false;
-            if (Properties.Settings.Default.DeviceLaserCmndAirOn.Contains(m))
-                CbAirAssist.Checked = true;
-            if (Properties.Settings.Default.DeviceLaserCmndAirOff.Contains(m))
-                CbAirAssist.Checked = false;
-            */
+            if (statusUpdateInhibit <= 0)
+            {
+
+                if (Properties.Settings.Default.DeviceLaserCmndPilotOn.Contains(m))
+                    CbPilotLaser.Checked = true;
+                if (Properties.Settings.Default.DeviceLaserCmndPilotOff.Contains(m))
+                    CbPilotLaser.Checked = false;
+                if (Properties.Settings.Default.DeviceLaserCmndAirOn.Contains(m))
+                    CbAirAssist.Checked = true;
+                if (Properties.Settings.Default.DeviceLaserCmndAirOff.Contains(m))
+                    CbAirAssist.Checked = false;
+
+            }
             CbPilotLaser.CheckedChanged += CbPilotLaser_CheckedChanged;
             CbAirAssist.CheckedChanged += CbAirAssist_CheckedChanged;
         }
@@ -93,6 +98,9 @@ namespace GrblPlotter.UserControls
                             (int)(t.TotalHours),
                             t.Minutes,
                             t.Seconds);
+
+            if (statusUpdateInhibit > 0)
+                statusUpdateInhibit--;
         }
         private void BtnSetup_Click(object sender, EventArgs e)
         {
@@ -125,6 +133,7 @@ namespace GrblPlotter.UserControls
         private void CbLaser_CheckedChanged(object sender, EventArgs e)
         {
             Logger.Trace("CbLaser_CheckedChanged {0}", CbLaser.Checked);
+            statusUpdateInhibit = 2;
             string m = "M3";
 
             float speed = Grbl.GetSetting(30);
@@ -147,6 +156,8 @@ namespace GrblPlotter.UserControls
 
         private void CbPilotLaser_CheckedChanged(object sender, EventArgs e)
         {
+            Logger.Trace("CbPilotLaser_CheckedChanged {0}", CbPilotLaser.Checked);
+            statusUpdateInhibit = 2;
             if (CbPilotLaser.Checked)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(Properties.Settings.Default.DeviceLaserCmndPilotOn, 0, sender, e));
             else
@@ -156,6 +167,7 @@ namespace GrblPlotter.UserControls
         private void CbAirAssist_CheckedChanged(object sender, EventArgs e)
         {
             Logger.Trace("CbAirAssist_CheckedChanged {0}", CbAirAssist.Checked);
+            statusUpdateInhibit = 2;
             if (CbAirAssist.Checked)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(Properties.Settings.Default.DeviceLaserCmndAirOn, 0, sender, e));
             else

@@ -168,198 +168,6 @@
   <data name="TableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="Panel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="CbLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="CbLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="CbLaser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbLaser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="CbLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="CbLaser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="CbLaser.TabIndex" type="System.Int32, mscorlib">
-    <value>62</value>
-  </data>
-  <data name="CbLaser.Text" xml:space="preserve">
-    <value>Laser On</value>
-  </data>
-  <data name="CbLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="CbLaser.ToolTip" xml:space="preserve">
-    <value>Switch on laser with low energy: </value>
-  </data>
-  <data name="&gt;&gt;CbLaser.Name" xml:space="preserve">
-    <value>CbLaser</value>
-  </data>
-  <data name="&gt;&gt;CbLaser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbLaser.Parent" xml:space="preserve">
-    <value>Panel</value>
-  </data>
-  <data name="&gt;&gt;CbLaser.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Panel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="Panel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 18</value>
-  </data>
-  <data name="Panel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Panel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="Panel.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="&gt;&gt;Panel.Name" xml:space="preserve">
-    <value>Panel</value>
-  </data>
-  <data name="&gt;&gt;Panel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;Panel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="CbPilotLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="CbPilotLaser.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbPilotLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="CbPilotLaser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 48</value>
-  </data>
-  <data name="CbPilotLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="CbPilotLaser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 27</value>
-  </data>
-  <data name="CbPilotLaser.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
-  </data>
-  <data name="CbPilotLaser.Text" xml:space="preserve">
-    <value>Pilot laser</value>
-  </data>
-  <data name="CbPilotLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="CbPilotLaser.ToolTip" xml:space="preserve">
-    <value>Switch on pilot laser</value>
-  </data>
-  <data name="&gt;&gt;CbPilotLaser.Name" xml:space="preserve">
-    <value>CbPilotLaser</value>
-  </data>
-  <data name="&gt;&gt;CbPilotLaser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbPilotLaser.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;CbPilotLaser.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="CbAirAssist.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="CbAirAssist.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbAirAssist.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="CbAirAssist.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 48</value>
-  </data>
-  <data name="CbAirAssist.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="CbAirAssist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 27</value>
-  </data>
-  <data name="CbAirAssist.TabIndex" type="System.Int32, mscorlib">
-    <value>68</value>
-  </data>
-  <data name="CbAirAssist.Text" xml:space="preserve">
-    <value>Air</value>
-  </data>
-  <data name="CbAirAssist.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="CbAirAssist.ToolTip" xml:space="preserve">
-    <value>Switch on air assist</value>
-  </data>
-  <data name="&gt;&gt;CbAirAssist.Name" xml:space="preserve">
-    <value>CbAirAssist</value>
-  </data>
-  <data name="&gt;&gt;CbAirAssist.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbAirAssist.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;CbAirAssist.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="LblUptime.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LblUptime.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="LblUptime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="LblUptime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 18</value>
-  </data>
-  <data name="LblUptime.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
-  </data>
-  <data name="LblUptime.Text" xml:space="preserve">
-    <value>Uptime: 0</value>
-  </data>
-  <data name="LblUptime.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="LblUptime.ToolTip" xml:space="preserve">
-    <value>Laser up time counter (hh:mm:ss)</value>
-  </data>
-  <data name="&gt;&gt;LblUptime.Name" xml:space="preserve">
-    <value>LblUptime</value>
-  </data>
-  <data name="&gt;&gt;LblUptime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblUptime.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;LblUptime.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="PbLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -447,6 +255,198 @@
     <value>TableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;PbLaser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Panel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="CbLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbLaser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbLaser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="CbLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbLaser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="CbLaser.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>Laser On</value>
+  </data>
+  <data name="CbLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbLaser.ToolTip" xml:space="preserve">
+    <value>Switch on laser with low energy: </value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Name" xml:space="preserve">
+    <value>CbLaser</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.Parent" xml:space="preserve">
+    <value>Panel</value>
+  </data>
+  <data name="&gt;&gt;CbLaser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Panel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="Panel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 18</value>
+  </data>
+  <data name="Panel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Panel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="Panel.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="&gt;&gt;Panel.Name" xml:space="preserve">
+    <value>Panel</value>
+  </data>
+  <data name="&gt;&gt;Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Panel.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;Panel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbPilotLaser.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbPilotLaser.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbPilotLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbPilotLaser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 48</value>
+  </data>
+  <data name="CbPilotLaser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbPilotLaser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 27</value>
+  </data>
+  <data name="CbPilotLaser.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="CbPilotLaser.Text" xml:space="preserve">
+    <value>Pilot laser</value>
+  </data>
+  <data name="CbPilotLaser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbPilotLaser.ToolTip" xml:space="preserve">
+    <value>Switch on pilot laser</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Name" xml:space="preserve">
+    <value>CbPilotLaser</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;CbPilotLaser.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CbAirAssist.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="CbAirAssist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAirAssist.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CbAirAssist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 48</value>
+  </data>
+  <data name="CbAirAssist.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CbAirAssist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 27</value>
+  </data>
+  <data name="CbAirAssist.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>Air</value>
+  </data>
+  <data name="CbAirAssist.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CbAirAssist.ToolTip" xml:space="preserve">
+    <value>Switch on air assist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Name" xml:space="preserve">
+    <value>CbAirAssist</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;CbAirAssist.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblUptime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblUptime.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LblUptime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="LblUptime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 18</value>
+  </data>
+  <data name="LblUptime.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="LblUptime.Text" xml:space="preserve">
+    <value>Uptime: 0</value>
+  </data>
+  <data name="LblUptime.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="LblUptime.ToolTip" xml:space="preserve">
+    <value>Laser up time counter (hh:mm:ss)</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Name" xml:space="preserve">
+    <value>LblUptime</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;LblUptime.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -480,7 +480,7 @@
     <value>1</value>
   </data>
   <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="Panel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbPilotLaser" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbAirAssist" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="LblUptime" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="PbLaser" Row="0" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,50" /&gt;&lt;Rows Styles="Absolute,18,Absolute,30,Absolute,22,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="PbLaser" Row="0" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="Panel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbPilotLaser" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbAirAssist" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="LblUptime" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,50" /&gt;&lt;Rows Styles="Absolute,18,Absolute,30,Absolute,22,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

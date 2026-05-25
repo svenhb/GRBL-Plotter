@@ -48,17 +48,16 @@ namespace GrblPlotter.UserControls
         public UCFlowControl()
         {
             InitializeComponent();
-            timerBlink.Interval = 330;
-            timerBlink.Enabled = true;
-            timerBlink.Start();
             DpiScaling = (float)DeviceDpi / 96;
 
             GbFlowControl.Click += GbFlowControl_Click;
             timerBlink.Elapsed += TimerBlink_Tick;
+            timerBlink.Interval = 330;
         }
         private void UCFlowControl_Load(object sender, EventArgs e)
         {
             SetHeight(Properties.Settings.Default.UserControlFlowControlIsLarge);
+            timerBlink.Start();
         }
 
         internal void SetHeight(bool setLarge)

@@ -33,6 +33,7 @@
  
 */
 
+using AForge.Imaging.Filters;
 using GrblPlotter.Helper;
 using NLog;
 using System;
@@ -48,7 +49,7 @@ using static GrblPlotter.Graphic;
 namespace GrblPlotter.UserControls
 {
     public enum CommandProtocol { Marlin, grblOld, grblCanJog }
-    public enum GuiControl { streamStart, streamStartSection, streamStop, streamPause, streamCheck, simulateStart, simulateStop, simulatePause, simulateFaster, simulateSlower, guiUpdate, highligh, reloadGraphic, invalidate, openForm }
+    public enum GuiControl { streamStart, streamStartSection, streamStop, streamPause, streamCheck, simulateStart, simulateStop, simulatePause, simulateFaster, simulateSlower, guiUpdate, highligh, reloadGraphic, invalidate, openForm, customButton, useToolList }
     public enum DeviceSelection { Laser, Plotter, Router, Individual }
 
     public struct DistFeed
@@ -105,6 +106,8 @@ namespace GrblPlotter.UserControls
         public static Color NotifyGreen { get; set; }
         public static Color NotifyRed { get; set; }
 
+        public static Color SetupFormBackColor { get; set; }
+
 
         public static int MinimumHeightFolded = 18;
         public static int BtnSetupRight = 20;
@@ -117,6 +120,10 @@ namespace GrblPlotter.UserControls
         public static bool ApplyToolList { get; set; }
         private static bool settingWasChanged = false;
 
+        private static bool LaserInitialized = false;
+        private static bool PlotterInitialized = false;
+        private static bool RouterInitialized = false;
+        public static bool AllDevicesInitialized = false;
 
         private static int DeviceLaserZPasses = 0;
 
@@ -128,23 +135,24 @@ namespace GrblPlotter.UserControls
             GroupBy = GroupOption.ByColor;
         }
 
-        internal static void SetToolsProperties(int deviceNr, ToolProperty p)
+        internal static void SetToolsProperties(DeviceSelection device, ToolProperty p)
         {
-            if (deviceNr == 0)
+            if (device == DeviceSelection.Laser)
             {
-                ToolsProperties.Laser = p.Laser.Copy();
-                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", deviceNr, p.Laser.Settings());
+                ToolsProperties.Laser = p.Laser.Copy(); LaserInitialized = true;
+                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", device, p.Laser.Settings());
             }
-            else if (deviceNr == 1)
+            else if (device == DeviceSelection.Plotter)
             {
-                ToolsProperties.Plotter = p.Plotter.Copy();
-                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", deviceNr, p.Plotter.Settings());
+                ToolsProperties.Plotter = p.Plotter.Copy(); PlotterInitialized = true;
+                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", device, p.Plotter.Settings());
             }
             else
             {
-                ToolsProperties.Router = p.Router.Copy();
-                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", deviceNr, p.Router.Settings());
+                ToolsProperties.Router = p.Router.Copy(); RouterInitialized = true;
+                if (log) Logger.Trace("●●●●● SetToolsProperties device:{0}  settings:{1}", device, p.Router.Settings());
             }
+            AllDevicesInitialized = LaserInitialized && PlotterInitialized && RouterInitialized;
         }
         internal static void SettingWasChanged(bool changed = true)
         {
@@ -208,7 +216,7 @@ namespace GrblPlotter.UserControls
             Logger.Warn("GetActualFillEnable - no device");
             return Properties.Settings.Default.importGraphicHatchFillEnable;
         }
-        internal static double GetActualWidth()
+        internal static double GetActualToolDiameter()
         {
             if (SelectedDevice == DeviceSelection.Laser)
                 return (double)Properties.Settings.Default.DeviceLaserToolDiameter;
@@ -237,9 +245,11 @@ namespace GrblPlotter.UserControls
             { GraphicImported = true; }
         }
 
-        /***************************************************************
-		* Override import options
-		****************************************************************/
+        /******************************************************************************************************************************
+        ***************************************************************
+        ** Override import options
+        ***************************************************************
+        ********************************************************************************************************************************/
         internal static void ChangeGraphicOptionsDeviceSpecific(Graphic.GraphicInformationClass info)
         {
             /* in GraphicCollectData.cs 301 Graphic.Init() */
@@ -252,7 +262,7 @@ namespace GrblPlotter.UserControls
                 if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseToolList: {1}   {2}", GetSelectedDeviceName(), UseToolList(), GetActualDevice().Settings());
                 return;
             }
-
+            var PropSettings = Properties.Settings.Default;
             info.OptionSpecialDevelopment = false;
             info.OptionSpecialWireBender = false;
             info.OptionSpecialConvertToPolar = false;
@@ -267,7 +277,7 @@ namespace GrblPlotter.UserControls
             info.ImportDxfConsiderZ = false;
             info.ApplyHatchFillSVG = true;
 
-            info.ConvertArcToLine = UseToolList() || GetActualFillEnable();
+        //    info.ConvertArcToLine = UseToolList() || GetActualFillEnable();
 
             info.GroupOption = GroupBy; //GroupOption.ByColor;
             info.GroupEnable = true;
@@ -292,31 +302,28 @@ namespace GrblPlotter.UserControls
             info.OptionNoise = false;
 
             bool useInkFromTablet = (info.SourceType == SourceType.Ink);
-            bool useDepthFromWidth = Properties.Settings.Default.DevicePlotterDepthControl;
+            bool useDepthFromWidth = PropSettings.DevicePlotterDepthControl && (SelectedDevice == DeviceSelection.Plotter);
+            bool useAddZProfile = PropSettings.DevicePlotterAddZGradientEnable;
 
             if (useInkFromTablet || useDepthFromWidth)
             {
                 info.PenWidthMin = 0;
-                info.PenWidthMax = (double)Properties.Settings.Default.tabletSizePen;
+                info.PenWidthMax = (double)PropSettings.tabletSizePen;
             }
+
+            /*********** Laser **********/
             if (SelectedDevice == DeviceSelection.Laser)
             {
                 info.ImportRemoveShortMoves = true;
                 info.ImportRemoveShortMovesLimit = 0.05;
 
-                info.OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;    //true;
-                info.OptionCodeOffsetLargestLast = true;
-                info.OptionCodeOffsetLargestRemove = false;
-
-                info.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance;       //true;  
-                info.OptionCodeSortDistanceStartIndex = 3;  // min-x, min-y
-                info.OptionCodeSortDistanceNewStartOnClosedPath = true;
-                info.OptionCodeSortDistanceLargestLast = true;  //
-                                                                //    info.OptionCodeSortDimension = false;
+                info.OptionCodeOffset = PropSettings.DeviceLaserOffsetOrigin;
+                GuiVariables.offsetOriginX = (double)PropSettings.DeviceLaserOffsetOriginX;
+                GuiVariables.offsetOriginY = (double)PropSettings.DeviceLaserOffsetOriginY;
+                info.OptionCodeSortDimension = PropSettings.DeviceLaserPathOptimation;
 
                 info.OptionRepeatCode = true;
-                info.OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
-                info.OptionCodeSortDimension = Properties.Settings.Default.importGraphicExtendPathEnable;
+                info.OptionExtendPath = PropSettings.importGraphicExtendPathEnable;
 
                 if (Properties.Settings.Default.DeviceLaserZEnable)
                 {
@@ -329,30 +336,30 @@ namespace GrblPlotter.UserControls
                 {
                     info.OptionSFromWidth = true;
                     info.OptionRepeatCode = false;      // <- important
-                    info.OptionCodeOffsetLargestLast = false;
                     info.OptionCodeSortDistance = false;
                 }
             }
 
+            /*********** Plotter **********/
             else if (SelectedDevice == DeviceSelection.Plotter)
             {
                 info.ImportRemoveShortMoves = true;
                 info.ImportRemoveShortMovesLimit = 0.1;
-                info.OptionCodeOffset = true;
-                info.OptionCodeOffsetLargestLast = info.OptionCodeOffsetLargestRemove = false;
-                info.OptionCodeSortDistance = true;
-                info.OptionCodeSortDistanceNewStartOnClosedPath = true;
-                info.OptionCodeSortDistanceLargestLast = false;
-                info.OptionCodeSortDimension = false;
 
-                //    if (Properties.Settings.Default.DevicePlotterHatchFillEnable)
-                //   { info.ApplyHatchFillSVG = true; }
+                info.OptionCodeOffset = PropSettings.DevicePlotterOffsetOrigin;
+                GuiVariables.offsetOriginX = (double)PropSettings.DevicePlotterOffsetOriginX;
+                GuiVariables.offsetOriginY = (double)PropSettings.DevicePlotterOffsetOriginY;
+                info.OptionCodeSortDimension = PropSettings.DevicePlotterPathOptimation;
+
+                useDepthFromWidth = Properties.Settings.Default.DevicePlotterDepthControl;
+
                 info.OptionNoise = Properties.Settings.Default.importGraphicNoiseEnable;
+                info.OptionAddZProfile = Properties.Settings.Default.DevicePlotterAddZGradientEnable;
 
-                if (useInkFromTablet || useDepthFromWidth)
+                if (useInkFromTablet || useDepthFromWidth || info.OptionAddZProfile)
                 {
-                    info.OptionCodeSortDistance = false;
-                    info.OptionCodeSortDistanceNewStartOnClosedPath = false;
+                //    info.OptionCodeSortDistance = false;
+                //    info.OptionCodeSortDistanceNewStartOnClosedPath = false;
                     if (SelectedPlotterMode == 0)               // servo enable
                     {
                         info.OptionSFromWidth = true;
@@ -362,16 +369,33 @@ namespace GrblPlotter.UserControls
                         info.OptionZFromWidth = true;
                         info.ImportDxfConsiderZ = true;
                     }
+                    if (info.OptionAddZProfile)
+                    {
+                        info.PenWidthMin = 0;
+                        info.PenWidthMax = (double)Properties.Settings.Default.DevicePlotterToolDiameter;
+                    }
                 }
 
                 info.OptionRepeatCodeComplete = false; // Properties.Settings.Default.importRepeatComplete
             }
 
+            /*********** Router **********/
             else if (SelectedDevice == DeviceSelection.Router)
             {
                 info.OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
                 info.OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
 
+                info.OptionCodeOffset = PropSettings.DeviceRouterOffsetOrigin;
+                GuiVariables.offsetOriginX = (double)PropSettings.DeviceRouterOffsetOriginX;
+                GuiVariables.offsetOriginY = (double)PropSettings.DeviceRouterOffsetOriginY;
+                info.OptionCodeSortDimension = PropSettings.DeviceRouterPathOptimation;
+
+                if (info.OptionTangentialAxis || info.OptionDragTool)
+                {
+                //    info.OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;    //true;
+                //    info.OptionCodeOffsetLargestLast = true;
+                //    info.OptionCodeOffsetLargestRemove = false;
+                }
                 if (useInkFromTablet || useDepthFromWidth)
                 {
                     info.OptionZFromWidth = true;
@@ -423,12 +447,14 @@ namespace GrblPlotter.UserControls
 
             bool useInkFromTablet = (Graphic.graphicInformation.SourceType == SourceType.Ink);
             bool useDepthFromWidth = Properties.Settings.Default.DevicePlotterDepthControl;
+            bool useAddZProfile = Properties.Settings.Default.DevicePlotterAddZGradientEnable;
             Gcode.Import.SelectedDevice = SelectedDevice;
             Gcode.Import.SelectedPlotterMode = SelectedPlotterMode;
 
             /*
              * Some values will be overwritten in Graphic2GCodeRelated - GetValuesFromToolList  1869
              * */
+            /*********** Laser **********/
             if (SelectedDevice == DeviceSelection.Laser)
             {
                 Gcode.Spindle.LasermodeEnable = true;
@@ -445,6 +471,7 @@ namespace GrblPlotter.UserControls
                 Logger.Trace("OverideGcodeSetup Laser");
             }
 
+            /*********** Plotter **********/
             else if (SelectedDevice == DeviceSelection.Plotter)
             {
                 Gcode.Spindle.LasermodeEnable = false;
@@ -453,7 +480,7 @@ namespace GrblPlotter.UserControls
                 if (SelectedPlotterMode == 0)               // servo enable
                 {
                     Gcode.OptionPWM.Enable = true;
-                    if (useInkFromTablet || useDepthFromWidth)
+                    if (useInkFromTablet || useDepthFromWidth || useAddZProfile)
                     {
                         DepthFromWidth.SMin = (float)Properties.Settings.Default.importGCPWMZero;
                         DepthFromWidth.SMax = (float)Properties.Settings.Default.importGCPWMDown;
@@ -463,10 +490,11 @@ namespace GrblPlotter.UserControls
                 else                                        //Z-axis
                 {
                     Gcode.OptionZAxis.Enable = true;
-                    if (useInkFromTablet || useDepthFromWidth)
+                    if (useInkFromTablet || useDepthFromWidth || useAddZProfile)
                     {
                         DepthFromWidth.ZMin = (float)0;// Properties.Settings.Default.importGCPWMZero;
                         DepthFromWidth.ZMax = (float)Properties.Settings.Default.DevicePlotterZDown;
+                        DepthFromWidth.SEnable = true;
                     }
                 }
 
@@ -484,6 +512,7 @@ namespace GrblPlotter.UserControls
                 Gcode.ModificationSegmentation.Enable = Properties.Settings.Default.importGCLineSegmentation;
             }
 
+            /*********** Router **********/
             else if (SelectedDevice == DeviceSelection.Router)
             {
                 Gcode.OptionZAxis.Enable = true;
@@ -492,6 +521,7 @@ namespace GrblPlotter.UserControls
                 {
                     DepthFromWidth.ZMin = (float)0;// Properties.Settings.Default.importGCPWMZero;
                     DepthFromWidth.ZMax = (float)Properties.Settings.Default.DeviceRouterZDown;
+                    DepthFromWidth.SEnable = true;
                 }
             }
         }
@@ -642,6 +672,41 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
             btn.BackColor = NotifyYellow;
         }
 
+        internal static string SetButtonProperty(Button btn, string text)
+        {
+            if (text.Contains("|"))
+            {
+                string[] parts = text.Split('|');
+                Color btnColor = Button.DefaultBackColor;
+                btn.Text = parts[0];
+                if (parts.Length > 2)
+                {
+                    if (parts[2].Length > 3)
+                    {
+                        Color tmp = SystemColors.Control;
+                        try
+                        { tmp = ColorTranslator.FromHtml(parts[2]); }
+                        catch (Exception err)
+                        { Logger.Error(err, "SetCustomButton with {0} from {1}", parts[2], text); }
+                        btnColor = tmp;
+                    }
+                }
+                btn.BackColor = btnColor;
+                btn.ForeColor = Colors.ContrastColor(btnColor);
+
+                if (parts[1].Length > 1)
+                {
+
+                    return parts[0] + "\r\n" + parts[1].Replace(";", "\r\n");
+                }
+                else
+                {
+                    return "Right click to change content";
+                }
+            }
+            return "";
+        }
+
         internal static void ShowSimpleSetup(string title, string info, Point pos, List<ControlDefaults> cd) //string[,] settings, params decimal[] nudParameter)
         {
             /*    for (int i = 0; i < cd.Count; i++)
@@ -669,6 +734,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                 form.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
                 //    form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
                 form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                form.BackColor = SetupFormBackColor;
 
                 CheckBox checkBox;
                 RadioButton radioButton;
@@ -738,7 +804,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                                 radioButton.Name = "rb1";
                                 radioButton.Text = cd[i].Text;
                                 radioButton.UseVisualStyleBackColor = true;
-                                radioButton.Checked = (bool)property;// Properties.ListSettings.Default[settings[deviceNr, 1]];//.ctrlSendStopJog;
+                                radioButton.Checked = (bool)property;// Properties.ListSettings.Default[settings[device, 1]];//.ctrlSendStopJog;
                                 radioButton.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, cd[i].Prop, true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
                                 radioButton.Click += RB_Click;
                                 if (cd[i].Text.Length > textLen)
@@ -755,7 +821,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
 
                                 checkBox.Text = cd[i].Text;
                                 checkBox.UseVisualStyleBackColor = true;
-                                checkBox.Checked = (bool)property;// Properties.ListSettings.Default[settings[deviceNr, 1]];//.ctrlSendStopJog;
+                                checkBox.Checked = (bool)property;// Properties.ListSettings.Default[settings[device, 1]];//.ctrlSendStopJog;
                                 checkBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, cd[i].Prop, true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
                                 if (cd[i].Text.Length > textLen)
                                     textLen = cd[i].Text.Length;
@@ -885,6 +951,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                 form.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
                 //    form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
                 form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                form.BackColor = SetupFormBackColor;
 
                 CheckBox checkBox;
                 NumericUpDown nud;

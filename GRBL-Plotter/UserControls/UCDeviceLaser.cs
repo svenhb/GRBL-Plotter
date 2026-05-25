@@ -91,13 +91,15 @@ namespace GrblPlotter.UserControls
         {
             InitializeComponent();
             DpiScaling = (float)DeviceDpi / 96;
+            Logger.Trace("Init");
+            UpdateOptions();
+            UpdateTools();
         }
 
         private void UCDeviceLaser_Load(object sender, EventArgs e)
         {
+            Logger.Trace("Load");
             MyControl.SetSetupBtnAppearance(BtnSetup);
-            UpdateOptions();
-            UpdateTools();
             SetBtnFillColor();
         }
         private void UpdateTools()
@@ -115,7 +117,7 @@ namespace GrblPlotter.UserControls
             toolProp.Laser.Passes = (int)NudDeviceLaserPasses.Value;
             toolProp.Laser.Fill = fill.Copy();
 
-            MyControl.SetToolsProperties(0, toolProp);
+            MyControl.SetToolsProperties(DeviceSelection.Laser, toolProp);
         }
 
         private void UpdateOptions()
@@ -123,6 +125,7 @@ namespace GrblPlotter.UserControls
             fill.Enable = Properties.Settings.Default.DeviceLaserHatchFillEnable;
             fill.Cross = Properties.Settings.Default.DeviceLaserHatchFillCross;
             fill.Distance = (float)Properties.Settings.Default.DeviceLaserHatchFillDistance;
+            fill.Gradient = (float)Properties.Settings.Default.DeviceLaserHatchFillGradient;
             // DistanceOffsetEnable
             // DistanceOffset
             fill.Angle = (float)Properties.Settings.Default.DeviceLaserHatchFillAngle;
@@ -140,6 +143,7 @@ namespace GrblPlotter.UserControls
             Properties.Settings.Default.DeviceLaserHatchFillEnable = fill.Enable;
             Properties.Settings.Default.DeviceLaserHatchFillCross = fill.Cross;
             Properties.Settings.Default.DeviceLaserHatchFillDistance = (decimal)fill.Distance;
+            Properties.Settings.Default.DeviceLaserHatchFillGradient = (decimal)fill.Gradient;
             // DistanceOffsetEnable
             // DistanceOffset
             Properties.Settings.Default.DeviceLaserHatchFillAngle = (decimal)fill.Angle;
@@ -197,6 +201,10 @@ namespace GrblPlotter.UserControls
             List<ControlDefaults> cd = new List<ControlDefaults>
             {
                 new ControlDefaults(LblSetup1.Text, "DeviceLaserToolDiameter", new decimal[] { 0.01m, 10m, 0.1m, 2m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOrigin"), "DeviceLaserOffsetOrigin"),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginX"), "DeviceLaserOffsetOriginX", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupOffsetOriginY"), "DeviceLaserOffsetOriginY", new decimal[] { -100m, 100m, 1m, 1m }),
+                new ControlDefaults(Localization.GetString("deviceSetupPathOptimation"), "DeviceLaserPathOptimation"),
                 new ControlDefaults(LblSetup2.Text, "DeviceLaserCmndAirOn"),
                 new ControlDefaults(LblSetup3.Text, "DeviceLaserCmndAirOff")
             };
@@ -206,13 +214,11 @@ namespace GrblPlotter.UserControls
 
         private void BtnFill_Click(object sender, EventArgs e)
         {
-            //    Logger.Trace("before {0}", fill.Distance);
             List<ControlDefaults> cd = new List<ControlDefaults>();
             OptionPropHatchFill.ControlDefaultsSetList(cd);
             MyControl.TestSimpleSetup(Localization.GetString("optionFillHeadlinePlotter"), Cursor.Position, ref fill, cd);
-            //    Logger.Trace("after {0}", fill.Distance);
-            UpdateSettings();		//             Properties.Settings.Default.Save();
-            UpdateTools();			//             MyControl.SetToolsProperties(0, toolProp);
+            UpdateSettings();
+            UpdateTools();
             SetBtnFillColor();
             MyControl.SettingWasChanged(true);
         }

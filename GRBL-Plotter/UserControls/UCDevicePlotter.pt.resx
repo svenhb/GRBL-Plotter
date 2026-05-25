@@ -326,4 +326,22 @@ Sub-rotina P90</value>
     <value>Varia o valor S ou Z dependendo da largura da caneta</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ajuda online</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Comprimento da rampa</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Largura do degrau</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Habilitar perfil Z</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Aumenta a pressão da caneta no início de uma linha e a diminui no final da linha.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Perfil Z</value>
+  </data>
 </root>

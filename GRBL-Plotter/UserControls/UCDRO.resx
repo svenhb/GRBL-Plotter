@@ -137,7 +137,6 @@
   </data>
   <data name="BtnSetCoordA.Text" xml:space="preserve">
     <value>Set A</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;BtnSetCoordA.Name" xml:space="preserve">
     <value>BtnSetCoordA</value>
@@ -222,7 +221,6 @@
   </data>
   <data name="BtnSetCoordZ.Text" xml:space="preserve">
     <value>Set Z</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;BtnSetCoordZ.Name" xml:space="preserve">
     <value>BtnSetCoordZ</value>
@@ -253,7 +251,6 @@
   </data>
   <data name="BtnSetCoordY.Text" xml:space="preserve">
     <value>Set Y</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;BtnSetCoordY.Name" xml:space="preserve">
     <value>BtnSetCoordY</value>
@@ -284,7 +281,6 @@
   </data>
   <data name="BtnSetCoordX.Text" xml:space="preserve">
     <value>Set X</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;BtnSetCoordX.Name" xml:space="preserve">
     <value>BtnSetCoordX</value>
@@ -471,7 +467,6 @@
   </data>
   <data name="gBoxDROSetCoord.Text" xml:space="preserve">
     <value>Preset Coordinate</value>
-    <comment>gb</comment>
   </data>
   <data name="gBoxDROSetCoord.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -502,14 +497,15 @@
   </data>
   <data name="BtnZeroC.Text" xml:space="preserve">
     <value>Zero C</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroC.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="BtnZeroC.ToolTip" xml:space="preserve">
     <value>Set C axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroC.Name" xml:space="preserve">
     <value>BtnZeroC</value>
@@ -537,14 +533,12 @@
   </data>
   <data name="BtnZeroB.Text" xml:space="preserve">
     <value>Zero B</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroB.ToolTip" xml:space="preserve">
     <value>Set B axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroB.Name" xml:space="preserve">
     <value>BtnZeroB</value>
@@ -773,7 +767,6 @@
   </data>
   <data name="BtnSetup.ToolTip" xml:space="preserve">
     <value>Setup</value>
-    <comment>tt</comment>
   </data>
   <data name="BtnSetup.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -807,7 +800,6 @@
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
     <value>Help</value>
-    <comment>tt</comment>
   </data>
   <data name="BtnHelp.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -871,11 +863,9 @@
   </data>
   <data name="BtnHome.Text" xml:space="preserve">
     <value>Home</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnHome.ToolTip" xml:space="preserve">
     <value>Start homing $H</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnHome.Name" xml:space="preserve">
     <value>BtnHome</value>
@@ -903,14 +893,12 @@
   </data>
   <data name="BtnZeroA.Text" xml:space="preserve">
     <value>Zero A</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroA.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroA.ToolTip" xml:space="preserve">
     <value>Set A axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroA.Name" xml:space="preserve">
     <value>BtnZeroA</value>
@@ -974,7 +962,6 @@
   </data>
   <data name="Lbl_wa.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;Lbl_wa.Name" xml:space="preserve">
     <value>Lbl_wa</value>
@@ -1011,7 +998,6 @@
   </data>
   <data name="LblA.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;LblA.Name" xml:space="preserve">
     <value>LblA</value>
@@ -1039,14 +1025,12 @@
   </data>
   <data name="BtnZeroXYZ.Text" xml:space="preserve">
     <value>Zero XYZ</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroXYZ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroXYZ.ToolTip" xml:space="preserve">
     <value>Set XYZ axis work-coordinates to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroXYZ.Name" xml:space="preserve">
     <value>BtnZeroXYZ</value>
@@ -1074,14 +1058,12 @@
   </data>
   <data name="BtnZeroXY.Text" xml:space="preserve">
     <value>Zero XY</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroXY.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroXY.ToolTip" xml:space="preserve">
     <value>Set XY axis work-coordinates to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroXY.Name" xml:space="preserve">
     <value>BtnZeroXY</value>
@@ -1109,14 +1091,12 @@
   </data>
   <data name="BtnZeroZ.Text" xml:space="preserve">
     <value>Zero Z</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroZ.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroZ.ToolTip" xml:space="preserve">
     <value>Set Z axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroZ.Name" xml:space="preserve">
     <value>BtnZeroZ</value>
@@ -1144,14 +1124,12 @@
   </data>
   <data name="BtnZeroY.Text" xml:space="preserve">
     <value>Zero Y</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroY.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroY.ToolTip" xml:space="preserve">
     <value>Set Y axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroY.Name" xml:space="preserve">
     <value>BtnZeroY</value>
@@ -1179,14 +1157,12 @@
   </data>
   <data name="BtnZeroX.Text" xml:space="preserve">
     <value>Zero X</value>
-    <comment>btn</comment>
   </data>
   <data name="BtnZeroX.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="BtnZeroX.ToolTip" xml:space="preserve">
     <value>Set X axis work-coordinate to zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnZeroX.Name" xml:space="preserve">
     <value>BtnZeroX</value>
@@ -1322,7 +1298,6 @@
   </data>
   <data name="Lbl_wz.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;Lbl_wz.Name" xml:space="preserve">
     <value>Lbl_wz</value>
@@ -1359,7 +1334,6 @@
   </data>
   <data name="Lbl_wy.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;Lbl_wy.Name" xml:space="preserve">
     <value>Lbl_wy</value>
@@ -1396,7 +1370,6 @@
   </data>
   <data name="Lbl_wx.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;Lbl_wx.Name" xml:space="preserve">
     <value>Lbl_wx</value>
@@ -1433,7 +1406,6 @@
   </data>
   <data name="LblZ.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;LblZ.Name" xml:space="preserve">
     <value>LblZ</value>
@@ -1470,7 +1442,6 @@
   </data>
   <data name="LblY.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;LblY.Name" xml:space="preserve">
     <value>LblY</value>
@@ -1507,7 +1478,6 @@
   </data>
   <data name="LblX.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;LblX.Name" xml:space="preserve">
     <value>LblX</value>
@@ -1535,11 +1505,9 @@
   </data>
   <data name="GbDRO.Text" xml:space="preserve">
     <value>Tool Coordinates (Work / Machine)</value>
-    <comment>gb</comment>
   </data>
   <data name="GbDRO.ToolTip" xml:space="preserve">
     <value>Click to preset coordinates</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;GbDRO.Name" xml:space="preserve">
     <value>GbDRO</value>
@@ -1553,6 +1521,9 @@
   <data name="&gt;&gt;GbDRO.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -1571,10 +1542,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

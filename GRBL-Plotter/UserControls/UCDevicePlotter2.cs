@@ -27,29 +27,40 @@ namespace GrblPlotter.UserControls
 {
     public partial class UCDevicePlotter2 : UserControl
     {
+        private readonly int customButtonNr = 30;
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
         { RaiseCmdEvent?.Invoke(this, e); }
+
+        public event EventHandler<UserControlGuiControlEventArgs> RaiseGuiControlEvent;
+        protected virtual void OnRaiseGuiControlEvent(UserControlGuiControlEventArgs e)
+        { RaiseGuiControlEvent?.Invoke(this, e); }
+
         public UCDevicePlotter2()
         {
             InitializeComponent();
         }
 
-        private void update()
-        {
-            toolTip1.SetToolTip(BtnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
-            toolTip1.SetToolTip(BtnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
-        }
+        /*    internal void UpdateToolTip()
+            {
+                toolTip1.SetToolTip(BtnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
+                toolTip1.SetToolTip(BtnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
+            }*/
 
+        public void SetButtonProp(int btnNr, string prop)
+        {
+            if (btnNr == 1)
+            {
+                toolTip1.SetToolTip(btnCustom1, MyControl.SetButtonProperty(btnCustom1, prop));
+            }
+        }
         private void BtnPenUp_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.DevicePlotterControlIndex==0)
-            //if (Properties.ListSettings.Default.importGCPWMEnable)  // to avoid error 9, do jog command at last
+            if (Properties.Settings.Default.DevicePlotterControlIndex == 0)
             {
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMUp).Replace(",", "."), 0, sender, e));
             }
             else
-        //    if (Properties.ListSettings.Default.importGCZEnable)
             {
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("$J=G90 Z{0} F{1}", Gcode.FrmtNum(Properties.Settings.Default.DevicePlotterZUp), Properties.Settings.Default.DevicePlotterSpeedZ).Replace(",", "."), 0, sender, e));
             }
@@ -58,7 +69,6 @@ namespace GrblPlotter.UserControls
         private void BtnPenZero_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.DevicePlotterControlIndex == 0)
-            //    if (Properties.ListSettings.Default.importGCPWMEnable)  // to avoid error 9, do jog command at last
             {
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMZero).Replace(",", "."), 0, sender, e));
             }
@@ -99,6 +109,14 @@ namespace GrblPlotter.UserControls
         {
             MyControl.ChangeColor(this);
             MyControl.ChangeColor(TableLayoutPanel1);
+        }
+
+        private void BtnCustom1_MouseDown(object sender, MouseEventArgs e)
+        {
+            int btnNr = customButtonNr;
+            if (e.Button == MouseButtons.Right)
+                btnNr *= -1;
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.customButton, btnNr));
         }
     }
 }

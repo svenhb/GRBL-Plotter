@@ -136,14 +136,13 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="btnSimulate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 28</value>
+    <value>156, 28</value>
   </data>
   <data name="btnSimulate.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="btnSimulate.Text" xml:space="preserve">
     <value>Start simulation</value>
-    <comment>btn2</comment>
   </data>
   <data name="&gt;&gt;btnSimulate.Name" xml:space="preserve">
     <value>btnSimulate</value>
@@ -164,7 +163,7 @@
     <value>Left</value>
   </data>
   <data name="btnSimulatePause.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 3</value>
+    <value>159, 3</value>
   </data>
   <data name="btnSimulatePause.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
@@ -198,7 +197,6 @@
   </data>
   <data name="btnSimulateSlower.Text" xml:space="preserve">
     <value>/2</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;btnSimulateSlower.Name" xml:space="preserve">
     <value>btnSimulateSlower</value>
@@ -216,7 +214,7 @@
     <value>Right</value>
   </data>
   <data name="btnSimulateFaster.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 3</value>
+    <value>194, 3</value>
   </data>
   <data name="btnSimulateFaster.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 22</value>
@@ -226,7 +224,6 @@
   </data>
   <data name="btnSimulateFaster.Text" xml:space="preserve">
     <value>*2</value>
-    <comment>btn</comment>
   </data>
   <data name="&gt;&gt;btnSimulateFaster.Name" xml:space="preserve">
     <value>btnSimulateFaster</value>
@@ -271,7 +268,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimulate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulatePause" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulateSlower" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulateFaster" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,83,33334,Percent,16,66666,Absolute,50,Absolute,55" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimulate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulatePause" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulateSlower" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnSimulateFaster" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,83,33334,Percent,16,66666,Absolute,50,Absolute,56" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="LblStatusStreaming.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -458,7 +455,6 @@
   </data>
   <data name="btnStreamCheck.Text" xml:space="preserve">
     <value>Check Code</value>
-    <comment>btn1</comment>
   </data>
   <data name="&gt;&gt;btnStreamCheck.Name" xml:space="preserve">
     <value>btnStreamCheck</value>
@@ -813,11 +809,12 @@
   </data>
   <data name="GbStreaming.Text" xml:space="preserve">
     <value>G-Code Streaming</value>
-    <comment>gb</comment>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="GbStreaming.ToolTip" xml:space="preserve">
     <value>Click to fold / unfold</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;GbStreaming.Name" xml:space="preserve">
     <value>GbStreaming</value>
@@ -831,6 +828,9 @@
   <data name="&gt;&gt;GbStreaming.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -849,10 +849,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

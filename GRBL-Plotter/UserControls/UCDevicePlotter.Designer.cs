@@ -72,6 +72,7 @@
             this.BtnNoise = new System.Windows.Forms.Button();
             this.CbDepthControl = new System.Windows.Forms.CheckBox();
             this.NudDevicePlotterFeedXY = new System.Windows.Forms.NumericUpDown();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.BtnSetup = new System.Windows.Forms.Button();
             this.PanelTranslation = new System.Windows.Forms.Panel();
             this.LblNoiseDistance = new System.Windows.Forms.Label();
@@ -95,7 +96,12 @@
             this.LblSetupPenChangeRBNo = new System.Windows.Forms.Label();
             this.LblSetupToolDiameter = new System.Windows.Forms.Label();
             this.LblSetupHeadline = new System.Windows.Forms.Label();
-            this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnZProfile = new System.Windows.Forms.Button();
+            this.LblZProfileHeadline = new System.Windows.Forms.Label();
+            this.LblZProfileInfo = new System.Windows.Forms.Label();
+            this.LblZProfileEnable = new System.Windows.Forms.Label();
+            this.LblZProfileStep = new System.Windows.Forms.Label();
+            this.LblZProfileRampLength = new System.Windows.Forms.Label();
             this.TcServoZAxis.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.PanelAdvancedS.SuspendLayout();
@@ -590,6 +596,16 @@
             this.NudDevicePlotterFeedXY.Value = global::GrblPlotter.Properties.Settings.Default.DevicePlotterSpeed;
             this.NudDevicePlotterFeedXY.ValueChanged += new System.EventHandler(this.NudDevicePlotter_ValueChanged);
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp, "BtnHelp");
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Tag = "id=device#plotter";
+            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
+            this.BtnHelp.UseVisualStyleBackColor = false;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // BtnSetup
             // 
             resources.ApplyResources(this.BtnSetup, "BtnSetup");
@@ -599,6 +615,11 @@
             // 
             // PanelTranslation
             // 
+            this.PanelTranslation.Controls.Add(this.LblZProfileRampLength);
+            this.PanelTranslation.Controls.Add(this.LblZProfileStep);
+            this.PanelTranslation.Controls.Add(this.LblZProfileEnable);
+            this.PanelTranslation.Controls.Add(this.LblZProfileInfo);
+            this.PanelTranslation.Controls.Add(this.LblZProfileHeadline);
             this.PanelTranslation.Controls.Add(this.LblNoiseDistance);
             this.PanelTranslation.Controls.Add(this.LblNoiseAmplitude);
             this.PanelTranslation.Controls.Add(this.LblNoiseEnable);
@@ -728,20 +749,43 @@
             resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
             this.LblSetupHeadline.Name = "LblSetupHeadline";
             // 
-            // BtnHelp
+            // BtnZProfile
             // 
-            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnHelp, "BtnHelp");
-            this.BtnHelp.Name = "BtnHelp";
-            this.BtnHelp.Tag = "id=device#plotter";
-            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
-            this.BtnHelp.UseVisualStyleBackColor = false;
-            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            resources.ApplyResources(this.BtnZProfile, "BtnZProfile");
+            this.BtnZProfile.Name = "BtnZProfile";
+            this.BtnZProfile.UseVisualStyleBackColor = true;
+            this.BtnZProfile.Click += new System.EventHandler(this.BtnZProfile_Click);
+            // 
+            // LblZProfileHeadline
+            // 
+            resources.ApplyResources(this.LblZProfileHeadline, "LblZProfileHeadline");
+            this.LblZProfileHeadline.Name = "LblZProfileHeadline";
+            // 
+            // LblZProfileInfo
+            // 
+            resources.ApplyResources(this.LblZProfileInfo, "LblZProfileInfo");
+            this.LblZProfileInfo.Name = "LblZProfileInfo";
+            // 
+            // LblZProfileEnable
+            // 
+            resources.ApplyResources(this.LblZProfileEnable, "LblZProfileEnable");
+            this.LblZProfileEnable.Name = "LblZProfileEnable";
+            // 
+            // LblZProfileStep
+            // 
+            resources.ApplyResources(this.LblZProfileStep, "LblZProfileStep");
+            this.LblZProfileStep.Name = "LblZProfileStep";
+            // 
+            // LblZProfileRampLength
+            // 
+            resources.ApplyResources(this.LblZProfileRampLength, "LblZProfileRampLength");
+            this.LblZProfileRampLength.Name = "LblZProfileRampLength";
             // 
             // UCDevicePlotter
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.BtnZProfile);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.CbDepthControl);
             this.Controls.Add(this.BtnNoise);
@@ -854,5 +898,11 @@
         private System.Windows.Forms.Button BtnNoise;
         private System.Windows.Forms.CheckBox CbDepthControl;
         private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Button BtnZProfile;
+        private System.Windows.Forms.Label LblZProfileRampLength;
+        private System.Windows.Forms.Label LblZProfileStep;
+        private System.Windows.Forms.Label LblZProfileEnable;
+        private System.Windows.Forms.Label LblZProfileInfo;
+        private System.Windows.Forms.Label LblZProfileHeadline;
     }
 }

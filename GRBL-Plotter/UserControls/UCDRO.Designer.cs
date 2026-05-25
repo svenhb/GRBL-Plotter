@@ -148,6 +148,7 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.BtnSetCoordA, "BtnSetCoordA");
             this.BtnSetCoordA.Name = "BtnSetCoordA";
             this.BtnSetCoordA.UseVisualStyleBackColor = true;
+            this.BtnSetCoordA.Click += new System.EventHandler(this.BtnSetCoordA_Click);
             // 
             // NudSetCoordA
             // 
@@ -177,18 +178,21 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.BtnSetCoordZ, "BtnSetCoordZ");
             this.BtnSetCoordZ.Name = "BtnSetCoordZ";
             this.BtnSetCoordZ.UseVisualStyleBackColor = true;
+            this.BtnSetCoordZ.Click += new System.EventHandler(this.BtnSetCoordZ_Click);
             // 
             // BtnSetCoordY
             // 
             resources.ApplyResources(this.BtnSetCoordY, "BtnSetCoordY");
             this.BtnSetCoordY.Name = "BtnSetCoordY";
             this.BtnSetCoordY.UseVisualStyleBackColor = true;
+            this.BtnSetCoordY.Click += new System.EventHandler(this.BtnSetCoordY_Click);
             // 
             // BtnSetCoordX
             // 
             resources.ApplyResources(this.BtnSetCoordX, "BtnSetCoordX");
             this.BtnSetCoordX.Name = "BtnSetCoordX";
             this.BtnSetCoordX.UseVisualStyleBackColor = true;
+            this.BtnSetCoordX.Click += new System.EventHandler(this.BtnSetCoordX_Click);
             // 
             // NudSetCoordZ
             // 

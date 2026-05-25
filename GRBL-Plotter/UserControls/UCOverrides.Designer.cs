@@ -53,6 +53,12 @@ namespace GrblPlotter.UserControls
             this.LblRapidSet = new System.Windows.Forms.Label();
             this.LblRapidSet0 = new System.Windows.Forms.Label();
             this.GbOverrides = new System.Windows.Forms.GroupBox();
+            this.PanelTranslation = new System.Windows.Forms.Panel();
+            this.LblSetupOption1 = new System.Windows.Forms.Label();
+            this.LblSetupOption4 = new System.Windows.Forms.Label();
+            this.LblSetupOption3 = new System.Windows.Forms.Label();
+            this.LblSetupOption2 = new System.Windows.Forms.Label();
+            this.LblSetupHeadline = new System.Windows.Forms.Label();
             this.BtnSetup = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -89,13 +95,8 @@ namespace GrblPlotter.UserControls
             this.LblRapid = new System.Windows.Forms.Label();
             this.LblRapidValue = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PanelTranslation = new System.Windows.Forms.Panel();
-            this.LblSetupOption4 = new System.Windows.Forms.Label();
-            this.LblSetupOption3 = new System.Windows.Forms.Label();
-            this.LblSetupOption2 = new System.Windows.Forms.Label();
-            this.LblSetupHeadline = new System.Windows.Forms.Label();
-            this.LblSetupOption1 = new System.Windows.Forms.Label();
             this.GbOverrides.SuspendLayout();
+            this.PanelTranslation.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
@@ -116,7 +117,6 @@ namespace GrblPlotter.UserControls
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.PanelTranslation.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnFeed1
@@ -250,6 +250,41 @@ namespace GrblPlotter.UserControls
             this.GbOverrides.TabStop = false;
             this.toolTip1.SetToolTip(this.GbOverrides, resources.GetString("GbOverrides.ToolTip"));
             // 
+            // PanelTranslation
+            // 
+            this.PanelTranslation.Controls.Add(this.LblSetupOption1);
+            this.PanelTranslation.Controls.Add(this.LblSetupOption4);
+            this.PanelTranslation.Controls.Add(this.LblSetupOption3);
+            this.PanelTranslation.Controls.Add(this.LblSetupOption2);
+            this.PanelTranslation.Controls.Add(this.LblSetupHeadline);
+            resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
+            this.PanelTranslation.Name = "PanelTranslation";
+            // 
+            // LblSetupOption1
+            // 
+            resources.ApplyResources(this.LblSetupOption1, "LblSetupOption1");
+            this.LblSetupOption1.Name = "LblSetupOption1";
+            // 
+            // LblSetupOption4
+            // 
+            resources.ApplyResources(this.LblSetupOption4, "LblSetupOption4");
+            this.LblSetupOption4.Name = "LblSetupOption4";
+            // 
+            // LblSetupOption3
+            // 
+            resources.ApplyResources(this.LblSetupOption3, "LblSetupOption3");
+            this.LblSetupOption3.Name = "LblSetupOption3";
+            // 
+            // LblSetupOption2
+            // 
+            resources.ApplyResources(this.LblSetupOption2, "LblSetupOption2");
+            this.LblSetupOption2.Name = "LblSetupOption2";
+            // 
+            // LblSetupHeadline
+            // 
+            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
+            this.LblSetupHeadline.Name = "LblSetupHeadline";
+            // 
             // BtnSetup
             // 
             resources.ApplyResources(this.BtnSetup, "BtnSetup");
@@ -300,6 +335,7 @@ namespace GrblPlotter.UserControls
             this.BtnOverrideD0.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnOverrideD0.Name = "BtnOverrideD0";
             this.BtnOverrideD0.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD0, resources.GetString("BtnOverrideD0.ToolTip"));
             this.BtnOverrideD0.UseVisualStyleBackColor = true;
             this.BtnOverrideD0.Click += new System.EventHandler(this.BtnOverrideD0_Click);
             // 
@@ -309,6 +345,7 @@ namespace GrblPlotter.UserControls
             this.BtnOverrideD3.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnOverrideD3.Name = "BtnOverrideD3";
             this.BtnOverrideD3.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD3, resources.GetString("BtnOverrideD3.ToolTip"));
             this.BtnOverrideD3.UseVisualStyleBackColor = true;
             this.BtnOverrideD3.Click += new System.EventHandler(this.BtnOverrideD3_Click);
             // 
@@ -318,6 +355,7 @@ namespace GrblPlotter.UserControls
             this.BtnOverrideD1.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnOverrideD1.Name = "BtnOverrideD1";
             this.BtnOverrideD1.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD1, resources.GetString("BtnOverrideD1.ToolTip"));
             this.BtnOverrideD1.UseVisualStyleBackColor = true;
             this.BtnOverrideD1.Click += new System.EventHandler(this.BtnOverrideD1_Click);
             // 
@@ -327,6 +365,7 @@ namespace GrblPlotter.UserControls
             this.BtnOverrideD2.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnOverrideD2.Name = "BtnOverrideD2";
             this.BtnOverrideD2.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD2, resources.GetString("BtnOverrideD2.ToolTip"));
             this.BtnOverrideD2.UseVisualStyleBackColor = true;
             this.BtnOverrideD2.Click += new System.EventHandler(this.BtnOverrideD2_Click);
             // 
@@ -343,6 +382,7 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.BtnToggleSpindle, "BtnToggleSpindle");
             this.BtnToggleSpindle.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnToggleSpindle.Name = "BtnToggleSpindle";
+            this.toolTip1.SetToolTip(this.BtnToggleSpindle, resources.GetString("BtnToggleSpindle.ToolTip"));
             this.BtnToggleSpindle.UseVisualStyleBackColor = true;
             this.BtnToggleSpindle.Click += new System.EventHandler(this.BtnToggleSpindle_Click);
             // 
@@ -351,6 +391,7 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.BtnToggleMist, "BtnToggleMist");
             this.BtnToggleMist.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnToggleMist.Name = "BtnToggleMist";
+            this.toolTip1.SetToolTip(this.BtnToggleMist, resources.GetString("BtnToggleMist.ToolTip"));
             this.BtnToggleMist.UseVisualStyleBackColor = true;
             this.BtnToggleMist.Click += new System.EventHandler(this.BtnToggleMist_Click);
             // 
@@ -359,6 +400,7 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.BtnToggleFlood, "BtnToggleFlood");
             this.BtnToggleFlood.Image = global::GrblPlotter.Properties.Resources.led_off;
             this.BtnToggleFlood.Name = "BtnToggleFlood";
+            this.toolTip1.SetToolTip(this.BtnToggleFlood, resources.GetString("BtnToggleFlood.ToolTip"));
             this.BtnToggleFlood.UseVisualStyleBackColor = true;
             this.BtnToggleFlood.Click += new System.EventHandler(this.BtnToggleFlood_Click);
             // 
@@ -504,41 +546,6 @@ namespace GrblPlotter.UserControls
             resources.ApplyResources(this.LblRapidValue, "LblRapidValue");
             this.LblRapidValue.Name = "LblRapidValue";
             // 
-            // PanelTranslation
-            // 
-            this.PanelTranslation.Controls.Add(this.LblSetupOption1);
-            this.PanelTranslation.Controls.Add(this.LblSetupOption4);
-            this.PanelTranslation.Controls.Add(this.LblSetupOption3);
-            this.PanelTranslation.Controls.Add(this.LblSetupOption2);
-            this.PanelTranslation.Controls.Add(this.LblSetupHeadline);
-            resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
-            this.PanelTranslation.Name = "PanelTranslation";
-            // 
-            // LblSetupOption4
-            // 
-            resources.ApplyResources(this.LblSetupOption4, "LblSetupOption4");
-            this.LblSetupOption4.Name = "LblSetupOption4";
-            // 
-            // LblSetupOption3
-            // 
-            resources.ApplyResources(this.LblSetupOption3, "LblSetupOption3");
-            this.LblSetupOption3.Name = "LblSetupOption3";
-            // 
-            // LblSetupOption2
-            // 
-            resources.ApplyResources(this.LblSetupOption2, "LblSetupOption2");
-            this.LblSetupOption2.Name = "LblSetupOption2";
-            // 
-            // LblSetupHeadline
-            // 
-            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
-            this.LblSetupHeadline.Name = "LblSetupHeadline";
-            // 
-            // LblSetupOption1
-            // 
-            resources.ApplyResources(this.LblSetupOption1, "LblSetupOption1");
-            this.LblSetupOption1.Name = "LblSetupOption1";
-            // 
             // UCOverrides
             // 
             resources.ApplyResources(this, "$this");
@@ -548,6 +555,8 @@ namespace GrblPlotter.UserControls
             this.Load += new System.EventHandler(this.UserControlOverrides_Load);
             this.Resize += new System.EventHandler(this.UCOverrides_Resize);
             this.GbOverrides.ResumeLayout(false);
+            this.PanelTranslation.ResumeLayout(false);
+            this.PanelTranslation.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
@@ -575,8 +584,6 @@ namespace GrblPlotter.UserControls
             this.tableLayoutPanel10.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.PanelTranslation.ResumeLayout(false);
-            this.PanelTranslation.PerformLayout();
             this.ResumeLayout(false);
 
         }

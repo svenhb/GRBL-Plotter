@@ -27,26 +27,40 @@ namespace GrblPlotter.UserControls
 {
     public partial class UCDeviceRouter2 : UserControl
     {
+        private int statusUpdateInhibit = 0;
+
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
         { RaiseCmdEvent?.Invoke(this, e); }
 
+        System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer();
+
         public UCDeviceRouter2()
         {
             InitializeComponent();
+            this.updateTimer.Interval = 1000;
+            this.updateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
+        }
+
+        protected virtual void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+            if (statusUpdateInhibit > 0)
+                statusUpdateInhibit--;
         }
 
         public void SetStatusSpindle(bool on)
         {
             CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
-            CbSpindle.Checked = on;
+            if (statusUpdateInhibit <= 0)
+                CbSpindle.Checked = on;
             CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
         }
         public void SetStatusMist(bool on)
         {
             CbMist.CheckedChanged -= CbMist_CheckedChanged;
             CbCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
-            CbMist.Checked = on;
+            if (statusUpdateInhibit <= 0)
+                CbMist.Checked = on;
             CbMist.CheckedChanged += CbMist_CheckedChanged;
             CbCoolant.CheckedChanged += CbCoolant_CheckedChanged;
         }
@@ -54,12 +68,14 @@ namespace GrblPlotter.UserControls
         {
             CbMist.CheckedChanged -= CbMist_CheckedChanged;
             CbCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
-            CbCoolant.Checked = on;
+            if (statusUpdateInhibit <= 0)
+                CbCoolant.Checked = on;
             CbMist.CheckedChanged += CbMist_CheckedChanged;
             CbCoolant.CheckedChanged += CbCoolant_CheckedChanged;
         }
         private void CbSpindle_CheckedChanged(object sender, EventArgs e)
         {
+            statusUpdateInhibit = 2;
             if (CbSpindle.Checked)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("M3S{0:0}", Properties.Settings.Default.DeviceRouterSpindle).Replace(",", "."), 0, sender, e));
             else
@@ -68,6 +84,7 @@ namespace GrblPlotter.UserControls
 
         private void CbCoolant_CheckedChanged(object sender, EventArgs e)
         {
+            statusUpdateInhibit = 2;
             if (CbCoolant.Checked)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("M8").Replace(",", "."), 0, sender, e));
             else
@@ -76,6 +93,7 @@ namespace GrblPlotter.UserControls
 
         private void CbMist_CheckedChanged(object sender, EventArgs e)
         {
+            statusUpdateInhibit = 2;
             if (CbMist.Checked)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("M7").Replace(",", "."), 0, sender, e));
             else

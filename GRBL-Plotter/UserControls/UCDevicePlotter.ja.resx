@@ -354,4 +354,26 @@
     <value>揺らぎ</value>
     <comment>b3</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>ランプ長</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>ステップ幅</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Zプロファイルを有効にする</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>線の開始時にペンの圧力を高め、終了時に圧力を弱めます。</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Zプロファイル</value>
+  </data>
+  <data name="BtnZProfile.Text" xml:space="preserve">
+    <value>Zプロファイル</value>
+    <comment>b3</comment>
+  </data>
 </root>

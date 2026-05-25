@@ -251,12 +251,10 @@ namespace GrblPlotter.UserControls
 
         private void BtnHome_Click(object sender, EventArgs e)
         {
-            //     OnRaiseCmdEvent(new UserControlCmdEventArgs("$H", 0, sender, e));     // 
             if (Grbl.isMarlin)
                 OnRaiseCmdEvent(new UserControlCmdEventArgs("G28", 0, sender, e));     // 
             else
                 OnRaiseCmdEvent(new UserControlCmdEventArgs("$H", 0, sender, e));     // 
-
         }
 
         private void BtnZeroX_MouseUp(object sender, MouseEventArgs e)
@@ -284,16 +282,16 @@ namespace GrblPlotter.UserControls
         { if (!CheckShowSetCoord(e)) OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1}Y{2}Z{3}", ZeroCommand, ZeroString, ZeroString, ZeroString), 0, sender, e)); }
 
         private void BtnSetCoordX_Click(object sender, EventArgs e)
-        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}", ZeroCommand, NudSetCoordX.Value), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
+        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}", ZeroCommand, NudSetCoordX.Value).Replace(",", "."), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
 
         private void BtnSetCoordY_Click(object sender, EventArgs e)
-        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}Y{1:0.000}", ZeroCommand, NudSetCoordY.Value), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
+        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}Y{1:0.000}", ZeroCommand, NudSetCoordY.Value).Replace(",", "."), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
 
         private void BtnSetCoordZ_Click(object sender, EventArgs e)
-        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}Z{1:0.000}", ZeroCommand, NudSetCoordZ.Value), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
+        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}Z{1:0.000}", ZeroCommand, NudSetCoordZ.Value).Replace(",", "."), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
 
         private void BtnSetCoordA_Click(object sender, EventArgs e)
-        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}A{1:0.000}", ZeroCommand, NudSetCoordA.Value), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
+        { OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}A{1:0.000}", ZeroCommand, NudSetCoordA.Value).Replace(",", "."), 0, sender, e)); }    // zeroCmd = "G10 L20 P0";
 
         private bool CheckShowSetCoord(MouseEventArgs e)
         {

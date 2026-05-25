@@ -80,7 +80,6 @@ namespace GrblPlotter.UserControls
 
             InitializeComponent();
 
-            SetNud(nudLaserDiameter, (decimal)toolProp.Laser.Diameter);
             tbName.Text = toolProp.ToolName;//ToolName;
 
             nudCoordX.Value = (decimal)toolProp.Position.X;
@@ -142,29 +141,36 @@ namespace GrblPlotter.UserControls
             toolProp.Gcode = tbGcode.Text;
             toolProp.ToolName = tbName.Text;
 
+            toolProp.Laser.Diameter = (float)nudLaserDiameter.Value;
             toolProp.Laser.FeedXY = (float)nudLaserFeedXY.Value;
             toolProp.Laser.FinalS = (float)nudLaserPower.Value;
             toolProp.Laser.Passes = (int)nudLaserPasses.Value;
             toolProp.Laser.UseM3 = cbLaserM3.Checked;
             toolProp.Laser.UseAir = cbLaserAir.Checked;
 
+            toolProp.Plotter.Diameter = (float)nudPlotterDiameter.Value;
             toolProp.Plotter.FeedXY = (float)nudPlotterFeedXY.Value;
             toolProp.Plotter.FinalS = (float)nudPlotterSPD.Value;
             toolProp.Plotter.FinalZ = (float)nudPlotterZPD.Value;
             toolProp.Plotter.UseSorZ = CbPlotterUseLaser.Checked;
 
-            toolProp.Router.FeedXY = (float)nudRouterFeedXY.Value;
+            toolProp.Router.Diameter = (float)nudRouterDiameter.Value;
+			toolProp.Router.FeedXY = (float)nudRouterFeedXY.Value;
             toolProp.Router.FeedZ = (float)nudRouterFeedZ.Value;
             toolProp.Router.FinalZ = (float)nudRouterZPD.Value;
         }
-        public void SwitchView(int tabDevice, int tabPlotterMode)
+        public void SwitchView(int tabDevice, int tabPlotterMode, bool init = false)
         {
             PlotterUseS = (tabPlotterMode == 0);
             visibleTab = tabDevice;
-            SetVisible(0, (tabDevice == 0));
-            SetVisible(1, (tabDevice == 1));
-            SetVisible(2, (tabDevice == 2));
-            SetVisible(3, (tabDevice == 3));
+            if (init && (tabDevice == 1))
+            {
+                panelLaser.Enabled = CbPlotterUseLaser.Checked;
+            }
+            SetVisible(0, (tabDevice == 0));    // Laser
+            SetVisible(1, (tabDevice == 1));    // Plotter
+            SetVisible(2, (tabDevice == 2));    // Router
+            SetVisible(3, (tabDevice == 3));    // Coordinates
             SetFillBtn(tabDevice);
         }
         public void SetEnable(bool en)
@@ -213,6 +219,18 @@ namespace GrblPlotter.UserControls
             {
                 panelCoordinates.Visible = en;
             }
+        }
+
+        internal void SetLaserIfPlotter(float val)
+        {
+            toolProp.Laser.FinalS = val;
+            nudLaserPower.Value = (decimal)val;
+            nudLaserDiameter.Enabled = false;
+            nudLaserFeedXY.Enabled = false;
+            nudLaserPower.Enabled = false;
+            nudLaserPasses.Enabled = false;
+            cbLaserM3.Enabled = false;
+            cbLaserAir.Enabled = false;
         }
 
         private void UCToolListElement_Paint(object sender, PaintEventArgs e)
@@ -341,8 +359,13 @@ namespace GrblPlotter.UserControls
 
         private void CbPlotterUseLaser_CheckedChanged(object sender, EventArgs e)
         {
-            nudPlotterZPD.Enabled = !CbPlotterUseLaser.Checked;
-            nudPlotterFeedXY.Enabled = !CbPlotterUseLaser.Checked;
+            bool enable = CbPlotterUseLaser.Checked;
+            nudPlotterZPD.Enabled = !enable;
+            nudPlotterFeedXY.Enabled = !enable;
+            panelLaser.Enabled = enable;
+
+        //    nudLaserFeedXY.Enabled = enable;
+        //    nudLaserPower.Enabled = enable;
             SettingChanged = true;
             OnClick(e);
             BackColor = Color.OrangeRed;

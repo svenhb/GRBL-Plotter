@@ -326,4 +326,22 @@ Alt program P90</value>
     <value>Kalem genişliğine bağlı olarak S veya Z değerini değiştirir.</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Rampa uzunluğu</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Adım genişliği</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Z profili etkinleştir</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Bir çizginin başında kalem basıncını artırır ve çizginin sonunda azaltır.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Z profili</value>
+  </data>
 </root>

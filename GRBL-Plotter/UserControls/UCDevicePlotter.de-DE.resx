@@ -118,230 +118,230 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
-    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <value>G4 einfügen: Verzögerung in Sekunden vor dem nächsten Befehl</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
-    <value>Inserisci G4: ritardo in secondi prima del comando successivo</value>
+    <value>G4 einfügen: Verzögerung in Sekunden vor dem nächsten Befehl</value>
     <comment>tt</comment>
   </data>
   <data name="BtnAdvancedS.Text" xml:space="preserve">
-    <value>Impostazioni avanzate</value>
+    <value>Erweiterte Einstellungen</value>
     <comment>btn</comment>
   </data>
   <data name="BtnAdvancedS.ToolTip" xml:space="preserve">
-    <value>Imposta le posizioni per 'molto in alto' e 'mescola'</value>
+    <value>Positionen für „Ganz oben“ und „Rühren“ festlegen</value>
     <comment>tt</comment>
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
-    <value>Zero</value>
+    <value>Nullpunkt</value>
     <comment>btn</comment>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso il basso, la penna tocca la carta</value>
+    <value>Stift nach unten bewegen, Stift berührt Papier</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione zero.
-Sottoprogramma P91</value>
+    <value>Setze den S-Wert für die Nullposition.
+Subroutine P91</value>
     <comment>tt</comment>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Ritardo</value>
+    <value>Delay</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Ritardo</value>
+    <value>Delay</value>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
-    <value>Giù</value>
+    <value>Abwärts</value>
     <comment>btns3</comment>
   </data>
   <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso il basso per premere sulla carta</value>
+    <value>Stift nach unten bewegen, um ihn auf das Papier zu drücken</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
-    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+    <value>Verzögerung in Sekunden nach Anwendung des s-Wertes</value>
   </data>
   <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione verso il basso.
-Sottoprogramma P92</value>
+    <value>Setze den S-Wert für die untere Position.
+Subroutine P92</value>
     <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
-    <value>Ritardo in secondi dopo l'applicazione del valore s</value>
+    <value>Verzögerung in Sekunden nach Anwendung des s-Wertes</value>
     <comment>tt</comment>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
-    <value>Su</value>
+    <value>Nach oben</value>
     <comment>btn</comment>
   </data>
-  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
-    <value>Sposta la penna verso l'alto, sopra il foglio</value>
-    <comment>tt</comment>
-  </data>
   <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
-    <value>Imposta il valore S per la posizione superiore.
-Sottoprogramma P90</value>
+    <value>Setze den S-Wert für die obere Position.
+Subroutine P90</value>
     <comment>tt</comment>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Asse Z</value>
+    <value>Z-Achse</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Molto in alto</value>
+    <value>Ganz oben</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Mescolamento verso il basso</value>
+    <value>Rühren nach unten</value>
   </data>
   <data name="NudDevicePlotterZP94.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <value>Z-Wert für die untere Position einstellen</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZP93.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <value>Z-Wert für die obere Position einstellen</value>
     <comment>tt</comment>
   </data>
   <data name="BtnAdvancedZ.Text" xml:space="preserve">
-    <value>Impostazioni avanzate</value>
+    <value>Erweiterte Einstellungen</value>
     <comment>btn</comment>
   </data>
   <data name="BtnAdvancedZ.ToolTip" xml:space="preserve">
-    <value>Imposta le posizioni per 'molto in alto' e 'mescolamento'</value>
+    <value>Positionen für „Ganz oben“ und „Rühren“ einstellen</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Posizione verso l'alto</value>
+    <value>Obere Position</value>
   </data>
   <data name="CbUseLaser.Text" xml:space="preserve">
-    <value>Usa laser</value>
+    <value>Laser verwenden</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Posizione verso il basso</value>
+    <value>Untere Position</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Avanzamento Z</value>
+    <value>Z-Vorschub</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
-    <value>Velocità Z</value>
+    <value>Z-Geschwindigkeit</value>
   </data>
   <data name="NudDevicePlotterFeedZ.ToolTip" xml:space="preserve">
-    <value>Valore F (Avanzamento)</value>
+    <value>F-Wert (Vorschub)</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZDown.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso il basso</value>
+    <value>Z-Wert für die untere Position festlegen</value>
     <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZUp.ToolTip" xml:space="preserve">
-    <value>Imposta il valore Z per la posizione verso l'alto</value>
+    <value>Z-Wert für die obere Position festlegen</value>
     <comment>tt</comment>
   </data>
   <data name="label9.ToolTip" xml:space="preserve">
-    <value>Velocità XY</value>
+    <value>XY-Geschwindigkeit</value>
     <comment>tt</comment>
   </data>
   <data name="BtnFill.ToolTip" xml:space="preserve">
-    <value>Imposta il riempimento tratteggiato per forme chiuse</value>
+    <value>Schraffurfüllung für geschlossene Formen einrichten</value>
     <comment>tt</comment>
   </data>
   <data name="BtnSplit.ToolTip" xml:space="preserve">
-    <value>Dividi il percorso per inserire una subroutine</value>
+    <value>Pfad teilen, um eine Unterroutine einzufügen</value>
     <comment>tt</comment>
   </data>
   <data name="BtnPenChange.ToolTip" xml:space="preserve">
-    <value>Imposta lo scambio penna</value>
+    <value>Stiftwechsel festlegen</value>
     <comment>tt</comment>
   </data>
   <data name="BtnNoise.ToolTip" xml:space="preserve">
-    <value>Converti linee rette in linee ondulate</value>
+    <value>Gerade Linien in geschwungene Linien umwandeln</value>
   </data>
   <data name="NudDevicePlotterFeedXY.ToolTip" xml:space="preserve">
-    <value>Valore F (Avanzamento)</value>
+    <value>F-Wert (Vorschub)</value>
     <comment>tt</comment>
   </data>
   <data name="LblNoiseDistance.Text" xml:space="preserve">
-    <value>Distanza</value>
+    <value>Abstand</value>
   </data>
   <data name="LblNoiseAmplitude.Text" xml:space="preserve">
-    <value>Ampiezza</value>
+    <value>Amplitude</value>
   </data>
   <data name="LblNoiseEnable.Text" xml:space="preserve">
-    <value>Abilita linea ondulata</value>
+    <value>Schwingung aktivieren</value>
   </data>
   <data name="LblNoiseInfo.Text" xml:space="preserve">
-    <value>Modifica le linee rette per ottenere linee ondulate</value>
+    <value>Geraden Linien in geschwungene Linien umwandeln</value>
   </data>
   <data name="LblNoiseHeadline.Text" xml:space="preserve">
-    <value>Linea ondulata</value>
+    <value>Schwingung</value>
   </data>
   <data name="LblSplitSubPenUpDown.Text" xml:space="preserve">
-    <value>Applica Penna - su - giù</value>
+    <value>Stift-Auf/Ab anwenden</value>
   </data>
   <data name="LblSplitSubFirst.Text" xml:space="preserve">
-    <value>Inserisci all'inizio</value>
+    <value>Am Anfang einfügen</value>
   </data>
   <data name="LblSplitSubroutine.Text" xml:space="preserve">
-    <value>File</value>
+    <value>Datei</value>
   </data>
   <data name="LblSplitSubEnable.Text" xml:space="preserve">
-    <value>Inserisci subroutine</value>
+    <value>Unterprogramm einfügen</value>
   </data>
   <data name="LblSplitSegmentEquidistant.Text" xml:space="preserve">
-    <value>Equidistante</value>
+    <value>Gleichmäßig</value>
   </data>
   <data name="LblSplitSegmentLength.Text" xml:space="preserve">
-    <value>Lunghezza sezione</value>
+    <value>Abschnittslänge</value>
   </data>
   <data name="LblSplitEnable.Text" xml:space="preserve">
-    <value>Abilita divisione percorso</value>
+    <value>Pfad teilen aktivieren</value>
   </data>
   <data name="LblSplitInfo.Text" xml:space="preserve">
-    <value>Dividi percorso per inserire una subroutine, ad esempio per la pulizia della spazzola</value>
+    <value>Pfad teilen, um eine Unterroutine einzufügen, z. B. für Pinselauffrischung</value>
   </data>
   <data name="LblSplitHeadline.Text" xml:space="preserve">
-    <value>Dividi percorso per subroutine</value>
+    <value>Pfad für Unterroutine teilen</value>
   </data>
   <data name="LblSetupFlowControlText.Text" xml:space="preserve">
-    <value>Codice G</value>
+    <value>G-Code</value>
   </data>
   <data name="LblSetupFlowControlEnable.Text" xml:space="preserve">
-    <value>Applica il codice G all'interruzione</value>
+    <value>G-Code bei Unterbrechung anwenden</value>
   </data>
   <data name="LblSetupPenChangeRBAutomatic.Text" xml:space="preserve">
-    <value>Cambio penna automatico</value>
+    <value>Automatischer Stiftwechsel</value>
   </data>
   <data name="LblSetupPenChangeRBManual.Text" xml:space="preserve">
-    <value>Cambio penna manuale, aggiungi interruzione</value>
+    <value>Manueller Stiftwechsel, Unterbrechung hinzufügen</value>
   </data>
   <data name="LblSetupPenChangeRBNo.Text" xml:space="preserve">
-    <value>Nessun cambio penna</value>
+    <value>Kein Stiftwechsel</value>
   </data>
   <data name="LblSetupToolDiameter.Text" xml:space="preserve">
-    <value>Diametro penna</value>
+    <value>Stiftdurchmesser</value>
   </data>
   <data name="LblSetupHeadline.Text" xml:space="preserve">
-    <value>Configura plotter</value>
+    <value>Plotter einrichten</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Stift nach oben, über das Papier bewegen</value>
+    <comment>tt</comment>
   </data>
   <data name="CbDepthControl.ToolTip" xml:space="preserve">
-    <value>Varia il valore S o Z a seconda dello spessore della penna</value>
+    <value>Variiert den S- oder Z-Wert in Abhängigkeit von der Stiftbreite</value>
     <comment>tt</comment>
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
-    <value>Guida in linea</value>
+    <value>Online-Hilfe</value>
   </data>
   <data name="LblZProfileRampLength.Text" xml:space="preserve">
-    <value>Lunghezza rampa</value>
+    <value>Rampenlänge</value>
   </data>
   <data name="LblZProfileStep.Text" xml:space="preserve">
-    <value>Larghezza gradino</value>
+    <value>Schrittbreite</value>
   </data>
   <data name="LblZProfileEnable.Text" xml:space="preserve">
-    <value>Abilita profilo Z</value>
+    <value>Z-Profil aktivieren</value>
   </data>
   <data name="LblZProfileInfo.Text" xml:space="preserve">
-    <value>Aumenta la pressione della penna all'inizio di una linea e la riduce alla fine della linea.</value>
+    <value>Erhöht den Stiftdruck am Anfang einer Linie und verringert ihn am Ende der Linie.</value>
   </data>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
-    <value>Profilo Z</value>
+    <value>Z-Profil</value>
   </data>
 </root>

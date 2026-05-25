@@ -326,4 +326,22 @@ Podprogram P90</value>
     <value>Zmienia wartość S lub Z w zależności od szerokości pisaka</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Długość rampy</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Szerokość stopnia</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Włącz profil Z</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Zwiększa nacisk pióra na początku linii i zmniejsza go na jej końcu.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Profil Z</value>
+  </data>
 </root>

@@ -144,9 +144,11 @@
   <data name="BtnPenUp.Text" xml:space="preserve">
     <value>Pen Up</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="BtnPenUp.ToolTip" xml:space="preserve">
     <value>Pen up</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenUp.Name" xml:space="preserve">
     <value>BtnPenUp</value>
@@ -186,7 +188,6 @@
   </data>
   <data name="BtnPenDown.ToolTip" xml:space="preserve">
     <value>Pen down</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenDown.Name" xml:space="preserve">
     <value>BtnPenDown</value>
@@ -226,7 +227,6 @@
   </data>
   <data name="BtnPenZero.ToolTip" xml:space="preserve">
     <value>Pen zero</value>
-    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenZero.Name" xml:space="preserve">
     <value>BtnPenZero</value>
@@ -276,6 +276,36 @@
   <data name="&gt;&gt;BtnPenDownUp.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="btnCustom1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 0</value>
+  </data>
+  <data name="btnCustom1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="btnCustom1.Text" xml:space="preserve">
+    <value>Aux</value>
+  </data>
+  <data name="&gt;&gt;btnCustom1.Name" xml:space="preserve">
+    <value>btnCustom1</value>
+  </data>
+  <data name="&gt;&gt;btnCustom1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom1.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btnCustom1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -307,8 +337,11 @@
     <value>0</value>
   </data>
   <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="BtnPenUp" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenZero" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDownUp" Row="1" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="BtnPenUp" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenZero" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDownUp" Row="1" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -330,10 +363,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

@@ -21,6 +21,7 @@
 */
 
 using GrblPlotter.Helper;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -113,14 +114,17 @@ namespace GrblPlotter.UserControls
         {
             if (!useClassicButtons)
             {
-                float d = jogDF[jogIndex].Dist;
-                int feed = jogDF[jogIndex].Feed;
-                stepX = 0; stepY = 0;
-                if (action.Contains("XDec")) { stepX = -d; }
-                if (action.Contains("XInc")) { stepX = d; }
-                if (action.Contains("YDec")) { stepY = -d; }
-                if (action.Contains("YInc")) { stepY = d; }
-                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.0}Y{2:0.0}F{3}", jogCommand, stepX, stepY, feed).Replace(",", "."), 0, null, null));
+                if (jogIndex < jogDF.Count)
+                {
+                    float d = jogDF[jogIndex].Dist;
+                    int feed = jogDF[jogIndex].Feed;
+                    stepX = 0; stepY = 0;
+                    if (action.Contains("XDec")) { stepX = -d; }
+                    if (action.Contains("XInc")) { stepX = d; }
+                    if (action.Contains("YDec")) { stepY = -d; }
+                    if (action.Contains("YInc")) { stepY = d; }
+                    OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.0}Y{2:0.0}F{3}", jogCommand, stepX, stepY, feed).Replace(",", "."), 0, null, null));
+                }
             }
             else
             {

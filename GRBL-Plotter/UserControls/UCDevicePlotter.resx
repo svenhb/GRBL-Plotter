@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TcServoZAxis.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;PanelAdvancedS.Name" xml:space="preserve">
     <value>PanelAdvancedS</value>
@@ -332,18 +332,7 @@
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Servo</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>TcServoZAxis</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <comment>tab1</comment>
   </data>
   <data name="&gt;&gt;tBImportGCPWMTextP94.Name" xml:space="preserve">
     <value>tBImportGCPWMTextP94</value>
@@ -429,18 +418,6 @@
   <data name="PanelAdvancedS.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;PanelAdvancedS.Name" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedS.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedS.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="tBImportGCPWMTextP94.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 28</value>
   </data>
@@ -450,21 +427,6 @@
   <data name="tBImportGCPWMTextP94.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP94.Name" xml:space="preserve">
-    <value>tBImportGCPWMTextP94</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP94.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP94.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP94.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="nUDImportGCDlyP94.Location" type="System.Drawing.Point, System.Drawing">
     <value>119, 28</value>
   </data>
@@ -479,18 +441,7 @@
   </data>
   <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP94.Name" xml:space="preserve">
-    <value>nUDImportGCDlyP94</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP94.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP94.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP94.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMP94.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 28</value>
@@ -504,18 +455,6 @@
   <data name="nUDImportGCPWMP94.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;nUDImportGCPWMP94.Name" xml:space="preserve">
-    <value>nUDImportGCPWMP94</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP94.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP94.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP94.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="tBImportGCPWMTextP93.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
   </data>
@@ -524,18 +463,6 @@
   </data>
   <data name="tBImportGCPWMTextP93.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP93.Name" xml:space="preserve">
-    <value>tBImportGCPWMTextP93</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP93.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP93.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCPWMTextP93.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="nUDImportGCDlyP93.Location" type="System.Drawing.Point, System.Drawing">
     <value>119, 6</value>
@@ -551,18 +478,7 @@
   </data>
   <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP93.Name" xml:space="preserve">
-    <value>nUDImportGCDlyP93</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP93.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP93.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyP93.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMP93.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 6</value>
@@ -575,18 +491,6 @@
   </data>
   <data name="nUDImportGCPWMP93.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP93.Name" xml:space="preserve">
-    <value>nUDImportGCPWMP93</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP93.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP93.Parent" xml:space="preserve">
-    <value>PanelAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMP93.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="BtnAdvancedS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -602,21 +506,11 @@
   </data>
   <data name="BtnAdvancedS.Text" xml:space="preserve">
     <value>Advanced settings</value>
+    <comment>btn</comment>
   </data>
   <data name="BtnAdvancedS.ToolTip" xml:space="preserve">
     <value>Set positions for 'far up' and 'stir'</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedS.Name" xml:space="preserve">
-    <value>BtnAdvancedS</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedS.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedS.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <comment>tt</comment>
   </data>
   <data name="btnGCPWMZero.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -632,24 +526,14 @@
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
     <value>Zero</value>
+    <comment>btn</comment>
   </data>
   <data name="btnGCPWMZero.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
     <value>Move pen down, pen touches paper</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMZero.Name" xml:space="preserve">
-    <value>btnGCPWMZero</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMZero.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMZero.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMZero.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMZero.Location" type="System.Drawing.Point, System.Drawing">
     <value>59, 25</value>
@@ -666,18 +550,7 @@
   <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
     <value>Set S value for zero position.
 Subroutine P91</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMZero.Name" xml:space="preserve">
-    <value>nUDImportGCPWMZero</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMZero.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMZero.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMZero.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <comment>tt</comment>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -697,18 +570,6 @@ Subroutine P91</value>
   <data name="label2.Text" xml:space="preserve">
     <value>Delay</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -727,18 +588,6 @@ Subroutine P91</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Delay</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="btnGCPWMDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -753,24 +602,14 @@ Subroutine P91</value>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
     <value>Down</value>
+    <comment>btns3</comment>
   </data>
   <data name="btnGCPWMDown.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
     <value>Move pen down, to press pen on paper</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMDown.Name" xml:space="preserve">
-    <value>btnGCPWMDown</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMDown.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMDown.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 47</value>
@@ -787,18 +626,6 @@ Subroutine P91</value>
   <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
     <value>Delay in sec. after applying s value</value>
   </data>
-  <data name="&gt;&gt;nUDImportGCDlyDown.Name" xml:space="preserve">
-    <value>nUDImportGCDlyDown</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyDown.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyDown.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="nUDImportGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>59, 47</value>
   </data>
@@ -814,18 +641,7 @@ Subroutine P91</value>
   <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
     <value>Set S value for down position.
 Subroutine P92</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMDown.Name" xml:space="preserve">
-    <value>nUDImportGCPWMDown</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMDown.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMDown.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCDlyUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 4</value>
@@ -841,18 +657,7 @@ Subroutine P92</value>
   </data>
   <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
     <value>Delay in sec. after applying s value</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyUp.Name" xml:space="preserve">
-    <value>nUDImportGCDlyUp</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyUp.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCDlyUp.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <comment>tt</comment>
   </data>
   <data name="btnGCPWMUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -868,24 +673,14 @@ Subroutine P92</value>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
     <value>Up</value>
+    <comment>btn</comment>
   </data>
   <data name="btnGCPWMUp.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Move pen up, above paper</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMUp.Name" xml:space="preserve">
-    <value>btnGCPWMUp</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMUp.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;btnGCPWMUp.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <comment>tt</comment>
   </data>
   <data name="nUDImportGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>59, 3</value>
@@ -902,18 +697,7 @@ Subroutine P92</value>
   <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
     <value>Set S value for up position.
 Subroutine P90</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMUp.Name" xml:space="preserve">
-    <value>nUDImportGCPWMUp</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMUp.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCPWMUp.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;PanelAdvancedZ.Name" xml:space="preserve">
     <value>PanelAdvancedZ</value>
@@ -1038,18 +822,6 @@ Subroutine P90</value>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Z axis</value>
   </data>
-  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>TcServoZAxis</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
@@ -1110,18 +882,6 @@ Subroutine P90</value>
   <data name="PanelAdvancedZ.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;PanelAdvancedZ.Name" xml:space="preserve">
-    <value>PanelAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedZ.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;PanelAdvancedZ.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1139,18 +899,6 @@ Subroutine P90</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Far up</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>PanelAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1170,18 +918,6 @@ Subroutine P90</value>
   <data name="label7.Text" xml:space="preserve">
     <value>Down stir</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>PanelAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="NudDevicePlotterZP94.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 28</value>
   </data>
@@ -1196,18 +932,7 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterZP94.ToolTip" xml:space="preserve">
     <value>Set Z value for down position</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP94.Name" xml:space="preserve">
-    <value>NudDevicePlotterZP94</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP94.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP94.Parent" xml:space="preserve">
-    <value>PanelAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP94.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZP93.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -1223,18 +948,7 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterZP93.ToolTip" xml:space="preserve">
     <value>Set Z value for up position</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP93.Name" xml:space="preserve">
-    <value>NudDevicePlotterZP93</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP93.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP93.Parent" xml:space="preserve">
-    <value>PanelAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZP93.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <comment>tt</comment>
   </data>
   <data name="BtnAdvancedZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1250,21 +964,10 @@ Subroutine P90</value>
   </data>
   <data name="BtnAdvancedZ.Text" xml:space="preserve">
     <value>Advanced settings</value>
+    <comment>btn</comment>
   </data>
   <data name="BtnAdvancedZ.ToolTip" xml:space="preserve">
     <value>Set positions for 'far up' and 'stir'</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedZ.Name" xml:space="preserve">
-    <value>BtnAdvancedZ</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedZ.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;BtnAdvancedZ.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1283,18 +986,6 @@ Subroutine P90</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Up position</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="CbUseLaser.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1317,18 +1008,6 @@ Subroutine P90</value>
   <data name="CbUseLaser.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;CbUseLaser.Name" xml:space="preserve">
-    <value>CbUseLaser</value>
-  </data>
-  <data name="&gt;&gt;CbUseLaser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbUseLaser.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;CbUseLaser.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1346,18 +1025,6 @@ Subroutine P90</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Down position</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1380,18 +1047,6 @@ Subroutine P90</value>
   <data name="label3.ToolTip" xml:space="preserve">
     <value>Z speed</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="NudDevicePlotterFeedZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
@@ -1406,18 +1061,7 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterFeedZ.ToolTip" xml:space="preserve">
     <value>F value (Feed)</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterFeedZ.Name" xml:space="preserve">
-    <value>NudDevicePlotterFeedZ</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterFeedZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterFeedZ.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterFeedZ.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 47</value>
@@ -1433,18 +1077,7 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterZDown.ToolTip" xml:space="preserve">
     <value>Set Z value for down position</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZDown.Name" xml:space="preserve">
-    <value>NudDevicePlotterZDown</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZDown.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZDown.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <comment>tt</comment>
   </data>
   <data name="NudDevicePlotterZUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 25</value>
@@ -1460,22 +1093,8 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterZUp.ToolTip" xml:space="preserve">
     <value>Set Z value for up position</value>
+    <comment>tt</comment>
   </data>
-  <data name="&gt;&gt;NudDevicePlotterZUp.Name" xml:space="preserve">
-    <value>NudDevicePlotterZUp</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZUp.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;NudDevicePlotterZUp.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1493,9 +1112,11 @@ Subroutine P90</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>XY Feed</value>
+    <comment>l1</comment>
   </data>
   <data name="label9.ToolTip" xml:space="preserve">
     <value>XY speed</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -1507,7 +1128,7 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="BtnFill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1523,9 +1144,11 @@ Subroutine P90</value>
   </data>
   <data name="BtnFill.Text" xml:space="preserve">
     <value>Fill</value>
+    <comment>b1</comment>
   </data>
   <data name="BtnFill.ToolTip" xml:space="preserve">
     <value>Setup hatch fill for closed shapes</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnFill.Name" xml:space="preserve">
     <value>BtnFill</value>
@@ -1537,13 +1160,13 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnFill.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="BtnSplit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="BtnSplit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 69</value>
+    <value>210, 69</value>
   </data>
   <data name="BtnSplit.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 23</value>
@@ -1553,9 +1176,11 @@ Subroutine P90</value>
   </data>
   <data name="BtnSplit.Text" xml:space="preserve">
     <value>Split</value>
+    <comment>b2</comment>
   </data>
   <data name="BtnSplit.ToolTip" xml:space="preserve">
     <value>Split path to insert a subroutine</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnSplit.Name" xml:space="preserve">
     <value>BtnSplit</value>
@@ -1567,25 +1192,27 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnSplit.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="BtnPenChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="BtnPenChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 92</value>
+    <value>208, 115</value>
   </data>
   <data name="BtnPenChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 23</value>
+    <value>60, 23</value>
   </data>
   <data name="BtnPenChange.TabIndex" type="System.Int32, mscorlib">
     <value>70</value>
   </data>
   <data name="BtnPenChange.Text" xml:space="preserve">
     <value>Pen change</value>
+    <comment>b4</comment>
   </data>
   <data name="BtnPenChange.ToolTip" xml:space="preserve">
     <value>Set pen exchange</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenChange.Name" xml:space="preserve">
     <value>BtnPenChange</value>
@@ -1597,7 +1224,7 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnPenChange.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BtnNoise.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1613,6 +1240,7 @@ Subroutine P90</value>
   </data>
   <data name="BtnNoise.Text" xml:space="preserve">
     <value>Wobble</value>
+    <comment>b3</comment>
   </data>
   <data name="BtnNoise.ToolTip" xml:space="preserve">
     <value>Convert straight lines to wobbly lines</value>
@@ -1627,7 +1255,7 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnNoise.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="CbDepthControl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1646,9 +1274,11 @@ Subroutine P90</value>
   </data>
   <data name="CbDepthControl.Text" xml:space="preserve">
     <value>Depth control</value>
+    <comment>cb</comment>
   </data>
   <data name="CbDepthControl.ToolTip" xml:space="preserve">
     <value>Variates the S or Z value depending on pen-width</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;CbDepthControl.Name" xml:space="preserve">
     <value>CbDepthControl</value>
@@ -1660,7 +1290,7 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CbDepthControl.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="NudDevicePlotterFeedXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -1676,6 +1306,7 @@ Subroutine P90</value>
   </data>
   <data name="NudDevicePlotterFeedXY.ToolTip" xml:space="preserve">
     <value>F value (Feed)</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;NudDevicePlotterFeedXY.Name" xml:space="preserve">
     <value>NudDevicePlotterFeedXY</value>
@@ -1687,7 +1318,37 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDevicePlotterFeedXY.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
+  </data>
+  <data name="BtnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 0</value>
+  </data>
+  <data name="BtnHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="BtnHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="BtnHelp.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Name" xml:space="preserve">
+    <value>BtnHelp</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="BtnSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1714,282 +1375,141 @@ Subroutine P90</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseDistance.Name" xml:space="preserve">
-    <value>LblNoiseDistance</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseDistance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseDistance.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseDistance.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseAmplitude.Name" xml:space="preserve">
-    <value>LblNoiseAmplitude</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseAmplitude.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseAmplitude.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseAmplitude.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseEnable.Name" xml:space="preserve">
-    <value>LblNoiseEnable</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseEnable.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseInfo.Name" xml:space="preserve">
-    <value>LblNoiseInfo</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseInfo.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseHeadline.Name" xml:space="preserve">
-    <value>LblNoiseHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblNoiseHeadline.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubPenUpDown.Name" xml:space="preserve">
-    <value>LblSplitSubPenUpDown</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubPenUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubPenUpDown.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubPenUpDown.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubFirst.Name" xml:space="preserve">
-    <value>LblSplitSubFirst</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubFirst.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubFirst.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubFirst.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubroutine.Name" xml:space="preserve">
-    <value>LblSplitSubroutine</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubroutine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubroutine.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSplitSubroutine.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;LblSplitSubEnable.Name" xml:space="preserve">
-    <value>LblSplitSubEnable</value>
+  <data name="LblZProfileRampLength.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;LblSplitSubEnable.Type" xml:space="preserve">
+  <data name="LblZProfileRampLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 194</value>
+  </data>
+  <data name="LblZProfileRampLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="LblZProfileRampLength.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Ramp length</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileRampLength.Name" xml:space="preserve">
+    <value>LblZProfileRampLength</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileRampLength.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LblSplitSubEnable.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileRampLength.Parent" xml:space="preserve">
     <value>PanelTranslation</value>
   </data>
-  <data name="&gt;&gt;LblSplitSubEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;LblZProfileRampLength.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentEquidistant.Name" xml:space="preserve">
-    <value>LblSplitSegmentEquidistant</value>
+  <data name="LblZProfileStep.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentEquidistant.Type" xml:space="preserve">
+  <data name="LblZProfileStep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 181</value>
+  </data>
+  <data name="LblZProfileStep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="LblZProfileStep.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Step width</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileStep.Name" xml:space="preserve">
+    <value>LblZProfileStep</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileStep.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentEquidistant.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileStep.Parent" xml:space="preserve">
     <value>PanelTranslation</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentEquidistant.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;LblZProfileStep.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentLength.Name" xml:space="preserve">
-    <value>LblSplitSegmentLength</value>
+  <data name="LblZProfileEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentLength.Type" xml:space="preserve">
+  <data name="LblZProfileEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 168</value>
+  </data>
+  <data name="LblZProfileEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="LblZProfileEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Enable Z-profile</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileEnable.Name" xml:space="preserve">
+    <value>LblZProfileEnable</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileEnable.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentLength.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileEnable.Parent" xml:space="preserve">
     <value>PanelTranslation</value>
   </data>
-  <data name="&gt;&gt;LblSplitSegmentLength.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;LblZProfileEnable.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;LblSplitEnable.Name" xml:space="preserve">
-    <value>LblSplitEnable</value>
+  <data name="LblZProfileInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;LblSplitEnable.Type" xml:space="preserve">
+  <data name="LblZProfileInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 155</value>
+  </data>
+  <data name="LblZProfileInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>420, 13</value>
+  </data>
+  <data name="LblZProfileInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Increases pen pressure at the beginning of a line and decreases it at the end of the line.</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileInfo.Name" xml:space="preserve">
+    <value>LblZProfileInfo</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LblSplitEnable.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileInfo.Parent" xml:space="preserve">
     <value>PanelTranslation</value>
   </data>
-  <data name="&gt;&gt;LblSplitEnable.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;LblZProfileInfo.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;LblSplitInfo.Name" xml:space="preserve">
-    <value>LblSplitInfo</value>
+  <data name="LblZProfileHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;LblSplitInfo.Type" xml:space="preserve">
+  <data name="LblZProfileHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 142</value>
+  </data>
+  <data name="LblZProfileHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="LblZProfileHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Z profile</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileHeadline.Name" xml:space="preserve">
+    <value>LblZProfileHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblZProfileHeadline.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LblSplitInfo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileHeadline.Parent" xml:space="preserve">
     <value>PanelTranslation</value>
   </data>
-  <data name="&gt;&gt;LblSplitInfo.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;LblSplitHeadline.Name" xml:space="preserve">
-    <value>LblSplitHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblSplitHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSplitHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSplitHeadline.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlText.Name" xml:space="preserve">
-    <value>LblSetupFlowControlText</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlText.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlText.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlEnable.Name" xml:space="preserve">
-    <value>LblSetupFlowControlEnable</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupFlowControlEnable.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBAutomatic.Name" xml:space="preserve">
-    <value>LblSetupPenChangeRBAutomatic</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBAutomatic.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBAutomatic.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBAutomatic.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBManual.Name" xml:space="preserve">
-    <value>LblSetupPenChangeRBManual</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBManual.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBManual.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBManual.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBNo.Name" xml:space="preserve">
-    <value>LblSetupPenChangeRBNo</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBNo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBNo.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupPenChangeRBNo.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;LblSetupToolDiameter.Name" xml:space="preserve">
-    <value>LblSetupToolDiameter</value>
-  </data>
-  <data name="&gt;&gt;LblSetupToolDiameter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupToolDiameter.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupToolDiameter.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
-    <value>LblSetupHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="PanelTranslation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 117</value>
-  </data>
-  <data name="PanelTranslation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 127</value>
-  </data>
-  <data name="PanelTranslation.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
-  </data>
-  <data name="PanelTranslation.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;PanelTranslation.Name" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;PanelTranslation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PanelTranslation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PanelTranslation.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LblZProfileHeadline.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="LblNoiseDistance.AutoSize" type="System.Boolean, mscorlib">
@@ -2020,7 +1540,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblNoiseDistance.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="LblNoiseAmplitude.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2050,7 +1570,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblNoiseAmplitude.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="LblNoiseEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2080,7 +1600,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblNoiseEnable.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="LblNoiseInfo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2110,7 +1630,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblNoiseInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="LblNoiseHeadline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2140,7 +1660,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblNoiseHeadline.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="LblSplitSubPenUpDown.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2170,7 +1690,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSubPenUpDown.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="LblSplitSubFirst.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2200,7 +1720,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSubFirst.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="LblSplitSubroutine.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2230,7 +1750,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSubroutine.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>12</value>
   </data>
   <data name="LblSplitSubEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2260,7 +1780,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSubEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="LblSplitSegmentEquidistant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2290,7 +1810,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSegmentEquidistant.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
   <data name="LblSplitSegmentLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2320,7 +1840,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitSegmentLength.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
   <data name="LblSplitEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2350,7 +1870,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitEnable.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="LblSplitInfo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2380,7 +1900,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitInfo.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>17</value>
   </data>
   <data name="LblSplitHeadline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2410,7 +1930,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSplitHeadline.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="LblSetupFlowControlText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2440,7 +1960,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupFlowControlText.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>19</value>
   </data>
   <data name="LblSetupFlowControlEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2470,7 +1990,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupFlowControlEnable.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>20</value>
   </data>
   <data name="LblSetupPenChangeRBAutomatic.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2500,7 +2020,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupPenChangeRBAutomatic.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>21</value>
   </data>
   <data name="LblSetupPenChangeRBManual.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2530,7 +2050,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupPenChangeRBManual.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>22</value>
   </data>
   <data name="LblSetupPenChangeRBNo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2560,7 +2080,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupPenChangeRBNo.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>23</value>
   </data>
   <data name="LblSetupToolDiameter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2590,7 +2110,7 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupToolDiameter.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>24</value>
   </data>
   <data name="LblSetupHeadline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2620,41 +2140,57 @@ Subroutine P90</value>
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>25</value>
   </data>
-  <data name="BtnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="PanelTranslation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 117</value>
   </data>
-  <data name="BtnHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 0</value>
+  <data name="PanelTranslation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>450, 283</value>
   </data>
-  <data name="BtnHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
+  <data name="PanelTranslation.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
   </data>
-  <data name="BtnHelp.TabIndex" type="System.Int32, mscorlib">
-    <value>73</value>
+  <data name="PanelTranslation.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="BtnHelp.Text" xml:space="preserve">
-    <value>?</value>
+  <data name="&gt;&gt;PanelTranslation.Name" xml:space="preserve">
+    <value>PanelTranslation</value>
   </data>
-  <data name="BtnHelp.ToolTip" xml:space="preserve">
-    <value>Online help</value>
+  <data name="&gt;&gt;PanelTranslation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;BtnHelp.Name" xml:space="preserve">
-    <value>BtnHelp</value>
-  </data>
-  <data name="&gt;&gt;BtnHelp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnHelp.Parent" xml:space="preserve">
+  <data name="&gt;&gt;PanelTranslation.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;PanelTranslation.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="BtnZProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 92</value>
+  </data>
+  <data name="BtnZProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnZProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <data name="BtnZProfile.Text" xml:space="preserve">
+    <value>Z-Profile</value>
+    <comment>b3</comment>
+  </data>
+  <data name="&gt;&gt;BtnZProfile.Name" xml:space="preserve">
+    <value>BtnZProfile</value>
+  </data>
+  <data name="&gt;&gt;BtnZProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZProfile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnZProfile.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -2676,4 +2212,10 @@ Subroutine P90</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

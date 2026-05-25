@@ -326,4 +326,22 @@ Podprogram P90</value>
     <value>Mění hodnotu S nebo Z v závislosti na šířce pera</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online nápověda</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Délka rampy</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Šířka kroku</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Povolit Z-profil</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Zvyšuje tlak pera na začátku řádku a snižuje jej na konci řádku.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Z-profil</value>
+  </data>
 </root>

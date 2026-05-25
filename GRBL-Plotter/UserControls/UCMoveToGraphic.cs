@@ -21,7 +21,6 @@
 */
 
 using GrblPlotter.Helper;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -50,8 +49,8 @@ namespace GrblPlotter.UserControls
         private int neededWidth = 120;
         MyControl m = new MyControl();
 
-    //    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-		
+        //    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
         { RaiseCmdEvent?.Invoke(this, e); }
@@ -241,14 +240,29 @@ namespace GrblPlotter.UserControls
         }
         private void BtnFraming_Click(object sender, EventArgs e)
         {
+
             if (!dimensionIsSet)
                 return;
             feed = (int)NudFeed.Value;
-            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower left
-            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.maxy, feed).Replace(",", "."), 0, sender, e)); // upper left
-            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.maxx, gD.maxy, feed).Replace(",", "."), 0, sender, e)); // upper right
-            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.maxx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower right
-            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower left	
+            if (Properties.Settings.Default.UserControlMoveToGraphicFramingCircle)
+            {
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.ceny, feed).Replace(",", "."), 0, sender, e));
+                for (int i = 180; i >= 0; i--)
+                {
+                    double a = 2.0 * Math.PI * i / 180;
+                    float x = (float)(gD.cenx + gD.dimx / 2 * Math.Cos(a + Math.PI));
+                    float y = (float)(gD.ceny + gD.dimy / 2 * Math.Sin(a + Math.PI));
+                    OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, x, y, feed).Replace(",", "."), 0, sender, e));
+                }
+            }
+            else
+            {
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower left
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.maxy, feed).Replace(",", "."), 0, sender, e)); // upper left
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.maxx, gD.maxy, feed).Replace(",", "."), 0, sender, e)); // upper right
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.maxx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower right
+                OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, gD.minx, gD.miny, feed).Replace(",", "."), 0, sender, e)); // lower left	
+            }
         }
 
         private void SetButtonImages(bool enabled)
@@ -277,7 +291,10 @@ namespace GrblPlotter.UserControls
             { tmp_r = MyControl.BitmapSetToGray(tmp_r); }
             Btn5.BackgroundImage = tmp_r;
 
-            tmp_r = Properties.Resources.framing;
+            if (Properties.Settings.Default.UserControlMoveToGraphicFramingCircle)
+                tmp_r = Properties.Resources.framing_c;
+            else
+                tmp_r = Properties.Resources.framing;
             if (!enabled)
             { tmp_r = MyControl.BitmapSetToGray(tmp_r); }
             BtnFraming.BackgroundImage = tmp_r;
@@ -358,6 +375,25 @@ namespace GrblPlotter.UserControls
             BtnSetup.BackColor = MyControl.NotifyYellow;
             BtnSetup.ForeColor = Colors.ContrastColor(MyControl.NotifyYellow);
             SetHeight(isLarge);
+        }
+
+        private void BtnFraming_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                bool s = !Properties.Settings.Default.UserControlMoveToGraphicFramingCircle;
+                Image tmp_r;
+
+                if (s)
+                    tmp_r = Properties.Resources.framing_c;
+                else
+                    tmp_r = Properties.Resources.framing;
+
+                if (!jogEnabled)
+                { tmp_r = MyControl.BitmapSetToGray(tmp_r); }
+                BtnFraming.BackgroundImage = tmp_r;
+                Properties.Settings.Default.UserControlMoveToGraphicFramingCircle = s;
+            }
         }
     }
 }

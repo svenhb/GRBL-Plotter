@@ -55,11 +55,11 @@
             // TableLayoutPanel1
             // 
             resources.ApplyResources(this.TableLayoutPanel1, "TableLayoutPanel1");
+            this.TableLayoutPanel1.Controls.Add(this.PbLaser, 1, 0);
             this.TableLayoutPanel1.Controls.Add(this.Panel, 0, 1);
             this.TableLayoutPanel1.Controls.Add(this.CbPilotLaser, 0, 2);
             this.TableLayoutPanel1.Controls.Add(this.CbAirAssist, 1, 2);
             this.TableLayoutPanel1.Controls.Add(this.LblUptime, 0, 0);
-            this.TableLayoutPanel1.Controls.Add(this.PbLaser, 1, 0);
             this.TableLayoutPanel1.Name = "TableLayoutPanel1";
             // 
             // Panel

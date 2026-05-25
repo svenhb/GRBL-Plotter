@@ -326,4 +326,22 @@ Subrutina P90</value>
     <value>Varía el valor S o Z según el ancho del lápiz.</value>
     <comment>tt</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ayuda en línea</value>
+  </data>
+  <data name="LblZProfileRampLength.Text" xml:space="preserve">
+    <value>Longitud de rampa</value>
+  </data>
+  <data name="LblZProfileStep.Text" xml:space="preserve">
+    <value>Anchura del paso</value>
+  </data>
+  <data name="LblZProfileEnable.Text" xml:space="preserve">
+    <value>Habilitar perfil Z</value>
+  </data>
+  <data name="LblZProfileInfo.Text" xml:space="preserve">
+    <value>Aumenta la presión del lápiz al inicio de una línea y la disminuye al final de la misma.</value>
+  </data>
+  <data name="LblZProfileHeadline.Text" xml:space="preserve">
+    <value>Perfil Z</value>
+  </data>
 </root>

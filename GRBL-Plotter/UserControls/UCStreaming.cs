@@ -68,6 +68,13 @@ namespace GrblPlotter.UserControls
             EnableButtonsStreaming(false);
             EnableButtonsSimulation(false);
         }
+		
+        private void UCStreaming_Load(object sender, EventArgs e)
+        {
+			SetStatusSimulationStart(false);
+			SetStatusSimulationPause(true);
+		}
+		
         internal void SetHeight(bool setLarge)
         {
             if (setLarge)
@@ -84,10 +91,12 @@ namespace GrblPlotter.UserControls
             }
             Invalidate();
         }
+		
         internal void SetStatusTextGrbl(string s, Color c)
         {
             m.SetLabelSave(LblStatusGrbl, s, c);
         }
+		
         internal void SetStatusTextStreaming(string s, Color? c)
         {
             if (c != null)
@@ -95,6 +104,7 @@ namespace GrblPlotter.UserControls
             else
                 m.SetLabelSave(LblStatusStreaming, s);
         }
+		
         internal String GetStatusTextStreaming()
         { return LblStatusStreaming.Text; }
 
@@ -127,6 +137,7 @@ namespace GrblPlotter.UserControls
             else
                 btnSimulate.Text = "Start path simulation";
         }
+		
         internal void SetStatusSimulationPause(bool pause)
         {
             if (pause)
@@ -134,6 +145,7 @@ namespace GrblPlotter.UserControls
             else
                 btnSimulatePause.Image = Properties.Resources.btn_pause;
         }
+		
         internal void SetStatusStreamStart(bool showPlay, bool highlight, bool blink)
         {
             if (showPlay)
@@ -152,10 +164,12 @@ namespace GrblPlotter.UserControls
             enableTime = false;
             m.SetLabelSave(LblTime, txt);
         }
+		
         internal void SetTextProgress(String txt)
         {
             m.SetLabelSave(lblProgress, txt);
         }
+		
         internal void ResetProgress()
         {
             pbFile.Value = 0;
@@ -163,6 +177,7 @@ namespace GrblPlotter.UserControls
             pbBuffer.Value = 0;
             pbBuffer.Maximum = 100;
         }
+		
         internal void SetProgressFile(int val)
         {
             if (val <= pbFile.Maximum)
@@ -173,20 +188,23 @@ namespace GrblPlotter.UserControls
                 { this.pbFile.Value = val; }
             }
         }
+		
         internal void SetProgressFileMax(int val)
         {
             pbFile.Maximum = val;
         }
+		
         internal void SetProgressBuffer(int val)
         {
             if (val <= pbBuffer.Maximum)
-            {//    pbBuffer.Value = val;
+            {
                 if (this.pbBuffer.InvokeRequired)
                 { this.pbBuffer.BeginInvoke((MethodInvoker)delegate () { this.pbBuffer.Value = val; }); }
                 else
                 { this.pbBuffer.Value = val; }
             }
         }
+		
         internal void SetProgressBufferMax(int val)
         {
             pbBuffer.Maximum = val;
@@ -197,12 +215,11 @@ namespace GrblPlotter.UserControls
             timeInit = DateTime.UtcNow;
             timeElapsed = TimeSpan.Zero;
             enableTime = true;
-            //    timer.Start();
         }
+		
         internal void TimerStop()
         {
             enableTime = false;
-            //    timer.Stop();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -223,6 +240,7 @@ namespace GrblPlotter.UserControls
                 highlightPlay = !highlightPlay;
             }
         }
+		
         private void GbStreamings_Click(object sender, EventArgs e)
         {
             var screenPosition = Cursor.Position;
@@ -234,6 +252,7 @@ namespace GrblPlotter.UserControls
                 Invalidate();
             }
         }
+		
         private void SetControlHeight(int h)
         { Height = (int)(DpiScaling * h); }
 
@@ -252,6 +271,7 @@ namespace GrblPlotter.UserControls
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.streamStop));
             enableTime = false;
         }
+		
         private void BtnStreamCheck_Click(object sender, EventArgs e)
         {
             btnStreamStart.Enabled = false;
@@ -274,6 +294,7 @@ namespace GrblPlotter.UserControls
         {
             pbBuffer.Left = pbFile.Width-(int)(DpiScaling * 100);
         }
+		
         public void RestoreColors()
         {
             LblStatusGrbl.ForeColor = Color.Black;
