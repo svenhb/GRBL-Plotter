@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.8.0.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.8.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -137,6 +137,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -182,13 +186,23 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromTablet.Designer.cs">
       <DependentUpon>GCodeFromTablet.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCodeCreation\curves\CubicBezier.cs" />
+    <Compile Include="GCodeCreation\curves\CurveBuilder.cs" />
+    <Compile Include="GCodeCreation\curves\CurveFit.cs" />
+    <Compile Include="GCodeCreation\curves\CurveFitBase.cs" />
+    <Compile Include="GCodeCreation\curves\CurvePreprocess.cs" />
+    <Compile Include="GCodeCreation\curves\Spline.cs" />
+    <Compile Include="GCodeCreation\curves\SplineBuilder.cs" />
+    <Compile Include="GCodeCreation\curves\VectorHelper.cs" />
     <Compile Include="GCodeCreation\Graphic2GCodeRelatedDevice.cs" />
     <Compile Include="GCodeCreation\GraphicClasses.cs" />
     <Compile Include="GCodeCreation\GraphicCollectText.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateClipAndTile.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateMisc.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateHatchFill.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateSpecial.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateTangential.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateTransform.cs" />
     <Compile Include="GCodeCreation\GraphicWorker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1043,10 +1057,14 @@
     <Content Include="DLLs\SharpDX.dll" />
     <Content Include="DLLs\TabletControl.dll" />
     <Content Include="Resources\framing.png" />
+    <None Include="Resources\framing_c.png" />
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.ar.resx">
+      <DependentUpon>UCDeviceLaser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser.cs.resx">
       <DependentUpon>UCDeviceLaser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceLaser.de.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.de-DE.resx">
       <DependentUpon>UCDeviceLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser.es.resx">
@@ -1073,7 +1091,7 @@
     <EmbeddedResource Include="UserControls\UCDeviceLaser.tr.resx">
       <DependentUpon>UCDeviceLaser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceLaser.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceLaser.zh-CN.resx">
       <DependentUpon>UCDeviceLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser2.ar.resx">
@@ -1082,7 +1100,7 @@
     <EmbeddedResource Include="UserControls\UCDeviceLaser2.cs.resx">
       <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceLaser2.de.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.de-DE.resx">
       <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser2.es.resx">
@@ -1109,7 +1127,7 @@
     <EmbeddedResource Include="UserControls\UCDeviceLaser2.tr.resx">
       <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceLaser2.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceLaser2.zh-CN.resx">
       <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDevicePlotter.ar.resx">
@@ -1118,7 +1136,7 @@
     <EmbeddedResource Include="UserControls\UCDevicePlotter.cs.resx">
       <DependentUpon>UCDevicePlotter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDevicePlotter.de.resx">
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.de-DE.resx">
       <DependentUpon>UCDevicePlotter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDevicePlotter.es.resx">
@@ -1145,7 +1163,7 @@
     <EmbeddedResource Include="UserControls\UCDevicePlotter.tr.resx">
       <DependentUpon>UCDevicePlotter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDevicePlotter.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDevicePlotter.zh-CN.resx">
       <DependentUpon>UCDevicePlotter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDevicePlotter2.ar.resx">
@@ -1154,7 +1172,7 @@
     <EmbeddedResource Include="UserControls\UCDevicePlotter2.cs.resx">
       <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDevicePlotter2.de.resx">
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.de-DE.resx">
       <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDevicePlotter2.es.resx">
@@ -1181,7 +1199,7 @@
     <EmbeddedResource Include="UserControls\UCDevicePlotter2.tr.resx">
       <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDevicePlotter2.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDevicePlotter2.zh-CN.resx">
       <DependentUpon>UCDevicePlotter2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceRouter.ar.resx">
@@ -1190,7 +1208,7 @@
     <EmbeddedResource Include="UserControls\UCDeviceRouter.cs.resx">
       <DependentUpon>UCDeviceRouter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceRouter.de.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.de-DE.resx">
       <DependentUpon>UCDeviceRouter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceRouter.es.resx">
@@ -1217,8 +1235,44 @@
     <EmbeddedResource Include="UserControls\UCDeviceRouter.tr.resx">
       <DependentUpon>UCDeviceRouter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDeviceRouter.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDeviceRouter.zh-CN.resx">
       <DependentUpon>UCDeviceRouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.ar.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.cs.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.de-DE.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.es.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.fr.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.it.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.ja.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.pl.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.pt.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.ru.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.tr.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCDeviceRouter2.zh-CN.resx">
+      <DependentUpon>UCDeviceRouter2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDRO.ar.resx">
       <DependentUpon>UCDRO.cs</DependentUpon>
@@ -1226,7 +1280,7 @@
     <EmbeddedResource Include="UserControls\UCDRO.cs.resx">
       <DependentUpon>UCDRO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDRO.de.resx">
+    <EmbeddedResource Include="UserControls\UCDRO.de-DE.resx">
       <DependentUpon>UCDRO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDRO.es.resx">
@@ -1253,7 +1307,7 @@
     <EmbeddedResource Include="UserControls\UCDRO.tr.resx">
       <DependentUpon>UCDRO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCDRO.zh.resx">
+    <EmbeddedResource Include="UserControls\UCDRO.zh-CN.resx">
       <DependentUpon>UCDRO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCFlowControl.ar.resx">
@@ -1262,7 +1316,7 @@
     <EmbeddedResource Include="UserControls\UCFlowControl.cs.resx">
       <DependentUpon>UCFlowControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCFlowControl.de.resx">
+    <EmbeddedResource Include="UserControls\UCFlowControl.de-DE.resx">
       <DependentUpon>UCFlowControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCFlowControl.es.resx">
@@ -1289,7 +1343,7 @@
     <EmbeddedResource Include="UserControls\UCFlowControl.tr.resx">
       <DependentUpon>UCFlowControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCFlowControl.zh.resx">
+    <EmbeddedResource Include="UserControls\UCFlowControl.zh-CN.resx">
       <DependentUpon>UCFlowControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCJogControlAll.ar.resx">
@@ -1298,7 +1352,7 @@
     <EmbeddedResource Include="UserControls\UCJogControlAll.cs.resx">
       <DependentUpon>UCJogControlAll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCJogControlAll.de.resx">
+    <EmbeddedResource Include="UserControls\UCJogControlAll.de-DE.resx">
       <DependentUpon>UCJogControlAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCJogControlAll.es.resx">
@@ -1325,7 +1379,7 @@
     <EmbeddedResource Include="UserControls\UCJogControlAll.tr.resx">
       <DependentUpon>UCJogControlAll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCJogControlAll.zh.resx">
+    <EmbeddedResource Include="UserControls\UCJogControlAll.zh-CN.resx">
       <DependentUpon>UCJogControlAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMoveToGraphic.ar.resx">
@@ -1334,7 +1388,7 @@
     <EmbeddedResource Include="UserControls\UCMoveToGraphic.cs.resx">
       <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCMoveToGraphic.de.resx">
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.de-DE.resx">
       <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMoveToGraphic.es.resx">
@@ -1361,7 +1415,7 @@
     <EmbeddedResource Include="UserControls\UCMoveToGraphic.tr.resx">
       <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCMoveToGraphic.zh.resx">
+    <EmbeddedResource Include="UserControls\UCMoveToGraphic.zh-CN.resx">
       <DependentUpon>UCMoveToGraphic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMoveToZero.ar.resx">
@@ -1370,7 +1424,7 @@
     <EmbeddedResource Include="UserControls\UCMoveToZero.cs.resx">
       <DependentUpon>UCMoveToZero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCMoveToZero.de.resx">
+    <EmbeddedResource Include="UserControls\UCMoveToZero.de-DE.resx">
       <DependentUpon>UCMoveToZero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCMoveToZero.es.resx">
@@ -1397,7 +1451,7 @@
     <EmbeddedResource Include="UserControls\UCMoveToZero.tr.resx">
       <DependentUpon>UCMoveToZero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCMoveToZero.zh.resx">
+    <EmbeddedResource Include="UserControls\UCMoveToZero.zh-CN.resx">
       <DependentUpon>UCMoveToZero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCOverrides.ar.resx">
@@ -1406,7 +1460,7 @@
     <EmbeddedResource Include="UserControls\UCOverrides.cs.resx">
       <DependentUpon>UCOverrides.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCOverrides.de.resx">
+    <EmbeddedResource Include="UserControls\UCOverrides.de-DE.resx">
       <DependentUpon>UCOverrides.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCOverrides.es.resx">
@@ -1433,10 +1487,46 @@
     <EmbeddedResource Include="UserControls\UCOverrides.tr.resx">
       <DependentUpon>UCOverrides.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCOverrides.zh.resx">
+    <EmbeddedResource Include="UserControls\UCOverrides.zh-CN.resx">
       <DependentUpon>UCOverrides.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.ar.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.cs.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.de-DE.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.es.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.fr.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.it.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.ja.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.pl.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.pt.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.ru.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.tr.resx">
+      <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSetCoordinateSystem.zh-CN.resx">
       <DependentUpon>UCSetCoordinateSystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSetOffset.ar.resx">
@@ -1445,7 +1535,7 @@
     <EmbeddedResource Include="UserControls\UCSetOffset.cs.resx">
       <DependentUpon>UCSetOffset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCSetOffset.de.resx">
+    <EmbeddedResource Include="UserControls\UCSetOffset.de-DE.resx">
       <DependentUpon>UCSetOffset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSetOffset.es.resx">
@@ -1472,7 +1562,7 @@
     <EmbeddedResource Include="UserControls\UCSetOffset.tr.resx">
       <DependentUpon>UCSetOffset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCSetOffset.zh.resx">
+    <EmbeddedResource Include="UserControls\UCSetOffset.zh-CN.resx">
       <DependentUpon>UCSetOffset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCStreaming.ar.resx">
@@ -1481,7 +1571,7 @@
     <EmbeddedResource Include="UserControls\UCStreaming.cs.resx">
       <DependentUpon>UCStreaming.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCStreaming.de.resx">
+    <EmbeddedResource Include="UserControls\UCStreaming.de-DE.resx">
       <DependentUpon>UCStreaming.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCStreaming.es.resx">
@@ -1508,7 +1598,7 @@
     <EmbeddedResource Include="UserControls\UCStreaming.tr.resx">
       <DependentUpon>UCStreaming.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCStreaming.zh.resx">
+    <EmbeddedResource Include="UserControls\UCStreaming.zh-CN.resx">
       <DependentUpon>UCStreaming.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCToolList.ar.resx">
@@ -1517,7 +1607,7 @@
     <EmbeddedResource Include="UserControls\UCToolList.cs.resx">
       <DependentUpon>UCToolList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCToolList.de.resx">
+    <EmbeddedResource Include="UserControls\UCToolList.de-DE.resx">
       <DependentUpon>UCToolList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCToolList.es.resx">
@@ -1544,7 +1634,7 @@
     <EmbeddedResource Include="UserControls\UCToolList.tr.resx">
       <DependentUpon>UCToolList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCToolList.zh.resx">
+    <EmbeddedResource Include="UserControls\UCToolList.zh-CN.resx">
       <DependentUpon>UCToolList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCToolListElement.resx">
