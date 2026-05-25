@@ -55,6 +55,7 @@
  * 2024-02-25 add some locks to secure buffer
  * 2024-03-20 l:952 f:RequestSend take care of (^2
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-04-29 l:500 f:ProcessGrblRealTimeStatus rework parsing of machineState
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -79,6 +80,7 @@ namespace GrblPlotter
         private GrblState grblStateNow = GrblState.unknown;
         private GrblState grblStateLast = GrblState.unknown;
         private string lastMessage = "";
+        private int machineStateAOccured = 10;
 
         public bool IsGrblVers0 { get; private set; } = false;		// use as default grbl 1.x -> ProcessGrblRealTimeStatus
         public string GrblVers { get; private set; } = "";
@@ -427,6 +429,8 @@ namespace GrblPlotter
          * should occur with same frequent as timer interrupt -> each 200ms
          * old:         <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
          * new in 1.1   < Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >
+		 * from atomstack: <Idle|WPos:0.000,64.938,3.000|Bf:511,2048,2048|FS:0,0|WCO:100.000,100.000,0.000|APP:33|USB:0>
+		 *				   <Idle|WPos:0.000,64.938,3.000|Bf:511,2048,2048|FS:0,10|Ov:100,100,100|A:S|APP:33|USB:0>
          **********************************************************************************************/
         private void ProcessGrblRealTimeStatus(string text)    // '<' and '>' already removed
         {
@@ -439,9 +443,11 @@ namespace GrblPlotter
                 Logger.Error("processGrblRealTimeStatus dataField.Length<=2: '{0}'", text);
                 return;
             }
-            string _machineState = dataField[0].Trim(' ');       // Valid states types: Idle, Run, Hold, Jog, Alarm, Door, Check, Home, Sleep
-                                                                 // The first (Machine State) and second (Current Position) data fields are always included in every report.
-                                                                 // Assume any following data field may or may not exist and can be in any order.
+            string _machineState = dataField[0].Trim(' ');
+            grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state - Valid states types: Idle, Run, Hold, Jog, Alarm, Door, Check, Home, Sleep
+                                                                       // The first (Machine State) and second (Current Position) data fields are always included in every report.
+                                                                       // Assume any following data field may or may not exist and can be in any order.
+
             if (IsGrblVers0)	//	handle old format from grbl vers. 0.9
             {
                 if (dataField.Length > 3)   // get 1st part
@@ -467,81 +473,92 @@ namespace GrblPlotter
             {
                 if (dataField.Length >= 2)
                 {
-                    if (dataField[1].Contains("MPos"))      // Current position as MPos or WPos
-                    {
-                        axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posMachine);
-                        posWork = posMachine - posWCO;
-                    }
-                    else
-                    {
-                        axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posWork);
-                        posMachine = posWork + posWCO;
-                    }
-                }
-                if (dataField.Length > 2)
-                {
                     this.machineState.Pn = "";
-                    for (int i = 2; i < dataField.Length; i++)
+                    for (int i = 1; i < dataField.Length; i++)
                     {
-                        if (dataField[i].Contains("WCO"))           // Work Coordinate Offset
+                        if (dataField[i].Contains("MPos"))      // Current position as MPos or WPos
+                        {
+                            axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posMachine);
+                            posWork = posMachine - posWCO;
+                            continue;
+                        }
+                        else if (dataField[i].Contains("WPos"))
+                        {
+                            axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posWork);
+                            posMachine = posWork + posWCO;
+                            continue;
+                        }
+                        else if (dataField[i].Contains("WCO"))           // Work Coordinate Offset
                         {
                             Grbl.GetPosition(iamSerial, dataField[i], ref posWCO);
                             continue;
                         }
+						
                         string[] data = dataField[i].Split(':');
                         if (data.Length > 1)
                         {
-                            if (data[0].Contains("Bf"))            // Buffer state - needs to be enabled in config.h file
+                            if (data[0].Contains("APP"))
+                                continue;
+                            else if (data[0].Contains("USB"))
+                                continue;
+                            else if (data[0].Contains("Bf"))            // Buffer state - needs to be enabled in config.h file
                             { this.machineState.Bf = lblSrBf.Text = data[1]; continue; }
-                            if (data[0].Contains("Ln"))            // Line number - needs to be enabled in config.h file
+                            else if (data[0].Contains("Ln"))            // Line number - needs to be enabled in config.h file
                             { this.machineState.Ln = lblSrLn.Text = data[1]; continue; }
-                            if (data[0].Contains("FS"))            // Current FeedXY and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
+                            else if (data[0].Contains("FS"))            // Current FeedXY and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
-                            if (data[0].Contains("F"))             // Current FeedXY - see above is speed is disabled in config.h
+                            else if (data[0].Contains("F"))             // Current FeedXY - see above is speed is disabled in config.h
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
-                            if (data[0].Contains("Pn"))            // Input Pin State - will not appear if No input pins are detected as triggered.
-                            { this.machineState.Pn = data[1]; continue; } //else { this.machineState.Pn = lblSrPn.Text = ""; }
-                            if (data[0].Contains("Ov"))            // Override Values - This data field will not appear if It is disabled in the config.h file
+                            else if (data[0].Contains("Pn"))            // Input Pin State - will not appear if No input pins are detected as triggered.
+                            { this.machineState.Pn = lblSrPn.Text = data[1]; continue; } 
+                            else if (data[0].Contains("Ov"))            // Override Values - This data field will not appear if It is disabled in the config.h file
+                            { 	
+								this.machineState.Ov = lblSrOv.Text = data[1]; 
+								if (!text.Contains("|A:"))
+								{
+									AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");
+									AddToRunTimer(stopwatchFlood, "grblRunTimeFlood");
+									AddToRunTimer(stopwatchMist, "grblRunTimeMist");									
+								}
+								continue; 
+							}
+
+                            else if (data[0].Contains("A"))
                             {
-                                this.machineState.Ov = lblSrOv.Text = data[1];
-
-                                if (dataField[dataField.Length - 1].IndexOf("A:") >= 0)             // Accessory State
+                                this.machineState.A = lblSrA.Text = data[1];	//dataField[dataField.Length - 1].Split(':')[1];
+                                machineStateAOccured = 15;
+                                if (iamSerial == 1)
                                 {
-                                    this.machineState.A = lblSrA.Text = dataField[dataField.Length - 1].Split(':')[1];
-                                    if (iamSerial == 1)
-                                    {
-                                        if (this.machineState.A.Contains("S") || this.machineState.A.Contains("C"))
-                                        { stopwatchSpindle.Start(); }
-                                        else
-                                        { AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle"); }
+                                    if (this.machineState.A.Contains("S") || this.machineState.A.Contains("C"))
+                                    { stopwatchSpindle.Start(); }
+                                    else
+                                    { AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle"); }
 
-                                        if (this.machineState.A.Contains("F"))
-                                        { stopwatchFlood.Start(); }
-                                        else
-                                        { AddToRunTimer(stopwatchFlood, "grblRunTimeFlood"); }
+                                    if (this.machineState.A.Contains("F"))
+                                    { stopwatchFlood.Start(); }
+                                    else
+                                    { AddToRunTimer(stopwatchFlood, "grblRunTimeFlood"); }
 
-                                        if (this.machineState.A.Contains("M"))
-                                        { stopwatchMist.Start(); }
-                                        else
-                                        { AddToRunTimer(stopwatchMist, "grblRunTimeMist"); }
-                                    }
-                                }
-                                else
-                                {
-                                    this.machineState.A = lblSrA.Text = "";
-                                    AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");
-                                    AddToRunTimer(stopwatchFlood, "grblRunTimeFlood");
-                                    AddToRunTimer(stopwatchMist, "grblRunTimeMist");
+                                    if (this.machineState.A.Contains("M"))
+                                    { stopwatchMist.Start(); }
+                                    else
+                                    { AddToRunTimer(stopwatchMist, "grblRunTimeMist"); }
                                 }
                                 continue;
                             }
                         }
-                    }   // for dataField
-                    lblSrPn.Text = this.machineState.Pn;
-                    lblSrA.Text = this.machineState.A;
+                    }   // for-loop dataField
+                    if (machineStateAOccured-- < 0)
+                    {
+                        this.machineState.A = lblSrA.Text = "";
+                        AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");
+                        AddToRunTimer(stopwatchFlood, "grblRunTimeFlood");
+                        AddToRunTimer(stopwatchMist, "grblRunTimeMist");
+                        lblSrA.Text = this.machineState.A;
+                    }
                 }
             }   // if (isGrblVers0)
-            grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state
+                //    grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state
             lblSrState.BackColor = Grbl.GrblStateColor(grblStateNow);
             lblSrState.Text = Grbl.StatusToText(grblStateNow);  // status;
 
@@ -951,15 +968,15 @@ namespace GrblPlotter
                 }
                 else
                 {
-					if (data.StartsWith("(^")) 
-						keepComments = false;
-					
+                    if (data.StartsWith("(^"))
+                        keepComments = false;
+
                     if (keepComments && data.StartsWith("("))       	// just print comment
                     {
                         AddToLog("*** " + data);
                         return true;
                     }
-					
+
                     var tmp = CleanUpCodeLine(data, keepComments);
                     if ((!string.IsNullOrEmpty(tmp)) && (!tmp.StartsWith(";")))  //(tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                     {
@@ -1114,7 +1131,7 @@ namespace GrblPlotter
                         int cmdTNr = Gcode.GetCodeNrFromGCode('T', line);
                         if (cmdTNr >= 0)
                         {
-        //                    ToolList.Init(" (ProcessSend)");       // FillToolListElements structure
+                            //                    ToolList.Init(" (ProcessSend)");       // FillToolListElements structure
                             SetToolChangeCoordinates(cmdTNr, line);
                             // save actual tool info as last tool info
                             gcodeVariable["TOLN"] = gcodeVariable["TOAN"];

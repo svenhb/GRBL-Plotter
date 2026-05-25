@@ -121,7 +121,7 @@ namespace GrblPlotter
             {"Footer Code",     "importGCFooter", 	""},
         //    {"Tool Change Code","importGCToolChangeCode" },   // not used any where
 
-            {"Tool table enable",        "importGCToolTableUse","False"},
+        //    {"Tool table enable",        "importGCToolTableUse","False"},
             {"Tool table default enable","importGCToolDefNrUse",""},
             {"Tool table default number","importGCToolDefNr", 	""},
 

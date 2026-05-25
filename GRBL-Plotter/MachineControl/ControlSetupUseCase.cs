@@ -44,9 +44,10 @@ namespace GrblPlotter
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
+
+            timer.Elapsed += TimerElapsed;
             timer.Interval = 500;
             timer.Stop();
-            timer.Elapsed += TimerElapsed;
         }
 
         private void ControlSetupUseCase_Load(object sender, EventArgs e)

@@ -61,7 +61,15 @@ namespace GrblPlotter
             InitializeComponent();
             timerSerial.Elapsed += TimerSerial_Tick;
             timerSerial.Interval = timerReload;
-            timerSerial.Enabled = true;
+        }
+        private void SerialForm_Load(object sender, EventArgs e)
+        {
+            this.Icon = Properties.Resources.Icon;
+            //   Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            UpdateControls();       // disable controls
+            LoadSettings();         // set last COM and Baud
+            RefreshPorts();         // scan for COMs
+            OpenPort();             // open COM
             timerSerial.Start();
         }
 
@@ -350,16 +358,6 @@ namespace GrblPlotter
                     // throw;
                 }
             }
-        }
-
-        private void SerialForm_Load(object sender, EventArgs e)
-        {
-            this.Icon = Properties.Resources.Icon;
-            //   Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            UpdateControls();       // disable controls
-            LoadSettings();         // set last COM and Baud
-            RefreshPorts();         // scan for COMs
-            OpenPort();             // open COM
         }
 
         private void LoadSettings()
