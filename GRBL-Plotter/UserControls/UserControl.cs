@@ -33,7 +33,6 @@
  
 */
 
-using AForge.Imaging.Filters;
 using GrblPlotter.Helper;
 using NLog;
 using System;
@@ -277,7 +276,7 @@ namespace GrblPlotter.UserControls
             info.ImportDxfConsiderZ = false;
             info.ApplyHatchFillSVG = true;
 
-        //    info.ConvertArcToLine = UseToolList() || GetActualFillEnable();
+            //    info.ConvertArcToLine = UseToolList() || GetActualFillEnable();
 
             info.GroupOption = GroupBy; //GroupOption.ByColor;
             info.GroupEnable = true;
@@ -358,8 +357,9 @@ namespace GrblPlotter.UserControls
 
                 if (useInkFromTablet || useDepthFromWidth || info.OptionAddZProfile)
                 {
-                //    info.OptionCodeSortDistance = false;
-                //    info.OptionCodeSortDistanceNewStartOnClosedPath = false;
+                    info.ConvertArcToLine = true;
+                    //    info.OptionCodeSortDistance = false;
+                    //    info.OptionCodeSortDistanceNewStartOnClosedPath = false;
                     if (SelectedPlotterMode == 0)               // servo enable
                     {
                         info.OptionSFromWidth = true;
@@ -392,9 +392,9 @@ namespace GrblPlotter.UserControls
 
                 if (info.OptionTangentialAxis || info.OptionDragTool)
                 {
-                //    info.OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;    //true;
-                //    info.OptionCodeOffsetLargestLast = true;
-                //    info.OptionCodeOffsetLargestRemove = false;
+                    //    info.OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;    //true;
+                    //    info.OptionCodeOffsetLargestLast = true;
+                    //    info.OptionCodeOffsetLargestRemove = false;
                 }
                 if (useInkFromTablet || useDepthFromWidth)
                 {
