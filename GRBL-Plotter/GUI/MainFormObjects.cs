@@ -54,7 +54,7 @@ namespace GrblPlotter
 
     public static class MyApplication
     {
-        private static readonly string VersionAddOn = "";
+        private static readonly string VersionAddOn = ".a";
 
         internal static bool ESCwasPressed = false;
 

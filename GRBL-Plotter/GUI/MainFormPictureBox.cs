@@ -52,13 +52,13 @@
 */
 
 using FastColoredTextBoxNS;
-using GrblPlotter.MachineControl;
 using GrblPlotter.Helper;
+using GrblPlotter.MachineControl;
+using GrblPlotter.UserControls;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using GrblPlotter.UserControls;
 
 namespace GrblPlotter
 {
@@ -274,18 +274,21 @@ namespace GrblPlotter
                                                                     " X:{2,7:0.000}\r\n" +
                                                                     " Y:{3,7:0.000}\r\n" +
                                                                     " Z:{4,7:0.000}\r\n" +
-                                                                    " a:{5,7:0.000}°", 100 * zoomFactor, unit,
+                                                                    " A:{5,7:0.000}°", 100 * zoomFactor, unit,
                                 Grbl.PosMarker.X, Grbl.PosMarker.Y, VisuGCode.Simulation.GetZ(), 180 * Grbl.PosMarkerAngle / Math.PI),
                                 myFont1, Brushes.Black, new Point(10, 5));
                             else
+                            {
+                                string tangential = "";
+                                if (VisuGCode.tangentialAxisEnable) { tangential = string.Format("\r\n A:{0,7:0.000}", Grbl.PosMarker.A); }
                                 e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\n" +
                                                                     "Ruler Unit: {1}\r\n" +
                                                                     "Marker-Pos:\r\n" +
                                                                     " X:{2,7:0.000}\r\n" +
                                                                     " Y:{3,7:0.000}\r\n" +
-                                                                    " Z:{4,7:0.000}", 100 * zoomFactor, unit,
-                                Grbl.PosMarker.X, Grbl.PosMarker.Y, Grbl.PosMarker.Z), myFont1, Brushes.Black, new Point(10, 5));
-
+                                                                    " Z:{4,7:0.000}{5}", 100 * zoomFactor, unit,
+                                Grbl.PosMarker.X, Grbl.PosMarker.Y, Grbl.PosMarker.Z, tangential), myFont1, Brushes.Black, new Point(10, 5));
+                            }
                             if (VisuGCode.selectedFigureInfo.Length > 0)
                                 e.Graphics.DrawString(VisuGCode.selectedFigureInfo, myFont1, Brushes.Black, new Point(rw - 10, 5));
                         }
@@ -663,11 +666,12 @@ namespace GrblPlotter
                     VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
                     FctbSetBookmark();
 
-            /*        if (cBMoveG0.Checked)
-                        SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                    else
-                        SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-            */        picAbsPosLast2 = picAbsPosLast1;
+                    /*        if (cBMoveG0.Checked)
+                                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+                            else
+                                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+                    */
+                    picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = (XyPoint)Grbl.PosMarker;
                 }
             }
@@ -688,11 +692,12 @@ namespace GrblPlotter
                 }
                 if (allowMove)
                 {
-           /*         if (cBMoveG0.Checked)
-                        SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
-                    else
-                        SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
-            */        picAbsPosLast2 = picAbsPosLast1;
+                    /*         if (cBMoveG0.Checked)
+                                 SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
+                             else
+                                 SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
+                     */
+                    picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = picAbsPos;
                 }
             }
@@ -943,11 +948,12 @@ namespace GrblPlotter
 
                         if (modKeyCtrlAlt)
                         {
-                 /*           if (cBMoveG0.Checked)
-                                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                            else
-                                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                 */       }
+                            /*           if (cBMoveG0.Checked)
+                                           SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+                                       else
+                                           SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+                            */
+                        }
                     }
                     //    else if (false)
                     //    { }
@@ -1148,11 +1154,12 @@ namespace GrblPlotter
 
         private void CmsPicBoxMoveToMarkedPosition_Click(object sender, EventArgs e)
         {
-   /*         if (cBMoveG0.Checked)
-                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-            else
-                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-    */    }
+            /*         if (cBMoveG0.Checked)
+                         SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+                     else
+                         SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
+             */
+        }
 
         private void CmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
         {
@@ -1258,35 +1265,35 @@ namespace GrblPlotter
                 { offsetY += (double)SelectionHandle.Bounds.Height; }
 
                 VisuGCode.MarkSelectedFigure(-1);
-			//	XmlMarker.ListAllFigures();
-			//	XmlMarker.ListAllGroups();
+                //	XmlMarker.ListAllFigures();
+                //	XmlMarker.ListAllGroups();
                 int insertLine = InsertCodeToFctb(tmpCode, false, line, offsetX, offsetY);
                 TransformEnd();     // reload GCode an analyze
                                     // Figure was duplicated and code inserted, next -> select and highlight new code snipped
 
-				if (LineIsInRange(insertLine))
-				{
-					markerType = SelectionHandle.SelectedMarkerType;
+                if (LineIsInRange(insertLine))
+                {
+                    markerType = SelectionHandle.SelectedMarkerType;
 
-					if (markerType == XmlMarkerType.Figure)
-						VisuGCode.MarkSelectedFigure(XmlMarker.lastFigure.FigureNr);
-					else if (markerType == XmlMarkerType.Group)
-						VisuGCode.MarkSelectedGroup(XmlMarker.lastGroup.LineStart);
+                    if (markerType == XmlMarkerType.Figure)
+                        VisuGCode.MarkSelectedFigure(XmlMarker.lastFigure.FigureNr);
+                    else if (markerType == XmlMarkerType.Group)
+                        VisuGCode.MarkSelectedGroup(XmlMarker.lastGroup.LineStart);
 
-					SelectionHandle.SelectedMarkerLine = insertLine;
-					markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
-					VisuGCode.CreateMarkerPath(markerSize);
-					cmsPicBoxReverseSelectedPath.Enabled = false;
-					cmsPicBoxRotateSelectedPath.Enabled = false;
+                    SelectionHandle.SelectedMarkerLine = insertLine;
+                    markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+                    VisuGCode.CreateMarkerPath(markerSize);
+                    cmsPicBoxReverseSelectedPath.Enabled = false;
+                    cmsPicBoxRotateSelectedPath.Enabled = false;
 
-					Logger.Trace("++△△ DuplicateSelectedPath lines:{0}  figureIsMarked:{1}  lastMarkerType:{2}   range:{3}", fCTBCode.LinesCount, figureIsMarked, lastMarkerType, range);
-					fCTBCode.Selection = range; // SetTextSelection
-					FoldBlocksByLevel(markerType, insertLine);
-				}
-				else
-				{
-					Logger.Warn("++⚠⚠ DuplicateSelectedPath insertLine not in range lines:{0}  figureIsMarked:{1}  lastMarkerType:{2}   range:{3}  insertLine:{4}", fCTBCode.LinesCount, figureIsMarked, lastMarkerType, range, insertLine);					
-				}
+                    Logger.Trace("++△△ DuplicateSelectedPath lines:{0}  figureIsMarked:{1}  lastMarkerType:{2}   range:{3}", fCTBCode.LinesCount, figureIsMarked, lastMarkerType, range);
+                    fCTBCode.Selection = range; // SetTextSelection
+                    FoldBlocksByLevel(markerType, insertLine);
+                }
+                else
+                {
+                    Logger.Warn("++⚠⚠ DuplicateSelectedPath insertLine not in range lines:{0}  figureIsMarked:{1}  lastMarkerType:{2}   range:{3}  insertLine:{4}", fCTBCode.LinesCount, figureIsMarked, lastMarkerType, range, insertLine);
+                }
             }
             return;
         }
@@ -1592,7 +1599,7 @@ namespace GrblPlotter
             if (Rb2DViewMode2.Checked)
             {
                 Rb2DViewMode2.BackColor = Color.Yellow;
-                Rb2DViewMode2.ForeColor = Colors.ContrastColor( Color.Yellow);
+                Rb2DViewMode2.ForeColor = Colors.ContrastColor(Color.Yellow);
                 Rb2DViewMode3.BackColor = MyControl.PanelBackColor;// Color.WhiteSmoke;
                 Rb2DViewMode3.ForeColor = MyControl.PanelForeColor;// Color.WhiteSmoke;
             }
@@ -1617,11 +1624,11 @@ namespace GrblPlotter
         {
             if (Grbl.Status == GrblState.idle)
             {
-    /*            if (cBMoveG0.Checked)
-                    SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
-                else
-                    SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
-    */
+                /*            if (cBMoveG0.Checked)
+                                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
+                            else
+                                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
+                */
                 picAbsPos = picAbsPosLast1;
                 picAbsPosLast1 = picAbsPosLast2;
                 picAbsPosLast2 = picAbsPos;

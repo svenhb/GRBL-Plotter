@@ -184,6 +184,9 @@ namespace GrblPlotter
             this.WindowState = Properties.Settings.Default.mainFormWinState;
 
             int splitDist = Properties.Settings.Default.mainFormSplitDistance;
+
+            Logger.Trace("SetGUISize X:{0}  Y:{1}  Split1:{2}  Split2:{3}", Width, Height, splitDist, Properties.Settings.Default.DeviceLaserSplitterDistance);
+			
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
                 splitContainer1.SplitterDistance = splitDist;
             splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance;
