@@ -163,7 +163,7 @@ namespace GrblPlotter
         internal static bool ShiftTilePaths { get; set; }
 
         internal static bool tangentialAxisEnable = false;
-        private static string tangentialAxisName = "C";
+        internal static string tangentialAxisName = "C";
         internal static double tangentialAxisFullTurn = 360;
         internal static int tangentialAxisError = -1;
 
