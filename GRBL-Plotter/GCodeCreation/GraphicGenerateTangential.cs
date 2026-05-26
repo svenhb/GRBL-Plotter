@@ -68,6 +68,8 @@ namespace GrblPlotter
             bool showLogLine = ((logFlags & loggerSelect) > 0);
             bool showLogArc =  ((logFlags & loggerSelect) > 0);
 
+		//	showLogLine = showLogArc = true;
+
             double maxAngleChangeDeg = (double)Properties.Settings.Default.importGCTangentialAngle;
             bool pathShorteningEnable = Properties.Settings.Default.importGCTangentialShorteningEnable;
             double pathShortening = (double)Properties.Settings.Default.importGCTangentialShortening;
@@ -206,8 +208,16 @@ namespace GrblPlotter
                             double angleArcEnd = GcodeMath.GetAlpha(pEnd, center) + tangentOffset;
                             if (showLogArc) Logger.Trace("======= Arc end 1     angleArcEnd:{0,7:0.00}      angleArcStart:{1,7:0.00}      angleLast:{2:0.00}     angleOffset:{3:0.00}", angleArcEnd * 180 / Math.PI, angleArcStart * 180 / Math.PI, angleLast * 180 / Math.PI, angleOffset * 180 / Math.PI, diff);
 
-                            if ((angleArcStart < 0) && (Math.Abs(angleArcEnd - angleArcStart) > 2 * Math.PI))
-                            { angleArcEnd -= 2 * Math.PI; if (showLogArc) Logger.Trace("⚠⚠⚠⚠   correct     angleArcEnd:{0,7:0.00}      angleArcStart:{1,7:0.00}", angleArcEnd * 180 / Math.PI, angleArcStart * 180 / Math.PI); }
+                            if (angleArcStart < 0)
+                            {
+                                if (Math.Abs(angleArcEnd - angleArcStart) > 2 * Math.PI)
+                                { angleArcEnd -= 2 * Math.PI; if (showLogArc) Logger.Trace("⚠⚠⚠⚠   correct 1    angleArcEnd:{0,7:0.00}      angleArcStart:{1,7:0.00}", angleArcEnd * 180 / Math.PI, angleArcStart * 180 / Math.PI); }
+                            }
+                            if (angleArcEnd < 0)
+                            {
+                                if (Math.Abs(angleArcEnd - angleArcStart) > 2 * Math.PI)
+                                { angleArcEnd += 2 * Math.PI; if (showLogArc) Logger.Trace("⚠⚠⚠⚠   correct 2    angleArcEnd:{0,7:0.00}      angleArcStart:{1,7:0.00}", angleArcEnd * 180 / Math.PI, angleArcStart * 180 / Math.PI); }
+                            }
                             if (isCW)           // CW aEnd must be < aStart
                             {
                                 if (angleArcEnd > angleArcStart)
