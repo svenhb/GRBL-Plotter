@@ -115,6 +115,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\DXFLib.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ExcelDataReader.3.8.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
     <Reference Include="FastColoredTextBox, Version=2.16.11.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\FastColoredTextBox.dll</HintPath>
@@ -218,6 +222,7 @@
     <Compile Include="GCodeCreation\Vectorize\Vectorize_FitCurves.cs" />
     <Compile Include="GCodeCreation\Vectorize\Vectorize_Helper.cs" />
     <Compile Include="Helper\XmlMarker.cs" />
+    <Compile Include="Helper\XlsxReader.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -651,6 +656,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\automations\Name_tag\Name_Tag_Data.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\BulkText\BulkText.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\BulkText\BulkText_Data.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\BulkText\BulkText_Data.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\CardAddressing\CardAddressing.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\CardAddressing\CardAddressing_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\addon_frame_stamp1.svg">

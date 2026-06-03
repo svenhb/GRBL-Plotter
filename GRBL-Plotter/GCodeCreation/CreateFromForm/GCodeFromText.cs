@@ -44,6 +44,8 @@
  * 2024-02-06 add process automation
  * 2024-02-22 UpdateToolTip proprties after loading ini-file
  * 2024-11-05 l:540 f:ShowTextSize also check if (textFont != null) issue #422
+ * 2026-06-02 add SetFontSize / SetAlignment / SetLineDistance for process-automation control
+ * 2026-06-02 SetFontSize/SetLineDistance also set the data-bound setting (binding was reverting the control); SetFontSize also sizes the Windows font
  * 2026-03-05 SetActiveDevice 
 */
 
@@ -148,6 +150,59 @@ namespace GrblPlotter
         {
             tBText.Text = tmp;
             btnApply.PerformClick();
+        }
+
+        // Set the text height in mm. Applies to the next CreateText, for BOTH font modes:
+        //  - Hershey / LFF / SVG single-line font: NudFontSize (GCHeight).
+        //  - Windows system font: the font em-size is used directly as mm (GraphicCollectText.AddText),
+        //    so rebuild the font at the requested size too.
+        internal void SetFontSize(double size)
+        {
+            decimal val = (decimal)size;
+            if (val < NudFontSize.Minimum) val = NudFontSize.Minimum;
+            if (val > NudFontSize.Maximum) val = NudFontSize.Maximum;
+            // NudFontSize is two-way data-bound to createTextHersheyFontSize. Set the bound source too,
+            // otherwise the binding re-reads it and reverts the control to the last UI value before
+            // CreateText runs (this is why script size didn't take effect, but alignment - unbound - did).
+            Properties.Settings.Default.createTextHersheyFontSize = val;
+            NudFontSize.Value = val;            // ValueChanged also adjusts the line spacing
+
+            try
+            {                                   // Windows system font path uses font.Size (as mm)
+                if ((textFont != null) && (size > 0))
+                {
+                    textFont = new Font(textFont.Name, (float)size, textFont.Style);
+                    if (RbFont2.Checked)
+                    {
+                        tBText.Font = textFont;
+                        LblInfoFont.Text = textFont.FontFamily.Name.ToString();
+                        ShowTextSize();
+                    }
+                }
+            }
+            catch (Exception ex) { Logger.Error(ex, "SetFontSize - rebuild Windows font"); }
+        }
+
+        // Set line alignment: left | center | right  (also accepts 1 | 2 | 3). Applies to the next CreateText.
+        internal void SetAlignment(string mode)
+        {
+            string m = (mode ?? "").Trim().ToLower();
+            if (m.StartsWith("c") || m == "2") RbAlign2.Checked = true;          // center
+            else if (m.StartsWith("r") || m == "3") RbAlign3.Checked = true;     // right
+            else RbAlign1.Checked = true;                                        // left (default)
+        }
+
+        // Set the line spacing in mm (distance between text lines). Applies to the next CreateText.
+        // Note: call AFTER SetFontSize, because changing the size resets the line distance to size x 1.5.
+        internal void SetLineDistance(double distance)
+        {
+            decimal val = (decimal)distance;
+            if (val < nUDFontLine.Minimum) val = nUDFontLine.Minimum;
+            if (val > nUDFontLine.Maximum) nUDFontLine.Maximum = val;            // allow larger spacing if requested
+            // nUDFontLine is two-way data-bound to createTextHersheyLineDistance - set the source too
+            // so the binding can't revert it to the last UI value (same fix as SetFontSize).
+            Properties.Settings.Default.createTextHersheyLineDistance = val;
+            nUDFontLine.Value = val;
         }
 
         private void FillFontSelector()

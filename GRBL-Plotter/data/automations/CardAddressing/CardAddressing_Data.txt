@@ -1,0 +1,4 @@
+John Smith\n123 Main Street\nAnytown, ST 12345
+Jane Doe\n456 Oak Avenue Apt 5\nSomewhere, ST 67890
+Alex & Sam Johnson\n789 Long Boulevard Northwest\nA Very Long Cityname, ST 13579
+Maria Garcia\n21 Elm Court\nLakeside, ST 24680

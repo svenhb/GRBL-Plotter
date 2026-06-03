@@ -32,6 +32,7 @@
  * 2021-09-10 add Graphic.SetAuxInfo(lineIndex) in line 290
  * 2022-04-18 DrawTokenLFF / DrawLetter check if index ok
  * 2024-01-14 add option to create GCode directly (GenerateGCodeOnly), without using graphic-class
+ * 2026-06-02 l:269 accept \r\n and \n as line breaks for multi-line text
 */
 
 using System;
@@ -266,7 +267,7 @@ namespace GrblPlotter
             }
             else
             {
-                lines = GCText.Split('\n');
+                lines = GCText.Replace("\r", "").Split('\n');    // accept \r\n and \n as line breaks
             }
             int maxCharCount = 0;
             foreach (string tmp in lines)

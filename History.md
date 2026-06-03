@@ -1,6 +1,15 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2026-06 Version 1.8.0.x
+- Process automation: bulk text generation from a spreadsheet (one job per data row)
+  - Load `.xlsx` spreadsheets as the data source (in addition to CSV / TXT)
+  - New "Wait User" action: on-screen "Continue" checkpoint to validate positioning between jobs
+  - "CreateText Data" / "CreateBarcode … Data" values accept `{n}` column templates, e.g. `{0} {1} - {2}` (n is 0-based)
+  - Multi-line spreadsheet cells (e.g. addresses) are kept intact and rendered as multi-line text
+  - New "CreateText Size" and "CreateText Align" actions to set text height (mm) and line alignment from the script
+  - Example: `data\automations\BulkText\`
+
 ### [2025-04 Version 1.7.5.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.5.0)
 - Uses the $I command on 1st connect to identify the machine and automatically load the connected INI file
 - Pixel art, individual command, e.g. for liquid dispenser

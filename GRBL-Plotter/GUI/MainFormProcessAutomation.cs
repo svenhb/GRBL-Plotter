@@ -19,6 +19,8 @@
 /* 
  * 2024-02-12 split file MainFormOtherForms.cs
  * 2024-12-02 l:114 f:OnRaiseProcessEvent add "G-Code Data"
+ * 2026-06-02 add "CreateText Size", "CreateText Align" and "CreateText LineDistance" automation commands
+ * 2026-06-02 add "2D-View Regenerate" to re-create the current graphic with current pen/import settings
 */
 
 using System;
@@ -154,21 +156,36 @@ namespace GrblPlotter
 
                 if (_text_form != null)
                 {
-                    string opt = "";
-                    double size = 0;
-                    if (act.Contains(" w")) { opt = "w"; }
-                    if (act.Contains(" h")) { opt = "h"; }
-                    if (opt != "")
+                    if (act.Contains("size"))           // CreateText Size  -> Value = height in mm
                     {
-                        string[] splt = act.Split(opt[0]);
-                        if (splt.Length > 1)
+                        if (double.TryParse(e.Value.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double sz))
                         {
-                            if (double.TryParse(splt[1], out double nr))
-                            { size = nr; }
+                            _text_form.SetFontSize(sz);
+                            _process_form?.Feedback(e.Command, "size " + e.Value, true);
                         }
+                        else
+                        { _process_form?.Feedback(e.Command, "bad size: " + e.Value, false); }
                     }
-                    _text_form.SetText(e.Value);//, opt, size);
-                    _process_form?.Feedback(e.Command, e.Value, true);
+                    else if (act.Contains("align"))     // CreateText Align -> Value = left|center|right (or 1|2|3)
+                    {
+                        _text_form.SetAlignment(e.Value);
+                        _process_form?.Feedback(e.Command, "align " + e.Value, true);
+                    }
+                    else if (act.Contains("line") || act.Contains("distance") || act.Contains("spacing"))   // CreateText LineDistance -> Value = mm
+                    {
+                        if (double.TryParse(e.Value.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double ld))
+                        {
+                            _text_form.SetLineDistance(ld);
+                            _process_form?.Feedback(e.Command, "line distance " + e.Value, true);
+                        }
+                        else
+                        { _process_form?.Feedback(e.Command, "bad line distance: " + e.Value, false); }
+                    }
+                    else
+                    {
+                        _text_form.SetText(e.Value);
+                        _process_form?.Feedback(e.Command, e.Value, true);
+                    }
                 }
                 else
                 {
@@ -292,6 +309,23 @@ namespace GrblPlotter
                         TransformEnd();
                         _process_form?.Feedback(e.Command, "Scale applied", true);
                     }
+                }
+
+                else if (act.Contains("regenerate") || act.Contains("refresh"))
+                {
+                    // Re-generate the last form graphic (text / barcode / image / shape) with the
+                    // CURRENT pen / import settings - same path the Setup form uses after a setting change.
+                    // Temporarily switch to 'replace' so the regenerated graphic overwrites the current
+                    // one instead of stacking a duplicate. Place this BEFORE 2D-View Offset/Rotate/Scale,
+                    // because re-generating resets the graphic to its origin.
+                    bool prevInsert = LoadProperties.MultipleImportFromForm;
+                    bool prevMulti = Graphic2GCode.multiImport;
+                    LoadProperties.MultipleImportFromForm = false;
+                    Graphic2GCode.multiImport = false;
+                    ReStartConvertFile(this, e, false, -1);
+                    LoadProperties.MultipleImportFromForm = prevInsert;
+                    Graphic2GCode.multiImport = prevMulti;
+                    _process_form?.Feedback(e.Command, "Graphic reloaded", true);
                 }
             }
 

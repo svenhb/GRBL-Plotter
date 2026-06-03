@@ -1,0 +1,196 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+  Example: address cards/envelopes from a data file - shrink-to-fit, then skip.
+
+  Each row of the data list is one card. Column {0} is the recipient address
+  (a single multi-line cell; in a .txt/.csv use "\n" for line breaks - see
+  CardAddressing_Data.txt). A FIXED return address is plotted in the corner.
+
+  Recipient sizing:
+    1) Try PRIMARY size (7 mm). Line 9 Verify X<=166:
+         PASS -> Goto 16 (plot at 7) ; FAIL -> jump 11 (fallback shrink).
+    2) Fallback: regenerate at the smaller return-address size (4 mm). Line 15 Verify X<=166:
+         PASS -> plot at 4 ; FAIL -> jump 32 (skip the card, flag the row, reuse blank card).
+
+  Index/stop handling:
+    Line 29 "Data index" runs BEFORE line 30 "Wait User", so stopping at the card-change
+    prompt keeps the advanced index. Skipped cards (line 32-33) advance and loop WITHOUT
+    the card-change wait.
+
+  ADJUST FOR YOUR SETUP before running:
+    * Replace the return address (the "CreateText Text" step) with your own.
+    * G-Code Send moves (Z18.36, X0, X-144) and the 2D-View Offset values (5;0;0 and
+      1;-84.5;-70) are machine/card specific - set them for your plotter and card size.
+    * X<=166 is the printable card width - set it to your real limit.
+    * Data index = 1 before starting; line 31 "Jump to 1;N" 2nd value = number of cards.
+  If you add/remove steps, update the jump targets (11, 16, 32) and the line-1/line-31 jumps.
+-->
+<NewDataSet>
+  <ProcessItem>
+    <Command>G-Code Send</Command>
+    <Value>G0 Z18.36</Value>
+    <Info>Pen/Z up to safe height</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Send</Command>
+    <Value>G0 X0</Value>
+    <Info>Move to print position</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear workspace</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Align</Command>
+    <Value>center</Value>
+    <Info>Recipient: centered</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Size</Command>
+    <Value>7</Value>
+    <Info>Recipient PRIMARY size 7 mm</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText LineDistance</Command>
+    <Value>9</Value>
+    <Info>Recipient line spacing (set AFTER Size)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Data</Command>
+    <Value>{0}</Value>
+    <Info>Recipient address from data column 0</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Regenerate</Command>
+    <Value />
+    <Info>Re-generate with current pen/import settings</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Verify Dimension</Command>
+    <Value>X&lt;=166;jump=11</Value>
+    <Info>Too wide at 7 mm? jump to fallback shrink (line 11), else continue</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Goto</Command>
+    <Value>16</Value>
+    <Info>Size 7 fits -> skip the fallback, go straight to plot (line 16)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Size</Command>
+    <Value>4</Value>
+    <Info>FALLBACK: shrink recipient to return-address size 4 mm</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText LineDistance</Command>
+    <Value>6</Value>
+    <Info>Fallback line spacing (set AFTER Size)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Data</Command>
+    <Value>{0}</Value>
+    <Info>Re-create same recipient at the smaller size</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Regenerate</Command>
+    <Value />
+    <Info>Re-generate at the smaller size</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Verify Dimension</Command>
+    <Value>X&lt;=166;jump=32</Value>
+    <Info>Still too wide at 4 mm? skip card -> line 32 (advance + loop, no card wait)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>5;0;0</Value>
+    <Info>Center recipient at origin (both size paths converge here)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>0</Value>
+    <Info>Notify before plotting</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Plot recipient address</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear for return address</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Align</Command>
+    <Value>left</Value>
+    <Info>Return address: left</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Size</Command>
+    <Value>4</Value>
+    <Info>Return address: 4 mm</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText LineDistance</Command>
+    <Value>6</Value>
+    <Info>Return address: line spacing (set AFTER Size)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Text</Command>
+    <Value>Your Name
+123 Example Street
+City, ST 00000</Value>
+    <Info>Return address - REPLACE with your own</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Regenerate</Command>
+    <Value />
+    <Info>Re-generate with current pen/import settings</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>1;-84.5;-70</Value>
+    <Info>Return address to bottom-left corner</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Plot return address</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Send</Command>
+    <Value>G0 Z18.36</Value>
+    <Info>Pen up</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Send</Command>
+    <Value>G0 X-144</Value>
+    <Info>Eject card for swap</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Data index</Command>
+    <Value>1</Value>
+    <Info>Advance to next recipient BEFORE the wait (so a stop keeps the new index)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Wait User</Command>
+    <Value>Change Card</Value>
+    <Info>Pause until operator swaps the printed card</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Jump to</Command>
+    <Value>1;4</Value>
+    <Info>Loop; 2nd value = number of cards (rows in your data file)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Data index</Command>
+    <Value>1</Value>
+    <Info>Skip path: advance index for a card that did not fit</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Goto</Command>
+    <Value>31</Value>
+    <Info>Skip path: go to the loop (line 31) without the card-change wait</Info>
+  </ProcessItem>
+</NewDataSet>

@@ -1,0 +1,62 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+  Bulk text from a spreadsheet - one job per data row.
+  1) Load a spreadsheet (.xlsx) or delimited text via the "Data" loader (semicolon delimiter assumed below).
+     Sample data: BulkText_Data.txt  (columns:  0=First  1=Last  2=Tag#)
+     If your .xlsx has a header row, set the "Data index" start to 2 (the first row is row 1).
+  2) "CreateText Data" uses a {n} template to combine columns, n is 0-based (same numbering as a plain column-nr).
+  3) "Wait User" pauses on screen after each plot so you can verify positioning before the next row.
+  4) "Jump to" repeats the loop; the second value is the number of rows to process (here 4).
+-->
+<NewDataSet>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear workspace, delete G-Code from editor</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Size</Command>
+    <Value>6</Value>
+    <Info>Text height in mm (single-line font) - applies to following CreateText</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Align</Command>
+    <Value>left</Value>
+    <Info>Line alignment [left|center|right] - applies to following CreateText</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Data</Command>
+    <Value>{0} {1} - {2}</Value>
+    <Info>Combine columns: {0}=First {1}=Last {2}=Tag#  (n is 0-based)</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>5;0;0</Value>
+    <Info>Set graphic origin [Value=&lt;Origin[1-9]&gt;;&lt;Offset X&gt;;&lt;Offset Y&gt;]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Send G-Code from editor to machine</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>0</Value>
+    <Info>Notify that the job finished</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Wait User</Command>
+    <Value>Check material / position, then continue</Value>
+    <Info>Pause until operator confirms on screen [Value=message]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Data index</Command>
+    <Value>1</Value>
+    <Info>Advance to the next data row</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Jump to</Command>
+    <Value>1;4</Value>
+    <Info>Loop back to line 1; second value = number of rows to process</Info>
+  </ProcessItem>
+</NewDataSet>

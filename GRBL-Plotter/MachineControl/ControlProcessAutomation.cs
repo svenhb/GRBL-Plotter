@@ -25,6 +25,9 @@
  * 2024-10-04 add "Wait Registry"
  * 2024-11-19 l:1572 f:BtnStep_Click add try catch
  * 2024-12-02 add "G-Code Data"
+ * 2026-06-02 add bulk text from spreadsheet: .xlsx data load, "Wait User" on-screen checkpoint, {n} column templates
+ * 2026-06-02 add "Verify Dimension" action (size check) with per-row error flagging + CSV summary
+ * 2026-06-02 add "Verify" ;jump=<line> on fail, and "Goto" unconditional jump (forward/backward)
 */
 
 using Microsoft.Win32;
@@ -36,6 +39,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -61,6 +65,9 @@ namespace GrblPlotter
         private bool isGrblConnected = false;
         private bool stepTriggered = false;
         private bool stepCompleted = false;
+        private bool userConfirmed = false;         // set when operator clicks Continue on the "Wait User" prompt
+        private Form userConfirmForm = null;        // modeless on-screen checkpoint prompt
+        private readonly List<string> verifyErrors = new List<string>();   // data rows that failed "Verify Dimension"
         //   private bool cameraFormOpen = false;
         //   private bool probeFormOpen = false;
 
@@ -92,6 +99,7 @@ namespace GrblPlotter
                 new ProcessAutomationItem {Command="Load URL",          Value="",       Comment="Open web site [Value=URL]"},
                 new ProcessAutomationItem {Command="Paste clipboard",   Value="",       Comment="Paste content from clipboard"},
                 new ProcessAutomationItem {Command="2D-View Clear",     Value="",       Comment="Clear workspace, delete G-Code from editor"},
+                new ProcessAutomationItem {Command="2D-View Regenerate",Value="",       Comment="Re-generate the current graphic (text/barcode/image) with current pen/import settings"},
                 new ProcessAutomationItem {Command="2D-View Offset",    Value="7;0;0",  Comment="Set graphic origin [Value=<Origin[1-9]>;<Offset X>;<Offset Y>]"},
                 new ProcessAutomationItem {Command="2D-View Rotate",    Value="45",     Comment="Rotate [Value=angle in degree]"},
                 new ProcessAutomationItem {Command="2D-View Scale XYX", Value="",       Comment="Scale XY [Value=desired X dimension]"},
@@ -104,6 +112,9 @@ namespace GrblPlotter
                 new ProcessAutomationItem {Command="CreateText Text",   Value="text",   Comment="Create text [Value=text to create]"},
                 new ProcessAutomationItem {Command="CreateText Data",   Value="0",      Comment="Create text from Data list, [Value='':whole line] or [Value=column-nr]"},
                 new ProcessAutomationItem {Command="CreateText Counter",Value="",       Comment="Create text from Counter"},
+                new ProcessAutomationItem {Command="CreateText Size",   Value="8",      Comment="Set text height in mm (single-line font) - applies to following CreateText"},
+                new ProcessAutomationItem {Command="CreateText Align",  Value="left",   Comment="Set line alignment [Value=left|center|right] - applies to following CreateText"},
+                new ProcessAutomationItem {Command="CreateText LineDistance", Value="9", Comment="Set line spacing in mm (set AFTER Size) - applies to following CreateText"},
                 new ProcessAutomationItem {Command="CreateBarcode 1D Text",     Value="text", Comment="Create barcode [Value=text to convert]"},
                 new ProcessAutomationItem {Command="CreateBarcode 1D Data",     Value="0",  Comment="Create barcode from Data list, [Value='':whole line] or [Value=column-nr]"},
                 new ProcessAutomationItem {Command="CreateBarcode 1D Counter",  Value="",   Comment="Create barcode from Counter"},
@@ -113,12 +124,15 @@ namespace GrblPlotter
                 new ProcessAutomationItem {Command="CreateBarcode 2D DURL",     Value="0",  Comment="Create QR-Code URL from Data list, [Value='':whole line] or [Value=column-nr]"},
                 new ProcessAutomationItem {Command="CreateBarcode 2D Counter",  Value="",   Comment="Create QR-Code from Counter"},
                 new ProcessAutomationItem {Command="Jump to",       Value="2",      Comment="Jump to line number, [Value=<linenumber>;<repetitions>]"},
+                new ProcessAutomationItem {Command="Goto",          Value="1",      Comment="Unconditional jump to line [Value=<linenumber>] (forward or backward; no loop counter)"},
                 new ProcessAutomationItem {Command="Data index",    Value="1",      Comment="Add Value to Data index"},
                 new ProcessAutomationItem {Command="Counter index", Value="1",      Comment="Add Value to Counter"},
                 new ProcessAutomationItem {Command="Wait Probe",    Value="",       Comment="Wait for probe input before continue"},
                 new ProcessAutomationItem {Command="Wait Registry", Value="",       Comment="Wait for change of reg-key HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter - trigger"},
                 new ProcessAutomationItem {Command="Wait DI=1",     Value="0",      Comment="Wait for digital input [Value=bit-nr] x=1"},
                 new ProcessAutomationItem {Command="Wait DI=0",     Value="0",      Comment="Wait for digital input [Value=bit-nr] x=0"},
+                new ProcessAutomationItem {Command="Wait User",     Value="Check position, then continue",  Comment="Pause until operator confirms on screen [Value=message]"},
+                new ProcessAutomationItem {Command="Verify Dimension", Value="X<=60;Y<=20",  Comment="Check generated size [Value=X<=w;Y<=h ; ops <=,>=,<,>,= ; on fail flag row, then optional ';stop'=halt or ';jump=<line>'=skip ahead]"},
                 new ProcessAutomationItem {Command="Beep",          Value="440;800",Comment="Play beep tone [Value=freqency(Hz);length(ms)]"},
                 new ProcessAutomationItem {Command="Sound",         Value="0",       Comment="Play system sound [Value=0=Asterisk, 1=Exclamation, 2=Question, 3=Hand, any other=Beep]"},
                 new ProcessAutomationItem {Command="Unknown",       Value="⚠⚠⚠",Comment="Please select valid command"}
@@ -172,7 +186,7 @@ namespace GrblPlotter
             if (File.Exists(file))
             {
                 LblDataLoaded.Text = "..." + CutString(file, 38);
-                TbData.Text = File.ReadAllText(file);
+                LoadDataFile(file);
             }
 
             file = ExtendFilePath(Properties.Settings.Default.processLastFile);
@@ -239,6 +253,7 @@ namespace GrblPlotter
                 }
                 BtnDataIndexClear.BackColor = GbData.BackColor = default;
                 TbProcessInfo.Text = "Start process automation:\r\n";
+                verifyErrors.Clear();
                 processStep = 0;
                 isRunning = true;
                 isGrblNeeded = false;
@@ -274,6 +289,8 @@ namespace GrblPlotter
             isRunning = false;
             timer1.Enabled = false;
             BtnStep.Visible = true;
+            CloseUserConfirm();             // remove any open on-screen "Wait User" checkpoint
+            WriteVerifyErrors();            // dump any "Verify Dimension" failures collected so far
             Logger.Trace("+++ Stop automation +++");
         }
 
@@ -810,6 +827,7 @@ namespace GrblPlotter
                         LblInfo.Text = "Script finished";
                         TbProcessInfo.Text += "Finished";
                         BtnStep.Visible = true;
+                        WriteVerifyErrors();        // dump any "Verify Dimension" failures next to the data file
                     }
                 }
                 else if (stepCompleted)
@@ -879,6 +897,18 @@ namespace GrblPlotter
                                 }
                             }
                             Logger.Trace("Timer1 poll digital in action:{0}  value:{1}  grbl:{2}  result:{3}", action, value, Grbl.grblDigitalIn, stepTriggered);
+                        }
+                        else if (action.Contains("Wait User"))
+                        {
+                            if (userConfirmed)
+                            {
+                                userConfirmed = false;
+                                SetCellColor(processStep, true);
+                                stepTriggered = false;
+                                stepCompleted = false;
+                                processStep++;
+                                TbProcessInfo.AppendText("OK\r\n");
+                            }
                         }
                     }
                 }
@@ -991,7 +1021,7 @@ namespace GrblPlotter
                     char delimiter = (char)ComboDelimiter.Text[0];
                     if (ComboDelimiter.Text.Contains("tab"))
                         delimiter = '\t';
-                    string dataText = GetDataText(dataLine, value, delimiter);
+                    string dataText = ResolveTemplate(dataLine, value, delimiter);   // {n} template or single column
 
                     SendProcessEvent(new ProcessEventArgs(action, dataText));
                 }
@@ -1060,6 +1090,28 @@ namespace GrblPlotter
                 stepCompleted = true;
                 return true;
             }
+            else if (action.Contains("Goto"))
+            {
+                // Unconditional jump to a line (forward or backward). Independent of the "Jump to"
+                // loop counter, so it can be used freely inside an iteration (e.g. skip a fallback block).
+                if (int.TryParse(value, out int target) && (target >= 1) && (target < dataGridView1.Rows.Count))
+                {
+                    SetCellColor(processStep, true);
+                    TbProcessInfo.AppendText(string.Format("  goto line {0}  OK\r\n", target));
+                    processStep = target - 1;          // 1-based line -> 0-based index
+                    stepTriggered = false;
+                    stepCompleted = true;
+                    sendProcessEvent = false;
+                    return true;
+                }
+                else
+                {
+                    SetCellColor(processStep, false);
+                    TbProcessInfo.AppendText(string.Format("NOK  Goto bad target: {0}\r\n", value));
+                    stepCompleted = true;              // don't hang on a bad target
+                }
+                sendProcessEvent = false;
+            }
             else if (action.Contains("Wait Probe"))
             {
                 SetCellColor(processStep, Color.Yellow);
@@ -1078,6 +1130,49 @@ namespace GrblPlotter
                     checkDigitalInDigit = nr;
                 else
                     Logger.Error("Timer1_Tick int.TryParse failed action:{0} value:{1}", action, value);
+            }
+            else if (action.Contains("Wait User"))
+            {
+                SetCellColor(processStep, Color.Yellow);
+                LblInfo.Text = "Wait for operator to confirm on screen";
+                ShowUserConfirm(value);     // modeless prompt; resumed in Timer1_Tick poll branch
+            }
+            else if (action.Contains("Verify"))
+            {
+                bool ok = CheckDimension(value, out string reason);
+                if (ok)
+                {
+                    SetCellColor(processStep, true);
+                    TbProcessInfo.AppendText(string.Format(" {0,-20} OK ({1})\r\n", value, reason));
+                    stepCompleted = true;
+                }
+                else
+                {
+                    MarkDataRowError(reason);                       // flag the current data row
+                    SetCellColor(processStep, false);
+                    if (value.ToLower().Contains("stop"))           // ;stop -> halt the run
+                    {
+                        TbProcessInfo.AppendText(string.Format("NOK  {0,-20}  {1}  -> stop\r\n", value, reason));
+                        LblInfo.Text = "Verify failed - stopped: " + reason;
+                        LblInfo.BackColor = Color.Fuchsia;
+                        BtnStop.PerformClick();
+                    }
+                    else if (TryGetJumpTarget(value, out int target))   // ;jump=<line> -> skip ahead (e.g. past the plot)
+                    {
+                        TbProcessInfo.AppendText(string.Format("NOK  {0,-20}  {1}  -> jump to line {2}\r\n", value, reason, target));
+                        processStep = target - 1;                  // 1-based line -> 0-based index
+                        stepTriggered = false;
+                        stepCompleted = true;
+                        sendProcessEvent = false;
+                        return true;                               // re-trigger at the jump target next tick (same as "Jump to")
+                    }
+                    else
+                    {
+                        TbProcessInfo.AppendText(string.Format("NOK  {0,-20}  {1}\r\n", value, reason));
+                        stepCompleted = true;                      // flagged - keep processing the batch
+                    }
+                }
+                sendProcessEvent = false;                           // handled locally
             }
             else if (action.Contains("Beep"))
             {
@@ -1133,6 +1228,39 @@ namespace GrblPlotter
             return all;
         }
 
+        /// <summary>
+        /// Resolve a CreateText/CreateBarcode value against the current data row.
+        /// If the value contains {n} placeholders it is treated as a template and each {n} is
+        /// replaced with column n of the row (0-based, same numbering as the plain 'column-nr' value,
+        /// so {0} is the first column). Out-of-range columns become empty. A value without '{'
+        /// falls back to the existing single-column GetDataText() behaviour.
+        /// Literal "\n" sequences (used to keep multi-line spreadsheet cells on one data line, or
+        /// typed by hand in a CSV/TXT) are decoded into real line breaks for the generated text.
+        /// </summary>
+        private string ResolveTemplate(int dataLine, string template, char delimiter)
+        {
+            string result;
+            if (string.IsNullOrEmpty(template) || !template.Contains("{"))
+            {
+                result = GetDataText(dataLine, template, delimiter);
+            }
+            else
+            {
+                string[] cols = TbData.Lines[dataLine].Split(delimiter);
+                result = Regex.Replace(template, @"\{(\d+)\}", m =>
+                {
+                    if (int.TryParse(m.Groups[1].Value, out int idx) && (idx >= 0) && (idx < cols.Length))
+                        return cols[idx];
+                    return "";
+                });
+                SetTextSelection(dataLine, -1, delimiter);      // highlight the whole row in the data view
+            }
+
+            result = result.Replace(XlsxReader.NewlinePlaceholder, Environment.NewLine);  // multi-line cells -> real line breaks
+            Logger.Trace("ResolveTemplate '{0}' -> '{1}'", template, result);
+            return result;
+        }
+
         private void CreateBeep(string val)
         {
             if (val == "")
@@ -1155,6 +1283,162 @@ namespace GrblPlotter
             {
                 if (int.TryParse(vals[1], out int len))
                 { Console.Beep(hz, len); }
+            }
+        }
+
+        // Check the last generated graphic's size (VisuGCode.xyzSize) against constraints like
+        // "X<=60;Y<=20". Axes: X/W = width (dimx), Y/H = height (dimy), Z = depth (dimz).
+        // Operators: <=, >=, <, >, = . A "stop" token is ignored here (handled by the caller).
+        private bool CheckDimension(string constraints, out string reason)
+        {
+            reason = "";
+            if (string.IsNullOrWhiteSpace(constraints)) { reason = "no constraints"; return true; }
+
+            List<string> fails = new List<string>();
+            bool ok = true;
+            foreach (string raw in constraints.Split(';'))
+            {
+                string tok = raw.Trim();
+                string tl = tok.ToLower();
+                if (tok == "" || tl == "stop" || tl.StartsWith("jump")) continue;   // control tokens, not constraints
+
+                char axis = char.ToUpper(tok[0]);
+                double actual;
+                if (axis == 'X' || axis == 'W') actual = VisuGCode.xyzSize.dimx;
+                else if (axis == 'Y' || axis == 'H') actual = VisuGCode.xyzSize.dimy;
+                else if (axis == 'Z') actual = VisuGCode.xyzSize.dimz;
+                else { fails.Add("?" + tok); ok = false; continue; }
+
+                string rest = tok.Substring(1).Trim();
+                string op;
+                if (rest.StartsWith("<=")) { op = "<="; rest = rest.Substring(2); }
+                else if (rest.StartsWith(">=")) { op = ">="; rest = rest.Substring(2); }
+                else if (rest.StartsWith("<")) { op = "<"; rest = rest.Substring(1); }
+                else if (rest.StartsWith(">")) { op = ">"; rest = rest.Substring(1); }
+                else if (rest.StartsWith("=")) { op = "="; rest = rest.Substring(1); }
+                else { fails.Add("?" + tok); ok = false; continue; }
+
+                if (!double.TryParse(rest.Trim().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double limit))
+                { fails.Add("?" + tok); ok = false; continue; }
+
+                bool pass;
+                switch (op)
+                {
+                    case "<=": pass = actual <= limit; break;
+                    case ">=": pass = actual >= limit; break;
+                    case "<": pass = actual < limit; break;
+                    case ">": pass = actual > limit; break;
+                    default: pass = Math.Abs(actual - limit) < 0.01; break;
+                }
+                if (!pass)
+                {
+                    ok = false;
+                    fails.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1:0.0}!{2}{3}", axis, actual, op, limit));
+                }
+            }
+            reason = ok
+                ? string.Format(CultureInfo.InvariantCulture, "X={0:0.0} Y={1:0.0}", VisuGCode.xyzSize.dimx, VisuGCode.xyzSize.dimy)
+                : string.Join(", ", fails);
+            return ok;
+        }
+
+        // Parse an optional ";jump=<line>" token (1-based grid line) from a Verify value.
+        // Target must be a valid line that leaves room for the timer's next-step look-ahead.
+        private bool TryGetJumpTarget(string value, out int line)
+        {
+            line = -1;
+            foreach (string raw in value.Split(';'))
+            {
+                string tok = raw.Trim().ToLower();
+                if (tok.StartsWith("jump"))
+                {
+                    int eq = tok.IndexOf('=');
+                    if (eq >= 0 && int.TryParse(tok.Substring(eq + 1).Trim(), out int n) && (n >= 1) && (n < dataGridView1.Rows.Count))
+                    { line = n; return true; }
+                }
+            }
+            return false;
+        }
+
+        // Record the current data row as failed (for the verify summary) and highlight it in the data view.
+        private void MarkDataRowError(string reason)
+        {
+            int idx = (int)NudDataIndex.Value;
+            int line = idx - 1;
+            string rowText = (line >= 0 && line < TbData.Lines.Length) ? TbData.Lines[line] : "";
+            verifyErrors.Add(string.Format("{0};{1};{2}", idx, rowText.Replace("\r", " ").Replace("\n", " "), reason));
+            TbProcessInfo.AppendText(string.Format("  >>> row {0} FAILED: {1}  [{2}]\r\n", idx, rowText, reason));
+            GbData.BackColor = Color.MistyRose;                 // flag the data panel so failures are visible
+            SetTextSelection(line, -1, GetDelimiter());         // highlight the failing row in the data view
+        }
+
+        // Write the collected verify failures next to the data file so the operator can review them.
+        private void WriteVerifyErrors()
+        {
+            if (verifyErrors.Count == 0) return;
+            try
+            {
+                string dataFile = Properties.Settings.Default.processDataLastFile;
+                string dir = (!string.IsNullOrEmpty(dataFile) && File.Exists(dataFile)) ? Path.GetDirectoryName(dataFile) : Datapath.LogFiles;
+                string name = !string.IsNullOrEmpty(dataFile) ? Path.GetFileNameWithoutExtension(dataFile) : "automation";
+                string path = Path.Combine(dir, name + "_verify_errors.csv");
+                File.WriteAllText(path, "DataIndex;Row;Reason\r\n" + string.Join("\r\n", verifyErrors) + "\r\n");
+                LblInfo.Text = string.Format("{0} row(s) failed verify - see {1}", verifyErrors.Count, Path.GetFileName(path));
+                LblInfo.BackColor = Color.MistyRose;
+                Logger.Warn("Verify errors ({0}) written to {1}", verifyErrors.Count, path);
+                TbProcessInfo.AppendText(string.Format("\r\n{0} row(s) failed verify -> {1}\r\n", verifyErrors.Count, path));
+            }
+            catch (Exception ex) { Logger.Error(ex, "WriteVerifyErrors"); }
+        }
+
+        // Show a modeless "Continue" checkpoint so the operator can verify positioning between jobs.
+        // The timer keeps ticking (UI thread is not blocked) and resumes when userConfirmed is set.
+        private void ShowUserConfirm(string message)
+        {
+            userConfirmed = false;
+            CloseUserConfirm();
+
+            Form f = new Form
+            {
+                Text = "Process automation - continue?",
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                StartPosition = FormStartPosition.CenterScreen,
+                MinimizeBox = false,
+                MaximizeBox = false,
+                ShowInTaskbar = false,
+                TopMost = true,
+                ClientSize = new Size(360, 130),
+                Icon = this.Icon
+            };
+            Label lbl = new Label
+            {
+                Text = string.IsNullOrEmpty(message) ? "Check position, then continue." : message,
+                Bounds = new Rectangle(14, 14, 332, 66)
+            };
+            Button btn = new Button
+            {
+                Text = "Continue",
+                Bounds = new Rectangle(140, 90, 90, 30)
+            };
+            btn.Click += (s, e) => { userConfirmed = true; CloseUserConfirm(); };
+            f.Controls.Add(lbl);
+            f.Controls.Add(btn);
+            f.AcceptButton = btn;
+            // Closing the prompt (X) also confirms, so the script never hangs waiting on a dismissed window.
+            f.FormClosed += (s, e) => { userConfirmed = true; userConfirmForm = null; };
+            userConfirmForm = f;
+            f.Show(this);
+            btn.Focus();
+        }
+
+        private void CloseUserConfirm()
+        {
+            if (userConfirmForm != null)
+            {
+                Form f = userConfirmForm;
+                userConfirmForm = null;
+                try { f.Close(); f.Dispose(); }
+                catch (Exception ex) { Logger.Trace(ex, "CloseUserConfirm"); }
             }
         }
 
@@ -1264,11 +1548,40 @@ namespace GrblPlotter
             LblCounterResult.Text = GetCounterString();
         }
 
+        private char GetDelimiter()
+        {
+            char delimiter = (ComboDelimiter.Text.Length > 0) ? ComboDelimiter.Text[0] : ';';
+            if (ComboDelimiter.Text.Contains("tab"))
+                delimiter = '\t';
+            return delimiter;
+        }
+
+        // Load .xlsx spreadsheet (first sheet) or delimited text file into the data list (TbData).
+        private void LoadDataFile(string file)
+        {
+            if (Path.GetExtension(file).ToLower() == ".xlsx")
+            {
+                try
+                {
+                    string[] lines = XlsxReader.ReadFirstSheet(file, GetDelimiter(), out string[] header);
+                    TbData.Lines = lines;
+                    Logger.Info("LoadDataFile xlsx '{0}' rows:{1}", file, lines.Length);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "LoadDataFile xlsx '{0}'", file);
+                    MessageBox.Show("Could not read spreadsheet:\r\n" + ex.Message, "Load .xlsx data");
+                }
+            }
+            else
+                TbData.Text = File.ReadAllText(file);
+        }
+
         private void BtnLoadData_Click(object sender, EventArgs e)
         {
             OpenFileDialog sfd = new OpenFileDialog
             {
-                Filter = "CSV|*.csv;*.txt"
+                Filter = "Data|*.csv;*.txt;*.xlsx|CSV / Text|*.csv;*.txt|Excel|*.xlsx"
             };
             if (File.Exists(Properties.Settings.Default.processDataLastFile))
                 sfd.InitialDirectory = Properties.Settings.Default.processDataLastFile;
@@ -1285,7 +1598,7 @@ namespace GrblPlotter
                 //       LblDataLoaded.Text = "..." + file.Substring(file.Length - 38);
                 //    else
                 //        LblDataLoaded.Text = file;
-                TbData.Text = File.ReadAllText(file);
+                LoadDataFile(file);
             }
             sfd.Dispose();
         }
@@ -1496,11 +1809,11 @@ namespace GrblPlotter
                     dataGridView1.Rows.Add("Load", file, "by drag & drop");
                 }
             }
-            else if (extension.ToLower().Contains("txt"))
+            else if (extension.ToLower().Contains("txt") || extension.ToLower().Contains("csv") || extension.ToLower().Contains("xlsx"))
             {
                 LblDataLoaded.Text = "..." + CutString(file, 38);
                 Properties.Settings.Default.processDataLastFile = file;
-                TbData.Text = File.ReadAllText(file);
+                LoadDataFile(file);
             }
             else
                 dataGridView1.Rows.Add("Load", file, "by drag & drop");
