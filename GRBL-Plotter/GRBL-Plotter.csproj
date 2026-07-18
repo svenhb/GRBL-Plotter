@@ -643,10 +643,10 @@
     <Content Include="data\automations\BulkText\BulkText_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\CardAdressing\CardAddressing.xml">
+    <Content Include="data\automations\CardAddressing\CardAddressing.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\CardAdressing\CardAddressing_Data.txt">
+    <Content Include="data\automations\CardAddressing\CardAddressing_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\automations\example_beep_melody.xml">

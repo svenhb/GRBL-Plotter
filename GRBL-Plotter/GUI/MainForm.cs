@@ -142,6 +142,9 @@ namespace GrblPlotter
             EventCollector.Init();
 
             InitializeComponent();      // controls
+            // Empty workspace placeholder (decorative); keep Resources.modell as single source of truth
+            pictureBox1.BackgroundImage = Properties.Resources.modell;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             RemoveCursorNavigation(this.Controls);
 
             System.Windows.Forms.Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);

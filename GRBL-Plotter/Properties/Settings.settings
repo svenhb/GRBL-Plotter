@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -867,25 +867,25 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gui2DColorBackground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">224, 224, 224</Value>
+      <Value Profile="(Default)">236, 239, 243</Value>
     </Setting>
     <Setting Name="gui2DColorBackgroundPath" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">100, 100, 100</Value>
     </Setting>
     <Setting Name="gui2DColorDimension" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">150, 150, 150</Value>
+      <Value Profile="(Default)">120, 130, 140</Value>
     </Setting>
     <Setting Name="gui2DColorHeightMap" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Yellow</Value>
+      <Value Profile="(Default)">255, 200, 80</Value>
     </Setting>
     <Setting Name="gui2DColorMachineLimit" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Fuchsia</Value>
+      <Value Profile="(Default)">180, 120, 160</Value>
     </Setting>
     <Setting Name="gui2DColorMarker" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DeepPink</Value>
+      <Value Profile="(Default)">220, 90, 120</Value>
     </Setting>
     <Setting Name="gui2DColorPenDown" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Red</Value>
+      <Value Profile="(Default)">200, 70, 70</Value>
     </Setting>
     <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -894,13 +894,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DColorPenUp" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Green</Value>
+      <Value Profile="(Default)">60, 150, 100</Value>
     </Setting>
     <Setting Name="gui2DColorRotaryInfo" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">0, 192, 192</Value>
     </Setting>
     <Setting Name="gui2DColorRuler" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">0, 0, 192</Value>
+      <Value Profile="(Default)">70, 100, 140</Value>
     </Setting>
     <Setting Name="gui2DColorSimulation" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Lime</Value>
@@ -1029,16 +1029,16 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="guiCustomBtn1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ðŸ¡´ Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMAY|#80FFFF</Value>
+      <Value Profile="(Default)">?? Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â–¼  Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
+      <Value Profile="(Default)">¨‹  Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
     </Setting>
     <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ðŸ¡¶ Graphic Bottom-Right|(Move to lower right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMIY|#80FFFF</Value>
+      <Value Profile="(Default)">?? Graphic Bottom-Right|(Move to lower right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn12" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â–¼ Pen down Servo|(Move Pen to lower position);M3 S#GMIS|#FF8080</Value>
+      <Value Profile="(Default)">¨‹ Pen down Servo|(Move Pen to lower position);M3 S#GMIS|#FF8080</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
       <Value Profile="(Default)"> |</Value>
@@ -1062,7 +1062,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â–² Pen up Zmax|(Move Pen to upper position);$J=G90 F5000 Z#GMAZ|#80FF80</Value>
+      <Value Profile="(Default)">¡ø Pen up Zmax|(Move Pen to upper position);$J=G90 F5000 Z#GMAZ|#80FF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -1095,7 +1095,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ðŸ¡· Graphic Bottom-Left|(Move to lower left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMIY|#80FFFF</Value>
+      <Value Profile="(Default)">?? Graphic Bottom-Left|(Move to lower left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -1107,22 +1107,22 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â–² Pen up Servo|(Move Pen to upper position);M3 S#GMAS|#80FF80</Value>
+      <Value Profile="(Default)">¡ø Pen up Servo|(Move Pen to upper position);M3 S#GMAS|#80FF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â†» Move around graphic|(Move around graphic dimension - jog fast);G90G1F5000X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
+      <Value Profile="(Default)">? Move around graphic|(Move around graphic dimension - jog fast);G90G1F5000X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â—Ž Graphic Center|(Move to graphic center - fast);$J=G90 F5000 X#GCTX Y#GCTY|#00FFFF</Value>
+      <Value Profile="(Default)">¡ò Graphic Center|(Move to graphic center - fast);$J=G90 F5000 X#GCTX Y#GCTY|#00FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
       <Value Profile="(Default)">Add Logo|data\scripts\script_my_logo.nc|#FFFFC0</Value>
     </Setting>
     <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">â–º Pen zero Servo|(Move Pen to zero position);M3 S#GZES|#e6f7ff</Value>
+      <Value Profile="(Default)">? Pen zero Servo|(Move Pen to zero position);M3 S#GZES|#e6f7ff</Value>
     </Setting>
     <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ðŸ¡µ Graphic Top-Right|(Move to upper right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMAY|#80FFFF</Value>
+      <Value Profile="(Default)">?? Graphic Top-Right|(Move to upper right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

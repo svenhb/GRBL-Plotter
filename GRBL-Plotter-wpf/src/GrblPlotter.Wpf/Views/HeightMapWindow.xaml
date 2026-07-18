@@ -1,0 +1,83 @@
+<Window x:Class="GrblPlotter.Wpf.Views.HeightMapWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource Str.HeightMapTitle}"
+        Height="640" Width="620"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.HeightMapHeader}" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <StackPanel>
+        <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+      </StackPanel>
+    </Border>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="240"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="Grid area (mm)" Style="{StaticResource PanelHeader}"/>
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="60"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="Min X" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding MinX}"/>
+                <TextBlock Grid.Row="1" Text="Min Y" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MinY}"/>
+                <TextBlock Grid.Row="2" Text="Max X" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MaxX}"/>
+                <TextBlock Grid.Row="3" Text="Max Y" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding MaxY}"/>
+                <TextBlock Grid.Row="4" Text="Grid X (points)" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="1" Text="{Binding GridX}"/>
+                <TextBlock Grid.Row="5" Text="Grid Y (points)" VerticalAlignment="Center"/><TextBox Grid.Row="5" Grid.Column="1" Text="{Binding GridY}"/>
+              </Grid>
+            </StackPanel>
+          </Border>
+
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="Probing" Style="{StaticResource PanelHeader}"/>
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="60"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="Safe Z" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding SafeZ}"/>
+                <TextBlock Grid.Row="1" Text="Probe depth" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ProbeDepth}"/>
+                <TextBlock Grid.Row="2" Text="Probe feed" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ProbeFeed}"/>
+                <TextBlock Grid.Row="3" Text="Travel feed" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding TravelFeed}"/>
+                <TextBlock Grid.Row="4" Text="Retract" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Retract}"/>
+              </Grid>
+              <Button Content="Generate probe G-Code" Command="{Binding GeneratePatternCommand}" Margin="0,8,0,0"/>
+              <Button Content="Send pattern to controller" Command="{Binding SendPatternCommand}" Style="{StaticResource GhostButton}"/>
+              <Button Content="Run live probing (grid)" Command="{Binding RunProbingAsyncCommand}" Style="{StaticResource DangerButton}" Margin="0,6,0,0"/>
+              <TextBlock Text="{Binding ProbedCount, StringFormat=probed {0} points}" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0"/>
+            </StackPanel>
+          </Border>
+
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="Map file" Style="{StaticResource PanelHeader}"/>
+              <UniformGrid Columns="2">
+                <Button Content="Load CSV" Command="{Binding LoadCsvCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="Save CSV" Command="{Binding SaveCsvCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <Button Content="Apply to loaded G-Code (bilinear)" Command="{Binding ApplyToLoadedGCodeCommand}" Margin="0,6,0,0"/>
+            </StackPanel>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+
+      <Border Grid.Column="1" Style="{StaticResource PanelBorder}">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Text="Generated G-Code preview" Style="{StaticResource PanelHeader}"/>
+          <ListBox ItemsSource="{Binding GeneratedGCode}" FontFamily="Consolas" FontSize="11"
+                    Background="{StaticResource BgDeepBrush}" Foreground="{StaticResource TextBrush}"
+                    BorderBrush="{StaticResource BorderBrushKey}"/>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>

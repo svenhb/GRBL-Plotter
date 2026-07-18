@@ -22,6 +22,7 @@
 
 using GrblPlotter.Helper;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GrblPlotter.UserControls
@@ -197,6 +198,10 @@ namespace GrblPlotter.UserControls
         public void RestoreColors()
         {
             SetHeight(isLarge);
+            // Keep RESET visually distinct after theme recolor
+            BtnReset.BackColor = Color.FromArgb(210, 95, 95);
+            BtnReset.ForeColor = Color.White;
+            BtnReset.UseVisualStyleBackColor = false;
         }
     }
 }

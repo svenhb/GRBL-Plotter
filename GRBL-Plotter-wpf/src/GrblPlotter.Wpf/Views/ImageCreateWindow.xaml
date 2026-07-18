@@ -1,0 +1,79 @@
+<Window x:Class="GrblPlotter.Wpf.Views.ImageCreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create Image Engraving"
+        Height="640" Width="760"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="Image to Engraving G-Code" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <DockPanel>
+        <Button DockPanel.Dock="Right" Content="Close" Click="Close_Click" Style="{StaticResource GhostButton}"/>
+        <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+      </DockPanel>
+    </Border>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="260"/>
+      </Grid.ColumnDefinitions>
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="1*"/>
+      </Grid.RowDefinitions>
+
+      <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource PanelBorder}" Padding="2">
+        <Grid Background="{StaticResource BgDeepBrush}">
+          <Image Source="{Binding Preview}" Stretch="Uniform"/>
+        </Grid>
+      </Border>
+
+      <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource PanelBorder}">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Text="Generated G-Code preview" Style="{StaticResource PanelHeader}"/>
+          <TextBox Text="{Binding PreviewGCode, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+                    FontFamily="Consolas" FontSize="10" TextWrapping="NoWrap"
+                    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        </DockPanel>
+      </Border>
+
+      <ScrollViewer Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="Image" Style="{StaticResource PanelHeader}"/>
+              <Button Content="Pick image…" Command="{Binding PickImageCommand}"/>
+            </StackPanel>
+          </Border>
+
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="Raster settings" Style="{StaticResource PanelHeader}"/>
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="Target width (mm)" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Text="{Binding TargetWidthMm}"/>
+                <TextBlock Grid.Row="1" Text="Line interval (mm)" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LineIntervalMm}"/>
+                <TextBlock Grid.Row="2" Text="Laser power (S)" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding LaserPower}"/>
+                <TextBlock Grid.Row="3" Text="Feed rate" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FeedRate}"/>
+              </Grid>
+              <TextBlock Text="{Binding Threshold, StringFormat=Threshold: {0}}" Margin="0,6,0,0"/>
+              <Slider Minimum="0" Maximum="255" Value="{Binding Threshold}" TickFrequency="16"/>
+              <CheckBox Content="Invert (engrave light areas)" IsChecked="{Binding Invert}" Margin="0,4,0,0"/>
+            </StackPanel>
+          </Border>
+
+          <Button Content="Generate engraving G-Code" Command="{Binding GenerateCommand}"/>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+  </DockPanel>
+</Window>

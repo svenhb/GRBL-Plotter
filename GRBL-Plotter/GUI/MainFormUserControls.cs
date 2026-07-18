@@ -68,13 +68,14 @@ namespace GrblPlotter
             ucToolList.RaiseCmdEvent += OnRaiseCmdEvent;
             //     _setup_form.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
 
-            MyControl.NotifyYellow = Color.Yellow;
-            MyControl.NotifyGreen = Color.LightGreen;
-            MyControl.NotifyRed = Color.Orange;
-            MyControl.ButtonActive = Color.Lime;
-            MyControl.ButtonInactive = Color.LightGray;
-            MyControl.PanelHighlight = Color.FromArgb(255, 255, 128);
-			MyControl.SetupFormBackColor = Color.FromArgb(255, 255, 192);
+            // Soft industrial palette (less harsh than pure Yellow / Lime / Pink)
+            MyControl.NotifyYellow = Color.FromArgb(255, 236, 179);
+            MyControl.NotifyGreen = Color.FromArgb(186, 220, 186);
+            MyControl.NotifyRed = Color.FromArgb(230, 145, 110);
+            MyControl.ButtonActive = Color.FromArgb(120, 185, 150);
+            MyControl.ButtonInactive = Color.FromArgb(220, 224, 228);
+            MyControl.PanelHighlight = Color.FromArgb(255, 245, 210);
+            MyControl.SetupFormBackColor = Color.FromArgb(248, 246, 240);
         }
 
         private void UserControlsMainFormLoad()
@@ -96,7 +97,9 @@ namespace GrblPlotter
             }
             else
             {
-                MyControl.SetColordesign(Color.WhiteSmoke, Color.Pink);
+                // Default: cool panel + teal accent buttons (replaces WhiteSmoke / Pink)
+                MyControl.SetColordesign(Color.FromArgb(245, 247, 250), Color.FromArgb(72, 140, 148));
+                UserControlSetColors();
             }
         }
 

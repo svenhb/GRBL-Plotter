@@ -1,0 +1,56 @@
+<Window x:Class="GrblPlotter.Wpf.Views.ShapeCreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource Str.CreateShapeTitle}"
+        Height="560" Width="520"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.CreateShapeHeader}" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <DockPanel>
+        <Button DockPanel.Dock="Right" Content="{DynamicResource Str.Close}" Click="Close_Click" Style="{StaticResource GhostButton}"/>
+        <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+      </DockPanel>
+    </Border>
+
+    <Border Style="{StaticResource PanelBorder}">
+      <StackPanel>
+        <TextBlock Text="{DynamicResource Str.ShapeLabel}" Style="{StaticResource PanelHeader}"/>
+        <ComboBox ItemsSource="{Binding ShapeTypes}" SelectedItem="{Binding ShapeType}"/>
+
+        <Grid Margin="0,8,0,0">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/>
+            <RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Text="{DynamicResource Str.OriginX}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding OriginX}"/>
+          <TextBlock Grid.Row="1" Text="{DynamicResource Str.OriginY}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding OriginY}"/>
+          <TextBlock Grid.Row="2" Text="{DynamicResource Str.Width}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Width}"/>
+          <TextBlock Grid.Row="3" Text="{DynamicResource Str.Height}" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Height}"/>
+          <TextBlock Grid.Row="4" Text="{DynamicResource Str.Diameter}" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Diameter}"/>
+          <TextBlock Grid.Row="5" Text="{DynamicResource Str.SidesPoints}" VerticalAlignment="Center"/><TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Sides}"/>
+          <TextBlock Grid.Row="6" Text="{DynamicResource Str.PenUpZ}" VerticalAlignment="Center"/><TextBox Grid.Row="6" Grid.Column="1" Text="{Binding PenUpZ}"/>
+          <TextBlock Grid.Row="7" Text="{DynamicResource Str.PenDownZ}" VerticalAlignment="Center"/><TextBox Grid.Row="7" Grid.Column="1" Text="{Binding PenDownZ}"/>
+        </Grid>
+        <Grid Margin="0,4,0,0">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <TextBlock Text="{DynamicResource Str.FeedRate}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding FeedRate}"/>
+        </Grid>
+
+        <Button Content="{DynamicResource Str.GenerateGCode}" Command="{Binding GenerateCommand}" Margin="0,10,0,0"/>
+      </StackPanel>
+    </Border>
+
+    <Border Style="{StaticResource PanelBorder}">
+      <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.Preview}" Style="{StaticResource PanelHeader}"/>
+        <TextBox Text="{Binding PreviewGCode, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+                  FontFamily="Consolas" FontSize="11" TextWrapping="NoWrap"
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+      </DockPanel>
+    </Border>
+  </DockPanel>
+</Window>

@@ -1,0 +1,31 @@
+<Window x:Class="GrblPlotter.Wpf.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource Str.AboutTitle}"
+        Height="420" Width="420"
+        Icon="/Assets/Icon.ico"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="16">
+    <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+      <Image Source="/Assets/modell.png" Width="140" Margin="0,0,0,10"/>
+      <TextBlock Text="GRBL-Plotter WPF" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+      <TextBlock x:Name="VersionText" HorizontalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+    </StackPanel>
+
+    <StackPanel DockPanel.Dock="Bottom">
+      <TextBlock Text="{DynamicResource Str.AboutCopyright}" HorizontalAlignment="Center" Margin="0,10,0,4" Foreground="{StaticResource TextMutedBrush}"/>
+      <Button Content="{DynamicResource Str.Close}" Click="Close_Click" HorizontalAlignment="Center" Width="110"/>
+    </StackPanel>
+
+    <StackPanel VerticalAlignment="Center">
+      <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,10,0,14"
+                 Text="{DynamicResource Str.AboutBody}"/>
+      <TextBlock HorizontalAlignment="Center">
+        <Hyperlink NavigateUri="https://grbl-plotter.de" RequestNavigate="Hyperlink_RequestNavigate">
+          grbl-plotter.de
+        </Hyperlink>
+      </TextBlock>
+    </StackPanel>
+  </DockPanel>
+</Window>

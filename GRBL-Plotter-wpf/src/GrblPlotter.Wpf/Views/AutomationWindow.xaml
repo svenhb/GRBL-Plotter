@@ -1,0 +1,70 @@
+<Window x:Class="GrblPlotter.Wpf.Views.AutomationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:services="clr-namespace:GrblPlotter.Wpf.Services"
+        Title="Process Automation"
+        Height="640" Width="760"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <Window.Resources>
+    <ObjectDataProvider x:Key="ActionTypesProvider" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="services:AutomationActionType"/>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+  </Window.Resources>
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="Process Automation" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <StackPanel>
+        <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}"/>
+        <ProgressBar Height="8" Margin="0,4,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}"/>
+      </StackPanel>
+    </Border>
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="1*"/>
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+        <Button Content="Add step" Command="{Binding AddStepCommand}" Style="{StaticResource GhostButton}"/>
+        <Button Content="Remove selected" Command="{Binding RemoveStepCommand}" CommandParameter="{Binding SelectedItem, ElementName=StepsGrid}" Style="{StaticResource GhostButton}"/>
+        <Button Content="Clear all" Command="{Binding ClearStepsCommand}" Style="{StaticResource GhostButton}"/>
+        <Button Content="Load…" Command="{Binding LoadStepsCommand}" Style="{StaticResource GhostButton}"/>
+        <Button Content="Save…" Command="{Binding SaveStepsCommand}" Style="{StaticResource GhostButton}"/>
+        <Button Content="Run" Command="{Binding RunCommand}" Width="70"/>
+        <Button Content="Stop" Command="{Binding StopRunCommand}" Style="{StaticResource DangerButton}" Width="70"/>
+      </StackPanel>
+
+      <DataGrid x:Name="StepsGrid" Grid.Row="1" ItemsSource="{Binding Steps}" AutoGenerateColumns="False"
+                Background="{StaticResource BgDeepBrush}" Foreground="{StaticResource TextBrush}"
+                BorderBrush="{StaticResource BorderBrushKey}" RowBackground="{StaticResource SurfaceBrush}"
+                AlternatingRowBackground="{StaticResource SurfaceAltBrush}" GridLinesVisibility="Horizontal"
+                CanUserAddRows="False" HeadersVisibility="Column">
+        <DataGrid.Columns>
+          <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="36"/>
+          <DataGridTemplateColumn Header="Action" Width="130">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <ComboBox ItemsSource="{Binding Source={StaticResource ActionTypesProvider}}" SelectedItem="{Binding Action, Mode=TwoWay}" BorderThickness="0"/>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTextColumn Header="Parameter" Binding="{Binding Parameter}" Width="*"/>
+          <DataGridTextColumn Header="Note" Binding="{Binding Note}" Width="160"/>
+        </DataGrid.Columns>
+      </DataGrid>
+
+      <TextBlock Grid.Row="2" Text="Log" Style="{StaticResource PanelHeader}" Margin="0,8,0,4"/>
+      <ListBox Grid.Row="3" ItemsSource="{Binding Log}" FontFamily="Consolas" FontSize="11"
+                Background="{StaticResource BgDeepBrush}" Foreground="{StaticResource TextBrush}"
+                BorderBrush="{StaticResource BorderBrushKey}"/>
+    </Grid>
+  </DockPanel>
+</Window>

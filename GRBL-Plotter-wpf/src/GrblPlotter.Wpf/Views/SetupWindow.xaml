@@ -1,0 +1,222 @@
+<Window x:Class="GrblPlotter.Wpf.Views.SetupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:conv="clr-namespace:GrblPlotter.Wpf.Converters"
+        Title="{DynamicResource Str.SetupTitle}"
+        Height="560" Width="520"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <Window.Resources>
+    <conv:HexToBrushConverter x:Key="HexToBrush"/>
+  </Window.Resources>
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.SetupTitle}" Style="{StaticResource PanelHeader}" FontSize="16" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+          <Button Content="{DynamicResource Str.ResetDefaults}" Command="{Binding ResetDefaultsCommand}" Style="{StaticResource GhostButton}"/>
+          <Button Content="{DynamicResource Str.Reload}" Command="{Binding ReloadFromDiskCommand}" Style="{StaticResource GhostButton}"/>
+          <Button Content="{DynamicResource Str.SaveBtn}" Command="{Binding SaveCommand}"/>
+          <Button Content="{DynamicResource Str.Close}" Click="Close_Click" Style="{StaticResource GhostButton}"/>
+        </StackPanel>
+        <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" TextWrapping="Wrap"/>
+      </DockPanel>
+    </Border>
+
+    <TabControl Margin="0,0,0,8">
+      <!-- Connection defaults -->
+      <TabItem Header="{DynamicResource Str.TabConnection}">
+        <StackPanel Margin="8">
+          <Grid Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+            <TextBlock Text="{DynamicResource Str.LastPort}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.Connection.LastPort}"/>
+            <TextBlock Grid.Row="1" Text="{DynamicResource Str.LastBaud}" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding BaudRates}" Text="{Binding Settings.Connection.LastBaud}" IsEditable="True"/>
+            <TextBlock Grid.Row="2" Text="{DynamicResource Str.PollInterval}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.Connection.PollIntervalMs}"/>
+            <CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="{DynamicResource Str.AutoConnect}" IsChecked="{Binding Settings.Connection.AutoConnectOnStartup}"/>
+            <CheckBox Grid.Row="4" Grid.ColumnSpan="2" Content="{DynamicResource Str.SoftResetOnConnect}" IsChecked="{Binding Settings.Connection.SendSoftResetOnConnect}"/>
+          </Grid>
+        </StackPanel>
+      </TabItem>
+
+      <!-- Streaming -->
+      <TabItem Header="{DynamicResource Str.TabStreaming}">
+        <StackPanel Margin="8">
+          <Grid Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+            <TextBlock Text="{DynamicResource Str.PlannerSlots}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.Streaming.PlannerBufferSlots}"/>
+            <TextBlock Grid.Row="1" Text="{DynamicResource Str.SendInterval}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.Streaming.SendIntervalMs}"/>
+            <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Content="{DynamicResource Str.CheckBeforeRun}" IsChecked="{Binding Settings.Streaming.UseCheckModeBeforeRun}"/>
+            <CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="{DynamicResource Str.PauseOnM6}" IsChecked="{Binding Settings.Streaming.PauseOnToolChangeM6}"/>
+          </Grid>
+        </StackPanel>
+      </TabItem>
+
+      <!-- 2D view colors -->
+      <TabItem Header="{DynamicResource Str.Tab2dView}">
+        <StackPanel Margin="8">
+          <Grid Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+
+            <TextBlock Text="{DynamicResource Str.Background}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.Colors.BackgroundColor}"/>
+            <Border Grid.Column="2" Width="18" Height="18" BorderBrush="{StaticResource BorderBrushKey}" BorderThickness="1" Background="{Binding Settings.Colors.BackgroundColor, Converter={StaticResource HexToBrush}}"/>
+
+            <TextBlock Grid.Row="1" Text="{DynamicResource Str.ToolpathCut}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.Colors.ToolpathColor}"/>
+            <Border Grid.Row="1" Grid.Column="2" Width="18" Height="18" BorderBrush="{StaticResource BorderBrushKey}" BorderThickness="1" Background="{Binding Settings.Colors.ToolpathColor, Converter={StaticResource HexToBrush}}"/>
+
+            <TextBlock Grid.Row="2" Text="{DynamicResource Str.RapidMoves}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.Colors.RapidColor}"/>
+            <Border Grid.Row="2" Grid.Column="2" Width="18" Height="18" BorderBrush="{StaticResource BorderBrushKey}" BorderThickness="1" Background="{Binding Settings.Colors.RapidColor, Converter={StaticResource HexToBrush}}"/>
+
+            <TextBlock Grid.Row="3" Text="{DynamicResource Str.Grid}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Settings.Colors.GridColor}"/>
+            <Border Grid.Row="3" Grid.Column="2" Width="18" Height="18" BorderBrush="{StaticResource BorderBrushKey}" BorderThickness="1" Background="{Binding Settings.Colors.GridColor, Converter={StaticResource HexToBrush}}"/>
+
+            <TextBlock Grid.Row="4" Text="{DynamicResource Str.ToolPosition}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Settings.Colors.ToolPositionColor}"/>
+            <Border Grid.Row="4" Grid.Column="2" Width="18" Height="18" BorderBrush="{StaticResource BorderBrushKey}" BorderThickness="1" Background="{Binding Settings.Colors.ToolPositionColor, Converter={StaticResource HexToBrush}}"/>
+          </Grid>
+          <CheckBox Content="{DynamicResource Str.ShowGrid}" IsChecked="{Binding Settings.Colors.ShowGrid}" Margin="0,6,0,0"/>
+          <CheckBox Content="{DynamicResource Str.ShowRapidMoves}" IsChecked="{Binding Settings.Colors.ShowRapidMoves}"/>
+        </StackPanel>
+      </TabItem>
+
+      <!-- Device defaults -->
+      <TabItem Header="{DynamicResource Str.TabDevices}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel Margin="8">
+            <TextBlock Text="{DynamicResource Str.ActiveDevice}" Style="{StaticResource PanelHeader}"/>
+            <ComboBox ItemsSource="{Binding DeviceOptions}" SelectedItem="{Binding Settings.Devices.ActiveDevice}" Margin="0,0,0,8"/>
+
+            <TextBlock Text="{DynamicResource Str.LaserDefaults}" Style="{StaticResource PanelHeader}"/>
+            <Grid Margin="0,0,0,8">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="90"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+              <TextBlock Text="{DynamicResource Str.Power}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding Settings.Devices.Laser.Power}"/>
+              <TextBlock Grid.Row="1" Text="{DynamicResource Str.Speed}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.Devices.Laser.Speed}"/>
+              <TextBlock Grid.Row="2" Text="{DynamicResource Str.Passes}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.Devices.Laser.Passes}"/>
+              <CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="{DynamicResource Str.AirAssist}" IsChecked="{Binding Settings.Devices.Laser.AirAssist}"/>
+            </Grid>
+
+            <TextBlock Text="{DynamicResource Str.PlotterDefaults}" Style="{StaticResource PanelHeader}"/>
+            <Grid Margin="0,0,0,8">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="90"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+              <TextBlock Text="{DynamicResource Str.ZUp}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding Settings.Devices.Plotter.ZUp}"/>
+              <TextBlock Grid.Row="1" Text="{DynamicResource Str.ZDown}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.Devices.Plotter.ZDown}"/>
+              <TextBlock Grid.Row="2" Text="{DynamicResource Str.Speed}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.Devices.Plotter.Speed}"/>
+            </Grid>
+
+            <TextBlock Text="{DynamicResource Str.RouterDefaults}" Style="{StaticResource PanelHeader}"/>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="90"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+              <TextBlock Text="{DynamicResource Str.FeedXy}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding Settings.Devices.Router.SpeedXy}"/>
+              <TextBlock Grid.Row="1" Text="{DynamicResource Str.FeedZ}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.Devices.Router.SpeedZ}"/>
+              <TextBlock Grid.Row="2" Text="{DynamicResource Str.Depth}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.Devices.Router.Depth}"/>
+            </Grid>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <!-- Axes / machine area -->
+      <TabItem Header="{DynamicResource Str.TabAxes}">
+        <StackPanel Margin="8">
+          <Grid Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="160"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+            <TextBlock Text="{DynamicResource Str.AxisCount}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.AxisCount}"/>
+            <TextBlock Grid.Row="1" Text="{DynamicResource Str.RotaryAxis}" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding RotaryAxes}"
+                      SelectedItem="{Binding Settings.RotaryAxisName}"/>
+            <TextBlock Grid.Row="2" Text="{DynamicResource Str.MachineMinXy}" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+              <TextBox Width="80" Text="{Binding Settings.MachineMinX}" Margin="0,0,4,0"/>
+              <TextBox Width="80" Text="{Binding Settings.MachineMinY}"/>
+            </StackPanel>
+            <TextBlock Grid.Row="3" Text="{DynamicResource Str.MachineMaxXy}" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+              <TextBox Width="80" Text="{Binding Settings.MachineMaxX}" Margin="0,0,4,0"/>
+              <TextBox Width="80" Text="{Binding Settings.MachineMaxY}"/>
+            </StackPanel>
+            <CheckBox Grid.Row="4" Grid.ColumnSpan="2" Content="{DynamicResource Str.ShowLimitsOverlay}" IsChecked="{Binding Settings.ShowMachineLimits}"/>
+            <CheckBox Grid.Row="5" Grid.ColumnSpan="2" Content="{DynamicResource Str.UseFixedArea}" IsChecked="{Binding Settings.ShowFixedMachineArea}"/>
+          </Grid>
+          <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" Margin="0,8,0,0"
+                     Text="{DynamicResource Str.AxisCountHint}"/>
+        </StackPanel>
+      </TabItem>
+
+      <!-- Import graphic -->
+      <TabItem Header="{DynamicResource Str.TabImport}">
+        <StackPanel Margin="8">
+          <CheckBox Content="{DynamicResource Str.AutoHatch}" IsChecked="{Binding Settings.ImportHatchFill}"/>
+          <Grid Margin="0,6">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="140"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+            <TextBlock Text="{DynamicResource Str.HatchSpacing}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.ImportHatchSpacing}"/>
+            <TextBlock Grid.Row="1" Text="{DynamicResource Str.HatchAngle}" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.ImportHatchAngle}"/>
+            <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Content="{DynamicResource Str.AutoTangential}" IsChecked="{Binding Settings.ImportTangential}" Margin="0,6,0,0"/>
+          </Grid>
+          <Grid Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="140"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <TextBlock Text="{DynamicResource Str.TangentialOffset}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Settings.ImportTangentialAngle}"/>
+          </Grid>
+        </StackPanel>
+      </TabItem>
+
+      <!-- Custom 1–16 -->
+      <TabItem Header="{DynamicResource Str.TabCustom}">
+        <DockPanel Margin="8">
+          <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,8"
+                     Text="{DynamicResource Str.CustomHint}"/>
+          <DataGrid ItemsSource="{Binding Settings.CustomButtons}" AutoGenerateColumns="False"
+                    CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column"
+                    AlternatingRowBackground="{StaticResource SurfaceAltBrush}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="{DynamicResource Str.Label}" Binding="{Binding Label}" Width="90"/>
+              <DataGridTextColumn Header="{DynamicResource Str.CodeScript}" Binding="{Binding Code}" Width="*"/>
+            </DataGrid.Columns>
+          </DataGrid>
+        </DockPanel>
+      </TabItem>
+
+      <!-- Hotkeys help -->
+      <TabItem Header="{DynamicResource Str.TabHotkeys}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel Margin="8">
+            <TextBlock Text="{DynamicResource Str.HotkeysTitle}" Style="{StaticResource PanelHeader}"/>
+            <TextBlock TextWrapping="Wrap" FontFamily="Consolas" FontSize="12">
+              <Run Text="Ctrl+O  "/><Run Text="{DynamicResource Str.HkOpen}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Ctrl+S  "/><Run Text="{DynamicResource Str.HkSave}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Space   "/><Run Text="{DynamicResource Str.HkHold}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Ctrl+R  "/><Run Text="{DynamicResource Str.HkSoftReset}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Esc     "/><Run Text="{DynamicResource Str.HkJogCancel}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Arrow keys  "/><Run Text="{DynamicResource Str.HkJogXy}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="PgUp / PgDn  "/><Run Text="{DynamicResource Str.HkJogZ}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Shift+drag  "/><Run Text="{DynamicResource Str.HkPan}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="Wheel     "/><Run Text="{DynamicResource Str.HkZoom}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="F5      "/><Run Text="{DynamicResource Str.HkStream}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="F6      "/><Run Text="{DynamicResource Str.HkPauseStream}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+              <Run Text="F7      "/><Run Text="{DynamicResource Str.HkStopStream}" Foreground="{StaticResource TextMutedBrush}"/><LineBreak/>
+            </TextBlock>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>

@@ -105,7 +105,7 @@ namespace GrblPlotter.UserControls
             // 
             // BtnReset
             // 
-            this.BtnReset.BackColor = System.Drawing.Color.LightPink;
+            this.BtnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
             resources.ApplyResources(this.BtnReset, "BtnReset");
             this.BtnReset.Name = "BtnReset";
             this.toolTip1.SetToolTip(this.BtnReset, resources.GetString("BtnReset.ToolTip"));

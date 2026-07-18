@@ -1,0 +1,54 @@
+<Window x:Class="GrblPlotter.Wpf.Views.CoordSystemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource Str.CoordSystemsTitle}"
+        Height="440" Width="560"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.CoordSystemsHeader}" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <StackPanel>
+        <TextBlock Text="{Binding CurrentWco, StringFormat=Live WCO: {0}}" FontFamily="Consolas"/>
+        <Grid Margin="0,4,0,0">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+          <Button Grid.Column="1" Content="{DynamicResource Str.QueryOffsets}" Command="{Binding QueryOffsetsCommand}" Style="{StaticResource GhostButton}"/>
+        </Grid>
+      </StackPanel>
+    </Border>
+
+    <TextBlock DockPanel.Dock="Top" Text="{Binding ActiveCoordSystem, StringFormat=Active system: {0}}" Margin="0,0,0,6"/>
+
+    <DataGrid ItemsSource="{Binding Systems}" SelectedItem="{Binding SelectedSystem}" AutoGenerateColumns="False"
+              Background="{StaticResource BgDeepBrush}" Foreground="{StaticResource TextBrush}"
+              BorderBrush="{StaticResource BorderBrushKey}" RowBackground="{StaticResource SurfaceBrush}"
+              AlternatingRowBackground="{StaticResource SurfaceAltBrush}" GridLinesVisibility="Horizontal"
+              CanUserAddRows="False" HeadersVisibility="Column">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="{DynamicResource Str.System}" Binding="{Binding Name}" IsReadOnly="True" Width="70"/>
+        <DataGridTextColumn Header="X" Binding="{Binding X}" Width="90"/>
+        <DataGridTextColumn Header="Y" Binding="{Binding Y}" Width="90"/>
+        <DataGridTextColumn Header="Z" Binding="{Binding Z}" Width="90"/>
+        <DataGridTemplateColumn Header="{DynamicResource Str.Actions}" Width="*">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <Button Content="{DynamicResource Str.Activate}"
+                        Command="{Binding DataContext.ActivateSystemCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.ZeroHere}"
+                        Command="{Binding DataContext.ZeroHereCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.SaveOffset}"
+                        Command="{Binding DataContext.SaveOffsetCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding}"/>
+              </StackPanel>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </DockPanel>
+</Window>

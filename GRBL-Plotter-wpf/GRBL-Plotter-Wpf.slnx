@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GrblPlotter.Wpf/GrblPlotter.Wpf.csproj" />
+  </Folder>
+</Solution>

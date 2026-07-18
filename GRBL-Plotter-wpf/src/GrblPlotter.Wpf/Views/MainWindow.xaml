@@ -1,0 +1,757 @@
+<Window x:Class="GrblPlotter.Wpf.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:GrblPlotter.Wpf.ViewModels"
+        xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        Title="{Binding WindowTitle}"
+        Height="820" Width="1280"
+        MinHeight="640" MinWidth="1024"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterScreen"
+        AllowDrop="True" Drop="Window_Drop" DragOver="Window_DragOver"
+        Loaded="Window_Loaded">
+  <Window.DataContext>
+    <vm:MainViewModel/>
+  </Window.DataContext>
+  <DockPanel>
+    <Menu DockPanel.Dock="Top" Name="MainMenu">
+      <MenuItem Header="{DynamicResource Str.File}">
+        <MenuItem Header="{DynamicResource Str.Open}" Command="{Binding OpenFileCommand}" InputGestureText="Ctrl+O"/>
+        <MenuItem Header="{DynamicResource Str.OpenRecent}" Name="RecentMenu" SubmenuOpened="RecentMenu_SubmenuOpened"/>
+        <MenuItem Header="{DynamicResource Str.Save}" Command="{Binding SaveFileCommand}" InputGestureText="Ctrl+S"/>
+        <MenuItem Header="{DynamicResource Str.ClearWorkspace}" Command="{Binding ClearWorkspaceCommand}"/>
+        <MenuItem Header="{DynamicResource Str.Undo}" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Setup}" Click="OpenSetup_Click"/>
+        <MenuItem Header="{DynamicResource Str.ExportSettings}" Command="{Binding ExportSettingsCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ImportSettings}" Command="{Binding ImportSettingsCommand}"/>
+        <MenuItem Header="{DynamicResource Str.About}" Click="OpenAbout_Click"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Exit}" Click="Exit_Click"/>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.Creation}">
+        <MenuItem Header="{DynamicResource Str.ImportAny}" Command="{Binding OpenFileCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Text}" Click="OpenText_Click"/>
+        <MenuItem Header="{DynamicResource Str.Shape}" Click="OpenShape_Click"/>
+        <MenuItem Header="{DynamicResource Str.ImageEngraving}" Click="OpenImage_Click"/>
+        <MenuItem Header="{DynamicResource Str.Barcode}" Click="OpenBarcode_Click"/>
+        <MenuItem Header="{DynamicResource Str.WireCutter}" Click="OpenWire_Click"/>
+        <MenuItem Header="{DynamicResource Str.JogPathFrame}" Click="OpenJogPath_Click"/>
+        <MenuItem Header="{DynamicResource Str.GraphicTablet}" Click="OpenTablet_Click"/>
+        <MenuItem Header="{DynamicResource Str.HersheyText}" Click="OpenHershey_Click"/>
+        <MenuItem Header="{DynamicResource Str.LffText}" Click="OpenLff_Click"/>
+        <MenuItem Header="{DynamicResource Str.HatchFill}" Command="{Binding ApplyHatchCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ApplyTangential}" Command="{Binding ApplyTangentialCommand}"/>
+        <MenuItem Header="{DynamicResource Str.Extensions}" Name="ExtensionsMenu" SubmenuOpened="ExtensionsMenu_SubmenuOpened"/>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.Transform}">
+        <MenuItem Header="{DynamicResource Str.MirrorX}" Command="{Binding TransformMirrorXCommand}"/>
+        <MenuItem Header="{DynamicResource Str.MirrorY}" Command="{Binding TransformMirrorYCommand}"/>
+        <MenuItem Header="{DynamicResource Str.MirrorRotary}" Command="{Binding TransformMirrorRotaryCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Rotate90Cw}" Command="{Binding TransformRotate90CwCommand}"/>
+        <MenuItem Header="{DynamicResource Str.Rotate90Ccw}" Command="{Binding TransformRotate90CcwCommand}"/>
+        <MenuItem Header="{DynamicResource Str.Rotate180}" Command="{Binding TransformRotate180Command}"/>
+        <MenuItem Header="{DynamicResource Str.RotatePanel}" Command="{Binding ApplyRotateTransformCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.UseOrigin00}" IsCheckable="True" IsChecked="{Binding UseAbsoluteOrigin}"/>
+        <MenuItem Header="{DynamicResource Str.ScalePanel}" Command="{Binding ApplyScaleTransformCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ScaleXyIndep}" Command="{Binding TransformScaleXyIndepCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ScaleToWidth}" Command="{Binding TransformScaleToWidthCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ScaleToHeight}" Command="{Binding TransformScaleToHeightCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ScaleXRotary}" Command="{Binding TransformScaleToRotaryCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ScaleYRotary}" Command="{Binding TransformScaleYToRotaryCommand}"/>
+        <MenuItem Header="{DynamicResource Str.RadiusComp}" Command="{Binding TransformRadiusCompCommand}"/>
+        <MenuItem Header="{DynamicResource Str.Translate}" Command="{Binding ApplyTranslateTransformCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ApplyLastTransform}" Command="{Binding ApplyLastTransformCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.OriginCenter}" Command="{Binding TransformOriginCenterCommand}"/>
+        <MenuItem Header="{DynamicResource Str.OriginMinXy}" Command="{Binding TransformOriginMinCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ReversePaths}" Command="{Binding TransformReverseCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.ArcsToLines}" Command="{Binding TransformArcsToLinesCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ToPolar}" Command="{Binding TransformToPolarCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ZToSpindle}" Command="{Binding TransformZToSpindleCommand}"/>
+        <MenuItem Header="{DynamicResource Str.RemoveZ}" Command="{Binding TransformRemoveZCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.ReparseEditor}" Command="{Binding ApplyEditorCommand}"/>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.Workpiece}">
+        <MenuItem Header="{DynamicResource Str.Home}" Command="{Binding HomeMachineCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ZeroXyz}" Command="{Binding ZeroXyzCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ZeroXy}" Command="{Binding ZeroXyCommand}"/>
+        <MenuItem Header="{DynamicResource Str.ZeroA}" Command="{Binding ZeroACommand}" Visibility="{Binding AxisAVisibility}"/>
+        <MenuItem Header="{DynamicResource Str.ZeroB}" Command="{Binding ZeroBCommand}" Visibility="{Binding AxisBVisibility}"/>
+        <MenuItem Header="{DynamicResource Str.ZeroC}" Command="{Binding ZeroCCommand}" Visibility="{Binding AxisCVisibility}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.CoordSystems}" Click="OpenCoord_Click"/>
+        <MenuItem Header="G54" Command="{Binding SelectCoordCommand}" CommandParameter="G54"/>
+        <MenuItem Header="G55" Command="{Binding SelectCoordCommand}" CommandParameter="G55"/>
+        <MenuItem Header="G56" Command="{Binding SelectCoordCommand}" CommandParameter="G56"/>
+        <MenuItem Header="G57" Command="{Binding SelectCoordCommand}" CommandParameter="G57"/>
+        <MenuItem Header="G58" Command="{Binding SelectCoordCommand}" CommandParameter="G58"/>
+        <MenuItem Header="G59" Command="{Binding SelectCoordCommand}" CommandParameter="G59"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Probing}" Click="OpenProbing_Click"/>
+        <MenuItem Header="{DynamicResource Str.HeightMap}" Click="OpenHeightMap_Click"/>
+        <MenuItem Header="{DynamicResource Str.JogPathCreator}" Click="OpenJogPath_Click"/>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.Machine}">
+        <MenuItem Header="{DynamicResource Str.ComCnc}" Click="OpenSerial_Click"/>
+        <MenuItem Header="{DynamicResource Str.SecondSerial}" Click="OpenSecondSerial_Click"/>
+        <MenuItem Header="{DynamicResource Str.DiyPad}" Click="OpenDiyPad_Click"/>
+        <MenuItem Header="{DynamicResource Str.ThirdSerial}" Click="OpenThirdSerial_Click"/>
+        <MenuItem Header="{DynamicResource Str.RefreshPorts}" Command="{Binding RefreshPortsCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.GrblSetup}" Click="OpenGrblSetup_Click"/>
+        <MenuItem Header="{DynamicResource Str.LaserTools}" Click="OpenLaserTools_Click"/>
+        <MenuItem Header="{DynamicResource Str.Camera}" Click="OpenCamera_Click"/>
+        <MenuItem Header="{DynamicResource Str.Projector}" Click="OpenProjector_Click"/>
+        <MenuItem Header="{DynamicResource Str.Automation}" Click="OpenAutomation_Click"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.StreamFromLine}" Command="{Binding StreamStartFromLineCommand}"/>
+        <MenuItem Header="{DynamicResource Str.SoftReset}" Command="{Binding SoftResetCommand}"/>
+        <MenuItem Header="{DynamicResource Str.KillAlarm}" Command="{Binding KillAlarmCommand}"/>
+        <MenuItem Header="{DynamicResource Str.FeedHold}" Command="{Binding FeedHoldCommand}"/>
+        <MenuItem Header="{DynamicResource Str.CycleStart}" Command="{Binding CycleStartCommand}"/>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.View}">
+        <MenuItem Header="{DynamicResource Str.ShowToolpath}" IsCheckable="True" IsChecked="{Binding ShowToolpath}"/>
+        <MenuItem Header="{DynamicResource Str.ShowRapid}" IsCheckable="True" IsChecked="{Binding ShowRapidMoves}"/>
+        <MenuItem Header="{DynamicResource Str.ShowDimensions}" IsCheckable="True" IsChecked="{Binding ShowDimensionOverlay}"/>
+        <MenuItem Header="{DynamicResource Str.Ruler}" IsCheckable="True" IsChecked="{Binding ShowRuler}"/>
+        <MenuItem Header="{DynamicResource Str.ShowInfoHud}" IsCheckable="True" IsChecked="{Binding ShowInfoHud}"/>
+        <MenuItem Header="{DynamicResource Str.MachineLimits}" IsCheckable="True" IsChecked="{Binding ShowMachineLimits}"/>
+        <MenuItem Header="{DynamicResource Str.ShowFixedArea}" IsCheckable="True" IsChecked="{Binding ShowFixedMachineArea}"/>
+        <MenuItem Header="{DynamicResource Str.ShowToolOverlay}" IsCheckable="True" IsChecked="{Binding ShowToolTableOverlay}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.ResetZoom}" Command="{Binding ResetZoomCommand}"/>
+        <MenuItem Header="{DynamicResource Str.BringToFront}" Click="BringFormsToFront_Click"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.Language}">
+          <MenuItem Header="English" Click="LangEn_Click"/>
+          <MenuItem Header="中文" Click="LangZh_Click"/>
+          <MenuItem Header="Deutsch" Click="LangDe_Click"/>
+        </MenuItem>
+      </MenuItem>
+      <MenuItem Header="{DynamicResource Str.Simulation}">
+        <MenuItem Header="{DynamicResource Str.SimStart}" Command="{Binding SimStartCommand}"/>
+        <MenuItem Header="{DynamicResource Str.SimPause}" Command="{Binding SimPauseCommand}"/>
+        <MenuItem Header="{DynamicResource Str.SimResume}" Command="{Binding SimResumeCommand}"/>
+        <MenuItem Header="{DynamicResource Str.SimStop}" Command="{Binding SimStopCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.SimFaster}" Command="{Binding SimFasterCommand}"/>
+        <MenuItem Header="{DynamicResource Str.SimSlower}" Command="{Binding SimSlowerCommand}"/>
+        <Separator/>
+        <MenuItem Header="{DynamicResource Str.EnableGamepad}" IsCheckable="True" Click="GamePadToggle_Click"/>
+      </MenuItem>
+    </Menu>
+
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBarItem>
+        <Border Style="{StaticResource StatusBanner}" MinWidth="220">
+          <TextBlock Text="{Binding ConnectionText}"/>
+        </Border>
+      </StatusBarItem>
+      <StatusBarItem>
+        <Border Style="{StaticResource StatusBanner}" MinWidth="280">
+          <TextBlock Text="{Binding StatusBanner}"/>
+        </Border>
+      </StatusBarItem>
+      <StatusBarItem HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="{DynamicResource Str.State}" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,4,0"/>
+          <TextBlock Text="{Binding MachineStateText}" Foreground="{StaticResource TextMutedBrush}"/>
+        </StackPanel>
+      </StatusBarItem>
+    </StatusBar>
+
+    <Grid Margin="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="280" MinWidth="240"/>
+        <ColumnDefinition Width="*" MinWidth="360"/>
+        <ColumnDefinition Width="300" MinWidth="260"/>
+      </Grid.ColumnDefinitions>
+
+      <!-- LEFT -->
+      <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+          <!-- Streaming -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.Streaming}" Style="{StaticResource PanelHeader}"/>
+              <TextBlock Text="{Binding StreamInfo}" Foreground="{StaticResource TextMutedBrush}"/>
+              <ProgressBar Height="10" Margin="0,4" Minimum="0" Maximum="100" Value="{Binding StreamProgress}"/>
+              <UniformGrid Columns="3">
+                <Button Content="{DynamicResource Str.Start}" Command="{Binding StreamStartCommand}" IsEnabled="{Binding IsConnected}"/>
+                <Button Content="{DynamicResource Str.Check}" Command="{Binding StreamCheckCommand}" Style="{StaticResource GhostButton}" IsEnabled="{Binding IsConnected}"/>
+                <Button Content="{DynamicResource Str.Stop}" Command="{Binding StreamStopCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <Button Content="{DynamicResource Str.StartAtLine}" Command="{Binding StreamStartFromLineCommand}" Style="{StaticResource GhostButton}"
+                      IsEnabled="{Binding IsConnected}" Margin="0,4,0,0"/>
+              <UniformGrid Columns="2">
+                <Button Content="{DynamicResource Str.PauseHold}" Command="{Binding StreamPauseCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.Resume}" Command="{Binding StreamResumeCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <TextBlock Text="{DynamicResource Str.SimulationPanel}" Margin="0,8,0,2" Foreground="{StaticResource TextMutedBrush}"/>
+              <UniformGrid Columns="4">
+                <Button Content="{DynamicResource Str.SimShort}" Command="{Binding SimStartCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="❚❚" Command="{Binding SimPauseCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="▶" Command="{Binding SimResumeCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="■" Command="{Binding SimStopCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <TextBlock Text="{Binding FileLabel}" Margin="0,4,0,0" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+              <TextBlock Text="{Binding DimensionText, StringFormat=Dim {0}}" Foreground="{StaticResource TextMutedBrush}"/>
+            </StackPanel>
+          </Border>
+
+          <!-- Flow -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.FlowControl}" Style="{StaticResource PanelHeader}"/>
+              <UniformGrid Columns="2">
+                <Button Content="{DynamicResource Str.FeedHold}" Command="{Binding FeedHoldCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.Resume}" Command="{Binding CycleStartCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.KillAlarmBtn}" Command="{Binding KillAlarmCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.Door}" Command="{Binding DoorCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <Button Content="{DynamicResource Str.Reset}" Command="{Binding SoftResetCommand}" Style="{StaticResource DangerButton}" Height="36" FontWeight="Bold"/>
+            </StackPanel>
+          </Border>
+
+          <!-- Overrides -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.Overrides}" Style="{StaticResource PanelHeader}"/>
+              <TextBlock Text="{Binding OvFeed, StringFormat=Feed {0}%}" />
+              <UniformGrid Columns="5">
+                <Button Content="−10" Command="{Binding OvFeedMinusCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="−1" Command="{Binding OvFeedMinusFineCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="100%" Command="{Binding OvFeedResetCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="+1" Command="{Binding OvFeedPlusFineCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="+10" Command="{Binding OvFeedPlusCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <TextBlock Text="{Binding OvRapid, StringFormat=Rapid {0}%}" Margin="0,6,0,0"/>
+              <UniformGrid Columns="3">
+                <Button Content="25%" Command="{Binding OvRapid25Command}" Style="{StaticResource GhostButton}"/>
+                <Button Content="50%" Command="{Binding OvRapid50Command}" Style="{StaticResource GhostButton}"/>
+                <Button Content="100%" Command="{Binding OvRapid100Command}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <TextBlock Text="{Binding OvSpindle, StringFormat=Spindle {0}%}" Margin="0,6,0,0"/>
+              <UniformGrid Columns="5">
+                <Button Content="−10" Command="{Binding OvSpindleMinusCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="−1" Command="{Binding OvSpindleMinusFineCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="100%" Command="{Binding OvSpindleResetCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="+1" Command="{Binding OvSpindlePlusFineCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="+10" Command="{Binding OvSpindlePlusCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <UniformGrid Columns="4" Margin="0,6,0,0">
+                <Button Content="M3" Command="{Binding SpindleCwCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="M5" Command="{Binding SpindleStopCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="M7" Command="{Binding CoolantMistCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="M8" Command="{Binding CoolantFloodCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <Button Content="{DynamicResource Str.CoolantOff}" Command="{Binding CoolantOffCommand}" Style="{StaticResource GhostButton}" Margin="0,4,0,0"/>
+              <TextBlock Text="{DynamicResource Str.DigitalOuts}" Margin="0,6,0,2" Foreground="{StaticResource TextMutedBrush}"/>
+              <UniformGrid Columns="4">
+                <Button Content="D0+" Command="{Binding DigitalOutOnCommand}" CommandParameter="0" Style="{StaticResource GhostButton}"/>
+                <Button Content="D1+" Command="{Binding DigitalOutOnCommand}" CommandParameter="1" Style="{StaticResource GhostButton}"/>
+                <Button Content="D2+" Command="{Binding DigitalOutOnCommand}" CommandParameter="2" Style="{StaticResource GhostButton}"/>
+                <Button Content="D3+" Command="{Binding DigitalOutOnCommand}" CommandParameter="3" Style="{StaticResource GhostButton}"/>
+                <Button Content="D0−" Command="{Binding DigitalOutOffCommand}" CommandParameter="0" Style="{StaticResource GhostButton}"/>
+                <Button Content="D1−" Command="{Binding DigitalOutOffCommand}" CommandParameter="1" Style="{StaticResource GhostButton}"/>
+                <Button Content="D2−" Command="{Binding DigitalOutOffCommand}" CommandParameter="2" Style="{StaticResource GhostButton}"/>
+                <Button Content="D3−" Command="{Binding DigitalOutOffCommand}" CommandParameter="3" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+
+          <!-- Origin -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.SetOriginXy}" Style="{StaticResource PanelHeader}"/>
+              <UniformGrid Columns="3">
+                <Button Content="TL" Command="{Binding SetOriginCornerCommand}" CommandParameter="TopLeft" Style="{StaticResource GhostButton}"/>
+                <Button Content="TC" Command="{Binding SetOriginCornerCommand}" CommandParameter="TopCenter" Style="{StaticResource GhostButton}"/>
+                <Button Content="TR" Command="{Binding SetOriginCornerCommand}" CommandParameter="TopRight" Style="{StaticResource GhostButton}"/>
+                <Button Content="ML" Command="{Binding SetOriginCornerCommand}" CommandParameter="MidLeft" Style="{StaticResource GhostButton}"/>
+                <Button Content="C" Command="{Binding SetOriginCornerCommand}" CommandParameter="Center" Style="{StaticResource GhostButton}"/>
+                <Button Content="MR" Command="{Binding SetOriginCornerCommand}" CommandParameter="MidRight" Style="{StaticResource GhostButton}"/>
+                <Button Content="BL" Command="{Binding SetOriginCornerCommand}" CommandParameter="BotLeft" Style="{StaticResource GhostButton}"/>
+                <Button Content="BC" Command="{Binding SetOriginCornerCommand}" CommandParameter="BotCenter" Style="{StaticResource GhostButton}"/>
+                <Button Content="BR" Command="{Binding SetOriginCornerCommand}" CommandParameter="BotRight" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+
+          <!-- Transform -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.TransformPanel}" Style="{StaticResource PanelHeader}"/>
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="{DynamicResource Str.Scale}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding TransformScale}"/>
+                <TextBlock Grid.Row="1" Text="Rot°" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TransformRotate}"/>
+                <TextBlock Grid.Row="2" Text="dX" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TransformDx}"/>
+                <TextBlock Grid.Row="3" Text="dY" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding TransformDy}"/>
+              </Grid>
+              <CheckBox Content="{DynamicResource Str.UseOrigin00}" IsChecked="{Binding UseAbsoluteOrigin}" Margin="0,4,0,0"/>
+              <Grid Margin="0,4,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="Sx" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding TransformScaleX}"/>
+                <TextBlock Grid.Row="1" Text="Sy" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TransformScaleY}"/>
+                <TextBlock Grid.Row="2" Text="Ørot" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RotaryDiameter}"/>
+                <TextBlock Grid.Row="3" Text="Rcomp" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RadiusComp}"/>
+              </Grid>
+              <Grid Margin="0,4,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="W→" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding TransformTargetWidth}"/>
+                <Button Grid.Column="2" Content="W" Command="{Binding TransformScaleToWidthCommand}" Style="{StaticResource GhostButton}" Margin="4,0,0,0" MinWidth="32"/>
+                <TextBlock Grid.Row="1" Text="H→" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TransformTargetHeight}"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="H" Command="{Binding TransformScaleToHeightCommand}" Style="{StaticResource GhostButton}" Margin="4,0,0,0" MinWidth="32"/>
+              </Grid>
+              <UniformGrid Columns="3" Margin="0,4,0,0">
+                <Button Content="{DynamicResource Str.Scale}" Command="{Binding ApplyScaleTransformCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.Rotate}" Command="{Binding ApplyRotateTransformCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.Move}" Command="{Binding ApplyTranslateTransformCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.MirX}" Command="{Binding TransformMirrorXCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.MirY}" Command="{Binding TransformMirrorYCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.MirRot}" Command="{Binding TransformMirrorRotaryCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="Y→°" Command="{Binding TransformScaleYToRotaryCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="Rcomp" Command="{Binding TransformRadiusCompCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.RevShort}" Command="{Binding TransformReverseCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+
+          <!-- Custom buttons 1–16 -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.CustomButtons}" Style="{StaticResource PanelHeader}"/>
+              <ItemsControl ItemsSource="{Binding CustomButtons}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" Rows="4"/>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Button Content="{Binding Label}" Command="{Binding DataContext.RunCustomCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            CommandParameter="{Binding}" Style="{StaticResource GhostButton}" Margin="1" FontSize="11"
+                            ToolTip="{Binding Code}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+          </Border>
+
+          <!-- Editor (AvalonEdit) -->
+          <Border Style="{StaticResource PanelBorder}" MinHeight="220">
+            <DockPanel>
+              <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.GCode}" Style="{StaticResource PanelHeader}"/>
+              <StackPanel DockPanel.Dock="Bottom" Margin="0,4,0,0">
+                <UniformGrid Columns="2">
+                  <Button Content="{DynamicResource Str.ApplyReparse}" Command="{Binding ApplyEditorCommand}"/>
+                  <Button Content="{DynamicResource Str.Update2dView}" Command="{Binding ApplyEditorCommand}" Style="{StaticResource GhostButton}"/>
+                </UniformGrid>
+                <UniformGrid Columns="4" Margin="0,2,0,0">
+                  <Button Content="{DynamicResource Str.Fold1}" Click="FoldLevel1_Click" Style="{StaticResource GhostButton}" FontSize="10"/>
+                  <Button Content="{DynamicResource Str.Fold2}" Click="FoldLevel2_Click" Style="{StaticResource GhostButton}" FontSize="10"/>
+                  <Button Content="{DynamicResource Str.Fold3}" Click="FoldLevel3_Click" Style="{StaticResource GhostButton}" FontSize="10"/>
+                  <Button Content="{DynamicResource Str.Expand}" Click="FoldExpand_Click" Style="{StaticResource GhostButton}" FontSize="10"/>
+                </UniformGrid>
+              </StackPanel>
+              <avalonedit:TextEditor x:Name="CodeEditor"
+                                     FontFamily="Consolas" FontSize="11"
+                                     ShowLineNumbers="True"
+                                     WordWrap="False"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Background="{StaticResource BgDeepBrush}"
+                                     Foreground="{StaticResource TextBrush}">
+                <avalonedit:TextEditor.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="{DynamicResource Str.SendMarkedLine}" Click="SendEditorLine_Click"/>
+                    <MenuItem Header="{DynamicResource Str.FindReplace}" Click="FindReplace_Click"/>
+                    <MenuItem Header="{DynamicResource Str.InsertPenUp}" Command="{Binding InsertPenUpCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.InsertPenDown}" Command="{Binding InsertPenDownCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.CommentUnknown}" Command="{Binding CommentUnknownGCodeCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.SortById}" Command="{Binding SortBlocksByCommand}" CommandParameter="Id"/>
+                    <MenuItem Header="{DynamicResource Str.SortByColor}" Command="{Binding SortBlocksByCommand}" CommandParameter="Color"/>
+                    <MenuItem Header="{DynamicResource Str.SortByLayer}" Command="{Binding SortBlocksByCommand}" CommandParameter="Layer"/>
+                    <MenuItem Header="{DynamicResource Str.SortByType}" Command="{Binding SortBlocksByCommand}" CommandParameter="Type"/>
+                    <MenuItem Header="{DynamicResource Str.SortByGeometry}" Command="{Binding SortBlocksByCommand}" CommandParameter="Geometry"/>
+                    <MenuItem Header="{DynamicResource Str.SortByTool}" Command="{Binding SortBlocksByCommand}" CommandParameter="Tool"/>
+                    <MenuItem Header="{DynamicResource Str.SortBySize}" Command="{Binding SortBlocksByCommand}" CommandParameter="Size"/>
+                    <MenuItem Header="{DynamicResource Str.SortByArea}" Command="{Binding SortBlocksByCommand}" CommandParameter="Area"/>
+                    <MenuItem Header="{DynamicResource Str.SortByDistance}" Command="{Binding SortBlocksByCommand}" CommandParameter="Distance"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.RemoveGroupTags}" Command="{Binding RemoveXmlTagsCommand}" CommandParameter="group"/>
+                    <MenuItem Header="{DynamicResource Str.RemoveAllXml}" Command="{Binding RemoveXmlTagsCommand}" CommandParameter="all"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.FoldLevel1}" Click="FoldLevel1_Click"/>
+                    <MenuItem Header="{DynamicResource Str.FoldLevel2}" Click="FoldLevel2_Click"/>
+                    <MenuItem Header="{DynamicResource Str.FoldLevel3}" Click="FoldLevel3_Click"/>
+                    <MenuItem Header="{DynamicResource Str.ExpandAll}" Click="FoldExpand_Click"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.ApplyReparse}" Command="{Binding ApplyEditorCommand}"/>
+                  </ContextMenu>
+                </avalonedit:TextEditor.ContextMenu>
+              </avalonedit:TextEditor>
+            </DockPanel>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+
+      <!-- CENTER -->
+      <Grid Grid.Column="1" Margin="4,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- DRO -->
+        <Border Style="{StaticResource PanelBorder}" Grid.Row="0">
+          <DockPanel>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+              <Button Content="{DynamicResource Str.HomeBtn}" Command="{Binding HomeMachineCommand}" Width="72"/>
+              <Button Content="{DynamicResource Str.ZeroXy}" Command="{Binding ZeroXyCommand}" Style="{StaticResource GhostButton}"/>
+              <Button Content="{DynamicResource Str.ZeroXyz}" Command="{Binding ZeroXyzCommand}" Style="{StaticResource GhostButton}"/>
+            </StackPanel>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/><RowDefinition/>
+              </Grid.RowDefinitions>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="X" VerticalAlignment="Center" FontWeight="Bold"/>
+              <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding WorkX}" Style="{StaticResource DroValue}"/>
+              <TextBlock Grid.Row="0" Grid.Column="2" Text="Y" VerticalAlignment="Center" FontWeight="Bold"/>
+              <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding WorkY}" Style="{StaticResource DroValue}"/>
+              <TextBlock Grid.Row="0" Grid.Column="4" Text="Z" VerticalAlignment="Center" FontWeight="Bold"/>
+              <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding WorkZ}" Style="{StaticResource DroValue}"/>
+              <TextBlock Grid.Row="0" Grid.Column="6" Text="A" VerticalAlignment="Center" FontWeight="Bold" Visibility="{Binding AxisAVisibility}"/>
+              <TextBlock Grid.Row="0" Grid.Column="7" Text="{Binding WorkA}" Style="{StaticResource DroValue}" Visibility="{Binding AxisAVisibility}"/>
+              <TextBlock Grid.Row="0" Grid.Column="8" Text="B" VerticalAlignment="Center" FontWeight="Bold" Visibility="{Binding AxisBVisibility}"/>
+              <TextBlock Grid.Row="0" Grid.Column="9" Text="{Binding WorkB}" Style="{StaticResource DroValue}" Visibility="{Binding AxisBVisibility}"/>
+              <TextBlock Grid.Row="0" Grid.Column="10" Text="C" VerticalAlignment="Center" FontWeight="Bold" Visibility="{Binding AxisCVisibility}"/>
+              <TextBlock Grid.Row="0" Grid.Column="11" Text="{Binding WorkC}" Style="{StaticResource DroValue}" Visibility="{Binding AxisCVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="mX" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding MachineX}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas"/>
+              <TextBlock Grid.Row="1" Grid.Column="2" Text="mY" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding MachineY}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas"/>
+              <TextBlock Grid.Row="1" Grid.Column="4" Text="mZ" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding MachineZ}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas"/>
+              <TextBlock Grid.Row="1" Grid.Column="6" Text="mA" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" Visibility="{Binding AxisAVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="7" Text="{Binding MachineA}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas" Visibility="{Binding AxisAVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="8" Text="mB" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" Visibility="{Binding AxisBVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="9" Text="{Binding MachineB}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas" Visibility="{Binding AxisBVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="10" Text="mC" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" Visibility="{Binding AxisCVisibility}"/>
+              <TextBlock Grid.Row="1" Grid.Column="11" Text="{Binding MachineC}" Foreground="{StaticResource TextMutedBrush}" FontFamily="Consolas" Visibility="{Binding AxisCVisibility}"/>
+            </Grid>
+          </DockPanel>
+        </Border>
+
+        <!-- Workspace -->
+        <Border Style="{StaticResource PanelBorder}" Grid.Row="1" Padding="2">
+          <Grid Background="{StaticResource BgDeepBrush}"
+                MouseWheel="PreviewHost_MouseWheel"
+                MouseLeftButtonDown="PreviewHost_MouseLeftButtonDown"
+                MouseLeftButtonUp="PreviewHost_MouseLeftButtonUp"
+                MouseMove="PreviewHost_MouseMove">
+            <Image Source="{Binding PlaceholderImage}" Stretch="Uniform"
+                   Visibility="{Binding ShowPlaceholder, Converter={StaticResource BoolToVis}}"/>
+            <Viewbox Stretch="Uniform" Margin="12">
+              <Canvas Width="{Binding PreviewWidth}" Height="{Binding PreviewHeight}"
+                      Background="Transparent"
+                      MouseLeftButtonDown="PreviewCanvas_MouseLeftButtonDown"
+                      MouseRightButtonDown="PreviewCanvas_MouseRightButtonDown">
+                <Canvas.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="{Binding ViewZoom}" ScaleY="{Binding ViewZoom}"/>
+                    <TranslateTransform X="{Binding ViewPanX}" Y="{Binding ViewPanY}"/>
+                  </TransformGroup>
+                </Canvas.RenderTransform>
+                <Canvas.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="{DynamicResource Str.ReloadLastFile}" Command="{Binding ReloadLastFileCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.PasteClipboard}" Command="{Binding PasteFromClipboardCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.ResetZoom}" Command="{Binding ResetZoomCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.DeleteSelectedPath}" Command="{Binding PathDeleteSelectedCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.DuplicateSelectedPath}" Command="{Binding PathDuplicateSelectedCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.CropToSelected}" Command="{Binding PathCropSelectedCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.ReverseSelectedPath}" Command="{Binding PathReverseSelectedCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.RotateSelected90}" Command="{Binding PathRotateSelectedCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.PathProperties}" Command="{Binding ShowPathPropertiesCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.MarkFirstPoint}" Command="{Binding MarkFirstPointOfSelectionCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.SetMarkerHere}" Click="SetMarkerHere_Click"/>
+                    <MenuItem Header="{DynamicResource Str.G0ToMarker}" Command="{Binding MarkerMoveG0Command}"/>
+                    <MenuItem Header="{DynamicResource Str.ZeroXyAtMarker}" Command="{Binding MarkerZeroXyCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.OffsetMarkerToZero}" Command="{Binding OffsetGraphicsMarkerToZeroCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.OffsetMarkerToTool}" Command="{Binding OffsetGraphicsMarkerToToolCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.ApplyLastTransform}" Command="{Binding ApplyLastTransformCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="{DynamicResource Str.CopyPreview}" Command="{Binding CopyPreviewToClipboardCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.SetGCodeBackground}" Command="{Binding SetGCodeAsBackgroundCommand}"/>
+                    <MenuItem Header="{DynamicResource Str.ClearBackground}" Command="{Binding ClearBackgroundCommand}"/>
+                  </ContextMenu>
+                </Canvas.ContextMenu>
+                <Path Stroke="#FF3A4A58" StrokeThickness="0.6" Data="{Binding RulerGridGeometry}"
+                      Visibility="{Binding RulerVisibility}" Opacity="0.85"/>
+                <Path Stroke="#FFA8B8C8" StrokeThickness="1.15" Data="{Binding RulerGeometry}"
+                      Visibility="{Binding RulerVisibility}"/>
+                <ItemsControl ItemsSource="{Binding RulerLabels}" Visibility="{Binding RulerVisibility}"
+                              IsHitTestVisible="False">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <Canvas/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                      <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                      <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                    </Style>
+                  </ItemsControl.ItemContainerStyle>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock Text="{Binding Text}" Foreground="#FFD0DAE4" FontSize="10"
+                                 FontFamily="Consolas" FontWeight="SemiBold"/>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Path Stroke="#FFFF7A7A" StrokeThickness="1.2" StrokeDashArray="4 2" Data="{Binding LimitsGeometry}"
+                      Visibility="{Binding LimitsVisibility}"/>
+                <Path Stroke="#FF5A6A7A" StrokeThickness="1.0" Data="{Binding BackgroundGeometry}"
+                      Visibility="{Binding BackgroundVisibility}" Opacity="0.65"/>
+                <Path Stroke="#FF7DDA95" StrokeThickness="1.4" Data="{Binding ToolpathGeometry}"
+                      Visibility="{Binding ToolpathVisibility}"/>
+                <Path Stroke="#FF6EC4D8" StrokeThickness="1.0" StrokeDashArray="2 2" Data="{Binding RapidGeometry}"
+                      Visibility="{Binding RapidVisibility}"/>
+                <Path Stroke="#FFFFC857" StrokeThickness="2.4" Data="{Binding SelectionGeometry}"
+                      Visibility="{Binding SelectionVisibility}"/>
+                <Path Stroke="#FFE0B86A" StrokeThickness="1.5" Data="{Binding ToolTableGeometry}"
+                      Visibility="{Binding ToolTableVisibility}"/>
+                <TextBlock Text="{Binding InfoHudText}" Foreground="{StaticResource TextMutedBrush}" FontSize="11"
+                           FontWeight="SemiBold" Canvas.Left="40" Canvas.Top="4" Visibility="{Binding InfoHudVisibility}"/>
+                <TextBlock Text="{Binding DimensionText}" Foreground="{StaticResource TextMutedBrush}" FontSize="11"
+                           Canvas.Left="40" Canvas.Top="20" Visibility="{Binding DimensionVisibility}"/>
+                <Ellipse Width="10" Height="10" Fill="#FFFF6B6B" Stroke="#FF1A1F26" StrokeThickness="1"
+                         Visibility="{Binding MarkerVisibility}"
+                         Canvas.Left="{Binding MarkerCanvasX}" Canvas.Top="{Binding MarkerCanvasY}"
+                         Margin="-5,-5,0,0"/>
+                <!-- Live tool tip: Simulation position OR Run/jog work position from GRBL status -->
+                <Ellipse Width="10" Height="10" Fill="#FFE6C35C" Stroke="#FF1A1F26" StrokeThickness="1"
+                         Visibility="{Binding SimMarkerVisibility}"
+                         Canvas.Left="{Binding SimX}" Canvas.Top="{Binding SimY}"
+                         Margin="-5,-5,0,0"
+                         ToolTip="{DynamicResource Str.ToolPositionTip}"/>
+              </Canvas>
+            </Viewbox>
+          </Grid>
+        </Border>
+
+        <!-- Mode row -->
+        <Border Style="{StaticResource PanelBorder}" Grid.Row="2">
+          <StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <RadioButton Content="{DynamicResource Str.ModeEdit}" IsChecked="{Binding ModeEdit, Mode=TwoWay}" GroupName="mode"/>
+              <RadioButton Content="{DynamicResource Str.ModeJogFigure}" IsChecked="{Binding ModeJogFigure, Mode=TwoWay}" GroupName="mode" Margin="12,0,0,0"/>
+              <RadioButton Content="{DynamicResource Str.ModeJogClick}" IsChecked="{Binding ModeJogClick, Mode=TwoWay}" GroupName="mode" Margin="12,0,0,0"/>
+              <CheckBox Content="{DynamicResource Str.AddImported}" IsChecked="{Binding AddImportedToView, Mode=TwoWay}" Margin="16,0,0,0"/>
+            </StackPanel>
+            <DockPanel Margin="0,6,0,0">
+              <Button DockPanel.Dock="Right" Content="{DynamicResource Str.Load}" Command="{Binding LoadFromUrlCommand}" MinWidth="64" Margin="6,0,0,0"/>
+              <TextBox ToolTip="Paste file path or http(s) URL of SVG / DXF"
+                       Text="{Binding UrlPaste, UpdateSourceTrigger=PropertyChanged}"/>
+            </DockPanel>
+          </StackPanel>
+        </Border>
+      </Grid>
+
+      <!-- RIGHT -->
+      <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+          <Border Style="{StaticResource PanelBorder}">
+            <TabControl>
+              <TabItem Header="{DynamicResource Str.Laser}">
+                <StackPanel Margin="4">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="70"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                    <TextBlock Text="{DynamicResource Str.Power}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding LaserPower}"/>
+                    <TextBlock Grid.Row="1" Text="{DynamicResource Str.Speed}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LaserSpeed}"/>
+                    <TextBlock Grid.Row="2" Text="{DynamicResource Str.Passes}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding LaserPasses}"/>
+                  </Grid>
+                  <CheckBox Content="{DynamicResource Str.AirAssist}" IsChecked="{Binding AirAssist}" Margin="0,6,0,0"/>
+                  <UniformGrid Columns="2" Margin="0,6,0,0">
+                    <Button Content="{DynamicResource Str.LaserOn}" Command="{Binding LaserOnCommand}"/>
+                    <Button Content="{DynamicResource Str.LaserOff}" Command="{Binding LaserOffCommand}" Style="{StaticResource GhostButton}"/>
+                  </UniformGrid>
+                  <Button Content="{DynamicResource Str.ApplyDefaults}" Command="{Binding ApplyLaserDefaultsCommand}" Style="{StaticResource GhostButton}"/>
+                </StackPanel>
+              </TabItem>
+              <TabItem Header="{DynamicResource Str.Plotter}">
+                <StackPanel Margin="4">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="70"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                    <TextBlock Text="{DynamicResource Str.ZUp}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding PlotterZUp}"/>
+                    <TextBlock Grid.Row="1" Text="{DynamicResource Str.ZDown}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PlotterZDown}"/>
+                    <TextBlock Grid.Row="2" Text="{DynamicResource Str.Speed}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PlotterSpeed}"/>
+                  </Grid>
+                  <UniformGrid Columns="4" Margin="0,6,0,0">
+                    <Button Content="{DynamicResource Str.Up}" Command="{Binding PenUpCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.Down}" Command="{Binding PenDownCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.Zero}" Command="{Binding PenZeroCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.Dot}" Command="{Binding PenDotCommand}" Style="{StaticResource GhostButton}"/>
+                  </UniformGrid>
+                  <Button Content="{DynamicResource Str.ApplyDefaults}" Command="{Binding ApplyPlotterDefaultsCommand}" Margin="0,6,0,0" Style="{StaticResource GhostButton}"/>
+                </StackPanel>
+              </TabItem>
+              <TabItem Header="{DynamicResource Str.Tools}">
+                <StackPanel Margin="4">
+                  <ListBox ItemsSource="{Binding Tools}" SelectedItem="{Binding SelectedTool}" Height="100"
+                           DisplayMemberPath="Name"/>
+                  <UniformGrid Columns="2" Margin="0,4,0,0">
+                    <Button Content="{DynamicResource Str.LoadCsv}" Command="{Binding LoadToolListCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.SaveCsv}" Command="{Binding SaveToolListCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.ByColor}" Command="{Binding GroupToolsByColorCommand}" Style="{StaticResource GhostButton}"/>
+                    <Button Content="{DynamicResource Str.ApplyT}" Command="{Binding ApplySelectedToolCommand}" Style="{StaticResource GhostButton}"/>
+                  </UniformGrid>
+                </StackPanel>
+              </TabItem>
+              <TabItem Header="{DynamicResource Str.Router}">
+                <StackPanel Margin="4">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="70"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                    <TextBlock Text="F XY" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding RouterSpeedXy}"/>
+                    <TextBlock Grid.Row="1" Text="F Z" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RouterSpeedZ}"/>
+                    <TextBlock Grid.Row="2" Text="{DynamicResource Str.Depth}" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RouterDepth}"/>
+                  </Grid>
+                  <Button Content="{DynamicResource Str.ApplyDefaults}" Command="{Binding ApplyRouterDefaultsCommand}" Margin="0,6,0,0" Style="{StaticResource GhostButton}"/>
+                </StackPanel>
+              </TabItem>
+            </TabControl>
+          </Border>
+
+          <!-- Move to graphic -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.MoveToGraphic}" Style="{StaticResource PanelHeader}"/>
+              <UniformGrid Columns="3">
+                <Button Content="TL" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="TL" Style="{StaticResource GhostButton}"/>
+                <Button Content="TC" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="TC" Style="{StaticResource GhostButton}"/>
+                <Button Content="TR" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="TR" Style="{StaticResource GhostButton}"/>
+                <Button Content="ML" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="ML" Style="{StaticResource GhostButton}"/>
+                <Button Content="C" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="C" Style="{StaticResource GhostButton}"/>
+                <Button Content="MR" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="MR" Style="{StaticResource GhostButton}"/>
+                <Button Content="BL" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="BL" Style="{StaticResource GhostButton}"/>
+                <Button Content="BC" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="BC" Style="{StaticResource GhostButton}"/>
+                <Button Content="BR" Command="{Binding MoveToGraphicCornerCommand}" CommandParameter="BR" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <Button Content="{DynamicResource Str.Framing}" Command="{Binding FrameGraphicCommand}" Margin="0,4,0,0"/>
+            </StackPanel>
+          </Border>
+
+          <!-- Move to zero -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.MoveToZero}" Style="{StaticResource PanelHeader}"/>
+              <CheckBox Content="{DynamicResource Str.UseG0}" IsChecked="{Binding MoveUseG0}" Margin="0,0,0,4"/>
+              <UniformGrid Columns="3">
+                <Button Content="X=0" Command="{Binding MoveAxisToZeroCommand}" CommandParameter="X" Style="{StaticResource GhostButton}"/>
+                <Button Content="Y=0" Command="{Binding MoveAxisToZeroCommand}" CommandParameter="Y" Style="{StaticResource GhostButton}"/>
+                <Button Content="Z=0" Command="{Binding MoveAxisToZeroCommand}" CommandParameter="Z" Style="{StaticResource GhostButton}"/>
+                <Button Content="XY=0" Command="{Binding MoveAxisToZeroCommand}" CommandParameter="XY" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.StopJog}" Command="{Binding JogCancelCommand}" Style="{StaticResource DangerButton}"/>
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+
+          <!-- Jog -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.Jog}" Style="{StaticResource PanelHeader}"/>
+              <Grid Margin="0,0,0,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="60"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <TextBlock Text="{DynamicResource Str.Step}" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding JogStep}"/>
+                <TextBlock Grid.Row="1" Text="{DynamicResource Str.Feed}" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding JogFeed}"/>
+              </Grid>
+              <UniformGrid Columns="3">
+                <Button Content="↖" Command="{Binding JogCommand}" CommandParameter="X-Y+" Style="{StaticResource GhostButton}"/>
+                <Button Content="Y+" Command="{Binding JogCommand}" CommandParameter="Y+"/>
+                <Button Content="↗" Command="{Binding JogCommand}" CommandParameter="X+Y+" Style="{StaticResource GhostButton}"/>
+                <Button Content="X-" Command="{Binding JogCommand}" CommandParameter="X-"/>
+                <Button Content="{DynamicResource Str.Cancel}" Command="{Binding JogCancelCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="X+" Command="{Binding JogCommand}" CommandParameter="X+"/>
+                <Button Content="↙" Command="{Binding JogCommand}" CommandParameter="X-Y-" Style="{StaticResource GhostButton}"/>
+                <Button Content="Y-" Command="{Binding JogCommand}" CommandParameter="Y-"/>
+                <Button Content="↘" Command="{Binding JogCommand}" CommandParameter="X+Y-" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <UniformGrid Columns="2" Margin="0,6,0,0">
+                <Button Content="Z+" Command="{Binding JogCommand}" CommandParameter="Z+"/>
+                <Button Content="Z-" Command="{Binding JogCommand}" CommandParameter="Z-"/>
+              </UniformGrid>
+              <UniformGrid Columns="2" Margin="0,6,0,0" Visibility="{Binding AxisAVisibility}">
+                <Button Content="A+" Command="{Binding JogCommand}" CommandParameter="A+"/>
+                <Button Content="A-" Command="{Binding JogCommand}" CommandParameter="A-"/>
+              </UniformGrid>
+              <UniformGrid Columns="2" Margin="0,4,0,0" Visibility="{Binding AxisBVisibility}">
+                <Button Content="B+" Command="{Binding JogCommand}" CommandParameter="B+"/>
+                <Button Content="B-" Command="{Binding JogCommand}" CommandParameter="B-"/>
+              </UniformGrid>
+              <UniformGrid Columns="2" Margin="0,4,0,0" Visibility="{Binding AxisCVisibility}">
+                <Button Content="C+" Command="{Binding JogCommand}" CommandParameter="C+"/>
+                <Button Content="C-" Command="{Binding JogCommand}" CommandParameter="C-"/>
+              </UniformGrid>
+              <UniformGrid Columns="3" Margin="0,6,0,0">
+                <Button Content="{DynamicResource Str.ZeroX}" Command="{Binding ZeroXCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.ZeroY}" Command="{Binding ZeroYCommand}" Style="{StaticResource GhostButton}"/>
+                <Button Content="{DynamicResource Str.ZeroZ}" Command="{Binding ZeroZCommand}" Style="{StaticResource GhostButton}"/>
+              </UniformGrid>
+              <UniformGrid Columns="3" Margin="0,4,0,0">
+                <Button Content="{DynamicResource Str.ZeroA}" Command="{Binding ZeroACommand}" Style="{StaticResource GhostButton}" Visibility="{Binding AxisAVisibility}"/>
+                <Button Content="{DynamicResource Str.ZeroB}" Command="{Binding ZeroBCommand}" Style="{StaticResource GhostButton}" Visibility="{Binding AxisBVisibility}"/>
+                <Button Content="{DynamicResource Str.ZeroC}" Command="{Binding ZeroCCommand}" Style="{StaticResource GhostButton}" Visibility="{Binding AxisCVisibility}"/>
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+
+          <!-- Quick COM -->
+          <Border Style="{StaticResource PanelBorder}">
+            <StackPanel>
+              <TextBlock Text="{DynamicResource Str.ComPanel}" Style="{StaticResource PanelHeader}"/>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/><ColumnDefinition Width="90"/><ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox ItemsSource="{Binding Ports}" SelectedItem="{Binding SelectedPort}"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding BaudRates}" SelectedItem="{Binding SelectedBaud}" Margin="4,0"/>
+                <Button Grid.Column="2" Content="{Binding IsConnected, Converter={StaticResource ConnLabel}}" Command="{Binding ConnectToggleCommand}" MinWidth="64"/>
+              </Grid>
+              <Button Content="{DynamicResource Str.ScanPorts}" Command="{Binding RefreshPortsCommand}" Style="{StaticResource GhostButton}" Margin="0,4,0,0"/>
+              <Button Content="{DynamicResource Str.OpenFullCom}" Click="OpenSerial_Click" Style="{StaticResource GhostButton}"/>
+            </StackPanel>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+  </DockPanel>
+</Window>

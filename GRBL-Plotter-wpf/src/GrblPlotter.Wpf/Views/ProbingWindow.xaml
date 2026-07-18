@@ -1,0 +1,75 @@
+<Window x:Class="GrblPlotter.Wpf.Views.ProbingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource Str.ProbingTitle}"
+        Height="600" Width="420"
+        Icon="/Assets/Icon.ico"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Str.ProbingHeader}" Style="{StaticResource PanelHeader}" FontSize="15" Margin="4,0,0,8"/>
+
+    <Border DockPanel.Dock="Bottom" Style="{StaticResource PanelBorder}">
+      <StackPanel>
+        <TextBlock Text="Probe log ([PRB:...] results)" Style="{StaticResource PanelHeader}"/>
+        <ListBox Height="120" ItemsSource="{Binding Log}" FontFamily="Consolas" FontSize="11"
+                  Background="{StaticResource BgDeepBrush}" Foreground="{StaticResource TextBrush}"
+                  BorderBrush="{StaticResource BorderBrushKey}"/>
+        <Button Content="Clear log" Command="{Binding ClearLogCommand}" Style="{StaticResource GhostButton}" Margin="0,4,0,0"/>
+      </StackPanel>
+    </Border>
+
+    <StackPanel>
+      <Border Style="{StaticResource PanelBorder}">
+        <StackPanel>
+          <TextBlock Text="Probe parameters" Style="{StaticResource PanelHeader}"/>
+          <Grid>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+            <TextBlock Text="Feed (probe)" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Feed}"/>
+            <TextBlock Grid.Row="1" Text="Max travel dist." VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ProbeDistance}"/>
+            <TextBlock Grid.Row="2" Text="Retract after touch" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Retract}"/>
+            <TextBlock Grid.Row="3" Text="Edge / block size" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding EdgeSize}"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource PanelBorder}">
+        <StackPanel>
+          <TextBlock Text="Single axis probe (G38.2)" Style="{StaticResource PanelHeader}"/>
+          <UniformGrid Columns="3">
+            <Button Content="X-" Command="{Binding ProbeXNegCommand}" Style="{StaticResource GhostButton}"/>
+            <Button Content="Z down" Command="{Binding ProbeZDownCommand}"/>
+            <Button Content="X+" Command="{Binding ProbeXPosCommand}" Style="{StaticResource GhostButton}"/>
+            <Button Content="Y-" Command="{Binding ProbeYNegCommand}" Style="{StaticResource GhostButton}"/>
+            <Button Content="" IsEnabled="False" Style="{StaticResource GhostButton}"/>
+            <Button Content="Y+" Command="{Binding ProbeYPosCommand}" Style="{StaticResource GhostButton}"/>
+          </UniformGrid>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource PanelBorder}">
+        <StackPanel>
+          <TextBlock Text="Guided sequences" Style="{StaticResource PanelHeader}"/>
+          <UniformGrid Columns="2">
+            <Button Content="Center XY (4-touch)" Command="{Binding ProbeCenterXyCommand}"/>
+            <Button Content="Corner XYZ" Command="{Binding ProbeCornerXyzCommand}"/>
+          </UniformGrid>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource PanelBorder}">
+        <StackPanel>
+          <TextBlock Text="Result" Style="{StaticResource PanelHeader}"/>
+          <TextBlock Text="{Binding LastResultText}" FontFamily="Consolas" TextWrapping="Wrap"/>
+          <CheckBox Content="Set WCO after probe" IsChecked="{Binding SetWcoAfterProbe}" Margin="0,6,0,0"/>
+          <Button Content="Zero Z at current position (G10 L20 P0 Z0)" Command="{Binding ZeroAtLastResultCommand}" Margin="0,6,0,0"/>
+          <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextMutedBrush}" Margin="0,6,0,0" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </DockPanel>
+</Window>
