@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ToolPositions Device="Plotter" Amount="12">
+  <ToolChange ScriptDelay="0.1" Off-X="-165.992" Off-Y="-186.002" Off-Z="-21" Off-A="0">
+    <Description>
+      Tool change setup for pens, arranged along the x-axis, as shown in the video
+      https://youtu.be/9iofjVE7zfY
+    </Description>
+    <ToolChangeCmdGripperOpen>M3 S2 G4 P0.5</ToolChangeCmdGripperOpen>
+    <ToolChangeCmdGripperClose>M3 S25 G4 P0.5</ToolChangeCmdGripperClose>
+    <ToolChangeScriptPut>data\scripts\script_pen_v1810_remove.nc</ToolChangeScriptPut>
+    <ToolChangeScriptSelect>data\scripts\</ToolChangeScriptSelect>
+    <ToolChangeScriptGet>data\scripts\script_pen_v1810_pickup.nc</ToolChangeScriptGet>
+    <ToolChangeScriptProbe>data\scripts\</ToolChangeScriptProbe>
+  </ToolChange>
+  <Tool Nr="1" X="0" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="2" X="15" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="3" X="30" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="4" X="45" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="5" X="60" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="6" X="75" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="7" X="90" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="8" X="105" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="9" X="120" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="10" X="135" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="11" X="150" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="12" X="165" Y="0" Z="0" A="0" D="10.000" />
+</ToolPositions>
