@@ -789,4 +789,7 @@
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>优化刀具路径</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>使用“几何描摹”（Geometric trace）时出错，请尝试关闭“边缘平滑”（Edge smoothing）或改用 Potrace 算法。</value>
+  </data>
 </root>

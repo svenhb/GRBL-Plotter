@@ -780,4 +780,7 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Optimalizovat dráhu nástroje</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Chyba při použití funkce „Geometric trace“; zkuste vypnout „Edge smoothing“ nebo místo toho použijte algoritmus Potrace.</value>
+  </data>
 </root>

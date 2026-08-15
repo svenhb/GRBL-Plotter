@@ -780,4 +780,7 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Optimizar trayectoria de la herramienta</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Error al utilizar «Geometric trace»; intente desactivar «Edge smoothing» o utilizar el algoritmo Potrace en su lugar.</value>
+  </data>
 </root>

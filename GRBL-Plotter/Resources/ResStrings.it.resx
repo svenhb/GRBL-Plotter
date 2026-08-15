@@ -784,4 +784,7 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Ottimizza il percorso utensile</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Errore durante l'utilizzo di "Tracciamento geometrico": prova a disattivare "Smussamento bordi" o a utilizzare invece l'algoritmo Potrace.</value>
+  </data>
 </root>

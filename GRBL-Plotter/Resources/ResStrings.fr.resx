@@ -774,4 +774,7 @@ Solution de contournement possible : essayez de convertir l'objet en chemin.</v
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Optimiser le parcours d'outil</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Erreur lors de l'utilisation de « Geometric trace » ; essayez de désactiver « Edge smoothing » ou d'utiliser plutôt l'algorithme Potrace.</value>
+  </data>
 </root>

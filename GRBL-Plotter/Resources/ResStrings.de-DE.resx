@@ -711,4 +711,7 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Werkzeugbahn optimieren</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Fehler bei der Verwendung von „Geometric trace“: Versuchen Sie, die „Kantenglättung“ zu deaktivieren oder stattdessen den Potrace-Algorithmus zu verwenden.</value>
+  </data>
 </root>

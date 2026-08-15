@@ -780,4 +780,7 @@
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>تحسين مسار الأداة</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>حدث خطأ عند استخدام "التتبع الهندسي" (Geometric trace)؛ جرب إيقاف تشغيل "تنعيم الحواف" (Edge smoothing) أو استخدام خوارزمية Potrace بدلاً من ذلك.</value>
+  </data>
 </root>

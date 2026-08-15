@@ -795,4 +795,7 @@ Possible workaround: try to convert object to path.</value>
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Optimize tool path</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Error using 'Geometric trace', try to switch off 'Edge smoothing' or use Potrace algorithm instead.</value>
+  </data>
 </root>

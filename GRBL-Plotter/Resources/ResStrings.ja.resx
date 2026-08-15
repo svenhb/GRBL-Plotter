@@ -780,4 +780,7 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>ツールパスを最適化</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>「Geometric trace」の使用中にエラーが発生しました。「Edge smoothing」を無効にするか、代わりに Potrace アルゴリズムを使用してみてください。</value>
+  </data>
 </root>

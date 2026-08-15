@@ -358,6 +358,42 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set graphic origin to  ähnelt.
+        /// </summary>
+        public static string deviceSetupOffsetOrigin {
+            get {
+                return ResourceManager.GetString("deviceSetupOffsetOrigin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Graphic origin X ähnelt.
+        /// </summary>
+        public static string deviceSetupOffsetOriginX {
+            get {
+                return ResourceManager.GetString("deviceSetupOffsetOriginX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Graphic origin Y ähnelt.
+        /// </summary>
+        public static string deviceSetupOffsetOriginY {
+            get {
+                return ResourceManager.GetString("deviceSetupOffsetOriginY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Optimize tool path ähnelt.
+        /// </summary>
+        public static string deviceSetupPathOptimation {
+            get {
+                return ResourceManager.GetString("deviceSetupPathOptimation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alarm ähnelt.
         /// </summary>
         public static string grblAlarm {
@@ -705,6 +741,15 @@ namespace GrblPlotter.Resources {
         public static string importMessageOptionZFromWidth {
             get {
                 return ResourceManager.GetString("importMessageOptionZFromWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error using &apos;Geometric trace&apos;, try to switch off &apos;Edge smoothing&apos; or use Potrace algorithm instead. ähnelt.
+        /// </summary>
+        public static string importMessagePDNJErrorMyTrace {
+            get {
+                return ResourceManager.GetString("importMessagePDNJErrorMyTrace", resourceCulture);
             }
         }
         
@@ -1533,6 +1578,15 @@ namespace GrblPlotter.Resources {
         public static string optionFillEnable {
             get {
                 return ResourceManager.GetString("optionFillEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gradient start (0=off) ähnelt.
+        /// </summary>
+        public static string optionFillGradient {
+            get {
+                return ResourceManager.GetString("optionFillGradient", resourceCulture);
             }
         }
         

@@ -780,4 +780,7 @@
   <data name="deviceSetupPathOptimation" xml:space="preserve">
     <value>Оптимизировать траекторию инструмента</value>
   </data>
+  <data name="importMessagePDNJErrorMyTrace" xml:space="preserve">
+    <value>Ошибка при использовании «Геометрической трассировки» (Geometric trace); попробуйте отключить «Сглаживание краев» (Edge smoothing) или использовать вместо этого алгоритм Potrace.</value>
+  </data>
 </root>
