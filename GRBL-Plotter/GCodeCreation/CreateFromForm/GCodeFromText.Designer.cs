@@ -77,7 +77,11 @@ namespace GrblPlotter
             this.BtnSetHeight = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CboxToolTable = new System.Windows.Forms.ComboBox();
+            this.CboxToolFiles = new System.Windows.Forms.ComboBox();
             this.GbCodeOptions = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.CbSmoothPath = new System.Windows.Forms.CheckBox();
             this.CbWordWrap = new System.Windows.Forms.CheckBox();
             this.RbFont2 = new System.Windows.Forms.RadioButton();
@@ -105,11 +109,10 @@ namespace GrblPlotter
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.NudCurvefittingError = new System.Windows.Forms.NumericUpDown();
             this.cBImportGraphicNoise = new System.Windows.Forms.CheckBox();
             this.cBToolTable = new System.Windows.Forms.CheckBox();
             this.CbHatchFill = new System.Windows.Forms.CheckBox();
+            this.NudCurvefittingError = new System.Windows.Forms.NumericUpDown();
             this.RbFont1 = new System.Windows.Forms.RadioButton();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
             this.tBText = new System.Windows.Forms.TextBox();
@@ -345,9 +348,12 @@ namespace GrblPlotter
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.GbCodeSettings);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.CboxToolTable);
+            this.tabPage1.Controls.Add(this.CboxToolFiles);
             this.tabPage1.Controls.Add(this.GbCodeOptions);
             this.tabPage1.Controls.Add(this.CbWordWrap);
-            this.tabPage1.Controls.Add(this.GbCodeSettings);
             this.tabPage1.Controls.Add(this.RbFont2);
             this.tabPage1.Controls.Add(this.RbFont1);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -365,6 +371,27 @@ namespace GrblPlotter
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // CboxToolTable
+            // 
+            this.CboxToolTable.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.CboxToolTable, "CboxToolTable");
+            this.CboxToolTable.FormattingEnabled = true;
+            this.CboxToolTable.Name = "CboxToolTable";
+            this.CboxToolTable.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.CboxToolTable_DrawItem);
+            this.CboxToolTable.SelectedIndexChanged += new System.EventHandler(this.CboxToolTable_SelectedIndexChanged);
+            // 
+            // CboxToolFiles
+            // 
+            this.CboxToolFiles.FormattingEnabled = true;
+            resources.ApplyResources(this.CboxToolFiles, "CboxToolFiles");
+            this.CboxToolFiles.Name = "CboxToolFiles";
+            this.CboxToolFiles.SelectedIndexChanged += new System.EventHandler(this.CboxToolFiles_SelectedIndexChanged);
+            // 
             // GbCodeOptions
             // 
             this.GbCodeOptions.Controls.Add(this.label1);
@@ -377,6 +404,11 @@ namespace GrblPlotter
             resources.ApplyResources(this.GbCodeOptions, "GbCodeOptions");
             this.GbCodeOptions.Name = "GbCodeOptions";
             this.GbCodeOptions.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // CbSmoothPath
             // 
@@ -563,29 +595,6 @@ namespace GrblPlotter
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // NudCurvefittingError
-            // 
-            this.NudCurvefittingError.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "createTextHersheySmoothCurveFittingError", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudCurvefittingError.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudCurvefittingError, "NudCurvefittingError");
-            this.NudCurvefittingError.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            0});
-            this.NudCurvefittingError.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.NudCurvefittingError.Name = "NudCurvefittingError";
-            this.NudCurvefittingError.Value = global::GrblPlotter.Properties.Settings.Default.createTextHersheySmoothCurveFittingError;
-            // 
             // cBImportGraphicNoise
             // 
             resources.ApplyResources(this.cBImportGraphicNoise, "cBImportGraphicNoise");
@@ -614,6 +623,24 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.CbHatchFill, resources.GetString("CbHatchFill.ToolTip"));
             this.CbHatchFill.UseVisualStyleBackColor = true;
             this.CbHatchFill.CheckedChanged += new System.EventHandler(this.CbHatchFill_CheckedChanged);
+            // 
+            // NudCurvefittingError
+            // 
+            this.NudCurvefittingError.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "createTextHersheySmoothCurveFittingError", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudCurvefittingError.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudCurvefittingError, "NudCurvefittingError");
+            this.NudCurvefittingError.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.NudCurvefittingError.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.NudCurvefittingError.Name = "NudCurvefittingError";
+            this.NudCurvefittingError.Value = global::GrblPlotter.Properties.Settings.Default.createTextHersheySmoothCurveFittingError;
             // 
             // RbFont1
             // 
@@ -892,5 +919,8 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox CbSmoothPath;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown NudCurvefittingError;
+        private System.Windows.Forms.ComboBox CboxToolTable;
+        private System.Windows.Forms.ComboBox CboxToolFiles;
+        private System.Windows.Forms.Label label2;
     }
 }

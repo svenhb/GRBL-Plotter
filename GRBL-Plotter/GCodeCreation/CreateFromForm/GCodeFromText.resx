@@ -137,11 +137,12 @@
   </data>
   <data name="LblLetterHeight.Text" xml:space="preserve">
     <value>Letter height</value>
-    <comment>1</comment>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="LblLetterHeight.ToolTip" xml:space="preserve">
     <value>Height of letters</value>
-    <comment>2</comment>
   </data>
   <data name="&gt;&gt;LblLetterHeight.Name" xml:space="preserve">
     <value>LblLetterHeight</value>
@@ -180,7 +181,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnApply.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="nUDLineBreak.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 101</value>
@@ -280,11 +281,9 @@
   </data>
   <data name="LblLineDistance.Text" xml:space="preserve">
     <value>Line distance</value>
-    <comment>3</comment>
   </data>
   <data name="LblLineDistance.ToolTip" xml:space="preserve">
     <value>Distance between lines</value>
-    <comment>4</comment>
   </data>
   <data name="&gt;&gt;LblLineDistance.Name" xml:space="preserve">
     <value>LblLineDistance</value>
@@ -339,11 +338,9 @@
   </data>
   <data name="LblLetterDistance.Text" xml:space="preserve">
     <value>Letter distance</value>
-    <comment>5</comment>
   </data>
   <data name="LblLetterDistance.ToolTip" xml:space="preserve">
     <value>Additional space between letters</value>
-    <comment>6</comment>
   </data>
   <data name="&gt;&gt;LblLetterDistance.Name" xml:space="preserve">
     <value>LblLetterDistance</value>
@@ -424,7 +421,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbFont1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="RbAlign3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,7 +541,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="cBImportGraphicNoise.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -726,7 +723,6 @@
   </data>
   <data name="LblTool.Text" xml:space="preserve">
     <value>Tool:</value>
-    <comment>n</comment>
   </data>
   <data name="LblTool.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -757,7 +753,6 @@
   </data>
   <data name="LblOtherGCode.Text" xml:space="preserve">
     <value>Other G-Code settings in Setup SVG-Import </value>
-    <comment>8</comment>
   </data>
   <data name="LblOtherGCode.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -775,17 +770,16 @@
     <value>6</value>
   </data>
   <data name="GbCodeSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="GbCodeSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 138</value>
+    <value>230, 68</value>
   </data>
   <data name="GbCodeSettings.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="GbCodeSettings.Text" xml:space="preserve">
     <value>GCode</value>
-    <comment>n</comment>
   </data>
   <data name="&gt;&gt;GbCodeSettings.Name" xml:space="preserve">
     <value>GbCodeSettings</value>
@@ -797,7 +791,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbCodeSettings.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="cBConnectLetter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1147,6 +1141,90 @@
   <data name="&gt;&gt;BtnSetHeight.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>237, 80</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Select color palette and color</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CboxToolTable.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 8.25pt</value>
+  </data>
+  <data name="CboxToolTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>237, 120</value>
+  </data>
+  <data name="CboxToolTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 21</value>
+  </data>
+  <data name="CboxToolTable.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Content of color palette</value>
+  </data>
+  <data name="&gt;&gt;CboxToolTable.Name" xml:space="preserve">
+    <value>CboxToolTable</value>
+  </data>
+  <data name="&gt;&gt;CboxToolTable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CboxToolTable.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;CboxToolTable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CboxToolFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>237, 96</value>
+  </data>
+  <data name="CboxToolFiles.MaxDropDownItems" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="CboxToolFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 21</value>
+  </data>
+  <data name="CboxToolFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Last loaded color palette</value>
+  </data>
+  <data name="&gt;&gt;CboxToolFiles.Name" xml:space="preserve">
+    <value>CboxToolFiles</value>
+  </data>
+  <data name="&gt;&gt;CboxToolFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CboxToolFiles.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;CboxToolFiles.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1253,7 +1331,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbCodeOptions.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="CbWordWrap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1283,7 +1361,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;CbWordWrap.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="RbFont2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1313,7 +1391,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;RbFont2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="RbFont1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1343,7 +1421,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;RbFont1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 148</value>
@@ -1367,7 +1445,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="CbInsertCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1397,7 +1475,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;CbInsertCode.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="tBText.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1430,7 +1508,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;tBText.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="NUDHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 90</value>
@@ -1712,7 +1790,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;GbFont2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="LblToolDiameter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1724,7 +1802,7 @@
     <value>NoControl</value>
   </data>
   <data name="LblToolDiameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 60</value>
+    <value>421, 49</value>
   </data>
   <data name="LblToolDiameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 15</value>
@@ -1745,7 +1823,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;LblToolDiameter.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="LblToolDiameter1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -1757,14 +1835,13 @@
     <value>245, 49</value>
   </data>
   <data name="LblToolDiameter1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 35</value>
+    <value>170, 35</value>
   </data>
   <data name="LblToolDiameter1.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
   <data name="LblToolDiameter1.Text" xml:space="preserve">
     <value>Tool diameter for display:</value>
-    <comment>n</comment>
   </data>
   <data name="&gt;&gt;LblToolDiameter1.Name" xml:space="preserve">
     <value>LblToolDiameter1</value>
@@ -1776,7 +1853,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;LblToolDiameter1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="LblDevice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1788,7 +1865,7 @@
     <value>NoControl</value>
   </data>
   <data name="LblDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 22</value>
+    <value>421, 12</value>
   </data>
   <data name="LblDevice.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 15</value>
@@ -1798,7 +1875,6 @@
   </data>
   <data name="LblDevice.Text" xml:space="preserve">
     <value>L</value>
-    <comment>8</comment>
   </data>
   <data name="&gt;&gt;LblDevice.Name" xml:space="preserve">
     <value>LblDevice</value>
@@ -1810,7 +1886,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;LblDevice.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="LblDevice1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -1822,14 +1898,13 @@
     <value>245, 12</value>
   </data>
   <data name="LblDevice1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 35</value>
+    <value>170, 35</value>
   </data>
   <data name="LblDevice1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
   <data name="LblDevice1.Text" xml:space="preserve">
     <value>GCode settings for device:</value>
-    <comment>n</comment>
   </data>
   <data name="&gt;&gt;LblDevice1.Name" xml:space="preserve">
     <value>LblDevice1</value>
@@ -1841,7 +1916,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;LblDevice1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2155,11 +2230,20 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>114, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>700, 341</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 300</value>
@@ -2188,13 +2272,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>114, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

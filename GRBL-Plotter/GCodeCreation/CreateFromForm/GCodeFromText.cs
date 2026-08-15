@@ -48,9 +48,10 @@
  
  * 2026-06-02 add SetFontSize / SetAlignment / SetLineDistance for process-automation control
  * 2026-06-02 SetFontSize/SetLineDistance also set the data-bound setting (binding was reverting the control); SetFontSize also sizes the Windows font
-
+ * 2026-07-05 add palette- and color selection 
 */
 
+using GrblPlotter.Helper;
 using GrblPlotter.UserControls;
 using System;
 using System.Diagnostics;
@@ -60,6 +61,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+//using System.Windows.Media;
+//using static System.Net.Mime.MediaTypeNames;
 
 
 // http://imajeenyus.com/computer/20150110_single_line_fonts/
@@ -101,9 +104,15 @@ namespace GrblPlotter
             initFont = textFont = tBText.Font;
             initColor = textColor = tBText.ForeColor;
             UpdateIniVariables();
-            RbFont1_CheckedChanged(sender, e);
+            RbFont2.Checked = !Properties.Settings.Default.createTextHersheySelect;
+            //    RbFont1_CheckedChanged(sender, e);
 
             LoadPicture("svg");
+            UpdateColorPaletteList();
+            int index = Colors.GetToolNRByColor(textColor, 0);
+            Logger.Trace("initColor {0}    index {1}", textColor, index);
+            if ((index >= 0) && (index < CboxToolTable.Items.Count))
+                CboxToolTable.SelectedIndex = index;
         }
 
         private bool iniWasSet = false;
@@ -154,8 +163,8 @@ namespace GrblPlotter
             btnApply.PerformClick();
         }
 
-/*********************************************************************/
-       // Set the text height in mm. Applies to the next CreateText, for BOTH font modes:
+        /*********************************************************************/
+        // Set the text height in mm. Applies to the next CreateText, for BOTH font modes:
         //  - Hershey / LFF / SVG single-line font: NudFontSize (GCHeight).
         //  - Windows system font: the font em-size is used directly as mm (GraphicCollectText.AddText),
         //    so rebuild the font at the requested size too.
@@ -207,7 +216,7 @@ namespace GrblPlotter
             Properties.Settings.Default.createTextHersheyLineDistance = val;
             nUDFontLine.Value = val;
         }
-/********************************************************************/
+        /********************************************************************/
         private void FillFontSelector()
         {
             cBFont.Items.Clear();
@@ -260,6 +269,9 @@ namespace GrblPlotter
         private void BtnApply_Click(object sender, EventArgs e)     // in MainForm:  _text_form.btnApply.Click += getGCodeFromText;
         { CreateText(); }
 
+
+
+        /********************************************************************/
         public void CreateText()
         {
             VisuGCode.pathBackground.Reset();
@@ -281,11 +293,12 @@ namespace GrblPlotter
 
             Graphic.SetType("Text");
 
-            if (CbOutline.Checked)
-                Graphic.SetPenColor(tBText.ForeColor.ToKnownColor().ToString());
+
+            if (CbOutline.Checked || isDevice)
+                Graphic.SetPenColor(ColorTranslator.ToHtml(tBText.ForeColor));//tBText.ForeColor.ToKnownColor().ToString());
             else
                 Graphic.SetPenColor("none");
-            Graphic.SetPenFill(tBText.ForeColor.ToKnownColor().ToString());
+            Graphic.SetPenFill(ColorTranslator.ToHtml(tBText.ForeColor));//tBText.ForeColor.ToKnownColor().ToString());
 
             if (RbFont1.Checked)    // Hershey
             { /* "Get values from tool table" (importGCToolDefNr and importGCToolDefNrUse) will be processed in "Graphic2GCode.cs" */
@@ -745,6 +758,107 @@ namespace GrblPlotter
             }
 
             iniWasSet = false;
+        }
+
+
+        /**************************************************************************/
+        private void UpdateColorPaletteList()
+        {
+            //    if (logEnable)
+            //        Logger.Trace("UpdateToolTableList");
+            FillColorPaletteFileList(Datapath.ColorPalette);			// list tool table files
+            CboxToolFiles.Text = Properties.Settings.Default.colorPaletteLastLoaded;
+            Colors.LoadColorPalette();  // load colorPaletteLastLoaded
+            UpdateColorList();
+        }
+
+        /* list all CSV files from toolProp-folder */
+        private void FillColorPaletteFileList(string filepath)
+        {
+            try
+            {
+                string[] Files = System.IO.Directory.GetFiles(filepath);
+                CboxToolFiles.Items.Clear();
+                for (int i = 0; i < Files.Length; i++)
+                {
+                    {
+                        string name = Path.GetFileName(Files[i]);
+                        CboxToolFiles.Items.Add(name);
+                    }
+                }
+            }
+            catch (Exception err) { Logger.Error(err, "FillColorPaletteFileList "); }
+        }
+
+        /* copy selected tool-file to _current.csv */
+        private void CboxToolFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(CboxToolFiles.Text))
+            {
+                string newPalette = Datapath.ColorPalette + "\\" + CboxToolFiles.Text;
+
+                if (Colors.LoadColorPalette(newPalette))
+                    Properties.Settings.Default.colorPaletteLastLoaded = CboxToolFiles.Text;
+
+                UpdateColorList();
+                //     GetColorPaletteSettings();
+            }
+        }
+
+        /* Display toolProp from selected tool table */
+        private void UpdateColorList()
+        {
+            CboxToolTable.Items.Clear();
+            CboxToolTable.Items.Add("Nr  Color          Name ");
+            int i = 1;
+            foreach (PaletteEntry tmp in Colors.MyPalette)
+            {
+                CboxToolTable.Items.Add(string.Format("{0,3} {1,6} {2,20}", i++, ColorTranslator.ToHtml(tmp.Col), tmp.Name));
+            }
+        }
+
+        /* OwnerDrawFixed - colorize tool-entry lines */
+        private void CboxToolTable_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            int index = e.Index - 1;
+            string text = ((ComboBox)sender).Items[e.Index].ToString();
+
+            SolidBrush brush = new SolidBrush(Color.Black);
+            Color col = Color.Black;
+            if ((index >= 0) && (index < Colors.MyPalette.Count))
+                col = Colors.MyPalette[index].Col;
+
+            if ((e.Index > 0) && (text.Length > 10))
+            {
+                try
+                {
+                    brush = new SolidBrush(Colors.ContrastColor(col));
+                    if (!e.Bounds.IsEmpty)
+                        e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
+                }
+                catch { }
+                e.Graphics.DrawString(text, ((Control)sender).Font, brush, e.Bounds.X, e.Bounds.Y);
+            }
+            else
+            {
+                if (!e.Bounds.IsEmpty)
+                    e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                e.Graphics.DrawString(text, ((Control)sender).Font, brush, e.Bounds.X, e.Bounds.Y);
+            }
+        }
+
+        private void CboxToolTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = CboxToolTable.SelectedIndex - 1;
+            if ((index >= 0) && (index < Colors.MyPalette.Count))
+            {
+                Color tmp = Colors.MyPalette[index].Col;
+                initColor = textColor = tBText.ForeColor = Colors.MyPalette[index].Col;
+                CboxToolTable.BackColor = (tmp == Color.Transparent) ? Color.LightGray : tmp;
+                CboxToolTable.ForeColor = Colors.ContrastColor(CboxToolTable.BackColor);
+            }
+            btnApply.Focus();
         }
     }
 

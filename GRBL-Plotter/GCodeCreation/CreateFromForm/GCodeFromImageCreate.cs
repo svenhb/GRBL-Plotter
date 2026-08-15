@@ -362,7 +362,7 @@ namespace GrblPlotter
 
             VisuGCode.pathBackground.Reset();
             Graphic.CleanUp();
-            Graphic.Init(Graphic.SourceType.Image, "", null, null);
+            Graphic.Init(Graphic.SourceType.ImageForm, "", null, null);
             Graphic.SetType("Image");
 
 
