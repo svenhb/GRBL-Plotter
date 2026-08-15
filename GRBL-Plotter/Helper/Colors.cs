@@ -18,8 +18,10 @@
 */
 /*
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-08-10 l:274 f:LoadColorPalette extract pen diameter
 */
 
+using Microsoft.Win32;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -64,6 +66,12 @@ namespace GrblPlotter.Helper
             int g = (int)(a * 255);
             return Color.FromArgb(g, g, g);
         }
+        public static int GrayColorValue(Color color)
+        {
+            double a = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+            int g = (int)(a * 255);
+            return g;
+        }
 
         /*
             h = 0 - 360
@@ -98,69 +106,70 @@ namespace GrblPlotter.Helper
         public static Color TryConvertColor(string txt)
         {
             Color ctmp = Color.Black;
-			if (string.IsNullOrEmpty(txt))
-				return ctmp;
+            if (string.IsNullOrEmpty(txt))
+                return ctmp;
 
             if (txt.Length > 1)
             {
-				if (txt.StartsWith("#"))
-					txt = txt.Substring(1);
+                if (txt.StartsWith("#"))
+                    txt = txt.Substring(1);
 
-				if (txt.Contains("none"))
-					return Color.Transparent;
+                if (txt.Contains("none"))
+                    return Color.Transparent;
 
-				if (txt.Contains("rgb("))
-				{
-					int start = txt.IndexOf('(') + 1;
-					int end = txt.IndexOf(')');
-					string num = txt.Substring(start, end - start).Replace('.',',');
-					string[] parts = num.Split(',');
-					if (parts.Length == 3)
-						return Color.FromArgb(255, int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()), int.Parse(parts[2].Trim()));
-				}		
-				if (txt.Contains("rgba("))
-				{
-					int start = txt.IndexOf('(') + 1;
-					int end = txt.IndexOf(')');
-					string num = txt.Substring(start, end - start).Replace('.',',');
-					string[] parts = num.Split(',');
-					if (parts.Length == 4)
-						return Color.FromArgb(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()), int.Parse(parts[2].Trim()), int.Parse(parts[3].Trim()));
-				}		
-				if (txt.Contains("url"))
-				{
-					Logger.Warn("TryConvertColor - Color could not be converted:'{0}'",txt);
-					return ctmp;
-				}
+                if (txt.Contains("rgb("))
+                {
+                    int start = txt.IndexOf('(') + 1;
+                    int end = txt.IndexOf(')');
+                    string num = txt.Substring(start, end - start).Replace('.', ',');
+                    string[] parts = num.Split(',');
+                    if (parts.Length == 3)
+                        return Color.FromArgb(255, int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()), int.Parse(parts[2].Trim()));
+                }
+                if (txt.Contains("rgba("))
+                {
+                    int start = txt.IndexOf('(') + 1;
+                    int end = txt.IndexOf(')');
+                    string num = txt.Substring(start, end - start).Replace('.', ',');
+                    string[] parts = num.Split(',');
+                    if (parts.Length == 4)
+                        return Color.FromArgb(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()), int.Parse(parts[2].Trim()), int.Parse(parts[3].Trim()));
+                }
+                if (txt.Contains("url"))
+                {
+                    Logger.Warn("TryConvertColor - Color could not be converted:'{0}'", txt);
+                    return ctmp;
+                }
                 ctmp = Color.FromName(txt.Trim());
                 if (ctmp.ToArgb() == 0)
                 {
-					if (IsHex(txt.Trim()))
-					{	if (!txt.StartsWith("#"))
-							txt = "#" + txt;
-						ctmp = ColorTranslator.FromHtml(txt);
-					}
-					else
-						Logger.Warn("TryConvertColor - Color could not be converted:'{0}'",txt);
+                    if (IsHex(txt.Trim()))
+                    {
+                        if (!txt.StartsWith("#"))
+                            txt = "#" + txt;
+                        ctmp = ColorTranslator.FromHtml(txt);
+                    }
+                    else
+                        Logger.Warn("TryConvertColor - Color could not be converted:'{0}'", txt);
                 }
             }
             return ctmp;
         }
-		
-		private static bool IsHex(IEnumerable<char> chars)
-		{
-			bool isHex; 
-			foreach(var c in chars)
-			{
-				isHex = ((c >= '0' && c <= '9') || 
-						 (c >= 'a' && c <= 'f') || 
-						 (c >= 'A' && c <= 'F'));
 
-				if(!isHex)
-					return false;
-			}
-			return true;
-		}
+        private static bool IsHex(IEnumerable<char> chars)
+        {
+            bool isHex;
+            foreach (var c in chars)
+            {
+                isHex = ((c >= '0' && c <= '9') ||
+                         (c >= 'a' && c <= 'f') ||
+                         (c >= 'A' && c <= 'F'));
+
+                if (!isHex)
+                    return false;
+            }
+            return true;
+        }
 
         internal static PaletteEntry ExtractPaletteEntry(string txt, bool isToolTable = false)
         {
@@ -201,12 +210,12 @@ namespace GrblPlotter.Helper
             else if (txt.Contains(","))
             {
                 splt = txt.Split(',');
-				int indexStart = 0;
-				if (isToolTable)
-				{ indexStart = 1; }
-			
-				tmp.Name = splt[indexStart + 1];
-				
+                int indexStart = 0;
+                if (isToolTable)
+                { indexStart = 1; }
+
+                tmp.Name = splt[indexStart + 1];
+
                 try
                 {
                     tmp.Col = ColorTranslator.FromHtml('#' + splt[indexStart].Trim());
@@ -261,13 +270,21 @@ namespace GrblPlotter.Helper
             foreach (string line in readText)
             {
                 if (line.StartsWith("#") || line.StartsWith(";") || line.StartsWith("/") || line.StartsWith("Gimp") || line.StartsWith("Name") || (line.Length < 3))     // jump over comments
+                {
+                    if (line.ToLower().Contains("diameter") && line.Contains(":"))
+                    {
+                        string[] part=line.Split(':');
+                        if (double.TryParse(part[1], out double d)) 
+                        { Properties.Settings.Default.DevicePlotterToolDiameter=(decimal)d; }
+                    }
                     continue;
+                }
 
-				if (Path.GetExtension(file).ToLower().Contains("csv"))
-					tmp = Helper.Colors.ExtractPaletteEntry(line, true);
-				else	
-					tmp = Helper.Colors.ExtractPaletteEntry(line);
-                tmp.ToolNr= toolNr++;
+                if (Path.GetExtension(file).ToLower().Contains("csv"))
+                    tmp = Helper.Colors.ExtractPaletteEntry(line, true);
+                else
+                    tmp = Helper.Colors.ExtractPaletteEntry(line);
+                tmp.ToolNr = toolNr++;
                 MyPalette.Add(tmp);
                 if (tmp.Col == Color.Transparent)
                 { Logger.Error("Error in conversion: {0}", line); }
@@ -305,7 +322,7 @@ namespace GrblPlotter.Helper
         }
         public static void ClearUsage()
         {
-            foreach (PaletteEntry pe in MyPalette)  
+            foreach (PaletteEntry pe in MyPalette)
             {
                 pe.Diff = 0;
                 pe.Use = false;
@@ -339,7 +356,7 @@ namespace GrblPlotter.Helper
             }
             return -1;
         }
-        internal static PaletteEntry GetPaletteEntryByToolNR(int toolNr, bool setUse=false)
+        internal static PaletteEntry GetPaletteEntryByToolNR(int toolNr, bool setUse = false)
         {
             if (toolNr == -1)
             { ExceptionColor.PixelCount++; return ExceptionColor; }
@@ -367,16 +384,11 @@ namespace GrblPlotter.Helper
                 LoadColorPalette();
             }
 
-            int i;/*, start = 1, tmpIndex;
-            List<PaletteEntry> SortedList = MyPalette.OrderBy(o => o.ToolNr).ToList();
-            MyPalette = SortedList;
-       */     //     if (useException) start = 0;  // first element is exception
-
+            int i;
             for (i = 0; i < MyPalette.Count; i++)
             {
                 if (mycolor == MyPalette[i].Col)         // direct hit
                 {
-             //       tmpIndex = i;
                     return MyPalette[i].ToolNr;
                 }
                 else if (mode == 0)
@@ -387,12 +399,12 @@ namespace GrblPlotter.Helper
                     MyPalette[i].Diff = Math.Abs(ColorNum(MyPalette[i].Col) - ColorNum(mycolor)) +
                                               GetHueDistance(MyPalette[i].Col.GetHue(), mycolor.GetHue());
             }
-            List<PaletteEntry>  SortedList = MyPalette.OrderBy(o => o.Diff).ToList();
-            MyPalette = SortedList;
-       //     tmpIndex = 0;
-            return MyPalette[0].ToolNr; ;   // return tool nr of nearest color
+            List<PaletteEntry> SortedList = MyPalette.OrderBy(o => o.Diff).ToList();
+            //   MyPalette = SortedList;
+            return SortedList[0].ToolNr; ;   // return tool nr of nearest color
+                                             //    return MyPalette[0].ToolNr; ;   // return tool nr of nearest color
         }
-        internal static PaletteEntry GetPaletteEntryByColor(Color mycolor, int mode, bool setUse=false)
+        internal static PaletteEntry GetPaletteEntryByColor(Color mycolor, int mode, bool setUse = false)
         {
             if ((MyPalette == null) || (MyPalette.Count == 0))
             {
@@ -426,13 +438,13 @@ namespace GrblPlotter.Helper
             if (ExceptionColor.Use)
             {
                 if (mode == 0)
-                    ExceptionColor.Diff= ColorDiff(mycolor, ExceptionColor.Col);
+                    ExceptionColor.Diff = ColorDiff(mycolor, ExceptionColor.Col);
                 else if (mode == 1)
                     ExceptionColor.Diff = GetHueDistance(mycolor.GetHue(), ExceptionColor.Col.GetHue());
                 else
                     ExceptionColor.Diff = Math.Abs(ColorNum(ExceptionColor.Col) - ColorNum(mycolor)) +
                                               GetHueDistance(ExceptionColor.Col.GetHue(), mycolor.GetHue());
-             
+
                 if (ExceptionColor.Diff < MyPalette[0].Diff)
                 {
                     ExceptionColor.PixelCount++;
@@ -469,8 +481,8 @@ namespace GrblPlotter.Helper
             for (int i = 0; i < MyPalette.Count; i++)
             {
                 MyPalette[i].Diff = int.MaxValue;
-                MyPalette[i].PixelCount=0;
-                MyPalette[i].Use=false;
+                MyPalette[i].PixelCount = 0;
+                MyPalette[i].Use = false;
             }
         }
 

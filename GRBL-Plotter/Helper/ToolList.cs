@@ -42,7 +42,7 @@ namespace GrblPlotter
         public float GroupWidth { get; set; }
         public string GroupLayer { get; set; }
         public string ToolName { get; set; }
-        public XyzPoint Position { get; set; }
+    //    public XyzPoint Position { get; set; }
         public string Gcode { get; set; }
 
         public DeviceToolProperties Laser { get; set; }
@@ -60,7 +60,7 @@ namespace GrblPlotter
         public void ResetToolProperties()
         {
             ToolNr = 1; GroupColor = Color.Black; GroupWidth = 1;
-            GroupLayer = "1"; ToolName = "default"; Diff = 0; Position = new XyzPoint(); Gcode = "";
+            GroupLayer = "1"; ToolName = "default"; Diff = 0; Gcode = ""; //Position = new XyzPoint();
             Laser = new DeviceToolProperties();
             Plotter = new DeviceToolProperties();
             Router = new DeviceToolProperties();
@@ -95,39 +95,20 @@ namespace GrblPlotter
             w.WriteAttributeString("Layer", GroupLayer);
             w.WriteAttributeString("Name", ToolName);
             w.WriteAttributeString("Gcode", Gcode.ToString());
-
-            w.WriteStartElement("Position");
-            w.WriteAttributeString("X", Position.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Y", Position.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Z", Position.Z.ToString().Replace(',', '.'));
-            w.WriteAttributeString("A", Position.A.ToString().Replace(',', '.'));
-            w.WriteEndElement();
-
             Laser.WriteXML(ref w, "Laser");
             Plotter.WriteXML(ref w, "Plotter");
             Router.WriteXML(ref w, "Router");
             w.WriteEndElement();
         }
-        public void ReadPositionXML(XmlReader reader)
-        {
-            XyzPoint pos = Position;
-            pos.X = XML.GetFloat(reader, "X", 0);
-            pos.Y = XML.GetFloat(reader, "Y", 0);
-            pos.Z = XML.GetFloat(reader, "Z", 0);
-            pos.A = XML.GetFloat(reader, "A", 0);
-            Position = pos;
-        }
     }
 
     internal static class ToolList
     {
-        private static readonly bool log = true;
-        private const int toolTableMax = 260;            // max amount of ToolProperty
-        internal static List<ToolProperty> toolListArray = new List<ToolProperty>();   // load color palette into this array
-        private static readonly int toolTableIndex = 0;            // last index
-        private static readonly bool useException = false;
         public const string DefaultFileName = "_current_.csv";
         public const string DefaultFileNameXML = "_currentToolList.xml";
+        private static readonly bool log = true;
+        internal static List<ToolProperty> toolListArray = new List<ToolProperty>();   // load color palette into this array
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
@@ -173,8 +154,8 @@ namespace GrblPlotter
                     if (!MyControl.ApplyToolList)
                         return tool.GroupWidth;
                     else
-                    { 
-                        if (MyControl.SelectedDevice==DeviceSelection.Laser)
+                    {
+                        if (MyControl.SelectedDevice == DeviceSelection.Laser)
                             return tool.Laser.Diameter;
                         else if (MyControl.SelectedDevice == DeviceSelection.Plotter)
                             return tool.Plotter.Diameter;
@@ -273,7 +254,7 @@ namespace GrblPlotter
         // return tool nr of nearest color
         public static int GetToolNRByToolColor(String mycolor, int mode)
         {
-        //    Logger.Trace("GetToolNRByToolColor  count:{0}   color:{1}", toolListArray.Count, mycolor);
+            Logger.Trace("GetToolNRByToolColor  count:{0}   color:{1}", toolListArray.Count, mycolor);
             if (toolListArray.Count == 1)
                 return 1;
 
@@ -291,6 +272,8 @@ namespace GrblPlotter
 
         public static bool OnlyHexInString(string test)
         {   // For C-style hex notation (0xFF) you can use @"\A\b(0[xX])?[0-9a-fA-F]+\b\Z"
+            if (test.StartsWith("#"))
+                test = test.Substring(1);
             return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
         }
         public static short GetToolNRByColor(Color mycolor, int mode)
@@ -437,13 +420,7 @@ namespace GrblPlotter
                 Logger.Warn("SortByColor toolTableArray is empty - do Init");
                 Init("(SortByColor)");
             }
-            //    List<ToolProperty> SortedList;
             toolListArray.Sort((x, y) => x.CompareTo(y.GroupColor, invert));
-            //    if (!invert)
-            //        SortedList = toolListArray.OrderBy(o => o.GroupColor.GetBrightness()).ToList();
-            //     else
-            //         SortedList = toolListArray.OrderByDescending(o => o.GroupColor.GetBrightness()).ToList();
-            //     toolListArray = SortedList;
         }
 
         public static void SortByWidth(bool invert)
@@ -481,11 +458,13 @@ namespace GrblPlotter
         public static int Init(string cmt = "")    // return number of entries
         {
             Logger.Info("🛠🛠🛠 Init ToolList {0}", cmt);
+            ToolChanger.Init();
             return ReadXML();
         }
         public static int ReadXML(string FileName = "")
         {
-            if (FileName == "") { FileName = Datapath.Tools + "\\_currentToolList.xml"; }
+            bool isCurrent = false;
+            if (FileName == "") { FileName = Datapath.Tools + "\\" + DefaultFileNameXML; isCurrent = true; }
             toolListArray.Clear();
             Logger.Info("ToolList ReadXML {0}", FileName);
             int toolCnt = 0;
@@ -506,41 +485,15 @@ namespace GrblPlotter
                         switch (reader.Name)
                         {
                             case "ToolList":
-                                if (log) Logger.Trace("XMLread ToolList: {0}   {1}", reader["Device"], reader["Amount"]);
-                                string tmpDevice = XML.GetString(reader, "Device", "");
+                                if (log) Logger.Trace("XMLread ToolList: {0}   {1}    isCurrent:{2}", reader["Device"], reader["Amount"], isCurrent);
+                                if (!isCurrent) // switch to device, from which the settings where saved from
+                                    MyControl.SetSelectedDeviceName(XML.GetString(reader, "Device", ""));
                                 break;
                             case "ToolChange":
                                 if (log) Logger.Trace("XMLread ToolChange: {0}   {1}   {2}   {3}  ", reader["Off-X"], reader["Off-Y"], reader["Off-Z"], reader["Off-A"]);
-                                psd.ctrlToolChange = XML.GetBool(reader, "Enable", false);
-                                psd.ctrlToolScriptDelay = XML.GetInt(reader, "ScriptDelay", 1);
-                                positionOffset.X = XML.GetFloat(reader, "Off-X", 0.1f);
-                                positionOffset.Y = XML.GetFloat(reader, "Off-Y", 0.2f);
-                                positionOffset.Z = XML.GetFloat(reader, "Off-Z", 0.3f);
-                                positionOffset.A = XML.GetFloat(reader, "Off-A", 0.4f);
-                                Properties.Settings.Default.toolTableOffsetX = (decimal)positionOffset.X;
-                                Properties.Settings.Default.toolTableOffsetY = (decimal)positionOffset.Y;
-                                Properties.Settings.Default.toolTableOffsetZ = (decimal)positionOffset.Z;
-                                Properties.Settings.Default.toolTableOffsetA = (decimal)positionOffset.A;
                                 break;
-                            case "ToolChangeScriptPut":
-                                if ((reader["ToolChangeScriptPut"] != null) && (reader["ToolChangeScriptPut"].Length > 0))
-                                    psd.ctrlToolScriptPut = reader["ToolChangeScriptPut"];
-                                break;
-                            case "ToolChangeScriptSelect":
-                                if ((reader["ToolChangeScriptSelect"] != null) && (reader["ToolChangeScriptSelect"].Length > 0))
-                                    psd.ctrlToolScriptSelect = reader["ToolChangeScriptSelect"];
-                                break;
-                            case "ToolChangeScriptGet":
-                                if ((reader["ToolChangeScriptGet"] != null) && (reader["ToolChangeScriptGet"].Length > 0))
-                                    psd.ctrlToolScriptGet = reader["ToolChangeScriptGet"];
-                                break;
-                            case "ToolChangeScriptProbe":
-                                if ((reader["ToolChangeScriptProbe"] != null) && (reader["ToolChangeScriptProbe"].Length > 0))
-                                    psd.ctrlToolScriptProbe = reader["ToolChangeScriptProbe"];
-                                break;
-
                             case "Tool":
-                                if (log) Logger.Trace("XMLread Tool: {0}   {1}   {2}   {3}  '{4}'", reader["Nr"], reader["Color"], reader["Width"], reader["Layer"], reader["Name"]);
+                                if (log) Logger.Trace("XMLread Tool: {0,3}   {1}   {2}   {3}  '{4}'", reader["Nr"], reader["Color"], reader["Width"], reader["Layer"], reader["Name"]);
                                 toolListArray.Add(new ToolProperty());
                                 toolCnt = toolListArray.Count - 1;
                                 toolListArray[toolCnt].ToolNr = (short)XML.GetInt(reader, "Nr", 1);
@@ -548,18 +501,6 @@ namespace GrblPlotter
                                 {
                                     string col = reader["Color"].Trim();
                                     toolListArray[toolCnt].GroupColor = Colors.TryConvertColor(col);
-                                    /*
-                                    if (col.StartsWith("#")) { col = col.Substring(1); }
-                                    long clr = 0xffffffff;
-                                    try
-                                    {
-                                        clr = Convert.ToInt32(col, 16) | 0xff000000;
-                                        toolListArray[toolCnt].GroupColor = System.Drawing.Color.FromArgb((int)clr);
-                                    }
-                                    catch
-                                    {
-                                        toolListArray[toolCnt].GroupColor = Color.Black;
-                                    }*/
                                 }
 
                                 toolListArray[toolCnt].GroupWidth = XML.GetFloat(reader, "Width", 1);
@@ -580,10 +521,10 @@ namespace GrblPlotter
                                 toolListArray[toolCnt].Router.ReadXML(reader);
                                 break;
                             case "Position":
-                                toolListArray[toolCnt].ReadPositionXML(reader);
-                                //        if (device == 0) { toolListArray[toolCnt].Laser.ReadPositionXML(reader); }
-                                //        else if (device == 1) { toolListArray[toolCnt].Plotter.ReadPositionXML(reader); }
-                                //        else if (device == 2) { toolListArray[toolCnt].Router.ReadPositionXML(reader); }
+                             //   toolListArray[toolCnt].ReadPositionXML(reader);
+                                //        if (device == 0) { toolPositionArray[toolCnt].Laser.ReadPositionXML(reader); }
+                                //        else if (device == 1) { toolPositionArray[toolCnt].Plotter.ReadPositionXML(reader); }
+                                //        else if (device == 2) { toolPositionArray[toolCnt].Router.ReadPositionXML(reader); }
                                 break;
                             case "HatchFill":
                                 if (device == 0) { toolListArray[toolCnt].Laser.ReadFillXML(reader); }
@@ -593,7 +534,7 @@ namespace GrblPlotter
                         }
                     }
                     reader.Close();
-
+                    reader.Dispose();
                 }
                 catch (Exception err)
                 { Logger.Error(err, "ReadXML nok"); }
@@ -609,7 +550,7 @@ namespace GrblPlotter
                 Logger.Error("ReadXML file doesn't exist: {0} - create one default tool", FileName);
                 toolListArray.Add(new ToolProperty());
             }
-            Logger.Trace(" ReadXML eng");
+            Logger.Trace("ReadXML end");
             return toolCnt;
         }
 
@@ -631,8 +572,6 @@ namespace GrblPlotter
                 toolListArray[toolCnt].GroupWidth = tp.Diameter;
                 toolListArray[toolCnt].GroupLayer = tp.Name;
                 toolListArray[toolCnt].ToolName = tp.Name;
-
-                toolListArray[toolCnt].Position = tp.Position;
                 toolListArray[toolCnt].Gcode = tp.Gcode;
 
                 toolListArray[toolCnt].Laser.Diameter = tp.Diameter;
@@ -640,9 +579,7 @@ namespace GrblPlotter
                 toolListArray[toolCnt].Laser.FeedZ = tp.FeedZ;
                 toolListArray[toolCnt].Laser.SaveZ = tp.SaveZ;
                 toolListArray[toolCnt].Laser.FinalZ = tp.FinalZ;
-                //    toolListArray[toolCnt].Laser.SaveS = tp.Diameter;
                 toolListArray[toolCnt].Laser.FinalS = tp.SpindleSpeed;
-                //        toolListArray[toolCnt].Laser.Position = tp.Position;
 
                 toolListArray[toolCnt].Plotter = toolListArray[toolCnt].Laser.Copy();
                 toolListArray[toolCnt].Router = toolListArray[toolCnt].Laser.Copy();
@@ -650,7 +587,7 @@ namespace GrblPlotter
         }
         public static void WriteXML(string FileName = "")
         {
-            if (FileName == "") { FileName = Datapath.Tools + "\\_currentToolList.xml"; }
+            if (FileName == "") { FileName = Datapath.Tools + "\\" + DefaultFileNameXML; }
             if (File.Exists(FileName))
                 File.Delete(FileName);
             var psd = Properties.Settings.Default;
@@ -665,32 +602,6 @@ namespace GrblPlotter
             w.WriteAttributeString("Device", MyControl.GetSelectedDeviceName());
             w.WriteAttributeString("Amount", toolListArray.Count.ToString());
 
-            w.WriteStartElement("ToolChange");
-            w.WriteAttributeString("Enable", psd.ctrlToolChange.ToString());
-            //            w.WriteAttributeString("Empty", psd.ctrlToolChangeEmpty.ToString());
-            //            w.WriteAttributeString("EmptyNr", psd.ctrlToolChangeEmptyNr.ToString());
-
-            w.WriteAttributeString("ScriptDelay", psd.ctrlToolScriptDelay.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Off-X", positionOffset.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Off-Y", positionOffset.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Off-Z", positionOffset.Z.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Off-A", positionOffset.A.ToString().Replace(',', '.'));
-
-            w.WriteStartElement("ToolChangeScriptPut");
-            w.WriteString(psd.ctrlToolScriptPut);
-            w.WriteEndElement();
-            w.WriteStartElement("ToolChangeScriptSelect");
-            w.WriteString(psd.ctrlToolScriptSelect);
-            w.WriteEndElement();
-            w.WriteStartElement("ToolChangeScriptGet");
-            w.WriteString(psd.ctrlToolScriptGet);
-            w.WriteEndElement();
-            w.WriteStartElement("ToolChangeScriptProbe");
-            w.WriteString(psd.ctrlToolScriptProbe);
-            w.WriteEndElement();
-
-            w.WriteEndElement();		// "ToolChange"
-
             if (toolListArray.Count > 0)
             {
                 foreach (ToolProperty tP in toolListArray)
@@ -699,7 +610,9 @@ namespace GrblPlotter
                 }
             }
             w.WriteEndElement();    // ToolList
+            w.Flush();
             w.Close();
+            w.Dispose();
         }
     }
 
@@ -849,6 +762,7 @@ namespace GrblPlotter
             {
                 w.WriteStartElement("HatchFill");
                 w.WriteAttributeString("Enable", Enable.ToString());
+                w.WriteAttributeString("Cross", Cross.ToString());
                 w.WriteAttributeString("Distance", Distance.ToString().Replace(',', '.'));
                 w.WriteAttributeString("Gradient", Gradient.ToString().Replace(',', '.'));
                 w.WriteAttributeString("Angle", Angle.ToString().Replace(',', '.'));
@@ -863,6 +777,7 @@ namespace GrblPlotter
             {
                 if (log) Logger.Trace("Fill ReadXML Enable:'{0}'", reader["Enable"]);
                 Enable = XML.GetBool(reader, "Enable", false);
+                Cross = XML.GetBool(reader, "Cross", false);
                 Distance = XML.GetFloat(reader, "Distance", 1);
                 Gradient = XML.GetFloat(reader, "Gradient", 0);
                 Angle = XML.GetFloat(reader, "Angle", 0);

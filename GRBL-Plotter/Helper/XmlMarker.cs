@@ -699,6 +699,18 @@ namespace GrblPlotter
                 return listGroups[index].LineStart;
             return -1;
         }
+        public static int GetStartLineOfGroupByToolNr(int index)
+        {
+            foreach (BlockData tmp in listGroups)
+            {
+            //    Logger.Trace("tmp.ToolNr {0} index {1}  tmp.LineStart {2}", tmp.ToolNr, index, tmp.LineStart);
+                if (tmp.ToolNr == index)
+                {
+                    return tmp.LineStart;
+                }
+            }
+            return -1;
+        }
 
         public static bool GetGroup(int lineNR, int search)
         {
