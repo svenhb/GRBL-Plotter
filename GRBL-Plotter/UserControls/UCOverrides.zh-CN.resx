@@ -173,4 +173,32 @@
   <data name="LblRapidSet0.Text" xml:space="preserve">
     <value>放</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - 切换 D0 输出状态</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - 切换 D3 输出状态</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - 切换 D1 输出状态</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - 切换 D2 输出状态</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>立即切换主轴使能/禁用状态（仅在 HOLD 状态下有效）</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>由 ENABLE_M7 编译选项启用；默认处于禁用状态</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>切换大流量冷却液状态及输出引脚电平，直至再次切换或执行改变该状态的 G 代码指令</value>
+    <comment>tt</comment>
+  </data>
 </root>

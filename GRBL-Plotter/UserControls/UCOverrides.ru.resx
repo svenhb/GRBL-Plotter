@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Настроить «Видимость управления»</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X — переключает состояние выхода D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X — переключает состояние выхода D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X — переключает состояние выхода D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X — мгновенно переключает состояние включения/выключения шпинделя (работает только в режиме HOLD)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Мгновенно переключает состояние разрешения или запрета работы шпинделя, но только в состоянии HOLD (удержание).</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Активируется с помощью опции компиляции ENABLE_M7. По умолчанию отключено.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Переключает состояние подачи СОЖ и выходной вывод до тех пор, пока следующее переключение или команда G-кода не изменят их состояние.</value>
+    <comment>tt</comment>
+  </data>
 </root>

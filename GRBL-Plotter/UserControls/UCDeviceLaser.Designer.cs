@@ -41,6 +41,8 @@
             this.BtnUseZ = new System.Windows.Forms.Button();
             this.BtnOverlap = new System.Windows.Forms.Button();
             this.LblPowerMin = new System.Windows.Forms.Label();
+            this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnOffsetSort = new System.Windows.Forms.Button();
             this.BtnSetup = new System.Windows.Forms.Button();
             this.GbPowerSettings = new System.Windows.Forms.GroupBox();
             this.LblSet = new System.Windows.Forms.Label();
@@ -49,6 +51,10 @@
             this.LblLaserSetVal = new System.Windows.Forms.Label();
             this.BtnGetMaterial = new System.Windows.Forms.Button();
             this.PanelTranslation = new System.Windows.Forms.Panel();
+            this.LblSetup3 = new System.Windows.Forms.Label();
+            this.LblSetup2 = new System.Windows.Forms.Label();
+            this.LblSetup1 = new System.Windows.Forms.Label();
+            this.LblSetupHeadline = new System.Windows.Forms.Label();
             this.LblZFinal = new System.Windows.Forms.Label();
             this.LblZSave = new System.Windows.Forms.Label();
             this.LbLZFeed = new System.Windows.Forms.Label();
@@ -60,18 +66,12 @@
             this.LblOverlapEnable = new System.Windows.Forms.Label();
             this.LblOverlapHeadline = new System.Windows.Forms.Label();
             this.BtnLaserTools = new System.Windows.Forms.Button();
-            this.LblSetupHeadline = new System.Windows.Forms.Label();
-            this.LblSetup1 = new System.Windows.Forms.Label();
-            this.LblSetup2 = new System.Windows.Forms.Label();
-            this.LblSetup3 = new System.Windows.Forms.Label();
-            this.BtnHelp = new System.Windows.Forms.Button();
             this.NudDeviceLaserPowerMin = new System.Windows.Forms.NumericUpDown();
             this.CbAirAssist = new System.Windows.Forms.CheckBox();
             this.CbLaserpower = new System.Windows.Forms.CheckBox();
             this.NudDeviceLaserPasses = new System.Windows.Forms.NumericUpDown();
             this.NudDeviceLaserSpeed = new System.Windows.Forms.NumericUpDown();
             this.NudDeviceLaserPower = new System.Windows.Forms.NumericUpDown();
-            this.BtnOffsetSort = new System.Windows.Forms.Button();
             this.GbPowerSettings.SuspendLayout();
             this.PanelTranslation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPowerMin)).BeginInit();
@@ -150,6 +150,24 @@
             this.LblPowerMin.Name = "LblPowerMin";
             this.toolTip1.SetToolTip(this.LblPowerMin, resources.GetString("LblPowerMin.ToolTip"));
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp, "BtnHelp");
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Tag = "id=device#laser";
+            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
+            this.BtnHelp.UseVisualStyleBackColor = false;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
+            // BtnOffsetSort
+            // 
+            resources.ApplyResources(this.BtnOffsetSort, "BtnOffsetSort");
+            this.BtnOffsetSort.Name = "BtnOffsetSort";
+            this.toolTip1.SetToolTip(this.BtnOffsetSort, resources.GetString("BtnOffsetSort.ToolTip"));
+            this.BtnOffsetSort.UseVisualStyleBackColor = true;
+            this.BtnOffsetSort.Click += new System.EventHandler(this.BtnOffsetSort_Click);
+            // 
             // BtnSetup
             // 
             resources.ApplyResources(this.BtnSetup, "BtnSetup");
@@ -214,6 +232,26 @@
             resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
             this.PanelTranslation.Name = "PanelTranslation";
             // 
+            // LblSetup3
+            // 
+            resources.ApplyResources(this.LblSetup3, "LblSetup3");
+            this.LblSetup3.Name = "LblSetup3";
+            // 
+            // LblSetup2
+            // 
+            resources.ApplyResources(this.LblSetup2, "LblSetup2");
+            this.LblSetup2.Name = "LblSetup2";
+            // 
+            // LblSetup1
+            // 
+            resources.ApplyResources(this.LblSetup1, "LblSetup1");
+            this.LblSetup1.Name = "LblSetup1";
+            // 
+            // LblSetupHeadline
+            // 
+            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
+            this.LblSetupHeadline.Name = "LblSetupHeadline";
+            // 
             // LblZFinal
             // 
             resources.ApplyResources(this.LblZFinal, "LblZFinal");
@@ -270,36 +308,6 @@
             this.BtnLaserTools.Name = "BtnLaserTools";
             this.BtnLaserTools.UseVisualStyleBackColor = true;
             this.BtnLaserTools.Click += new System.EventHandler(this.BtnStartLaserTools_Click);
-            // 
-            // LblSetupHeadline
-            // 
-            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
-            this.LblSetupHeadline.Name = "LblSetupHeadline";
-            // 
-            // LblSetup1
-            // 
-            resources.ApplyResources(this.LblSetup1, "LblSetup1");
-            this.LblSetup1.Name = "LblSetup1";
-            // 
-            // LblSetup2
-            // 
-            resources.ApplyResources(this.LblSetup2, "LblSetup2");
-            this.LblSetup2.Name = "LblSetup2";
-            // 
-            // LblSetup3
-            // 
-            resources.ApplyResources(this.LblSetup3, "LblSetup3");
-            this.LblSetup3.Name = "LblSetup3";
-            // 
-            // BtnHelp
-            // 
-            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnHelp, "BtnHelp");
-            this.BtnHelp.Name = "BtnHelp";
-            this.BtnHelp.Tag = "id=device#laser";
-            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
-            this.BtnHelp.UseVisualStyleBackColor = false;
-            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // NudDeviceLaserPowerMin
             // 
@@ -395,14 +403,6 @@
             this.toolTip1.SetToolTip(this.NudDeviceLaserPower, resources.GetString("NudDeviceLaserPower.ToolTip"));
             this.NudDeviceLaserPower.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPower;
             this.NudDeviceLaserPower.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
-            // 
-            // BtnOffsetSort
-            // 
-            resources.ApplyResources(this.BtnOffsetSort, "BtnOffsetSort");
-            this.BtnOffsetSort.Name = "BtnOffsetSort";
-            this.toolTip1.SetToolTip(this.BtnOffsetSort, resources.GetString("BtnOffsetSort.ToolTip"));
-            this.BtnOffsetSort.UseVisualStyleBackColor = true;
-            this.BtnOffsetSort.Click += new System.EventHandler(this.BtnOffsetSort_Click);
             // 
             // UCDeviceLaser
             // 

@@ -132,7 +132,12 @@ namespace GrblPlotter.UserControls
 
         private void CbLaser_CheckedChanged(object sender, EventArgs e)
         {
-            Logger.Trace("CbLaser_CheckedChanged {0}", CbLaser.Checked);
+            bool isLaserActive = (MyControl.SelectedDevice == DeviceSelection.Laser);
+
+            Logger.Trace("CbLaser_CheckedChanged {0}  device=Laser?:{1} ", CbLaser.Checked, isLaserActive);
+            if (!isLaserActive)
+                return;
+
             statusUpdateInhibit = 2;
             string m = "M3";
 

@@ -113,6 +113,7 @@ namespace GrblPlotter.UserControls
 
         internal void TriggerMove(string action)
         {
+            // triggered by ProcessHotkeys in MainFormLoadFile
             if (action.Contains("XY")) { BtnXY.PerformClick(); }
             else if (action.Contains("X")) { BtnX.PerformClick(); }
             else if (action.Contains("Y")) { BtnY.PerformClick(); }

@@ -164,4 +164,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>'Geçersiz kılma görünürlüğü'nü ayarlayın</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D0 çıkışının durumunu değiştirir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D3 çıkışının durumunu değiştirir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D1 çıkışının durumunu değiştirir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D2 çıkışının durumunu değiştirir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Spindle (iş mili) etkinleştirme/devre dışı bırakma durumunu anında değiştirir; ancak bu işlem yalnızca HOLD (bekletme) durumundayken gerçekleştirilebilir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>ENABLE_M7 derleme zamanı seçeneği ile etkinleştirilir. Varsayılan ayar devre dışıdır</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Bir sonraki durum değişikliği veya bir G-kodu komutu ile değiştirilene kadar, bol miktarda soğutma sıvısı (flood coolant) durumunu ve ilgili çıkış pininin halini değiştirir</value>
+    <comment>tt</comment>
+  </data>
 </root>
