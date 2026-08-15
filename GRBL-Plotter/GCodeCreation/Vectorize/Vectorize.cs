@@ -20,12 +20,24 @@
 /*
  * 2024-12-13 Simple vectorization algorithm for geometric bitmaps
 */
-
+/*  
+ * Using a byte array to store 6-Bit toolNr (0-63), or 7-Bit (1-127) - 0 not allowed as toolNr!?
+ * - convert colors to tool-numbers via Colors.GetToolNRByColor.
+ * - track used toolnr.
+ * 
+ BitmapImage image2 = new BitmapImage();
+image2.BeginInit();
+image2.UriSource = new Uri("tulipfarm.tif", UriKind.RelativeOrAbsolute);
+image2.EndInit();
+BitmapPalette myPalette3 = new BitmapPalette(image2, 256);
+nur für indexed bitmap - aforge?
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Color = System.Drawing.Color;
 
@@ -43,6 +55,11 @@ namespace GrblPlotter
         public static List<List<Point>> outlinePaths = new List<List<Point>>();
         public static Color ObjectColor { get; set; }
 
+        public static List<List<List<Point>>> outlinePathsByToolNr = new List<List<List<Point>>>();
+        public static List<byte> AvailableToolNumbers;
+  //      public static List<Color> AvailableToolColors=new List<Color>();
+        public static byte toolNrToTrace = 1;
+
         public static readonly int pixelScale = 10;
 
         internal class PxProp
@@ -53,6 +70,9 @@ namespace GrblPlotter
             public PxProp(Point pnew)	// Int32 max=2^31 = 2.147.483.647
             { p = pnew; }
         }
+
+
+
         private static List<PxProp> pixelPath = new List<PxProp>();
         private static List<Point> pixelOrig = new List<Point>();
 
@@ -80,11 +100,9 @@ namespace GrblPlotter
 
         public static void DoTracing(Bitmap bmp, int treshold, int smooth, bool findTransparency, bool invert)
         {
-            skipOptimazion = Properties.Settings.Default.importVectorizeOptimize1;
+            skipOptimazion = !Properties.Settings.Default.importVectorizeOptimize1;
             uint logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             log = logEdge = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
-            //   logEdge = Properties.ListSettings.Default.importVectorizeOptimize3;
-            //   log = Properties.ListSettings.Default.importVectorizeOptimize4;
             logBmp = logEdge || log;
 
             BmpWidth = bmp.Width;
@@ -95,12 +113,33 @@ namespace GrblPlotter
             int psize = Image.GetPixelFormatSize(bmp.PixelFormat);    // color-deepth, including alpha?
             Logger.Info("●●●● DoTracing start PxSize:{0}  format:{1}   find transparency:{2}", psize, bmp.PixelFormat, findTransparency);
 
-            if (findTransparency && ((psize / 8) > 3))
-                byteMap = BitmapToByteMapAlpha(bmp, treshold, invert);
-            else
-                byteMap = BitmapToByteMapGrey(bmp, treshold, invert);
+            if (true)
+            {
+                if (findTransparency && ((psize / 8) > 3))
+                    byteMap = BitmapToByteMapAlpha(bmp, treshold, invert);
+                else
+                    byteMap = BitmapToByteMapGrey(bmp, treshold, invert);
 
-            StartTracing();
+                StartTracing(1);
+            }
+            else
+            {
+                byteMap = BitmapToByteMapColor(bmp, ref AvailableToolNumbers);
+                outlinePathsByToolNr.Clear();
+                foreach (byte toolNr in AvailableToolNumbers)
+                {
+                    Logger.Trace("StartTracing {0}", toolNr);
+                    StartTracing(toolNr);
+                    outlinePathsByToolNr.Add(new List<List<Point>>(outlinePaths));
+                    for (int y = 0; y < BmpHeight; y++)
+                    {
+                        for (int x = 0; x < BmpWidth; x++)
+                        {
+                            byteMap[x, y] &= 0b00111111;
+                        }
+                    }
+                }
+            }
             if (log) Logger.Trace("●●●● DoTracing end outlinePaths:{0}", outlinePaths.Count);
             myBitmap.Dispose();
         }
@@ -221,8 +260,77 @@ namespace GrblPlotter
             return Result;
         }
 
-        private static void StartTracing()
+        public static byte[,] BitmapToByteMapColor(Bitmap bmp, ref List<byte> toolNrList)
         {
+            int psize = Image.GetPixelFormatSize(bmp.PixelFormat) / 8;  // 4;
+            Logger.Info("●●●● BitmapToByteMapColor {0} x {1}  format:{2}   psize:{3}", bmp.Width, bmp.Height, bmp.PixelFormat, psize);
+            ObjectColor = Color.Transparent;
+            BitmapData dataAdjusted;
+            byte[,] Result = new byte[bmp.Width, bmp.Height];
+
+            byte isBackground = 0;
+            byte isForeground = 1;
+            byte toolNr;
+            Color pxColor;
+
+            Dictionary<Color, byte> lookUpToolNr = new Dictionary<Color, byte>();
+            var differentColor = new HashSet<System.Drawing.Color>();          // count each color once
+            var differentToolNr = new HashSet<byte>();          // count each color once
+            try
+            {
+                Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+
+                dataAdjusted = bmp.LockBits(rect, ImageLockMode.ReadOnly, bmp.PixelFormat);
+
+                IntPtr ptrAdjusted = dataAdjusted.Scan0;
+                long bsize = dataAdjusted.Stride * bmp.Height;
+                byte[] pixelData = new byte[bsize];
+                Marshal.Copy(ptrAdjusted, pixelData, 0, pixelData.Length);
+
+                byte r = 0, g = 0, b = 0, a = 255;  // default, if no pixel found
+                int bx = 0, by = 0;
+
+                for (long index = 0; index < pixelData.Length; index += psize)
+                {
+                    b = pixelData[index];
+                    g = pixelData[index + 1];
+                    r = pixelData[index + 2];
+                    //    a = pixelData[index + 3];
+
+                    pxColor = Color.FromArgb(r, g, b);
+
+                    if (!lookUpToolNr.TryGetValue(pxColor, out toolNr))
+                    {
+                        toolNr = (byte)(lookUpToolNr.Count() + 1);	//(byte)Helper.Colors.GetToolNRByColor(pxColor, 0);
+                        lookUpToolNr.Add(pxColor, toolNr);
+            //            AvailableToolColors.Add(pxColor); ;
+                    }
+                    differentColor.Add(pxColor);
+                    differentToolNr.Add(toolNr);
+
+                    /* the two highest bits are needed as a flag */
+                    Result[bx++, by] = (byte)(0b00111111 & toolNr);
+
+                    if (bx >= bmp.Width)
+                    { bx = 0; by++; }
+                }
+                bmp?.UnlockBits(dataAdjusted);
+            }
+            catch (Exception err)
+            {
+                string errString = string.Format("BitmapToByteMapColor: size:{0} x {1}  bits:{2}", bmp.Width, bmp.Height, Image.GetPixelFormatSize(bmp.PixelFormat));
+                Logger.Error(err, " {0}  ", errString);
+                EventCollector.StoreException(errString + "  " + err.Message);
+                //    bmp?.UnlockBits(dataAdjusted);
+            }
+            Logger.Trace("BitmapToByteMapColor width:{0}  height:{1}  colors:{2}  toolNr:{3}", bmp.Width, bmp.Height, differentColor.Count, differentToolNr.Count);
+            toolNrList = differentToolNr.ToList();
+            return Result;
+        }
+
+        private static void StartTracing(byte tNrToTrace)
+        {
+            toolNrToTrace = tNrToTrace;
             bool isObjectLast, isObjectCur, wasScannedLast = false, wasScannedCur = false;
             byte pixelValue;
             outlinePaths.Clear();
@@ -235,8 +343,9 @@ namespace GrblPlotter
                 {
                     pixelValue = byteMap[x, y];
                     if ((pixelValue & objectTrue) > 0) { wasScannedCur = isObjectCur = true; }		// already scanned?
-                    else if ((pixelValue & objectFalse) > 0) { isObjectCur = false; wasScannedCur = true; }	// already scanned?
-                    else if (pixelValue > 0)
+                    else if ((pixelValue & objectFalse) > 0) { isObjectCur = false; wasScannedCur = true; } // already scanned?
+                                                                                                            //    else if (pixelValue > 0)
+                    else if ((0b00111111 & pixelValue) == tNrToTrace)
                     {
                         byteMap[x, y] |= objectTrue;
                         isObjectCur = true;
@@ -312,7 +421,7 @@ namespace GrblPlotter
                 searchDir = TracePath(ref next, searchDirOld);
                 if (searchDir > 8)  // no neighbor pixels
                 {
-                    Logger.Warn("!!!!! TraceContour no neighbor pixel !!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Logger.Warn("!!!!! TraceContour no neighbor pixel x:{0}  y:{1} !!!!!!!!!!!!!!!!!!!!!!!!!!!", next.X, next.Y);
                     return;
                 }
 
@@ -500,7 +609,7 @@ namespace GrblPlotter
             { return outerLimit; }
             else
             {
-                if (((byteMap[cx, cy] & 0x01)) > 0)
+                if (((0b00111111 & byteMap[cx, cy])) == toolNrToTrace)
                 {
                     byteMap[cx, cy] |= objectTrue;      // mark as object
                     return true;
