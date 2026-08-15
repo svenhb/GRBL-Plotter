@@ -3940,7 +3940,7 @@ Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
     <value>Geometric Trace (pomalé – dobré pro geometrické tvary)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (rychlé - dobré pro obrázky a náčrty)</value>
+    <value>Potrace (rychlé - dobré pro obrázky a náčrty)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Vektorizační algoritmus</value>
@@ -4098,5 +4098,23 @@ Použijte „Exportovat nastavení stroje“ k uložení „výchozích nastaven
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Jas</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Průměr nástroje v mm</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Vyplnění stop na desce plošných spojů nástrojem</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>Zpracování prvku „use“</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Invertovat výsledek</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Vyhlazení hran</value>
   </data>
 </root>

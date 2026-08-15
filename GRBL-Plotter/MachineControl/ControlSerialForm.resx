@@ -649,7 +649,7 @@
     <value>False</value>
   </data>
   <data name="btnCheckGRBLResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 71</value>
+    <value>299, 69</value>
   </data>
   <data name="btnCheckGRBLResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -724,7 +724,7 @@
     <value>3</value>
   </data>
   <data name="btnCheckGRBL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 71</value>
+    <value>222, 69</value>
   </data>
   <data name="btnCheckGRBL.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 20</value>

@@ -41,6 +41,7 @@
  * 2024-11-18 l:250 f:SetupForm_Load change (encodeIndex < GuiVariables.SaveEncoding.Length) to (encodeIndex < CBoxSaveEncoding.Items.Count)   
  * 2025-02-23 add M6PassThrough CbToolChangeM6PassThrough #435
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-06-11 f:ImportCSVToDgv disable tool table related functions
 */
 
 using GrblPlotter.Helper;
@@ -130,16 +131,16 @@ namespace GrblPlotter
                 Logger.Error(err, "SetupForm_Load path nok:{0}", tpath);
                 //throw;		// unknown exception...
             }
-            defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
+        //    defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
 
-            if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))
+        /*    if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))
             {
                 string[] tmp = ToolTable.defaultTool;  // { "1", "000000", "Black", "0.0", "0.0", "0.0", "3.0", "500" };
                 dGVToolList.Rows.Add(tmp);
-            }
-            FillToolTableFileList(Datapath.Tools);
+            }*/
+        //    FillToolTableFileList(Datapath.Tools);
             FillUseCaseFileList(Datapath.Usecases);
-            lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
+        //    lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
             tab2gB1.Text += " ( " + Datapath.Tools + " )";
 
             SetCustomBtnTable();
@@ -381,8 +382,8 @@ namespace GrblPlotter
 
             Properties.Settings.Default.Save();
 
-            ExportDgvToCSV(defaultToolList);
-            ToolTable.Init(" (SaveSettings)");
+        //    ExportDgvToCSV(defaultToolList);
+        //    ToolTable.Init(" (SaveSettings)");
             SetCustomBtnTable();
         }
 
@@ -951,7 +952,7 @@ namespace GrblPlotter
         private void BtnToolExport_Click(object sender, EventArgs e)
         {
             // Displays a SaveFileDialog so the user can save the List
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+        /*    SaveFileDialog saveFileDialog1 = new SaveFileDialog
             {
                 InitialDirectory = importPath,
                 Filter = "CSV File|*.csv",
@@ -964,7 +965,7 @@ namespace GrblPlotter
                 ExportDgvToCSV(saveFileDialog1.FileName);
             }
             FillToolTableFileList(Datapath.Tools);
-            saveFileDialog1.Dispose();
+            saveFileDialog1.Dispose();*/
         }
 
         private static readonly string importPath = Datapath.Tools;
@@ -984,7 +985,7 @@ namespace GrblPlotter
         }
         private void LoadToolList(string filename)
         {
-            Logger.Trace("LoadToolList {0}", filename);
+        /*    Logger.Trace("LoadToolList {0}", filename);
             ImportCSVToDgv(filename);
             Properties.Settings.Default.toolTableOriginal = true;
             Properties.Settings.Default.toolTableLastLoaded = filename; // Path.GetFileName(filename);
@@ -992,7 +993,7 @@ namespace GrblPlotter
             lblToolListChanged.Text = "orginal";
             lblToolListChanged.BackColor = Color.Transparent;
             ExportDgvToCSV(defaultToolList);
-            this.Refresh();
+            this.Refresh();*/
         }
         private void BtnLoadToolTable_Click(object sender, EventArgs e)
         {
@@ -1662,7 +1663,7 @@ namespace GrblPlotter
 
                 dGVToolList.CellEndEdit -= new DataGridViewCellEventHandler(DgvToolList_CellLeave);
                 dGVToolList.CellLeave -= new DataGridViewCellEventHandler(DgvToolList_CellLeave);
-                ImportCSVToDgv(defaultToolList);
+            //    ImportCSVToDgv(defaultToolList);
                 dGVToolList.CellEndEdit += new DataGridViewCellEventHandler(DgvToolList_CellLeave);
                 dGVToolList.CellLeave += new DataGridViewCellEventHandler(DgvToolList_CellLeave);
 

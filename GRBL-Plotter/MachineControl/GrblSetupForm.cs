@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2022-07-08 new form
  * 2022-10-17 line 139 check also (RowIndex >= 0) -1 = headline
  * 2022-10-18 line 50 disable sorting
+ * 2026-08-14 l:47 f:GrblSetupForm_Load set height to display height
 */
 
 using System;
@@ -43,14 +44,15 @@ namespace GrblPlotter.MachineControl
         {
             if (UpdateTable() > 0)
             {
-                Height = 900;
+                int max = Screen.PrimaryScreen.WorkingArea.Height;
+                Height = (max < 900) ? max : 900;
                 Top = 0;
             }
-			
-			foreach (DataGridViewColumn column in dataGridView1.Columns)
-			{
-				column.SortMode = DataGridViewColumnSortMode.NotSortable;
-			}
+
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private int UpdateTable()
@@ -144,7 +146,7 @@ namespace GrblPlotter.MachineControl
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-        //    if ((e.ColumnIndex == 1) && (e.RowIndex >= 0))
+            //    if ((e.ColumnIndex == 1) && (e.RowIndex >= 0))
             {
                 string nr = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string format = dataGridView1.Rows[e.RowIndex].Cells[1].Style.Format;
@@ -251,7 +253,7 @@ namespace GrblPlotter.MachineControl
             }
             catch (Exception err)
             {
-         //       Logger.Error(err, "LinkLabel_LinkClicked ");
+                //       Logger.Error(err, "LinkLabel_LinkClicked ");
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
         }

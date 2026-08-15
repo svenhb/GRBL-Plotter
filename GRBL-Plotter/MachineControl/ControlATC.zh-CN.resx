@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GbSelection.Text" xml:space="preserve">
+    <value>自动换笔选项</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbScripts.Text" xml:space="preserve">
+    <value>自动换笔脚本</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnEditFileDialogTT4.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnEditFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>在记事本中编辑脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT3.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnEditFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>在记事本中编辑脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT2.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnEditFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>在记事本中编辑脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT1.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnEditFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>在记事本中编辑脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT4.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="btnFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>通过文件对话框选择脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT3.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="btnFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>通过文件对话框选择脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT2.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="btnFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>通过文件对话框选择脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT1.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="btnFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>通过文件对话框选择脚本</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4) 探测</value>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>用于执行刀具长度补偿（或在取用刀具后执行其他动作）的脚本。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2) 选择</value>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>用于在选择新颜色前清洁画笔（或在取用刀具前执行其他动作）的脚本。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1) 移除</value>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>用于将画笔从夹持器中取下并放回笔架（或在使用刀具后执行其他动作）的脚本。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3) 拾取</value>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>用于利用夹持器从笔架取笔、在选定颜料盘中搅动画笔（或执行其他取用刀具的动作）的脚本。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="TbDescription.Text" xml:space="preserve">
+    <value>自动换刀装置设置说明</value>
+    <comment>f</comment>
+  </data>
+  <data name="TbDescription.ToolTip" xml:space="preserve">
+    <value>自动换刀装置设置说明</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>发送指令以打开夹爪。该指令可通过脚本中的变量 #TOGO 调用。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>发送指令以关闭夹爪。该指令可通过脚本中的变量 #TOGC 调用。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbSkipM30.Text" xml:space="preserve">
+    <value>跳过 M30 指令</value>
+  </data>
+  <data name="CbSkipM30.ToolTip" xml:space="preserve">
+    <value>跳过 G 代码末尾的 M30 指令，以确保程序结束后伺服电机保持激活状态。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOffsetMoveTo.Text" xml:space="preserve">
+    <value>移动至偏移位置</value>
+  </data>
+  <data name="BtnOffsetMoveTo.ToolTip" xml:space="preserve">
+    <value>移动至刀具偏移位置。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnApplyEdit.Text" xml:space="preserve">
+    <value>应用数值</value>
+  </data>
+  <data name="BtnApplyEdit.ToolTip" xml:space="preserve">
+    <value>应用针对所选刀具编号的更改。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose2.Text" xml:space="preserve">
+    <value>夹爪闭合</value>
+  </data>
+  <data name="BtnGripperClose2.ToolTip" xml:space="preserve">
+    <value>发送指令以关闭夹爪。该指令可通过脚本中的变量 #TOGC 调用。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen2.Text" xml:space="preserve">
+    <value>夹爪张开</value>
+  </data>
+  <data name="BtnGripperOpen2.ToolTip" xml:space="preserve">
+    <value>发送指令以打开夹爪。该指令可通过脚本中的变量 #TOGO 调用。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>待取用的笔编号</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>拾取脚本</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>从笔架取笔并由夹爪夹持</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>移除脚本</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>从夹爪中取下笔，放回笔架</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbPreset.Text" xml:space="preserve">
+    <value>加载/保存自动换笔设置</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>另存为</value>
+  </data>
+  <data name="BtnLoad.Text" xml:space="preserve">
+    <value>加载</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>夹爪开/关指令</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>偏移至笔位置</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>X 坐标</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Y 坐标</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Z 坐标</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>A 坐标</value>
+  </data>
+  <data name="columnHeader6.Text" xml:space="preserve">
+    <value>显示尺寸</value>
+  </data>
+  <data name="entry1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>移动至笔位置</value>
+  </data>
+  <data name="GbPresetPos.Text" xml:space="preserve">
+    <value>预设刀具位置</value>
+    <comment>gb</comment>
+  </data>
+  <data name="BtnPresetY.Text" xml:space="preserve">
+    <value>预设 Y</value>
+  </data>
+  <data name="BtnPresetX.Text" xml:space="preserve">
+    <value>预设 X</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>笔的数量</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>笔位</value>
+    <comment>tab</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>脚本</value>
+    <comment>tab</comment>
+  </data>
+  <data name="GbControl.Text" xml:space="preserve">
+    <value>运行脚本</value>
+  </data>
+  <data name="BtnHoming.Text" xml:space="preserve">
+    <value>开始回零 $H</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>笔号：</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>探测脚本</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>选择脚本</value>
+  </data>
+  <data name="GbEdit.Text" xml:space="preserve">
+    <value>编辑位置</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>刀具编号：</value>
+  </data>
+  <data name="RbPenChange2.Text" xml:space="preserve">
+    <value>自动换笔</value>
+  </data>
+  <data name="RbPenChange2.ToolTip" xml:space="preserve">
+    <value>插入换刀指令“Tx M06”以执行自动换笔操作。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange1.Text" xml:space="preserve">
+    <value>手动换笔</value>
+  </data>
+  <data name="RbPenChange1.ToolTip" xml:space="preserve">
+    <value>在使用新刀具前插入停顿，以便手动更换。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange0.Text" xml:space="preserve">
+    <value>不换笔</value>
+  </data>
+  <data name="RbPenChange0.ToolTip" xml:space="preserve">
+    <value>不插入停顿或换刀指令。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>自动换笔设置</value>
+  </data>
+  <data name="BtnOffsetGet.Text" xml:space="preserve">
+    <value>获取偏移量</value>
+  </data>
+  <data name="BtnOffsetGet.ToolTip" xml:space="preserve">
+    <value>获取当前机床坐标</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>消除</value>
+    <comment>gb</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>设置分步指令，以编写拾取和移除脚本。
+
+常用指令：
+G91 = 相对模式
+G53 G90 = 绝对机床坐标
+G1 F100 = 低速运行
+更多信息请参阅 https://linuxcnc.org/docs/html/gcode.html
+
+变量：
+#TOGO = 夹爪张开
+#TOGC = 夹爪闭合
+#TOAX, #TOAY, #TOAZ = 当前笔的换笔坐标
+#TOLX, #TOLY, #TOLZ = 上一支笔的换笔坐标</value>
+  </data>
+  <data name="BtnSetToolNr1.Text" xml:space="preserve">
+    <value>设置刀具编号 1（设置 #TOAx, #TOLx）</value>
+  </data>
+  <data name="BtnSetToolNr1.ToolTip" xml:space="preserve">
+    <value>用于初始化变量 #TOAx 和 TOLx。</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.Text" xml:space="preserve">
+    <value>将命令复制到剪贴板</value>
+  </data>
+  <data name="BtnSendPickUp8.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp7.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp6.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp5.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp4.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp3.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp2.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendPickUp1.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>拾起</value>
+    <comment>gb</comment>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>循序渐进</value>
+    <comment>tab</comment>
+  </data>
+  <data name="BtnSendRemove8.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove7.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove6.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove5.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove4.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove3.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove2.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnSendRemove1.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnCopyRemove.Text" xml:space="preserve">
+    <value>将命令复制到剪贴板</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
+  </data>
+  <data name="BtnCopyRemove.ToolTip" xml:space="preserve">
+    <value>将所有“移除”（remove）命令复制到剪贴板，以便将其插入文本编辑器用于脚本编写。</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
+    <value>将所有“拾取”（pick-up）命令复制到剪贴板，以便将其插入文本编辑器用于脚本编写。</value>
+    <comment>tt2</comment>
+  </data>
+</root>

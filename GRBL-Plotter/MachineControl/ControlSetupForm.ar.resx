@@ -3938,7 +3938,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>التتبع الهندسي (بطيء - جيد للأشكال الهندسية)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (سريع - جيد للصور والرسومات)</value>
+    <value>Potrace (سريع - جيد للصور والرسومات)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>خوارزمية المتجهات</value>
@@ -4099,5 +4099,23 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>السطوع</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>قطر الأداة بالملليمتر</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>ملء مسارات لوحة الدائرة المطبوعة (PCB) باستخدام أداة</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>معالجة عنصر "use"</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>عكس النتيجة</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>تنعيم الحواف</value>
   </data>
 </root>

@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GbSelection.Text" xml:space="preserve">
+    <value>خيارات تغيير القلم التلقائي</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbScripts.Text" xml:space="preserve">
+    <value>برامج تغيير القلم التلقائي</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnEditFileDialogTT4.Text" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="BtnEditFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT3.Text" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="BtnEditFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT2.Text" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="BtnEditFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT1.Text" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="BtnEditFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT4.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="btnFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT3.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="btnFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>تحديد البرنامج النصي من خلال مربع حوار الملف</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT2.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="btnFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>تحديد البرنامج النصي من خلال مربع حوار الملف</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT1.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="btnFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>تحديد البرنامج النصي من خلال مربع حوار الملف</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4) مسبار</value>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>برمجية (Script) لإجراء عملية تعويض طول الأداة – أو لتنفيذ إجراء آخر بعد أخذ الأداة.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2) تحديد</value>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>برمجية لتنظيف الفرشاة قبل اختيار لون جديد – أو لتنفيذ إجراء آخر قبل أخذ الأداة.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1) إزالة</value>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>برمجية لإزالة القلم من أداة الإمساك (القابض) وإعادته إلى حامله – أو لتنفيذ إجراء آخر بعد استخدام الأداة.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3) التقاط</value>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>برمجية لأخذ القلم من حامله باستخدام أداة الإمساك، أو لتحريك الفرشاة في وعاء الطلاء المختار – أو لتنفيذ إجراء آخر لأخذ الأداة.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="TbDescription.Text" xml:space="preserve">
+    <value>وصف إعداد مغير الأدوات التلقائي</value>
+    <comment>f</comment>
+  </data>
+  <data name="TbDescription.ToolTip" xml:space="preserve">
+    <value>وصف إعدادات مبدل الأدوات الآلي</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لفتح القابض (gripper). يتوفر هذا الأمر داخل البرنامج النصي (script) عبر المتغير #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لإغلاق القابض. يتوفر هذا الأمر داخل البرنامج النصي عبر المتغير #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbSkipM30.Text" xml:space="preserve">
+    <value>تخطي أمر M30</value>
+  </data>
+  <data name="CbSkipM30.ToolTip" xml:space="preserve">
+    <value>تخطي الأمر M30 في نهاية كود G-Code، للحفاظ على نشاط المحرك المؤازر (servo) عند انتهاء البرنامج.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOffsetMoveTo.Text" xml:space="preserve">
+    <value>الانتقال إلى الإزاحة</value>
+  </data>
+  <data name="BtnOffsetMoveTo.ToolTip" xml:space="preserve">
+    <value>الانتقال إلى موضع إزاحة الأداة (tool offset position).</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnApplyEdit.Text" xml:space="preserve">
+    <value>تطبيق القيم</value>
+  </data>
+  <data name="BtnApplyEdit.ToolTip" xml:space="preserve">
+    <value>تطبيق التغييرات على رقم الأداة المحدد.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose2.Text" xml:space="preserve">
+    <value>إغلاق القابض</value>
+  </data>
+  <data name="BtnGripperClose2.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لإغلاق القابض. يتوفر هذا الأمر داخل البرنامج النصي عبر المتغير #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen2.Text" xml:space="preserve">
+    <value>فتح القابض</value>
+  </data>
+  <data name="BtnGripperOpen2.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لفتح القابض. يتوفر هذا الأمر داخل البرنامج النصي عبر المتغير #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>رقم القلم المراد أخذه.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>بريمج الالتقاط</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>أخذ القلم من وحدة التخزين وتثبيته في القابض.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>بريمج الإزالة</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>إخراج القلم من القابض ووضعه في وحدة التخزين.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbPreset.Text" xml:space="preserve">
+    <value>تحميل/حفظ إعداد تغيير القلم التلقائي</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>حفظ باسم</value>
+  </data>
+  <data name="BtnLoad.Text" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>أوامر فتح/إغلاق الماسك</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>إزاحة إلى موقع القلم</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>الموقع X</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>الموقع Y</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>الموقع Z</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>الموقع A</value>
+  </data>
+  <data name="columnHeader6.Text" xml:space="preserve">
+    <value>حجم العرض</value>
+  </data>
+  <data name="entry1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>الانتقال إلى موقع القلم</value>
+  </data>
+  <data name="GbPresetPos.Text" xml:space="preserve">
+    <value>مواقع الأدوات المحددة مسبقاً</value>
+    <comment>gb</comment>
+  </data>
+  <data name="BtnPresetY.Text" xml:space="preserve">
+    <value>الإعداد المسبق Y</value>
+  </data>
+  <data name="BtnPresetX.Text" xml:space="preserve">
+    <value>الإعداد المسبق X</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>عدد الأقلام</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>مواضع الأقلام</value>
+    <comment>tab</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>البرامج النصية</value>
+    <comment>tab</comment>
+  </data>
+  <data name="GbControl.Text" xml:space="preserve">
+    <value>تشغيل البرامج النصية</value>
+  </data>
+  <data name="BtnHoming.Text" xml:space="preserve">
+    <value>بدء التوجيه $H</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>رقم القلم:</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>البرنامج النصي PROBE</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>البرنامج النصي SELECT</value>
+  </data>
+  <data name="GbEdit.Text" xml:space="preserve">
+    <value>تعديل الموضع</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>رقم الأداة:</value>
+  </data>
+  <data name="RbPenChange2.Text" xml:space="preserve">
+    <value>تغيير القلم تلقائيًا</value>
+  </data>
+  <data name="RbPenChange2.ToolTip" xml:space="preserve">
+    <value>إدراج أمر تغيير الأداة 'Tx M06' لتنفيذ عملية تغيير القلم آلياً.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange1.Text" xml:space="preserve">
+    <value>تغيير القلم يدويًا</value>
+  </data>
+  <data name="RbPenChange1.ToolTip" xml:space="preserve">
+    <value>أدرج وقفةً قبل استخدام قلم جديد للسماح بالتغيير اليدوي.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange0.Text" xml:space="preserve">
+    <value>لا يوجد تغيير للقلم</value>
+  </data>
+  <data name="RbPenChange0.ToolTip" xml:space="preserve">
+    <value>لا ​​يتم إدراج أمر وقفة أو تغيير أداة.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>إعداد تغيير القلم التلقائي</value>
+  </data>
+  <data name="BtnOffsetGet.Text" xml:space="preserve">
+    <value>الحصول على الإزاحة</value>
+  </data>
+  <data name="BtnOffsetGet.ToolTip" xml:space="preserve">
+    <value>الحصول على إحداثيات الآلة الحالية</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>يزيل</value>
+    <comment>gb</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>قم بإعداد أوامر متسلسلة (خطوة بخطوة) لتطوير برمجيات التقاط وإزالة الأدوات.
+
+أوامر مفيدة:
+G91 = الوضع النسبي (relative mode)
+G53 G90 = الإحداثيات المطلقة للماكينة (absolute machine coordinates)
+G1 F100 = سرعة منخفضة
+راجع الرابط https://linuxcnc.org/docs/html/gcode.html لمزيد من المعلومات.
+
+المتغيرات:
+#TOGO = فتح القابض (gripper)
+#TOGC = إغلاق القابض
+#TOAX, #TOAY, #TOAZ = إحداثيات تغيير الأداة (للقلم الحالي)
+#TOLX, #TOLY, #TOLZ = إحداثيات تغيير الأداة (للقلم السابق)</value>
+  </data>
+  <data name="BtnSetToolNr1.Text" xml:space="preserve">
+    <value>تعيين الأداة رقم 1 (ضبط #TOAx و #TOLx)</value>
+  </data>
+  <data name="BtnSetToolNr1.ToolTip" xml:space="preserve">
+    <value>مطلوب لتهيئة المتغيرات #TOAx و TOLx.</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.Text" xml:space="preserve">
+    <value>نسخ الأوامر إلى الحافظة</value>
+  </data>
+  <data name="BtnSendPickUp8.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp7.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp6.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp5.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp4.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp3.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp2.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendPickUp1.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>التقاط</value>
+    <comment>gb</comment>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>خطوة بخطوة</value>
+    <comment>tab</comment>
+  </data>
+  <data name="BtnSendRemove8.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove7.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove6.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove5.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove4.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove3.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove2.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnSendRemove1.Text" xml:space="preserve">
+    <value>يرسل</value>
+  </data>
+  <data name="BtnCopyRemove.Text" xml:space="preserve">
+    <value>نسخ الأوامر إلى الحافظة</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>المساعدة عبر الإنترنت</value>
+  </data>
+  <data name="BtnCopyRemove.ToolTip" xml:space="preserve">
+    <value>ينسخ جميع أوامر "الإزالة" (remove) إلى الحافظة، ليتم إدراجها في محرر النصوص الخاص بالبرنامج النصي (script).</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
+    <value>ينسخ جميع أوامر "الالتقاط" (pick-up) إلى الحافظة، ليتم إدراجها في محرر النصوص الخاص بالبرنامج النصي (script).</value>
+    <comment>tt2</comment>
+  </data>
+</root>

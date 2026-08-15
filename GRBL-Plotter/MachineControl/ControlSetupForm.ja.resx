@@ -3947,7 +3947,7 @@ X は半径値を取得し、Y は角度値を取得します。
     <value>幾何学的トレース (遅い - 幾何学的形状に適しています)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (高速 - 写真やスケッチに適しています)</value>
+    <value>Potrace (高速 - 写真やスケッチに適しています)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>ベクトル化アルゴリズム</value>
@@ -4108,5 +4108,23 @@ X は半径値を取得し、Y は角度値を取得します。
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>明るさ</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>工具径（mm）</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>工具でPCB配線を塗りつぶす</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>「use」要素を処理する</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>結果を反転</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>エッジの平滑化</value>
   </data>
 </root>

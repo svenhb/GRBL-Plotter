@@ -56,6 +56,9 @@
  * 2024-03-20 l:952 f:RequestSend take care of (^2
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-04-29 l:500 f:ProcessGrblRealTimeStatus rework parsing of machineState
+ * 2026-07-26 l:550 f:ProcessGrblRealTimeStatus bug fix upate lblSrPn.Text
+ * 2026-07-28 l:376 f:InsertVariable add check of gcodeVariableString
+ * 2026-08-09 l:554 f:ProcessGrblRealTimeStatus bug fix display of pin state
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -493,7 +496,7 @@ namespace GrblPlotter
                             Grbl.GetPosition(iamSerial, dataField[i], ref posWCO);
                             continue;
                         }
-						
+
                         string[] data = dataField[i].Split(':');
                         if (data.Length > 1)
                         {
@@ -510,18 +513,18 @@ namespace GrblPlotter
                             else if (data[0].Contains("F"))             // Current FeedXY - see above is speed is disabled in config.h
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
                             else if (data[0].Contains("Pn"))            // Input Pin State - will not appear if No input pins are detected as triggered.
-                            { this.machineState.Pn = lblSrPn.Text = data[1]; continue; } 
+                            { this.machineState.Pn = data[1]; continue; }
                             else if (data[0].Contains("Ov"))            // Override Values - This data field will not appear if It is disabled in the config.h file
-                            { 	
-								this.machineState.Ov = lblSrOv.Text = data[1]; 
-								if (!text.Contains("|A:"))
-								{
-									AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");
-									AddToRunTimer(stopwatchFlood, "grblRunTimeFlood");
-									AddToRunTimer(stopwatchMist, "grblRunTimeMist");									
-								}
-								continue; 
-							}
+                            {
+                                this.machineState.Ov = lblSrOv.Text = data[1];
+                                if (!text.Contains("|A:"))
+                                {
+                                    AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");
+                                    AddToRunTimer(stopwatchFlood, "grblRunTimeFlood");
+                                    AddToRunTimer(stopwatchMist, "grblRunTimeMist");
+                                }
+                                continue;
+                            }
 
                             else if (data[0].Contains("A"))
                             {
@@ -548,6 +551,7 @@ namespace GrblPlotter
                             }
                         }
                     }   // for-loop dataField
+                    lblSrPn.Text = this.machineState.Pn;
                     if (machineStateAOccured-- < 0)
                     {
                         this.machineState.A = lblSrA.Text = "";
@@ -558,7 +562,6 @@ namespace GrblPlotter
                     }
                 }
             }   // if (isGrblVers0)
-                //    grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state
             lblSrState.BackColor = Grbl.GrblStateColor(grblStateNow);
             lblSrState.Text = Grbl.StatusToText(grblStateNow);  // status;
 
@@ -1373,40 +1376,44 @@ namespace GrblPlotter
         private string InsertVariable(string line)
         {
             int pos, posold = 0;
-            double myvalue;
+            //    double myvalueDouble;
+            string myvalueString;
             string myvar, mykey;
             int pcmt = line.IndexOf('(');
             if (pcmt < 0) { pcmt = 1000; }
             int safetyExit = 6;
-            if (line.Length > 5)        // min length needed to be replaceable: x#TOLX
+            if (line.Length >= 5)        // min length needed to be replaceable: x#TOLX
             {
                 do
                 {
-                    pos = line.IndexOf('#', posold);				// not found, pos = -1
-                    if ((pos > 0) && (pos < pcmt))                  // don*t care about '#' inside a comment
+                    pos = line.IndexOf('#', posold);                // not found, pos = -1
+                    if ((pos >= 0) && (pos < pcmt))                  // don*t care about '#' inside a comment
                     {
-                        if (pos <= (line.Length - 5))				// max pos exceeded?
+                        if (pos <= (line.Length - 5))               // max pos exceeded?
                         {
-                            myvalue = 0;
+                            myvalueString = "";
                             myvar = line.Substring(pos, 5);
                             mykey = myvar.Substring(1);                         // get variable
 
+                            SetToolChangeCommand();
                             if (gcodeVariable.ContainsKey(mykey))               // find value in gcode
-                            { myvalue = gcodeVariable[mykey]; }
+                            { myvalueString = string.Format("{0:0.000}", gcodeVariable[mykey]).Replace(",", "."); }
+                            else if (gcodeVariableString.ContainsKey(mykey))               // find value in gcode
+                            { myvalueString = gcodeVariableString[mykey]; }
                             else if (GuiVariables.variable.ContainsKey(mykey))  // find value in gui
-                            { myvalue = GuiVariables.variable[mykey]; }
+                            { myvalueString = string.Format("{0:0.000}", GuiVariables.variable[mykey]).Replace(",", "."); }
                             else
                             {
                                 line += " (" + mykey + " not found)";
-                                AddToLog("< replace NOK " + mykey + " = " + myvalue.ToString());
+                                AddToLog("< replace NOK " + mykey + " = " + myvalueString);
                                 Logger.Error("InsertVariable '{0}' not found in '{1}'", mykey, line);
                             }
 
                             if (cBStatus1.Checked || cBStatus.Checked)
-                            { AddToLog("< replace " + mykey + " = " + myvalue.ToString()); }
+                            { AddToLog("< replace " + mykey + " = " + myvalueString); }
 
-                            line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-                            Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalue, line);
+                            line = line.Replace(myvar, myvalueString);// string.Format("{0:0.000}", myvalueDouble));
+                            Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalueString, line);
                         }
                         else
                         {
@@ -1473,6 +1480,10 @@ namespace GrblPlotter
             gcodeVariable.Add("TOLY", toly);
             gcodeVariable.Add("TOLZ", tolz);
             gcodeVariable.Add("TOLA", tola);
+
+            if (resetToolCoord)
+                SetToolChangeCoordinates(1);    // 2026-07-28 init with tool nr 1
+            SetToolChangeCommand();
         }
         private void SaveLastPos()
         {

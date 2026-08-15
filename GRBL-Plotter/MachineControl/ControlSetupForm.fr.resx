@@ -3654,7 +3654,7 @@ Si coché, chaque commande 'm' crée une nouvelle figure.</value>
     <value>Trace géométrique (lent - bon pour les formes géométriques)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (rapide – idéal pour les photos et les croquis)</value>
+    <value>Potrace (rapide – idéal pour les photos et les croquis)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Algorithme de vectorisation</value>
@@ -3819,5 +3819,23 @@ Utilisez « Exporter les paramètres de la machine » pour enregistrer les « va
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Luminosité</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Diamètre de l'outil en mm</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Remplir les pistes du circuit imprimé avec un outil</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>Traiter l'élément « use »</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Inverser le résultat</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Lissage des bords</value>
   </data>
 </root>

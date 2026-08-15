@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GbSelection.Text" xml:space="preserve">
+    <value>Opcje automatycznej wymiany pióra</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbScripts.Text" xml:space="preserve">
+    <value>Skrypty automatycznej wymiany pióra</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnEditFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>Edytuj skrypt w Notatniku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>Edytuj skrypt w Notatniku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>Edytuj skrypt w Notatniku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>Edytuj skrypt w Notatniku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>Wybierz skrypt za pomocą okna dialogowego plików</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>Wybierz skrypt za pomocą okna dialogowego plików</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>Wybierz skrypt za pomocą okna dialogowego plików</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>Wybierz skrypt za pomocą okna dialogowego plików</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>Skrypt realizujący kompensację długości narzędzia – lub wykonujący inną czynność po pobraniu narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>Skrypt czyszczący pędzel przed wyborem nowego koloru – lub wykonujący inną czynność przed pobraniem narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>Skrypt wyjmujący pisak z chwytaka i odkładający go do uchwytu – lub wykonujący inną czynność po użyciu narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>Skrypt pobierający pisak z uchwytu za pomocą chwytaka, mieszający pędzlem w wybranej miseczce z farbą – lub wykonujący inną czynność związaną z pobraniem narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="TbDescription.Text" xml:space="preserve">
+    <value>Opis konfiguracji automatycznego zmieniacza narzędzi</value>
+    <comment>f</comment>
+  </data>
+  <data name="TbDescription.ToolTip" xml:space="preserve">
+    <value>Opis konfiguracji automatycznej wymiany narzędzi</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie otwarcia chwytaka. Polecenie to jest dostępne w skrypcie za pośrednictwem zmiennej #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie zamknięcia chwytaka. Polecenie to jest dostępne w skrypcie za pośrednictwem zmiennej #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbSkipM30.ToolTip" xml:space="preserve">
+    <value>Pomiń polecenie M30 na końcu kodu G, aby utrzymać aktywność serwonapędu po zakończeniu programu.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOffsetMoveTo.ToolTip" xml:space="preserve">
+    <value>Przejdź do pozycji przesunięcia narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnApplyEdit.ToolTip" xml:space="preserve">
+    <value>Zastosuj zmiany dla wybranego numeru narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose2.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie zamknięcia chwytaka. Polecenie to jest dostępne w skrypcie za pośrednictwem zmiennej #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen2.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie otwarcia chwytaka. Polecenie to jest dostępne w skrypcie za pośrednictwem zmiennej #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Numer pobieranego pisaka</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Pobierz pisak z magazynka i przytrzymaj go w chwytaku.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Wyjmij pisak z chwytaka i umieść go w magazynku.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbPreset.Text" xml:space="preserve">
+    <value>Wczytaj / Zapisz konfigurację automatycznej wymiany pióra</value>
+    <comment>f</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Polecenia otwarcia/zamknięcia chwytaka</value>
+    <comment>f</comment>
+  </data>
+  <data name="RbPenChange2.ToolTip" xml:space="preserve">
+    <value>Wstaw polecenie wymiany narzędzia „Tx M06”, aby wykonać automatyczną wymianę pisaka.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange1.ToolTip" xml:space="preserve">
+    <value>Wstaw przerwę przed użyciem nowego narzędzia, aby umożliwić jego ręczną wymianę.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange0.ToolTip" xml:space="preserve">
+    <value>Brak wstawienia przerwy lub polecenia wymiany narzędzia.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Konfiguracja automatycznej wymiany pióra</value>
+  </data>
+  <data name="BtnOffsetGet.ToolTip" xml:space="preserve">
+    <value>Pobierz bieżące współrzędne maszyny</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Skonfiguruj polecenia krok po kroku, aby opracować skrypty pobierania i odkładania.
+
+Przydatne polecenia:
+G91 = tryb przyrostowy (relative mode)
+G53 G90 = bezwzględne współrzędne maszynowe
+G1 F100 = niska prędkość
+Więcej informacji można znaleźć na stronie https://linuxcnc.org/docs/html/gcode.html.
+
+Zmienne:
+#TOGO = otwarcie chwytaka
+#TOGC = zamknięcie chwytaka
+#TOAX, #TOAY, #TOAZ = współrzędne wymiany dla bieżącego pisaka
+#TOLX, #TOLY, #TOLZ = współrzędne wymiany dla ostatniego pisaka</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="BtnCopyRemove.ToolTip" xml:space="preserve">
+    <value>Kopiuje wszystkie polecenia „remove” do schowka w celu wklejenia ich do edytora tekstu skryptu.</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnSetToolNr1.ToolTip" xml:space="preserve">
+    <value>Wymagane do zainicjowania zmiennych #TOAx, TOLx.</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
+    <value>Kopiuje wszystkie polecenia „pick-up” do schowka w celu wklejenia ich do edytora tekstu skryptu.</value>
+    <comment>tt2</comment>
+  </data>
+</root>

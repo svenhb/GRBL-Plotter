@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GbSelection.Text" xml:space="preserve">
+    <value>Options de changement automatique de stylo</value>
+    <comment>f</comment>
+  </data>
+  <data name="GbScripts.Text" xml:space="preserve">
+    <value>Scripts de changement automatique de stylo</value>
+    <comment>f</comment>
+  </data>
+  <data name="BtnEditFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnEditFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT4.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT3.ToolTip" xml:space="preserve">
+    <value>Sélectionner le script via la boîte de dialogue Fichier</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT2.ToolTip" xml:space="preserve">
+    <value>Sélectionner le script via la boîte de dialogue Fichier</value>
+    <comment>tt</comment>
+  </data>
+  <data name="btnFileDialogTT1.ToolTip" xml:space="preserve">
+    <value>Sélectionner le script via la boîte de dialogue Fichier</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>Script pour effectuer une compensation de longueur d'outil – ou pour réaliser une autre action après avoir saisi un outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>Script pour nettoyer le pinceau avant de sélectionner une nouvelle couleur – ou pour réaliser une autre action avant de saisir un outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>Script pour retirer le stylo de la pince et le replacer dans son support – ou pour réaliser une autre action après l'utilisation d'un outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>Script pour saisir un stylo dans son support à l'aide de la pince, ou pour faire tournoyer le pinceau dans le godet de peinture sélectionné – ou pour réaliser une autre action visant à saisir un outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="TbDescription.Text" xml:space="preserve">
+    <value>Description de la configuration du changeur d'outils automatique</value>
+    <comment>f</comment>
+  </data>
+  <data name="TbDescription.ToolTip" xml:space="preserve">
+    <value>Description de la configuration du changeur d'outils automatique</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Envoyer la commande d'ouverture de la pince. Cette commande est accessible dans le script via la variable #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Envoyer la commande de fermeture de la pince. Cette commande est accessible dans le script via la variable #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbSkipM30.ToolTip" xml:space="preserve">
+    <value>Ignorer la commande M30 à la fin du code G pour maintenir le servomoteur actif à la fin du programme.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOffsetMoveTo.ToolTip" xml:space="preserve">
+    <value>Se déplacer vers la position de décalage de l'outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnApplyEdit.ToolTip" xml:space="preserve">
+    <value>Appliquer les modifications au numéro d'outil sélectionné.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose2.ToolTip" xml:space="preserve">
+    <value>Envoyer la commande de fermeture de la pince. Cette commande est accessible dans le script via la variable #TOGC.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen2.ToolTip" xml:space="preserve">
+    <value>Envoyer la commande d'ouverture de la pince. Cette commande est accessible dans le script via la variable #TOGO.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Numéro du stylo à saisir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Saisir le stylo dans son support et le maintenir avec la pince.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Retirer le stylo de la pince et le placer dans son support.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbPreset.Text" xml:space="preserve">
+    <value>Charger/Enregistrer la configuration du changement automatique de stylo</value>
+    <comment>f</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Commandes d'ouverture/fermeture de la pince</value>
+    <comment>f</comment>
+  </data>
+  <data name="RbPenChange2.ToolTip" xml:space="preserve">
+    <value>Insérer une commande de changement d'outil « Tx M06 » pour effectuer un changement automatique de stylo.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange1.ToolTip" xml:space="preserve">
+    <value>Insérer une pause avant d'utiliser un nouvel outil, pour permettre un changement manuel.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="RbPenChange0.ToolTip" xml:space="preserve">
+    <value>Aucune insertion de pause ni de commande de changement d'outil.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Configuration du changement automatique de stylo</value>
+  </data>
+  <data name="BtnOffsetGet.ToolTip" xml:space="preserve">
+    <value>Obtenir les coordonnées actuelles de la machine</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Définissez des commandes étape par étape pour élaborer les scripts de saisie et de retrait.
+
+Commandes utiles :
+G91 = mode relatif
+G53 G90 = coordonnées machine absolues
+G1 F100 = vitesse lente
+Consultez https://linuxcnc.org/docs/html/gcode.html pour plus d'informations.
+
+Variables :
+#TOGO = ouverture de la pince
+#TOGC = fermeture de la pince
+#TOAX, #TOAY, #TOAZ = coordonnées de changement pour le stylo actuel
+#TOLX, #TOLY, #TOLZ = coordonnées de changement pour le dernier stylo</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="BtnCopyRemove.ToolTip" xml:space="preserve">
+    <value>Copie toutes les commandes « remove » dans le Presse-papiers pour les insérer dans l'éditeur de texte du script.</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnSetToolNr1.ToolTip" xml:space="preserve">
+    <value>Nécessaire pour initialiser les variables #TOAx, TOLx.</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
+    <value>Copie toutes les commandes « pick-up » dans le Presse-papiers pour les insérer dans l'éditeur de texte du script.</value>
+    <comment>tt2</comment>
+  </data>
+</root>

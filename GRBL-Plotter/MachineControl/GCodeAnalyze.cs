@@ -80,21 +80,6 @@ namespace GrblPlotter
             {
                 path = new GraphicsPath();
                 color = Colors.TryConvertColor(pencolor);
-				/*
-                if (string.IsNullOrEmpty(pencolor))
-                { color = Properties.Settings.Default.gui2DColorPenDown; }
-                else if (UInt32.TryParse(pencolor, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out uint clr))  // try Hex code #00ff00
-                {
-                    if ((clr & 0xff000000) < 0x10000000)
-                        clr |= 0xff000000; // remove alpha
-                    color = System.Drawing.Color.FromArgb((int)clr);
-                }
-                else
-                {
-                    color = Color.FromName(pencolor);
-                    if (color == System.Drawing.Color.FromArgb(0))
-                    { color = Properties.Settings.Default.gui2DColorPenDown; }
-                }*/
                 SetPathData(color, penwidth, offset);
             }
             public PathData(Color color, double penwidth, PointF offset)
@@ -397,8 +382,8 @@ namespace GrblPlotter
             else if (Properties.Settings.Default.gui2DShowVertexEnable)
             { Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!", Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize); }
 
-            if (showColors)
-                ToolTable.Init(" (GetGCodeLines)");
+        //    if (showColors)
+        //        ToolTable.Init(" (GetGCodeLines)");
 
             worker?.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
             int progressMain;

@@ -318,6 +318,8 @@ namespace GrblPlotter
             btnGRBLCommand4.Location = new Point(btnGRBLCommand4.Location.X, this.Height - 62);
             btnGRBLReset.Location = new Point(btnGRBLReset.Location.X, this.Height - 62);
             btnGRBLHardReset.Location = new Point(btnGRBLHardReset.Location.X, this.Height - 62);
+            cbPort.SelectionLength = cbBaud.SelectionLength = 0;
+            BtnOpenPortSerial.Focus();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -1526,5 +1528,10 @@ namespace GrblPlotter
 
         #endregion
 
+        private void cbPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbPort.SelectionLength = cbBaud.SelectionLength = 0;
+            BtnOpenPortSerial.Focus();
+        }
     }
 }

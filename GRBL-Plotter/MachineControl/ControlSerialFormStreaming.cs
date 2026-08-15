@@ -43,7 +43,7 @@
  * 2023-06-14 l:344 f:StartStreaming add try/catch for writing log files
  * 2023-11-28 l:290 f:StartStreaming add info about missing subroutine
  * 2025-02-23 l:311 f:StartStreaming add M6PassThrough #435
-  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-04-09 GUI rework for vers. 1.8.0.0
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -104,6 +104,7 @@ namespace GrblPlotter
             lowLevelPerformance = Properties.Settings.Default.grblPollIntervalReduce;
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("▼▼▼▼▼ Ser:{0} startStreaming at line:{1} to line:{2} ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
+            SetToolChangeCommand();
 
             string infoProtocol = "Streaming Protocol: ";
             infoProtocol += grblCharacterCounting ? "Character-Counting" : "Simple Send -Response";
@@ -256,9 +257,9 @@ namespace GrblPlotter
 
                 if (stopAtLine >= gCode.Length)
                     stopAtLine = gCode.Length - 1;
-                for (int i = startAtLine; i <= stopAtLine; i++)    // now copy code, replace subroutines
+                for (int i = startAtLine; i <= stopAtLine; i++)     // now copy code, replace subroutines
                 {
-                    tmp = CleanUpCodeLine(gCode[i]);
+                    tmp = CleanUpCodeLine(gCode[i]);                //  set skipM30
                     if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
                     {
                         int cmdMNr = Gcode.GetCodeNrFromGCode('M', tmp);
@@ -313,7 +314,10 @@ namespace GrblPlotter
                                 {
                                     tmp = "(" + tmp + ")";
                                     if (Properties.Settings.Default.ctrlToolChange)
-                                    { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                    {
+                                        InsertToolChangeCode(i, ref tmpToolInSpindle);// insert external script-code and insert variables 
+                                        ToolInSpindle = tmpToolInSpindle;
+                                    }
                                     else
                                     {
                                         AddToLog(tmp + " !!! Tool change is disabled");
@@ -324,7 +328,7 @@ namespace GrblPlotter
                             }
                             if (cmdMNr == 30)
                             {
-                                if (skipM30)
+                                if (skipM30)        // set in CleanUpCodeLine
                                 { tmp = "(" + tmp + ")"; }      // hide M30
                             }
 
@@ -391,7 +395,7 @@ namespace GrblPlotter
             }
         }   // startStreaming
 
-        private void InsertToolChangeCode(int line, ref bool inSpindle)
+    /*    private void InsertToolChangeCode(int line, ref bool inSpindle)
         {
             Logger.Info("InsertToolChangeCode line:{0} tool is in spindle:{1}", line, inSpindle);
             streamingBuffer.Add("($TS)", line);         // keyword for receiving-buffer (sendBuffer.GetConfirmedLine();) "Tool change start"
@@ -427,7 +431,7 @@ namespace GrblPlotter
             gcodeVariable["TOLY"] = gcodeVariable["TOAY"];
             gcodeVariable["TOLZ"] = gcodeVariable["TOAZ"];
             gcodeVariable["TOLA"] = gcodeVariable["TOAA"];
-        }
+        }*/
 
         private void AddCodeFromFile(string fileRaw, int linenr)
         {
@@ -904,7 +908,7 @@ namespace GrblPlotter
             ListAccessoryStateRunTime(false);
         }
 
-        private void SetToolChangeCoordinates(int cmdTNr, string line = "")
+   /*     private void SetToolChangeCoordinates(int cmdTNr, string line = "")
         {
             ToolProperty toolInfo = ToolList.GetToolProperties(cmdTNr);
             gcodeVariable["TOAN"] = cmdTNr;
@@ -923,7 +927,7 @@ namespace GrblPlotter
                 string coord = string.Format("X:{0:0.0} Y:{1:0.0} Z:{2:0.0} A:{3:0.0}", tx, ty, tz, ta);
                 if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord + "]");
             }
-        }
+        }*/
 
         private void StreamingMonitor()
         {

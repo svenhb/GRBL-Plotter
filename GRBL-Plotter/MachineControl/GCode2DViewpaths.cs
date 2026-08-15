@@ -286,7 +286,7 @@ namespace GrblPlotter
                             markerSize = (float)pixelArtDotWidth;
                             CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false); // draw rect
                         }
-                        if (!halfToneEnable &&(pathActualDown != null))
+                        if (!halfToneEnable && (pathActualDown != null))
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
                             CreateMarker(pathActualDown, tmpPoint, markerSize, markerType, false);               // draw cross
@@ -303,8 +303,8 @@ namespace GrblPlotter
 
                 else if ((newL.motionMode == 2 || newL.motionMode == 3) && (newL.i != null || newL.j != null))
                 {
-                //    if (newL.i == null) { newL.i = 0; }
-                //    if (newL.j == null) { newL.j = 0; }
+                    //    if (newL.i == null) { newL.i = 0; }
+                    //    if (newL.j == null) { newL.j = 0; }
 
                     ArcProperties arcMove;
                     arcMove = GcodeMath.GetArcMoveProperties((XyPoint)oldL.actualPos, (XyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));
@@ -401,30 +401,48 @@ namespace GrblPlotter
 
             pathToolTable.Reset();
             if ((ToolList.toolListArray != null) && (ToolList.toolListArray.Count > 0))
-//                if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
+            //                if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
             {
                 double wx, wy;
+                float size;
                 XyzPoint tmppos;
-                ToolProperty tmpTool;
-                for (int i = 0; i < ToolList.toolListArray.Count; i++)
-//                    for (int i = 1; i < ToolTable.toolTableArray.Count; i++)
+                ToolProperty tmpToolProperty;
+                ToolPosition tmpToolPosition;
+                for (int i = 0; i < ToolChanger.toolPositionArray.Count; i++)
+                //                    for (int i = 1; i < ToolTable.toolTableArray.Count; i++)
                 {
-                    tmpTool = ToolList.toolListArray[i];
-                    tmppos = tmpTool.Position;
+                    //     tmpToolProperty = ToolList.toolListArray[i];
+                    tmpToolPosition = ToolChanger.toolPositionArray[i];
+                    tmppos = tmpToolPosition.Position;
+                    size = tmpToolPosition.Diameter;
                     wx = tmppos.X - offsetX + (double)Properties.Settings.Default.toolTableOffsetX;
                     wy = tmppos.Y - offsetY + (double)Properties.Settings.Default.toolTableOffsetY;
                     try
                     {
                         FontFamily myFont = new FontFamily("Arial");
-                        if ((tmpTool.ToolName != null) && (tmpTool.ToolName.Length > 1) && (tmpTool.ToolNr >= 0))
+
+                        pathToolTable.StartFigure();
+                        pathToolTable.AddEllipse((float)(wx - size/2), (float)(wy - size/2), size, size);
+                        pathToolTable.Transform(matrix);
+
+                    /*    if (i < ToolTable.toolTableArray.Count)
                         {
-                            pathToolTable.StartFigure();
-                            pathToolTable.AddEllipse((float)(wx - 4), (float)(wy - 4), 8, 8);
-                            pathToolTable.Transform(matrix);
-                            pathToolTable.AddString(tmpTool.ToolNr.ToString() + ") " + tmpTool.ToolName, myFont, (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
-                            pathToolTable.Transform(matrix);
+                            tmpToolProperty = ToolList.toolListArray[i];
+                            if ((tmpToolProperty.ToolName != null) && (tmpToolProperty.ToolName.Length > 1) && (tmpToolProperty.ToolNr >= 0))
+                            {
+                                pathToolTable.AddString(tmpToolProperty.ToolNr.ToString() + ") " + tmpToolProperty.ToolName, myFont, (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
+                            }
+                            else
+                            {
+                                pathToolTable.AddString(tmpToolPosition.ToolNr.ToString() + ") ", myFont, (int)FontStyle.Regular, 4, new Point((int)(wx - size / 2), -(int)wy + 4), StringFormat.GenericDefault);
+                            }
+                        }
+                        else*/
+                        {
+                            pathToolTable.AddString(tmpToolPosition.ToolNr.ToString() + ") ", myFont, (int)FontStyle.Regular, 4, new Point((int)(wx - size / 4), -(int)(wy + size / 4)), StringFormat.GenericDefault);
                         }
                         myFont.Dispose();
+                        pathToolTable.Transform(matrix);
                     }
                     catch (Exception er) { Logger.Error(er, " drawMachineLimit"); }
                 }
@@ -884,7 +902,7 @@ namespace GrblPlotter
         private static readonly object pathDrawLock = new object();
         private static void CreateMarker(GraphicsPath path, float centerX, float centerY, float dimension, int style, bool rst = true)
         {
-        //    Logger.Trace("CreateMarker  centerX:{0}  centerY:{1}  dimension:{2}  style:{3}", centerX, centerY, dimension, style);
+            //    Logger.Trace("CreateMarker  centerX:{0}  centerY:{1}  dimension:{2}  style:{3}", centerX, centerY, dimension, style);
             if (dimension <= 0) { return; }
             lock (pathDrawLock)
             {

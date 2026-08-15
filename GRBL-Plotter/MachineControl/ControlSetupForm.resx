@@ -2884,6 +2884,90 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;tabFormat_HPGL.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="label139.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label139.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label139.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 158</value>
+  </data>
+  <data name="label139.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
+  </data>
+  <data name="label139.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Tool diameter in mm</value>
+  </data>
+  <data name="&gt;&gt;label139.Name" xml:space="preserve">
+    <value>label139</value>
+  </data>
+  <data name="&gt;&gt;label139.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label139.Parent" xml:space="preserve">
+    <value>tab1_3gB7</value>
+  </data>
+  <data name="&gt;&gt;label139.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="NudGerberFillDiameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 156</value>
+  </data>
+  <data name="NudGerberFillDiameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="NudGerberFillDiameter.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="NudGerberFillDiameter.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudGerberFillDiameter.Name" xml:space="preserve">
+    <value>NudGerberFillDiameter</value>
+  </data>
+  <data name="&gt;&gt;NudGerberFillDiameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudGerberFillDiameter.Parent" xml:space="preserve">
+    <value>tab1_3gB7</value>
+  </data>
+  <data name="&gt;&gt;NudGerberFillDiameter.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbGerberFillEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbGerberFillEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbGerberFillEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 133</value>
+  </data>
+  <data name="CbGerberFillEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 17</value>
+  </data>
+  <data name="CbGerberFillEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Fill PCB traces with a tool</value>
+  </data>
+  <data name="&gt;&gt;CbGerberFillEnable.Name" xml:space="preserve">
+    <value>CbGerberFillEnable</value>
+  </data>
+  <data name="&gt;&gt;CbGerberFillEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbGerberFillEnable.Parent" xml:space="preserve">
+    <value>tab1_3gB7</value>
+  </data>
+  <data name="&gt;&gt;CbGerberFillEnable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2912,7 +2996,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="label19.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2942,7 +3026,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2972,7 +3056,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="tBGerberGeometryM19.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 84</value>
@@ -2996,7 +3080,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;tBGerberGeometryM19.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="tBGerberGeometryKnife.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 62</value>
@@ -3020,7 +3104,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;tBGerberGeometryKnife.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="tBGerberGeometryPen.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 40</value>
@@ -3044,7 +3128,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;tBGerberGeometryPen.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="cBGerberGeometryEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3077,7 +3161,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_3gB7</value>
   </data>
   <data name="&gt;&gt;cBGerberGeometryEnable.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="tab1_3gB7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3375,7 +3459,7 @@ DPI = pixels/inch - usually 96</value>
     <value>142, 3</value>
   </data>
   <data name="groupBox49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 80</value>
+    <value>197, 87</value>
   </data>
   <data name="groupBox49.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -3438,13 +3522,13 @@ DPI = pixels/inch - usually 96</value>
     <value>6, 16</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 17</value>
+    <value>237, 17</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (fast - good for pictures an sketches)</value>
+    <value>Potrace (fast - good for pictures an sketches)</value>
   </data>
   <data name="&gt;&gt;rBImportVectorizeAlgoPoTrace.Name" xml:space="preserve">
     <value>rBImportVectorizeAlgoPoTrace</value>
@@ -3459,7 +3543,7 @@ DPI = pixels/inch - usually 96</value>
     <value>1</value>
   </data>
   <data name="groupBox48.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 84</value>
+    <value>6, 96</value>
   </data>
   <data name="groupBox48.Size" type="System.Drawing.Size, System.Drawing">
     <value>333, 55</value>
@@ -3482,6 +3566,36 @@ DPI = pixels/inch - usually 96</value>
   <data name="&gt;&gt;groupBox48.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="CbImportVectorizeAutomatic.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeAutomatic.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeAutomatic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="CbImportVectorizeAutomatic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 17</value>
+  </data>
+  <data name="CbImportVectorizeAutomatic.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="CbImportVectorizeAutomatic.Text" xml:space="preserve">
+    <value>Automatic (color)</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeAutomatic.Name" xml:space="preserve">
+    <value>CbImportVectorizeAutomatic</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeAutomatic.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeAutomatic.Parent" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeAutomatic.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="rBImportVectorizeTransparency.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3489,7 +3603,7 @@ DPI = pixels/inch - usually 96</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportVectorizeTransparency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+    <value>6, 27</value>
   </data>
   <data name="rBImportVectorizeTransparency.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 17</value>
@@ -3514,10 +3628,10 @@ DPI = pixels/inch - usually 96</value>
     <value>groupBox47</value>
   </data>
   <data name="&gt;&gt;rBImportVectorizeTransparency.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="NudImportVectorizeThreshold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 51</value>
+    <value>6, 62</value>
   </data>
   <data name="NudImportVectorizeThreshold.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
@@ -3543,7 +3657,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>groupBox47</value>
   </data>
   <data name="&gt;&gt;NudImportVectorizeThreshold.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="rBImportVectorizeBrightness.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3552,7 +3666,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportVectorizeBrightness.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 32</value>
+    <value>6, 43</value>
   </data>
   <data name="rBImportVectorizeBrightness.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 17</value>
@@ -3573,7 +3687,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>groupBox47</value>
   </data>
   <data name="&gt;&gt;rBImportVectorizeBrightness.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label109.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3582,7 +3696,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>NoControl</value>
   </data>
   <data name="label109.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 54</value>
+    <value>53, 65</value>
   </data>
   <data name="label109.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
@@ -3603,13 +3717,13 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>groupBox47</value>
   </data>
   <data name="&gt;&gt;label109.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="groupBox47.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 3</value>
   </data>
   <data name="groupBox47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 80</value>
+    <value>130, 87</value>
   </data>
   <data name="groupBox47.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -3636,7 +3750,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 142</value>
+    <value>342, 154</value>
   </data>
   <data name="tabPage11.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3909,13 +4023,13 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 142</value>
+    <value>342, 154</value>
   </data>
   <data name="tabPage9.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="tabPage9.Text" xml:space="preserve">
-    <value>PoTrace</value>
+    <value>Potrace</value>
   </data>
   <data name="&gt;&gt;tabPage9.Name" xml:space="preserve">
     <value>tabPage9</value>
@@ -4092,13 +4206,13 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>6, 68</value>
   </data>
   <data name="CbImportVectorizeOptimize1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 17</value>
+    <value>102, 17</value>
   </data>
   <data name="CbImportVectorizeOptimize1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
   <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
-    <value>Skip optimization</value>
+    <value>Edge smoothing</value>
   </data>
   <data name="&gt;&gt;CbImportVectorizeOptimize1.Name" xml:space="preserve">
     <value>CbImportVectorizeOptimize1</value>
@@ -4179,7 +4293,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 142</value>
+    <value>342, 154</value>
   </data>
   <data name="tabPage10.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4203,7 +4317,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>90, 14</value>
   </data>
   <data name="tabControlVectorize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 168</value>
+    <value>350, 180</value>
   </data>
   <data name="tabControlVectorize.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -4428,16 +4542,16 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>1</value>
   </data>
   <data name="groupBox45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 73</value>
+    <value>3, 64</value>
   </data>
   <data name="groupBox45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 182</value>
+    <value>440, 191</value>
   </data>
   <data name="groupBox45.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
-    <value>Automatic vectorization (only B/W)</value>
+    <value>Automatic vectorization</value>
   </data>
   <data name="&gt;&gt;groupBox45.Name" xml:space="preserve">
     <value>groupBox45</value>
@@ -4545,7 +4659,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>222, 3</value>
   </data>
   <data name="groupBox44.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 64</value>
+    <value>221, 55</value>
   </data>
   <data name="groupBox44.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4575,7 +4689,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>3, 16</value>
   </data>
   <data name="label99.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 45</value>
+    <value>209, 36</value>
   </data>
   <data name="label99.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4599,7 +4713,7 @@ Transparency must be &lt; threshold to be recognized as background</value>
     <value>3, 3</value>
   </data>
   <data name="groupBox38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 64</value>
+    <value>215, 55</value>
   </data>
   <data name="groupBox38.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>

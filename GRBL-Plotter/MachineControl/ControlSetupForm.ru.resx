@@ -3869,7 +3869,7 @@ X получает значения радиуса, Y получает знач�
     <value>Geometric Trace (медленно — хорошо для геометрических фигур)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (быстро — подходит для изображений и эскизов)</value>
+    <value>Potrace (быстро — подходит для изображений и эскизов)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Алгоритм векторизации</value>
@@ -4030,5 +4030,23 @@ X получает значения радиуса, Y получает знач�
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Яркость</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Диаметр инструмента (мм)</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Заполнение проводников печатной платы инструментом</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>Обработка элемента «use»</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Инвертировать результат</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Сглаживание краев</value>
   </data>
 </root>

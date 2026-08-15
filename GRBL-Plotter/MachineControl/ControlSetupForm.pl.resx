@@ -3881,7 +3881,7 @@ Jeśli zaznaczone, każde polecenie „m” tworzy nową cyfrę.</value>
     <value>Ślad geometryczny (powolny – dobry dla kształtów geometrycznych)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (szybki - dobry do zdjęć i szkiców)</value>
+    <value>Potrace (szybki - dobry do zdjęć i szkiców)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Algorytm wektoryzacji</value>
@@ -4040,5 +4040,23 @@ Użyj „Eksportuj ustawienia urządzenia”, aby zapisać „ustawienia domyśl
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Jasność</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Średnica narzędzia w mm</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Wypełnianie ścieżek PCB narzędziem</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>Przetwarzanie elementu „use”</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Odwróć wynik</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Wygładzanie krawędzi</value>
   </data>
 </root>

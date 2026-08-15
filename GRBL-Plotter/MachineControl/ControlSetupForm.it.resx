@@ -3985,7 +3985,7 @@ Se selezionato, ogni comando 'm' crea una nuova figura.</value>
     <value>Traccia geometrica (lento, ottimo per le forme geometriche)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (veloce - ottimo per immagini e schizzi)</value>
+    <value>Potrace (veloce - ottimo per immagini e schizzi)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Algoritmo di vettorizzazione</value>
@@ -4143,5 +4143,23 @@ Utilizzare "Esporta impostazioni macchina" per salvare le "predefinite".</value>
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Luminosità</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Diametro dell'utensile in mm</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Riempimento delle piste del PCB con un utensile</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>Elaborazione dell'elemento 'use'</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Inverti risultato</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Smussatura dei bordi</value>
   </data>
 </root>

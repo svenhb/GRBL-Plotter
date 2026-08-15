@@ -4619,7 +4619,7 @@ SpindleEnable;</value>
     <value>对于自绘像素图形</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace（快速 - 适合图片和草图）</value>
+    <value>Potrace（快速 - 适合图片和草图）</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>矢量化算法</value>
@@ -4766,5 +4766,23 @@ SpindleEnable;</value>
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>亮度</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>刀具直径（毫米）</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>使用刀具填充 PCB 走线</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>处理 'use' 元素</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>反转结果</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>边缘平滑</value>
   </data>
 </root>

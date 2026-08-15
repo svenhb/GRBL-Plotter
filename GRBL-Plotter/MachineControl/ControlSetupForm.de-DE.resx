@@ -3595,7 +3595,7 @@ Wenn diese Option aktiviert ist, erstellt jeder „m“-Befehl eine neue Figur.<
     <value>Geometrische Vektorisierung  (langsam – gut für geometrische Formen)</value>
   </data>
   <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
-    <value>PoTrace (schnell – gut für Bilder und Skizzen)</value>
+    <value>Potrace (schnell – gut für Bilder und Skizzen)</value>
   </data>
   <data name="groupBox48.Text" xml:space="preserve">
     <value>Vektorisierungsalgorithmus</value>
@@ -3750,5 +3750,23 @@ Nutze  „Maschineneinstellungen exportieren“ um 'Defaults' zu speichern.</val
   </data>
   <data name="label130.Text" xml:space="preserve">
     <value>Helligkeit</value>
+  </data>
+  <data name="label139.Text" xml:space="preserve">
+    <value>Werkzeugdurchmesser in mm</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbGerberFillEnable.Text" xml:space="preserve">
+    <value>Leiterbahnen mit einem Werkzeug füllen</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportSVGUseElement.Text" xml:space="preserve">
+    <value>„use“-Element verarbeiten</value>
+    <comment>n</comment>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Ergebnis invertieren</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Kantenglättung</value>
   </data>
 </root>

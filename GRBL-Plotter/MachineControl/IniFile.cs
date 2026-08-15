@@ -386,7 +386,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpstr, "Tool change", "Tool table loaded"))
             {
                 setup.toolTableLastLoaded = tmpstr;
-                Logger.Info("Copy Tool table {0} to {1}", tmpstr, ToolTable.DefaultFileName);
+            //    Logger.Info("Copy Tool table {0} to {1}", tmpstr, ToolTable.DefaultFileName);
                 string fpath = tmpstr;
                 if (!Path.IsPathRooted(fpath))
                     fpath = Path.Combine(Datapath.Tools, tmpstr);
@@ -395,11 +395,11 @@ namespace GrblPlotter
                 {
                     try
                     {
-                        File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);	// backup old _current_.csv
-                        File.Copy(fpath, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);              // apply new _current_.csv
+                //        File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);	// backup old _current_.csv
+                //        File.Copy(fpath, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);              // apply new _current_.csv
 
                         setup.toolTableOriginal = true;
-                        ToolTable.Init(" (IniFile)");
+                //        ToolTable.Init(" (IniFile)");
                     }
                     catch (Exception err)
                     {
