@@ -1405,6 +1405,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal createTextHersheySmoothCurveFittingError {
+            get {
+                return ((decimal)(this["createTextHersheySmoothCurveFittingError"]));
+            }
+            set {
+                this["createTextHersheySmoothCurveFittingError"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 12pt")]
         public global::System.Drawing.Font createTextSystemFont {
             get {
@@ -1693,7 +1705,31 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("M3 S25 G4 P0.5")]
+        public string ctrlToolCommandGripperClose {
+            get {
+                return ((string)(this["ctrlToolCommandGripperClose"]));
+            }
+            set {
+                this["ctrlToolCommandGripperClose"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("M3 S2 G4 P0.5")]
+        public string ctrlToolCommandGripperOpen {
+            get {
+                return ((string)(this["ctrlToolCommandGripperOpen"]));
+            }
+            set {
+                this["ctrlToolCommandGripperOpen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public decimal ctrlToolScriptDelay {
             get {
                 return ((decimal)(this["ctrlToolScriptDelay"]));
@@ -1705,7 +1741,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_select.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen_1810_pickup.nc")]
         public string ctrlToolScriptGet {
             get {
                 return ((string)(this["ctrlToolScriptGet"]));
@@ -1729,7 +1765,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen_1810_remove.nc")]
         public string ctrlToolScriptPut {
             get {
                 return ((string)(this["ctrlToolScriptPut"]));
@@ -1741,7 +1777,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_clean.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
         public string ctrlToolScriptSelect {
             get {
                 return ((string)(this["ctrlToolScriptSelect"]));
@@ -1993,6 +2029,42 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceLaserOffsetOrigin {
+            get {
+                return ((bool)(this["DeviceLaserOffsetOrigin"]));
+            }
+            set {
+                this["DeviceLaserOffsetOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceLaserOffsetOriginX {
+            get {
+                return ((decimal)(this["DeviceLaserOffsetOriginX"]));
+            }
+            set {
+                this["DeviceLaserOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceLaserOffsetOriginY {
+            get {
+                return ((decimal)(this["DeviceLaserOffsetOriginY"]));
+            }
+            set {
+                this["DeviceLaserOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal DeviceLaserPasses {
             get {
@@ -2000,6 +2072,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["DeviceLaserPasses"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceLaserPathOptimation {
+            get {
+                return ((bool)(this["DeviceLaserPathOptimation"]));
+            }
+            set {
+                this["DeviceLaserPathOptimation"] = value;
             }
         }
         
@@ -2293,6 +2377,54 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DevicePlotterOffsetOrigin {
+            get {
+                return ((bool)(this["DevicePlotterOffsetOrigin"]));
+            }
+            set {
+                this["DevicePlotterOffsetOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DevicePlotterOffsetOriginX {
+            get {
+                return ((decimal)(this["DevicePlotterOffsetOriginX"]));
+            }
+            set {
+                this["DevicePlotterOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DevicePlotterOffsetOriginY {
+            get {
+                return ((decimal)(this["DevicePlotterOffsetOriginY"]));
+            }
+            set {
+                this["DevicePlotterOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DevicePlotterPathOptimation {
+            get {
+                return ((bool)(this["DevicePlotterPathOptimation"]));
+            }
+            set {
+                this["DevicePlotterPathOptimation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DevicePlotterPenChangeRBAutomatic {
             get {
@@ -2420,6 +2552,54 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["DevicePlotterZUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceRouterOffsetOrigin {
+            get {
+                return ((bool)(this["DeviceRouterOffsetOrigin"]));
+            }
+            set {
+                this["DeviceRouterOffsetOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceRouterOffsetOriginX {
+            get {
+                return ((decimal)(this["DeviceRouterOffsetOriginX"]));
+            }
+            set {
+                this["DeviceRouterOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal DeviceRouterOffsetOriginY {
+            get {
+                return ((decimal)(this["DeviceRouterOffsetOriginY"]));
+            }
+            set {
+                this["DeviceRouterOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeviceRouterPathOptimation {
+            get {
+                return ((bool)(this["DeviceRouterPathOptimation"]));
+            }
+            set {
+                this["DeviceRouterPathOptimation"] = value;
             }
         }
         
@@ -6713,6 +6893,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGerberFillEnable {
+            get {
+                return ((bool)(this["importGerberFillEnable"]));
+            }
+            set {
+                this["importGerberFillEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal importGerberFillToolDiameter {
+            get {
+                return ((decimal)(this["importGerberFillToolDiameter"]));
+            }
+            set {
+                this["importGerberFillToolDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importGerberTypeEnable {
             get {
@@ -8742,6 +8946,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importVectorizeAutomatic {
+            get {
+                return ((bool)(this["importVectorizeAutomatic"]));
+            }
+            set {
+                this["importVectorizeAutomatic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importVectorizeDetectTransparency {
             get {
                 return ((bool)(this["importVectorizeDetectTransparency"]));
@@ -9557,7 +9773,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("900, 680")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1280, 670")]
         public global::System.Drawing.Size mainFormSize {
             get {
                 return ((global::System.Drawing.Size)(this["mainFormSize"]));
@@ -9569,7 +9785,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("296")]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
         public int mainFormSplitDistance {
             get {
                 return ((int)(this["mainFormSplitDistance"]));
@@ -11658,156 +11874,204 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DeviceLaserOffsetOrigin {
+        public bool importGCToolListHideUnused {
             get {
-                return ((bool)(this["DeviceLaserOffsetOrigin"]));
+                return ((bool)(this["importGCToolListHideUnused"]));
             }
             set {
-                this["DeviceLaserOffsetOrigin"] = value;
+                this["importGCToolListHideUnused"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DevicePlotterOffsetOrigin {
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
+        public string ctrlToolStepPickUp1 {
             get {
-                return ((bool)(this["DevicePlotterOffsetOrigin"]));
+                return ((string)(this["ctrlToolStepPickUp1"]));
             }
             set {
-                this["DevicePlotterOffsetOrigin"] = value;
+                this["ctrlToolStepPickUp1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DeviceRouterOffsetOrigin {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 X-1 ( to the left )")]
+        public string ctrlToolStepPickUp2 {
             get {
-                return ((bool)(this["DeviceRouterOffsetOrigin"]));
+                return ((string)(this["ctrlToolStepPickUp2"]));
             }
             set {
-                this["DeviceRouterOffsetOrigin"] = value;
+                this["ctrlToolStepPickUp2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DeviceLaserOffsetOriginX {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
+        public string ctrlToolStepPickUp3 {
             get {
-                return ((decimal)(this["DeviceLaserOffsetOriginX"]));
+                return ((string)(this["ctrlToolStepPickUp3"]));
             }
             set {
-                this["DeviceLaserOffsetOriginX"] = value;
+                this["ctrlToolStepPickUp3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DevicePlotterOffsetOriginX {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
+        public string ctrlToolStepPickUp4 {
             get {
-                return ((decimal)(this["DevicePlotterOffsetOriginX"]));
+                return ((string)(this["ctrlToolStepPickUp4"]));
             }
             set {
-                this["DevicePlotterOffsetOriginX"] = value;
+                this["ctrlToolStepPickUp4"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DeviceRouterOffsetOriginX {
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGC ( gripper close )")]
+        public string ctrlToolStepPickUp5 {
             get {
-                return ((decimal)(this["DeviceRouterOffsetOriginX"]));
+                return ((string)(this["ctrlToolStepPickUp5"]));
             }
             set {
-                this["DeviceRouterOffsetOriginX"] = value;
+                this["ctrlToolStepPickUp5"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DeviceLaserOffsetOriginY {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Z20 ( lift pen )")]
+        public string ctrlToolStepPickUp6 {
             get {
-                return ((decimal)(this["DeviceLaserOffsetOriginY"]));
+                return ((string)(this["ctrlToolStepPickUp6"]));
             }
             set {
-                this["DeviceLaserOffsetOriginY"] = value;
+                this["ctrlToolStepPickUp6"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DevicePlotterOffsetOriginY {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
+        public string ctrlToolStepPickUp7 {
             get {
-                return ((decimal)(this["DevicePlotterOffsetOriginY"]));
+                return ((string)(this["ctrlToolStepPickUp7"]));
             }
             set {
-                this["DevicePlotterOffsetOriginY"] = value;
+                this["ctrlToolStepPickUp7"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal DeviceRouterOffsetOriginY {
+        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOAZ ( lower to original actual height)")]
+        public string ctrlToolStepPickUp8 {
             get {
-                return ((decimal)(this["DeviceRouterOffsetOriginY"]));
+                return ((string)(this["ctrlToolStepPickUp8"]));
             }
             set {
-                this["DeviceRouterOffsetOriginY"] = value;
+                this["ctrlToolStepPickUp8"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DeviceLaserPathOptimation {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 Z20 ( lift pen )")]
+        public string ctrlToolStepRemove1 {
             get {
-                return ((bool)(this["DeviceLaserPathOptimation"]));
+                return ((string)(this["ctrlToolStepRemove1"]));
             }
             set {
-                this["DeviceLaserPathOptimation"] = value;
+                this["ctrlToolStepRemove1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DevicePlotterPathOptimation {
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
+        public string ctrlToolStepRemove2 {
             get {
-                return ((bool)(this["DevicePlotterPathOptimation"]));
+                return ((string)(this["ctrlToolStepRemove2"]));
             }
             set {
-                this["DevicePlotterPathOptimation"] = value;
+                this["ctrlToolStepRemove2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DeviceRouterPathOptimation {
+        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOLZ ( lower to original last height)")]
+        public string ctrlToolStepRemove3 {
             get {
-                return ((bool)(this["DeviceRouterPathOptimation"]));
+                return ((string)(this["ctrlToolStepRemove3"]));
             }
             set {
-                this["DeviceRouterPathOptimation"] = value;
+                this["ctrlToolStepRemove3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal createTextHersheySmoothCurveFittingError {
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
+        public string ctrlToolStepRemove4 {
             get {
-                return ((decimal)(this["createTextHersheySmoothCurveFittingError"]));
+                return ((string)(this["ctrlToolStepRemove4"]));
             }
             set {
-                this["createTextHersheySmoothCurveFittingError"] = value;
+                this["ctrlToolStepRemove4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X-1 ( to the left )")]
+        public string ctrlToolStepRemove5 {
+            get {
+                return ((string)(this["ctrlToolStepRemove5"]));
+            }
+            set {
+                this["ctrlToolStepRemove5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
+        public string ctrlToolStepRemove6 {
+            get {
+                return ((string)(this["ctrlToolStepRemove6"]));
+            }
+            set {
+                this["ctrlToolStepRemove6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
+        public string ctrlToolStepRemove7 {
+            get {
+                return ((string)(this["ctrlToolStepRemove7"]));
+            }
+            set {
+                this["ctrlToolStepRemove7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolStepRemove8 {
+            get {
+                return ((string)(this["ctrlToolStepRemove8"]));
+            }
+            set {
+                this["ctrlToolStepRemove8"] = value;
             }
         }
     }

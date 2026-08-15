@@ -422,20 +422,74 @@
     <Setting Name="ctrlToolChangeM6PassThrough" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ctrlToolCommandGripperClose" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M3 S25 G4 P0.5</Value>
+    </Setting>
+    <Setting Name="ctrlToolCommandGripperOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M3 S2 G4 P0.5</Value>
+    </Setting>
     <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_v1583_brush_select.nc</Value>
+      <Value Profile="(Default)">data\scripts\script_pen_1810_pickup.nc</Value>
     </Setting>
     <Setting Name="ctrlToolScriptProbe" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
     <Setting Name="ctrlToolScriptPut" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\</Value>
+      <Value Profile="(Default)">data\scripts\script_pen_1810_remove.nc</Value>
     </Setting>
     <Setting Name="ctrlToolScriptSelect" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_v1583_brush_clean.nc</Value>
+      <Value Profile="(Default)">data\scripts\</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#TOGO ( gripper open )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 G1 F500 X-1 ( to the left )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 Y-12 ( forward )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 X1 ( to the right )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#TOGC ( gripper close )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 Z20 ( lift pen )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 Y12 ( to the rear )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepPickUp8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G53 G90 Z#TOAZ ( lower to original actual height)</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 G1 F500 Z20 ( lift pen )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 Y-12 ( forward )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G53 G90 Z#TOLZ ( lower to original last height)</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#TOGO ( gripper open )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 X-1 ( to the left )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 Y12 ( to the rear )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 X1 ( to the right )</Value>
+    </Setting>
+    <Setting Name="ctrlToolStepRemove8" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ctrlUpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1664,6 +1718,9 @@
     <Setting Name="importGCToolDefNrUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCToolListHideUnused" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importGCToolListUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1711,6 +1768,12 @@
     </Setting>
     <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGerberFillEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGerberFillToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="importGerberTypeEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -2219,6 +2282,9 @@
     <Setting Name="importVectorizeAlgorithmPoTrace" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importVectorizeAutomatic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importVectorizeDetectTransparency" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -2424,10 +2490,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 680</Value>
+      <Value Profile="(Default)">1280, 670</Value>
     </Setting>
     <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">296</Value>
+      <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="mainFormWinState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
