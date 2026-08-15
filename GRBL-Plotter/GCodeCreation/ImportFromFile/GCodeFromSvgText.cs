@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 /*  GCodeFromSVG.cs a static class to convert SVG data into G-Code 
     Not implemented: 
-        Basic-shapes: Image
+        Basic-shapes: ImageForm
         Transform: rotation with offset, skewX, skewY
 
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
@@ -33,6 +33,7 @@
  * 2023-11-11 replace floats by double
  * 2024-04-22 l:555 f:ReadAttributs	set attributes for stroke, stroke-widthh, FillToolListElements (Graphic.SetPenColor, SetPenWidth, SetPenFill)
  * 2024-07-22 l:725 f:ExportString don't inc. text length, if empty
+ * 2026-07-21 l:318 f:AddText limit log-output size to 3 digits
 */
 
 using System;
@@ -140,7 +141,7 @@ namespace GrblPlotter
             for (int i = 0; i < lines.Length; i++)
             {
                 tmpLine = lines[i];
-                Logger.Trace("tmpLine: {0}  '{1}'  textWasFound:{2}", i, tmpLine, textWasFound);
+                Logger.Trace("  ● StripWhiteSpace tmpLine:{0}  '{1}'  textWasFound:{2}", i, tmpLine, textWasFound);
 
                 if (false)
                 {
@@ -314,7 +315,7 @@ namespace GrblPlotter
 
         private static PointF AddText(string svgText, TextProperties textProp, PointF origin, ref int charIndex)
         {
-            Logger.Info("► AddText text:'{0}'  size:{1}   family:{2}   offsetX:{3}  offsetY:{4}   globalX:{5}  globalY:{6}", svgText, textProp.fontSize, textProp.fontFamily, origin.X, origin.Y, offsetX, offsetY);
+            Logger.Info("► AddText text:'{0}'  size:{1:0.000}   family:{2}   offsetX:{3}  offsetY:{4}   globalX:{5}  globalY:{6}", svgText, textProp.fontSize, textProp.fontFamily, origin.X, origin.Y, offsetX, offsetY);
 
             textProp.SetX(origin.X);
             textProp.SetY(origin.Y);

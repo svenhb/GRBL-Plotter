@@ -34,7 +34,7 @@
 
 /*  GCodeFromSVG.cs a static class to convert SVG data into G-Code 
     Not implemented: 
-        Basic-shapes: Text, Image
+        Basic-shapes: Text, ImageForm
         Transform: rotation with offset, skewX, skewY
 
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
@@ -106,12 +106,13 @@
  * 2025-02-26 l:1054 f:ParseBasicElement also check for FillToolListElements-opacity="0" to exclude objects #436
  * 2025-04-04 l:441  f:ParseGlobals accept ',' in viewbox parameter #440
  * 2026-05-18 l:1086 f:ParseBasicElement remove all leading and trailing white-space characters		LaserGRBL: LINES MISSING FROM SVG FILE LOAD INTO LASERGRBL  #2763
+ * 2026-07-21 l:780  f:CalcPenWidth limit width-number to 3 digits -> Format("{0:0.000}
 */
 
 /* SetHeaderMessages...
  * 1101 Unknown SVG-Path-Element
  * 1102 Element not visible
- * 1103 Not supported SVG element: Image
+ * 1103 Not supported SVG element: ImageForm
  * 1104 Unknown SVG element
  * 1105 'tspan' within 'textPath'
  * 1106 Attribute not implemented
@@ -783,7 +784,7 @@ namespace GrblPlotter
                 nr = ConvertToPixel(txt);   // = txt * 96
             }
             if (logEnable) Logger.Trace("CalcPenWidth txt:{0}   converted:{1}  scale:{2}  result:{3}", txt, nr, svgStrokeWidthScale, nr * svgStrokeWidthScale);
-            return Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.');
+            return string.Format("{0:0.000}",Math.Round(nr * svgStrokeWidthScale, 3)).Replace(',', '.');
         }
 
         /// <summary>
