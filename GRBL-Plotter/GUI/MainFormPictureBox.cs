@@ -49,6 +49,8 @@
  * 2025-03-04 l:1124 f:ClearWorkspace add showFormText()
  * 2025-05-17 l:1070 f:CmsPicBoxMoveToMarkedPosition_Click use G0 or G1 depending on cBMoveG0.Checked
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-06-17 l:1566 f:ReplaceXmlAttribute  check index before Substring
+ * 2026-07-31 bug fix MoveToMarkedPosition
 */
 
 using FastColoredTextBoxNS;
@@ -666,11 +668,8 @@ namespace GrblPlotter
                     VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
                     FctbSetBookmark();
 
-                    /*        if (cBMoveG0.Checked)
-                                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                            else
-                                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                    */
+                    SendMoveCommand(Grbl.PosMarker.X, Grbl.PosMarker.Y);
+
                     picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = (XyPoint)Grbl.PosMarker;
                 }
@@ -692,11 +691,8 @@ namespace GrblPlotter
                 }
                 if (allowMove)
                 {
-                    /*         if (cBMoveG0.Checked)
-                                 SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
-                             else
-                                 SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPos.X), Gcode.FrmtNum(picAbsPos.Y)).Replace(',', '.'));
-                     */
+                    SendMoveCommand(picAbsPos.X, picAbsPos.Y);
+
                     picAbsPosLast2 = picAbsPosLast1;
                     picAbsPosLast1 = picAbsPos;
                 }
@@ -948,11 +944,7 @@ namespace GrblPlotter
 
                         if (modKeyCtrlAlt)
                         {
-                            /*           if (cBMoveG0.Checked)
-                                           SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                                       else
-                                           SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                            */
+                            SendMoveCommand(Grbl.PosMarker.X, Grbl.PosMarker.Y);
                         }
                     }
                     //    else if (false)
@@ -1154,11 +1146,7 @@ namespace GrblPlotter
 
         private void CmsPicBoxMoveToMarkedPosition_Click(object sender, EventArgs e)
         {
-            /*         if (cBMoveG0.Checked)
-                         SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-                     else
-                         SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(Grbl.PosMarker.X), Gcode.FrmtNum(Grbl.PosMarker.Y)).Replace(',', '.'));
-             */
+            SendMoveCommand(Grbl.PosMarker.X, Grbl.PosMarker.Y);
         }
 
         private void CmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
@@ -1563,10 +1551,15 @@ namespace GrblPlotter
             if (posTagEnd < 0) return;
             int posAttStart = code.IndexOf(xmlAtt, posTagStart);
             int posAttEnd = code.IndexOf("\"", posAttStart + xmlAtt.Length + 3);
-            string origAtt = code.Substring(posAttStart, posAttEnd - posAttStart + 1);
-            string newAtt = string.Format("{0}=\"{1}\"", xmlAtt, newVal);
-            //    MessageBox.Show("-"+origAtt+"-\r\n-"+newAtt+"-");
-            code = code.Replace(origAtt, newAtt);
+            if ((posAttStart >= 0) && (posAttEnd > posAttStart))
+            {
+                string origAtt = code.Substring(posAttStart, posAttEnd - posAttStart + 1);
+                string newAtt = string.Format("{0}=\"{1}\"", xmlAtt, newVal);
+                //    MessageBox.Show("-"+origAtt+"-\r\n-"+newAtt+"-");
+                code = code.Replace(origAtt, newAtt);
+            }
+            else
+            { Logger.Error("ReplaceXmlAttribute  code:{0}  xmlTag:{1}  xmlAtt:{2}  newVal:{3}  posAttStart:{4}  posAttEnd:{5}", code, xmlTag, xmlAtt, newVal, posAttStart, posAttEnd); }
         }
 
         private void ResetPicBoxSelections()
@@ -1624,16 +1617,18 @@ namespace GrblPlotter
         {
             if (Grbl.Status == GrblState.idle)
             {
-                /*            if (cBMoveG0.Checked)
-                                SendCommand(String.Format("G90 G0 X{0} Y{1}", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
-                            else
-                                SendCommand(String.Format("G90 G1 X{0} Y{1} F10000", Gcode.FrmtNum(picAbsPosLast1.X), Gcode.FrmtNum(picAbsPosLast1.Y)).Replace(',', '.'));
-                */
+                SendMoveCommand(picAbsPosLast1.X, picAbsPosLast1.Y);
                 picAbsPos = picAbsPosLast1;
                 picAbsPosLast1 = picAbsPosLast2;
                 picAbsPosLast2 = picAbsPos;
             }
         }
 
+        private void SendMoveCommand(double x, double y)
+        {
+            int feed = (int)Properties.Settings.Default.UserControlMoveToGraphicFeed;
+            string jogCommand = (Grbl.isVersion_0) ? "G1G90" : "$J=G90";
+            SendCommand(String.Format("{0}X{1:0.000}Y{2:0.000}F{3}", jogCommand, x, y, feed).Replace(',', '.'));
+        }
     }
 }

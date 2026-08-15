@@ -876,4 +876,8 @@ A tecla Alt-clique arredonda a posição para 0,1 raster.</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Individualmente-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>"Apply tool list" está ativo!
+Altere as propriedades da ferramenta na lista de ferramentas ou desative "Apply tool list".</value>
+  </data>
 </root>

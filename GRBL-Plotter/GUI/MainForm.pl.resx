@@ -878,4 +878,8 @@ Alt-klik zaokrągla pozycję do rastra 0,1,</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Indywidualnie-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>Funkcja „Apply tool list” jest aktywna!
+Zmień właściwości narzędzi na liście lub wyłącz funkcję „Apply tool list”.</value>
+  </data>
 </root>

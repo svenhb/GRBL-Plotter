@@ -884,4 +884,8 @@ Alt-щелчок округляет позицию до 0,1 растра,</value
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Индивидуально-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>Функция «Применить список инструментов» активна!
+Измените свойства инструментов в списке или отключите функцию «Применить список инструментов».</value>
+  </data>
 </root>

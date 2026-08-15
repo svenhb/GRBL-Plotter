@@ -881,4 +881,8 @@ Kliknutí se stisknutou klávesou Alt zaokrouhlí pozici na 0,1 rastru,</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Jednotlivě-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>Funkce 'Apply tool list' je aktivní!
+Změňte vlastnosti nástrojů v seznamu nebo deaktivujte funkci 'Apply tool list'.</value>
+  </data>
 </root>

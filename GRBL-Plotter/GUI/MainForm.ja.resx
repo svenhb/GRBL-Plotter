@@ -884,4 +884,8 @@ Altキーを押しながらクリックすると、位置が0.1ラスターに�
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-個別に-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>「ツールリストを適用」が有効になっています！
+ツールリストでツールのプロパティを変更するか、「ツールリストを適用」を無効にしてください。</value>
+  </data>
 </root>

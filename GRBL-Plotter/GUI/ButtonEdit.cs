@@ -26,6 +26,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GrblPlotter.GUI
 {
@@ -46,6 +47,7 @@ namespace GrblPlotter.GUI
             if ((index >= 1) && (index <= 32))
             {
                 string txt = Properties.Settings.Default["guiCustomBtn" + index.ToString()].ToString();
+                Logger.Trace("ButtonEdit load index:{0}  txt:{1}", indx, txt);
                 ExtractButtonInfo(txt);
             }
             FillComboBoxPreset(Datapath.Buttons);
@@ -121,6 +123,7 @@ namespace GrblPlotter.GUI
         private void BtnApply_Click(object sender, EventArgs e)
         {
             string value = tBTitle.Text + "|" + tBCode.Text.Replace("|", ",").Replace("\n", ";").Replace("\r", "") + "|" + ColorTranslator.ToHtml(btnColor);
+            Logger.Trace("ButtonEdit save index:{0}  txt:{1}", index, value);
             Properties.Settings.Default["guiCustomBtn" + index.ToString()] = value;
             Properties.Settings.Default.Save();
         }

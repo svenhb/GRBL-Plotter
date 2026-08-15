@@ -700,7 +700,7 @@
     <value>متآمر</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>الليزر</value>
+    <value>ليزر</value>
   </data>
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>التحكم الثالث المسلسل COM</value>
@@ -882,5 +882,9 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-بشكل فردي-</value>
+  </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>خيار "تطبيق قائمة الأدوات" مُفعَّل!
+قم بتغيير خصائص الأداة في قائمة الأدوات أو أوقف تفعيل خيار "تطبيق قائمة الأدوات".</value>
   </data>
 </root>

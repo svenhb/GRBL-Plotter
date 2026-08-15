@@ -65,6 +65,8 @@
  * 2024-05-19 l:1159 f:BtnReset_Click removed StopStreaming to avoid applying code after "stop" from flowControlText
  * 2024-05-28 l:625  f:MainTimer_Tick add delayedHeightMapShow timer
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-06-07 l:315 f:SplashScreenTimer_Tick add try/catch splitContainer2.SplitterDistance
+ * 2026-07-28 l:772 f:BtnCustomButtonProcess update btnCustomCommand[index] after change
 */
 
 using GrblPlotter.GUI;
@@ -78,7 +80,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GrblPlotter
 {
@@ -311,8 +313,17 @@ namespace GrblPlotter
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
 
                 Logger.Trace("splitContainer2.SplitterDistance:{0}   splitContainer2.Panel1.Width:{1}   , splitContainer2.Panel2.Width:{2}", splitContainer2.SplitterDistance, splitContainer2.Panel1.Width, splitContainer2.Panel2.Width);
-                splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance;
-                ucToolList.UpdateToolList();
+
+                try { splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance; }
+                catch (Exception err) { Logger.Error(err, " splitContainer2.SplitterDistance "); }
+                if (splitContainer2.Panel2.Width < 250)
+                {
+                    int ndis = splitContainer2.Width - 305; //288
+                    if (ndis > 0)
+                        splitContainer2.SplitterDistance = ndis;
+                }
+
+                ucToolList.UpdateToolListElements();
 
                 MainTimer.Stop();
                 MainTimer.Start();
@@ -722,17 +733,6 @@ namespace GrblPlotter
             if (col == Control.DefaultBackColor)
                 btn.UseVisualStyleBackColor = true;
         }
-        private static Color ContrastColor123(Color color)
-        {
-            int d;
-            // Counting the perceptive luminance - human eye favors green color... 
-            double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
-            if (a < 0.5)
-                d = 0; // bright colors - black font
-            else
-                d = 255; // dark colors - white font
-            return Color.FromArgb(d, d, d);
-        }
 
         private void BtnCustomButton_Click(object sender, MouseEventArgs e)
         {
@@ -754,7 +754,7 @@ namespace GrblPlotter
         }
         private void BtnCustomButtonProcess(int index, bool right, string btnText)
         {
-            Logger.Trace("BtnCustomButtonProcess i:{0}  right:{1}  txt:{2}", index, right, btnText);
+            Logger.Trace("BtnCustomButtonProcess i:{0}  max:{1}  right:{2}  txt:{3}  command:{4}", index, btnCustomCommand.Length, right, btnText, btnCustomCommand[index]);
             if ((index >= 0) && (index < btnCustomCommand.Length))		// < 32
             {
                 if (right)
@@ -764,10 +764,14 @@ namespace GrblPlotter
                         var result = f.ShowDialog(this);
                         if (result == DialogResult.OK)
                         {
+                            string[] parts = Properties.Settings.Default["guiCustomBtn" + index.ToString()].ToString().Split('|');
+                            btnCustomCommand[index] = parts[1];
+
                             timerUpdateControlSource = "btnCustomButton_Click";
                             UpdateWholeApplication();
                         }
                     }
+                    Logger.Trace("BtnCustomButtonProcess after edit: {0}", btnCustomCommand[index]);
                 }
                 else
                 {
@@ -1143,7 +1147,8 @@ namespace GrblPlotter
 
         private void ShowFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _serial_form?.BringToFront();
+        //    if (_serial_form != null) { _serial_form.WindowState = FormWindowState.Normal; _serial_form.BringToFront(); }
+
             if (_text_form != null) { _text_form.WindowState = FormWindowState.Normal; _text_form.BringToFront(); }
             if (_image_form != null) { _image_form.WindowState = FormWindowState.Normal; _image_form.BringToFront(); }
             if (_shape_form != null) { _shape_form.WindowState = FormWindowState.Normal; _shape_form.BringToFront(); }
@@ -1157,10 +1162,11 @@ namespace GrblPlotter
             if (_laser_form != null) { _laser_form.WindowState = FormWindowState.Normal; _laser_form.BringToFront(); }
             if (_probing_form != null) { _probing_form.WindowState = FormWindowState.Normal; _probing_form.BringToFront(); }
             if (_heightmap_form != null) { _heightmap_form.WindowState = FormWindowState.Normal; _heightmap_form.BringToFront(); }
-            if (_grbl_setup_form != null) { _grbl_setup_form.WindowState = FormWindowState.Normal; _grbl_setup_form.BringToFront(); }
             if (_process_form != null) { _process_form.WindowState = FormWindowState.Normal; _process_form.BringToFront(); }
             if (_grbl_setup_form != null) { _grbl_setup_form.WindowState = FormWindowState.Normal; _grbl_setup_form.BringToFront(); }
+            if (_atc_setup_form != null) { _atc_setup_form.WindowState = FormWindowState.Normal; _atc_setup_form.BringToFront(); }
             //   _streaming_form.SendToBack();
+            if (_serial_form != null) { _serial_form.WindowState = FormWindowState.Normal; _serial_form.BringToFront(); }
         }
 
         private void CbAddGraphic_CheckedChanged(object sender, EventArgs e)
@@ -1177,6 +1183,48 @@ namespace GrblPlotter
             }
         }
 
+        private void splitContainer2_Panel2_SizeChanged(object sender, EventArgs e)
+        {
+            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
+            PanelDeviceDisabled.Height = splitContainer2.Panel2.Height - 40;
+            PanelDeviceDisabled.BackColor = System.Drawing.Color.FromArgb(128, 255, 255, 192);
+        }
+
+        private void splitContainer2_Paint(object sender, PaintEventArgs e)
+        {
+            var control = sender as SplitContainer;
+            //paint the three dots'
+            Point[] points = new Point[3];
+            var w = control.Width;
+            var h = control.Height;
+            var d = control.SplitterDistance;
+            var sW = control.SplitterWidth;
+
+            //calculate the position of the points'
+            if (control.Orientation == Orientation.Horizontal)
+            {
+                points[0] = new Point((w / 2), d + (sW / 2));
+                points[1] = new Point(points[0].X - 10, points[0].Y);
+                points[2] = new Point(points[0].X + 10, points[0].Y);
+            }
+            else
+            {
+                points[0] = new Point(d + (sW / 2), (h / 2));
+                points[1] = new Point(points[0].X, points[0].Y - 10);
+                points[2] = new Point(points[0].X, points[0].Y + 10);
+            }
+
+            foreach (Point p in points)
+            {
+                p.Offset(-2, -2);
+                e.Graphics.FillEllipse(SystemBrushes.ControlDark,
+                    new Rectangle(p, new Size(3, 3)));
+
+                p.Offset(1, 1);
+                e.Graphics.FillEllipse(SystemBrushes.ControlLight,
+                    new Rectangle(p, new Size(3, 3)));
+            }
+        }
     }
 }
 

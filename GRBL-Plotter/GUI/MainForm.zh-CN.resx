@@ -979,4 +979,8 @@ for SVG 文件</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-单独地-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>“应用刀具列表”功能已启用！
+请在刀具列表中更改刀具属性，或停用“应用刀具列表”功能。</value>
+  </data>
 </root>

@@ -273,20 +273,24 @@ namespace GrblPlotter
             this.surfaceScanHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jogPathCreatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laserToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grblSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.automaticPenChangerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coordinateSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
+            this.laserToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
+            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStreamingAtLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_StreamLine = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
             this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control3rdGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grblSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -369,6 +373,8 @@ namespace GrblPlotter
             this.btnCustom16 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ucToolList = new GrblPlotter.UserControls.UCToolList();
+            this.PanelDeviceDisabled = new System.Windows.Forms.Panel();
+            this.LblDisabled = new System.Windows.Forms.Label();
             this.tC_RouterPlotterLaser = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ucDeviceLaser = new GrblPlotter.UserControls.UCDeviceLaser();
@@ -377,6 +383,7 @@ namespace GrblPlotter
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ucDeviceRouter = new GrblPlotter.UserControls.UCDeviceRouter();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.BtnSetupForm = new System.Windows.Forms.Button();
             this.IndividualSettings = new System.Windows.Forms.Label();
             this.cmsFCTB.SuspendLayout();
             this.cmsPictureBox.SuspendLayout();
@@ -407,6 +414,7 @@ namespace GrblPlotter
             this.GbCustomButtons.SuspendLayout();
             this.tLPCustomButton1.SuspendLayout();
             this.tLPCustomButton2.SuspendLayout();
+            this.PanelDeviceDisabled.SuspendLayout();
             this.tC_RouterPlotterLaser.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -982,7 +990,7 @@ namespace GrblPlotter
             // 
             this.setupToolStripMenuItem1.Name = "setupToolStripMenuItem1";
             resources.ApplyResources(this.setupToolStripMenuItem1, "setupToolStripMenuItem1");
-            this.setupToolStripMenuItem1.Click += new System.EventHandler(this.SetupToolStripMenuItem_Click);
+            this.setupToolStripMenuItem1.Click += new System.EventHandler(this.FormOpenSetupMain);
             // 
             // toolStripSeparator7
             // 
@@ -1474,13 +1482,13 @@ namespace GrblPlotter
             // 
             this.probingToolLengthToolStripMenuItem.Name = "probingToolLengthToolStripMenuItem";
             resources.ApplyResources(this.probingToolLengthToolStripMenuItem, "probingToolLengthToolStripMenuItem");
-            this.probingToolLengthToolStripMenuItem.Click += new System.EventHandler(this.EdgeFinderopen);
+            this.probingToolLengthToolStripMenuItem.Click += new System.EventHandler(this.FormOpenEdgeFinder);
             // 
             // surfaceScanHeightMapToolStripMenuItem
             // 
             this.surfaceScanHeightMapToolStripMenuItem.Name = "surfaceScanHeightMapToolStripMenuItem";
             resources.ApplyResources(this.surfaceScanHeightMapToolStripMenuItem, "surfaceScanHeightMapToolStripMenuItem");
-            this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.HeightMapToolStripMenuItem_Click);
+            this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.FormOpenHeightMap);
             // 
             // jogPathCreatorToolStripMenuItem
             // 
@@ -1491,39 +1499,37 @@ namespace GrblPlotter
             // machineToolStripMenuItem
             // 
             this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.edgeFinderToolStripMenuItem,
-            this.heightMapToolStripMenuItem,
-            this.laserToolsToolStripMenuItem,
+            this.grblSetupToolStripMenuItem,
+            this.automaticPenChangerToolStripMenuItem,
             this.coordinateSystemsToolStripMenuItem,
-            this.setupToolStripMenuItem,
+            this.toolStripSeparator20,
+            this.laserToolsToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.projectorToolStripMenuItem,
+            this.edgeFinderToolStripMenuItem,
+            this.setupToolStripMenuItem,
+            this.toolStripSeparator21,
+            this.processAutomationToolStripMenuItem,
+            this.heightMapToolStripMenuItem,
             this.startStreamingAtLineToolStripMenuItem,
+            this.toolStripSeparator22,
             this.controlStreamingToolStripMenuItem,
             this.control2ndGRBLToolStripMenuItem,
-            this.control3rdGRBLToolStripMenuItem,
-            this.projectorToolStripMenuItem,
-            this.grblSetupToolStripMenuItem,
-            this.processAutomationToolStripMenuItem});
+            this.control3rdGRBLToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
-            // edgeFinderToolStripMenuItem
+            // grblSetupToolStripMenuItem
             // 
-            this.edgeFinderToolStripMenuItem.Name = "edgeFinderToolStripMenuItem";
-            resources.ApplyResources(this.edgeFinderToolStripMenuItem, "edgeFinderToolStripMenuItem");
-            this.edgeFinderToolStripMenuItem.Click += new System.EventHandler(this.EdgeFinderopen);
+            this.grblSetupToolStripMenuItem.Name = "grblSetupToolStripMenuItem";
+            resources.ApplyResources(this.grblSetupToolStripMenuItem, "grblSetupToolStripMenuItem");
+            this.grblSetupToolStripMenuItem.Click += new System.EventHandler(this.FormOpenGrblSetup);
             // 
-            // heightMapToolStripMenuItem
+            // automaticPenChangerToolStripMenuItem
             // 
-            this.heightMapToolStripMenuItem.Name = "heightMapToolStripMenuItem";
-            resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
-            this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.HeightMapToolStripMenuItem_Click);
-            // 
-            // laserToolsToolStripMenuItem
-            // 
-            this.laserToolsToolStripMenuItem.Name = "laserToolsToolStripMenuItem";
-            resources.ApplyResources(this.laserToolsToolStripMenuItem, "laserToolsToolStripMenuItem");
-            this.laserToolsToolStripMenuItem.Click += new System.EventHandler(this.Laseropen);
+            this.automaticPenChangerToolStripMenuItem.Name = "automaticPenChangerToolStripMenuItem";
+            resources.ApplyResources(this.automaticPenChangerToolStripMenuItem, "automaticPenChangerToolStripMenuItem");
+            this.automaticPenChangerToolStripMenuItem.Click += new System.EventHandler(this.FormOpenAutomaticToolChanger);
             // 
             // coordinateSystemsToolStripMenuItem
             // 
@@ -1531,17 +1537,57 @@ namespace GrblPlotter
             resources.ApplyResources(this.coordinateSystemsToolStripMenuItem, "coordinateSystemsToolStripMenuItem");
             this.coordinateSystemsToolStripMenuItem.Click += new System.EventHandler(this.CoordSystemopen);
             // 
-            // setupToolStripMenuItem
+            // toolStripSeparator20
             // 
-            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
-            this.setupToolStripMenuItem.Click += new System.EventHandler(this.DIYControlopen);
+            this.toolStripSeparator20.Name = "toolStripSeparator20";
+            resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
+            // 
+            // laserToolsToolStripMenuItem
+            // 
+            this.laserToolsToolStripMenuItem.Name = "laserToolsToolStripMenuItem";
+            resources.ApplyResources(this.laserToolsToolStripMenuItem, "laserToolsToolStripMenuItem");
+            this.laserToolsToolStripMenuItem.Click += new System.EventHandler(this.FormOpenLaserTools);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Click += new System.EventHandler(this.CameraToolStripMenuItem_Click);
+            // 
+            // projectorToolStripMenuItem
+            // 
+            this.projectorToolStripMenuItem.Name = "projectorToolStripMenuItem";
+            resources.ApplyResources(this.projectorToolStripMenuItem, "projectorToolStripMenuItem");
+            this.projectorToolStripMenuItem.Click += new System.EventHandler(this.ProjectorToolStripMenuItem_Click);
+            // 
+            // edgeFinderToolStripMenuItem
+            // 
+            this.edgeFinderToolStripMenuItem.Name = "edgeFinderToolStripMenuItem";
+            resources.ApplyResources(this.edgeFinderToolStripMenuItem, "edgeFinderToolStripMenuItem");
+            this.edgeFinderToolStripMenuItem.Click += new System.EventHandler(this.FormOpenEdgeFinder);
+            // 
+            // setupToolStripMenuItem
+            // 
+            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
+            this.setupToolStripMenuItem.Click += new System.EventHandler(this.DIYControlopen);
+            // 
+            // toolStripSeparator21
+            // 
+            this.toolStripSeparator21.Name = "toolStripSeparator21";
+            resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
+            // 
+            // processAutomationToolStripMenuItem
+            // 
+            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
+            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
+            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
+            // 
+            // heightMapToolStripMenuItem
+            // 
+            this.heightMapToolStripMenuItem.Name = "heightMapToolStripMenuItem";
+            resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
+            this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.FormOpenHeightMap);
             // 
             // startStreamingAtLineToolStripMenuItem
             // 
@@ -1555,6 +1601,11 @@ namespace GrblPlotter
             resources.ApplyResources(this.toolStrip_tb_StreamLine, "toolStrip_tb_StreamLine");
             this.toolStrip_tb_StreamLine.Name = "toolStrip_tb_StreamLine";
             this.toolStrip_tb_StreamLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStrip_tb_StreamLine_KeyDown);
+            // 
+            // toolStripSeparator22
+            // 
+            this.toolStripSeparator22.Name = "toolStripSeparator22";
+            resources.ApplyResources(this.toolStripSeparator22, "toolStripSeparator22");
             // 
             // controlStreamingToolStripMenuItem
             // 
@@ -1573,24 +1624,6 @@ namespace GrblPlotter
             this.control3rdGRBLToolStripMenuItem.Name = "control3rdGRBLToolStripMenuItem";
             resources.ApplyResources(this.control3rdGRBLToolStripMenuItem, "control3rdGRBLToolStripMenuItem");
             this.control3rdGRBLToolStripMenuItem.Click += new System.EventHandler(this.Control3rdSerialCOMToolStripMenuItem_Click);
-            // 
-            // projectorToolStripMenuItem
-            // 
-            this.projectorToolStripMenuItem.Name = "projectorToolStripMenuItem";
-            resources.ApplyResources(this.projectorToolStripMenuItem, "projectorToolStripMenuItem");
-            this.projectorToolStripMenuItem.Click += new System.EventHandler(this.ProjectorToolStripMenuItem_Click);
-            // 
-            // grblSetupToolStripMenuItem
-            // 
-            this.grblSetupToolStripMenuItem.Name = "grblSetupToolStripMenuItem";
-            resources.ApplyResources(this.grblSetupToolStripMenuItem, "grblSetupToolStripMenuItem");
-            this.grblSetupToolStripMenuItem.Click += new System.EventHandler(this.GrblSetupToolStripMenuItem_Click);
-            // 
-            // processAutomationToolStripMenuItem
-            // 
-            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
-            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
-            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
             // 
             // viewToolStripMenuItem
             // 
@@ -2171,15 +2204,33 @@ namespace GrblPlotter
             0,
             0});
             settings1.ctrlToolChangeM6PassThrough = false;
+            settings1.ctrlToolCommandGripperClose = "M3 S2 M4 P0.5";
+            settings1.ctrlToolCommandGripperOpen = "M3 S20 M4 P0.5";
             settings1.ctrlToolScriptDelay = new decimal(new int[] {
             1,
             0,
             0,
-            0});
+            65536});
             settings1.ctrlToolScriptGet = "data\\scripts\\script_v1583_brush_select.nc";
             settings1.ctrlToolScriptProbe = "data\\scripts\\";
             settings1.ctrlToolScriptPut = "data\\scripts\\";
             settings1.ctrlToolScriptSelect = "data\\scripts\\script_v1583_brush_clean.nc";
+            settings1.ctrlToolStepPickUp1 = "#TOGO ( gripper open )";
+            settings1.ctrlToolStepPickUp2 = "G91 G1 F500 X-1 ( to the left )";
+            settings1.ctrlToolStepPickUp3 = "G91 Y-12 ( forward )";
+            settings1.ctrlToolStepPickUp4 = "G91 X1 ( to the right )";
+            settings1.ctrlToolStepPickUp5 = "#TOGC ( gripper close )";
+            settings1.ctrlToolStepPickUp6 = "G91 Z20 ( lift pen )";
+            settings1.ctrlToolStepPickUp7 = "G91 Y12 ( to the rear )";
+            settings1.ctrlToolStepPickUp8 = "G53 G90 Z#TOAZ ( lower to original actual height)";
+            settings1.ctrlToolStepRemove1 = "G91 G1 F500 Z20 ( lift pen )";
+            settings1.ctrlToolStepRemove2 = "G91 Y-12 ( forward )";
+            settings1.ctrlToolStepRemove3 = "G53 G90 Z#TOLZ ( lower to original last height)";
+            settings1.ctrlToolStepRemove4 = "#TOGO ( gripper open )";
+            settings1.ctrlToolStepRemove5 = "G91 X-1 ( to the left )";
+            settings1.ctrlToolStepRemove6 = "G91 Y12 ( to the rear )";
+            settings1.ctrlToolStepRemove7 = "G91 X1 ( to the right )";
+            settings1.ctrlToolStepRemove8 = "";
             settings1.ctrlUpgradeRequired = true;
             settings1.ctrlUseSerial2 = false;
             settings1.ctrlUseSerial3 = false;
@@ -3195,6 +3246,7 @@ namespace GrblPlotter
             0,
             0});
             settings1.importGCToolDefNrUse = false;
+            settings1.importGCToolListHideUnused = true;
             settings1.importGCToolListUse = false;
             settings1.importGCToolM0 = false;
             settings1.importGCToolUseRouter = false;
@@ -3231,6 +3283,12 @@ namespace GrblPlotter
             0,
             0,
             0});
+            settings1.importGerberFillEnable = false;
+            settings1.importGerberFillToolDiameter = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             settings1.importGerberTypeEnable = true;
             settings1.importGerberTypeKnife = "knife";
             settings1.importGerberTypeM19 = "notch";
@@ -3616,6 +3674,7 @@ namespace GrblPlotter
             settings1.importUnitmm = true;
             settings1.importUseCaseInfo = "Information about current use case";
             settings1.importVectorizeAlgorithmPoTrace = true;
+            settings1.importVectorizeAutomatic = true;
             settings1.importVectorizeDetectTransparency = true;
             settings1.importVectorizeDpiFromImage = true;
             settings1.importVectorizeFromClipboard = false;
@@ -3816,8 +3875,8 @@ namespace GrblPlotter
             0,
             0,
             0});
-            settings1.mainFormSize = new System.Drawing.Size(900, 680);
-            settings1.mainFormSplitDistance = 296;
+            settings1.mainFormSize = new System.Drawing.Size(1280, 670);
+            settings1.mainFormSplitDistance = 300;
             settings1.mainFormWinState = System.Windows.Forms.FormWindowState.Normal;
             settings1.multipleLoadAllwaysClear = false;
             settings1.multipleLoadAllwaysLoad = true;
@@ -4391,13 +4450,14 @@ namespace GrblPlotter
             // ucdro
             // 
             resources.ApplyResources(this.ucdro, "ucdro");
-            this.ucdro.MainWidth = 900;
+            this.ucdro.MainWidth = 1920;
             this.ucdro.Name = "ucdro";
             this.ucdro.ZeroCommand = "G10L20P0";
             this.ucdro.ZeroString = "0.000";
             // 
             // splitContainer2
             // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.splitContainer2, "splitContainer2");
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Name = "splitContainer2";
@@ -4409,7 +4469,9 @@ namespace GrblPlotter
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.PanelDeviceDisabled);
             this.splitContainer2.Panel2.Controls.Add(this.tC_RouterPlotterLaser);
+            this.splitContainer2.Panel2.SizeChanged += new System.EventHandler(this.splitContainer2_Panel2_SizeChanged);
             // 
             // GbCustomButtons
             // 
@@ -4569,6 +4631,18 @@ namespace GrblPlotter
             this.ucToolList.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ucToolList.Name = "ucToolList";
             // 
+            // PanelDeviceDisabled
+            // 
+            this.PanelDeviceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.PanelDeviceDisabled.Controls.Add(this.LblDisabled);
+            resources.ApplyResources(this.PanelDeviceDisabled, "PanelDeviceDisabled");
+            this.PanelDeviceDisabled.Name = "PanelDeviceDisabled";
+            // 
+            // LblDisabled
+            // 
+            resources.ApplyResources(this.LblDisabled, "LblDisabled");
+            this.LblDisabled.Name = "LblDisabled";
+            // 
             // tC_RouterPlotterLaser
             // 
             this.tC_RouterPlotterLaser.Controls.Add(this.tabPage3);
@@ -4628,10 +4702,18 @@ namespace GrblPlotter
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.BtnSetupForm);
             this.tabPage4.Controls.Add(this.IndividualSettings);
             resources.ApplyResources(this.tabPage4, "tabPage4");
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // BtnSetupForm
+            // 
+            resources.ApplyResources(this.BtnSetupForm, "BtnSetupForm");
+            this.BtnSetupForm.Name = "BtnSetupForm";
+            this.BtnSetupForm.UseVisualStyleBackColor = true;
+            this.BtnSetupForm.Click += new System.EventHandler(this.FormOpenSetupMain);
             // 
             // IndividualSettings
             // 
@@ -4696,6 +4778,7 @@ namespace GrblPlotter
             this.GbCustomButtons.ResumeLayout(false);
             this.tLPCustomButton1.ResumeLayout(false);
             this.tLPCustomButton2.ResumeLayout(false);
+            this.PanelDeviceDisabled.ResumeLayout(false);
             this.tC_RouterPlotterLaser.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -4969,6 +5052,13 @@ namespace GrblPlotter
         private UserControls.UCDeviceRouter2 ucDeviceRouter2;
         private System.Windows.Forms.Label IndividualSettings;
         private UserControls.UCSetCoordinateSystem ucSetCoordinateSystem;
+        private System.Windows.Forms.Panel PanelDeviceDisabled;
+        private System.Windows.Forms.Label LblDisabled;
+        private System.Windows.Forms.Button BtnSetupForm;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
+        private System.Windows.Forms.ToolStripMenuItem automaticPenChangerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
     }
 }
 

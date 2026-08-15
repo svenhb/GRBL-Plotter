@@ -29,6 +29,7 @@
  *            l:611 f:UpdateControlEnablesInvoked add showFormText()
  * 2025-03-14 l:235 f:LoadSettings skip if shutDown
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-06-11 l:190 f:SetGUISize add try/catch for SplitterDistance
 */
 
 using GrblPlotter.UserControls;
@@ -178,6 +179,8 @@ namespace GrblPlotter
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
+            Logger.Info("SetGUISize x:{0}  y:{1}  desktopSize.Width:{2}  desktopSize.Height:{3}", Location.X, Location.Y, desktopSize.Width, desktopSize.Height);
+
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { this.CenterToScreen(); }
             this.Size = Properties.Settings.Default.mainFormSize;
 
@@ -186,10 +189,14 @@ namespace GrblPlotter
             int splitDist = Properties.Settings.Default.mainFormSplitDistance;
 
             Logger.Trace("SetGUISize X:{0}  Y:{1}  Split1:{2}  Split2:{3}", Width, Height, splitDist, Properties.Settings.Default.DeviceLaserSplitterDistance);
-			
+
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
-                splitContainer1.SplitterDistance = splitDist;
-            splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance;
+            {
+                try { splitContainer1.SplitterDistance = splitDist; }
+                catch (Exception err) { Logger.Error(err, " SetGUISize - splitContainer1.SplitterDistance "); }
+            }
+            try { splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance; }
+            catch (Exception err) { Logger.Error(err, " SetGUISize - splitContainer2.SplitterDistance "); }
 
             Logger.Trace("SetGUISize X:{0}  Y:{1}  Split1:{2}  Split2:{3}", Width, Height, splitContainer1.SplitterDistance, splitContainer2.SplitterDistance);
             ShowFormText();
@@ -200,7 +207,7 @@ namespace GrblPlotter
         {
             foreach (Control ctrl in controls)
             {
-                if ((ctrl.Name == ucDeviceLaser.Name) || (ctrl.Name == ucDevicePlotter.Name)|| (ctrl.Name == ucDeviceRouter.Name))
+                if ((ctrl.Name == ucDeviceLaser.Name) || (ctrl.Name == ucDevicePlotter.Name) || (ctrl.Name == ucDeviceRouter.Name))
                 { }
                 else
                 {
@@ -329,12 +336,12 @@ namespace GrblPlotter
 
             if (Grbl.axisB || Grbl.axisC)
             {
-                tLPRechtsOben.ColumnStyles[0].Width = 400;
+                tLPRechtsOben.ColumnStyles[0].Width = (int)(DpiScaling * 400); ;
 
             }
             else
             {
-                tLPRechtsOben.ColumnStyles[0].Width = 236;
+                tLPRechtsOben.ColumnStyles[0].Width = (int)(DpiScaling * 236); ;
             }
             Logger.Trace("GuiEnableAxisABC {0}", Grbl.GetInfo("AXS1", "-"));
             if (Grbl.GetInfo("AXS1", "") != "")

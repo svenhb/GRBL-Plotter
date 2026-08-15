@@ -43,6 +43,7 @@
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-05-15 l:617 f:StartStreaming don't set lastrecentfile to lastProcessed.nc
  * 2026-06-06 clean-up after implementing ucStreaming
+ * 2026-06-11 l:498 f:StartStreaming if (_serial_form == null)
 */
 
 using GrblPlotter.GUI;
@@ -244,7 +245,7 @@ namespace GrblPlotter
                     if (_serial_form.FlagGrblSettingClick == true)
                     {
                         _serial_form.FlagGrblSettingClick = false;
-                        GrblSetupToolStripMenuItem_Click(sender, e);
+                        FormOpenGrblSetup(sender, e);
                     }
                     break;
 
@@ -495,6 +496,9 @@ namespace GrblPlotter
         // if startline > 0 start with pause
         private void StartStreaming(int startLine, int endLine)
         {
+			if (_serial_form == null)
+			{	Logger.Error(" StartStreaming: 1st serial form is not available !!!"); return;}
+		
             Logger.Trace("startStreaming serialPortOpen:{0} ", _serial_form.SerialPortOpen);
             lblInfoOkString = Localization.GetString("mainInfoSendCode");
             notifierUpdateFlag = false;

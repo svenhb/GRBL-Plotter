@@ -30,6 +30,8 @@
  * 2024-02-12 split file, new  MainFormProcessAutomation.cs
  * 2025-06-03 add _tablet_form
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-06-11 l:365 f:Control2ndGRBLToolStripMenuItem_Click  if (_serial_form == null)
+ * 2026-08-09 add ControlATC form
 */
 
 //using GrblPlotter.GCodeCreation.CreateFromForm;
@@ -71,6 +73,7 @@ namespace GrblPlotter
         ControlProjector _projector_form = null;
         ProcessAutomation _process_form = null;
         GrblSetupForm _grbl_setup_form = null;
+        ControlATC _atc_setup_form = null;
 
         private void UpdateIniVariables()
         {
@@ -137,7 +140,7 @@ namespace GrblPlotter
         { _text_form = null; EventCollector.SetOpenForm("FCtxt"); }
 
         /********************************************************************
-         * Image
+         * ImageForm
          * _image_form
          ********************************************************************/
         private void ImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,7 +239,7 @@ namespace GrblPlotter
             }
             else if (e.Command.Contains("setup"))
             {
-                SetupToolStripMenuItem_Click(sender, e);
+                FormOpenSetupMain(sender, e);
                 _setup_form?.ShowTab("setup");
             }
             else if (e.Command.Contains("tool"))
@@ -356,14 +359,14 @@ namespace GrblPlotter
         private void FormClosed_StreamingForm(object sender, FormClosedEventArgs e)
         { _streaming_form = null; _streaming_form2 = null; }
 
-
-
         /********************************************************************
          * Control 2nd grbl via 2nd COM
          * _serial_form2, _2ndGRBL_form
          ********************************************************************/
         private void Control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
         {
+			if (_serial_form == null)
+			{	Logger.Error(" Open 2nd GRBL form: 1st serial form is not available !!!"); return;}
             if (_2ndGRBL_form == null)
             {
                 _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
@@ -545,7 +548,7 @@ namespace GrblPlotter
          * Laser setup
          * _laser_form
          ********************************************************************/
-        private void Laseropen(object sender, EventArgs e)
+        private void FormOpenLaserTools(object sender, EventArgs e)
         {
             if (_laser_form == null)
             {
@@ -596,7 +599,7 @@ namespace GrblPlotter
          * Edge finder
          * _probing_form
          ********************************************************************/
-        private void EdgeFinderopen(object sender, EventArgs e)
+        private void FormOpenEdgeFinder(object sender, EventArgs e)
         {
             if (_probing_form == null)
             {
@@ -656,7 +659,7 @@ namespace GrblPlotter
          * Height map
          * _heightmap_form
          ********************************************************************/
-        private void HeightMapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormOpenHeightMap(object sender, EventArgs e)
         {
             if (_heightmap_form == null)
             {
@@ -695,7 +698,7 @@ namespace GrblPlotter
          * Setup Form
          * _setup_form
          ********************************************************************/
-        private void SetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormOpenSetupMain(object sender, EventArgs e)
         {
             if (_setup_form == null)
             {
@@ -805,7 +808,7 @@ namespace GrblPlotter
          * GRBL Setup
          * _grbl_setup_form
          ********************************************************************/
-        private void GrblSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormOpenGrblSetup(object sender, EventArgs e)
         {
             if (_grbl_setup_form == null)
             {
@@ -824,6 +827,29 @@ namespace GrblPlotter
         private void FormClosed_GrblSetup(object sender, FormClosedEventArgs e)
         { _grbl_setup_form = null; EventCollector.SetOpenForm("FCgrbl"); }
 
+        /********************************************************************
+        * Automatic pen changer Setup
+        * _atc_setup_form
+        ********************************************************************/
+        private void FormOpenAutomaticToolChanger(object sender, EventArgs e)
+        {
+            if (_atc_setup_form == null)
+            {
+                _atc_setup_form = new ControlATC();
+                _atc_setup_form.FormClosed += FormClosed_ATCSetup;
+                _atc_setup_form.RaiseCmdEvent += OnRaiseCmdEvent;
+                _atc_setup_form.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
+                EventCollector.SetOpenForm("Fatc");
+            }
+            else
+            {
+                _atc_setup_form.Visible = false;
+            }
+            _atc_setup_form.Show(null);// this);
+            _atc_setup_form.WindowState = FormWindowState.Normal;
+        }
+        private void FormClosed_ATCSetup(object sender, FormClosedEventArgs e)
+        { _atc_setup_form = null; EventCollector.SetOpenForm("FCatc"); }
 
         /********************************************************************
         * About Form

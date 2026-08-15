@@ -761,7 +761,7 @@ namespace GrblPlotter
                     (s.importVectorizeTypeBmp && (ext == ".bmp")))
             {
                 LastLoadedImagePattern = fileName;
-                StartConvert(Graphic.SourceType.PDNJson, fileName); fileLoaded = true;
+                StartConvert(Graphic.SourceType.Image, fileName); fileLoaded = true;
             }
 
             else if (extensionGCode.Contains(ext))              // extensionGCode = ".nc,.cnc,.ngc,.gcode,.tap";
@@ -1030,7 +1030,7 @@ namespace GrblPlotter
                     (s.importVectorizeTypeJpg && (ext == ".jpg")) ||
                     (s.importVectorizeTypeBmp && (ext == ".bmp")))
             {
-                StartConvert(Graphic.SourceType.PDNJson, tBURL.Text);
+                StartConvert(Graphic.SourceType.Image, tBURL.Text);
                 SetLastLoadedFile("Data from URL", tBURL.Text);
             }
 
@@ -1389,8 +1389,8 @@ namespace GrblPlotter
                 Logger.Info("- LoadFromClipboard Bitmap");
                 if (Properties.Settings.Default.importVectorizeFromClipboard)
                 {
-                    GCodeFromPDNJson.LoadFromClipboard();
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG2
+                    GCodeFromPDNJson.LoadFromClipboard(tempFile);
+                    SetFctbCodeText(Graphic.GCode.ToString());      
 
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return false; }
@@ -1399,9 +1399,7 @@ namespace GrblPlotter
                     Properties.Settings.Default.counterImportPDNJson += 1;
                     lastLoaded = " from Clipboard";
                     ShowFormText();
-                    //    this.Text = appName + " | Source: from Clipboard";
                     SetLastLoadedFile("Data from Clipboard: BMP", "");
-                    //        lbInfo.Text = "BMP from clipboard";
                     SetInfoLabel("BMP from clipboard", SystemColors.Control);
                     ShowImportOptions();
                 }
@@ -1523,13 +1521,19 @@ namespace GrblPlotter
                     {
                         Logger.Info("●●●● Last graphic source was {0}, temporary saved in {1}", lastLoadSource, tempFile);
                         bool found = false;
-                        string[] extension = { "SVG", "DXF", "HTML" };
+                        string[] extension = { "SVG", "DXF", "HTML", "Image" };
                         string newFile = "";
                         Logger.Trace("1 tempFile:{0}   lastLoadSource:{1}", tempFile, lastLoadSource);
                         foreach (string ex in extension)
                         {
                             if (lastLoadSource.Contains(ex))
-                            { newFile = Path.ChangeExtension(tempFile, ex); found = true; }
+                            {
+                                if (ex == "Image")
+                                    newFile = Path.ChangeExtension(tempFile, "png"); // saved as png in GCodeFromPDNJson.LoadFromClipboard(tempFile);
+                                else
+                                    newFile = Path.ChangeExtension(tempFile, ex);
+                                found = true;
+                            }
                         }
 
                         Logger.Trace("2 tempFile:{0}   newFile:{1}", tempFile, newFile);
@@ -1600,13 +1604,17 @@ namespace GrblPlotter
                 //        ToolList.Init(" (StartConvert with GroupObjects)");
             }
             NewCodeStart();             // StartConvert
+            MyControl.SourceType = type;
+
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
             Application.DoEvents();
             string conversionInfo = "";
 
             /* Show modal progress Dialog if file size is too big */
             bool showProgress = false;
-            if (!source.StartsWith("http"))
+            if (type == Graphic.SourceType.Image)
+            { showProgress = true; }
+            else if (!source.StartsWith("http"))
             {
                 FileInfo fs = new FileInfo(source);
                 int sizeLimit = 250;
@@ -1650,7 +1658,7 @@ namespace GrblPlotter
 
             if (showProgress)
             {
-                using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+                using (ImportWorker f = new ImportWorker(type))   //MainFormImportWorker
                 {
                     f.SetImport(type, source);  // set e.Result = GCodeFromDXF.ConvertFromFile(source, worker, e)
                     f.ShowDialog(this);
@@ -1703,7 +1711,7 @@ namespace GrblPlotter
                             Properties.Settings.Default.counterImportGerber += 1;
                             break;
                         }
-                    case Graphic.SourceType.PDNJson:    // uses Graphic-Class, get result from Graphic.GCode
+                    case Graphic.SourceType.Image:    // uses Graphic-Class, get result from Graphic.GCode
                         {
                             if (!showProgress) GCodeFromPDNJson.ConvertFromFile(source, null, null);
                             conversionInfo = GCodeFromPDNJson.ConversionInfo;
@@ -1938,7 +1946,7 @@ namespace GrblPlotter
                                     LoadStreamingStatus(ref status, ref message, true);                            //do something
                                     timerUpdateControlSource = "loadGcode";
                                     UpdateControlEnables(); // true
-                                                            //         btnStreamStart.Image = Properties.Resources.btn_play;
+                                                            //         btnStreamStart.ImageForm = Properties.Resources.btn_play;
                                     isStreamingPause = true;
                                     ucStreaming.SetStatusStreamStart(true, false, true);
                                     //             lbInfo.Text = Localization.GetString("mainPauseStream");    // "Pause streaming - press play ";
@@ -2410,7 +2418,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        if ((num1 >= 0) && (num1 < btnCustomCommand.Length))	// < 32
+                        if ((num1 >= 0) && (num1 < btnCustomCommand.Length))    // < 32
                         {
                             if (_serial_form.SerialPortOpen && (!isStreaming || isStreamingPause) || Grbl.grblSimulate)
                                 ProcessCommands(btnCustomCommand[num1]);
@@ -2588,7 +2596,7 @@ namespace GrblPlotter
 
         private void UseCaseDialog()
         {
-            if (Properties.Settings.Default.importShowUseCaseDialog && !MyControl.UseToolList())
+            if (Properties.Settings.Default.importShowUseCaseDialog && !MyControl.UseSpecificDevice())
             {
                 using (ControlSetupUseCase f = new ControlSetupUseCase())
                 {

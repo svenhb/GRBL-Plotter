@@ -18,6 +18,7 @@
 */
 /* MainFormUserControl
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ 80, 110
 */
 
 using GrblPlotter.Helper;
@@ -59,6 +60,7 @@ namespace GrblPlotter
             ucDeviceLaser.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucDeviceLaser2.RaiseCmdEvent += OnRaiseCmdEvent;
             ucDevicePlotter.RaiseCmdEvent += OnRaiseCmdEvent;
+            ucDevicePlotter.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucDevicePlotter2.RaiseCmdEvent += OnRaiseCmdEvent;
             ucDevicePlotter2.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucDeviceRouter.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
@@ -66,6 +68,8 @@ namespace GrblPlotter
 
             ucToolList.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
             ucToolList.RaiseCmdEvent += OnRaiseCmdEvent;
+
+
             //     _setup_form.RaiseGuiControlEvent += OnRaiseGuiControlEvent;
 
             MyControl.NotifyYellow = Color.Yellow;
@@ -74,7 +78,16 @@ namespace GrblPlotter
             MyControl.ButtonActive = Color.Lime;
             MyControl.ButtonInactive = Color.LightGray;
             MyControl.PanelHighlight = Color.FromArgb(255, 255, 128);
-			MyControl.SetupFormBackColor = Color.FromArgb(255, 255, 192);
+            MyControl.SetupFormBackColor = Color.FromArgb(255, 255, 192);
+
+            // Soft industrial palette (less harsh than pure Yellow / Lime / Pink)
+            /*MyControl.NotifyYellow = Color.FromArgb(255, 236, 179);
+                        MyControl.NotifyGreen = Color.FromArgb(186, 220, 186);
+                        MyControl.NotifyRed = Color.FromArgb(230, 145, 110);
+                        MyControl.ButtonActive = Color.FromArgb(120, 185, 150);
+                        MyControl.ButtonInactive = Color.FromArgb(220, 224, 228);
+                        MyControl.PanelHighlight = Color.FromArgb(255, 245, 210);
+                        MyControl.SetupFormBackColor = Color.FromArgb(248, 246, 240);*/
         }
 
         private void UserControlsMainFormLoad()
@@ -97,6 +110,9 @@ namespace GrblPlotter
             else
             {
                 MyControl.SetColordesign(Color.WhiteSmoke, Color.Pink);
+                // Default: cool panel + teal accent buttons (replaces WhiteSmoke / Pink)
+                //    MyControl.SetColordesign(Color.FromArgb(245, 247, 250), Color.FromArgb(72, 140, 148));
+                //                UserControlSetColors();
             }
         }
 
@@ -140,7 +156,9 @@ namespace GrblPlotter
             styles[2].SizeType = SizeType.AutoSize;
             styles[3].SizeType = SizeType.AutoSize;
 
-            splitContainer1.Panel1MinSize = (int)(DpiScaling * 308);
+            int ds = (int)(DpiScaling * 308);
+            try { splitContainer1.SplitterDistance = ds; splitContainer1.Panel1MinSize = ds; }
+            catch (Exception err) { Logger.Error(err, " SetTableLayoutPanelLeftSizes "); }
         }
 
         private void ResizeRightSide(string src)
@@ -157,6 +175,9 @@ namespace GrblPlotter
             ucMoveToZero.Width = w;
             ucJogControlAll.Width = w;
             ucdro.MainWidth = this.Width;
+
+            //    int h = Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic ? 175 : 100;
+            //    tC_RouterPlotterLaser2.Height = h;
         }
 
         private void UserControlsSetAxisCount(int nr, CommandProtocol cp)
@@ -201,7 +222,9 @@ namespace GrblPlotter
             {
                 if (!isStreaming || isStreamingPause)
                 {
-                    if ((_serial_form != null) && (!_serial_form.RequestSend(e.Command, true)))     // check if COM is still open
+                    if (e.Realtime != 0)
+                    { ProcessCommands(e.Command); }
+                    else if ((_serial_form != null) && (!_serial_form.RequestSend(e.Command, true)))     // check if COM is still open
                     { }
                 }
             }
@@ -293,19 +316,38 @@ namespace GrblPlotter
                     tC_RouterPlotterLaser.SelectedIndex = tC_RouterPlotterLaser.TabCount - 1;
                     //    MyControl.SetSelectedDevice(tC_RouterPlotterLaser.TabCount - 1);
                 }
+                /*     if (e.IntVal == 14) 
+                     {
+                         ucDevicePlotter2.ShowPanelPenChange(Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic);
+                     }*/
+                if ((e.IntVal >= 90) && (e.IntVal < 93))
+                {
+                    tC_RouterPlotterLaser.SelectedIndex = e.IntVal - 90;
+                }
+                if (e.IntVal == 98)
+                {
+                    bool showPenChange = (tC_RouterPlotterLaser2.SelectedIndex == 1) && Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic;
+                    int h = showPenChange ? 205 : 100;
+                    tC_RouterPlotterLaser2.Height = (int)(h * DpiScaling);
+                    ucDevicePlotter.SetBtnFillColor();
+                    VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
+                    pictureBox1.Invalidate();                                   // resfresh view
+                }
                 if (e.IntVal == 99)
                 {
                     UserControlSetColors();
                 }
             }
-            else if (e.Gc == GuiControl.highligh)
+            else if (e.Gc == GuiControl.highligh)       // UCToolList ToolListElement was clicked
             {
+                ucDevicePlotter2.SetToolNr(e.IntVal);
                 if (XmlMarker.GetGroupCount() > 0)                                                      // is Group-Tag present
                 {
-                    //   Logger.Trace("Highlight clicked {0}", e.IntVal);
                     bool gcodeIsSeleced = false;
                     EnableBlockCommands(gcodeIsSeleced);
-                    int clickedLine = XmlMarker.GetStartLineOfGroup(e.IntVal);
+
+                    int clickedLine = XmlMarker.GetStartLineOfGroupByToolNr(e.IntVal);
+
                     if (XmlMarker.GetGroup(clickedLine) && LineIsInRange(XmlMarker.lastGroup.LineStart))// is Group-Tag valid
                     {
                         SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);   // select Gcode
@@ -348,23 +390,27 @@ namespace GrblPlotter
             else if (e.Gc == GuiControl.openForm)
             {
                 if (e.IntVal == 31)
-                { Laseropen(sender, e); }       // laser tools
+                { FormOpenLaserTools(sender, e); }       // laser tools
+                if (e.IntVal == 33)
+                { FormOpenAutomaticToolChanger(sender, e); }     
                 if (e.IntVal == 21)
-                { EdgeFinderopen(sender, e); }  // probing
+                { FormOpenEdgeFinder(sender, e); }  // probing
                 if (e.IntVal == 22)
-                { HeightMapToolStripMenuItem_Click(sender, e); }
+                { FormOpenHeightMap(sender, e); }
             }
             else if (e.Gc == GuiControl.customButton)
             {
                 Logger.Trace("customButton {0}", e.IntVal);
-                BtnCustomButtonProcess(Math.Abs(e.IntVal), e.IntVal < 0, "123");
+                BtnCustomButtonProcess(Math.Abs(e.IntVal), e.IntVal < 0, "Plotter2-AUX");
             }
-            else if (e.Gc == GuiControl.useToolList)
+            else if (e.Gc == GuiControl.useToolList)        // UCToolList-CbApplyToolList was changed
             {
                 bool enable = (e.IntVal == 0) ? true : false;
                 ucDeviceLaser.Enabled = enable;
                 ucDevicePlotter.Enabled = enable;
                 ucDeviceRouter.Enabled = enable;
+                PanelDeviceDisabled.Visible = !enable;
+                PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
             }
         }
 
@@ -372,25 +418,26 @@ namespace GrblPlotter
         {
             int pageCount2 = tC_RouterPlotterLaser2.TabCount;
             MyControl.SetSelectedDevice(tC_RouterPlotterLaser.SelectedIndex);
+            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
             if (tC_RouterPlotterLaser.SelectedIndex < pageCount2)
             {
                 ucToolList.Visible = true;
                 GbCustomButtons.Visible = false;
                 tC_RouterPlotterLaser2.SelectedIndex = tC_RouterPlotterLaser.SelectedIndex;
-                //    MyControl.SettingWasChanged(true);
+
                 ucToolList.SwitchView(tC_RouterPlotterLaser.SelectedIndex, MyControl.SelectedPlotterMode);
                 if (!MyControl.ApplyToolList)
                     ucToolList.FillToolListElements();
-                //    ucToolList.ReloadNeded();
-                //LoadProperties.Off(); move to UserControl.cs
+
+                PanelDeviceDisabled.Visible = MyControl.ApplyToolList;
+
                 if (tC_RouterPlotterLaser.SelectedIndex == 1)   // Plotter
                 {
-                    //    Logger.Trace("Set width:{0}  Split2:{1}   2-width:{2}", splitContainer2.Width,splitContainer2.SplitterDistance, splitContainer2.Panel2.Width);
                     if (splitContainer2.Panel2.Width < 250)
                     {
-                        int ndis = splitContainer2.Width - 285;
+                        int ndis = splitContainer2.Width - 305; //288
                         if (ndis > 0)
-                            splitContainer2.SplitterDistance = splitContainer2.Width - 285;
+                            splitContainer2.SplitterDistance = ndis;
                     }
                 }
             }
@@ -399,6 +446,7 @@ namespace GrblPlotter
                 ucToolList.Visible = false;
                 GbCustomButtons.Visible = true;
                 LoadProperties.Init();
+                PanelDeviceDisabled.Visible = false;
             }
             TC_RouterPlotterLaserLastSelected = tC_RouterPlotterLaser.SelectedIndex;
             UpdateForms();
@@ -411,6 +459,9 @@ namespace GrblPlotter
             {
                 tC_RouterPlotterLaser.SelectedIndex = tC_RouterPlotterLaser2.SelectedIndex;
             }
+            bool showPenChange = (tC_RouterPlotterLaser2.SelectedIndex == 1) && Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic;
+            int h = showPenChange ? 205 : 100;
+            tC_RouterPlotterLaser2.Height = (int)(h * DpiScaling);
         }
         private void Tc_RouterPlotterLaser_DrawItem(object sender, DrawItemEventArgs e)
         {

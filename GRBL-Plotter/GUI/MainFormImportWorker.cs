@@ -35,11 +35,17 @@ namespace GrblPlotter
         private System.Windows.Forms.Label resultLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
 
-        public ImportWorker()
+        public ImportWorker(Graphic.SourceType type)
         {
             InitializeComponent();
             InitializeBackgroundWorker();
             this.Icon = Properties.Resources.Icon;
+            if (type == Graphic.SourceType.Image)
+            {
+                string algo = Properties.Settings.Default.importVectorizeAlgorithmPoTrace? "'Potrace'" : "'Geometric trace'";
+                string mode = Properties.Settings.Default.importVectorizeAutomatic? "'Color mode'" : "'Black & White'";
+                this.Text = string.Format("Image import {0}  {1}", algo, mode);
+            }
         }
 
         private Graphic.SourceType type;
@@ -83,8 +89,12 @@ namespace GrblPlotter
                     { GCodeFromDrill.ConvertFromFile(source, worker, e); break; }
                 case Graphic.SourceType.Gerber:
                     { GCodeFromGerber.ConvertFromFile(source, worker, e); break; }
-                case Graphic.SourceType.PDNJson:
-                    { GCodeFromPDNJson.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.Image:
+                    {
+                        GCodeFromPDNJson.ConvertFromFile(source, worker, e);
+                        //    this.Text = string.Format("Image import {0}",Properties.Settings.Default.importVectorizeAlgorithmPoTrace?"'Potrace'":"'Geometric trace'");
+                        break;
+                    }
             }
         }
 
@@ -139,7 +149,7 @@ namespace GrblPlotter
             // 
             this.cancelAsyncButton.Location = new System.Drawing.Point(18, 72);
             this.cancelAsyncButton.Name = "cancelAsyncButton";
-            this.cancelAsyncButton.Size = new System.Drawing.Size(256, 23);
+            this.cancelAsyncButton.Size = new System.Drawing.Size(274, 23);
             this.cancelAsyncButton.TabIndex = 2;
             this.cancelAsyncButton.Text = "Cancel time consuming process";
             this.cancelAsyncButton.Click += new System.EventHandler(this.CancelAsyncButton_Click);
@@ -149,7 +159,7 @@ namespace GrblPlotter
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.resultLabel.Location = new System.Drawing.Point(18, 8);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(256, 23);
+            this.resultLabel.Size = new System.Drawing.Size(274, 23);
             this.resultLabel.TabIndex = 3;
             this.resultLabel.Text = "Import vector graphic";
             this.resultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,7 +168,7 @@ namespace GrblPlotter
             // 
             this.progressBar1.Location = new System.Drawing.Point(18, 40);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(256, 8);
+            this.progressBar1.Size = new System.Drawing.Size(274, 8);
             this.progressBar1.Step = 2;
             this.progressBar1.TabIndex = 4;
             // 
@@ -166,7 +176,7 @@ namespace GrblPlotter
             // 
             this.progressBar2.Location = new System.Drawing.Point(18, 58);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(256, 8);
+            this.progressBar2.Size = new System.Drawing.Size(274, 8);
             this.progressBar2.Step = 2;
             this.progressBar2.TabIndex = 4;
             // 
@@ -177,7 +187,7 @@ namespace GrblPlotter
             // 
             // FibonacciForm
             // 
-            this.ClientSize = new System.Drawing.Size(292, 118);
+            this.ClientSize = new System.Drawing.Size(320, 118);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.resultLabel);

@@ -869,4 +869,8 @@ Alt-Klick rundet die Position auf 0,1 Raster.</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Individuell-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>'Apply tool list' ist aktiv!
+Ändere die Werkzeugeigenschaften in der Werkzeugliste oder deaktiviere 'Apply tool list'.</value>
+  </data>
 </root>

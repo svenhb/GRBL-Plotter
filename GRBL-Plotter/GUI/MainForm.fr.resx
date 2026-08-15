@@ -881,4 +881,8 @@ Clic alt al arrotonde la posizion a 0.1 raster,</value>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>-Individuellement-</value>
   </data>
+  <data name="LblDisabled.Text" xml:space="preserve">
+    <value>« Apply tool list » est activé !
+Modifiez les propriétés des outils dans la liste ou désactivez « Apply tool list ».</value>
+  </data>
 </root>
