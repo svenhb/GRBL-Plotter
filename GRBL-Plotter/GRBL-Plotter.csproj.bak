@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.8.1.0</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.8.0.3</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -224,7 +224,6 @@
     <Compile Include="GCodeCreation\Vectorize\Vectorize.cs" />
     <Compile Include="GCodeCreation\Vectorize\Vectorize_FitCurves.cs" />
     <Compile Include="GCodeCreation\Vectorize\Vectorize_Helper.cs" />
-    <Compile Include="Helper\ToolChanger.cs" />
     <Compile Include="Helper\XlsxReader.cs" />
     <Compile Include="Helper\XmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
@@ -306,12 +305,6 @@
       <DependentUpon>Splashscreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\XML.cs" />
-    <Compile Include="MachineControl\ControlATC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MachineControl\ControlATC.Designer.cs">
-      <DependentUpon>ControlATC.cs</DependentUpon>
-    </Compile>
     <Compile Include="MachineControl\ControlCameraFormMisc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,7 +365,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MachineControl\ControlSerialFormToolChange.cs">
-      <DependentUpon>ControlSerialForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MachineControl\ControlSetupFormIni.cs" />
@@ -654,10 +646,10 @@
     <Content Include="data\automations\BulkText\BulkText_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\CardAddressing\CardAddressing.xml">
+    <Content Include="data\automations\CardAdressing\CardAddressing.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\CardAddressing\CardAddressing_Data.txt">
+    <Content Include="data\automations\CardAdressing\CardAddressing_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\automations\example_beep_melody.xml">
@@ -888,13 +880,13 @@
     <Content Include="data\jogpaths\L_50mm_1.5.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\palettes\Stabilo_Point_88_46pcs.txt">
+    <Content Include="data\palettes\GRBL-Plotter_StabiloPoint88.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\palettes\Stabilo_Power_12pcs.txt">
+    <Content Include="data\palettes\GRBL-Plotter_StabiloPower.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\palettes\Watercolor_7_colors.txt">
+    <Content Include="data\palettes\GRBL-Plotter_Watercolor.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\palettes\PaintDotNet_Default.txt">
@@ -930,6 +922,12 @@
     <Content Include="data\examples\fonts-in-librecad-examples-sheet4.dxf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\scripts\script_move_arround_dimension.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\test_layer.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\usecases\example_plotter_Z_axis.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -937,6 +935,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\scripts\script_my_logo.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\paint_StabiloPoint88.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Find_Z_set_zero.ini">
@@ -1005,6 +1006,18 @@
     <Content Include="data\buttons\Add_logo.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\scripts\script_v1583_brush_clean.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_v1583_brush_refresh.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_v1583_brush_select.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\paint_watercolor.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\usecases\import_simple_z.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1070,61 +1083,7 @@
     <None Include="data\automations\BulkText\BulkText_Data.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="data\scripts\script_%282nd_grbl%29_pen_v0201_pickup.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_%282nd_grbl%29_pen_v0201_remove.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_%282nd_grbl%29_pen_v0201_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1200_clean.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1200_refresh.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1200_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_clean.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_refresh.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_my_sign.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1200_remove.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1200_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1810_pickup.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1810_remove.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_probing_gripper_v0201.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\tools\_currentToolChanger.atc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\tools\ToolChanger_X_v1810.atc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\framing_c.png" />
-    <EmbeddedResource Include="MachineControl\ControlATC.resx">
-      <DependentUpon>ControlATC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser.ar.resx">
       <DependentUpon>UCDeviceLaser.cs</DependentUpon>
     </EmbeddedResource>
@@ -2975,6 +2934,18 @@
     <None Include="Resources\led_on.png" />
     <None Include="Resources\led_off.png" />
     <None Include="Resources\up.png" />
+    <Content Include="data\scripts\script_pen_pickup.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_pen_remove.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_pen_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_probing_gripper.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\scripts\script_probing_tool.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2989,19 +2960,49 @@
     <Content Include="data\examples\heightmap_lens.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\scripts\Test_Pen_change.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\alarm_codes_en_US.csv" />
     <None Include="Resources\error_codes_en_US.csv" />
     <None Include="Resources\setting_codes_en_US.csv" />
     <Content Include="data\examples\heightmap_pfennig.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\scripts\script_brush_clean.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_brush_refresh.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_brush_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\examples\graphic_Hershey_Fonts.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\router_tools.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_down_up.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_pen2_remove.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_pen2_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\paint_Stabilopower.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\tools\laser_popup.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\usecases\example_laser.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\_current_.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\tools\laser_and_pen.csv">
