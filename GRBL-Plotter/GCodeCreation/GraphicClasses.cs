@@ -34,6 +34,7 @@
  * 2026-03-02 add import options
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-06-04 l:818 f:AddArc adapt call to Dimension.SetDimensionArc
+ * 2026-07-21 l:140 add OptionRepeatCodeNumber
 */
 
 using GrblPlotter.Helper;
@@ -90,10 +91,12 @@ namespace GrblPlotter
         /// <summary>
         /// General information about imported graphic
         /// </summary>		
-        public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode, Wire, PDNJson, Ink, Image };
+        public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode, Wire, Image, Ink, ImageForm };
         public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7 };
         public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
         public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2 };
+
+        /***************** GraphicInformationClass ********************************/
         internal class GraphicInformationClass
         {
             public string Title { get; set; }
@@ -134,6 +137,7 @@ namespace GrblPlotter
             public bool ImportFilterPathsEnable { get; set; }// Properties.Settings.Default.importGraphicFilterEnable
 
             public bool OptionRepeatCode { get; set; }
+            public int OptionRepeatCodeNumber { get; set; }
             public bool OptionRepeatCodeZEnable { get; set; }
             public double OptionRepeatCodeZValue { get; set; }
             // Properties.Settings.Default.importRepeatCnt
@@ -220,6 +224,7 @@ namespace GrblPlotter
                     OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ || Properties.Settings.Default.importSVGCircleToDotS;
                     OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
+                    OptionRepeatCodeNumber = (int)Properties.Settings.Default.importRepeatCnt;
                     OptionRepeatCodeZEnable = false;
                     OptionRepeatCodeZValue = 0;
                     OptionAddZProfile = false;
@@ -247,9 +252,15 @@ namespace GrblPlotter
                 OptionCodeSortDistanceLargestLast = Properties.Settings.Default.importGraphicLargestLast;
                 OptionCodeSortDimension = Properties.Settings.Default.importGraphicSortDimension;
 
-                ConvertArcToLine = ImportParameter.AvoidArcCommand || OptionClipCode || OptionDragTool || OptionHatchFill || OptionNoise || OptionAddZProfile;// only for SVG: || ApplyHatchFillSVG;
+                SetConvertArcToLine();
+            }
+
+            public void SetConvertArcToLine()
+            {
+                ConvertArcToLine = ImportParameter.AvoidArcCommand || OptionClipCode || OptionDragTool || OptionHatchFill || ApplyHatchFillSVG || OptionNoise || OptionAddZProfile;// only for SVG: || ApplyHatchFillSVG;
                 ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBender || OptionSpecialDevelopment || OptionRampOnPenDown || OptionSpecialConvertToPolar;// || OptionDashPattern;
             }
+
             public void ResetOptions(bool enableFigures)
             {
                 /* path transformations */
@@ -356,6 +367,7 @@ namespace GrblPlotter
                 return importOptions;
             }
         }
+        /***************** GraphicInformationClass ********************************/
 
         /// <summary>
         /// Collect 'GroupObject' to build a tile
@@ -802,6 +814,8 @@ namespace GrblPlotter
                 }
             }
 
+            public void Add(double x, double y, double dz, double ang)
+            { Add(new Point(x, y), dz, ang); }
             public void Add(Point tmp, double dz, double ang)
             {
                 GCodeMotion motion = new GCodeLine(tmp, dz, ang);

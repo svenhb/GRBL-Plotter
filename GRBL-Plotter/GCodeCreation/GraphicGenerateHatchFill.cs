@@ -43,6 +43,13 @@ namespace GrblPlotter
         {
             if (graphicToFill == null) return;
 
+            bool DeviceSpecificOptions = MyControl.UseSpecificDevice();	// device Laser, Plotter or Router
+            if (!DeviceSpecificOptions)
+            {
+                if (!Properties.Settings.Default.importGraphicHatchFillEnable)
+                    return;
+            }
+
             OptionPropHatchFill Fill = new OptionPropHatchFill
             {
                 Cross = Properties.Settings.Default.importGraphicHatchFillCross,
@@ -57,6 +64,13 @@ namespace GrblPlotter
                 InsetDistance = (float)Properties.Settings.Default.importGraphicHatchFillInset,
                 DeletePath = Properties.Settings.Default.importGraphicHatchFillDeletePath
             };
+            if (DeviceSpecificOptions && !MyControl.ApplyToolList)
+            {
+                Fill = MyControl.GetActualFill();
+                Logger.Trace("►►► HatchFill Get fill from device:{0}  enabled:{1}", MyControl.GetSelectedDeviceName(), Fill.Enable);
+                if (!Fill.Enable)
+                    return;
+            }
 
             bool shortenLines = Properties.Settings.Default.importGraphicHatchFillInsetEnable && !Properties.Settings.Default.importGraphicHatchFillInsetEnable2;
             double distOffset = 0;
@@ -67,8 +81,6 @@ namespace GrblPlotter
             bool applyDash = Properties.Settings.Default.importGraphicHatchFillDash;
             int maxObject = graphicToFill.Count;
 
-            bool DeviceSpecificOptions = MyControl.UseToolList();	// device Laser, Plotter or Router
-
             Logger.Info("►►► HatchFill objects:{0}  useToolList:{1}  defaults: distance:{2} angle:{3} cross:{4}  dash:{5}  inset2:{6}", maxObject, DeviceSpecificOptions, Fill.Distance, Fill.Angle, Fill.Cross, applyDash, Fill.InsetEnable);
 
             List<int> indexToDelete = new List<int>();
@@ -78,6 +90,8 @@ namespace GrblPlotter
             List<PathObject> tmpPath = new List<PathObject>();
             List<PathObject> tmpPath2 = new List<PathObject>();
             Dimensions pathDimension = new Dimensions();
+
+            //    logModification = true;
 
             if (!applyDash)
             { SetDash(new double[0]); }
@@ -90,7 +104,12 @@ namespace GrblPlotter
                 {
                     nextIsSameHatch = false;
                     if ((index < (maxObject - 1)) && (graphicToFill[index + 1] is ItemPath PathDataNext))
-                    { nextIsSameHatch = ((PathData.Info.Id == PathDataNext.Info.Id) && (IsEqual(PathDataNext.Start, PathDataNext.End) && (PathDataNext.Path.Count > 2))); }
+                    {
+                        nextIsSameHatch = ((PathData.Info.Id == PathDataNext.Info.Id) && (IsEqual(PathDataNext.Start, PathDataNext.End) && (PathDataNext.Path.Count > 2)));
+                        //    Logger.Trace("►►► HatchFill id1:{0}  id2:{1}  next-cnt:{2}  nextIsSameHatch:{3}", PathData.Info.Id, PathDataNext.Info.Id, PathDataNext.Path.Count, nextIsSameHatch);
+                    }
+
+                    //    Logger.Trace("►►► HatchFill isCLose {0}   count {1}", IsEqual(PathData.Start, PathData.End), PathData.Path.Count);
 
                     if (IsEqual(PathData.Start, PathData.End) && (PathData.Path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                     {
@@ -110,7 +129,7 @@ namespace GrblPlotter
                                 ToolList.Add(new ToolProperty(fillColor));
                         }
 
-                        if (DeviceSpecificOptions)	// Device is Laser, Plotter, Router
+                        if (DeviceSpecificOptions && MyControl.ApplyToolList)	// Device is Laser, Plotter, Router
                         {
                             shortenLines = false;
 
@@ -133,12 +152,15 @@ namespace GrblPlotter
                                 default: break;
                             }
 
-                            //			Logger.Trace("...HatchFill GroupOption:'{0}'  Group-Value:'{1}'  fillColor:'{2}'  toolNr:{3}", graphicInformation.GroupOption, itemNow.Info.GroupAttributes[(int)GroupOption.ByColor], fillColor, toolNr);
+                            Logger.Trace("...HatchFill GroupOption:'{0}'  Group-Value:'{1}'  fillColor:'{2}'  toolNr:{3}", graphicInformation.GroupOption, itemNow.Info.GroupAttributes[(int)GroupOption.ByColor], fillColor, toolNr);
 
                             Fill = ToolList.GetToolFill(toolNr, MyControl.SelectedDevice);	// no match?, get new OptionPropHatchFill(); -> Enable=false;
 
                             if (!Fill.Enable)
+                            {
+                                Logger.Trace("!!! DeviceSpecificOptions && MyControl.ApplyToolList && !Fill.Enable -> continue");
                                 continue;
+                            }
                         }
                         //      Logger.Trace(".....HatchFill IncAngle:{0}  angle2:{1}", Fill.AngleIncrementEnable, Fill.AngleIncrement);
 
@@ -149,9 +171,11 @@ namespace GrblPlotter
                         { Logger.Trace("no dim"); continue; }
 
                         // collect paths of same id, process if id changes
-                        if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData1 ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}  inset2:{7}  tmpPath.count:{8}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fillColor, Fill.InsetEnable, tmpPath.Count);
+                        if (logModification && (index < (maxObject - 1)))
+                            Logger.Trace("  Add to PathData1 ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}  inset2:{7}  tmpPath.count:{8}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fillColor, Fill.InsetEnable, tmpPath.Count);
                         if (nextIsSameHatch)
                         {
+                            //    Logger.Trace("nextIsSameHatch");
                             indexToDelete.Add(index);
                             continue;
                         }
@@ -175,15 +199,22 @@ namespace GrblPlotter
                         if (Fill.Cross)
                             hatchPattern.AddRange(CreateLinePattern(pathDimension, Fill.Angle + 90, Fill.Distance, distOffset, Fill.Gradient));
 
+                        if (logModification) Logger.Trace("### HatchFill hatchPattern.count:{0}  ", hatchPattern.Count);
+
                         if (Fill.DistanceOffsetEnable) distOffset += Fill.DistanceOffset;
                         if (Fill.AngleIncrementEnable) Fill.Angle += Fill.AngleIncrement;
 
                         // process single hatch lines - shorten to match inside polygone
                         finalPattern.Clear();
-
+                        string log = "ok";
                         foreach (Point[] hatchLine in hatchPattern)
                         {
-                            ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern, shortenLines);
+                            try
+                            {
+                                log = ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern, shortenLines, ref log);
+                            }
+                            catch (Exception err) { Logger.Error(err, " ClipLineByPolygone '{0}'", log); }
+                            log = "ok";
                         }
 
                         // add processed hatch lines to final graphic
@@ -242,7 +273,7 @@ namespace GrblPlotter
             {
                 incrementDistance = true;
                 if (gradientStart >= gap)
-                    gradientStart= gap;
+                    gradientStart = gap;
             }
             double gapByPercent;
             for (double i = -(r + offset); i < r; i += gap)
@@ -398,11 +429,12 @@ namespace GrblPlotter
             }
         };
         // process single hatch lines - shorten to match inside polygone
-        private static void ClipLineByPolygone(Point p1, Point p2, List<PathObject> paths, List<Point[]> hatch, bool shortenLines)//, hatches, b_hold_back_hatches, f_hold_back_steps):
+        private static string ClipLineByPolygone(Point p1, Point p2, List<PathObject> paths, List<Point[]> hatch, bool shortenLines, ref string log)//, hatches, b_hold_back_hatches, f_hold_back_steps):
         {
             Point p3, p4;
             double intersect;
 
+            log = "0 ";
             List<IntersectionInfo> d_and_a = new List<IntersectionInfo>();
 
             double holdBack = (double)Properties.Settings.Default.importGraphicHatchFillInset;
@@ -411,9 +443,11 @@ namespace GrblPlotter
             double prelim_length_to_be_removed = 0;
             double dist_intersection_to_relevant_end, dist_intersection_to_irrelevant_end;
 
+            log = "1 ";
             foreach (PathObject path in paths)
             {
-                if (path is ItemPath ipath)
+
+                if ((path is ItemPath ipath) && (ipath.Path.Count > 0))
                 {
                     p3 = ipath.Path[0].MoveTo;
 
@@ -487,13 +521,16 @@ namespace GrblPlotter
                     }
                 }
             }
+            log += string.Format("d_and_a.Count {0}", d_and_a.Count);
             //# Return now if there were no intersections
-            if (d_and_a.Count == 0)
+            if (d_and_a.Count < 2)	// ==0 2026-07-16
             {
-                return;
+                return log + " 1 < 2";
             }
+            log = "sort";
             // d_and_a.sort() - by s
             d_and_a.Sort((x, y) => x.s.CompareTo(y.s));
+            log = "sort ready";
 
             // Remove duplicate intersections
             int i_last = 1;
@@ -501,22 +538,27 @@ namespace GrblPlotter
 
             for (int i = 1; i < d_and_a.Count; i++)
             {
+            //    log = "loop " + i.ToString();
                 //Logger.Trace(" s1:{0:0.000}  slast:{1:0.000}  diff:{2:0.000}", d_and_a[i].s , last.s, Math.Abs(d_and_a[i].s - last.s));
-                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)
+                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.00001)
+                //    if (d_and_a[i].s != last.s)
                 {
+            //        log = string.Format("true d_and_a.count:{0}  i_last:{1}  i:{2}", d_and_a.Count, i_last, i);
                     d_and_a[i_last] = last = d_and_a[i];    // different positions - take over
                     i_last++;
                 }
                 else
                 {
-                    d_and_a[--i_last] = last = d_and_a[i];    // same positions - skip both 2023-11-07
+            //        log = string.Format("false d_and_a.count:{0}  i_last:{1}  i:{2}", d_and_a.Count, i_last, i);
+                    if (i_last > 0)
+                        d_and_a[--i_last] = last = d_and_a[i];    // same positions - skip both 2023-11-07
                 }
             }
 
             d_and_a = d_and_a.GetRange(0, i_last);          // correct size
             if (d_and_a.Count < 2)
             {
-                return;
+                return log + " 2 <2";
             }
 
 
@@ -551,6 +593,7 @@ namespace GrblPlotter
                 }
                 j += 2;
             }
+            return log + " end";
         }
 
         private static double CalcHypotenuse(double a, double b)

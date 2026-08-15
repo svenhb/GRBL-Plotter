@@ -41,6 +41,8 @@
  * 2026-03-02 l:1214 f:RepeatPaths add tool specific repetitions
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-05-12 split functions to GraphicGenerateClipAndTile.cs; GraphicGenerateTransform.cs
+ * 2026-07-21 l:255 f:GroupAllGraphics change toolName from 'ByColor' to 'Color'
+			  l:468 f:RepeatPaths  improove readout of repetitions
 */
 
 using burningmime.curves;
@@ -183,7 +185,7 @@ namespace GrblPlotter
             int toolNr = (int)Properties.Settings.Default.importGCToolDefNr;
             string toolName = "";
             bool applyToolList = Properties.Settings.Default.importGCToolListUse;
-            bool useToolList = MyControl.UseToolList();
+            bool useToolList = MyControl.UseSpecificDevice();
 
 
             Logger.Info("►►► GroupAllGraphics by:{0} ", graphicInformation.GroupOption.ToString());
@@ -235,6 +237,7 @@ namespace GrblPlotter
                             case GroupOption.ByColor:
                                 toolNr = ToolList.GetToolNRByToolColor(pathObject.Info.GroupAttributes[(int)GroupOption.ByColor], 0);
                                 toolName = ToolList.GetToolName(toolNr);
+                                Logger.Trace("GroupAllGraphics toolNr:{0}  toolName:{1}", toolNr, toolName);
                                 break;
                             case GroupOption.ByWidth:
                                 toolNr = ToolList.GetToolNRByToolWidth(pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth]);
@@ -250,7 +253,7 @@ namespace GrblPlotter
                     else
                     {
                         toolNr = groupCount + 1;
-                        toolName = graphicInformation.GroupOption.ToString() + ": " + pathObject.Info.GroupAttributes[(int)graphicInformation.GroupOption];
+                        toolName = graphicInformation.GroupOption.ToString().Substring(2) + ": " + pathObject.Info.GroupAttributes[(int)graphicInformation.GroupOption];
                     }
 
                     tmpGroup = new GroupObject(tmpKey, toolNr, toolName, pathObject);
@@ -307,7 +310,7 @@ namespace GrblPlotter
             {
                 foreach (GroupObject groupObject in groupedGraphicLocal)
                 {
-                    Logger.Trace("...GroupAllGraphics  groupObject count:{0}", groupObject.GroupPath.Count);
+                    Logger.Trace("....GroupAllGraphics  groupObject count:{0}", groupObject.GroupPath.Count);
                     if (groupObject.GroupPath.Count > 1)
                     {
                         if (graphicInformation.OptionCodeSortDistance)
@@ -452,38 +455,61 @@ namespace GrblPlotter
             // if (logEnable) 
             Logger.Trace("...RepeatPaths({0})  addZ:{1}  zMax:{2:0.00}", repetitions, addZ, zMax);
             if (logDetailed) ListGraphicObjects(graphicToRepeat, true);
-            bool DeviceSpecificOptions = MyControl.UseToolList();
+            bool DeviceSpecificOptions = MyControl.UseSpecificDevice();
             if (!DeviceSpecificOptions && (repetitions <= 1))
             {
                 Logger.Warn("RepeatPaths repetitions:{0} - abort", repetitions);
                 return;
             }
             List<PathObject> repeatedGraphic = new List<PathObject>();
-
+            Dictionary<string, int> toolRepetition = new Dictionary<string, int>();
             /* get amount of repetitions by toolNr */
             foreach (PathObject item in graphicToRepeat)      // replace original list
             {
                 if (DeviceSpecificOptions)
                 {
-                    int toolNr = 1;
+					// store already used attribute and repetitions in a dictionary
+                    string colorStr = "";
                     switch (graphicInformation.GroupOption)
                     {
                         case GroupOption.ByColor:
-                            toolNr = ToolList.GetToolNRByToolColor(item.Info.GroupAttributes[(int)GroupOption.ByColor], 0);
+                            colorStr = item.Info.GroupAttributes[(int)GroupOption.ByColor];
                             break;
                         case GroupOption.ByWidth:
-                            toolNr = ToolList.GetToolNRByToolWidth(item.Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                            colorStr = item.Info.GroupAttributes[(int)GroupOption.ByWidth];
                             break;
                         case GroupOption.ByLayer:
-                            toolNr = ToolList.GetToolNRByToolLayer(item.Info.GroupAttributes[(int)GroupOption.ByLayer]);
+                            colorStr = item.Info.GroupAttributes[(int)GroupOption.ByLayer];
                             break;
                         default: break;
                     }
-                    repetitions = ToolList.GetToolRepetition(toolNr, MyControl.SelectedDevice);
-                    //       Logger.Trace("....RepeatPaths  toolNr:{0}  device:{1}  repetitions:{2}", toolNr, MyControl.SelectedDevice,repetitions);
+
+                    if (!toolRepetition.ContainsKey(colorStr))
+                    {
+                        Logger.Trace("RepeatPaths get repetitions {0} {1}", graphicInformation.GroupOption.ToString(), colorStr);
+                        int toolNr = 1;
+                        switch (graphicInformation.GroupOption)
+                        {
+                            case GroupOption.ByColor:
+                                toolNr = ToolList.GetToolNRByToolColor(colorStr, 0);
+                                break;
+                            case GroupOption.ByWidth:
+                                toolNr = ToolList.GetToolNRByToolWidth(colorStr);
+                                break;
+                            case GroupOption.ByLayer:
+                                toolNr = ToolList.GetToolNRByToolLayer(colorStr);
+                                break;
+                            default: break;
+                        }
+                        repetitions = ToolList.GetToolRepetition(toolNr, MyControl.SelectedDevice);
+                        toolRepetition.Add(colorStr, repetitions);
+                        Logger.Trace("RepeatPaths  toolNr:{0}  repetitions:{1}", toolNr, repetitions);
+                    }
+                    else
+                        repetitions = toolRepetition[colorStr];
                 }
 
-                if (repetitions <= 0)
+                if (repetitions <= 0)		// <=0
                     continue;
                 //     if (addZ)
                 {
@@ -1086,12 +1112,17 @@ namespace GrblPlotter
 
         private static void SortByDimension(List<PathObject> graphicToSort)
         {
-            logSortMerge = true;
-            if (logSortMerge) Logger.Trace("...SortByDimension() count:{0}", graphicToSort.Count);
+            if (graphicToSort == null)
+            {
+                Logger.Error(".....SortByDimension() graphicToSort=null");
+                return;
+            }
+            //logSortMerge = true;
+            if (logSortMerge) Logger.Trace(".....SortByDimension() count:{0}", graphicToSort.Count);
 
             if (graphicToSort.Count <= 2)
             {
-                Logger.Info("...SortByDimension() nothing to sort - count:{0}", graphicToSort.Count);
+                Logger.Info(".....SortByDimension() nothing to sort - count:{0}", graphicToSort.Count);
                 return;
             }
 
@@ -1115,12 +1146,13 @@ namespace GrblPlotter
                 else
                 { SizesLines.Add(pp); continue; }
             }
-            if (logSortMerge) Logger.Trace("...SortByDimension() char:{0}  lines:{1}  closed-paths:{2}", SizesChar.Count, SizesLines.Count, SizesClosed.Count);
+            if (logSortMerge) Logger.Trace(".....SortByDimension() char:{0}  lines:{1}  closed-paths:{2}", SizesChar.Count, SizesLines.Count, SizesClosed.Count);
 
             int firstSize = 0, lastSize = 0;
             int maxChangeFactor = 2;
             int maxDiffFactor = 100;
             int grp = 0;
+            int index;
             PathProp tmp;
             if (SizesClosed.Count > 0)
             {
@@ -1138,34 +1170,56 @@ namespace GrblPlotter
                     lastSize = SizesClosed[i].size;
                     SizesClosed[i] = tmp;
 
-                    if (logSortMerge) Logger.Trace("...SortByDimension() i:{0}  size:{1}, grp:{2}  type:{3}  {4}", i, lastSize, tmp.group, graphicToSort[tmp.index].Info.PathGeometry, graphicToSort[tmp.index].Dimension.dimx);
+                    if (logSortMerge)
+                    {
+                        index = tmp.index;
+                        if (index < graphicToSort.Count)
+                            Logger.Trace("......SortByDimension() i:{0}  size:{1}, grp:{2}  type:{3}  {4}", i, lastSize, tmp.group, graphicToSort[tmp.index].Info.PathGeometry, graphicToSort[tmp.index].Dimension.dimx);
+                        else
+                            Logger.Error("......SortByDimension() i:{0}  size:{1}, grp:{2}  index:{3} graphicToSort.count:{4} ", i, lastSize, tmp.group, tmp.index, graphicToSort.Count);
+                    }
                 }
             }
 
             List<PathObject> sortedGraphic = new List<PathObject>();
             Point actualPos = new Point(0, 0);  // start
 
-            // add char unsorted
+
+            /***** add char unsorted *****/
             if (SizesChar.Count > 0)
             {
                 for (int i = 0; i < SizesChar.Count; i++)
                 {
-                    sortedGraphic.Add(graphicToSort[SizesChar[i].index]);
+                    index = SizesChar[i].index;
+                    if (index < graphicToSort.Count)
+                        sortedGraphic.Add(graphicToSort[index]);
+                    else
+                        Logger.Error("SortByDimension add char SizesChar[i].index={0} i:{1} SizesChar.Count:{2} ", SizesChar[i].index, i, SizesChar.Count);
                 }
                 actualPos = graphicToSort[SizesChar[SizesChar.Count - 1].index].End;
             }
-            // add lines sorted by distance
+
+            /***** add lines sorted by distance *****/
+            List<PathObject> tmpList = new List<PathObject>();
             if (SizesLines.Count > 0)
             {
                 double dist1 = PointDistanceSquared(actualPos, graphicToSort[SizesLines[0].index].Start);
                 double dist2 = PointDistanceSquared(actualPos, graphicToSort[SizesLines[0].index].End);
-                if (dist1 < dist2) { actualPos = graphicToSort[SizesLines[0].index].Start; }
+                index = SizesLines[0].index;
+                if (index < graphicToSort.Count)
+                {
+                    if (dist1 < dist2)
+                    { actualPos = graphicToSort[index].Start; }
+                    else
+                    { actualPos = graphicToSort[index].End; }
+                }
                 else
-                { actualPos = graphicToSort[SizesLines[0].index].End; }
-                sortedGraphic.AddRange(SortByDistance(graphicToSort, SizesLines, 0, SizesLines.Count - 1, ref actualPos));
+                    Logger.Error("SortByDimension add char SizesLines[0].index={0}  SizesChar.Count:{1} ", SizesLines[0].index, SizesChar.Count);
+                sortedGraphic.AddRange(SortByDistance(graphicToSort, tmpList, SizesLines, 0, SizesLines.Count - 1, ref actualPos));
             }
             int lastI = 0;
 
+            /***** add closed-paths *****/
             // 4. sort closed-paths groups by distance and add
             if (grp > 0)
             {
@@ -1174,17 +1228,17 @@ namespace GrblPlotter
                     if (SizesClosed[i - 1].group != SizesClosed[i].group)
                     {
                         if (logSortMerge) Logger.Trace("... new group {0}  start:{1}  end:{2}   dimx:{3}", SizesClosed[i - 1].group, lastI, i - 1, graphicToSort[SizesClosed[i - 1].index].Dimension.dimx);
-                        sortedGraphic.AddRange(SortByDistance(graphicToSort, SizesClosed, lastI, i - 1, ref actualPos));
+                        sortedGraphic.AddRange(SortByDistance(graphicToSort, tmpList, SizesClosed, lastI, i - 1, ref actualPos));
                         lastI = i;
                     }
                 }
                 if (logSortMerge) Logger.Trace("... end group  start:{0}  end:{1}   dimx:{2}", lastI, SizesClosed.Count - 1, graphicToSort[SizesClosed[SizesClosed.Count - 1].index].Dimension.dimx);
-                sortedGraphic.AddRange(SortByDistance(graphicToSort, SizesClosed, lastI, SizesClosed.Count - 1, ref actualPos));
+                sortedGraphic.AddRange(SortByDistance(graphicToSort, tmpList, SizesClosed, lastI, SizesClosed.Count - 1, ref actualPos));
             }
             else
             {
                 if (logSortMerge) Logger.Trace("... no group  start:{0}  end:{1}", 0, SizesClosed.Count - 1, graphicToSort[SizesClosed[SizesClosed.Count - 1].index].Dimension.dimx);
-                sortedGraphic.AddRange(SortByDistance(graphicToSort, SizesClosed, 0, SizesClosed.Count - 1, ref actualPos));
+                sortedGraphic.AddRange(SortByDistance(graphicToSort, tmpList, SizesClosed, 0, SizesClosed.Count - 1, ref actualPos));
             }
 
             graphicToSort.Clear();
@@ -1196,103 +1250,38 @@ namespace GrblPlotter
             SizesLines.Clear();
             SizesClosed.Clear();
         }
-        private static List<PathObject> SortByDistance(List<PathObject> graphicToSort, List<PathProp> order, int start, int end, ref Point origin)
+
+        private static List<PathObject> SortByDistance(List<PathObject> graphicToSort, List<PathObject> tmp, List<PathProp> order, int start, int end, ref Point origin)
         {
-            List<PathObject> tmp = new List<PathObject>();
+            if (logEnable)
+                Logger.Trace(".....SortByDistance() start:{0}   end:{1}  order.count:{2}", start, end, order.Count);
+            //List<PathObject> tmp = new List<PathObject>();
+            tmp.Clear();
             int index;
-            for (int i = start; i <= end; i++)
+            if (order.Count > 0)
             {
-                index = order[i].index;
-                tmp.Add(graphicToSort[index]);
-            }
-            origin = SortByDistance(tmp, origin, true, false, false);
-            return tmp;
-        }
-
-        private static void SortByDimension2(List<PathObject> graphicToSort)
-        {
-            // 1. sort by dimension - largest first
-            // 2. sort by location
-            // 3. reverse order - smallest = innerst first
-            if (logEnable) Logger.Trace("...SortByDimension() count:{0}", graphicToSort.Count);
-            if (graphicToSort.Count <= 1)
-            {
-                Logger.Info("...SortByDimension() nothing to sort - count:{0}", graphicToSort.Count);
-                return;
-            }
-
-            stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            PathObject tmp;
-
-            // 1. sort by dimension - largest first
-            for (int i = 0; i < graphicToSort.Count; i++)
-            {
-                tmp = graphicToSort[i];
-                tmp.Distance = tmp.Dimension.dimx * tmp.Dimension.dimy;
-                graphicToSort[i] = tmp;
-            }
-            graphicToSort.Sort((x, y) => y.Distance.CompareTo(x.Distance));   // sort by size, large first
-
-            List<PathObject> sortedGraphic = new List<PathObject>();
-            List<Dimensions> lastDim = new List<Dimensions>();
-            double minX, minY, maxX, maxY;
-            Dimensions dim;
-            tmp = graphicToSort[0];
-            dim = new Dimensions(tmp.Dimension);
-            lastDim.Add(dim);
-            sortedGraphic.Add(tmp);
-            graphicToSort.RemoveAt(0);
-
-            while (graphicToSort.Count > 0)                      // items will be removed step by step from graphicToSort
-            {
-                for (int k = lastDim.Count - 1; k >= 0; k--)
+                for (int i = start; i <= end; i++)
                 {
-                    dim = lastDim[k];
-                    //    if (logEnable) Logger.Trace("   set k:{0}  ddx:{1:0.0}  ddy:{2:0.0}  minx:{3:0.0}  miny:{4:0.0}", k, dim.dimx, dim.dimy, dim.minx, dim.miny);
-                    for (int i = 0; i < graphicToSort.Count; i++)
+                    if ((i >= 0) && (i < order.Count))
                     {
-                        tmp = graphicToSort[i];
-                        if (tmp.Dimension.IsWithin(dim))
-                        {
-                            dim = new Dimensions(tmp.Dimension);
-                            //    if (logEnable) Logger.Trace("   added i:{0}  ddx:{1:0.0}  ddy:{2:0.0}  minx:{3:0.0}  miny:{4:0.0}", i , tmp.Dimension.dimx, tmp.Dimension.dimy, tmp.Dimension.minx, tmp.Dimension.miny);
-                            if (tmp.Dimension.dimx > 0)
-                                lastDim.Add(dim);
-                            sortedGraphic.Add(graphicToSort[i]);
-                            graphicToSort.RemoveAt(i);
-                            i--;
-                            k = lastDim.Count - 1;
-                        }
+                        index = order[i].index;
+                        if (index < graphicToSort.Count)
+                            tmp.Add(graphicToSort[index]);
+                        else
+                            Logger.Error("SortByDistance order[i].index={0}  i:{1}  graphicToSort.Count:{2}", index, i, graphicToSort.Count);
                     }
                 }
-
-                if (graphicToSort.Count > 0)
-                {
-                    tmp = graphicToSort[0];
-                    dim = new Dimensions(tmp.Dimension);
-                    //    if (logEnable) Logger.Trace("   next top  ddx:{0:0.0}  ddy:{1:0.0}  minx:{2:0.0}  miny:{3:0.0}", tmp.Dimension.dimx, tmp.Dimension.dimy, tmp.Dimension.minx, tmp.Dimension.miny);
-                    if (tmp.Dimension.dimx > 0)
-                        lastDim.Add(dim);
-                    sortedGraphic.Add(graphicToSort[0]);
-                    graphicToSort.RemoveAt(0);
-                }
+                origin = SortByDistance(tmp, origin, true, false, false);
             }
-
-            graphicToSort.Clear();
-            foreach (PathObject item in sortedGraphic)      // replace original list
-                graphicToSort.Add(item);
-
-            sortedGraphic.Clear();
-            graphicToSort.Reverse();
-            if (logEnable) Logger.Trace("...SortByDimension()  finish");
+            else
+                Logger.Error(".....SortByDistance()  list is empty");
+            return tmp;
         }
 
         private static Point SortByDistance(List<PathObject> graphicToSort, Point actualPos, bool closedPathRotate, bool largestLast, bool preventReversal)
         {
             if (logEnable)
-                Logger.Trace("...SortByDistance() count:{0}  start X:{1:0.00} y:{2:0.00}  rotate:{3}  largestlast:{4}  preventReverse:{5}", graphicToSort.Count, actualPos.X, actualPos.Y, closedPathRotate, largestLast, preventReversal);
+                Logger.Trace(".....SortByDistance() count:{0}  start X:{1:0.00} y:{2:0.00}  rotate:{3}  largestlast:{4}  preventReverse:{5}", graphicToSort.Count, actualPos.X, actualPos.Y, closedPathRotate, largestLast, preventReversal);
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -1435,7 +1424,7 @@ namespace GrblPlotter
 
             if (largestLast)	//Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
             {
-                if (logEnable) Logger.Trace("...SortByDistance move largest objects to the end id:{0}", String.Join("; ", iLargest));
+                if (logEnable) Logger.Trace(".....SortByDistance move largest objects to the end id:{0}", String.Join("; ", iLargest));
                 for (int i = 0; i < iLargest.Count; i++)
                     graphicToSort.Add(graphicToSort[iLargest[i]]);
 
@@ -1443,7 +1432,7 @@ namespace GrblPlotter
                     graphicToSort.RemoveAt(iLargest[i]);
             }
 
-            if (logEnable) Logger.Trace("...SortByDistance()  finish  last pos: X:{0:0.00} y:{1:0.00}", actualPos.X, actualPos.Y);
+            if (logEnable) Logger.Trace(".....SortByDistance()  finish  last pos: X:{0:0.00} y:{1:0.00}", actualPos.X, actualPos.Y);
             return actualPos;
         }
         private static double PointDistanceSquared(Point a, Point b)    // avoid square-root, to save time

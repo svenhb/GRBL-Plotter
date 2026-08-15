@@ -30,8 +30,35 @@ namespace GrblPlotter
     {
         public static void JobStartDevice(StringBuilder gcodeValue, string cmto)
         {
-            PenUpDevice(gcodeValue, "PU");
+        //    gcodeComments = LoggerTraceImport = true;
+            string cmt = "(JobStart)";
+
+            if (Import.SelectedDevice == DeviceSelection.Router)
+            {
+                gcodeValue.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), "(PU)"+cmt); // use G0 without feedrate
+                gcodeValue.AppendFormat("M{0} S{1} {2}\r\n", Spindle.SpindleCmd, Spindle.Speed, cmt);
+                Tracker.gcodeLines++;
+
+                double delay = (double)Properties.Settings.Default.importGCSpindleDelay;
+                if (delay > 0)
+                {
+                    string tmp = "(Delay)";
+                    gcodeValue.AppendFormat("G{0} P{1} {2}\r\n", FrmtCode(4), delay, tmp);
+                    Tracker.gcodeLines++;
+                }
+            }
+            else
+            {
+                PenUpDevice(gcodeValue, "PU");
+            }
             return;
+        }
+        public static void JobEndDevice(StringBuilder gcodeValue, string cmt)
+        {
+            if (Import.SelectedDevice == DeviceSelection.Router)
+            {
+                gcodeValue.AppendFormat("M{0}{1}\r\n", FrmtCode(5), " (JobEnd)");
+            }
         }
 
         public static void PenDownDevice(StringBuilder gcodeValue, string cmto)
@@ -71,8 +98,19 @@ namespace GrblPlotter
 
             if (Import.SelectedDevice == DeviceSelection.Router)
             {
-                SpindleOn(tmpString, cmto);
-                gcodeValue.AppendFormat("G{0} Z{1} F{2} ({3})(Z-down)\r\n", FrmtCode(1), FrmtNum(OptionZAxis.Down), OptionZAxis.Feed, cmto);
+                //    SpindleOn(gcodeValue, cmt);
+                if (OptionZAxis.IncrementEnable)
+                {
+                    figureString.Clear();   // Router down: a new figure will start
+                    Tracker.gcodeFigureTime = 0;
+                    Tracker.gcodeFigureLines = 0;  //
+                    Tracker.gcodeFigureDistance = 0;
+                    if (LoggerTraceImport) Logger.Trace("    figureString.Clear()");
+                }
+                else
+                {
+                    gcodeValue.AppendFormat("G{0} Z{1} F{2} ({3})(Z-down)\r\n", FrmtCode(1), FrmtNum(OptionZAxis.Down), OptionZAxis.Feed, cmto);
+                }
             }
 
             Tracker.gcodeLines++;
@@ -82,13 +120,13 @@ namespace GrblPlotter
             return;
         }
 
-        public static void PenUpDevice(StringBuilder gcodeValue, string cmto)
+        public static void PenUpDevice(StringBuilder gcodeValue, string cmt)
         {
             if (gcodeValue == null)
             { return; }
             if (Import.SelectedDevice == DeviceSelection.Laser)
             {
-                gcodeValue.AppendFormat("M{0} S0 ({1})(laser off)\r\n", Spindle.SpindleCmd, cmto);
+                gcodeValue.AppendFormat("M{0} S0 ({1})(laser off)\r\n", Spindle.SpindleCmd, cmt);
                 if (OptionZAxis.Enable)
                 {
                     gcodeValue.AppendFormat("G{0} Z{1} (Z-up)\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up));
@@ -101,20 +139,31 @@ namespace GrblPlotter
             {
                 if (OptionPWM.Enable)
                 {
-                    gcodeValue.AppendFormat("M{0} S{1} ({2})(S-up)\r\n", Spindle.SpindleCmd, OptionPWM.Up, cmto);
+                    gcodeValue.AppendFormat("M{0} S{1} ({2})(S-up)\r\n", Spindle.SpindleCmd, OptionPWM.Up, cmt);
                     if (OptionPWM.DlyUp > 0)
                         gcodeValue.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(OptionPWM.DlyUp));
                     Tracker.gcodeExecutionSeconds += OptionPWM.DlyUp;
                     Tracker.gcodeLines++;
                 }
                 else if (OptionZAxis.Enable)
-                { gcodeValue.AppendFormat("G{0} Z{1} ({2})(Z-up)\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), cmto); }
+                { gcodeValue.AppendFormat("G{0} Z{1} ({2})(Z-up)\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), cmt); }
                 else if (Spindle.LasermodeEnable)
-                { gcodeValue.AppendFormat("M{0} S0 ({1})(laser off)\r\n", Spindle.SpindleCmd, cmto); }
+                { gcodeValue.AppendFormat("M{0} S0 ({1})(laser off)\r\n", Spindle.SpindleCmd, cmt); }
             }
             if (Import.SelectedDevice == DeviceSelection.Router)
-            { gcodeValue.AppendFormat("G{0} Z{1} ({2})(Z-up)\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), cmto); }
-
+            {
+                if (OptionZAxis.IncrementEnable)
+                {
+                    if (figureString.Length > 0)
+                        IntermediateZ(gcodeValue);      // figure finished, repeat code for several depth++ per pass
+                    else
+                        Drill(gcodeValue);
+                }
+                else
+                {
+                    gcodeValue.AppendFormat("G{0} Z{1} ({2})(Z-up)\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), cmt);
+                }
+            }
             Tracker.gcodeLines++;
             lastg = 1; lastf = OptionZAxis.Feed;
             lastz = OptionZAxis.Up;

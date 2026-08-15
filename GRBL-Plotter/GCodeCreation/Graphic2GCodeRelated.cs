@@ -329,7 +329,7 @@ namespace GrblPlotter
             Summary.AppendFormat(MessageText.HtmlColgroup3);
 
             string title = Localization.GetString("importMessageGeneralSettings");
-            if (MyControl.UseToolList())
+            if (MyControl.UseSpecificDevice())
                 title += " Device: " + MyControl.GetSelectedDeviceName();
             Summary.AppendFormat("<tr><th colspan='3'>{0}</td></tr>\r\n", title);
 
@@ -598,6 +598,7 @@ namespace GrblPlotter
             internal static bool ToolChangeAddCommand = false;    // Apply tool exchange command
             internal static bool ToolChangeM0Enable = false;
             internal static bool ToolChangePerform = false;
+            internal static bool AvoidM30AtEnd = false;
 
             internal static bool gcodeCompress = false;      // reduce code by avoiding sending again same G-ToolNr and unchanged coordinates
             internal static bool GcodeRelative { get; set; } //= false;       // calculate relative coordinates for G91
@@ -627,6 +628,7 @@ namespace GrblPlotter
                 stopwatch = new Stopwatch();
                 stopwatch.Start();
                 LastMovewasG0 = true;
+                AvoidM30AtEnd = Properties.Settings.Default.importGCPWMSkipM30;
             }
         }
 
@@ -1106,7 +1108,7 @@ namespace GrblPlotter
 
         public static void JobStart(StringBuilder gcodeValue, string cmto)
         {
-            if (MyControl.UseToolList())
+            if (MyControl.UseSpecificDevice())
             { JobStartDevice(gcodeValue, cmto); return; }
 
             bool penup = false;
@@ -1170,6 +1172,9 @@ namespace GrblPlotter
         }
         public static void JobEnd(StringBuilder gcodeValue, string cmt)
         {
+            if (MyControl.UseSpecificDevice())
+            { JobEndDevice(gcodeValue, cmt); return; }
+
             if (gcodeValue != null)
             {
                 if (gcodeComments) cmt = " (" + cmt + ")";
@@ -1186,7 +1191,7 @@ namespace GrblPlotter
 
         public static void PenDown(StringBuilder gcodeValue, string cmto)
         {
-            if (MyControl.UseToolList())
+            if (MyControl.UseSpecificDevice())
             { PenDownDevice(gcodeValue, cmto); return; }
             if (LoggerTraceImport) Logger.Trace("    PenDown gcodeZDown:{0} lastz:{1}", OptionZAxis.Down, lastz);
 
@@ -1285,7 +1290,7 @@ namespace GrblPlotter
 
         public static void PenUp(StringBuilder gcodeValue, string cmto)
         {
-            if (MyControl.UseToolList())
+            if (MyControl.UseSpecificDevice())
             { PenUpDevice(gcodeValue, cmto); return; }
 
             if (gcodeValue == null)
@@ -1784,13 +1789,13 @@ namespace GrblPlotter
             if (string.IsNullOrEmpty(cmt)) cmt = "";
             if (gcodeValue == null) return;
 
-            if (!MyControl.UseToolList() && Properties.Settings.Default.importGCToolListUse && Properties.Settings.Default.importGCToolDefNrUse)
+            if (!MyControl.UseSpecificDevice() && Properties.Settings.Default.importGCToolListUse && Properties.Settings.Default.importGCToolDefNrUse)
                 toolnr = (int)Properties.Settings.Default.importGCToolDefNr;
 
             string toolCmd;
             if (Control.ToolChangeAddCommand)                // otherweise no command needed
             {
-                if (OptionZAxis.Enable && !PreventSpindle)
+                if (!MyControl.UseSpecificDevice() && OptionZAxis.Enable && !PreventSpindle)
                 { Gcode.SpindleOff(gcodeValue, "Stop spindle - Option Z-Axis"); }
 
                 toolCmd = string.Format("T{0:D2} M{1} (Tool:{2} {3})", toolnr, FrmtCode(6), toolnr, cmt);
@@ -1808,12 +1813,12 @@ namespace GrblPlotter
 
                 remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;	// start with full segment length
 
-                if (OptionZAxis.Enable && !Spindle.ToggleEnable && !PreventSpindle)
+                if (!MyControl.UseSpecificDevice() && OptionZAxis.Enable && !Spindle.ToggleEnable && !PreventSpindle)
                 { Gcode.SpindleOn(gcodeValue, "Start spindle - Option Z-Axis"); Tracker.gcodeLines++; }
             }
 
             // add gcode from tool table
-            if (Properties.Settings.Default.importGCToolListUse || MyControl.UseToolList())
+            if (Properties.Settings.Default.importGCToolListUse || MyControl.UseSpecificDevice())
             {
                 ToolProperty toolProperty = ToolList.GetToolProperties(toolnr);
                 DeviceToolProperties dtp = toolProperty.Laser;
@@ -1995,8 +2000,8 @@ namespace GrblPlotter
             Logger.Info("◆◆  Header: G-Code lines:{0}", Tracker.gcodeLines);
 
             header += string.Format("( Pen Down/Up PD/PU : {0} times )\r\n", Tracker.gcodeDownUp);
-            header += string.Format("( Path length (PD)  : {0:0.0} mm )\r\n", Tracker.gcodeDistancePD);
-            header += string.Format("( Path length (PU)  : {0:0.0} mm )\r\n", Tracker.gcodeDistancePU);
+            header += string.Format("( Path length PD    : {0:0.0} mm )\r\n", Tracker.gcodeDistancePD);
+            header += string.Format("( Path length PU    : {0:0.0} mm )\r\n", Tracker.gcodeDistancePU);
 
             try
             {
@@ -2051,7 +2056,8 @@ namespace GrblPlotter
                 if (cmd.Length > 1)
                 { footer += string.Format("{0} (Setup - GCode-Footer)\r\n", cmd.Trim()); }
 
-            if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
+            //    if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
+            if (Control.AvoidM30AtEnd)
             { footer += "M30 (SKIP M30)\r\n"; }
             else
                 footer += "M30\r\n";
@@ -2096,7 +2102,7 @@ namespace GrblPlotter
                 Tracker.gcodeDownUp++;
 
                 if (!OptionZAxis.IncrementNoToolUp)
-                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), "");                  // Router up
+                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), "(PU)");                  // Router up
 
                 Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
@@ -2114,17 +2120,13 @@ namespace GrblPlotter
             float zStep = 0;
             int passCount = 1;
             OptionZAxis.finalZ = OptionZAxis.Down;
-            string cmt = "";
+            string cmt = "PD";
             string xml;
-            bool fromTT = false;
-            //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
-            //     if (Properties.ListSettings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
-            if (OptionZAxis.gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
-            if (fromTT && gcodeComments) { cmt += " from tool-table"; }
-            cmt = "( " + cmt + " )";
+
+            cmt = "(" + cmt + ")";
             if (OptionZAxis.IncrementStartAtZero)       // perfom 1st pass at zero
-                zStep = OptionZAxis.IncrementStep;
-            while (zStep > OptionZAxis.finalZ)      // repeat, until finalZ reached
+                zStep = OptionZAxis.IncrementStep;      // 1st increment results to zero
+            while (zStep > OptionZAxis.finalZ)          // repeat, until finalZ reached
             {
                 zStep -= OptionZAxis.IncrementStep;     // reduce Z by inc
                 if (zStep < OptionZAxis.finalZ)
@@ -2177,7 +2179,7 @@ namespace GrblPlotter
                 if (!OptionZAxis.IncrementNoToolUp || (zStep <= OptionZAxis.finalZ))	// Z-Up at least on final pass
                 {
                     if (Spindle.LasermodeEnable) SpindleOff(gcodeString, "lasermode");                        // send S0
-                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), "");  // Router up
+                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(OptionZAxis.Up), "(PU)");  // Router up
                     if (Spindle.ToggleEnable && !Spindle.LasermodeEnable) SpindleOff(gcodeString, "toggle");    // send M5
                 }
 

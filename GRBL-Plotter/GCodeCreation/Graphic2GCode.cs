@@ -54,6 +54,7 @@
  *            l:582 f:ProcessPathObject add if &&!graphicInfo.OptionZFromWidth
  * 2026-04-08 replace tooltable by toollist
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-07-24 l:295, 405, 846 limit digits in GCode-XML -> PenWidth=\"{0:0.000}\"
 */
 
 using GrblPlotter.UserControls;
@@ -233,7 +234,7 @@ namespace GrblPlotter
         internal static bool CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, List<string> headerMessage, Graphic.GraphicInformationClass graphicInfo, bool useTiles)
         {
             if (graphicInfo == null) return false;
-            bool useToolList = MyControl.UseToolList();
+            bool useToolList = MyControl.UseSpecificDevice();
 
             overWriteId = graphicInfo.ReProcess;    // keep IDs from previous conversion
                                                     //    useIndividualZ = graphicInfo.OptionZFromWidth;
@@ -290,8 +291,8 @@ namespace GrblPlotter
                     {
                         figColor = string.Format(" PenColor=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
                         //    figWidth = string.Format(" PenWidth=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
-                         //      if (useToolTable)                                                   // 2021-08-26 #217
-                        figWidth = string.Format(" PenWidth=\"{0}\"", ToolList.GetToolDiameter(groupObject.ToolNr));
+                        //      if (useToolTable)                                                   // 2021-08-26 #217
+                        figWidth = string.Format(" PenWidth=\"{0:0.000}\"", ToolList.GetToolDiameter(groupObject.ToolNr));
 
                     }
                     Gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, iDToSet, figColor, figWidth));
@@ -304,7 +305,7 @@ namespace GrblPlotter
                 {
                     if (logEnable) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.Id);
 
-                    if (useToolTable)                                                   // 2021-08-26 #217
+                    if (useToolTable && MyControl.UseSpecificDevice())                                                   // 2021-08-26 #217
                     {
                         int toolToUse = groupObject.ToolNr;
                         if (Properties.Settings.Default.importGCToolDefNrUse)
@@ -315,6 +316,8 @@ namespace GrblPlotter
                                                                                        //        double toolWidth = useToolList ? ToolList.GetToolDiameter(toolToUse) : ToolTable.GetToolDiameter(toolToUse);        // 2024-01-07 #370
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);   // 2024-01-07 #370
+
+                    //    Logger.Trace("toolToUse:{0}   toolColor:{1}  toolWidth:{2}", toolToUse, toolColor, toolWidth);
                     }
                     ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
@@ -382,7 +385,7 @@ namespace GrblPlotter
             string toolName;
             string toolColor;
             double toolWidth;
-            bool useToolList = MyControl.UseToolList();
+            bool useToolList = MyControl.UseSpecificDevice();
             if ((completeGraphic == null) || (completeGraphic.Count == 0))
             {
                 Gcode.JobStart(finalGcodeString, "StartJob");
@@ -399,7 +402,7 @@ namespace GrblPlotter
                 if (completeGraphic.Count > 0)
                 {
                     figColor = string.Format(" PenColor=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
-                    figWidth = string.Format(" PenWidth=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                    figWidth = string.Format(" PenWidth=\"{0:0.000}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
                 }
                 Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, 0, figColor, figWidth));
             }
@@ -413,7 +416,8 @@ namespace GrblPlotter
                 {
                     toolColor = pathObject.Info.GroupAttributes[(int)GroupOption.ByColor];
                     toolNr = ToolList.GetToolNRByToolColor(toolColor, 0);
-                //    toolNr = useToolList ? ToolList.GetToolNRByToolColor(toolColor, 0) : ToolTable.GetToolNRByToolColor(toolColor, 0);
+                //    Logger.Trace("1 GetToolNRByToolColor result {0}", toolNr);
+                    //    toolNr = useToolList ? ToolList.GetToolNRByToolColor(toolColor, 0) : ToolTable.GetToolNRByToolColor(toolColor, 0);
                 }
 
                 // real tool to use: default or from graphic	   
@@ -421,20 +425,13 @@ namespace GrblPlotter
                 if (useToolTable && Properties.Settings.Default.importGCToolDefNrUse)
                     toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
 
-                //        if (useToolList)
-                {
-                    toolName = ToolList.GetToolName(toolToUse);
-                    toolColor = ToolList.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
-                    toolWidth = ToolList.GetToolDiameter(toolToUse);       // 2024-01-07 #370
-                }
-                /*  else
-                  {
-                      toolName = ToolTable.GetToolName(toolToUse);
-                      toolColor = ToolTable.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
-                      toolWidth = ToolTable.GetToolDiameter(toolToUse);       // 2024-01-07 #370
-                  }*/
+                toolName = ToolList.GetToolName(toolToUse);
+                toolColor = ToolList.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
+                toolWidth = ToolList.GetToolDiameter(toolToUse);       // 2024-01-07 #370
 
-                if (useToolTable)                                       // 2021-08-26 #217
+            //    Logger.Trace("toolToUse:{0}  toolName:{1}  toolColor:{2}  toolWidth:{3}", toolToUse, toolName, toolColor, toolWidth);
+
+                if (useToolTable && MyControl.UseSpecificDevice())                                       // 2021-08-26 #217
                 {
                     pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
                     pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);  // 2024-01-07 #370
@@ -846,7 +843,7 @@ namespace GrblPlotter
 
             if (pathObject.Info.PathGeometry.Length > 0) attributes.Append(string.Format(" Geometry=\"{0}\"", pathObject.Info.PathGeometry));
             if (pathObject.Info.GroupAttributes[(int)GroupOption.ByColor].Length > 0) attributes.Append(string.Format(" PenColor=\"{0}\"", pathObject.Info.GroupAttributes[(int)GroupOption.ByColor]));
-            if (pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth].Length > 0) attributes.Append(string.Format(" PenWidth=\"{0}\"", pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth]));
+            if (pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth].Length > 0) attributes.Append(string.Format(" PenWidth=\"{0:0.000}\"", pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth]));
 
             string layerLabel = "";
             if (pathObject.Info.GroupAttributes[(int)GroupOption.Label].Length > 0) layerLabel = string.Format("-{0}", pathObject.Info.GroupAttributes[(int)GroupOption.Label]);
@@ -1206,7 +1203,7 @@ namespace GrblPlotter
             StringBuilder footer = new StringBuilder(Gcode.GetFooter());
             StringBuilder output = new StringBuilder();
 
-            if (MyControl.UseToolList())
+            if (MyControl.UseSpecificDevice())
                 header.AppendFormat("( Use case: Device {0} )\r\n", MyControl.GetSelectedDeviceName());
             else
                 header.AppendFormat("( Use case: {0} )\r\n", Properties.Settings.Default.useCaseLastLoaded);

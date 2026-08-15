@@ -62,6 +62,8 @@
  * 2024-12-13 l:699 f:SetPenColor extend 3 digits to 6 digits
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-06-04 l:553, l:573 correct dimension tracking for circle and arc
+ * 2026-07-21 l:1133 use OptionRepeatCodeNumber
+ * 2026-07-24 l:1266 set maxObjectCountBeforeReducingXML=0 If import is from image, the max amount of figures = amount of different colors = ca. 20 (minimum appearance of one color = 5%)
 */
 
 using GrblPlotter.Helper;
@@ -107,7 +109,7 @@ namespace GrblPlotter
         private static CreationOption lastOption = CreationOption.none;
 
         internal static GraphicsPath pathBackground = new GraphicsPath();             // show complete graphic as background if tiles activated
-        private static double equalPrecision = 0.00001;
+        private static double equalPrecision = 0.001;   //0.00001;
         private static int objectCount = 0;
 
         private static bool continuePath = false;
@@ -240,6 +242,10 @@ namespace GrblPlotter
 
             Logger.Trace("●●● Graphic - Init Graphic {0}  loggerTrace:{1}", type.ToString(), Convert.ToString(logFlags, 2));
 
+
+            /**********************************************************************************
+			** set import defaults - ConvertArcToLine
+			***********************************************************************************/
             graphicInformation = new GraphicInformationClass	// get all setups and correct e.g. ConvertArcToLine
             {
                 Title = type.ToString() + " import",    // FillToolListElements up structure
@@ -250,6 +256,13 @@ namespace GrblPlotter
 
             if (type == SourceType.SVG)
             { graphicInformation.ApplyHatchFillSVG = graphicInformation.ApplyHatchFillSVG || Properties.Settings.Default.importSVGApplyFill; }    // no G2/G3 if hatch FillToolListElements
+            /*************************************************/
+
+            /**********************************************************************************
+            ** override import defaults if a specific device is selected - userControls.cs
+            ***********************************************************************************/
+            MyControl.ChangeGraphicOptionsDeviceSpecific(graphicInformation);
+            /**********************************************************************************/
 
             maxObjectCountBeforeReducingXML = (int)Properties.Settings.Default.importFigureMaxAmount;
 
@@ -298,11 +311,6 @@ namespace GrblPlotter
             totalTime.Start();
 
             countWarnDimNotSet = 0;
-
-            /**********************************************************************************/
-            MyControl.ChangeGraphicOptionsDeviceSpecific(graphicInformation);
-            /**********************************************************************************/
-
         }
 
         public static bool StartPath(double x, double y)
@@ -412,6 +420,11 @@ namespace GrblPlotter
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
             actualPath.Options = lastOption;
             actualPath.Dimension.ResetDimension();          // 2020-10-31
+        }
+
+        internal static void AddMotion(GCodeMotion motion, double offsetX, double offsetY)
+        {
+            actualPath.AddMotion(motion, offsetX, offsetY);
         }
 
         public static bool AddLine(double x, double y)
@@ -1107,7 +1120,7 @@ namespace GrblPlotter
             }
 
             /* hatch FillToolListElements */
-            if (!cancelByWorker && (graphicInformation.ApplyHatchFillSVG || graphicInformation.OptionHatchFill || MyControl.UseToolList()))
+            if (!cancelByWorker && (graphicInformation.ApplyHatchFillSVG || graphicInformation.OptionHatchFill || MyControl.UseSpecificDevice()))
             {
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
                 HatchFill(completeGraphic);
@@ -1118,7 +1131,8 @@ namespace GrblPlotter
             {
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Repeat paths(" + countGeometry.ToString() + " elements)..." });
                 Logger.Info("{0} Repeate paths, count: {1}", loggerTag, Properties.Settings.Default.importRepeatCnt);
-                RepeatPaths(completeGraphic, (int)Properties.Settings.Default.importRepeatCnt, graphicInformation.OptionRepeatCodeZEnable, graphicInformation.OptionRepeatCodeZValue);
+                RepeatPaths(completeGraphic, graphicInformation.OptionRepeatCodeNumber, graphicInformation.OptionRepeatCodeZEnable, graphicInformation.OptionRepeatCodeZValue);
+            //    RepeatPaths(completeGraphic, (int)Properties.Settings.Default.importRepeatCnt, graphicInformation.OptionRepeatCodeZEnable, graphicInformation.OptionRepeatCodeZValue);
                 SetHeaderInfo(string.Format(" Option: Repeat paths/code count:{0} ", Properties.Settings.Default.importRepeatCnt));
             }
 
@@ -1245,6 +1259,11 @@ namespace GrblPlotter
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
             SetHeaderInfo(string.Format(" Dimension XY: {0:0.0} {1:0.0} ", Graphic.actualDimension.dimx, Graphic.actualDimension.dimy));
+
+			
+			/* If import is from image, the max amount of figures = amount of different colors = ca. 20 (minimum appearance of one color = 5%) */
+			if (graphicInformation.SourceType == SourceType.Image)
+			{	maxObjectCountBeforeReducingXML = 0;}
 
             if ((maxObjectCountBeforeReducingXML > 0) && (completeGraphic.Count > maxObjectCountBeforeReducingXML))
             {
