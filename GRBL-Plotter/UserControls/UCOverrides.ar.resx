@@ -173,4 +173,32 @@
   <data name="LblRapidSet0.Text" xml:space="preserve">
     <value>تعيين</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - يبدّل حالة المخرج D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - يبدّل حالة المخرج D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - يبدّل حالة المخرج D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - يبدّل حالة المخرج D2</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>يبدّل حالة تفعيل أو تعطيل عمود الدوران (spindle) فوراً، ولكن فقط أثناء وضع التوقف المؤقت (HOLD)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>يتم تفعيله عبر خيار التجميع ENABLE_M7؛ الحالة الافتراضية هي التعطيل</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>يبدّل حالة سائل التبريد الغزير (flood coolant) ودبوس المخرج، ويستمر ذلك حتى يتم تغيير الحالة عبر أمر تبديل آخر أو أمر G-code</value>
+    <comment>tt</comment>
+  </data>
 </root>

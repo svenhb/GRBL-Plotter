@@ -34,7 +34,7 @@ namespace GrblPlotter.UserControls
 
         private GrblPoint WCO = new GrblPoint();
         private GrblPoint MCO = new GrblPoint();
-        private int widthOriginal = 240;
+        private int widthOriginal = 230;
         private bool shrinkENable = true;
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -95,8 +95,8 @@ namespace GrblPlotter.UserControls
             MyControl.SetSetupBtnAppearance(BtnSetup);
             ZeroString = "0.000";
             ZeroCommand = "G10L20P0";
-            MainWidth = Properties.Settings.Default.mainFormSize.Width;
-            SetWidth((MainWidth < 1400) && MyControl.UseToolList());
+            MainWidth = Screen.PrimaryScreen.WorkingArea.Width;//  Properties.Settings.Default.mainFormSize.Width;
+            SetWidth((MainWidth < 1350) && MyControl.UseSpecificDevice());
         }
 
         public delegate void SetTextWCODelegate();
@@ -164,6 +164,7 @@ namespace GrblPlotter.UserControls
         }
         internal void SetAxisCount(int val, CommandProtocol cp)
         {
+            int width1 = 230;
             if (val < 4)
             {
                 LblA.Visible = Lbl_ma.Visible = Lbl_wa.Visible = BtnZeroA.Visible = false;
@@ -171,7 +172,7 @@ namespace GrblPlotter.UserControls
                 LblC.Visible = Lbl_mc.Visible = Lbl_wc.Visible = BtnZeroC.Visible = false;
                 BtnHome.Top = (int)(DpiScaling * 116);
                 Height = (int)(DpiScaling * 170);
-                this.Width = (int)(DpiScaling * 240);
+                this.Width = (int)(DpiScaling * width1);
                 this.Height = (int)(DpiScaling * 170);
             }
             else if (val == 4)
@@ -181,7 +182,7 @@ namespace GrblPlotter.UserControls
                 LblC.Visible = Lbl_mc.Visible = Lbl_wc.Visible = BtnZeroC.Visible = false;
                 BtnHome.Top = (int)(DpiScaling * 150);
                 Height = (int)(DpiScaling * 200);
-                this.Width = (int)(DpiScaling * 240);
+                this.Width = (int)(DpiScaling * width1);
                 this.Height = (int)(DpiScaling * 200);
             }
             else if (val == 5)
@@ -347,7 +348,7 @@ namespace GrblPlotter.UserControls
             if (clientPosition.Y < 0 || clientPosition.Y > GbDRO.Height ||
                 clientPosition.X < 0 || clientPosition.X > GbDRO.Width)
             {
-                if ((MainWidth < 1300) && MyControl.UseToolList())
+                if ((MainWidth < 1300) && MyControl.UseSpecificDevice())
                 {
                     SetWidth(true);
                 }

@@ -344,4 +344,28 @@ Subroutine P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Z-Profil</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Stift befindet sich im Greifer</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Befehl: Greifer öffnen</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Befehl: Greifer schließen</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>M30 überspringen, um Servo am Programmende aktiv zu lassen</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Skript: Stift vom Greifer zur Ablage bewegen</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Skript: Aktion vor der Stiftaufnahme ausführen</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Skript: Stift von der Ablage in den Greifer aufnehmen</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Skript: Werkzeuglängenkorrektur</value>
+  </data>
 </root>

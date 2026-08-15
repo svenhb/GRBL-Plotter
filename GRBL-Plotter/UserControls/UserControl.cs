@@ -119,6 +119,8 @@ namespace GrblPlotter.UserControls
         public static bool GraphicImported { get; set; }
         public static GroupOption GroupBy { get; set; }
         public static bool ApplyToolList { get; set; }
+        public static Graphic.SourceType SourceType { get; set; }
+
         private static bool settingWasChanged = false;
 
         private static bool LaserInitialized = false;
@@ -128,12 +130,13 @@ namespace GrblPlotter.UserControls
 
         private static int DeviceLaserZPasses = 0;
 
-        private static ToolProperty ToolsProperties = new ToolProperty();//{ get; set; }
+        private static ToolProperty ToolsProperties = new ToolProperty();//{ get; set; }        
 
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         internal static void InitToolProperties()
         {
             GroupBy = GroupOption.ByColor;
+            SourceType = SourceType.none;
         }
 
         internal static void SetToolsProperties(DeviceSelection device, ToolProperty p)
@@ -162,6 +165,7 @@ namespace GrblPlotter.UserControls
             {
                 //     ucToolList.FillToolListElements();
             }
+            //    RaiseGuiControlEvent(null, new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 14));
         }
         internal static bool GetSettingWasChanged()
         { return settingWasChanged; }
@@ -172,6 +176,7 @@ namespace GrblPlotter.UserControls
         }
         internal static void SetSelectedDevice(int tab)
         {
+            if (log) Logger.Trace("SetSelectedDevice  by tab:{0}", tab);
             if (tab == 0)
                 SelectedDevice = DeviceSelection.Laser;
             else if (tab == 1)
@@ -181,6 +186,20 @@ namespace GrblPlotter.UserControls
             else
                 SelectedDevice = DeviceSelection.Individual;
         }
+        internal static void SetSelectedDeviceName(string dev)
+        {
+            int tab = 0;
+            if (log) Logger.Trace("SetSelectedDeviceName  by string:{0}", dev);
+            if (dev == "Laser")
+            { SelectedDevice = DeviceSelection.Laser; tab = 0; }
+            else if (dev == "Plotter")
+            { SelectedDevice = DeviceSelection.Plotter; tab = 1; }
+            else if (dev == "Router")
+            { SelectedDevice = DeviceSelection.Router; tab = 2; }
+
+            RaiseGuiControlEvent(null, new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 90 + tab));
+        }
+
         internal static DeviceToolProperties GetActualDevice()
         {
             if (SelectedDevice == DeviceSelection.Laser)
@@ -237,18 +256,20 @@ namespace GrblPlotter.UserControls
                 return "Router";
             return "All";
         }
-        internal static bool UseToolList()
-        { return (SelectedDevice != DeviceSelection.Individual); }	//<= 2); }
+
+        internal static bool UseSpecificDevice()
+        { return !(SelectedDevice == DeviceSelection.Individual); }	//<= 2); }
 
         internal static void StartConvert(Graphic.SourceType type)
         {
-            //  if (UseToolList() && GetActualFillEnable())
+            //  if (UseSpecificDevice() && GetActualFillEnable())
             { GraphicImported = true; }
         }
 
         /******************************************************************************************************************************
         ***************************************************************
         ** Override import options
+		** Last call in Graphi.Init() in GraphicCollectData.cs
         ***************************************************************
         ********************************************************************************************************************************/
         internal static void ChangeGraphicOptionsDeviceSpecific(Graphic.GraphicInformationClass info)
@@ -256,12 +277,14 @@ namespace GrblPlotter.UserControls
             /* in GraphicCollectData.cs 301 Graphic.Init() */
             DeviceLaserZPasses = 0;
 
-            if (UseToolList())
-            { if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseToolList: {1}   Nothing to do", GetSelectedDeviceName(), UseToolList()); }
+            if (!UseSpecificDevice())
+            {
+                if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseSpecificDevice: {1}   Nothing to do", GetSelectedDeviceName(), UseSpecificDevice());
+                return;
+            }
             else
             {
-                if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseToolList: {1}   {2}", GetSelectedDeviceName(), UseToolList(), GetActualDevice().Settings());
-                return;
+                if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseSpecificDevice: {1}   {2}", GetSelectedDeviceName(), UseSpecificDevice(), GetActualDevice().Settings());
             }
             if (!ProcessAutomationRunning)
                 LoadProperties.Off();
@@ -280,8 +303,7 @@ namespace GrblPlotter.UserControls
             info.OptionZFromWidth = false;
             info.ImportDxfConsiderZ = false;
             info.ApplyHatchFillSVG = true;
-
-            //    info.ConvertArcToLine = UseToolList() || GetActualFillEnable();
+            info.ConvertArcToLine = false;
 
             info.GroupOption = GroupBy; //GroupOption.ByColor;
             info.GroupEnable = true;
@@ -315,10 +337,15 @@ namespace GrblPlotter.UserControls
                 info.PenWidthMax = (double)PropSettings.tabletSizePen;
             }
 
+            info.ImportRemoveShortMoves = true;
+            info.ImportRemoveShortMovesLimit = 0.001;
+
+            if (info.SourceType == SourceType.Gerber)
+                info.ImportRemoveShortMoves = false;
+
             /*********** Laser **********/
             if (SelectedDevice == DeviceSelection.Laser)
             {
-                info.ImportRemoveShortMoves = true;
                 info.ImportRemoveShortMovesLimit = 0.05;
 
                 info.OptionCodeOffset = PropSettings.DeviceLaserOffsetOrigin;
@@ -327,6 +354,12 @@ namespace GrblPlotter.UserControls
                 info.OptionCodeSortDimension = PropSettings.DeviceLaserPathOptimation;
 
                 info.OptionRepeatCode = true;
+                info.OptionRepeatCodeNumber = 2; // to call RepeatPaths-function in any case, then check actual tool-passes
+
+                // If preset passes=1 and no use of tool list, no repetitions needed.
+                if (!ApplyToolList)
+                    info.OptionRepeatCode = PropSettings.DeviceLaserPasses > 1;
+
                 info.OptionExtendPath = PropSettings.importGraphicExtendPathEnable;
 
                 if (Properties.Settings.Default.DeviceLaserZEnable)
@@ -347,8 +380,7 @@ namespace GrblPlotter.UserControls
             /*********** Plotter **********/
             else if (SelectedDevice == DeviceSelection.Plotter)
             {
-                info.ImportRemoveShortMoves = true;
-                info.ImportRemoveShortMovesLimit = 0.1;
+                info.ImportRemoveShortMovesLimit = 0.05;
 
                 info.OptionCodeOffset = PropSettings.DevicePlotterOffsetOrigin;
                 GuiVariables.offsetOriginX = (double)PropSettings.DevicePlotterOffsetOriginX;
@@ -359,6 +391,10 @@ namespace GrblPlotter.UserControls
 
                 info.OptionNoise = Properties.Settings.Default.importGraphicNoiseEnable;
                 info.OptionAddZProfile = Properties.Settings.Default.DevicePlotterAddZGradientEnable;
+
+                info.ConvertArcToLine = Properties.Settings.Default.importGCLineSegmentation;
+
+                //	Properties.Settings.Default.importGCNoArcs;
 
                 if (useInkFromTablet || useDepthFromWidth || info.OptionAddZProfile)
                 {
@@ -387,6 +423,9 @@ namespace GrblPlotter.UserControls
             /*********** Router **********/
             else if (SelectedDevice == DeviceSelection.Router)
             {
+                info.ApplyHatchFillSVG = false;
+                info.OptionHatchFill = false;
+
                 info.OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
                 info.OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
 
@@ -407,7 +446,12 @@ namespace GrblPlotter.UserControls
                     info.ImportDxfConsiderZ = true;
                 }
             }
-            Logger.Trace("Offset  {0}   {1}   ", GuiVariables.offsetOriginX,GuiVariables.offsetOriginY);
+            //info.SetConvertArcToLine();
+            info.ConvertArcToLine = info.ConvertArcToLine || GetActualFillEnable() || info.OptionNoise || info.OptionAddZProfile || info.OptionDragTool;
+
+            Logger.Trace("►►►►►► Offset  {0}   {1}   ArcToLine:{2}", GuiVariables.offsetOriginX, GuiVariables.offsetOriginY, info.ConvertArcToLine);
+            if (info.ImportRemoveShortMoves)
+                Logger.Trace("► ► ► ► Remove short moves  {0}   ", info.ImportRemoveShortMovesLimit);
         }
 
         /***************************************************************
@@ -415,17 +459,19 @@ namespace GrblPlotter.UserControls
 		****************************************************************/
         internal static void OverideGcodeSetup()
         {   /* in Graphoc2GcodeRelated.cs 846 GCode.Setup()*/
-            if (UseToolList())
-            { if (log) Logger.Trace("►►►►►► OverideGcodeSetup device: {0} UseToolList: {1}   Nothing to do", GetSelectedDeviceName(), UseToolList()); }
+            if (!UseSpecificDevice())
+            {
+                if (log) Logger.Trace("►►►►►► OverideGcodeSetup device: {0} UseToolList: {1}   Nothing to do", GetSelectedDeviceName(), UseSpecificDevice());
+                return;
+            }
             else
             {
-                if (log) Logger.Trace("►►►►►► OverideGcodeSetup device: {0} UseToolList: {1}   {2}", GetSelectedDeviceName(), UseToolList(), GetActualDevice().Settings());
-                return;
+                if (log) Logger.Trace("►►►►►► OverideGcodeSetup device: {0} UseToolList: {1}   {2}", GetSelectedDeviceName(), UseSpecificDevice(), GetActualDevice().Settings());
             }
 
             Gcode.GcodeXYFeed = GetActualDevice().FeedXY;
             Gcode.Spindle.Speed = GetActualDevice().FinalS;
-            Gcode.Spindle.SpindleCmd = GetActualDevice().UseM3 ? "3" : "4";
+            Gcode.Spindle.SpindleCmd = GetActualDevice().UseM3 ? "03" : "04";
             Gcode.Spindle.LasermodeEnable = false;
 
             Gcode.OptionZAxis.Enable = false;	//(SelectedDevice == DeviceSelection.Router) || ((SelectedDevice == DeviceSelection.Plotter) && (SelectedPlotterMode == 1)); //GcodeDefaults.ZEnable;    // Properties.ListSettings.Default.importGCZEnable;            Gcode.Up = GetActualDevice().SaveZ;			//(float)Properties.ListSettings.Default.importGCZUp;
@@ -448,7 +494,8 @@ namespace GrblPlotter.UserControls
             Gcode.Control.GcodeRelative = false;
             Gcode.Control.ToolChangeAddCommand = false;
             Gcode.Control.ToolChangeM0Enable = false;
-
+            Gcode.Control.gcodeNoArcs = false;
+            Gcode.Control.AvoidM30AtEnd = false;
             Gcode.ModificationSegmentation.Enable = false;
 
             bool useInkFromTablet = (Graphic.graphicInformation.SourceType == SourceType.Ink);
@@ -482,6 +529,7 @@ namespace GrblPlotter.UserControls
             {
                 Gcode.Spindle.LasermodeEnable = false;
                 Gcode.OptionZAxis.PreventSpindle = true;
+                Gcode.Control.AvoidM30AtEnd = Properties.Settings.Default.importGCPWMSkipM30;
 
                 if (SelectedPlotterMode == 0)               // servo enable
                 {
@@ -512,8 +560,11 @@ namespace GrblPlotter.UserControls
                 }
                 else if (Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic)
                 {
-                    Gcode.Control.ToolChangeAddCommand = true;
-                    Properties.Settings.Default.ctrlToolChange = true;
+                    Gcode.Control.ToolChangeAddCommand = true;              // add 'T' command
+                    Gcode.Control.ToolChangeM0Enable = false;
+                    Properties.Settings.Default.ctrlToolChange = true;      // insert script-code
+                    Properties.Settings.Default.ctrlToolChangeEmpty = true;   // at the end of the code add T0 M6 to empty gripper
+                    Properties.Settings.Default.ctrlToolChangeEmptyNr = 0;
                 }
                 Gcode.ModificationSegmentation.Enable = Properties.Settings.Default.importGCLineSegmentation;
             }
@@ -521,7 +572,9 @@ namespace GrblPlotter.UserControls
             /*********** Router **********/
             else if (SelectedDevice == DeviceSelection.Router)
             {
+            //    Gcode.Spindle.Speed = (float)Properties.Settings.Default.DeviceRouterSpindle;
                 Gcode.OptionZAxis.Enable = true;
+                Gcode.OptionZAxis.IncrementEnable = Properties.Settings.Default.importGCZIncEnable;
                 Gcode.ModificationTangential.Enable = Properties.Settings.Default.importGCTangentialEnable;
                 if (useInkFromTablet || useDepthFromWidth)
                 {
@@ -774,7 +827,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                         btn.Click += Btn_Click;
                         /*   btn.Click += (sender, e) =>
                            {
-                               OnRaiseCmdEvent(null, new UserControlCmdEventArgs((string)clickedButton.Tag, 0, sender, e));
+                               LocalOnRaiseCmdEvent(null, new UserControlCmdEventArgs((string)clickedButton.Tag, 0, sender, e));
                            };*/
                         posY += (int)(1.2 * relY);
 
@@ -938,7 +991,7 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
             }
         }
 
-        internal static void TestSimpleSetup(string title, Point pos, ref OptionPropHatchFill obj, List<ControlDefaults> cd)
+        internal static void FillSimpleSetup(string title, Point pos, ref OptionPropHatchFill obj, List<ControlDefaults> cd)
         {
             using (Form form = new Form())
             {

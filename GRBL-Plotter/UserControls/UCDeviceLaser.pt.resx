@@ -217,4 +217,21 @@ Passagens=n -&gt; Z[1]=0; Z[x]=x*Z-Final/n, Z[n]=Z-Final</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Ar comprimido desligado</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Modo de Potência de Laser Constante
+M4 Modo de Potência de Laser Dinâmica</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ajuda online</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Preencher formas fechadas</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Valor S (fuso)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

@@ -344,4 +344,28 @@ Sous-programme P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Profil Z</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Stylo dans la pince</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Commande d'ouverture de la pince</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Commande de fermeture de la pince</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Sauter M30 pour maintenir le servo actif à la fin du programme</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Script : déplacer le stylo de la pince vers le stockage</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Script : effectuer une action avant de prendre le stylo</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Script : prendre le stylo du stockage vers la pince</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Script : compensation de longueur d'outil</value>
+  </data>
 </root>

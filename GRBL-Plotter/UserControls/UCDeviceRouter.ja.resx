@@ -230,4 +230,31 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>ルーターの設定</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>最終的なZ深さを、指定した1パスあたりの深さで複数のパスに分割する</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Z=0を含める</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>1パスあたりの切り込み深さ</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Zパスを有効にする</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Zパスを有効にする</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Zパス</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblSpindleSpeedDelay.Text" xml:space="preserve">
+    <value>主軸立ち上がり遅延</value>
+  </data>
 </root>

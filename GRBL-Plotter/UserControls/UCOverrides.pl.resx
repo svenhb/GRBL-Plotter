@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Konfiguracja „Widoczność nadpisywania”</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – przełącza stan wyjścia D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – przełącza stan wyjścia D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – przełącza stan wyjścia D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – przełącza stan wyjścia D2</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Natychmiastowo zmienia stan włączenia/wyłączenia wrzeciona, ale tylko w trybie HOLD (wstrzymania)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Funkcja włączana opcją kompilacji ENABLE_M7; domyślnie wyłączona</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Przełącza stan chłodzenia (zalewowego) oraz wyjścia sterującego do momentu kolejnego przełączenia lub zmiany stanu przez polecenie G-code</value>
+    <comment>tt</comment>
+  </data>
 </root>

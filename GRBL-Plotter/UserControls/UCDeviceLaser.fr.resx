@@ -222,4 +222,21 @@ Passes = n -&gt; Z[1] = 0 ; Z[x] = x * Z final / n, Z[n] = Z final</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Désactiver l'air comprimé</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Mode de puissance laser constante
+M4 Mode de puissance laser dynamique</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Remplir les formes fermées</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Valeur S (broche)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

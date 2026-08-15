@@ -144,4 +144,58 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>笔归零</value>
   </data>
+  <data name="btnCustom1.Text" xml:space="preserve">
+    <value>辅助</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>探针</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>待取笔编号</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>抓取</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>从笔架取笔并由夹爪夹持</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>将笔从夹爪取下并放回笔架</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>换刀脚本</value>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>发送指令打开笔架夹爪</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>发送指令关闭笔架夹爪</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>已夹持</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>获取笔夹爪状态，以判断是否需要先将笔从夹爪中取下</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbGripper.Text" xml:space="preserve">
+    <value>笔夹持器</value>
+  </data>
 </root>

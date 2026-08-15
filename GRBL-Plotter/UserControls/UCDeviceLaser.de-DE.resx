@@ -150,7 +150,7 @@ M4 Dynamischer Laserleistungsmodus: Im dynamischen Laserleistungsmodus wird die 
     <value>F-Wert (Vorschub)</value>
   </data>
   <data name="LblMax.ToolTip" xml:space="preserve">
-    <value>grbl $30 Einstellung</value>
+    <value>grbl-Einstellung $30</value>
     <comment>tt</comment>
   </data>
   <data name="GbPowerSettings.Text" xml:space="preserve">
@@ -219,5 +219,22 @@ Durchläufe = n → Z[1] = 0; Z[x] = x * Endposition - Z / n, Z[n] = Endposition
   </data>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Luft ausschalten</value>
+  </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Modus für konstante Laserleistung
+M4 Modus für dynamische Laserleistung</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online-Hilfe</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Geschlossene Formen füllen</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>S-Wert (Spindel)</value>
+    <comment>tt1</comment>
   </data>
 </root>

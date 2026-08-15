@@ -279,4 +279,152 @@ M4 動的出力レーザーモード：動的出力レーザーモードでは�
     <value>プリセットカラー</value>
     <comment>btn4</comment>
   </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Gコード</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>レイヤー</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>工具オフセット</value>
+  </data>
+  <data name="BtnPresetFromColorPalette.Text" xml:space="preserve">
+    <value>プリセットカラー</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>デバイス</value>
+  </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>画像の読み込み</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>画像読み込みオプションの設定</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Geometric Trace - エッジの平滑化を使用</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace - 曲線の最適化を使用</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>白黒判定の閾値</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>画像の直接読み込み設定</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>白黒判定: [ 透明度 ] / [ 明るさ ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>トレースアルゴリズム: [ Potrace ] / [ 幾何学的トレース ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>カラーモード: [ マルチカラー ] / [ 白黒 ]</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>レイヤー</value>
+    <comment>1</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>名前</value>
+    <comment>1</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>出力</value>
+    <comment>1</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>速度</value>
+    <comment>1</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>パス数</value>
+    <comment>1</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>M3/4</value>
+    <comment>1</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>エア</value>
+    <comment>1</comment>
+  </data>
+  <data name="TsmiDeleteTool.Text" xml:space="preserve">
+    <value>ツール削除</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterLaser.Text" xml:space="preserve">
+    <value>レーザー</value>
+    <comment>1</comment>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>ペン径</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterS.Text" xml:space="preserve">
+    <value>S ペン下降</value>
+    <comment>1</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>ペン</value>
+    <comment>1</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>送り速度 (XY)</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterZ.Text" xml:space="preserve">
+    <value>Z ペン下降</value>
+    <comment>1</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>名前</value>
+    <comment>1</comment>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>ツール径</value>
+    <comment>1</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>ツール</value>
+    <comment>1</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>最終 Z 位置</value>
+    <comment>1</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>送り速度 (XY)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>送り速度 (Z)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>名前</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.Text" xml:space="preserve">
+    <value>ツールオフセット</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>ツールオフセット位置へ移動します。最初にZ軸、次にXY軸を移動させます。</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>幾何学図形やピクセルグラフィックには「幾何学的トレース」を使用</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>ツールリストの表示設定</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>未使用のツールを非表示にする</value>
+  </data>
 </root>

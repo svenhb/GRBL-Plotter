@@ -43,9 +43,9 @@ namespace GrblPlotter.UserControls
         public int Grouping { get; set; }
         public bool AllowDrag { get; set; }
 
-        public event EventHandler<XYEventArgs> RaiseXYEvent;
-        protected virtual void OnRaiseXYEvent(XYEventArgs e)
-        { RaiseXYEvent?.Invoke(this, e); }
+        public event EventHandler<XyzEventArgs> RaiseXYZEvent;
+        protected virtual void OnRaiseXYEvent(XyzEventArgs e)
+        { RaiseXYZEvent?.Invoke(this, e); }
 
         internal ToolProperty GetToolProperty()
         {
@@ -81,11 +81,6 @@ namespace GrblPlotter.UserControls
             InitializeComponent();
 
             tbName.Text = toolProp.ToolName;//ToolName;
-
-            nudCoordX.Value = (decimal)toolProp.Position.X;
-            nudCoordY.Value = (decimal)toolProp.Position.Y;
-            nudCoordZ.Value = (decimal)toolProp.Position.Z;
-            nudCoordA.Value = (decimal)toolProp.Position.A;
             tbGcode.Text = toolProp.Gcode;
 
             SetNud(nudLaserDiameter, (decimal)toolProp.Laser.Diameter);
@@ -121,23 +116,10 @@ namespace GrblPlotter.UserControls
             this.nudRouterFeedXY.ContextMenu = contextMenu;
             this.nudRouterFeedZ.ContextMenu = contextMenu;
             this.nudRouterZPD.ContextMenu = contextMenu;
-
-            this.nudCoordX.ContextMenuStrip = CmsMoveTo;
-            this.nudCoordY.ContextMenuStrip = CmsMoveTo;
-            this.nudCoordZ.ContextMenuStrip = CmsMoveTo;
-            this.nudCoordA.ContextMenuStrip = CmsMoveTo;
-        }
-        internal void PresetCoordinates(double x, double y, double z, double a)
-        {
-            nudCoordX.Value = (decimal)x;
-            nudCoordY.Value = (decimal)y;
-            nudCoordZ.Value = (decimal)z;
-            nudCoordA.Value = (decimal)a;
-            GetToolProps();
         }
         private void GetToolProps()
         {
-            toolProp.Position = new XyzPoint((double)nudCoordX.Value, (double)nudCoordY.Value, (double)nudCoordZ.Value, (double)nudCoordA.Value);
+            //    toolProp.Position = new XyzPoint((double)nudCoordX.Value, (double)nudCoordY.Value, (double)nudCoordZ.Value, (double)nudCoordA.Value);
             toolProp.Gcode = tbGcode.Text;
             toolProp.ToolName = tbName.Text;
 
@@ -155,7 +137,7 @@ namespace GrblPlotter.UserControls
             toolProp.Plotter.UseSorZ = CbPlotterUseLaser.Checked;
 
             toolProp.Router.Diameter = (float)nudRouterDiameter.Value;
-			toolProp.Router.FeedXY = (float)nudRouterFeedXY.Value;
+            toolProp.Router.FeedXY = (float)nudRouterFeedXY.Value;
             toolProp.Router.FeedZ = (float)nudRouterFeedZ.Value;
             toolProp.Router.FinalZ = (float)nudRouterZPD.Value;
         }
@@ -179,6 +161,9 @@ namespace GrblPlotter.UserControls
             panelPlotter.Enabled = en;
             panelRouter.Enabled = en;
             panelCoordinates.Enabled = en;
+            btnSetupFill.Enabled = en;
+        //    if (!Enabled)
+        //        BackColor = Color.LightGray;
             SetFillBtn(visibleTab);
             controlEnabled = en;
             Invalidate();
@@ -251,6 +236,7 @@ namespace GrblPlotter.UserControls
             int off = 3;
             //	Color cshow = controlEnabled? toolProp.GroupColor:Colors.GrayColor(toolProp.GroupColor);
             Color cshow = toolProp.GroupColor;
+
             if (Grouping == 0)
             {
                 _graphics.FillEllipse(new SolidBrush(cshow), new Rectangle(off, off, dotSize, dotSize));
@@ -261,6 +247,7 @@ namespace GrblPlotter.UserControls
                 _graphics.FillEllipse(new SolidBrush(Color.LightGray), new Rectangle(off, off, dotSize, dotSize));
                 _graphics.DrawString(this.toolProp.ToolNr.ToString(), this.Font, new SolidBrush(Color.Black), off + dotSize / 2, ClientRectangle.Height / 2, stringCenter);
             }
+            _graphics.Dispose();
         }
 
         private GraphicsPath GetFigurePath()
@@ -310,7 +297,7 @@ namespace GrblPlotter.UserControls
             OptionPropHatchFill tmp = device[visibleTab].Fill;
             List<ControlDefaults> cd = new List<ControlDefaults>();
             OptionPropHatchFill.ControlDefaultsSetList(cd);
-            MyControl.TestSimpleSetup("Hatch fill Nr.:" + toolProp.ToolNr.ToString(), Cursor.Position, ref tmp, cd);
+            MyControl.FillSimpleSetup("Hatch fill Nr.:" + toolProp.ToolNr.ToString(), Cursor.Position, ref tmp, cd);
             device[visibleTab].Fill = tmp;
             SetFillBtn(visibleTab);
         }
@@ -353,8 +340,13 @@ namespace GrblPlotter.UserControls
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            _isDragging = false;
-            base.OnMouseUp(e);
+            if ((e.X > 5) && (e.X < 15) && (e.Y > 5) && (e.Y < 15) && (e.Button == MouseButtons.Right))
+            { CmsMoveTo.Show(PointToScreen(new Point(e.X, e.Y))); }
+            else
+            {
+                _isDragging = false;
+                base.OnMouseUp(e);
+            }
         }
 
         private void CbPlotterUseLaser_CheckedChanged(object sender, EventArgs e)
@@ -364,8 +356,8 @@ namespace GrblPlotter.UserControls
             nudPlotterFeedXY.Enabled = !enable;
             panelLaser.Enabled = enable;
 
-        //    nudLaserFeedXY.Enabled = enable;
-        //    nudLaserPower.Enabled = enable;
+            //    nudLaserFeedXY.Enabled = enable;
+            //    nudLaserPower.Enabled = enable;
             SettingChanged = true;
             OnClick(e);
             BackColor = Color.OrangeRed;
@@ -373,7 +365,7 @@ namespace GrblPlotter.UserControls
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(0, (double)nudCoordX.Value, (double)nudCoordY.Value, "")); // set new coordinates
+            OnRaiseXYEvent(new XyzEventArgs(this.toolProp.ToolNr, 0, 0, "")); // set new coordinates
         }
     }
 }

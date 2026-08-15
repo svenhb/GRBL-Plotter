@@ -136,7 +136,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="BtnPenUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
+    <value>87, 23</value>
   </data>
   <data name="BtnPenUp.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -144,11 +144,9 @@
   <data name="BtnPenUp.Text" xml:space="preserve">
     <value>Pen Up</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="BtnPenUp.ToolTip" xml:space="preserve">
     <value>Pen up</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenUp.Name" xml:space="preserve">
     <value>BtnPenUp</value>
@@ -172,13 +170,13 @@
     <value>NoControl</value>
   </data>
   <data name="BtnPenDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 48</value>
+    <value>0, 46</value>
   </data>
   <data name="BtnPenDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="BtnPenDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 27</value>
+    <value>87, 23</value>
   </data>
   <data name="BtnPenDown.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -188,6 +186,7 @@
   </data>
   <data name="BtnPenDown.ToolTip" xml:space="preserve">
     <value>Pen down</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenDown.Name" xml:space="preserve">
     <value>BtnPenDown</value>
@@ -211,13 +210,13 @@
     <value>NoControl</value>
   </data>
   <data name="BtnPenZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
+    <value>0, 23</value>
   </data>
   <data name="BtnPenZero.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="BtnPenZero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
+    <value>87, 23</value>
   </data>
   <data name="BtnPenZero.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -227,6 +226,7 @@
   </data>
   <data name="BtnPenZero.ToolTip" xml:space="preserve">
     <value>Pen zero</value>
+    <comment>tt</comment>
   </data>
   <data name="&gt;&gt;BtnPenZero.Name" xml:space="preserve">
     <value>BtnPenZero</value>
@@ -247,13 +247,13 @@
     <value>Fill</value>
   </data>
   <data name="BtnPenDownUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 24</value>
+    <value>87, 23</value>
   </data>
   <data name="BtnPenDownUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="BtnPenDownUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 51</value>
+    <value>88, 46</value>
   </data>
   <data name="BtnPenDownUp.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -280,13 +280,13 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 0</value>
+    <value>87, 0</value>
   </data>
   <data name="btnCustom1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
+    <value>88, 23</value>
   </data>
   <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -306,6 +306,312 @@
   <data name="&gt;&gt;btnCustom1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="BtnStartToolProbe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnStartToolProbe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 36</value>
+  </data>
+  <data name="BtnStartToolProbe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnStartToolProbe.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>Probe</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolProbe.Name" xml:space="preserve">
+    <value>BtnStartToolProbe</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolProbe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolProbe.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolProbe.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnStartToolSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 14</value>
+  </data>
+  <data name="BtnStartToolSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnStartToolSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolSelect.Name" xml:space="preserve">
+    <value>BtnStartToolSelect</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolSelect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolSelect.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolSelect.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="NudToolNr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 24</value>
+  </data>
+  <data name="NudToolNr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 20</value>
+  </data>
+  <data name="NudToolNr.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="NudToolNr.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Pen number to take</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;NudToolNr.Name" xml:space="preserve">
+    <value>NudToolNr</value>
+  </data>
+  <data name="&gt;&gt;NudToolNr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudToolNr.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;NudToolNr.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnStartToolTake.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 14</value>
+  </data>
+  <data name="BtnStartToolTake.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnStartToolTake.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>Take</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Take pen from pen storage and hold in gripper</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnStartToolTake.Name" xml:space="preserve">
+    <value>BtnStartToolTake</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolTake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolTake.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;BtnStartToolTake.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtnToolRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnToolRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 36</value>
+  </data>
+  <data name="BtnToolRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="BtnToolRemove.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Remove pen from gripper, put into pen storage </value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnToolRemove.Name" xml:space="preserve">
+    <value>BtnToolRemove</value>
+  </data>
+  <data name="&gt;&gt;BtnToolRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnToolRemove.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;BtnToolRemove.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="GbToolChange.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="GbToolChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 41</value>
+  </data>
+  <data name="GbToolChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 64</value>
+  </data>
+  <data name="GbToolChange.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>Tool change scripts</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Name" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Parent" xml:space="preserve">
+    <value>PanelPenChange</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnGripperOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 14</value>
+  </data>
+  <data name="BtnGripperOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnGripperOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>open</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Send code to open the gripper of the pen holder</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnGripperOpen.Name" xml:space="preserve">
+    <value>BtnGripperOpen</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperOpen.Parent" xml:space="preserve">
+    <value>GbGripper</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperOpen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnGripperClose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnGripperClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 14</value>
+  </data>
+  <data name="BtnGripperClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="BtnGripperClose.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>close</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Send code to close the gripper of the pen holder</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;BtnGripperClose.Name" xml:space="preserve">
+    <value>BtnGripperClose</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperClose.Parent" xml:space="preserve">
+    <value>GbGripper</value>
+  </data>
+  <data name="&gt;&gt;BtnGripperClose.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 18</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>gripped</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Status of the pen gripper, to decide if pen needs to be removed from gripper first</value>
+    <comment>tt</comment>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>GbGripper</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="GbGripper.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="GbGripper.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="GbGripper.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 37</value>
+  </data>
+  <data name="GbGripper.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="GbGripper.Text" xml:space="preserve">
+    <value>Pen gripper</value>
+  </data>
+  <data name="&gt;&gt;GbGripper.Name" xml:space="preserve">
+    <value>GbGripper</value>
+  </data>
+  <data name="&gt;&gt;GbGripper.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbGripper.Parent" xml:space="preserve">
+    <value>PanelPenChange</value>
+  </data>
+  <data name="&gt;&gt;GbGripper.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PanelPenChange.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="PanelPenChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 72</value>
+  </data>
+  <data name="PanelPenChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 105</value>
+  </data>
+  <data name="PanelPenChange.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;PanelPenChange.Name" xml:space="preserve">
+    <value>PanelPenChange</value>
+  </data>
+  <data name="&gt;&gt;PanelPenChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelPenChange.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;PanelPenChange.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -316,10 +622,10 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="TableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="TableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 75</value>
+    <value>175, 180</value>
   </data>
   <data name="TableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -337,11 +643,8 @@
     <value>0</value>
   </data>
   <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="BtnPenUp" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenZero" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDownUp" Row="1" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="BtnPenUp" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenZero" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="BtnPenDownUp" Row="1" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="PanelPenChange" Row="3" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,23,Absolute,23,Absolute,23,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -349,7 +652,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 75</value>
+    <value>175, 180</value>
   </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>
@@ -363,4 +666,10 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Nastavit „Viditelnost přepsání“</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – přepíná stav výstupu D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – přepíná stav výstupu D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – přepíná stav výstupu D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – přepíná stav výstupu D2</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Okamžitě přepíná stav povolení (zapnutí/vypnutí) vřetena, avšak pouze ve stavu HOLD (pozastavení)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Aktivuje se pomocí volby při kompilaci ENABLE_M7; výchozí nastavení je vypnuto</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Přepíná stav a výstupní pin pro zaplavení chladivem (flood coolant), dokud nedojde k dalšímu přepnutí nebo změně příkazem G-kódu</value>
+    <comment>tt</comment>
+  </data>
 </root>

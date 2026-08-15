@@ -249,4 +249,41 @@ M4 動的出力レーザーモード：動的出力レーザーモードでは�
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>送風コマンドオフ</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 レーザー出力固定モード
+M4 レーザー出力可変モード</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="LblPower.Text" xml:space="preserve">
+    <value>出力</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOverlap.Text" xml:space="preserve">
+    <value>オーバーカット</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.Text" xml:space="preserve">
+    <value>オフセット</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>閉じた図形を塗りつぶす</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>エアアシスト</value>
+    <comment>1</comment>
+  </data>
+  <data name="CbLaserpower.Text" xml:space="preserve">
+    <value>M3</value>
+    <comment>1</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>S値（主軸）</value>
+    <comment>tt1</comment>
+  </data>
 </root>

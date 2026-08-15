@@ -137,6 +137,7 @@
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>XY Feed</value>
+    <comment>l1</comment>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -148,7 +149,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -157,7 +158,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 90</value>
+    <value>62, 100</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
@@ -167,6 +168,7 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Up position</value>
+    <comment>l4</comment>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -178,7 +180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -187,7 +189,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 112</value>
+    <value>62, 122</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -197,6 +199,7 @@
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Down position</value>
+    <comment>l5</comment>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -208,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -227,6 +230,7 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Z Feed</value>
+    <comment>l2</comment>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -238,7 +242,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="BtnSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -265,7 +269,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnSetup.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="LblSpindleSpeed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -284,6 +288,7 @@
   </data>
   <data name="LblSpindleSpeed.Text" xml:space="preserve">
     <value>Spindle speed</value>
+    <comment>l3</comment>
   </data>
   <data name="&gt;&gt;LblSpindleSpeed.Name" xml:space="preserve">
     <value>LblSpindleSpeed</value>
@@ -295,25 +300,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LblSpindleSpeed.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 30</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 13</value>
-  </data>
-  <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Set</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;label14.Name" xml:space="preserve">
     <value>label14</value>
@@ -327,24 +314,6 @@
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="LblSpindleMinVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="LblSpindleMinVal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 16</value>
-  </data>
-  <data name="LblSpindleMinVal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="LblSpindleMinVal.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="LblSpindleMinVal.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="LblSpindleMinVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
   <data name="&gt;&gt;LblSpindleMinVal.Name" xml:space="preserve">
     <value>LblSpindleMinVal</value>
   </data>
@@ -356,24 +325,6 @@
   </data>
   <data name="&gt;&gt;LblSpindleMinVal.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="LblSpindleMaxVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="LblSpindleMaxVal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 44</value>
-  </data>
-  <data name="LblSpindleMaxVal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="LblSpindleMaxVal.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="LblSpindleMaxVal.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="LblSpindleMaxVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
   </data>
   <data name="&gt;&gt;LblSpindleMaxVal.Name" xml:space="preserve">
     <value>LblSpindleMaxVal</value>
@@ -387,24 +338,6 @@
   <data name="&gt;&gt;LblSpindleMaxVal.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 44</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
-  </data>
-  <data name="label17.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Max</value>
-  </data>
   <data name="&gt;&gt;label17.Name" xml:space="preserve">
     <value>label17</value>
   </data>
@@ -417,24 +350,6 @@
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 13</value>
-  </data>
-  <data name="label18.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Min</value>
-  </data>
   <data name="&gt;&gt;label18.Name" xml:space="preserve">
     <value>label18</value>
   </data>
@@ -446,24 +361,6 @@
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="LblSpindleSetVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="LblSpindleSetVal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 30</value>
-  </data>
-  <data name="LblSpindleSetVal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="LblSpindleSetVal.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="LblSpindleSetVal.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="LblSpindleSetVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
   </data>
   <data name="&gt;&gt;LblSpindleSetVal.Name" xml:space="preserve">
     <value>LblSpindleSetVal</value>
@@ -488,6 +385,7 @@
   </data>
   <data name="GbSpindleSpeed.Text" xml:space="preserve">
     <value>Spindle spd</value>
+    <comment>gb</comment>
   </data>
   <data name="GbSpindleSpeed.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -502,7 +400,115 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GbSpindleSpeed.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 30</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="LblSpindleMinVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSpindleMinVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 16</value>
+  </data>
+  <data name="LblSpindleMinVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblSpindleMinVal.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="LblSpindleMinVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblSpindleMinVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="LblSpindleMaxVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSpindleMaxVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 44</value>
+  </data>
+  <data name="LblSpindleMaxVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblSpindleMaxVal.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="LblSpindleMaxVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblSpindleMaxVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 13</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="LblSpindleSetVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSpindleSetVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 30</value>
+  </data>
+  <data name="LblSpindleSetVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="LblSpindleSetVal.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="LblSpindleSetVal.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblSpindleSetVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
   </data>
   <data name="NudDeviceRouterSpindle.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 51</value>
@@ -526,7 +532,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDeviceRouterSpindle.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="NudDeviceRouterFeedZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 25</value>
@@ -550,10 +556,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDeviceRouterFeedZ.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="NudDeviceRouterZDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 110</value>
+    <value>3, 120</value>
   </data>
   <data name="NudDeviceRouterZDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -574,10 +580,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDeviceRouterZDown.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="NudDeviceRouterZUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 88</value>
+    <value>3, 98</value>
   </data>
   <data name="NudDeviceRouterZUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -598,7 +604,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDeviceRouterZUp.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="NudDeviceRouterFeedXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -622,10 +628,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NudDeviceRouterFeedXY.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>20</value>
   </data>
   <data name="BtnProbing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 85</value>
+    <value>193, 92</value>
   </data>
   <data name="BtnProbing.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -635,6 +641,7 @@
   </data>
   <data name="BtnProbing.Text" xml:space="preserve">
     <value>Probing</value>
+    <comment>btn3</comment>
   </data>
   <data name="&gt;&gt;BtnProbing.Name" xml:space="preserve">
     <value>BtnProbing</value>
@@ -646,10 +653,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnProbing.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="BtnHeightmap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 110</value>
+    <value>193, 115</value>
   </data>
   <data name="BtnHeightmap.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -659,6 +666,7 @@
   </data>
   <data name="BtnHeightmap.Text" xml:space="preserve">
     <value>Heightmap</value>
+    <comment>btn4</comment>
   </data>
   <data name="&gt;&gt;BtnHeightmap.Name" xml:space="preserve">
     <value>BtnHeightmap</value>
@@ -670,7 +678,67 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnHeightmap.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesInfo.Name" xml:space="preserve">
+    <value>LblZPassesInfo</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesInfo.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesStartAtZero.Name" xml:space="preserve">
+    <value>LblZPassesStartAtZero</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesStartAtZero.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesStartAtZero.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesStartAtZero.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesDepth.Name" xml:space="preserve">
+    <value>LblZPassesDepth</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesDepth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesDepth.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesDepth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesEnable.Name" xml:space="preserve">
+    <value>LblZPassesEnable</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesEnable.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesEnable.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesHeadline.Name" xml:space="preserve">
+    <value>LblZPassesHeadline</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesHeadline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesHeadline.Parent" xml:space="preserve">
+    <value>PanelTranslation</value>
+  </data>
+  <data name="&gt;&gt;LblZPassesHeadline.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;LblSetup2.Name" xml:space="preserve">
     <value>LblSetup2</value>
@@ -682,7 +750,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetup2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;LblSetup1.Name" xml:space="preserve">
     <value>LblSetup1</value>
@@ -694,7 +762,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetup1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
     <value>LblSetupHeadline</value>
@@ -706,7 +774,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;LblDragToolInfo.Name" xml:space="preserve">
     <value>LblDragToolInfo</value>
@@ -718,7 +786,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;LblDragToolHeadline.Name" xml:space="preserve">
     <value>LblDragToolHeadline</value>
@@ -730,7 +798,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolHeadline.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;LblDragToolTangentialEnable.Name" xml:space="preserve">
     <value>LblDragToolTangentialEnable</value>
@@ -742,7 +810,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolTangentialEnable.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;LblDragToolAngle.Name" xml:space="preserve">
     <value>LblDragToolAngle</value>
@@ -754,7 +822,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolAngle.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;LblDragToolPercent.Name" xml:space="preserve">
     <value>LblDragToolPercent</value>
@@ -766,7 +834,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolPercent.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;LblDragToolPercentEnable.Name" xml:space="preserve">
     <value>LblDragToolPercentEnable</value>
@@ -778,7 +846,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolPercentEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;LblDragToolLength.Name" xml:space="preserve">
     <value>LblDragToolLength</value>
@@ -790,7 +858,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolLength.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;LblDragToolEnable.Name" xml:space="preserve">
     <value>LblDragToolEnable</value>
@@ -802,7 +870,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblDragToolEnable.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;LblTangentialInfo.Name" xml:space="preserve">
     <value>LblTangentialInfo</value>
@@ -814,7 +882,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialInfo.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;LblTangentialHeadline.Name" xml:space="preserve">
     <value>LblTangentialHeadline</value>
@@ -826,7 +894,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialHeadline.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;LblTangentialPathShortening.Name" xml:space="preserve">
     <value>LblTangentialPathShortening</value>
@@ -838,7 +906,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialPathShortening.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;LblTangentialPathShorteningEnable.Name" xml:space="preserve">
     <value>LblTangentialPathShorteningEnable</value>
@@ -850,7 +918,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialPathShorteningEnable.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>19</value>
   </data>
   <data name="&gt;&gt;LblTangentialLimitAngle.Name" xml:space="preserve">
     <value>LblTangentialLimitAngle</value>
@@ -862,7 +930,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialLimitAngle.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>20</value>
   </data>
   <data name="&gt;&gt;LblTangentialUnitsPerTurn.Name" xml:space="preserve">
     <value>LblTangentialUnitsPerTurn</value>
@@ -874,7 +942,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialUnitsPerTurn.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>21</value>
   </data>
   <data name="&gt;&gt;LblTangentialDeviAngle.Name" xml:space="preserve">
     <value>LblTangentialDeviAngle</value>
@@ -886,7 +954,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialDeviAngle.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>22</value>
   </data>
   <data name="&gt;&gt;LblTangentialSwivelAngle.Name" xml:space="preserve">
     <value>LblTangentialSwivelAngle</value>
@@ -898,7 +966,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialSwivelAngle.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>23</value>
   </data>
   <data name="&gt;&gt;LblTangentialAxisName.Name" xml:space="preserve">
     <value>LblTangentialAxisName</value>
@@ -910,7 +978,7 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialAxisName.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;LblTangentialEnable.Name" xml:space="preserve">
     <value>LblTangentialEnable</value>
@@ -922,10 +990,10 @@
     <value>PanelTranslation</value>
   </data>
   <data name="&gt;&gt;LblTangentialEnable.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>25</value>
   </data>
   <data name="PanelTranslation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 124</value>
+    <value>285, 44</value>
   </data>
   <data name="PanelTranslation.Size" type="System.Drawing.Size, System.Drawing">
     <value>344, 230</value>
@@ -946,7 +1014,150 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PanelTranslation.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
+  </data>
+  <data name="LblZPassesInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZPassesInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZPassesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 188</value>
+  </data>
+  <data name="LblZPassesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 13</value>
+  </data>
+  <data name="LblZPassesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Split final Z depth into several passes with given depth per pass</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZPassesStartAtZero.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZPassesStartAtZero.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 175</value>
+  </data>
+  <data name="LblZPassesStartAtZero.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="LblZPassesStartAtZero.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Also include Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZPassesDepth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZPassesDepth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 162</value>
+  </data>
+  <data name="LblZPassesDepth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 13</value>
+  </data>
+  <data name="LblZPassesDepth.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Depth of cut per pass</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZPassesEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblZPassesEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 149</value>
+  </data>
+  <data name="LblZPassesEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="LblZPassesEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Enable Z passes</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblZPassesHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 136</value>
+  </data>
+  <data name="LblZPassesHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="LblZPassesHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Enable Z passes</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblSetup2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetup2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetup2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 181</value>
+  </data>
+  <data name="LblSetup2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 13</value>
+  </data>
+  <data name="LblSetup2.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Gcode</value>
+  </data>
+  <data name="LblSetup1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetup1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetup1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 168</value>
+  </data>
+  <data name="LblSetup1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="LblSetup1.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Tool diameter</value>
+  </data>
+  <data name="LblSetupHeadline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetupHeadline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 155</value>
+  </data>
+  <data name="LblSetupHeadline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="LblSetupHeadline.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Setup Router</value>
   </data>
   <data name="LblDragToolInfo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -967,18 +1178,6 @@
     <value>Compensate the offset when using a drag knife or brush. 
 Note that the path will be modified to get the tip of the tool on the desired path.</value>
   </data>
-  <data name="&gt;&gt;LblDragToolInfo.Name" xml:space="preserve">
-    <value>LblDragToolInfo</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolInfo.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="LblDragToolHeadline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -996,18 +1195,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblDragToolHeadline.Text" xml:space="preserve">
     <value>Drag tool compensation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolHeadline.Name" xml:space="preserve">
-    <value>LblDragToolHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolHeadline.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="LblDragToolTangentialEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1027,18 +1214,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblDragToolTangentialEnable.Text" xml:space="preserve">
     <value>Use of drag-knife on tangential axis</value>
   </data>
-  <data name="&gt;&gt;LblDragToolTangentialEnable.Name" xml:space="preserve">
-    <value>LblDragToolTangentialEnable</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolTangentialEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolTangentialEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolTangentialEnable.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="LblDragToolAngle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1056,18 +1231,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblDragToolAngle.Text" xml:space="preserve">
     <value>Swivel angle</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolAngle.Name" xml:space="preserve">
-    <value>LblDragToolAngle</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolAngle.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolAngle.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="LblDragToolPercent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1087,18 +1250,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblDragToolPercent.Text" xml:space="preserve">
     <value>Offset in % from Z-deepth</value>
   </data>
-  <data name="&gt;&gt;LblDragToolPercent.Name" xml:space="preserve">
-    <value>LblDragToolPercent</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercent.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercent.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="LblDragToolPercentEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1116,18 +1267,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblDragToolPercentEnable.Text" xml:space="preserve">
     <value>Enable offset in % from Z</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercentEnable.Name" xml:space="preserve">
-    <value>LblDragToolPercentEnable</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercentEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercentEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolPercentEnable.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="LblDragToolLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1147,18 +1286,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblDragToolLength.Text" xml:space="preserve">
     <value>Offset from center</value>
   </data>
-  <data name="&gt;&gt;LblDragToolLength.Name" xml:space="preserve">
-    <value>LblDragToolLength</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolLength.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolLength.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolLength.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="LblDragToolEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1173,18 +1300,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblDragToolEnable.Text" xml:space="preserve">
     <value>Enable drag tool </value>
-  </data>
-  <data name="&gt;&gt;LblDragToolEnable.Name" xml:space="preserve">
-    <value>LblDragToolEnable</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblDragToolEnable.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <data name="LblTangentialInfo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1204,18 +1319,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialInfo.Text" xml:space="preserve">
     <value>Add GCode commands for a tangential axis, e.g. for a knife.</value>
   </data>
-  <data name="&gt;&gt;LblTangentialInfo.Name" xml:space="preserve">
-    <value>LblTangentialInfo</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialInfo.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialInfo.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="LblTangentialHeadline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1233,18 +1336,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblTangentialHeadline.Text" xml:space="preserve">
     <value>Create tangential axis commands</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialHeadline.Name" xml:space="preserve">
-    <value>LblTangentialHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialHeadline.ZOrder" xml:space="preserve">
-    <value>12</value>
   </data>
   <data name="LblTangentialPathShortening.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1264,18 +1355,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialPathShortening.Text" xml:space="preserve">
     <value>Path shortening by</value>
   </data>
-  <data name="&gt;&gt;LblTangentialPathShortening.Name" xml:space="preserve">
-    <value>LblTangentialPathShortening</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShortening.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShortening.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShortening.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="LblTangentialPathShorteningEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1293,18 +1372,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblTangentialPathShorteningEnable.Text" xml:space="preserve">
     <value>Enable path shortening</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShorteningEnable.Name" xml:space="preserve">
-    <value>LblTangentialPathShorteningEnable</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShorteningEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShorteningEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialPathShorteningEnable.ZOrder" xml:space="preserve">
-    <value>14</value>
   </data>
   <data name="LblTangentialLimitAngle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1324,18 +1391,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialLimitAngle.Text" xml:space="preserve">
     <value>Limit tool angle to &gt;= 0°, &lt; 360°</value>
   </data>
-  <data name="&gt;&gt;LblTangentialLimitAngle.Name" xml:space="preserve">
-    <value>LblTangentialLimitAngle</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialLimitAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialLimitAngle.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialLimitAngle.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
   <data name="LblTangentialUnitsPerTurn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1353,18 +1408,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblTangentialUnitsPerTurn.Text" xml:space="preserve">
     <value>Units per full turn</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialUnitsPerTurn.Name" xml:space="preserve">
-    <value>LblTangentialUnitsPerTurn</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialUnitsPerTurn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialUnitsPerTurn.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialUnitsPerTurn.ZOrder" xml:space="preserve">
-    <value>16</value>
   </data>
   <data name="LblTangentialDeviAngle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1384,18 +1427,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialDeviAngle.Text" xml:space="preserve">
     <value>Correct start angle if deviation is &gt;</value>
   </data>
-  <data name="&gt;&gt;LblTangentialDeviAngle.Name" xml:space="preserve">
-    <value>LblTangentialDeviAngle</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialDeviAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialDeviAngle.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialDeviAngle.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
   <data name="LblTangentialSwivelAngle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1413,18 +1444,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="LblTangentialSwivelAngle.Text" xml:space="preserve">
     <value>Swivel angle</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialSwivelAngle.Name" xml:space="preserve">
-    <value>LblTangentialSwivelAngle</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialSwivelAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialSwivelAngle.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialSwivelAngle.ZOrder" xml:space="preserve">
-    <value>18</value>
   </data>
   <data name="LblTangentialAxisName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1444,18 +1463,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialAxisName.Text" xml:space="preserve">
     <value>Axis name</value>
   </data>
-  <data name="&gt;&gt;LblTangentialAxisName.Name" xml:space="preserve">
-    <value>LblTangentialAxisName</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialAxisName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialAxisName.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialAxisName.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
   <data name="LblTangentialEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1471,18 +1478,6 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="LblTangentialEnable.Text" xml:space="preserve">
     <value>Enable tangential axis</value>
   </data>
-  <data name="&gt;&gt;LblTangentialEnable.Name" xml:space="preserve">
-    <value>LblTangentialEnable</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialEnable.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblTangentialEnable.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="BtnTangential.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1497,6 +1492,7 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="BtnTangential.Text" xml:space="preserve">
     <value>Tangential</value>
+    <comment>btn1</comment>
   </data>
   <data name="&gt;&gt;BtnTangential.Name" xml:space="preserve">
     <value>BtnTangential</value>
@@ -1508,7 +1504,7 @@ Note that the path will be modified to get the tip of the tool on the desired pa
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnTangential.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="BtnDragTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1524,6 +1520,7 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   </data>
   <data name="BtnDragTool.Text" xml:space="preserve">
     <value>Drag tool</value>
+    <comment>btn2</comment>
   </data>
   <data name="&gt;&gt;BtnDragTool.Name" xml:space="preserve">
     <value>BtnDragTool</value>
@@ -1535,94 +1532,7 @@ Note that the path will be modified to get the tip of the tool on the desired pa
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnDragTool.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="LblSetupHeadline.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LblSetupHeadline.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 155</value>
-  </data>
-  <data name="LblSetupHeadline.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
-  </data>
-  <data name="LblSetupHeadline.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="LblSetupHeadline.Text" xml:space="preserve">
-    <value>Setup Router</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Name" xml:space="preserve">
-    <value>LblSetupHeadline</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetupHeadline.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="LblSetup1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LblSetup1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="LblSetup1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 168</value>
-  </data>
-  <data name="LblSetup1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="LblSetup1.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="LblSetup1.Text" xml:space="preserve">
-    <value>Tool diameter</value>
-  </data>
-  <data name="&gt;&gt;LblSetup1.Name" xml:space="preserve">
-    <value>LblSetup1</value>
-  </data>
-  <data name="&gt;&gt;LblSetup1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetup1.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetup1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="LblSetup2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LblSetup2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="LblSetup2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 181</value>
-  </data>
-  <data name="LblSetup2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 13</value>
-  </data>
-  <data name="LblSetup2.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="LblSetup2.Text" xml:space="preserve">
-    <value>Gcode</value>
-  </data>
-  <data name="&gt;&gt;LblSetup2.Name" xml:space="preserve">
-    <value>LblSetup2</value>
-  </data>
-  <data name="&gt;&gt;LblSetup2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblSetup2.Parent" xml:space="preserve">
-    <value>PanelTranslation</value>
-  </data>
-  <data name="&gt;&gt;LblSetup2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>6</value>
   </data>
   <data name="BtnHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1649,11 +1559,87 @@ Note that the path will be modified to get the tip of the tool on the desired pa
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtnZPasses.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnZPasses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 69</value>
+  </data>
+  <data name="BtnZPasses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnZPasses.TabIndex" type="System.Int32, mscorlib">
+    <value>83</value>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Z passes</value>
+    <comment>1</comment>
+  </data>
+  <data name="&gt;&gt;BtnZPasses.Name" xml:space="preserve">
+    <value>BtnZPasses</value>
+  </data>
+  <data name="&gt;&gt;BtnZPasses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnZPasses.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnZPasses.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudDeviceRouterSpindleDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 71</value>
+  </data>
+  <data name="NudDeviceRouterSpindleDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="NudDeviceRouterSpindleDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
+  <data name="NudDeviceRouterSpindleDelay.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceRouterSpindleDelay.Name" xml:space="preserve">
+    <value>NudDeviceRouterSpindleDelay</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceRouterSpindleDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceRouterSpindleDelay.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NudDeviceRouterSpindleDelay.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblSpindleSpeedDelay.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSpindleSpeedDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 73</value>
+  </data>
+  <data name="LblSpindleSpeedDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 13</value>
+  </data>
+  <data name="LblSpindleSpeedDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>85</value>
+  </data>
+  <data name="LblSpindleSpeedDelay.Text" xml:space="preserve">
+    <value>Spindle run-up delay</value>
+  </data>
+  <data name="&gt;&gt;LblSpindleSpeedDelay.Name" xml:space="preserve">
+    <value>LblSpindleSpeedDelay</value>
+  </data>
+  <data name="&gt;&gt;LblSpindleSpeedDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSpindleSpeedDelay.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblSpindleSpeedDelay.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -1666,4 +1652,7 @@ Note that the path will be modified to get the tip of the tool on the desired pa
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

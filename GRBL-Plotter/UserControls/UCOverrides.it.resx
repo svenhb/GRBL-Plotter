@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Imposta la visibilità dell'override</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - commuta l'uscita D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - commuta l'uscita D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - commuta l'uscita D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - commuta l'uscita D2</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Commuta immediatamente lo stato di abilitazione/disabilitazione del mandrino, ma solo quando ci si trova nello stato HOLD</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Abilitato tramite l'opzione di compilazione ENABLE_M7; l'impostazione predefinita è disabilitato</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Commuta lo stato del refrigerante a flusso continuo (flood coolant) e il relativo pin di uscita fino alla successiva commutazione o modifica tramite comando G-code</value>
+    <comment>tt</comment>
+  </data>
 </root>

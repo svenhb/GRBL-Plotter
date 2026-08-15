@@ -344,4 +344,28 @@ Sub-rotina P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Perfil Z</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Caneta na garra</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Comando para abrir a garra</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Comando para fechar a garra</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Pular M30 para manter o servo ativo ao final do programa</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Script para mover a caneta da garra para o armazenamento</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Script para executar ação antes de pegar a caneta</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Script para pegar a caneta do armazenamento e colocá-la na garra</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Script de compensação de comprimento da ferramenta</value>
+  </data>
 </root>

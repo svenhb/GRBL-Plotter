@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Configurar 'Visibilidad de anulación'</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - alterna el estado de la salida D0</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - alterna el estado de la salida D3</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - alterna el estado de la salida D1</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - alterna el estado de la salida D2</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Alterna inmediatamente el estado de activación/desactivación del husillo, pero solo durante el estado HOLD (pausa)</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Activado mediante la opción de compilación ENABLE_M7; por defecto está desactivado</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Alterna el estado del refrigerante de flujo continuo y el pin de salida hasta que se vuelva a alternar o un comando G-code modifique dicho estado</value>
+    <comment>tt</comment>
+  </data>
 </root>

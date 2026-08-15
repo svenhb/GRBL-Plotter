@@ -344,4 +344,28 @@ Sottoprogramma P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Profilo Z</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Penna nella pinza</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Comando apertura pinza</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Comando chiusura pinza</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Salta M30 per mantenere il servo attivo a fine programma</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Script: sposta la penna dalla pinza all'alloggiamento</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Script: esegui un'azione prima di prelevare la penna</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Script: preleva la penna dall'alloggiamento e portala nella pinza</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Script: compensazione lunghezza utensile</value>
+  </data>
 </root>

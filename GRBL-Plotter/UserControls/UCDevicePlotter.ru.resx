@@ -344,4 +344,28 @@
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Z-профиль</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Перо в захвате</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Команда: открыть захват</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Команда: закрыть захват</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Пропуск M30 для удержания сервопривода в активном состоянии по завершении программы</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Скрипт: перемещение пера из захвата в место хранения</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Скрипт: выполнение действий перед взятием пера</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Скрипт: перенос пера из места хранения в захват</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Скрипт: коррекция длины инструмента</value>
+  </data>
 </root>

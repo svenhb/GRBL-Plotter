@@ -173,4 +173,32 @@
   <data name="LblRapidSet0.Text" xml:space="preserve">
     <value>セット</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D0出力を切り替えます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D3出力を切り替えます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D1出力を切り替えます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X - D2出力を切り替えます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>HOLD（一時停止）状態の時に限り、スピンドルの有効/無効状態を即座に切り替えます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>ENABLE_M7コンパイルオプションで有効化されます（デフォルトは無効）</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>フラッドクーラントの状態と出力ピンを切り替えます（次の切り替え操作またはGコードコマンドによる変更まで維持されます）</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -344,4 +344,28 @@ Alt program P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Z profili</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Kalem tutucuda</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Tutucuyu aç komutu</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Tutucuyu kapat komutu</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Program sonunda servoyu aktif tutmak için M30'u atla</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Kalemi tutucudan depolama alanına taşıma betiği</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Kalemi almadan önce işlem yapma betiği</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Kalemi depolama alanından alıp tutucuya yerleştirme betiği</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Takım boyu telafisi betiği</value>
+  </data>
 </root>

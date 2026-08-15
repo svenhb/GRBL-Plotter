@@ -229,7 +229,7 @@ M4 وضع طاقة الليزر الديناميكية: يقوم هذا الوض
     <comment>b1</comment>
   </data>
   <data name="LblMax.ToolTip" xml:space="preserve">
-    <value>إعداد grbl $30</value>
+    <value>إعداد $30 في grbl</value>
     <comment>tt</comment>
   </data>
   <data name="NudDeviceLaserPowerMin.ToolTip" xml:space="preserve">
@@ -253,5 +253,42 @@ M4 وضع طاقة الليزر الديناميكية: يقوم هذا الوض
   </data>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>إيقاف نظام التحكم بالهواء</value>
+  </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 وضع طاقة الليزر الثابتة
+M4 وضع طاقة الليزر الديناميكية</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="LblPower.Text" xml:space="preserve">
+    <value>الطاقة</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOverlap.Text" xml:space="preserve">
+    <value>القطع الزائد (Overcut)</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>المساعدة عبر الإنترنت</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.Text" xml:space="preserve">
+    <value>الإزاحة (Offset)</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>تعبئة الأشكال المغلقة</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>المساعدة الهوائية (Air assist)</value>
+    <comment>1</comment>
+  </data>
+  <data name="CbLaserpower.Text" xml:space="preserve">
+    <value>M3</value>
+    <comment>1</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>قيمة S (سرعة الدوران)</value>
+    <comment>tt1</comment>
   </data>
 </root>

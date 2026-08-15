@@ -201,4 +201,28 @@ Ten en cuenta que la trayectoria se modificará para que la punta de la herramie
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Configuración del router</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Dividir la profundidad final en Z en varias pasadas con la profundidad por pasada especificada</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Incluir también Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Profundidad de corte por pasada</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Habilitar pasadas en Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Habilitar pasadas en Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Pasadas en Z</value>
+    <comment>1</comment>
+  </data>
 </root>

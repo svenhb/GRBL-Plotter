@@ -201,4 +201,28 @@ Notez que le tracé sera modifié pour que la pointe de l'outil se trouve sur le
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Configuration de la défonceuse</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Diviser la profondeur finale en Z en plusieurs passes selon la profondeur de passe indiquée</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Inclure également Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Profondeur de passe</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Activer les passes en Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Activer les passes en Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Passes en Z</value>
+    <comment>1</comment>
+  </data>
 </root>

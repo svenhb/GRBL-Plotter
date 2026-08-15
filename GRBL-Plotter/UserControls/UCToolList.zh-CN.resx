@@ -279,4 +279,152 @@ M4 动态激光功率模式：动态激光功率模式会根据当前速度与�
     <value>预设颜色</value>
     <comment>btn4</comment>
   </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>G 代码</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>图层</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>刀具偏置</value>
+  </data>
+  <data name="BtnPresetFromColorPalette.Text" xml:space="preserve">
+    <value>预设颜色</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>设备</value>
+  </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>图像导入</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>设置图像导入选项</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>几何描边（Geometric Trace）——使用边缘平滑</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace——使用曲线优化</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>黑白判定阈值</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>设置直接图像导入</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>黑白判定：[ 透明度 ] / [ 亮度 ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>描摹算法：[ Potrace ] / [ 几何描摹 ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>色彩模式：[ 多色 ] / [ 黑白 ]</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>图层</value>
+    <comment>1</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>名称</value>
+    <comment>1</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>功率</value>
+    <comment>1</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>速度</value>
+    <comment>1</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>加工次数</value>
+    <comment>1</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>M3/4</value>
+    <comment>1</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>吹气</value>
+    <comment>1</comment>
+  </data>
+  <data name="TsmiDeleteTool.Text" xml:space="preserve">
+    <value>删除刀具</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterLaser.Text" xml:space="preserve">
+    <value>激光</value>
+    <comment>1</comment>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>笔直径</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterS.Text" xml:space="preserve">
+    <value>S 笔下落</value>
+    <comment>1</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>笔</value>
+    <comment>1</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>XY 进给速度</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterZ.Text" xml:space="preserve">
+    <value>Z 笔下落</value>
+    <comment>1</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>名称</value>
+    <comment>1</comment>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>刀具直径</value>
+    <comment>1</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>刀具</value>
+    <comment>1</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>最终 Z 坐标</value>
+    <comment>1</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>XY 进给速度</value>
+    <comment>1</comment>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Z 进给速度</value>
+    <comment>1</comment>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>名称</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.Text" xml:space="preserve">
+    <value>刀具补偿</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>移动至刀具补偿位置，先移动 Z 轴，再移动 XY 轴。</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>对几何形状和像素图形使用“几何轮廓追踪”</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>设置工具列表外观</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>隐藏未使用的工具</value>
+  </data>
 </root>

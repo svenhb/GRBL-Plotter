@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Pluma cero</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Número de bolígrafo a tomar</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Tomar el bolígrafo del soporte y sujetarlo con la pinza</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Retirar el bolígrafo de la pinza y colocarlo en el soporte</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Enviar el código para abrir la pinza del soporte de bolígrafos</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Enviar el código para cerrar la pinza del soporte de bolígrafos</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Estado de la pinza del bolígrafo, para determinar si es necesario retirar primero el bolígrafo de la pinza</value>
+    <comment>tt</comment>
+  </data>
 </root>

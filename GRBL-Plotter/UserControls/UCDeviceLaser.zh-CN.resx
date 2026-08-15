@@ -254,4 +254,41 @@ M4 动态激光功率模式：动态激光功率模式会根据当前速度与�
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>关闭气阀</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 激光功率恒定模式
+M4 激光功率动态模式</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="LblPower.Text" xml:space="preserve">
+    <value>Мощность</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOverlap.Text" xml:space="preserve">
+    <value>Перерез</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Онлайн-справка</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.Text" xml:space="preserve">
+    <value>Смещение</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Заливка замкнутых фигур</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="CbAirAssist.Text" xml:space="preserve">
+    <value>Обдув</value>
+    <comment>1</comment>
+  </data>
+  <data name="CbLaserpower.Text" xml:space="preserve">
+    <value>M3</value>
+    <comment>1</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>S值（主轴）</value>
+    <comment>tt1</comment>
+  </data>
 </root>

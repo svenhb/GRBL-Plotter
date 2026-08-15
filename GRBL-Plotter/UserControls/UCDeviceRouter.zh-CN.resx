@@ -230,4 +230,31 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>路由器设置</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>将最终 Z 向深度按指定每道深度拆分为多次切削</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>包含 Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>每道切削深度</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>启用 Z 向分层切削</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>启用 Z 向分层切削</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Z 向分层切削</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblSpindleSpeedDelay.Text" xml:space="preserve">
+    <value>主轴启动延迟</value>
+  </data>
 </root>

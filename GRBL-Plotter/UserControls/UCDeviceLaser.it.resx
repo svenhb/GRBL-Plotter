@@ -220,4 +220,21 @@ Passaggi=n -&gt; Z[1]=0; Z[x]=x*Z finale/n, Z[n]=Z finale</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Comando Air disattivo</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Modalità a potenza laser costante
+M4 Modalità a potenza laser dinamica</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Guida online</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Riempire forme chiuse</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Valore S (mandrino)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

@@ -150,7 +150,7 @@ M4 Režim dynamického výkonu laseru: Režim dynamického výkonu laseru automa
     <value>Hodnota F (posuv)</value>
   </data>
   <data name="LblMax.ToolTip" xml:space="preserve">
-    <value>nastavení grbl 30 $</value>
+    <value>Nastavení grbl $30</value>
     <comment>tt</comment>
   </data>
   <data name="GbPowerSettings.Text" xml:space="preserve">
@@ -219,5 +219,22 @@ Průchody=n -&gt; Z[1]=0; Z[x]=x*Konečné-Z/n, Z[n]=Konečné-Z</value>
   </data>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Příkazový vzduch vypnutý</value>
+  </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Režim konstantního výkonu laseru
+M4 Režim dynamického výkonu laseru</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online nápověda</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Vyplnit uzavřené tvary</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Hodnota S (vřeteno)</value>
+    <comment>tt1</comment>
   </data>
 </root>

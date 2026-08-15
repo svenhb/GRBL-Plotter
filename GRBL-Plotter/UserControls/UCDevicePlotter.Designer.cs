@@ -75,6 +75,19 @@
             this.BtnHelp = new System.Windows.Forms.Button();
             this.BtnSetup = new System.Windows.Forms.Button();
             this.PanelTranslation = new System.Windows.Forms.Panel();
+            this.LblSetupPenChangeScriptProbe = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeScriptGet = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeScriptSelect = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeScriptPut = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeSkipM30 = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeCmdGripperClose = new System.Windows.Forms.Label();
+            this.LblSetupPenChangeCmdGripperOpen = new System.Windows.Forms.Label();
+            this.LblSetupPenChangePenInGripper = new System.Windows.Forms.Label();
+            this.LblZProfileRampLength = new System.Windows.Forms.Label();
+            this.LblZProfileStep = new System.Windows.Forms.Label();
+            this.LblZProfileEnable = new System.Windows.Forms.Label();
+            this.LblZProfileInfo = new System.Windows.Forms.Label();
+            this.LblZProfileHeadline = new System.Windows.Forms.Label();
             this.LblNoiseDistance = new System.Windows.Forms.Label();
             this.LblNoiseAmplitude = new System.Windows.Forms.Label();
             this.LblNoiseEnable = new System.Windows.Forms.Label();
@@ -97,11 +110,6 @@
             this.LblSetupToolDiameter = new System.Windows.Forms.Label();
             this.LblSetupHeadline = new System.Windows.Forms.Label();
             this.BtnZProfile = new System.Windows.Forms.Button();
-            this.LblZProfileHeadline = new System.Windows.Forms.Label();
-            this.LblZProfileInfo = new System.Windows.Forms.Label();
-            this.LblZProfileEnable = new System.Windows.Forms.Label();
-            this.LblZProfileStep = new System.Windows.Forms.Label();
-            this.LblZProfileRampLength = new System.Windows.Forms.Label();
             this.TcServoZAxis.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.PanelAdvancedS.SuspendLayout();
@@ -615,6 +623,14 @@
             // 
             // PanelTranslation
             // 
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeScriptProbe);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeScriptGet);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeScriptSelect);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeScriptPut);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeSkipM30);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeCmdGripperClose);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangeCmdGripperOpen);
+            this.PanelTranslation.Controls.Add(this.LblSetupPenChangePenInGripper);
             this.PanelTranslation.Controls.Add(this.LblZProfileRampLength);
             this.PanelTranslation.Controls.Add(this.LblZProfileStep);
             this.PanelTranslation.Controls.Add(this.LblZProfileEnable);
@@ -643,6 +659,71 @@
             this.PanelTranslation.Controls.Add(this.LblSetupHeadline);
             resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
             this.PanelTranslation.Name = "PanelTranslation";
+            // 
+            // LblSetupPenChangeScriptProbe
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeScriptProbe, "LblSetupPenChangeScriptProbe");
+            this.LblSetupPenChangeScriptProbe.Name = "LblSetupPenChangeScriptProbe";
+            // 
+            // LblSetupPenChangeScriptGet
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeScriptGet, "LblSetupPenChangeScriptGet");
+            this.LblSetupPenChangeScriptGet.Name = "LblSetupPenChangeScriptGet";
+            // 
+            // LblSetupPenChangeScriptSelect
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeScriptSelect, "LblSetupPenChangeScriptSelect");
+            this.LblSetupPenChangeScriptSelect.Name = "LblSetupPenChangeScriptSelect";
+            // 
+            // LblSetupPenChangeScriptPut
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeScriptPut, "LblSetupPenChangeScriptPut");
+            this.LblSetupPenChangeScriptPut.Name = "LblSetupPenChangeScriptPut";
+            // 
+            // LblSetupPenChangeSkipM30
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeSkipM30, "LblSetupPenChangeSkipM30");
+            this.LblSetupPenChangeSkipM30.Name = "LblSetupPenChangeSkipM30";
+            // 
+            // LblSetupPenChangeCmdGripperClose
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeCmdGripperClose, "LblSetupPenChangeCmdGripperClose");
+            this.LblSetupPenChangeCmdGripperClose.Name = "LblSetupPenChangeCmdGripperClose";
+            // 
+            // LblSetupPenChangeCmdGripperOpen
+            // 
+            resources.ApplyResources(this.LblSetupPenChangeCmdGripperOpen, "LblSetupPenChangeCmdGripperOpen");
+            this.LblSetupPenChangeCmdGripperOpen.Name = "LblSetupPenChangeCmdGripperOpen";
+            // 
+            // LblSetupPenChangePenInGripper
+            // 
+            resources.ApplyResources(this.LblSetupPenChangePenInGripper, "LblSetupPenChangePenInGripper");
+            this.LblSetupPenChangePenInGripper.Name = "LblSetupPenChangePenInGripper";
+            // 
+            // LblZProfileRampLength
+            // 
+            resources.ApplyResources(this.LblZProfileRampLength, "LblZProfileRampLength");
+            this.LblZProfileRampLength.Name = "LblZProfileRampLength";
+            // 
+            // LblZProfileStep
+            // 
+            resources.ApplyResources(this.LblZProfileStep, "LblZProfileStep");
+            this.LblZProfileStep.Name = "LblZProfileStep";
+            // 
+            // LblZProfileEnable
+            // 
+            resources.ApplyResources(this.LblZProfileEnable, "LblZProfileEnable");
+            this.LblZProfileEnable.Name = "LblZProfileEnable";
+            // 
+            // LblZProfileInfo
+            // 
+            resources.ApplyResources(this.LblZProfileInfo, "LblZProfileInfo");
+            this.LblZProfileInfo.Name = "LblZProfileInfo";
+            // 
+            // LblZProfileHeadline
+            // 
+            resources.ApplyResources(this.LblZProfileHeadline, "LblZProfileHeadline");
+            this.LblZProfileHeadline.Name = "LblZProfileHeadline";
             // 
             // LblNoiseDistance
             // 
@@ -755,31 +836,6 @@
             this.BtnZProfile.Name = "BtnZProfile";
             this.BtnZProfile.UseVisualStyleBackColor = true;
             this.BtnZProfile.Click += new System.EventHandler(this.BtnZProfile_Click);
-            // 
-            // LblZProfileHeadline
-            // 
-            resources.ApplyResources(this.LblZProfileHeadline, "LblZProfileHeadline");
-            this.LblZProfileHeadline.Name = "LblZProfileHeadline";
-            // 
-            // LblZProfileInfo
-            // 
-            resources.ApplyResources(this.LblZProfileInfo, "LblZProfileInfo");
-            this.LblZProfileInfo.Name = "LblZProfileInfo";
-            // 
-            // LblZProfileEnable
-            // 
-            resources.ApplyResources(this.LblZProfileEnable, "LblZProfileEnable");
-            this.LblZProfileEnable.Name = "LblZProfileEnable";
-            // 
-            // LblZProfileStep
-            // 
-            resources.ApplyResources(this.LblZProfileStep, "LblZProfileStep");
-            this.LblZProfileStep.Name = "LblZProfileStep";
-            // 
-            // LblZProfileRampLength
-            // 
-            resources.ApplyResources(this.LblZProfileRampLength, "LblZProfileRampLength");
-            this.LblZProfileRampLength.Name = "LblZProfileRampLength";
             // 
             // UCDevicePlotter
             // 
@@ -904,5 +960,13 @@
         private System.Windows.Forms.Label LblZProfileEnable;
         private System.Windows.Forms.Label LblZProfileInfo;
         private System.Windows.Forms.Label LblZProfileHeadline;
+        private System.Windows.Forms.Label LblSetupPenChangePenInGripper;
+        private System.Windows.Forms.Label LblSetupPenChangeCmdGripperClose;
+        private System.Windows.Forms.Label LblSetupPenChangeCmdGripperOpen;
+        private System.Windows.Forms.Label LblSetupPenChangeSkipM30;
+        private System.Windows.Forms.Label LblSetupPenChangeScriptProbe;
+        private System.Windows.Forms.Label LblSetupPenChangeScriptGet;
+        private System.Windows.Forms.Label LblSetupPenChangeScriptSelect;
+        private System.Windows.Forms.Label LblSetupPenChangeScriptPut;
     }
 }

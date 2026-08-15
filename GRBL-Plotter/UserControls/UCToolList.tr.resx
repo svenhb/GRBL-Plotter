@@ -231,4 +231,45 @@ M4 Dinamik Lazer Gücü Modu: Dinamik lazer gücü modu, programlanan hıza gör
     <value>XML verisi olmadan, başlangıç ​​araç listesi oluşturulamaz.
 Sorunu çözmek için bir grafik içe aktarın.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Görüntü içe aktarma</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Görüntü içe aktarma seçeneklerini yapılandırma</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Geometrik izleme - kenar yumuşatma kullan</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace - eğri optimizasyonu kullan</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Siyah-Beyaz ayrım eşiği</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Doğrudan görüntü içe aktarmayı yapılandırma</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Siyah-Beyaz değerlendirmesi: [ şeffaflık ] / [ parlaklık ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>İzleme algoritması: [ Potrace ] / [ Geometrik İzleme ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Renk modu: [ çok renkli ] / [ Siyah-Beyaz ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Takım ofset konumuna hareket edin; önce Z, sonra XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Geometrik şekiller ve piksel grafikleri için 'Geometrik iz' (Geometric trace) kullan</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Araç listesi görünümünü ayarla</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Kullanılmayan araçları gizle</value>
+  </data>
 </root>

@@ -220,4 +220,21 @@ Przejścia = n -&gt; Z[1] = 0; Z[x] = x*Końcowe Z/n, Z[n] = Końcowe Z</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Wyłącz Command Air</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Tryb stałej mocy lasera
+M4 Tryb dynamicznej mocy lasera</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Wypełnianie zamkniętych kształtów</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Wartość S (wrzeciono)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

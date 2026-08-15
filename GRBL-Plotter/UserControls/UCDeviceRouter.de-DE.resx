@@ -201,4 +201,28 @@ Beachten Sie, dass der Pfad angepasst wird, damit die Werkzeugspitze auf dem gew
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Fräse einrichten</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Endgültige Z-Tiefe in mehrere Durchgänge mit der angegebenen Tiefe pro Durchgang aufteilen</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Auch Z=0 einbeziehen</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Schnitttiefe pro Durchgang</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Z-Durchgänge aktivieren</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Z-Durchgänge aktivieren</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Z-Durchgänge</value>
+    <comment>1</comment>
+  </data>
 </root>

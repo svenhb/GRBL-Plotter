@@ -201,4 +201,28 @@ Pamiętaj, że ścieżka zostanie zmodyfikowana, aby końcówka narzędzia znala
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Konfiguracja routera</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Podziel końcową głębokość w osi Z na kilka przejść o określonej głębokości</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Uwzględnij również Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Głębokość skrawania na przejście</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Włącz przejścia w osi Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Włącz przejścia w osi Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Przejścia w osi Z</value>
+    <comment>1</comment>
+  </data>
 </root>

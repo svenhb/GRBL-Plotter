@@ -68,46 +68,35 @@
             this.BtnReloadGraphic = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.CbGroupSelection = new System.Windows.Forms.ComboBox();
-            this.BtnExtra = new System.Windows.Forms.Button();
-            this.BtnPresetY = new System.Windows.Forms.Button();
-            this.BtnPresetX = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnSetupImageImport = new System.Windows.Forms.Button();
             this.HeadlineCoordinate = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.PanelCoordinates = new System.Windows.Forms.Panel();
-            this.NudPresetY = new System.Windows.Forms.NumericUpDown();
-            this.NudPresetX = new System.Windows.Forms.NumericUpDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.PanelNoXML = new System.Windows.Forms.Panel();
             this.LblNoXML = new System.Windows.Forms.Label();
-            this.BtnPreset = new System.Windows.Forms.Button();
-            this.BtnHelp = new System.Windows.Forms.Button();
-            this.NudOffsetA = new System.Windows.Forms.NumericUpDown();
-            this.NudOffsetZ = new System.Windows.Forms.NumericUpDown();
-            this.NudOffsetY = new System.Windows.Forms.NumericUpDown();
-            this.NudOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.BtnPresetFromColorPalette = new System.Windows.Forms.Button();
+            this.LblDevice = new System.Windows.Forms.Label();
+            this.PanelTranslation = new System.Windows.Forms.Panel();
+            this.LblSetupInfo = new System.Windows.Forms.Label();
+            this.LblSetup6 = new System.Windows.Forms.Label();
+            this.LblSetup5 = new System.Windows.Forms.Label();
+            this.LblSetup4 = new System.Windows.Forms.Label();
+            this.LblSetupHeadline = new System.Windows.Forms.Label();
+            this.LblSetup3 = new System.Windows.Forms.Label();
+            this.LblSetup2 = new System.Windows.Forms.Label();
+            this.LblSetup1 = new System.Windows.Forms.Label();
+            this.BtnSetup = new System.Windows.Forms.Button();
+            this.LblSetupToolHideUnused = new System.Windows.Forms.Label();
             this.CbApplyToolList = new System.Windows.Forms.CheckBox();
+            this.LblSetupToolHeadline = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.HeadlineLaser.SuspendLayout();
             this.HeadlinePlotter.SuspendLayout();
             this.HeadlineRouter.SuspendLayout();
             this.HeadlineCoordinate.SuspendLayout();
-            this.PanelCoordinates.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPresetY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPresetX)).BeginInit();
             this.PanelNoXML.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetX)).BeginInit();
+            this.PanelTranslation.SuspendLayout();
             this.SuspendLayout();
             // 
             // FlpToolList
@@ -362,44 +351,34 @@
             this.toolTip1.SetToolTip(this.CbGroupSelection, resources.GetString("CbGroupSelection.ToolTip"));
             this.CbGroupSelection.SelectedIndexChanged += new System.EventHandler(this.CbGroupSelection_SelectedIndexChanged);
             // 
-            // BtnExtra
-            // 
-            resources.ApplyResources(this.BtnExtra, "BtnExtra");
-            this.BtnExtra.Name = "BtnExtra";
-            this.toolTip1.SetToolTip(this.BtnExtra, resources.GetString("BtnExtra.ToolTip"));
-            this.BtnExtra.UseVisualStyleBackColor = true;
-            this.BtnExtra.Click += new System.EventHandler(this.BtnExtra_Click);
-            // 
-            // BtnPresetY
-            // 
-            resources.ApplyResources(this.BtnPresetY, "BtnPresetY");
-            this.BtnPresetY.Name = "BtnPresetY";
-            this.toolTip1.SetToolTip(this.BtnPresetY, resources.GetString("BtnPresetY.ToolTip"));
-            this.BtnPresetY.UseVisualStyleBackColor = true;
-            this.BtnPresetY.Click += new System.EventHandler(this.BtnPresetY_Click);
-            // 
-            // BtnPresetX
-            // 
-            resources.ApplyResources(this.BtnPresetX, "BtnPresetX");
-            this.BtnPresetX.Name = "BtnPresetX";
-            this.toolTip1.SetToolTip(this.BtnPresetX, resources.GetString("BtnPresetX.ToolTip"));
-            this.BtnPresetX.UseVisualStyleBackColor = true;
-            this.BtnPresetX.Click += new System.EventHandler(this.BtnPresetX_Click);
-            // 
             // label10
             // 
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp, "BtnHelp");
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Tag = "id=tool-list";
+            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
+            this.BtnHelp.UseVisualStyleBackColor = false;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
+            // BtnSetupImageImport
+            // 
+            resources.ApplyResources(this.BtnSetupImageImport, "BtnSetupImageImport");
+            this.BtnSetupImageImport.Name = "BtnSetupImageImport";
+            this.toolTip1.SetToolTip(this.BtnSetupImageImport, resources.GetString("BtnSetupImageImport.ToolTip"));
+            this.BtnSetupImageImport.UseVisualStyleBackColor = true;
+            this.BtnSetupImageImport.Click += new System.EventHandler(this.BtnSetupImageImport_Click);
+            // 
             // HeadlineCoordinate
             // 
             this.HeadlineCoordinate.Controls.Add(this.label9);
             this.HeadlineCoordinate.Controls.Add(this.label10);
-            this.HeadlineCoordinate.Controls.Add(this.label11);
-            this.HeadlineCoordinate.Controls.Add(this.label13);
-            this.HeadlineCoordinate.Controls.Add(this.label17);
-            this.HeadlineCoordinate.Controls.Add(this.label22);
             resources.ApplyResources(this.HeadlineCoordinate, "HeadlineCoordinate");
             this.HeadlineCoordinate.Name = "HeadlineCoordinate";
             // 
@@ -407,121 +386,6 @@
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Name = "label22";
-            // 
-            // PanelCoordinates
-            // 
-            this.PanelCoordinates.Controls.Add(this.NudPresetY);
-            this.PanelCoordinates.Controls.Add(this.BtnPresetY);
-            this.PanelCoordinates.Controls.Add(this.NudPresetX);
-            this.PanelCoordinates.Controls.Add(this.BtnPresetX);
-            this.PanelCoordinates.Controls.Add(this.label28);
-            this.PanelCoordinates.Controls.Add(this.NudOffsetA);
-            this.PanelCoordinates.Controls.Add(this.label27);
-            this.PanelCoordinates.Controls.Add(this.NudOffsetZ);
-            this.PanelCoordinates.Controls.Add(this.label26);
-            this.PanelCoordinates.Controls.Add(this.NudOffsetY);
-            this.PanelCoordinates.Controls.Add(this.label25);
-            this.PanelCoordinates.Controls.Add(this.label16);
-            this.PanelCoordinates.Controls.Add(this.NudOffsetX);
-            resources.ApplyResources(this.PanelCoordinates, "PanelCoordinates");
-            this.PanelCoordinates.Name = "PanelCoordinates";
-            // 
-            // NudPresetY
-            // 
-            this.NudPresetY.DecimalPlaces = 1;
-            this.NudPresetY.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudPresetY, "NudPresetY");
-            this.NudPresetY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudPresetY.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudPresetY.Name = "NudPresetY";
-            this.NudPresetY.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            // 
-            // NudPresetX
-            // 
-            this.NudPresetX.DecimalPlaces = 1;
-            this.NudPresetX.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudPresetX, "NudPresetX");
-            this.NudPresetX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudPresetX.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudPresetX.Name = "NudPresetX";
-            this.NudPresetX.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            // 
-            // label28
-            // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
-            // 
-            // label25
-            // 
-            resources.ApplyResources(this.label25, "label25");
-            this.label25.Name = "label25";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
             // 
             // PanelNoXML
             // 
@@ -535,106 +399,84 @@
             resources.ApplyResources(this.LblNoXML, "LblNoXML");
             this.LblNoXML.Name = "LblNoXML";
             // 
-            // BtnPreset
+            // BtnPresetFromColorPalette
             // 
-            resources.ApplyResources(this.BtnPreset, "BtnPreset");
-            this.BtnPreset.Name = "BtnPreset";
-            this.BtnPreset.UseVisualStyleBackColor = true;
-            this.BtnPreset.Click += new System.EventHandler(this.BtnPreset_Click);
+            resources.ApplyResources(this.BtnPresetFromColorPalette, "BtnPresetFromColorPalette");
+            this.BtnPresetFromColorPalette.Name = "BtnPresetFromColorPalette";
+            this.BtnPresetFromColorPalette.UseVisualStyleBackColor = true;
+            this.BtnPresetFromColorPalette.Click += new System.EventHandler(this.BtnPresetFromColorPalette_Click);
             // 
-            // BtnHelp
+            // LblDevice
             // 
-            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnHelp, "BtnHelp");
-            this.BtnHelp.Name = "BtnHelp";
-            this.BtnHelp.Tag = "id=tool-list";
-            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
-            this.BtnHelp.UseVisualStyleBackColor = false;
-            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            resources.ApplyResources(this.LblDevice, "LblDevice");
+            this.LblDevice.Name = "LblDevice";
             // 
-            // NudOffsetA
+            // PanelTranslation
             // 
-            this.NudOffsetA.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "toolTableOffsetA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudOffsetA.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudOffsetA, "NudOffsetA");
-            this.NudOffsetA.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudOffsetA.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudOffsetA.Name = "NudOffsetA";
-            this.NudOffsetA.Value = global::GrblPlotter.Properties.Settings.Default.toolTableOffsetA;
+            this.PanelTranslation.Controls.Add(this.LblSetupToolHeadline);
+            this.PanelTranslation.Controls.Add(this.LblSetupToolHideUnused);
+            this.PanelTranslation.Controls.Add(this.LblSetupInfo);
+            this.PanelTranslation.Controls.Add(this.LblSetup6);
+            this.PanelTranslation.Controls.Add(this.LblSetup5);
+            this.PanelTranslation.Controls.Add(this.LblSetup4);
+            this.PanelTranslation.Controls.Add(this.LblSetupHeadline);
+            this.PanelTranslation.Controls.Add(this.LblSetup3);
+            this.PanelTranslation.Controls.Add(this.LblSetup2);
+            this.PanelTranslation.Controls.Add(this.LblSetup1);
+            resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
+            this.PanelTranslation.Name = "PanelTranslation";
             // 
-            // NudOffsetZ
+            // LblSetupInfo
             // 
-            this.NudOffsetZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "toolTableOffsetZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudOffsetZ.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudOffsetZ, "NudOffsetZ");
-            this.NudOffsetZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudOffsetZ.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudOffsetZ.Name = "NudOffsetZ";
-            this.NudOffsetZ.Value = global::GrblPlotter.Properties.Settings.Default.toolTableOffsetZ;
+            resources.ApplyResources(this.LblSetupInfo, "LblSetupInfo");
+            this.LblSetupInfo.Name = "LblSetupInfo";
             // 
-            // NudOffsetY
+            // LblSetup6
             // 
-            this.NudOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "toolTableOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudOffsetY.DecimalPlaces = 2;
-            this.NudOffsetY.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudOffsetY, "NudOffsetY");
-            this.NudOffsetY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudOffsetY.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudOffsetY.Name = "NudOffsetY";
-            this.NudOffsetY.Value = global::GrblPlotter.Properties.Settings.Default.toolTableOffsetY;
-            this.NudOffsetY.ValueChanged += new System.EventHandler(this.NudOffset_ValueChanged);
+            resources.ApplyResources(this.LblSetup6, "LblSetup6");
+            this.LblSetup6.Name = "LblSetup6";
             // 
-            // NudOffsetX
+            // LblSetup5
             // 
-            this.NudOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "toolTableOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudOffsetX.DecimalPlaces = 2;
-            this.NudOffsetX.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudOffsetX, "NudOffsetX");
-            this.NudOffsetX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudOffsetX.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.NudOffsetX.Name = "NudOffsetX";
-            this.NudOffsetX.Value = global::GrblPlotter.Properties.Settings.Default.toolTableOffsetX;
-            this.NudOffsetX.ValueChanged += new System.EventHandler(this.NudOffset_ValueChanged);
+            resources.ApplyResources(this.LblSetup5, "LblSetup5");
+            this.LblSetup5.Name = "LblSetup5";
+            // 
+            // LblSetup4
+            // 
+            resources.ApplyResources(this.LblSetup4, "LblSetup4");
+            this.LblSetup4.Name = "LblSetup4";
+            // 
+            // LblSetupHeadline
+            // 
+            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
+            this.LblSetupHeadline.Name = "LblSetupHeadline";
+            // 
+            // LblSetup3
+            // 
+            resources.ApplyResources(this.LblSetup3, "LblSetup3");
+            this.LblSetup3.Name = "LblSetup3";
+            // 
+            // LblSetup2
+            // 
+            resources.ApplyResources(this.LblSetup2, "LblSetup2");
+            this.LblSetup2.Name = "LblSetup2";
+            // 
+            // LblSetup1
+            // 
+            resources.ApplyResources(this.LblSetup1, "LblSetup1");
+            this.LblSetup1.Name = "LblSetup1";
+            // 
+            // BtnSetup
+            // 
+            resources.ApplyResources(this.BtnSetup, "BtnSetup");
+            this.BtnSetup.Name = "BtnSetup";
+            this.BtnSetup.UseVisualStyleBackColor = true;
+            this.BtnSetup.Click += new System.EventHandler(this.BtnSetup_Click);
+            // 
+            // LblSetupToolHideUnused
+            // 
+            resources.ApplyResources(this.LblSetupToolHideUnused, "LblSetupToolHideUnused");
+            this.LblSetupToolHideUnused.Name = "LblSetupToolHideUnused";
             // 
             // CbApplyToolList
             // 
@@ -646,15 +488,21 @@
             this.CbApplyToolList.UseVisualStyleBackColor = true;
             this.CbApplyToolList.CheckedChanged += new System.EventHandler(this.CbApplyToolTable_CheckedChanged);
             // 
+            // LblSetupToolHeadline
+            // 
+            resources.ApplyResources(this.LblSetupToolHeadline, "LblSetupToolHeadline");
+            this.LblSetupToolHeadline.Name = "LblSetupToolHeadline";
+            // 
             // UCToolList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ContextMenuStrip = this.contextMenuStrip1;
-            this.Controls.Add(this.BtnHelp);
-            this.Controls.Add(this.PanelCoordinates);
+            this.Controls.Add(this.BtnSetup);
             this.Controls.Add(this.PanelNoXML);
-            this.Controls.Add(this.BtnExtra);
+            this.Controls.Add(this.PanelTranslation);
+            this.Controls.Add(this.LblDevice);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.HeadlineCoordinate);
             this.Controls.Add(this.CbGroupSelection);
             this.Controls.Add(this.BtnReloadGraphic);
@@ -665,7 +513,8 @@
             this.Controls.Add(this.BtnSaveToolList);
             this.Controls.Add(this.CbApplyToolList);
             this.Controls.Add(this.FlpToolList);
-            this.Controls.Add(this.BtnPreset);
+            this.Controls.Add(this.BtnPresetFromColorPalette);
+            this.Controls.Add(this.BtnSetupImageImport);
             this.Name = "UCToolList";
             resources.ApplyResources(this, "$this");
             this.Load += new System.EventHandler(this.UCToolList_Load);
@@ -679,16 +528,11 @@
             this.HeadlineRouter.PerformLayout();
             this.HeadlineCoordinate.ResumeLayout(false);
             this.HeadlineCoordinate.PerformLayout();
-            this.PanelCoordinates.ResumeLayout(false);
-            this.PanelCoordinates.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPresetY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPresetX)).EndInit();
             this.PanelNoXML.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudOffsetX)).EndInit();
+            this.PanelTranslation.ResumeLayout(false);
+            this.PanelTranslation.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -731,33 +575,28 @@
         private System.Windows.Forms.Panel HeadlineCoordinate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button BtnExtra;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Panel PanelCoordinates;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.NumericUpDown NudOffsetA;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.NumericUpDown NudOffsetZ;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.NumericUpDown NudOffsetY;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown NudOffsetX;
-        private System.Windows.Forms.Button BtnPresetX;
-        private System.Windows.Forms.NumericUpDown NudPresetY;
-        private System.Windows.Forms.Button BtnPresetY;
-        private System.Windows.Forms.NumericUpDown NudPresetX;
         private System.Windows.Forms.ToolStripMenuItem TsmiDeleteTool;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Panel PanelNoXML;
         private System.Windows.Forms.Label LblNoXML;
         private System.Windows.Forms.Label LblPlotterLaser;
-        private System.Windows.Forms.Button BtnPreset;
+        private System.Windows.Forms.Button BtnPresetFromColorPalette;
         private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Label LblDevice;
+        private System.Windows.Forms.Button BtnSetupImageImport;
+        private System.Windows.Forms.Panel PanelTranslation;
+        private System.Windows.Forms.Label LblSetup3;
+        private System.Windows.Forms.Label LblSetup2;
+        private System.Windows.Forms.Label LblSetup1;
+        private System.Windows.Forms.Label LblSetupHeadline;
+        private System.Windows.Forms.Label LblSetup4;
+        private System.Windows.Forms.Label LblSetup6;
+        private System.Windows.Forms.Label LblSetup5;
+        private System.Windows.Forms.Label LblSetupInfo;
+        private System.Windows.Forms.Button BtnSetup;
+        private System.Windows.Forms.Label LblSetupToolHideUnused;
+        private System.Windows.Forms.Label LblSetupToolHeadline;
     }
 }

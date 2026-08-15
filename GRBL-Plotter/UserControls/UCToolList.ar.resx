@@ -278,4 +278,152 @@ M4 وضع طاقة الليزر الديناميكية: يقوم هذا الوض
     <value>ألوان مُسبقة الضبط</value>
     <comment>btn4</comment>
   </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>المساعدة عبر الإنترنت</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>الطبقة</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>إزاحة الأداة</value>
+  </data>
+  <data name="BtnPresetFromColorPalette.Text" xml:space="preserve">
+    <value>ألوان محددة مسبقاً</value>
+  </data>
+  <data name="LblDevice.Text" xml:space="preserve">
+    <value>الجهاز</value>
+  </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>استيراد الصور</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>إعداد خيارات استيراد الصور</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>التتبع الهندسي - استخدام تنعيم الحواف</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>تتبع Potrace - استخدام تحسين المنحنيات</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>عتبة تحديد اللونين الأسود والأبيض</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>إعداد الاستيراد المباشر للصور</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>تحديد اللونين الأسود والأبيض: الشفافية / السطوع</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>خوارزمية التتبع: Potrace / التتبع الهندسي</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>وضع الألوان: متعدد الألوان / أسود وأبيض</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>الطبقة</value>
+    <comment>1</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>الاسم</value>
+    <comment>1</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>الطاقة</value>
+    <comment>1</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>السرعة</value>
+    <comment>1</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>عدد التمريرات</value>
+    <comment>1</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>M3/4</value>
+    <comment>1</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>الهواء</value>
+    <comment>1</comment>
+  </data>
+  <data name="TsmiDeleteTool.Text" xml:space="preserve">
+    <value>أداة الحذف</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterLaser.Text" xml:space="preserve">
+    <value>الليزر</value>
+    <comment>1</comment>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>قطر القلم</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterS.Text" xml:space="preserve">
+    <value>خفض القلم (S)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>القلم</value>
+    <comment>1</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>معدل التغذية (XY)</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblPlotterZ.Text" xml:space="preserve">
+    <value>خفض القلم (Z)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>الاسم</value>
+    <comment>1</comment>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>قطر الأداة</value>
+    <comment>1</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>الأداة</value>
+    <comment>1</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>المستوى النهائي (Z)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>معدل التغذية (XY)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>معدل التغذية (Z)</value>
+    <comment>1</comment>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>الاسم</value>
+    <comment>1</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>كود G (G-code)</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.Text" xml:space="preserve">
+    <value>إزاحة الأداة</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>انتقل إلى موضع إزاحة الأداة: المحور Z أولاً، ثم المحورين XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>استخدم "التتبع الهندسي" (Geometric trace) للأشكال الهندسية والرسومات النقطية (بكسل)</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>إعداد مظهر قائمة الأدوات</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>إخفاء الأدوات غير المستخدمة</value>
+  </data>
 </root>

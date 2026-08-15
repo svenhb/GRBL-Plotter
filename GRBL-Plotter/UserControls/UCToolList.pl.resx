@@ -231,4 +231,45 @@ Tryb dynamicznej mocy lasera M4: Tryb dynamicznej mocy lasera automatycznie dost
     <value>Bez danych XML nie można utworzyć początkowej listy narzędzi.
 Zaimportuj grafikę, aby rozwiązać problem.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Import obrazu</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Konfiguracja opcji importu obrazu</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Trasowanie geometryczne – wygładzanie krawędzi</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Trasowanie Potrace – optymalizacja krzywych</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Próg podziału na czerń i biel</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Konfiguracja bezpośredniego importu obrazu</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Kryterium czarno-białe: [ przezroczystość ] / [ jasność ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Algorytm trasowania: [ Potrace ] / [ trasowanie geometryczne ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Tryb kolorów: [ wielokolorowy ] / [ czarno-biały ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Przejdź do pozycji przesunięcia narzędzia: najpierw Z, następnie XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Użyj funkcji „Obrys geometryczny” dla kształtów geometrycznych i grafiki rastrowej</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Skonfiguruj wygląd listy narzędzi</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Ukryj nieużywane narzędzia</value>
+  </data>
 </root>

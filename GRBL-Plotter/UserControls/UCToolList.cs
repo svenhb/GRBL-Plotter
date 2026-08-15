@@ -19,13 +19,16 @@
 /*
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-05-19 add inhibit flag processAllElements to avoid unwanted click event
+ * 2026-06-11 l:516 f:BtnReloadGraphic_Click	set cursor to WaitCursor
 */
 
 using GrblPlotter.Helper;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using static GrblPlotter.Graphic;
 using static GrblPlotter.XmlMarker;
 
 namespace GrblPlotter.UserControls
@@ -45,10 +48,10 @@ namespace GrblPlotter.UserControls
         Size toolElementSize = new Size(366, 25);
         private readonly Color btnDefColor = Color.WhiteSmoke;
         private bool stateShowToolTable = false;
-		private bool processAllElements = false;
+        private bool processAllElements = false;
 
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private bool log = true;
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
@@ -76,6 +79,7 @@ namespace GrblPlotter.UserControls
         private void UCToolList_Load(object sender, EventArgs e)
         {
             Logger.Trace("Load");
+            this.Visible = false;
             HeadlineLaser.Top = 1;
             HeadlinePlotter.Top = 1;
             HeadlineRouter.Top = 1;
@@ -86,10 +90,12 @@ namespace GrblPlotter.UserControls
             PanelNoXML.Height = FlpToolList.Height - 20;
             PanelNoXML.Left = FlpToolList.Left + 10;
 
+            MyControl.SetSetupBtnAppearance(BtnSetup);
             MyControl.ApplyToolList = CbApplyToolList.Checked;
             ToolList.Init("(UCToolList Load)");
             BtnApplyToolListHighlight();
             timerBlink.Start();
+            this.Visible = true;
         }
 
         public void SwitchView(int tabDevice, int tabPlotterMode)
@@ -104,8 +110,6 @@ namespace GrblPlotter.UserControls
                 HeadlinePlotter.Visible = (tabDevice == 1);
                 HeadlineRouter.Visible = (tabDevice == 2);
                 HeadlineCoordinate.Visible = (tabDevice == 3);
-                PanelCoordinates.Visible = (tabDevice == 3);
-                BtnExtra.Visible = !(tabDevice == 0);
 
                 LblPlotterS.Visible = (tabPlotterMode == 0);
                 LblPlotterZ.Visible = (tabPlotterMode == 1);
@@ -133,20 +137,24 @@ namespace GrblPlotter.UserControls
                 Margin = new Padding(1)
             };
             tle.Click += Tle_Click;
-            tle.RaiseXYEvent += MoveToPosition;
+            tle.RaiseXYZEvent += MoveToPosition;
             tle.SetEnable(CbApplyToolList.Checked);
             tle.SwitchView(_tabDevice, _tabPlotterMode, true);
             return tle;
         }
 
-        private void MoveToPosition(object sender, XYEventArgs e)
+        private void MoveToPosition(object sender, XyzEventArgs e)
         {
-            double x = e.PosX + (double)NudOffsetX.Value;
-            double y = e.PosY + (double)NudOffsetY.Value;
-            //    commandToSend = String.Format("G53 G91 G0 X{0} Y{1}", x, y).Replace(',', '.');
-            //    if (Grbl.isMarlin)
-            //        commandToSend = String.Format("G53;G91;G0 X{0} Y{1}", x, y).Replace(',', '.');
-            Logger.Trace("MoveToPosition {0}  {1} ", x, y);
+            // Tool nr is given via X
+            int toolNR = (int)e.PosX;
+            ToolPosition tp = ToolChanger.GetToolPosition(toolNR);
+            var psd = Properties.Settings.Default;
+            double x = tp.Position.X + (double)psd.toolTableOffsetX;
+            double y = tp.Position.Y + (double)psd.toolTableOffsetY;
+            double z = tp.Position.Z + (double)psd.toolTableOffsetZ;
+
+            Logger.Trace("MoveToPosition ToolNr:{0}  X:{1}  Y:{2}  Z:{3}", toolNR, x, y, z);
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("G53 G91 G0 Z{0:0.000}", z).Replace(",", "."), 0, sender, e));
             OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("G53 G91 G0 X{0:0.000} Y{1:0.000}", x, y).Replace(",", "."), 0, sender, e));
         }
 
@@ -155,15 +163,18 @@ namespace GrblPlotter.UserControls
          *********************************************************/
         private void Tle_Click(object sender, EventArgs e)
         {
-			if (!processAllElements)
+            if (!processAllElements)
             {
-				int toolNr = ((UCToolListElement)sender).toolProp.ToolNr;
-				int cntrlNr = ((UCToolListElement)sender).Id;
-				lastClickedElement = cntrlNr;
-				if (log) Logger.Trace("Tle clicked {0} toolNr {1} changed:{2}", cntrlNr, toolNr, ((UCToolListElement)sender).SettingChanged);
-				OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.highligh, toolNr - 1));
-				((UCToolListElement)sender).SettingChanged = false;
-			}
+                int toolNr = ((UCToolListElement)sender).toolProp.ToolNr;
+                int cntrlNr = ((UCToolListElement)sender).Id;
+                lastClickedElement = cntrlNr;
+
+                bool settingChanged = ((UCToolListElement)sender).SettingChanged;
+                if (log) Logger.Trace("Tle clicked {0} toolNr {1} changed:{2}", cntrlNr, toolNr, settingChanged);
+                if (!settingChanged)
+                    OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.highligh, toolNr));
+                ((UCToolListElement)sender).SettingChanged = false;
+            }
         }
 
         // https://www.codeproject.com/articles/Using-the-FlowLayoutPanel-and-Reordering-with-Drag#comments-section
@@ -186,11 +197,7 @@ namespace GrblPlotter.UserControls
             _destination.Controls.SetChildIndex(listElelement, index);
             _destination.Invalidate();
             if (log) Logger.Trace("DragDrop index:{0}  item:{1}", index, item);
-            /*    for (int i = 0; i < FlpToolList.Controls.Count; i++)
-                {
-                    ((UCToolListElement)FlpToolList.Controls[i]).toolProp.ToolNr = (short)(i + 1);
-                }
-                UpdateToolList();*/
+
             if (CbApplyToolList.Checked)
                 ReloadNeded();
         }
@@ -206,6 +213,7 @@ namespace GrblPlotter.UserControls
 
         internal void ReloadNeded(bool setNotify = true)
         {
+            if (log) Logger.Trace("ReloadNeded setNotify:{0}  MyControl.GraphicImported:{1}", setNotify, MyControl.GraphicImported);
             blinkReload = setNotify;
             if (setNotify && MyControl.GraphicImported)
             {
@@ -220,9 +228,11 @@ namespace GrblPlotter.UserControls
                 else
                     SetFlpToolListColor(Color.White);
             }
+            LblDevice.Text = MyControl.GetSelectedDeviceName();
         }
         private void SetFlpToolListColor(Color col)
         {
+            if (log) Logger.Trace("SetFlpToolListColor color:{0}", col);
             FlpToolList.BackColor = col;
             foreach (Control control in FlpToolList.Controls)
             {
@@ -230,11 +240,11 @@ namespace GrblPlotter.UserControls
             }
             Invalidate();
         }
-        internal void UpdateToolList()
+        internal void UpdateToolListElements()
         {
             Logger.Trace("###### All devices updated: {0}", MyControl.AllDevicesInitialized);
             FillToolListElements();
-            BtnApplyToolListHighlight();
+            //    BtnApplyToolListHighlight();
         }
         private void TimerBlink_Tick(object sender, EventArgs e)
         {
@@ -271,7 +281,7 @@ namespace GrblPlotter.UserControls
         internal void FillToolListElements()
         {
             Logger.Trace("####### FillToolListElements  Count: {0}  Device: {1}", ToolList.toolListArray.Count, MyControl.SelectedDevice);
-			processAllElements = false;
+            processAllElements = false;
             if (ToolList.toolListArray.Count > 0)
             {
                 FlpToolList.Visible = false;
@@ -281,7 +291,7 @@ namespace GrblPlotter.UserControls
                 {
                     foreach (Control control in FlpToolList.Controls)
                     {
-						FlpToolList.Controls.Remove(control);
+                        FlpToolList.Controls.Remove(control);
                         control.Dispose();
                     }
                     FlpToolList.Controls.Clear();
@@ -294,7 +304,7 @@ namespace GrblPlotter.UserControls
                 Logger.Trace("###### FillToolListElements  after clear Count: {0}  Device: {1}", ToolList.toolListArray.Count, MyControl.SelectedDevice);
                 foreach (ToolProperty p in ToolList.toolListArray)
                 {
-                    p.GroupWidth = w; 
+                    p.GroupWidth = w;
 
                     if (log) Logger.Trace("##### FillToolListElement {0}  {1}  {2}  {3}", p.ToolNr, p.ToolName, p.GroupWidth, p.GroupLayer);
                     FlpToolList.Controls.Add(CreateElement(toolElementSize, p, id++));
@@ -304,12 +314,12 @@ namespace GrblPlotter.UserControls
                 if (!MyControl.ApplyToolList && (MyControl.SelectedDevice == DeviceSelection.Plotter))
                 {
                     Logger.Trace("#### FillToolListElement set Laser.FinalS = 0");
-					processAllElements = true;
+                    processAllElements = true;
                     foreach (Control control in FlpToolList.Controls)
                     {
                         ((UCToolListElement)control).SetLaserIfPlotter(0);
                     }
-					processAllElements = false;
+                    processAllElements = false;
                 }
 
                 FlpToolList.Visible = true;
@@ -370,8 +380,6 @@ namespace GrblPlotter.UserControls
                         tp.GroupWidth = (float)bd.PenWidth;
                         tp.GroupLayer = bd.Layer;
                         tp.ToolName = bd.ToolName;
-                        tp.Position = new XyzPoint(0, y, 0, 0);
-                        y += (double)NudPresetY.Value;
 
                         //   if (replace)
                         {
@@ -393,6 +401,38 @@ namespace GrblPlotter.UserControls
             }
             FlpToolList.Visible = true;
         }
+
+        /******************************************************
+         * after loading GCode, compare XML-Tags with tool-list (if a tool-list is applied)
+         ******************************************************/
+        private void CheckToolListMatch()
+        {
+            Logger.Info("####### CheckToolListMatch XmlMarker count:{0} ", XmlMarker.GetGroupCount());
+            /* Get Group properties from already loaded graphic */
+            if (XmlMarker.GetGroupCount() > 0)
+            {
+                FlpToolList.Visible = false;
+                ToolListElementsSetVisible(false);
+
+                BlockData bd = new BlockData();
+                for (int i = 0; i < XmlMarker.GetGroupCount(); i++)
+                {
+                    if (XmlMarker.GetGroupByIndex(ref bd, i))   // get properties of group
+                    {
+                        if (log) Logger.Trace("from XML-BlockData id:{0}  color:{1}   width:{2}   toolNr:{3}", bd.Id, bd.PenColor, bd.PenWidth, bd.ToolNr);
+                        foreach (Control control in FlpToolList.Controls)
+                        {
+                            if (((UCToolListElement)control).toolProp.ToolNr == bd.ToolNr)
+                            {
+                                ((UCToolListElement)control).Visible = true;
+                            }
+                        }
+                    }
+                }
+                FlpToolList.Visible = true;
+            }
+        }
+
         private void FlpToolListSetWidth(int w)
         {
             /* align controls on panel */
@@ -405,12 +445,13 @@ namespace GrblPlotter.UserControls
             CbApplyToolList.Left = l;
             BtnLoadToolList.Left = l;
             BtnSaveToolList.Left = l + BtnLoadToolList.Width;
-            BtnPreset.Left = l;
+            BtnPresetFromColorPalette.Left = l;
             BtnReloadGraphic.Left = l;
-            CbGroupSelection.Left = l;
-            PanelCoordinates.Left = l;
-            BtnExtra.Left = l - BtnExtra.Width;
-            BtnHelp.Left = BtnExtra.Left - (int)(21 * DpiScaling);
+            CbGroupSelection.Left = l + 1;
+            BtnSetupImageImport.Left = l;
+            BtnHelp.Left = l - (int)(42 * DpiScaling);
+            BtnSetup.Left = l - (int)(21 * DpiScaling);
+            LblDevice.Left = l;
         }
         private void UCToolList_Resize(object sender, EventArgs e)
         {
@@ -420,9 +461,10 @@ namespace GrblPlotter.UserControls
         /******************************************************
          * copy tool-list-element-tag-values to tool list 
          ******************************************************/
-        private void UpdateToolList(bool renumber = false)
+        private void UpdateToolListClass(bool renumber = false)
         {
             /* Copy UCToolListElement-ToolProperty to ToolList */
+            if (log) Logger.Trace("UpdateToolListClass");
             ToolList.Reset();
             ToolProperty tmp;
             bool replace = groupBy == 0;    /* UpdateToolTip visible tool diameter */
@@ -450,10 +492,15 @@ namespace GrblPlotter.UserControls
             ToolList.WriteXML(); // save as default
         }
 
-        /* SaveToolList */
+        /******************************************************
+         * Save tool list 
+         ******************************************************/
         private void BtnSaveToolList_Click(object sender, EventArgs e)
         {
-            UpdateToolList();
+            if (log) Logger.Trace("BtnSaveToolList_Click");
+            if (FlpToolList.Controls.Count < 1)
+                return;
+            UpdateToolListClass(); //UpdateToolListElements();
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = Datapath.Tools,
@@ -469,12 +516,11 @@ namespace GrblPlotter.UserControls
         }
 
         /******************************************************
-         * LoadColorPalette 
+         * Load tool list
          ******************************************************/
-        //     private readonly XmlReaderSettings settings = new XmlReaderSettings()
-        //     { DtdProcessing = DtdProcessing.Prohibit };
         private void BtnLoadToolList_Click(object sender, EventArgs e)
         {
+            if (log) Logger.Trace("BtnLoadToolList_Click");
             OpenFileDialog ofd = new OpenFileDialog
             {
                 InitialDirectory = Datapath.Tools,
@@ -490,6 +536,7 @@ namespace GrblPlotter.UserControls
                     ToolTable.ReadCSV(ofd.FileName);
                     ToolList.GetFromToolTable(ToolTable.toolTableArray);
                 }
+                CbApplyToolList.Checked = true;
             }
             ofd.Dispose();
             if (ofd.FileName != Datapath.Tools + "\\_currentToolList.xml")
@@ -506,11 +553,12 @@ namespace GrblPlotter.UserControls
         {
             lastClickedElement = -1;
             Logger.Info("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ Reload from Tool list ApplyToolList:{0}   SettingWasChanged:{1}", CbApplyToolList.Checked, MyControl.GetSettingWasChanged());
+            Cursor.Current = Cursors.WaitCursor;
             MyControl.ProcessAutomationRunning = false;
 
             if (CbApplyToolList.Checked)	// apply tool-list
             {
-                UpdateToolList(true);   	// copy tool-list-element-tag-values to tool list 
+                UpdateToolListClass(true);   	// copy tool-list-element-tag-values to tool list 
             }
             else                            // UpdateToolTip tool-list from raw graphic-impport
             {
@@ -531,8 +579,20 @@ namespace GrblPlotter.UserControls
             lastClickedElement = -1;
             if (log) Logger.Trace("BtnReloadGraphicDelayed");
             if (!CbApplyToolList.Checked)
-                CreateToolListFromGraphic();
+            { CreateToolListFromGraphic(); }
+            else
+            {
+                if (Properties.Settings.Default.importGCToolListHideUnused)
+                    CheckToolListMatch();
+            }
             ReloadNeded(false);
+            if (MyControl.SourceType == SourceType.Image)
+            {
+                BtnSetupImageImport.BackColor = MyControl.NotifyGreen;
+                BtnSetupImageImport.Visible = true;
+            }
+            else
+            { BtnSetupImageImport.BackColor = MyControl.ButtonBackColor; }
         }
 
         private void TsmiByNr_Click(object sender, EventArgs e)
@@ -563,7 +623,7 @@ namespace GrblPlotter.UserControls
             if (lastClickedElement >= 0)
             {
                 FlpToolList.Controls.Remove(FlpToolList.Controls[lastClickedElement]);
-                UpdateToolList();
+                UpdateToolListElements();
                 //		ToolList.Delete(ToolList);
                 ReloadNeded();
             }
@@ -584,30 +644,41 @@ namespace GrblPlotter.UserControls
         }
         private void BtnApplyToolListHighlight()
         {
+            if (log) Logger.Trace("BtnApplyToolListHighlight ");
             bool useToolList = CbApplyToolList.Checked;
             MyControl.ApplyToolList = useToolList;
-            SetEnable(useToolList);
+            ToolListElementsSetEnable(useToolList);
             if (useToolList)
             {
                 CbApplyToolList.BackColor = MyControl.NotifyYellow;
                 CbApplyToolList.ForeColor = Colors.ContrastColor(MyControl.NotifyYellow);
+                //    LblDevice.Visible = true;
             }
             else
             {
                 CbApplyToolList.BackColor = CheckBox.DefaultBackColor;//  MyControl.ButtonBackColor;
                 CbApplyToolList.ForeColor = CheckBox.DefaultForeColor;//MyControl.ButtonForeColor;
+                LblDevice.Visible = false;
+                ToolListElementsSetVisible(true);
             }
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.useToolList, useToolList ? 1 : 0));
         }
-        private void SetEnable(bool en)
+        private void ToolListElementsSetEnable(bool en)
         {
+            if (log) Logger.Trace("SetEnable {0}", en);
             CbGroupSelection.Enabled = !en;
             foreach (Control control in FlpToolList.Controls)
             {
                 ((UCToolListElement)control).SetEnable(en);
             }
         }
-
+        private void ToolListElementsSetVisible(bool en)
+        {
+            foreach (Control control in FlpToolList.Controls)
+            {
+                ((UCToolListElement)control).Visible = en;
+            }
+        }
         private void CbGroupSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CbGroupSelection.SelectedIndex == 0)
@@ -637,36 +708,10 @@ namespace GrblPlotter.UserControls
             HeadlinePlotter.Visible = (tab == 1);
             HeadlineRouter.Visible = (tab == 2);
             HeadlineCoordinate.Visible = (tab == 3);
-            PanelCoordinates.Visible = (tab == 3);
             foreach (Control control in FlpToolList.Controls)
             {
                 ((UCToolListElement)control).SwitchView(tab, _tabPlotterMode);
             }
-        }
-
-        private void BtnPresetX_Click(object sender, EventArgs e)
-        {
-            double x = 0;
-            foreach (Control control in FlpToolList.Controls)
-            {
-                ((UCToolListElement)control).PresetCoordinates(x, 0, 0, 0);
-                x += (double)NudPresetX.Value;
-            }
-            UpdateToolList();
-            ToolList.WriteXML();
-            invalidateIsNeeded = 2;
-        }
-        private void BtnPresetY_Click(object sender, EventArgs e)
-        {
-            double y = 0;
-            foreach (Control control in FlpToolList.Controls)
-            {
-                ((UCToolListElement)control).PresetCoordinates(0, y, 0, 0);
-                y += (double)NudPresetY.Value;
-            }
-            UpdateToolList();
-            ToolList.WriteXML();
-            invalidateIsNeeded = 2;
         }
 
         private void NudOffset_ValueChanged(object sender, EventArgs e)
@@ -680,12 +725,11 @@ namespace GrblPlotter.UserControls
             CbApplyToolTable_CheckedChanged(null, null);
         }
 
-        private void BtnPreset_Click(object sender, EventArgs e)
+        private void BtnPresetFromColorPalette_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
                 InitialDirectory = Datapath.ColorPalette,
-                //        Filter = "ToolList (*.xml)|*.xml|ToolTable (*.csv)|*.csv",
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -743,6 +787,31 @@ namespace GrblPlotter.UserControls
                 Logger.Error(err, "BtnHelp_Click ");
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
+        }
+
+        private void BtnSetupImageImport_Click(object sender, EventArgs e)
+        {
+            List<ControlDefaults> cd = new List<ControlDefaults>
+            {
+                new ControlDefaults(LblSetup1.Text, "importVectorizeAutomatic"),			// Automatic (color) / BW
+                new ControlDefaults(LblSetup2.Text, "importVectorizeAlgorithmPoTrace"),		// Po Trace / Geometric Trace
+                new ControlDefaults(LblSetup3.Text, "importVectorizeDetectTransparency"),	// BW - find transparency / brightness
+                new ControlDefaults(LblSetup4.Text, "importVectorizeThreshold", new decimal[] { 0m, 255m, 1m, 0m }),	// BW brightness threshold
+                new ControlDefaults(LblSetup5.Text, "importVectorizePoTraceCurveoptimizing"),
+                new ControlDefaults(LblSetup6.Text, "importVectorizeOptimize1")
+            };
+            MyControl.ShowSimpleSetup(LblSetupHeadline.Text, LblSetupInfo.Text, Cursor.Position, cd);
+            MyControl.SettingWasChanged(true);
+            //importVectorizeOptimize1
+        }
+
+        private void BtnSetup_Click(object sender, EventArgs e)
+        {
+            List<ControlDefaults> cd = new List<ControlDefaults>
+            {
+                new ControlDefaults(LblSetupToolHideUnused.Text, "importGCToolListHideUnused"),
+            };
+            MyControl.ShowSimpleSetup(LblSetupToolHeadline.Text, "", Cursor.Position, cd);
         }
     }
 }

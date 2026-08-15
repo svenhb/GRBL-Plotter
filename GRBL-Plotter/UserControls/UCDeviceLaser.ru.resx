@@ -220,4 +220,21 @@
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Выключение подачи воздуха</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Режим постоянной мощности лазера
+M4 Режим динамической мощности лазера</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Справка онлайн</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Заливка замкнутых фигур</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Значение S (шпиндель)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

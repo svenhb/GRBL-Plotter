@@ -23,6 +23,7 @@
 using GrblPlotter.Helper;
 using NLog;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -99,6 +100,10 @@ namespace GrblPlotter.UserControls
             toolProp.Router.FeedZ = (float)NudDeviceRouterFeedZ.Value;
             toolProp.Router.FinalZ = (float)NudDeviceRouterZDown.Value;
             toolProp.Router.SaveZ = (float)NudDeviceRouterZUp.Value;
+
+            toolProp.Router.FinalS = (float)NudDeviceRouterSpindle.Value;
+            toolProp.Router.SaveS = 0;
+
             toolProp.Router.UseM3 = true;
             toolProp.Router.UseAir = false;
             toolProp.Router.Passes = 1;
@@ -120,6 +125,8 @@ namespace GrblPlotter.UserControls
             BtnTangential.ForeColor = Colors.ContrastColor(BtnTangential.BackColor);
             BtnDragTool.BackColor = Properties.Settings.Default.importGCDragKnifeEnable ? MyControl.ButtonActive : MyControl.ButtonInactive;
             BtnDragTool.ForeColor = Colors.ContrastColor(BtnDragTool.BackColor);
+            BtnZPasses.BackColor = Properties.Settings.Default.importGCZIncEnable ? MyControl.ButtonActive : MyControl.ButtonInactive;
+            BtnZPasses.ForeColor = Colors.ContrastColor(BtnZPasses.BackColor);
         }
 
         private void UCDeviceRouter_Resize(object sender, EventArgs e)
@@ -211,6 +218,27 @@ namespace GrblPlotter.UserControls
             SetBtnFillColor();
         }
 
+        private void BtnZPasses_Click(object sender, EventArgs e)
+        {
+            List<ControlDefaults> cd = new List<ControlDefaults>
+            {
+                new ControlDefaults(LblZPassesEnable.Text, "importGCZIncEnable"),
+                new ControlDefaults(LblZPassesDepth.Text, "importGCZIncrement", new decimal[] { 0.1m, 100m, 0.1m, 2m }),
+                new ControlDefaults(LblZPassesStartAtZero.Text, "importGCZIncStartZero")
+            //    new ControlDefaults(LblDragToolPercent.Text, "importGCDragKnifePercent", new decimal[] { 1m, 100m, 1m, 0m }),
+            //    new ControlDefaults(LblDragToolAngle.Text, "importGCDragKnifeAngle", new decimal[] { 0m, 180m, 1m, 0m }),
+            //    new ControlDefaults(LblDragToolTangentialEnable.Text, "importGCDragKnifeUse")
+        /*      {"Z Inc enable",        "importGCZIncEnable",     ""},
+            {"Z Increment at zero", "importGCZIncStartZero",""},
+            {"Z Increment",         "importGCZIncrement",   ""},
+            {"Z Increment no up",   "importGCZIncNoZUp",    ""},
+            {"Z Prevent Spindle","importGCZPreventSpindle", ""},*/
+          };
+            MyControl.ShowSimpleSetup(LblZPassesHeadline.Text, LblZPassesInfo.Text, Cursor.Position, cd);
+            MyControl.SettingWasChanged(true);
+            SetBtnFillColor();
+        }
+
         private void BtnStartProbing_Click(object sender, EventArgs e)
         {
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 21));
@@ -221,5 +249,6 @@ namespace GrblPlotter.UserControls
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 22));
         }
         #endregion
+
     }
 }

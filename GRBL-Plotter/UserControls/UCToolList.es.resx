@@ -231,4 +231,45 @@ Modo de potencia láser dinámica M4: Este modo ajusta automáticamente la poten
     <value>Sin datos XML, no se puede crear una lista de herramientas inicial.
 Importe una imagen para solucionar el problema.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Importación de imágenes</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Configurar opciones de importación de imágenes</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Vectorización geométrica: usar suavizado de bordes</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace: usar optimización de curvas</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Umbral para la distinción entre blanco y negro</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Configurar importación directa de imágenes</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Criterio de blanco y negro: [ transparencia ] / [ brillo ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Algoritmo de trazado: [ Potrace ] / [ trazado geométrico ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Modo de color: [ multicolor ] / [ blanco y negro ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Desplazarse a la posición de compensación de la herramienta: primero Z, luego XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Utilizar «Trazo geométrico» para formas geométricas y gráficos de píxeles</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Configurar la apariencia de la lista de herramientas</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Ocultar herramientas no utilizadas</value>
+  </data>
 </root>

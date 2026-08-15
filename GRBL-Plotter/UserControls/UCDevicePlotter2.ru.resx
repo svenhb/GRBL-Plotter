@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Ручка ноль</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Номер захватываемой ручки</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Взять ручку из отсека хранения и зажать в захвате</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Извлечь ручку из захвата и поместить в отсек хранения</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Отправить команду на размыкание захвата держателя ручки</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Отправить команду на смыкание захвата держателя ручки</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Состояние захвата ручки (для определения необходимости предварительного извлечения ручки из захвата)</value>
+    <comment>tt</comment>
+  </data>
 </root>

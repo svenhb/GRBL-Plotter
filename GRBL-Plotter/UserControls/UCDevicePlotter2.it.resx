@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Penna a zero</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Numero della penna da prelevare</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Prelevare la penna dall'alloggiamento e afferrarla con la pinza</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Rimuovere la penna dalla pinza e riporla nell'alloggiamento</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Inviare il comando per aprire la pinza del portapenna</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Inviare il comando per chiudere la pinza del portapenna</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Stato della pinza portapenna, per determinare se sia necessario rimuovere prima la penna dalla pinza</value>
+    <comment>tt</comment>
+  </data>
 </root>

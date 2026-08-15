@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Kalem Sıfır</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Alınacak kalem numarası</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Kalemi kalem yuvasından al ve tutucuda tut</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Kalemi tutucudan çıkar ve kalem yuvasına yerleştir</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Kalem tutucu çenesini açmak için komut gönder</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Kalem tutucu çenesini kapatmak için komut gönder</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Kalem tutucu çenesinin durumu (kalemin önce çeneden çıkarılması gerekip gerekmediğine karar vermek için)</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -231,4 +231,45 @@ M4 Modo de Potência Laser Dinâmica: O modo de potência laser dinâmica ajusta
     <value>Sem dados XML, não é possível criar uma lista inicial de ferramentas.
 Importe um gráfico para resolver o problema.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Importação de imagem</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Configurar opções de importação de imagem</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Traçado geométrico – usar suavização de bordas</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace – usar otimização de curvas</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Limiar de definição de preto e branco</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Configurar importação direta de imagem</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Critério preto e branco: [ transparência ] / [ brilho ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Algoritmo de vetorização: [ Potrace ] / [ Vetorização geométrica ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Modo de cor: [ multicolorido ] / [ preto e branco ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Mover para a posição de compensação da ferramenta: primeiro Z, depois XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Usar 'Traçado geométrico' para formas geométricas e gráficos de pixels</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Configurar a aparência da lista de ferramentas</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Ocultar ferramentas não utilizadas</value>
+  </data>
 </root>

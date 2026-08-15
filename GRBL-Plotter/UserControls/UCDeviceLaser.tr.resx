@@ -217,4 +217,21 @@ Geçiş sayısı=n -&gt; Z[1]=0; Z[x]=x*Nihai-Z/n, Z[n]=Nihai-Z</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Komut Havası Kapalı</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Sabit Lazer Gücü Modu
+M4 Dinamik Lazer Gücü Modu</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Kapalı şekilleri doldur</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>S değeri (iş mili)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

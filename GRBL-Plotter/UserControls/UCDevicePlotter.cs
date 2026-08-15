@@ -21,6 +21,7 @@
 */
 
 using GrblPlotter.Helper;
+using GrblPlotter.MachineControl;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,10 @@ namespace GrblPlotter.UserControls
         public event EventHandler<UserControlCmdEventArgs> RaiseCmdEvent;
         internal virtual void OnRaiseCmdEvent(UserControlCmdEventArgs e)
         { RaiseCmdEvent?.Invoke(this, e); }
+        public event EventHandler<UserControlGuiControlEventArgs> RaiseGuiControlEvent;
+        protected virtual void OnRaiseGuiControlEvent(UserControlGuiControlEventArgs e)
+        { RaiseGuiControlEvent?.Invoke(this, e); }
+
         public UCDevicePlotter()
         {
             InitializeComponent();
@@ -211,7 +216,7 @@ namespace GrblPlotter.UserControls
         {
             List<ControlDefaults> cd = new List<ControlDefaults>();
             OptionPropHatchFill.ControlDefaultsSetList(cd);
-            MyControl.TestSimpleSetup(Localization.GetString("optionFillHeadlinePlotter"), Cursor.Position, ref fill, cd);
+            MyControl.FillSimpleSetup(Localization.GetString("optionFillHeadlinePlotter"), Cursor.Position, ref fill, cd);
 
             UpdateSettings();
             UpdateTools();
@@ -268,33 +273,16 @@ namespace GrblPlotter.UserControls
             if (string.IsNullOrEmpty(p.ctrlToolScriptGet)) { p.ctrlToolScriptGet = Datapath.Scripts + "\\"; }
             if (string.IsNullOrEmpty(p.ctrlToolScriptProbe)) { p.ctrlToolScriptProbe = Datapath.Scripts + "\\"; }
 
-            List<ControlDefaults> cd = new List<ControlDefaults>
-            {
-                new ControlDefaults(LblSetupPenChangeRBNo.Text, "DevicePlotterPenChangeRBNo"),
-                new ControlDefaults(LblSetupPenChangeRBManual.Text, "DevicePlotterPenChangeRBManual"),
-                new ControlDefaults(LblSetupPenChangeRBAutomatic.Text, "DevicePlotterPenChangeRBAutomatic", new decimal[] { 0.1m, 10m, 0.1m, 2m }),
-                new ControlDefaults("Pen is in holder", "DevicePlotterPenInHolder"),
-
-                /* Tool exchange scripts? */
-                new ControlDefaults("Script put", "ctrlToolScriptPut"),
-                new ControlDefaults("Script select", "ctrlToolScriptSelect"),
-                new ControlDefaults("Script get", "ctrlToolScriptGet"),
-                new ControlDefaults("Script probe", "ctrlToolScriptProbe"),
-
-                new ControlDefaults(LblSetupFlowControlEnable.Text, "flowControlEnable"),
-                new ControlDefaults(LblSetupFlowControlText.Text, "flowControlText")
-            };
-            MyControl.ShowSimpleSetup(LblSetupHeadline.Text, "", Cursor.Position, cd);
-            Properties.Settings.Default.Save();
-
-            Properties.Settings.Default.gui2DToolTableShow = Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic;
-            UpdateTools();
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.openForm, 33));
             SetBtnFillColor();
-            MyControl.SettingWasChanged(true);
+        //    MyControl.SettingWasChanged(true);
         }
         #endregion
-
-        private void SetBtnFillColor()
+        private void LocalOnRaiseCmdEvent(object sender, UserControlCmdEventArgs e)
+        {
+            OnRaiseCmdEvent(e);
+        }
+        internal void SetBtnFillColor()
         {
             BtnFill.BackColor = fill.Enable ? MyControl.ButtonActive : MyControl.ButtonInactive;
             BtnFill.ForeColor = Colors.ContrastColor(BtnFill.BackColor);

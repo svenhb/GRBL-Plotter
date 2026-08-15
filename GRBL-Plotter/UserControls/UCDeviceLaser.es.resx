@@ -217,4 +217,21 @@ Pasadas=n -&gt; Z[1]=0; Z[x]=x*ZFinal/n, Z[n]=ZFinal</value>
   <data name="LblSetup3.Text" xml:space="preserve">
     <value>Desactivar el suministro de aire</value>
   </data>
+  <data name="LblPowerMode.ToolTip" xml:space="preserve">
+    <value>M3 Modo de potencia láser constante
+M4 Modo de potencia láser dinámica</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ayuda en línea</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="BtnOffsetSort.ToolTip" xml:space="preserve">
+    <value>Rellenar formas cerradas</value>
+    <comment>tt2</comment>
+  </data>
+  <data name="NudDeviceLaserPower.ToolTip" xml:space="preserve">
+    <value>Valor S (husillo)</value>
+    <comment>tt1</comment>
+  </data>
 </root>

@@ -231,4 +231,45 @@ M4 Dynamischer Laserleistungsmodus: Im dynamischen Laserleistungsmodus wird die 
     <value>Ohne XML-Daten kann keine initiale Werkzeugliste erstellt werden.
 Importiere eine Grafik, um das Problem zu beheben.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Bildimport</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Optionen für den Bildimport festlegen</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Geometrische Nachzeichnung – Kantenglättung verwenden</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace – Kurvenoptimierung verwenden</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Schwellenwert für Schwarz-Weiß-Umwandlung</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Direkten Bildimport einrichten</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Schwarz-Weiß-Bewertung: [ Transparenz ] / [ Helligkeit ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Vektorisierungsalgorithmus: [ Potrace ] / [ Geometrische Vektorisierung ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Farbmodus: [ mehrfarbig ] / [ Schwarz-Weiß ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Zur Werkzeug-Offset-Position fahren, zuerst Z, dann XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Versuche „Geometric trace“ für geometrische Formen und Pixelgrafiken</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Darstellung der Werkzeugliste festlegen</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Nicht verwendete Werkzeuge ausblenden</value>
+  </data>
 </root>

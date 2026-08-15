@@ -144,4 +144,58 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>اصفر القلم</value>
   </data>
+  <data name="btnCustom1.Text" xml:space="preserve">
+    <value>إضافي (Aux)</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>مسبار</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>اختيار</value>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>رقم القلم المراد أخذه</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>التقاط</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>أخذ القلم من وحدة التخزين وتثبيته في الماسك</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>إخراج القلم من الماسك ووضعه في وحدة التخزين</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>برمجيات تغيير الأداة</value>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لفتح ماسك حامل القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>إرسال أمر لإغلاق ماسك حامل القلم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>مُمسَك</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>التحقق من حالة ماسك القلم لتحديد ما إذا كان يلزم إخراج القلم منه أولاً</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbGripper.Text" xml:space="preserve">
+    <value>قابض القلم</value>
+  </data>
 </root>

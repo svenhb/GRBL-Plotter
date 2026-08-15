@@ -231,4 +231,45 @@ M4 Modalità potenza laser dinamica: la modalità potenza laser dinamica regola 
     <value>Senza dati XML, non è possibile creare un elenco iniziale degli strumenti.
 Importa un'immagine per risolvere il problema.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Importazione immagine</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Configurazione opzioni di importazione immagine</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Tracciamento geometrico - usa livellamento bordi</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Potrace - usa ottimizzazione curve</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Soglia di distinzione bianco/nero</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Configurazione importazione diretta immagine</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Valutazione bianco-nero: [ trasparenza ] / [ luminosità ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Algoritmo di tracciamento: [ Potrace ] / [ Tracciamento geometrico ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Modalità colore: [ multicolore ] / [ bianco-nero ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Spostarsi nella posizione di offset utensile: prima Z, poi XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Utilizzare "Traccia geometrica" ​​per forme geometriche e grafica pixel</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Configura l'aspetto dell'elenco degli strumenti</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Nascondi gli strumenti inutilizzati</value>
+  </data>
 </root>

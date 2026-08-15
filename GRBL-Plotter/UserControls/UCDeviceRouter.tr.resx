@@ -201,4 +201,28 @@ Aracın ucunun istenen yola gelmesi için yolun değiştirileceğini unutmayın.
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Yönlendirici kurulumu</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Belirtilen pas derinliğini kullanarak, nihai Z derinliğini birden fazla pasa böl</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Z=0'ı da dahil et</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Pas başına kesme derinliği</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Z paslarını etkinleştir</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Z paslarını etkinleştir</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Z pasları</value>
+    <comment>1</comment>
+  </data>
 </root>

@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Pióro w zero</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Numer pobieranego pisaka</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Pobierz pisak z zasobnika i umieść go w chwytaku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Wyjmij pisak z chwytaka i odłóż go do zasobnika</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie otwarcia chwytaka uchwytu pisaka</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Wyślij polecenie zamknięcia chwytaka uchwytu pisaka</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Stan chwytaka pisaka – informacja niezbędna do ustalenia, czy przed pobraniem należy najpierw wyjąć z niego pisak</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -50,6 +50,14 @@
             this.BtnProbing = new System.Windows.Forms.Button();
             this.BtnHeightmap = new System.Windows.Forms.Button();
             this.PanelTranslation = new System.Windows.Forms.Panel();
+            this.LblZPassesInfo = new System.Windows.Forms.Label();
+            this.LblZPassesStartAtZero = new System.Windows.Forms.Label();
+            this.LblZPassesDepth = new System.Windows.Forms.Label();
+            this.LblZPassesEnable = new System.Windows.Forms.Label();
+            this.LblZPassesHeadline = new System.Windows.Forms.Label();
+            this.LblSetup2 = new System.Windows.Forms.Label();
+            this.LblSetup1 = new System.Windows.Forms.Label();
+            this.LblSetupHeadline = new System.Windows.Forms.Label();
             this.LblDragToolInfo = new System.Windows.Forms.Label();
             this.LblDragToolHeadline = new System.Windows.Forms.Label();
             this.LblDragToolTangentialEnable = new System.Windows.Forms.Label();
@@ -70,10 +78,10 @@
             this.LblTangentialEnable = new System.Windows.Forms.Label();
             this.BtnTangential = new System.Windows.Forms.Button();
             this.BtnDragTool = new System.Windows.Forms.Button();
-            this.LblSetupHeadline = new System.Windows.Forms.Label();
-            this.LblSetup1 = new System.Windows.Forms.Label();
-            this.LblSetup2 = new System.Windows.Forms.Label();
             this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnZPasses = new System.Windows.Forms.Button();
+            this.NudDeviceRouterSpindleDelay = new System.Windows.Forms.NumericUpDown();
+            this.LblSpindleSpeedDelay = new System.Windows.Forms.Label();
             this.GbSpindleSpeed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterSpindle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterFeedZ)).BeginInit();
@@ -81,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterZUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterFeedXY)).BeginInit();
             this.PanelTranslation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterSpindleDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -277,6 +286,11 @@
             // 
             // PanelTranslation
             // 
+            this.PanelTranslation.Controls.Add(this.LblZPassesInfo);
+            this.PanelTranslation.Controls.Add(this.LblZPassesStartAtZero);
+            this.PanelTranslation.Controls.Add(this.LblZPassesDepth);
+            this.PanelTranslation.Controls.Add(this.LblZPassesEnable);
+            this.PanelTranslation.Controls.Add(this.LblZPassesHeadline);
             this.PanelTranslation.Controls.Add(this.LblSetup2);
             this.PanelTranslation.Controls.Add(this.LblSetup1);
             this.PanelTranslation.Controls.Add(this.LblSetupHeadline);
@@ -300,6 +314,46 @@
             this.PanelTranslation.Controls.Add(this.LblTangentialEnable);
             resources.ApplyResources(this.PanelTranslation, "PanelTranslation");
             this.PanelTranslation.Name = "PanelTranslation";
+            // 
+            // LblZPassesInfo
+            // 
+            resources.ApplyResources(this.LblZPassesInfo, "LblZPassesInfo");
+            this.LblZPassesInfo.Name = "LblZPassesInfo";
+            // 
+            // LblZPassesStartAtZero
+            // 
+            resources.ApplyResources(this.LblZPassesStartAtZero, "LblZPassesStartAtZero");
+            this.LblZPassesStartAtZero.Name = "LblZPassesStartAtZero";
+            // 
+            // LblZPassesDepth
+            // 
+            resources.ApplyResources(this.LblZPassesDepth, "LblZPassesDepth");
+            this.LblZPassesDepth.Name = "LblZPassesDepth";
+            // 
+            // LblZPassesEnable
+            // 
+            resources.ApplyResources(this.LblZPassesEnable, "LblZPassesEnable");
+            this.LblZPassesEnable.Name = "LblZPassesEnable";
+            // 
+            // LblZPassesHeadline
+            // 
+            resources.ApplyResources(this.LblZPassesHeadline, "LblZPassesHeadline");
+            this.LblZPassesHeadline.Name = "LblZPassesHeadline";
+            // 
+            // LblSetup2
+            // 
+            resources.ApplyResources(this.LblSetup2, "LblSetup2");
+            this.LblSetup2.Name = "LblSetup2";
+            // 
+            // LblSetup1
+            // 
+            resources.ApplyResources(this.LblSetup1, "LblSetup1");
+            this.LblSetup1.Name = "LblSetup1";
+            // 
+            // LblSetupHeadline
+            // 
+            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
+            this.LblSetupHeadline.Name = "LblSetupHeadline";
             // 
             // LblDragToolInfo
             // 
@@ -405,21 +459,6 @@
             this.BtnDragTool.UseVisualStyleBackColor = true;
             this.BtnDragTool.Click += new System.EventHandler(this.BtnDragTool_Click);
             // 
-            // LblSetupHeadline
-            // 
-            resources.ApplyResources(this.LblSetupHeadline, "LblSetupHeadline");
-            this.LblSetupHeadline.Name = "LblSetupHeadline";
-            // 
-            // LblSetup1
-            // 
-            resources.ApplyResources(this.LblSetup1, "LblSetup1");
-            this.LblSetup1.Name = "LblSetup1";
-            // 
-            // LblSetup2
-            // 
-            resources.ApplyResources(this.LblSetup2, "LblSetup2");
-            this.LblSetup2.Name = "LblSetup2";
-            // 
             // BtnHelp
             // 
             this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
@@ -429,10 +468,43 @@
             this.BtnHelp.UseVisualStyleBackColor = false;
             this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
+            // BtnZPasses
+            // 
+            resources.ApplyResources(this.BtnZPasses, "BtnZPasses");
+            this.BtnZPasses.Name = "BtnZPasses";
+            this.BtnZPasses.UseVisualStyleBackColor = true;
+            this.BtnZPasses.Click += new System.EventHandler(this.BtnZPasses_Click);
+            // 
+            // NudDeviceRouterSpindleDelay
+            // 
+            this.NudDeviceRouterSpindleDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCSpindleDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDeviceRouterSpindleDelay.DecimalPlaces = 1;
+            this.NudDeviceRouterSpindleDelay.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudDeviceRouterSpindleDelay, "NudDeviceRouterSpindleDelay");
+            this.NudDeviceRouterSpindleDelay.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.NudDeviceRouterSpindleDelay.Name = "NudDeviceRouterSpindleDelay";
+            this.NudDeviceRouterSpindleDelay.Value = global::GrblPlotter.Properties.Settings.Default.importGCSpindleDelay;
+            // 
+            // LblSpindleSpeedDelay
+            // 
+            resources.ApplyResources(this.LblSpindleSpeedDelay, "LblSpindleSpeedDelay");
+            this.LblSpindleSpeedDelay.Name = "LblSpindleSpeedDelay";
+            // 
             // UCDeviceRouter
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.LblSpindleSpeedDelay);
+            this.Controls.Add(this.NudDeviceRouterSpindleDelay);
+            this.Controls.Add(this.BtnZPasses);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.BtnSetup);
             this.Controls.Add(this.GbSpindleSpeed);
@@ -463,6 +535,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterFeedXY)).EndInit();
             this.PanelTranslation.ResumeLayout(false);
             this.PanelTranslation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDeviceRouterSpindleDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,5 +587,13 @@
         private System.Windows.Forms.Label LblSetup1;
         private System.Windows.Forms.Label LblSetupHeadline;
         private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Button BtnZPasses;
+        private System.Windows.Forms.Label LblZPassesHeadline;
+        private System.Windows.Forms.Label LblZPassesInfo;
+        private System.Windows.Forms.Label LblZPassesStartAtZero;
+        private System.Windows.Forms.Label LblZPassesDepth;
+        private System.Windows.Forms.Label LblZPassesEnable;
+        private System.Windows.Forms.NumericUpDown NudDeviceRouterSpindleDelay;
+        private System.Windows.Forms.Label LblSpindleSpeedDelay;
     }
 }

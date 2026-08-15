@@ -201,4 +201,28 @@ Upozorňujeme, že cesta bude upravena tak, aby se hrot nástroje dostal na pož
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Nastavení frézky</value>
   </data>
+  <data name="LblZPassesInfo.Text" xml:space="preserve">
+    <value>Rozdělit konečnou hloubku v ose Z na několik průchodů se stanovenou hloubkou na průchod</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblZPassesStartAtZero.Text" xml:space="preserve">
+    <value>Zahrnout i Z=0</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesDepth.Text" xml:space="preserve">
+    <value>Hloubka řezu na průchod</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesEnable.Text" xml:space="preserve">
+    <value>Povolit průchody v ose Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="LblZPassesHeadline.Text" xml:space="preserve">
+    <value>Povolit průchody v ose Z</value>
+    <comment>1</comment>
+  </data>
+  <data name="BtnZPasses.Text" xml:space="preserve">
+    <value>Průchody v ose Z</value>
+    <comment>1</comment>
+  </data>
 </root>

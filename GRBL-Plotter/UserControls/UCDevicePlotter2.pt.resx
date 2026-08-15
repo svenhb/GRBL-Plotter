@@ -144,4 +144,28 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>Caneta zero</value>
   </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>Número da caneta a ser pega</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>Pegar a caneta do suporte e segurá-la na garra</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>Remover a caneta da garra e colocá-la no suporte</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>Enviar comando para abrir a garra do suporte de caneta</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>Enviar comando para fechar a garra do suporte de caneta</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Status da garra da caneta, para determinar se a caneta precisa ser removida da garra primeiro</value>
+    <comment>tt</comment>
+  </data>
 </root>

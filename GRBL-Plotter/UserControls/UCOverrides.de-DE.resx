@@ -152,4 +152,32 @@
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>Sichtbarkeit der Überschreibung einrichten</value>
   </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – schaltet den Ausgang D0 um</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – schaltet den Ausgang D3 um</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – schaltet den Ausgang D1 um</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>grbl-Mega-5X – schaltet den Ausgang D2 um</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleSpindle.ToolTip" xml:space="preserve">
+    <value>Schaltet den Status der Spindelfreigabe (Ein/Aus) sofort um, jedoch nur im HOLD-Zustand</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleMist.ToolTip" xml:space="preserve">
+    <value>Aktiviert über die Kompilieroption ENABLE_M7; standardmäßig deaktiviert</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToggleFlood.ToolTip" xml:space="preserve">
+    <value>Schaltet den Status der Flutkühlung und den Ausgangspin um, bis eine erneute Umschaltung oder ein G-Code-Befehl den Zustand ändert</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -376,4 +376,28 @@
     <value>Zプロファイル</value>
     <comment>b3</comment>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>ペンをグリッパーに保持</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>グリッパーを開く指令</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>グリッパーを閉じる指令</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>プログラム終了時にサーボを有効に保つためM30をスキップ</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>ペンをグリッパーから保管場所へ移動するスクリプト</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>ペンを取り出す前に処理を行うスクリプト</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>ペンを保管場所からグリッパーへ取り出すスクリプト</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>工具長補正スクリプト</value>
+  </data>
 </root>

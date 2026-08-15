@@ -344,4 +344,28 @@ Podprogram P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Profil Z</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Pisak znajduje się w chwytaku</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Polecenie otwarcia chwytaka</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Polecenie zamknięcia chwytaka</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Pominięcie M30 w celu utrzymania aktywności serwa po zakończeniu programu</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Skrypt: przeniesienie pisaka z chwytaka do magazynka</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Skrypt: wykonanie czynności przed pobraniem pisaka</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Skrypt: pobranie pisaka z magazynka do chwytaka</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Skrypt: kompensacja długości narzędzia</value>
+  </data>
 </root>

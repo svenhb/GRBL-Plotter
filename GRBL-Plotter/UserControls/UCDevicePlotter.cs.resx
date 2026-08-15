@@ -344,4 +344,28 @@ Podprogram P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Z-profil</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>Pero je v uchopovači</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Příkaz k otevření uchopovače</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Příkaz k zavření uchopovače</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Přeskočení M30 pro zachování aktivního serva na konci programu</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Skript pro přesun pera z uchopovače do zásobníku</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Skript pro provedení akce před uchopením pera</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Skript pro přemístění pera ze zásobníku do uchopovače</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Skript pro kompenzaci délky nástroje</value>
+  </data>
 </root>

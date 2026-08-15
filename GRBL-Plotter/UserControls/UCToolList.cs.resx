@@ -231,4 +231,45 @@ M4 Režim dynamického výkonu laseru: Režim dynamického výkonu laseru automa
     <value>Nelze vytvořit počáteční seznam nástrojů bez dat XML.
 Importujte grafiku pro opravu.</value>
   </data>
+  <data name="BtnSetupImageImport.Text" xml:space="preserve">
+    <value>Import obrázku</value>
+  </data>
+  <data name="BtnSetupImageImport.ToolTip" xml:space="preserve">
+    <value>Nastavení možností importu obrázku</value>
+  </data>
+  <data name="LblSetup6.Text" xml:space="preserve">
+    <value>Geometrický trasovací algoritmus – použití vyhlazování hran</value>
+  </data>
+  <data name="LblSetup5.Text" xml:space="preserve">
+    <value>Algoritmus Potrace – použití optimalizace křivek</value>
+  </data>
+  <data name="LblSetup4.Text" xml:space="preserve">
+    <value>Práh pro převod na černobílé zobrazení</value>
+  </data>
+  <data name="LblSetupHeadline.Text" xml:space="preserve">
+    <value>Nastavení přímého importu obrázku</value>
+  </data>
+  <data name="LblSetup3.Text" xml:space="preserve">
+    <value>Vyhodnocení černobílé: [ průhlednost ] / [ jas ]</value>
+  </data>
+  <data name="LblSetup2.Text" xml:space="preserve">
+    <value>Algoritmus trasování: [ Potrace ] / [ geometrické trasování ]</value>
+  </data>
+  <data name="LblSetup1.Text" xml:space="preserve">
+    <value>Barevný režim: [ vícebarevný ] / [ černobílý ]</value>
+  </data>
+  <data name="BtnMoveToToolOffset.ToolTip" xml:space="preserve">
+    <value>Přejeďte do polohy korekce nástroje – nejprve v ose Z, poté v osách XY.</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupInfo.Text" xml:space="preserve">
+    <value>Pro geometrické tvary a pixelovou grafiku použijte funkci „Geometrická stopa“</value>
+    <comment>2</comment>
+  </data>
+  <data name="LblSetupToolHeadline.Text" xml:space="preserve">
+    <value>Nastavit vzhled seznamu nástrojů</value>
+  </data>
+  <data name="LblSetupToolHideUnused.Text" xml:space="preserve">
+    <value>Skrýt nepoužívané nástroje</value>
+  </data>
 </root>

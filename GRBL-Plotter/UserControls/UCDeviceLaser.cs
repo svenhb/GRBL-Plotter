@@ -216,7 +216,7 @@ namespace GrblPlotter.UserControls
         {
             List<ControlDefaults> cd = new List<ControlDefaults>();
             OptionPropHatchFill.ControlDefaultsSetList(cd);
-            MyControl.TestSimpleSetup(Localization.GetString("optionFillHeadlinePlotter"), Cursor.Position, ref fill, cd);
+            MyControl.FillSimpleSetup(Localization.GetString("optionFillHeadlinePlotter"), Cursor.Position, ref fill, cd);
             UpdateSettings();
             UpdateTools();
             SetBtnFillColor();

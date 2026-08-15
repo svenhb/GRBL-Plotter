@@ -376,4 +376,28 @@
     <value>ملف تعريف Z</value>
     <comment>b3</comment>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>القلم موجود في القابض</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>أمر بفتح القابض</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>أمر بإغلاق القابض</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>تخطي الأمر M30 لإبقاء المحرك المؤازر (Servo) نشطاً عند نهاية البرنامج</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>بريمج لنقل القلم من القابض إلى مكان التخزين</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>بريمج لتنفيذ إجراء ما قبل أخذ القلم</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>بريمج لنقل القلم من مكان التخزين إلى القابض</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>بريمج لتعويض طول الأداة</value>
+  </data>
 </root>

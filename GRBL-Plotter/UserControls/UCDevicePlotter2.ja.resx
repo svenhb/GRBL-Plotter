@@ -144,4 +144,58 @@
   <data name="BtnPenZero.Text" xml:space="preserve">
     <value>ペンをゼロにする</value>
   </data>
+  <data name="btnCustom1.Text" xml:space="preserve">
+    <value>補助（Aux）</value>
+  </data>
+  <data name="BtnStartToolProbe.Text" xml:space="preserve">
+    <value>プローブ</value>
+  </data>
+  <data name="BtnStartToolSelect.Text" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="NudToolNr.ToolTip" xml:space="preserve">
+    <value>取り出すペン番号</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnStartToolTake.Text" xml:space="preserve">
+    <value>把持</value>
+  </data>
+  <data name="BtnStartToolTake.ToolTip" xml:space="preserve">
+    <value>ペン収納部からペンを取り出し、グリッパーで保持する</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnToolRemove.Text" xml:space="preserve">
+    <value>取り外し</value>
+  </data>
+  <data name="BtnToolRemove.ToolTip" xml:space="preserve">
+    <value>グリッパーからペンを外し、ペン収納部に戻す</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>ツール交換スクリプト</value>
+  </data>
+  <data name="BtnGripperOpen.Text" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="BtnGripperOpen.ToolTip" xml:space="preserve">
+    <value>ペンホルダーのグリッパーを開くためのコードを送信する</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnGripperClose.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="BtnGripperClose.ToolTip" xml:space="preserve">
+    <value>ペンホルダーのグリッパーを閉じるためのコードを送信する</value>
+    <comment>tt</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>把持済み</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>ペングリッパーの状態（グリッパーから先にペンを取り外す必要があるかどうかの判断用）</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbGripper.Text" xml:space="preserve">
+    <value>ペン・グリッパー</value>
+  </data>
 </root>

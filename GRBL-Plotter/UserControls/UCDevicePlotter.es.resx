@@ -344,4 +344,28 @@ Subrutina P90</value>
   <data name="LblZProfileHeadline.Text" xml:space="preserve">
     <value>Perfil Z</value>
   </data>
+  <data name="LblSetupPenChangePenInGripper.Text" xml:space="preserve">
+    <value>El bolígrafo está en la pinza</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperOpen.Text" xml:space="preserve">
+    <value>Comando para abrir la pinza</value>
+  </data>
+  <data name="LblSetupPenChangeCmdGripperClose.Text" xml:space="preserve">
+    <value>Comando para cerrar la pinza</value>
+  </data>
+  <data name="LblSetupPenChangeSkipM30.Text" xml:space="preserve">
+    <value>Omitir M30 para mantener el servo activo al finalizar el programa</value>
+  </data>
+  <data name="LblSetupPenChangeScriptPut.Text" xml:space="preserve">
+    <value>Script para mover el bolígrafo de la pinza al almacén</value>
+  </data>
+  <data name="LblSetupPenChangeScriptSelect.Text" xml:space="preserve">
+    <value>Script para realizar una acción antes de tomar el bolígrafo</value>
+  </data>
+  <data name="LblSetupPenChangeScriptGet.Text" xml:space="preserve">
+    <value>Script para trasladar el bolígrafo del almacén a la pinza</value>
+  </data>
+  <data name="LblSetupPenChangeScriptProbe.Text" xml:space="preserve">
+    <value>Script de compensación de longitud de herramienta</value>
+  </data>
 </root>

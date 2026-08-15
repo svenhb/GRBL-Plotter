@@ -41,6 +41,11 @@ namespace GrblPlotter.UserControls
             InitializeComponent();
         }
 
+        public void ShowPanelPenChange(bool show)
+        {
+            this.Height = show ? 150 : 75;
+
+        }
         /*    internal void UpdateToolTip()
             {
                 toolTip1.SetToolTip(BtnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
@@ -117,6 +122,51 @@ namespace GrblPlotter.UserControls
             if (e.Button == MouseButtons.Right)
                 btnNr *= -1;
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.customButton, btnNr));
+        }
+
+        private void BtnStartToolSelect_Click(object sender, EventArgs e)
+        {
+            int penNr = (int)NudToolNr.Value;
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("T{0}", penNr).Replace(",", "."), 0, sender, e));
+            SendScript(Properties.Settings.Default.ctrlToolScriptSelect, sender, e);                                                                                                                       //   LocalOnRaiseCmdEvent(new UserControlCmdEventArgs(Properties.Settings.Default.ctrlToolScriptGet, 1, sender, e));
+        }
+        private void BtnStartToolTake_Click(object sender, EventArgs e)
+        {
+            int penNr = (int)NudToolNr.Value;
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("T{0}", penNr).Replace(",", "."), 0, sender, e));
+            SendScript(Properties.Settings.Default.ctrlToolScriptGet, sender, e);
+        }
+        private void BtnStartToolRemove_Click(object sender, EventArgs e)
+        {
+            int penNr = (int)NudToolNr.Value;
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("T{0}", penNr).Replace(",", "."), 0, sender, e));
+            SendScript(Properties.Settings.Default.ctrlToolScriptPut, sender, e);
+        }
+        private void BtnStartToolProbe_Click(object sender, EventArgs e)
+        {
+            int penNr = (int)NudToolNr.Value;
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("T{0}", penNr).Replace(",", "."), 0, sender, e));
+            SendScript(Properties.Settings.Default.ctrlToolScriptProbe, sender, e);
+        }
+        private void SendScript(string script, object sender, EventArgs e)
+        {
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(Datapath.MakeAbsolutePath(script), 1, sender, e));// use ProcessCommands instead of _serial_form.RequestSend
+        }
+
+
+        private void BtnGripperOpen_Click(object sender, EventArgs e)
+        {
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}", Properties.Settings.Default.ctrlToolCommandGripperOpen).Replace(",", "."), 0, sender, e));
+        }
+        private void BtnGripperClose_Click(object sender, EventArgs e)
+        {
+            OnRaiseCmdEvent(new UserControlCmdEventArgs(string.Format("{0}", Properties.Settings.Default.ctrlToolCommandGripperClose).Replace(",", "."), 0, sender, e));
+        }
+
+        internal void SetToolNr(int toolNr)
+        {
+            if ((toolNr > 0) && (toolNr < 100))
+                NudToolNr.Value = toolNr;
         }
     }
 }
