@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Otomatik kalem değiştirme seçenekleri</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Otomatik kalem değiştirme betikleri</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ Değişkenler:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Script için bir metin düzenleyicisine yapıştırılmak üzere, tüm 'pick-up' (al) komutlarını panoya kopyalar.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Betiği Not Defteri'nde düzenle</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Dosya iletişim kutusuyla betik seç</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Kodun betiklerde kullanılacağı değişkenin adı</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Kodun betiklerde kullanılacağı değişkenin adı</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Standart G-Code atayın; kodları ayırıcı olarak ';' kullanarak farklı satırlara bölün.
+Ya da G-Code içeren bir dosya adı belirtin.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Duraklatma veya durdurma sırasında aşağıdaki G-kodunu gönderir.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Kalem değiştirilmesi gerektiğinde, yayın duraklatılır ve gerekli kalem rengini soran bir pencere açılır.
+Aşağıdaki metin kutusunda, duraklatma başladıktan sonra gönderilecek komutlar tanımlanabilir; örneğin, kalem tutucuyu öne taşımak veya kalem değiştirmeyi kolaylaştırmak gibi.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Manuel kalem değişimi</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Bu yol, kalem değiştirici kurulum dosyasına kaydedilmeyecektir.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Düğme üzerindeki metin</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Düğme üzerindeki metin</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Düğme üzerindeki metin</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Düğme üzerindeki metin</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Değer 0 ise, yalnızca 'Yolun başına da ekle' seçeneği işleme alınır.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>İşaretliyse: Bir çizgi, eşit uzunlukta (belirtilen uzunluğa eşit veya daha kısa) parçalara bölünecektir.
+İşaretli değilse: Son parça daha kısa olacak, diğer tüm parçalar ise tam olarak belirtilen uzunlukta olacaktır.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Uzun ve düz hareketleri, belirtilen maksimum uzunluğu aşmayacak şekilde daha kısa hareketlere bölün.
+"Göreceli hareketler" (Relative movements) ile birlikte kullanmayın.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Yolları bölen betik</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Eşit mesafeli bölümler</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Alt yordam ekle</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Belirtilen her bölüm uzunluğundan sonra alt yordam ekle.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Yol bölmeyi etkinleştir</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Alt yordamdan önce/sonra kalemi kaldır/indir</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Her yolun başına ekle</value>
+    <comment>1</comment>
   </data>
 </root>

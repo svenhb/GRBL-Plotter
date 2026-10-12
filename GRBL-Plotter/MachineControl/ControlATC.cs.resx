@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Možnosti automatické výměny pera</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Skripty pro automatickou výměnu pera</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ Proměnné:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Zkopíruje všechny příkazy „pick-up“ do schránky pro vložení do textového editoru skriptu.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Upravit skript v poznámkovém bloku</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Dialogové okno pro výběr skriptu přes soubor</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Název proměnné pro použití kódu ve skriptech</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Název proměnné pro použití kódu ve skriptech</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Zadejte běžný G-kód; jednotlivé příkazy oddělte středníkem (;).
+Nebo zadejte název souboru obsahujícího G-kód.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Při pozastavení nebo zastavení odešlete následující G-kód.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Pokud je potřeba vyměnit pero, streamování se pozastaví a zobrazí se okno s dotazem na požadovanou barvu pera.
+V textovém poli níže lze definovat příkazy, které budou odeslány po zahájení pauzy, např. pro přesunutí úchopu pera dopředu, aby se usnadnila jeho výměna.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Ruční výměna pera</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Tato cesta se neuloží do konfiguračního souboru výměníku per.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Text na tlačítku</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Text na tlačítku</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Text na tlačítku</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Text na tlačítku</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Pokud je hodnota 0, zpracuje se pouze volba „Vložit také na začátek cesty“.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Zaškrtnuto: Úsečka se rozdělí na stejně dlouhé segmenty (o délce maximálně rovné zadané hodnotě).
+Nezaškrtnuto: Poslední segment bude kratší, všechny ostatní budou mít přesně zadanou délku.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Rozdělte dlouhé přímé pohyby na kratší pohyby s maximální stanovenou délkou.
+Nepoužívejte v kombinaci s „relativními pohyby“.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>حركات تقسيم النص البرمجي</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>أجزاء متساوية البعد</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>إدراج روتين فرعي</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>إدراج روتين فرعي بعد كل طول جزء محدد.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>تفعيل مسارات التقسيم</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>تطبيق رفع/خفض القلم قبل/بعد الروتين الفرعي</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>الإدراج في بداية كل مسار</value>
+    <comment>1</comment>
   </data>
 </root>

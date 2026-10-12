@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Opções de troca automática de caneta</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Scripts de troca automática de caneta</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ Variáveis:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Copia todos os comandos 'pick-up' para a área de transferência, para inseri-los no editor de texto do script.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Editar script no Bloco de Notas</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Selecionar script via caixa de diálogo de arquivo</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Nome da variável para usar o código em scripts</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Nome da variável para usar o código em scripts</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Atribui código G padrão; separe os comandos em linhas diferentes usando ';' como separador.
+Ou atribua um nome de arquivo que contenha código G.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Envia o seguinte código G ao pausar ou parar.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Se for necessário trocar a caneta, a transmissão é pausada e uma janela aparece solicitando a cor da caneta desejada.
+Na caixa de texto abaixo, podem ser definidos comandos que serão enviados após o início da pausa, por exemplo, para mover o suporte da caneta para a frente, a fim de facilitar a troca da caneta.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Troca manual de caneta</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Este caminho não será salvo no arquivo de configuração do trocador de ferramentas.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Texto do botão</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Texto do botão</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Texto do botão</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Texto do botão</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Se o valor for 0, apenas 'Inserir também no início do caminho' será processado.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Marcado: A linha será dividida em segmentos de igual comprimento (≤ comprimento especificado)
+Desmarcado: O último segmento da linha será mais curto; todos os outros terão exatamente o comprimento especificado</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Divida movimentos longos e retilíneos em movimentos mais curtos, respeitando o comprimento máximo especificado.
+Não utilize com "Movimentos relativos".</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Script divide movimentos</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>segmentos equidistantes</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Inserir sub-rotina</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Inserir sub-rotina após cada comprimento de segmento especificado.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Habilitar caminhos divididos</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Aplicar caneta para cima/para baixo antes/depois da sub-rotina</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Inserir no início de cada caminho</value>
+    <comment>1</comment>
   </data>
 </root>

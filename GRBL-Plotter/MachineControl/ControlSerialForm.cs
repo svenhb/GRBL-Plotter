@@ -144,8 +144,8 @@ namespace GrblPlotter
         private bool isMarlin = false;
         private bool updateMarlinPosition = false;
         private bool getMarlinPositionWasSent = false;
-    //    private readonly int insertMarlinCounterReload = 5;
-    //    private int insertMarlinCounter = 5;
+        //    private readonly int insertMarlinCounterReload = 5;
+        //    private int insertMarlinCounter = 5;
 
         private bool lowLevelPerformance = false;// Properties.ListSettings.Default.grblPollIntervalReduce
 
@@ -268,7 +268,7 @@ namespace GrblPlotter
             Logger.Trace("====== Try closing SerialForm {0} {1}", iamSerial, e.CloseReason);
             if ((e.CloseReason.ToString() == "ApplicationExitCall") || (e.CloseReason.ToString() == "FormOwnerClosing"))
             {
-            //    isDataProcessing = false;
+                //    isDataProcessing = false;
                 grblCharacterCounting = true;   // may helps to avoid locking the form
 
                 if (countShutdown == 0)
@@ -276,7 +276,7 @@ namespace GrblPlotter
                     timerSerial.Stop();
                     countShutdown = 5;
                     StopStreaming(true);    // isNotStartup = true
-				//	lowLevelPerformance = false;	// hope to reduce shut-down time 2023-03-31
+                                            //	lowLevelPerformance = false;	// hope to reduce shut-down time 2023-03-31
                     serialPort.DataReceived -= (this.SerialPort1_DataReceived); // stop receiving data
                                                                                 //    JustgrblReset();    // nötig?
                     timerSerial.Interval = 1000;
@@ -292,7 +292,7 @@ namespace GrblPlotter
                 Logger.Info("====== SerialForm {0} STOP ======", iamSerial);
                 AddToLog("SerialForm STOP 1");
             }
-            else 
+            else
             {
                 if (countShutdown == 0)
                 {
@@ -352,7 +352,7 @@ namespace GrblPlotter
                 catch (Exception err)
                 {
                     Logger.Error(err, " CopySelectionToClipboardToolStripMenuItem_Click - failed ");
-                    rtbLog.AppendText("* FAILED CopySelectionToClipboard"); 
+                    rtbLog.AppendText("* FAILED CopySelectionToClipboard");
                 }
             }
         }
@@ -405,7 +405,7 @@ namespace GrblPlotter
                     if (IsConnectedToGrbl())
                     {
                         Invoke(new Action(() =>
-							{this.WindowState = FormWindowState.Minimized;}));
+                            { this.WindowState = FormWindowState.Minimized; }));
                         Logger.Info("Minimize window");
                         AddToLog("Minimize window...");
                         Application.DoEvents();
@@ -683,9 +683,10 @@ namespace GrblPlotter
 
                     var lines = rtbLog.Lines;
                     if (lines.Length > 11000)
-                    {   var newlines = lines.Skip(1000);
+                    {
+                        var newlines = lines.Skip(1000);
                         rtbLog.Lines = newlines.ToArray();
-                     //   rtbLog.AppendText("--------------------------------------------------------------\r\n");
+                        //   rtbLog.AppendText("--------------------------------------------------------------\r\n");
                     }
                 }
                 catch
@@ -1320,7 +1321,7 @@ namespace GrblPlotter
 
         private void ShowConnectionControls(bool showEthernet = false)
         {
-            PanelEthernet.Visible= showEthernet;
+            PanelEthernet.Visible = showEthernet;
             LblEthernetIP.Visible = LblEthernetPort.Visible = showEthernet;
             TbEthernetIP.Visible = TbEthernetPort.Visible = showEthernet;
             BtnOpenPortEthernet.Visible = showEthernet;
@@ -1489,9 +1490,22 @@ namespace GrblPlotter
         #endregion
 
         #region runtimecounter
+        private static DateTime timeStamp1, timeStamp2;
+        private static string GetTimeStampString(int mode = 0)
+        {
+            DateTime tmp = DateTime.Now;
+            if (mode == 1)
+                timeStamp1 = tmp;
+            else if (mode == 2)
+                timeStamp2 = tmp;
+            else if (mode == 3)
+            {
+                TimeSpan duration = timeStamp2.Subtract(timeStamp1);
+                return duration.ToString(@"hh\:mm\:ss");
+            }
 
-        private static string GetTimeStampString()
-        { return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); }
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
 
         private void LblAccessoryState_Click(object sender, EventArgs e)
         { ListAccessoryStateRunTime(true); }

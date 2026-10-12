@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Opcje automatycznej wymiany pióra</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Skrypty automatycznej wymiany pióra</value>
     <comment>f</comment>
@@ -276,5 +272,87 @@ Zmienne:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Kopiuje wszystkie polecenia „pick-up” do schowka w celu wklejenia ich do edytora tekstu skryptu.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Edytuj skrypt w Notatniku</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Wybierz skrypt za pomocą okna dialogowego plików</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Nazwa zmiennej do użycia w skryptach</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Nazwa zmiennej do użycia w skryptach</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Przypisuje standardowy kod G-Code; poszczególne polecenia należy rozdzielić średnikiem (;).
+Można również wskazać plik zawierający kod G-Code.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Wysyła następujący kod G po wstrzymaniu lub zatrzymaniu.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Jeśli konieczna jest wymiana pióra, transmisja strumieniowa zostaje wstrzymana, a następnie pojawia się okno z prośbą o podanie koloru pióra. W poniższym polu tekstowym można zdefiniować polecenia, które zostaną wysłane po rozpoczęciu pauzy, np. przesunięcie uchwytu pióra do przodu, aby ułatwić wymianę pióra.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Ręczna wymiana pióra</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Ta ścieżka nie zostanie zapisana w pliku konfiguracyjnym zmieniacza pisaków.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Tekst na przycisku</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Tekst na przycisku</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Tekst na przycisku</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Tekst na przycisku</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Jeśli wartość wynosi 0, przetwarzana będzie tylko opcja „Wstaw również na początku ścieżki”.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Zaznaczone: linia zostanie podzielona na odcinki o równej długości (≤ podanej długości).
+Niezaznaczone: ostatni odcinek będzie krótszy, a wszystkie pozostałe będą miały dokładnie podaną długość.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Podziel długie ruchy prostoliniowe na krótsze odcinki o maksymalnej zadanej długości.
+Nie używaj w połączeniu z „ruchami względnymi”.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Skrypt dzielący ścieżki na odcinki o równej długości</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Wstaw podprocedurę</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Wstaw podprogram</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Wstaw podprogram po każdej zadanej długości segmentu.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Włącz rozdzielone ścieżki</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Zastosuj podniesienie/opuszczenie narzędzia przed/po podprogramie</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Wstaw na początku każdej ścieżki</value>
+    <comment>1</comment>
   </data>
 </root>

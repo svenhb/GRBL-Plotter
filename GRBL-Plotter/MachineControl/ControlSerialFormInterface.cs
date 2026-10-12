@@ -59,6 +59,7 @@
  * 2026-07-26 l:550 f:ProcessGrblRealTimeStatus bug fix upate lblSrPn.Text
  * 2026-07-28 l:376 f:InsertVariable add check of gcodeVariableString
  * 2026-08-09 l:554 f:ProcessGrblRealTimeStatus bug fix display of pin state
+ * 2026-09-08 move some functions to "ControlSerialFormToolChange"
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -415,16 +416,18 @@ namespace GrblPlotter
                 }
             }
 
-            if (rxLine.Contains("($TS")) { AddToLog("[Tool change start]"); }
-            else if (rxLine.Contains("($TO")) { AddToLog("[Tool " + rxLine.Substring(4).Trim(')') + " removed]"); ToolInSpindle = false; }
-            else if (rxLine.Contains("($TI")) { AddToLog("[Tool " + rxLine.Substring(4).Trim(')') + " selected]"); ToolInSpindle = true; }
-            else if (rxLine == "($TE)") { AddToLog("[Tool change finished]"); }
-            else if (rxLine == "($END)")
-            {
-                AddToLog("[Program end: " + GetTimeStampString() + " ]");
-                Logger.Info("ProcessGrblOkMessage [Program end]");
-                StreamingFinish();      // reset streaming, clear sendBuffer, streamingBuffer, ListAccessoryStateRunTime
-            }
+            ProcessToolChangeTracker(rxLine);
+
+            /*      if (rxLine.Contains("($TS")) { AddToLog("[Tool change start]"); }
+                  else if (rxLine.Contains("($TO")) { AddToLog("[Tool " + rxLine.Substring(4).Trim(')') + " removed]"); ToolInSpindle = false; }
+                  else if (rxLine.Contains("($TI")) { AddToLog("[Tool " + rxLine.Substring(4).Trim(')') + " selected]"); ToolInSpindle = true; }
+                  else if (rxLine == "($TE)") { AddToLog("[Tool change finished]"); }
+                  else if (rxLine == "($END)")
+                  {
+                      AddToLog("[Program END: " + GetTimeStampString() + " ]");
+                      Logger.Info("ProcessGrblOkMessage [Program end]");
+                      StreamingFinish();      // reset streaming, clear sendBuffer, streamingBuffer, ListAccessoryStateRunTime
+                  }*/
         }
 
         /**********************************************************************************************
@@ -1373,7 +1376,7 @@ namespace GrblPlotter
          *   - replace variable e.g. '#WACX' by real value
          * called from processSend()
          *********************************************************************/
-        private string InsertVariable(string line)
+        private string InsertVariable(string line, bool stringOnly = false)	// default: replace all
         {
             int pos, posold = 0;
             //    double myvalueDouble;
@@ -1395,11 +1398,24 @@ namespace GrblPlotter
                             myvar = line.Substring(pos, 5);
                             mykey = myvar.Substring(1);                         // get variable
 
-                            SetToolChangeCommand();
+                            SetToolChangeVariables();
                             if (gcodeVariable.ContainsKey(mykey))               // find value in gcode
-                            { myvalueString = string.Format("{0:0.000}", gcodeVariable[mykey]).Replace(",", "."); }
+                            {
+                                if (!stringOnly)
+                                    myvalueString = string.Format("{0:0.000}", gcodeVariable[mykey]).Replace(",", ".");
+                                else
+                                {
+                                    Logger.Trace("Skip insert {0}", mykey);
+                                    myvalueString = myvar;
+                                }
+                            }
                             else if (gcodeVariableString.ContainsKey(mykey))               // find value in gcode
-                            { myvalueString = gcodeVariableString[mykey]; }
+                            {
+                                string gvs = gcodeVariableString[mykey];
+                                if (gvs=="")
+                                    AddToLog("!!! variable #" + mykey + " is needed but empty ");
+                                myvalueString = gvs;
+                            }
                             else if (GuiVariables.variable.ContainsKey(mykey))  // find value in gui
                             { myvalueString = string.Format("{0:0.000}", GuiVariables.variable[mykey]).Replace(",", "."); }
                             else
@@ -1412,8 +1428,8 @@ namespace GrblPlotter
                             if (cBStatus1.Checked || cBStatus.Checked)
                             { AddToLog("< replace " + mykey + " = " + myvalueString); }
 
+                        //    Logger.Trace("InsertVariable var:'{0}'  value:'{1}' in line:'{2}'", mykey, myvalueString, line);
                             line = line.Replace(myvar, myvalueString);// string.Format("{0:0.000}", myvalueDouble));
-                            Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalueString, line);
                         }
                         else
                         {
@@ -1421,7 +1437,7 @@ namespace GrblPlotter
                             AddToLog("< replacement NOK, send " + line);
                         }
                     }
-                    posold = pos + 5;
+                    posold = pos + 2;
                 } while ((pos > 0) && (safetyExit-- > 0));
             }
             return line.Replace(',', '.');
@@ -1483,7 +1499,8 @@ namespace GrblPlotter
 
             if (resetToolCoord)
                 SetToolChangeCoordinates(1);    // 2026-07-28 init with tool nr 1
-            SetToolChangeCommand();
+
+            SetToolChangeVariables();         // reload #TOGO, #TOGC in ControlSerialFormToolCHange
         }
         private void SaveLastPos()
         {

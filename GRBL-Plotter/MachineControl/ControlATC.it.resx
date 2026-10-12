@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Opzioni cambio utensile automatico</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Script cambio utensile automatico</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ Variabili:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Copia tutti i comandi di "raccolta" negli appunti, per inserirli nell'editor di testo dello script.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Modifica script in Blocco note</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Seleziona script tramite finestra di dialogo file</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Nome della variabile da utilizzare per il codice negli script</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Nome della variabile da utilizzare per il codice negli script</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Assegna codice G-Code standard, separando le istruzioni su righe diverse tramite il carattere ';'.
+In alternativa, specifica il nome di un file contenente codice G-Code.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Invia il seguente G-code in pausa o all'arresto.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Se è necessario cambiare la penna, lo streaming si interrompe e compare una finestra che chiede di specificare il colore della penna desiderata.
+Nella casella di testo sottostante è possibile definire dei comandi che verranno inviati dopo l'inizio della pausa, ad esempio per spostare il supporto della penna in avanti, in modo da facilitarne la sostituzione.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Cambio manuale della penna</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Questo percorso non verrà salvato nel file di configurazione del cambio-penna.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Testo sul pulsante</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Testo sul pulsante</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Testo sul pulsante</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Testo sul pulsante</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Se il valore è 0, verrà elaborata solo l'opzione "Inserisci anche all'inizio del percorso".</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Selezionato: la linea verrà suddivisa in segmenti di uguale lunghezza (≤ lunghezza specificata)
+Non selezionato: l'ultimo segmento sarà più corto, mentre tutti gli altri avranno esattamente la lunghezza specificata</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Suddividi i movimenti rettilinei lunghi in movimenti più brevi, rispettando la lunghezza massima indicata.
+Non utilizzare con i "movimenti relativi".</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Script per suddividere i tracciati</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Segmenti equidistanti</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Inserisci subroutine</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Inserisci una subroutine dopo ogni segmento di lunghezza specificata.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Abilita suddivisione tracciati</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Applica sollevamento/abbassamento penna prima/dopo la subroutine</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Inserisci all'inizio di ogni tracciato</value>
+    <comment>1</comment>
   </data>
 </root>

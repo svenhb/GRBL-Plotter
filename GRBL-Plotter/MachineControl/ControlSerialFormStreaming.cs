@@ -44,6 +44,7 @@
  * 2023-11-28 l:290 f:StartStreaming add info about missing subroutine
  * 2025-02-23 l:311 f:StartStreaming add M6PassThrough #435
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-09-08 l:245 replace variables in subroutine storage; insert tracker for subroutines
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -104,7 +105,6 @@ namespace GrblPlotter
             lowLevelPerformance = Properties.Settings.Default.grblPollIntervalReduce;
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("▼▼▼▼▼ Ser:{0} startStreaming at line:{1} to line:{2} ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
-            SetToolChangeCommand();
 
             string infoProtocol = "Streaming Protocol: ";
             infoProtocol += grblCharacterCounting ? "Character-Counting" : "Simple Send -Response";
@@ -131,7 +131,7 @@ namespace GrblPlotter
             lastError = "";
             countGrblError = 0;
             lastSentToCOM.Clear();
-            ToolList.Init(" (StartStreaming)");       // FillToolListElements structure
+            //    ToolList.Init(" (StartStreaming)");       // FillToolListElements structure
             rtbLog.Clear();
 
             // check if other serial are still alive
@@ -160,10 +160,12 @@ namespace GrblPlotter
                 }
             }
 
+            SetToolChangeVariables(true);
+
             if (!check)
             {
                 if (logStreamData) AddToLog("* Logging enabled");
-                AddToLog("[Start streaming - no echo at " + GetTimeStampString() + " ]");
+                AddToLog("[Streaming START: " + GetTimeStampString(1) + " ]");
                 AddToLog("[" + infoProtocol + " | " + infoLowPerformance + "]");
                 if (useSerial2) AddToLog("[Use serial 2]");
                 if (useSerial3) AddToLog("[Use serial 3]");
@@ -224,13 +226,14 @@ namespace GrblPlotter
                             double pWord = FindDouble("P", -1, gCode[k]);
                             double lWord = FindDouble("L", 1, gCode[k]);
 
+                            Logger.Trace(" insert suboutine within subroutine P{0}", pWord);
                             if (subroutines.ContainsKey((int)pWord))
                             {
                                 for (int repeat = 0; repeat < lWord; repeat++)
                                 {
-                                    foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine
+                                    foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine, must be already existend
                                     {
-                                        subroutines[cmdONr].Add(subroutineLine);
+                                        subroutines[cmdONr].Add(InsertVariable(subroutineLine, true));	// InsertVariable - stringOnly, not TOAX, etc.
                                         Logger.Trace(" sub in sub {0}", subroutineLine);
                                     }
                                 }
@@ -240,8 +243,14 @@ namespace GrblPlotter
                         }
                         else
                         {
-                            subroutines[cmdONr].Add(gCode[k]);
-                            Logger.Trace(" {0}", gCode[k]);
+                            if (!string.IsNullOrEmpty(gCode[k]))
+                            {
+                                subroutines[cmdONr].Add(InsertVariable(gCode[k], true));                    // InsertVariable - stringOnly, not TOAX, etc.
+                                if (gCode[k].Contains("#"))
+                                    Logger.Trace(" replaced {0}  {1}", gCode[k], InsertVariable(gCode[k], true));             // replace variables
+                                else
+                                    Logger.Trace(" {0}", gCode[k]);             // replace variables
+                            }
                         }
                     }
                 }
@@ -271,19 +280,23 @@ namespace GrblPlotter
                         //                    if (tmp.IndexOf("M98") >= 0)    // any subroutines?
                         if (cmdMNr == 98)   // subroutine call
                         {
-                            pWord = FindDouble("P", -1, tmp);
-                            lWord = FindDouble("L", 1, tmp);
+                            pWord = FindDouble("P", -1, tmp);		// call subroutine
+                            lWord = FindDouble("L", 1, tmp);		// number of repetitions
 
                             if (subroutines.ContainsKey((int)pWord))
                             {
+                                streamingBuffer.Add("($SR " + pWord.ToString() + " )", i);         // keyword for receiving-buffer "Tool change finished"
                                 for (int repeat = 0; repeat < lWord; repeat++)
                                 {
                                     foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine
                                     {
-                                        if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
-                                            streamingBuffer.Add(InsertVariable(subroutineLine).Replace(" ", ""), i);
-                                        else
-                                            streamingBuffer.Add(subroutineLine.Replace(" ", ""), i);             // add gcode line to list to send 
+                                        if (!string.IsNullOrEmpty(subroutineLine))
+                                        {
+                                            if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
+                                                streamingBuffer.Add(StripCmt(InsertVariable(subroutineLine)), i);
+                                            else
+                                                streamingBuffer.Add(StripCmt(subroutineLine), i);  // add gcode line to list to send 
+                                        }
                                     }
                                 }
                             }
@@ -312,11 +325,12 @@ namespace GrblPlotter
                             {
                                 if (!Properties.Settings.Default.ctrlToolChangeM6PassThrough)
                                 {
-                                    tmp = "(" + tmp + ")";
+                                    streamingBuffer.Add("(" + tmp + "-START)", i);        // add gcode line to list to send
                                     if (Properties.Settings.Default.ctrlToolChange)
                                     {
                                         InsertToolChangeCode(i, ref tmpToolInSpindle);// insert external script-code and insert variables 
                                         ToolInSpindle = tmpToolInSpindle;
+                                        tmp = "(" + tmp + "-END)";
                                     }
                                     else
                                     {
@@ -394,44 +408,6 @@ namespace GrblPlotter
                 PreProcessStreaming();              // StartStreaming
             }
         }   // startStreaming
-
-    /*    private void InsertToolChangeCode(int line, ref bool inSpindle)
-        {
-            Logger.Info("InsertToolChangeCode line:{0} tool is in spindle:{1}", line, inSpindle);
-            streamingBuffer.Add("($TS)", line);         // keyword for receiving-buffer (sendBuffer.GetConfirmedLine();) "Tool change start"
-            if (inSpindle)
-            {
-                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
-                inSpindle = false;
-                if (gcodeVariable.ContainsKey("TOLN"))
-                { streamingBuffer.Add("($TO T" + gcodeVariable["TOLN"] + ")", line); }   // keyword for receiving-buffer "Tool removed"
-                else
-                {
-                    AddToLog("InsertToolChangeCode var 'TOLN' not set!");
-                    Logger.Error("InsertToolChangeCode var 'TOLN' not set!");
-                }
-            }
-            if (!Properties.Settings.Default.ctrlToolChangeEmpty || (gcodeVariable["TOAN"] != (int)Properties.Settings.Default.ctrlToolChangeEmptyNr))
-            {
-                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptSelect, line);
-                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptGet, line);
-                inSpindle = true;
-                streamingBuffer.Add("($TI T" + gcodeVariable["TOAN"] + ")", line);  // keyword for receiving-buffer "Tool inserted"
-                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptProbe, line);
-            }
-
-            streamingBuffer.Add("($TE)", line);         // keyword for receiving-buffer "Tool change finished"
-
-            if (Properties.Settings.Default.ctrlToolScriptDelay > 0)
-                streamingBuffer.Add(string.Format("G4 P{0:0.00}", Properties.Settings.Default.ctrlToolScriptDelay), line);
-
-            // save actual tool info as last tool info
-            gcodeVariable["TOLN"] = gcodeVariable["TOAN"];	// TOol Last Number = TOol Actual Number
-            gcodeVariable["TOLX"] = gcodeVariable["TOAX"];
-            gcodeVariable["TOLY"] = gcodeVariable["TOAY"];
-            gcodeVariable["TOLZ"] = gcodeVariable["TOAZ"];
-            gcodeVariable["TOLA"] = gcodeVariable["TOAA"];
-        }*/
 
         private void AddCodeFromFile(string fileRaw, int linenr)
         {
@@ -907,27 +883,6 @@ namespace GrblPlotter
 
             ListAccessoryStateRunTime(false);
         }
-
-   /*     private void SetToolChangeCoordinates(int cmdTNr, string line = "")
-        {
-            ToolProperty toolInfo = ToolList.GetToolProperties(cmdTNr);
-            gcodeVariable["TOAN"] = cmdTNr;
-            if (toolInfo.ToolNr != cmdTNr)
-            {
-                gcodeVariable["TOAX"] = gcodeVariable["TOAY"] = gcodeVariable["TOAZ"] = gcodeVariable["TOAA"] = 0;
-                if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[Tool change: " + cmdTNr.ToString() + " no Information found! (" + line + ")]");
-            }
-            else
-            {   // get new values
-                double tx, ty, tz, ta;
-                gcodeVariable["TOAX"] = tx = toolInfo.Position.X + (double)Properties.Settings.Default.toolTableOffsetX;
-                gcodeVariable["TOAY"] = ty = toolInfo.Position.Y + (double)Properties.Settings.Default.toolTableOffsetY;
-                gcodeVariable["TOAZ"] = tz = toolInfo.Position.Z + (double)Properties.Settings.Default.toolTableOffsetZ;
-                gcodeVariable["TOAA"] = ta = toolInfo.Position.A + (double)Properties.Settings.Default.toolTableOffsetA;
-                string coord = string.Format("X:{0:0.0} Y:{1:0.0} Z:{2:0.0} A:{3:0.0}", tx, ty, tz, ta);
-                if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord + "]");
-            }
-        }*/
 
         private void StreamingMonitor()
         {

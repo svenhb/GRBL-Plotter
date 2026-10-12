@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Параметры автоматической смены пера</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Скрипты автоматической смены пера</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ G1 F100 = низкая скорость
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Копирует все команды «pick-up» в буфер обмена для их вставки в текстовый редактор скрипта.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Редактировать скрипт в блокноте</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Выбрать скрипт через диалоговое окно выбора файла</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Имя переменной для использования кода в скриптах</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Имя переменной для использования кода в скриптах</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Задайте стандартный G-код, разделив команды на разные строки с помощью символа «;».
+Либо укажите имя файла, содержащего G-код.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Отправляет следующий G-код при приостановке или остановке.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Если необходимо сменить перо, потоковая передача приостанавливается, и появляется всплывающее окно с запросом нужного цвета пера.
+В текстовом поле ниже можно определить команды, которые будут отправлены после начала паузы, например, для перемещения держателя пера вперед, чтобы облегчить смену пера.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Ручная смена пера</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Этот путь не будет сохранен в файле настройки устройства смены перьев.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Текст на кнопке</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Текст на кнопке</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Текст на кнопке</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Текст на кнопке</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Если значение равно 0, будет обработан только параметр «Вставлять также в начало пути».</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Отмечено: линия будет разделена на сегменты равной длины (не превышающей заданную).
+Не отмечено: последний сегмент будет короче остальных, а все остальные будут иметь точно заданную длину.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Разбивайте длинные прямолинейные перемещения на более короткие с заданной максимальной длиной.
+Не используйте совместно с «Относительными перемещениями».</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Скрипт разделения траектории</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Равноудаленные сегменты</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Вставка подпрограммы</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Вставлять подпрограмму через заданный интервал длины сегмента.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Включить разделение траектории</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Команды подъема/опускания инструмента до/после подпрограммы</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Вставка в начале каждого участка траектории</value>
+    <comment>1</comment>
   </data>
 </root>

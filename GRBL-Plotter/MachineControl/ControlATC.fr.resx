@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Options de changement automatique de stylo</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Scripts de changement automatique de stylo</value>
     <comment>f</comment>
@@ -276,5 +272,89 @@ Variables :
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Copie toutes les commandes « pick-up » dans le Presse-papiers pour les insérer dans l'éditeur de texte du script.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Modifier le script dans le Bloc-notes</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Sélectionner le script via la boîte de dialogue Fichier</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Nom de la variable à utiliser pour le code dans les scripts</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Nom de la variable à utiliser pour le code dans les scripts</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Attribue du code G standard ; séparez les instructions sur des lignes différentes en utilisant « ; » comme séparateur.
+Ou bien, indiquez le nom d'un fichier contenant du code G.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Envoie le code G suivant lors d'une pause ou d'un arrêt.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Si le stylo doit être changé, le flux vidéo s'interrompt et une fenêtre s'affiche pour demander la couleur du stylo souhaité.
+
+Dans la zone de texte ci-dessous, vous pouvez définir des commandes qui seront envoyées après le début de la pause, par exemple pour déplacer le porte-stylo vers l'avant afin de faciliter le changement de stylo.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Changement manuel de stylo</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Ce chemin ne sera pas enregistré dans le fichier de configuration du changeur de stylo.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Texte sur le bouton</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Texte sur le bouton</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Texte sur le bouton</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Texte sur le bouton</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Si la valeur est 0, seule l'option « Insérer également au début du chemin » sera prise en compte.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Coché : la ligne sera divisée en segments de longueur égale (≤ longueur spécifiée)
+Non coché : le dernier segment est plus court, tous les autres ont exactement la longueur spécifiée</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Fractionnez les longs déplacements rectilignes en déplacements plus courts ne dépassant pas la longueur maximale spécifiée.
+Ne pas utiliser avec les « déplacements relatifs ».</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Script de découpe de tracés</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Segments équidistants</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Insérer une sous-routine</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Insérer une sous-routine après chaque segment de longueur donnée.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Activer la découpe des tracés</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Appliquer une commande de levée/pose du stylo avant/après la sous-routine</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Insérer au début de chaque tracé</value>
+    <comment>1</comment>
   </data>
 </root>

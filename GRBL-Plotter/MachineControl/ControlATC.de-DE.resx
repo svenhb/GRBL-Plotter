@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Optionen für den automatischen Stiftwechsel</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Skripte für den automatischen Stiftwechsel</value>
     <comment>f</comment>
@@ -276,5 +272,88 @@ Variablen:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Kopiert alle „pick-up“-Befehle in die Zwischenablage, um sie in den Texteditor für das Skript einzufügen.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Skript in Notepad bearbeiten</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Skript über Dateidialog auswählen</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Name der Variable für die Verwendung des Codes in Skripten</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Name der Variable für die Verwendung des Codes in Skripten</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Weist regulären G-Code zu; trennen Sie den Code mithilfe von „;“ in verschiedene Zeilen auf.
+Alternativ kann ein Dateiname angegeben werden, der G-Code enthält.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Sendet den folgenden G-Code bei Pause oder Stopp.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Wenn ein Stift gewechselt werden muss, wird der Stream angehalten und ein Fenster erscheint, in dem die gewünschte Stiftfarbe ausgewählt werden kann.
+Im Textfeld darunter können Befehle definiert werden, die nach Beginn der Pause gesendet werden, z. B. um den Stiftgriff nach vorne zu bewegen und so den Stiftwechsel zu erleichtern.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Manueller Stiftwechsel</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Dieser Pfad wird nicht in der Konfigurationsdatei für den Werkzeugwechsler gespeichert.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Text auf der Schaltfläche</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Text auf der Schaltfläche</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Text auf der Schaltfläche</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Text auf der Schaltfläche</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Wenn der Wert 0 ist, wird nur „Auch am Pfadanfang einfügen“ verarbeitet.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Aktiviert: Eine Linie wird in Segmente gleicher Länge (≤ vorgegebene Länge) unterteilt.
+Deaktiviert: Das letzte Liniensegment ist kürzer, alle anderen haben genau die vorgegebene Länge.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Unterteilt lange, gerade Bewegungen in kürzere Bewegungen mit der maximal zulässigen Länge.
+Nicht in Verbindung mit „relativen Bewegungen“ verwenden.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Skript für Teilungsoperationen</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Äquidistante Segmente</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Unterprogramm einfügen</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Unterprogramm nach jeder vorgegebenen Segmentlänge einfügen.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Pfadteilung aktivieren</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Stift anheben/absenken vor/nach Unterprogramm</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Am Anfang jedes Pfads einfügen</value>
+    <comment>1</comment>
   </data>
 </root>

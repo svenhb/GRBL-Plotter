@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GbSelection.Text" xml:space="preserve">
-    <value>Opciones de cambio automático de pluma</value>
-    <comment>f</comment>
-  </data>
   <data name="GbScripts.Text" xml:space="preserve">
     <value>Scripts de cambio automático de pluma</value>
     <comment>f</comment>
@@ -276,5 +272,89 @@ Variables:
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>Copia todos los comandos de «recogida» al portapapeles para insertarlos en el editor de texto del script.</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Editar script en el Bloc de notas</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>Seleccionar script mediante el cuadro de diálogo de archivos</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Nombre de la variable para utilizar el código en scripts</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Nombre de la variable para utilizar el código en scripts</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Asigna código G estándar, separando las instrucciones en líneas distintas mediante el carácter «;».
+O bien, asigna un nombre de archivo que contenga código G.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Envía el siguiente código G al pausar o detener.</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>Si es necesario cambiar el lápiz, la transmisión se pausa y aparece una ventana emergente para solicitar el color deseado.
+
+En el cuadro de texto inferior, se pueden definir comandos que se enviarán al iniciarse la pausa, por ejemplo, para mover el soporte del lápiz hacia adelante y facilitar el cambio.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>Cambio manual de pluma</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Esta ruta no se guardará en el archivo de configuración del cambiador de plumas.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>Texto del botón</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>Texto del botón</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>Texto del botón</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>Texto del botón</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Si el valor es 0, solo se procesará la opción «Insertar también al inicio de la ruta».</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Marcado: La línea se dividirá en segmentos de igual longitud (≤ longitud especificada).
+Sin marcar: El último segmento será más corto; todos los demás tendrán exactamente la longitud especificada.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Divida los movimientos largos y rectos en movimientos más cortos con la longitud máxima especificada.
+No utilizar con "Movimientos relativos".</value>
+    <comment>tt</comment>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>Script de división de trazados</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>Segmentos equidistantes</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Insertar subrutina</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Insertar subrutina tras cada segmento de longitud determinada.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Habilitar división de trazados</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Aplicar levantar/bajar pluma antes/después de la subrutina</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Insertar al inicio de cada trazado</value>
+    <comment>1</comment>
   </data>
 </root>

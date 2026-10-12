@@ -50,7 +50,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Globalization;
 using System.Linq;
 
 namespace GrblPlotter
@@ -93,7 +92,7 @@ namespace GrblPlotter
                 width = (float)penwidth;
                 offsetView = offset;
 
-                if (width <= 0)
+                if (width < 0)  // <= removed 2026-09-13
                     width = (float)Properties.Settings.Default.gui2DWidthPenDown;
                 pen = new Pen(colr, width)
                 {
@@ -261,7 +260,7 @@ namespace GrblPlotter
                                                                                                //    Logger.Trace("CalcWidth-S  min:{0} max:{1}  diff:{2}  lastS:{3}  showHalftoneLastS:{4} width:{5:0.0}", showHalftoneMin, showHalftoneMax, diff, lastS, showHalftoneLastS, width);
                 }
 
-                else if (showHalftoneZ && (showHalftoneLastZ != lastZ))
+                else if (showHalftoneZ && ((showHalftoneLastZ != lastZ) || (lastZ==0)))
                 {
                     diff = showHalftoneMax - showHalftoneMin;
                     width = Math.Abs((lastZ - showHalftoneMin) * showHalftoneWidth / diff);    // calculate pen-width
@@ -382,8 +381,8 @@ namespace GrblPlotter
             else if (Properties.Settings.Default.gui2DShowVertexEnable)
             { Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!", Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize); }
 
-        //    if (showColors)
-        //        ToolTable.Init(" (GetGCodeLines)");
+            //    if (showColors)
+            //        ToolTable.Init(" (GetGCodeLines)");
 
             worker?.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
             int progressMain;
@@ -438,7 +437,7 @@ namespace GrblPlotter
 
                         if (countZ == 0)
                             HalfTone.lastZ = double.MaxValue;
-                 //       penProp = ToolTable.FindToolByFSZ(HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ, penProp);
+                        //       penProp = ToolTable.FindToolByFSZ(HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ, penProp);
                         PathData tmp = new PathData(penProp.Color, penProp.Diameter, offset2DView);
                         pathObject.Add(tmp);
                         pathActualDown = pathObject[pathObject.Count - 1].path;
@@ -954,7 +953,7 @@ namespace GrblPlotter
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
                     else
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
-                 //   Logger.Trace("⛭ FigureStart color:{0}  width:{1}", XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);
+                                                                                                                                                    //   Logger.Trace("⛭ FigureStart color:{0}  width:{1}", XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);
 
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;

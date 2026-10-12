@@ -4217,13 +4217,13 @@ namespace GrblPlotter
             // tab1_3gB1
             // 
             this.tab1_3gB1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab1_3gB1.Controls.Add(this.tBImportGCSubroutine);
             this.tab1_3gB1.Controls.Add(this.cBimportGCSubPenUpDown);
             this.tab1_3gB1.Controls.Add(this.nUDImportGCLineSegment);
             this.tab1_3gB1.Controls.Add(this.btnFileDialogSubR);
             this.tab1_3gB1.Controls.Add(this.cBImportGCSubFirst);
             this.tab1_3gB1.Controls.Add(this.btnShowScriptSub);
             this.tab1_3gB1.Controls.Add(this.cBImportGCLineSegmentsEquidistant);
-            this.tab1_3gB1.Controls.Add(this.tBImportGCSubroutine);
             this.tab1_3gB1.Controls.Add(this.cBImportGCSubEnable);
             this.tab1_3gB1.Controls.Add(this.cBImportGCLineSegments);
             resources.ApplyResources(this.tab1_3gB1, "tab1_3gB1");

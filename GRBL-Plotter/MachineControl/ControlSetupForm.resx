@@ -16134,6 +16134,30 @@ Note: Don't use 'Sort objects by pen index'</value>
   <data name="&gt;&gt;tab1_3gB4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="tBImportGCSubroutine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 88</value>
+  </data>
+  <data name="tBImportGCSubroutine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 20</value>
+  </data>
+  <data name="tBImportGCSubroutine.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>Path to file with subroutine</value>
+  </data>
+  <data name="&gt;&gt;tBImportGCSubroutine.Name" xml:space="preserve">
+    <value>tBImportGCSubroutine</value>
+  </data>
+  <data name="&gt;&gt;tBImportGCSubroutine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBImportGCSubroutine.Parent" xml:space="preserve">
+    <value>tab1_3gB1</value>
+  </data>
+  <data name="&gt;&gt;tBImportGCSubroutine.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBimportGCSubPenUpDown.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -16162,7 +16186,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;cBimportGCSubPenUpDown.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nUDImportGCLineSegment.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 19</value>
@@ -16189,7 +16213,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;nUDImportGCLineSegment.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFileDialogSubR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -16216,7 +16240,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;btnFileDialogSubR.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportGCSubFirst.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -16246,7 +16270,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCSubFirst.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnShowScriptSub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -16276,7 +16300,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;btnShowScriptSub.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -16310,30 +16334,6 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
     <value>tab1_3gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCLineSegmentsEquidistant.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tBImportGCSubroutine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 87</value>
-  </data>
-  <data name="tBImportGCSubroutine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 20</value>
-  </data>
-  <data name="tBImportGCSubroutine.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
-    <value>Path to file with subroutine</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCSubroutine.Name" xml:space="preserve">
-    <value>tBImportGCSubroutine</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCSubroutine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCSubroutine.Parent" xml:space="preserve">
-    <value>tab1_3gB1</value>
-  </data>
-  <data name="&gt;&gt;tBImportGCSubroutine.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="cBImportGCSubEnable.AutoSize" type="System.Boolean, mscorlib">

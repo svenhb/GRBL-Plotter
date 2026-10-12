@@ -1,4 +1,28 @@
-﻿using GrblPlotter.UserControls;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/* 
+ * 2026-08-20 add new variables TOV1 - TOV8
+ * 2026-09-06 add change of Script-Button Text
+*/
+
+using GrblPlotter.UserControls;
 using NLog;
 using System;
 using System.Diagnostics;
@@ -26,7 +50,7 @@ namespace GrblPlotter.MachineControl
         {
             this.Icon = Properties.Resources.Icon;
             InitializeComponent();
-            ToolChanger.Init();
+        //    ToolChanger.Init();		// read defaut XML
         }
         private void ControlATC_Load(object sender, EventArgs e)
         {
@@ -35,8 +59,9 @@ namespace GrblPlotter.MachineControl
             RbPenChange1.Checked = psd.DevicePlotterPenChangeRBManual;
             RbPenChange2.Checked = psd.DevicePlotterPenChangeRBAutomatic;
             EnableAutomatic(RbPenChange2.Checked);
+            ToolChanger.Init();     // read defaut XML
             FillListView();
-            RbPenChange2.CheckedChanged += RbPenChange2_CheckedChanged;
+            SetTbTitle();
         }
         private void BtnPresetX_Click(object sender, EventArgs e)
         {
@@ -82,6 +107,7 @@ namespace GrblPlotter.MachineControl
             {
                 tp = ToolChanger.toolPositionArray[i];
                 item = new ListViewItem(tp.ToolNr.ToString());
+                //    item.SubItems.Add((tp.ToolNr.ToString());
                 item.SubItems.Add(tp.Position.X.ToString("0.0"));
                 item.SubItems.Add(tp.Position.Y.ToString("0.0"));
                 item.SubItems.Add(tp.Position.Z.ToString("0.0"));
@@ -107,6 +133,8 @@ namespace GrblPlotter.MachineControl
                 fileName = psd.ctrlToolScriptGet;
             else if (clickedButton.Name.IndexOf("TT4") > 0)
                 fileName = psd.ctrlToolScriptProbe;
+            else if (clickedButton.Name.IndexOf("TT5") > 0)
+                fileName = psd.importGCSubroutine;
 
             Logger.Trace("BtnEditFileDialogTT_Click '{0}'", fileName);
             string ipath = Datapath.MakeAbsolutePath(fileName);
@@ -129,6 +157,8 @@ namespace GrblPlotter.MachineControl
                 SetFilePath(tBToolChangeScriptGet);
             else if (clickedButton.Name.IndexOf("TT4") > 0)
                 SetFilePath(tBToolChangeScriptProbe);
+            else if (clickedButton.Name.IndexOf("TT5") > 0)
+                SetFilePath(tBSubroutine);
         }
         private void SetFilePath(TextBox tmp, string filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*")
         {
@@ -265,13 +295,21 @@ namespace GrblPlotter.MachineControl
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                UseWaitCursor = true;
+                Application.DoEvents();
                 Logger.Trace("BtnLoad_Click Load tool changer: {0}", ofd.FileName);
                 ToolChanger.ReadXML(ofd.FileName);
                 RbPenChange2.Checked = true;
+                Logger.Trace("BtnLoad_Click '{0}'  '{1}'  '{2}'  '{3}'", ToolChanger.TitlePut, ToolChanger.TitleSelect, ToolChanger.TitleGet, ToolChanger.TitleProbe);
+                TbTitlePut.Text = ToolChanger.TitlePut;
+                TbTitleSelect.Text = ToolChanger.TitleSelect;
+                TbTitleGet.Text = ToolChanger.TitleGet;
+                TbTitleProbe.Text = ToolChanger.TitleProbe;
             }
             ofd.Dispose();
             ToolChanger.WriteXML(); // save as default
             FillListView();
+            UseWaitCursor = false;
         }
 
         private void TbDescription_TextChanged(object sender, EventArgs e)
@@ -318,22 +356,48 @@ namespace GrblPlotter.MachineControl
 
         private void ControlATC_FormClosing(object sender, FormClosingEventArgs e)
         {
+            UpdatePenChange();
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
+        }
+
+        // ATC mode changed
+        private void RbPenChange_CheckedChanged(object sender, EventArgs e)
+        {
+            // visibillity
+            GbManualPenChange.SuspendLayout();
+            TabControlAutomatic.SuspendLayout();
+            GbPreset.SuspendLayout();
+            GbManualPenChange.Visible = RbPenChange1.Checked;
+            GbPreset.Visible = RbPenChange2.Checked;
+            TabControlAutomatic.Visible = RbPenChange2.Checked;
+            GbManualPenChange.ResumeLayout();
+            TabControlAutomatic.ResumeLayout();
+            GbPreset.ResumeLayout();
+
+            // other GUI controls
+            var psd = Properties.Settings.Default;
+            psd.DevicePlotterPenChangeRBNo = RbPenChange0.Checked;
+            psd.DevicePlotterPenChangeRBManual = RbPenChange1.Checked;
+            psd.DevicePlotterPenChangeRBAutomatic = RbPenChange2.Checked;
+            psd.gui2DToolTableShow = RbPenChange2.Checked;
+            Properties.Settings.Default.Save();
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
+        }
+
+        private void UpdatePenChange()
+        {
             var psd = Properties.Settings.Default;
             psd.DevicePlotterPenChangeRBNo = RbPenChange0.Checked;
             psd.DevicePlotterPenChangeRBManual = RbPenChange1.Checked;
             psd.DevicePlotterPenChangeRBAutomatic = RbPenChange2.Checked;
             Properties.Settings.Default.Save();
+            GetTbTitle();
             ToolChanger.WriteXML();
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
         }
-
-        private void RbPenChange2_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableAutomatic(RbPenChange2.Checked);
-        }
         private void EnableAutomatic(bool enable)
         {
-            TabControlAutomatic.Enabled = enable;
+            //    TabControlAutomatic.Enabled = enable;
             Properties.Settings.Default.gui2DToolTableShow = enable;
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
         }
@@ -398,6 +462,50 @@ namespace GrblPlotter.MachineControl
                 all += this.Controls.Find(part + i.ToString(), true)[0].Text + "\r\n";
             }
             System.Windows.Forms.Clipboard.SetText(all);
+        }
+
+        private bool blockEvent = false;
+        private void SetTbTitle()
+        {
+            blockEvent = true;
+            Logger.Trace("SetTbTitle '{0}'  '{1}'  '{2}'  '{3}'", ToolChanger.TitlePut, ToolChanger.TitleSelect, ToolChanger.TitleGet, ToolChanger.TitleProbe);
+            TbTitlePut.Text = ToolChanger.TitlePut;
+            TbTitleSelect.Text = ToolChanger.TitleSelect;
+            TbTitleGet.Text = ToolChanger.TitleGet;
+            TbTitleProbe.Text = ToolChanger.TitleProbe;
+            blockEvent = false;
+        }
+        private void GetTbTitle()
+        {
+            if (!blockEvent)
+            {
+                Logger.Trace("GetTbTitle '{0}'  '{1}'  '{2}'  '{3}'", ToolChanger.TitlePut, ToolChanger.TitleSelect, ToolChanger.TitleGet, ToolChanger.TitleProbe);
+                ToolChanger.TitlePut = TbTitlePut.Text;
+                ToolChanger.TitleSelect = TbTitleSelect.Text;
+                ToolChanger.TitleGet = TbTitleGet.Text;
+                ToolChanger.TitleProbe = TbTitleProbe.Text;
+            }
+        }
+        private void TbTitle_TextChanged(object sender, EventArgs e)
+        {
+            GetTbTitle();
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
+        }
+
+        private void tBToolChangeScript_TextChanged(object sender, EventArgs e)
+        {
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
+        }
+
+        private void cBImportGCSubEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
+            timer1.Stop();
         }
     }
 }

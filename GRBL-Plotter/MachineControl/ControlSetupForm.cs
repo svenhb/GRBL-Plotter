@@ -138,7 +138,7 @@ namespace GrblPlotter
                 string[] tmp = ToolTable.defaultTool;  // { "1", "000000", "Black", "0.0", "0.0", "0.0", "3.0", "500" };
                 dGVToolList.Rows.Add(tmp);
             }*/
-        //    FillToolTableFileList(Datapath.Tools);
+        //    FillColorPaletteFileList(Datapath.Tools);
             FillUseCaseFileList(Datapath.Usecases);
         //    lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
             tab2gB1.Text += " ( " + Datapath.Tools + " )";
@@ -721,7 +721,7 @@ namespace GrblPlotter
             if (lblSetIndex == 3) { tBShapeSet3.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
             if (lblSetIndex == 4) { tBShapeSet4.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
         }
-
+/*
         private void ExportDgvToCSV(string file)
         {
             // fields: ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z - speed,Z - save,Z - depth,Z - step, spindleSpeed, overlap, gcode
@@ -773,10 +773,10 @@ namespace GrblPlotter
                 //				throw;		// unknown exception...
             }
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
-            FillToolTableFileList(Datapath.Tools);
+            FillColorPaletteFileList(Datapath.Tools);
         }
-
-        private bool ImportCSVToDgv(string file)
+*/
+  /*      private bool ImportCSVToDgv(string file)
         {
             if (File.Exists(file))
             {
@@ -843,7 +843,7 @@ namespace GrblPlotter
             }
             return false;
         }
-
+  */
         private void DgvToolList_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             // change color if changed
@@ -964,7 +964,7 @@ namespace GrblPlotter
             {
                 ExportDgvToCSV(saveFileDialog1.FileName);
             }
-            FillToolTableFileList(Datapath.Tools);
+            FillColorPaletteFileList(Datapath.Tools);
             saveFileDialog1.Dispose();*/
         }
 
@@ -1017,7 +1017,7 @@ namespace GrblPlotter
                 try
                 {
                     File.Delete(path);
-                    FillToolTableFileList(Datapath.Tools);
+        //            FillColorPaletteFileList(Datapath.Tools);
                 }
                 catch (IOException err)
                 {
@@ -1461,7 +1461,7 @@ namespace GrblPlotter
             btnDown.Visible = enabled;
         }
 
-        private void FillToolTableFileList(string filepath)
+   /*     private void FillColorPaletteFileList(string filepath)
         {
             try
             {
@@ -1478,9 +1478,9 @@ namespace GrblPlotter
                     }
                 }
             }
-            catch (Exception err) { Logger.Error(err, "FillToolTableFileList "); }
+            catch (Exception err) { Logger.Error(err, "FillColorPaletteFileList "); }
         }
-
+   */
 
 
         private void CbToolLaser_CheckedChanged(object sender, EventArgs e)

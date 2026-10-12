@@ -389,17 +389,17 @@
     <value>رقم الأداة:</value>
   </data>
   <data name="RbPenChange2.Text" xml:space="preserve">
-    <value>تغيير القلم تلقائيًا</value>
+    <value>تغيير تلقائي للقلم</value>
   </data>
   <data name="RbPenChange2.ToolTip" xml:space="preserve">
-    <value>إدراج أمر تغيير الأداة 'Tx M06' لتنفيذ عملية تغيير القلم آلياً.</value>
+    <value>أدرج أمر تغيير الأداة "Tx M06" لإجراء تغيير تلقائي للقلم.</value>
     <comment>tt</comment>
   </data>
   <data name="RbPenChange1.Text" xml:space="preserve">
     <value>تغيير القلم يدويًا</value>
   </data>
   <data name="RbPenChange1.ToolTip" xml:space="preserve">
-    <value>أدرج وقفةً قبل استخدام قلم جديد للسماح بالتغيير اليدوي.</value>
+    <value>أدخل فاصلًا قبل استخدام قلم جديد، للسماح بإجراء التغيير يدويًا.</value>
     <comment>tt</comment>
   </data>
   <data name="RbPenChange0.Text" xml:space="preserve">
@@ -413,7 +413,7 @@
     <value>D</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>إعداد تغيير القلم التلقائي</value>
+    <value>إعداد التغيير التلقائي للقلم</value>
   </data>
   <data name="BtnOffsetGet.Text" xml:space="preserve">
     <value>الحصول على الإزاحة</value>
@@ -479,7 +479,7 @@ G1 F100 = سرعة منخفضة
     <comment>gb</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>خطوة بخطوة</value>
+    <value>المتغيرات وخطوة بخطوة</value>
     <comment>tab</comment>
   </data>
   <data name="BtnSendRemove8.Text" xml:space="preserve">
@@ -519,5 +519,104 @@ G1 F100 = سرعة منخفضة
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>ينسخ جميع أوامر "الالتقاط" (pick-up) إلى الحافظة، ليتم إدراجها في محرر النصوص الخاص بالبرنامج النصي (script).</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.Text" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>تحرير البرنامج النصي في المفكرة</value>
+  </data>
+  <data name="btnFileDialogTT5.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>تحديد البرنامج النصي من خلال مربع حوار الملف</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>اسم المتغير لاستخدام الكود في النصوص البرمجية</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>اسم المتغير لاستخدام الكود في النصوص البرمجية</value>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>تقسيم حركات السكربت</value>
+    <comment>1</comment>
+  </data>
+  <data name="GbVariables.Text" xml:space="preserve">
+    <value>متغيرات حرة متاحة للاستخدام</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>قم بتعيين أوامر G-Code عادية، مع فصل الأوامر في أسطر مختلفة باستخدام الرمز ";" كفاصل.
+أو قم بتعيين اسم ملف يحتوي على أوامر G-Code.</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>أرسل كود G (G-code) التالي عند الإيقاف المؤقت أو الإيقاف.</value>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>التحكم في التدفق للبث</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>إذا لزم تغيير القلم، يتوقف البث مؤقتًا وتظهر نافذة تطلب لون القلم المطلوب.
+
+في مربع النص أدناه، يمكن تحديد الأوامر التي تُرسل بعد بدء التوقف المؤقت، على سبيل المثال، لتحريك ماسك القلم إلى الأمام لتسهيل عملية تغيير القلم.</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>تغيير القلم يدويًا</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>لن يتم حفظ هذا المسار داخل ملف إعدادات مغير الأقلام.</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>النص على الزر</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>النص على الزر</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>النص على الزر</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>النص على الزر</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>إذا كانت القيمة 0، فسيتم تنفيذ خيار "الإدراج عند بداية المسار" فقط</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>قطاعات متساوية المسافة</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>عند التحديد: سيتم تقسيم الخط إلى أجزاء متساوية الطول (أقل من أو تساوي الطول المحدد).
+عند عدم التحديد: سيكون الجزء الأخير أقصر، بينما تكون بقية الأجزاء مطابقة تماماً للطول المحدد.</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>إدراج روتين فرعي</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>أدرج روتيناً فرعياً بعد كل طول مقطع محدد.</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>تفعيل تقسيم المسارات</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>قسّم الحركات المستقيمة الطويلة إلى حركات أقصر بحيث لا تتجاوز الطول الأقصى المحدد.
+لا تستخدم هذا الخيار مع "الحركات النسبية" (Relative movements).</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>تطبيق أمر رفع/خفض القلم قبل/بعد الروتين الفرعي</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>الإدراج عند بداية كل مسار</value>
+    <comment>1</comment>
   </data>
 </root>

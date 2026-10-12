@@ -479,7 +479,7 @@ G1 F100 = 低速运行
     <comment>gb</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>循序渐进</value>
+    <value>变量与分步说明</value>
     <comment>tab</comment>
   </data>
   <data name="BtnSendRemove8.Text" xml:space="preserve">
@@ -519,5 +519,103 @@ G1 F100 = 低速运行
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>将所有“拾取”（pick-up）命令复制到剪贴板，以便将其插入文本编辑器用于脚本编写。</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>在记事本中编辑脚本</value>
+  </data>
+  <data name="btnFileDialogTT5.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>通过文件对话框选择脚本</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>在脚本中使用该代码时所采用的变量名称</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>在脚本中使用该代码时所采用的变量名称</value>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>脚本拆分动作</value>
+    <comment>1</comment>
+  </data>
+  <data name="GbVariables.Text" xml:space="preserve">
+    <value>可使用的自由变量</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>指定常规 G 代码，使用“;”作为分隔符将代码分行；或者指定一个包含 G 代码的文件名。</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>在暂停或停止时发送以下 G-code</value>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>流式传输的流控制</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>如果需要更换笔，视频流会暂停，并弹出一个窗口询问所需的笔颜色。
+
+您可以在下面的文本框中定义命令，这些命令会在暂停开始后发送，例如，将笔夹移到前面，以便更轻松地更换笔。</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>手动换笔</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>此路径不会保存在换笔器设置文件中。</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>按钮上的文字</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>按钮上的文字</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>按钮上的文字</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>按钮上的文字</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>如果值为 0，则仅处理“同时在路径起点插入”选项</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>等距线段</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>勾选：将线条分割为长度相等（≤ 指定长度）的线段
+未勾选：除最后一段较短外，其余线段长度均等于指定长度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>插入子程序</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>在每段指定的长度之后插入子程序。</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>启用路径拆分</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>将长直线移动分割为不超过指定最大长度的短移动。
+请勿与“相对移动”配合使用。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>在子程序前后执行抬笔/落笔操作</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>在每条路径的起点插入</value>
+    <comment>1</comment>
   </data>
 </root>

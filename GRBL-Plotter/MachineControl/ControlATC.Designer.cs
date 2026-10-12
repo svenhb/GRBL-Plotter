@@ -35,6 +35,10 @@
             this.RbPenChange1 = new System.Windows.Forms.RadioButton();
             this.RbPenChange0 = new System.Windows.Forms.RadioButton();
             this.GbScripts = new System.Windows.Forms.GroupBox();
+            this.TbTitleProbe = new System.Windows.Forms.TextBox();
+            this.TbTitleGet = new System.Windows.Forms.TextBox();
+            this.TbTitleSelect = new System.Windows.Forms.TextBox();
+            this.TbTitlePut = new System.Windows.Forms.TextBox();
             this.BtnEditFileDialogTT4 = new System.Windows.Forms.Button();
             this.BtnEditFileDialogTT3 = new System.Windows.Forms.Button();
             this.BtnEditFileDialogTT2 = new System.Windows.Forms.Button();
@@ -68,9 +72,19 @@
             this.BtnCopyPickUp = new System.Windows.Forms.Button();
             this.BtnCopyRemove = new System.Windows.Forms.Button();
             this.BtnSetToolNr1 = new System.Windows.Forms.Button();
+            this.BtnEditFileDialogTT5 = new System.Windows.Forms.Button();
+            this.btnFileDialogTT5 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tBflowControl = new System.Windows.Forms.TextBox();
+            this.nUDImportGCLineSegment = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCLineSegmentsEquidistant = new System.Windows.Forms.CheckBox();
+            this.cBImportGCSubEnable = new System.Windows.Forms.CheckBox();
+            this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
             this.GbPreset = new System.Windows.Forms.GroupBox();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnLoad = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TbGripperClose = new System.Windows.Forms.TextBox();
             this.TbGripperOpen = new System.Windows.Forms.TextBox();
@@ -120,7 +134,30 @@
             this.LblToolNr = new System.Windows.Forms.Label();
             this.NudEditX = new System.Windows.Forms.NumericUpDown();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GbSplitScript = new System.Windows.Forms.GroupBox();
+            this.cBimportGCSubPenUpDown = new System.Windows.Forms.CheckBox();
+            this.cBImportGCSubFirst = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tBSubroutine = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.GbVariables = new System.Windows.Forms.GroupBox();
+            this.TbVar8 = new System.Windows.Forms.TextBox();
+            this.LblVar8 = new System.Windows.Forms.Label();
+            this.TbVar7 = new System.Windows.Forms.TextBox();
+            this.LblVar7 = new System.Windows.Forms.Label();
+            this.TbVar6 = new System.Windows.Forms.TextBox();
+            this.LblVar6 = new System.Windows.Forms.Label();
+            this.TbVar5 = new System.Windows.Forms.TextBox();
+            this.LblVar5 = new System.Windows.Forms.Label();
+            this.TbVar4 = new System.Windows.Forms.TextBox();
+            this.LblVal4 = new System.Windows.Forms.Label();
+            this.TbVar3 = new System.Windows.Forms.TextBox();
+            this.LblVar3 = new System.Windows.Forms.Label();
+            this.TbVar2 = new System.Windows.Forms.TextBox();
+            this.LblVar2 = new System.Windows.Forms.Label();
+            this.TbVar1 = new System.Windows.Forms.TextBox();
+            this.LblVar1 = new System.Windows.Forms.Label();
+            this.BtnHoming2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BtnSendRemove8 = new System.Windows.Forms.Button();
             this.BtnSendRemove7 = new System.Windows.Forms.Button();
@@ -138,7 +175,6 @@
             this.TbRemove4 = new System.Windows.Forms.TextBox();
             this.TbRemove3 = new System.Windows.Forms.TextBox();
             this.TbRemove2 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnSendPickUp8 = new System.Windows.Forms.Button();
             this.BtnSendPickUp7 = new System.Windows.Forms.Button();
@@ -156,10 +192,16 @@
             this.TbPickUp4 = new System.Windows.Forms.TextBox();
             this.TbPickUp3 = new System.Windows.Forms.TextBox();
             this.TbPickUp2 = new System.Windows.Forms.TextBox();
-            this.BtnHoming2 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tab4gB4 = new System.Windows.Forms.GroupBox();
+            this.cBflowControl = new System.Windows.Forms.CheckBox();
+            this.GbManualPenChange = new System.Windows.Forms.GroupBox();
+            this.LblManPenChange = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.GbSelection.SuspendLayout();
             this.GbScripts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudToolNr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
             this.GbPreset.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.GbOffset.SuspendLayout();
@@ -182,9 +224,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudEditY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEditX)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.GbSplitScript.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.GbVariables.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tab4gB4.SuspendLayout();
+            this.GbManualPenChange.SuspendLayout();
             this.SuspendLayout();
             // 
             // GbSelection
@@ -202,6 +249,7 @@
             this.RbPenChange2.Name = "RbPenChange2";
             this.toolTip1.SetToolTip(this.RbPenChange2, resources.GetString("RbPenChange2.ToolTip"));
             this.RbPenChange2.UseVisualStyleBackColor = true;
+            this.RbPenChange2.CheckedChanged += new System.EventHandler(this.RbPenChange_CheckedChanged);
             // 
             // RbPenChange1
             // 
@@ -209,6 +257,7 @@
             this.RbPenChange1.Name = "RbPenChange1";
             this.toolTip1.SetToolTip(this.RbPenChange1, resources.GetString("RbPenChange1.ToolTip"));
             this.RbPenChange1.UseVisualStyleBackColor = true;
+            this.RbPenChange1.CheckedChanged += new System.EventHandler(this.RbPenChange_CheckedChanged);
             // 
             // RbPenChange0
             // 
@@ -216,9 +265,15 @@
             this.RbPenChange0.Name = "RbPenChange0";
             this.toolTip1.SetToolTip(this.RbPenChange0, resources.GetString("RbPenChange0.ToolTip"));
             this.RbPenChange0.UseVisualStyleBackColor = true;
+            this.RbPenChange0.CheckedChanged += new System.EventHandler(this.RbPenChange_CheckedChanged);
             // 
             // GbScripts
             // 
+            this.GbScripts.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbScripts.Controls.Add(this.TbTitleProbe);
+            this.GbScripts.Controls.Add(this.TbTitleGet);
+            this.GbScripts.Controls.Add(this.TbTitleSelect);
+            this.GbScripts.Controls.Add(this.TbTitlePut);
             this.GbScripts.Controls.Add(this.BtnEditFileDialogTT4);
             this.GbScripts.Controls.Add(this.BtnEditFileDialogTT3);
             this.GbScripts.Controls.Add(this.BtnEditFileDialogTT2);
@@ -238,6 +293,34 @@
             resources.ApplyResources(this.GbScripts, "GbScripts");
             this.GbScripts.Name = "GbScripts";
             this.GbScripts.TabStop = false;
+            // 
+            // TbTitleProbe
+            // 
+            resources.ApplyResources(this.TbTitleProbe, "TbTitleProbe");
+            this.TbTitleProbe.Name = "TbTitleProbe";
+            this.toolTip1.SetToolTip(this.TbTitleProbe, resources.GetString("TbTitleProbe.ToolTip"));
+            this.TbTitleProbe.TextChanged += new System.EventHandler(this.TbTitle_TextChanged);
+            // 
+            // TbTitleGet
+            // 
+            resources.ApplyResources(this.TbTitleGet, "TbTitleGet");
+            this.TbTitleGet.Name = "TbTitleGet";
+            this.toolTip1.SetToolTip(this.TbTitleGet, resources.GetString("TbTitleGet.ToolTip"));
+            this.TbTitleGet.TextChanged += new System.EventHandler(this.TbTitle_TextChanged);
+            // 
+            // TbTitleSelect
+            // 
+            resources.ApplyResources(this.TbTitleSelect, "TbTitleSelect");
+            this.TbTitleSelect.Name = "TbTitleSelect";
+            this.toolTip1.SetToolTip(this.TbTitleSelect, resources.GetString("TbTitleSelect.ToolTip"));
+            this.TbTitleSelect.TextChanged += new System.EventHandler(this.TbTitle_TextChanged);
+            // 
+            // TbTitlePut
+            // 
+            resources.ApplyResources(this.TbTitlePut, "TbTitlePut");
+            this.TbTitlePut.Name = "TbTitlePut";
+            this.toolTip1.SetToolTip(this.TbTitlePut, resources.GetString("TbTitlePut.ToolTip"));
+            this.TbTitlePut.TextChanged += new System.EventHandler(this.TbTitle_TextChanged);
             // 
             // BtnEditFileDialogTT4
             // 
@@ -315,6 +398,7 @@
             resources.ApplyResources(this.tBToolChangeScriptProbe, "tBToolChangeScriptProbe");
             this.tBToolChangeScriptProbe.Name = "tBToolChangeScriptProbe";
             this.tBToolChangeScriptProbe.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolScriptProbe;
+            this.tBToolChangeScriptProbe.TextChanged += new System.EventHandler(this.tBToolChangeScript_TextChanged);
             // 
             // lbl_2
             // 
@@ -328,6 +412,7 @@
             resources.ApplyResources(this.tBToolChangeScriptSelect, "tBToolChangeScriptSelect");
             this.tBToolChangeScriptSelect.Name = "tBToolChangeScriptSelect";
             this.tBToolChangeScriptSelect.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolScriptSelect;
+            this.tBToolChangeScriptSelect.TextChanged += new System.EventHandler(this.tBToolChangeScript_TextChanged);
             // 
             // lbl_1
             // 
@@ -341,6 +426,7 @@
             resources.ApplyResources(this.tBToolChangeScriptPut, "tBToolChangeScriptPut");
             this.tBToolChangeScriptPut.Name = "tBToolChangeScriptPut";
             this.tBToolChangeScriptPut.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolScriptPut;
+            this.tBToolChangeScriptPut.TextChanged += new System.EventHandler(this.tBToolChangeScript_TextChanged);
             // 
             // lbl_3
             // 
@@ -354,6 +440,7 @@
             resources.ApplyResources(this.tBToolChangeScriptGet, "tBToolChangeScriptGet");
             this.tBToolChangeScriptGet.Name = "tBToolChangeScriptGet";
             this.tBToolChangeScriptGet.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolScriptGet;
+            this.tBToolChangeScriptGet.TextChanged += new System.EventHandler(this.tBToolChangeScript_TextChanged);
             // 
             // TbDescription
             // 
@@ -497,6 +584,90 @@
             this.BtnSetToolNr1.UseVisualStyleBackColor = true;
             this.BtnSetToolNr1.Click += new System.EventHandler(this.BtnSetToolNr1_Click);
             // 
+            // BtnEditFileDialogTT5
+            // 
+            resources.ApplyResources(this.BtnEditFileDialogTT5, "BtnEditFileDialogTT5");
+            this.BtnEditFileDialogTT5.Name = "BtnEditFileDialogTT5";
+            this.toolTip1.SetToolTip(this.BtnEditFileDialogTT5, resources.GetString("BtnEditFileDialogTT5.ToolTip"));
+            this.BtnEditFileDialogTT5.UseVisualStyleBackColor = true;
+            this.BtnEditFileDialogTT5.Click += new System.EventHandler(this.BtnEditFileDialogTT_Click);
+            // 
+            // btnFileDialogTT5
+            // 
+            resources.ApplyResources(this.btnFileDialogTT5, "btnFileDialogTT5");
+            this.btnFileDialogTT5.Name = "btnFileDialogTT5";
+            this.toolTip1.SetToolTip(this.btnFileDialogTT5, resources.GetString("btnFileDialogTT5.ToolTip"));
+            this.btnFileDialogTT5.UseVisualStyleBackColor = true;
+            this.btnFileDialogTT5.Click += new System.EventHandler(this.BtnFileDialogTT_Click);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
+            // 
+            // tBflowControl
+            // 
+            this.tBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "flowControlText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBflowControl, "tBflowControl");
+            this.tBflowControl.Name = "tBflowControl";
+            this.tBflowControl.Text = global::GrblPlotter.Properties.Settings.Default.flowControlText;
+            this.toolTip1.SetToolTip(this.tBflowControl, resources.GetString("tBflowControl.ToolTip"));
+            // 
+            // nUDImportGCLineSegment
+            // 
+            this.nUDImportGCLineSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCLineSegmentLength", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCLineSegment.DecimalPlaces = 1;
+            this.nUDImportGCLineSegment.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCLineSegment, "nUDImportGCLineSegment");
+            this.nUDImportGCLineSegment.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDImportGCLineSegment.Name = "nUDImportGCLineSegment";
+            this.toolTip1.SetToolTip(this.nUDImportGCLineSegment, resources.GetString("nUDImportGCLineSegment.ToolTip"));
+            this.nUDImportGCLineSegment.Value = global::GrblPlotter.Properties.Settings.Default.importGCLineSegmentLength;
+            // 
+            // cBImportGCLineSegmentsEquidistant
+            // 
+            resources.ApplyResources(this.cBImportGCLineSegmentsEquidistant, "cBImportGCLineSegmentsEquidistant");
+            this.cBImportGCLineSegmentsEquidistant.Checked = global::GrblPlotter.Properties.Settings.Default.importGCLineSegmentEquidistant;
+            this.cBImportGCLineSegmentsEquidistant.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCLineSegmentEquidistant", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCLineSegmentsEquidistant.Name = "cBImportGCLineSegmentsEquidistant";
+            this.toolTip1.SetToolTip(this.cBImportGCLineSegmentsEquidistant, resources.GetString("cBImportGCLineSegmentsEquidistant.ToolTip"));
+            this.cBImportGCLineSegmentsEquidistant.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCSubEnable
+            // 
+            resources.ApplyResources(this.cBImportGCSubEnable, "cBImportGCSubEnable");
+            this.cBImportGCSubEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCSubEnable;
+            this.cBImportGCSubEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCSubEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCSubEnable.Name = "cBImportGCSubEnable";
+            this.toolTip1.SetToolTip(this.cBImportGCSubEnable, resources.GetString("cBImportGCSubEnable.ToolTip"));
+            this.cBImportGCSubEnable.UseVisualStyleBackColor = true;
+            this.cBImportGCSubEnable.CheckedChanged += new System.EventHandler(this.cBImportGCSubEnable_CheckedChanged);
+            // 
+            // cBImportGCLineSegments
+            // 
+            this.cBImportGCLineSegments.Checked = global::GrblPlotter.Properties.Settings.Default.importGCLineSegmentation;
+            this.cBImportGCLineSegments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCLineSegmentation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBImportGCLineSegments, "cBImportGCLineSegments");
+            this.cBImportGCLineSegments.Name = "cBImportGCLineSegments";
+            this.toolTip1.SetToolTip(this.cBImportGCLineSegments, resources.GetString("cBImportGCLineSegments.ToolTip"));
+            this.cBImportGCLineSegments.UseVisualStyleBackColor = true;
+            this.cBImportGCLineSegments.CheckedChanged += new System.EventHandler(this.cBImportGCSubEnable_CheckedChanged);
+            // 
             // GbPreset
             // 
             this.GbPreset.Controls.Add(this.BtnHelp);
@@ -521,8 +692,16 @@
             this.BtnLoad.UseVisualStyleBackColor = true;
             this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.CbSkipM30);
             this.groupBox1.Controls.Add(this.BtnGripperClose);
             this.groupBox1.Controls.Add(this.TbGripperClose);
@@ -548,6 +727,7 @@
             // 
             // GbOffset
             // 
+            this.GbOffset.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbOffset.Controls.Add(this.BtnOffsetGet);
             this.GbOffset.Controls.Add(this.BtnOffsetMoveTo);
             this.GbOffset.Controls.Add(this.NudOffsetA);
@@ -568,12 +748,12 @@
             this.NudOffsetA.DecimalPlaces = 1;
             resources.ApplyResources(this.NudOffsetA, "NudOffsetA");
             this.NudOffsetA.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
             this.NudOffsetA.Minimum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             -2147483648});
@@ -587,12 +767,12 @@
             this.NudOffsetZ.DecimalPlaces = 1;
             resources.ApplyResources(this.NudOffsetZ, "NudOffsetZ");
             this.NudOffsetZ.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
             this.NudOffsetZ.Minimum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             -2147483648});
@@ -606,12 +786,12 @@
             this.NudOffsetY.DecimalPlaces = 1;
             resources.ApplyResources(this.NudOffsetY, "NudOffsetY");
             this.NudOffsetY.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
             this.NudOffsetY.Minimum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             -2147483648});
@@ -645,12 +825,12 @@
             this.NudOffsetX.DecimalPlaces = 1;
             resources.ApplyResources(this.NudOffsetX, "NudOffsetX");
             this.NudOffsetX.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
             this.NudOffsetX.Minimum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             -2147483648});
@@ -717,6 +897,7 @@
             // 
             // GbPresetPos
             // 
+            this.GbPresetPos.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbPresetPos.Controls.Add(this.NudPresetY);
             this.GbPresetPos.Controls.Add(this.NudPresetX);
             this.GbPresetPos.Controls.Add(this.BtnPresetY);
@@ -808,6 +989,7 @@
             this.TabControlAutomatic.Controls.Add(this.tabPage2);
             this.TabControlAutomatic.Controls.Add(this.tabPage1);
             this.TabControlAutomatic.Controls.Add(this.tabPage3);
+            this.TabControlAutomatic.Controls.Add(this.tabPage4);
             resources.ApplyResources(this.TabControlAutomatic, "TabControlAutomatic");
             this.TabControlAutomatic.Name = "TabControlAutomatic";
             this.TabControlAutomatic.SelectedIndex = 0;
@@ -825,6 +1007,7 @@
             // 
             // GbControl
             // 
+            this.GbControl.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbControl.Controls.Add(this.BtnHoming);
             this.GbControl.Controls.Add(this.label1);
             this.GbControl.Controls.Add(this.BtnStartToolProbe);
@@ -866,6 +1049,7 @@
             // 
             // GbEdit
             // 
+            this.GbEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbEdit.Controls.Add(this.label12);
             this.GbEdit.Controls.Add(this.label8);
             this.GbEdit.Controls.Add(this.label9);
@@ -1000,25 +1184,199 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.GbSplitScript);
             this.tabPage1.Controls.Add(this.GbScripts);
-            this.tabPage1.Controls.Add(this.groupBox1);
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // GbSplitScript
+            // 
+            this.GbSplitScript.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbSplitScript.Controls.Add(this.cBimportGCSubPenUpDown);
+            this.GbSplitScript.Controls.Add(this.cBImportGCSubFirst);
+            this.GbSplitScript.Controls.Add(this.nUDImportGCLineSegment);
+            this.GbSplitScript.Controls.Add(this.cBImportGCLineSegmentsEquidistant);
+            this.GbSplitScript.Controls.Add(this.cBImportGCSubEnable);
+            this.GbSplitScript.Controls.Add(this.cBImportGCLineSegments);
+            this.GbSplitScript.Controls.Add(this.label16);
+            this.GbSplitScript.Controls.Add(this.BtnEditFileDialogTT5);
+            this.GbSplitScript.Controls.Add(this.btnFileDialogTT5);
+            this.GbSplitScript.Controls.Add(this.tBSubroutine);
+            resources.ApplyResources(this.GbSplitScript, "GbSplitScript");
+            this.GbSplitScript.Name = "GbSplitScript";
+            this.GbSplitScript.TabStop = false;
+            // 
+            // cBimportGCSubPenUpDown
+            // 
+            resources.ApplyResources(this.cBimportGCSubPenUpDown, "cBimportGCSubPenUpDown");
+            this.cBimportGCSubPenUpDown.Checked = global::GrblPlotter.Properties.Settings.Default.importGCSubPenUpDown;
+            this.cBimportGCSubPenUpDown.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBimportGCSubPenUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCSubPenUpDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBimportGCSubPenUpDown.Name = "cBimportGCSubPenUpDown";
+            this.cBimportGCSubPenUpDown.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCSubFirst
+            // 
+            resources.ApplyResources(this.cBImportGCSubFirst, "cBImportGCSubFirst");
+            this.cBImportGCSubFirst.Checked = global::GrblPlotter.Properties.Settings.Default.importGCSubFirst;
+            this.cBImportGCSubFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCSubFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCSubFirst.Name = "cBImportGCSubFirst";
+            this.cBImportGCSubFirst.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // tBSubroutine
+            // 
+            this.tBSubroutine.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGCSubroutine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBSubroutine, "tBSubroutine");
+            this.tBSubroutine.Name = "tBSubroutine";
+            this.tBSubroutine.Text = global::GrblPlotter.Properties.Settings.Default.importGCSubroutine;
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.GbVariables);
             this.tabPage3.Controls.Add(this.BtnHoming2);
+            this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.BtnSetToolNr1);
             this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.groupBox2);
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // GbVariables
+            // 
+            this.GbVariables.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbVariables.Controls.Add(this.TbVar8);
+            this.GbVariables.Controls.Add(this.LblVar8);
+            this.GbVariables.Controls.Add(this.TbVar7);
+            this.GbVariables.Controls.Add(this.LblVar7);
+            this.GbVariables.Controls.Add(this.TbVar6);
+            this.GbVariables.Controls.Add(this.LblVar6);
+            this.GbVariables.Controls.Add(this.TbVar5);
+            this.GbVariables.Controls.Add(this.LblVar5);
+            this.GbVariables.Controls.Add(this.TbVar4);
+            this.GbVariables.Controls.Add(this.LblVal4);
+            this.GbVariables.Controls.Add(this.TbVar3);
+            this.GbVariables.Controls.Add(this.LblVar3);
+            this.GbVariables.Controls.Add(this.TbVar2);
+            this.GbVariables.Controls.Add(this.LblVar2);
+            this.GbVariables.Controls.Add(this.TbVar1);
+            this.GbVariables.Controls.Add(this.LblVar1);
+            resources.ApplyResources(this.GbVariables, "GbVariables");
+            this.GbVariables.Name = "GbVariables";
+            this.GbVariables.TabStop = false;
+            // 
+            // TbVar8
+            // 
+            this.TbVar8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar8, "TbVar8");
+            this.TbVar8.Name = "TbVar8";
+            this.TbVar8.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar8;
+            // 
+            // LblVar8
+            // 
+            resources.ApplyResources(this.LblVar8, "LblVar8");
+            this.LblVar8.Name = "LblVar8";
+            // 
+            // TbVar7
+            // 
+            this.TbVar7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar7, "TbVar7");
+            this.TbVar7.Name = "TbVar7";
+            this.TbVar7.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar7;
+            // 
+            // LblVar7
+            // 
+            resources.ApplyResources(this.LblVar7, "LblVar7");
+            this.LblVar7.Name = "LblVar7";
+            // 
+            // TbVar6
+            // 
+            this.TbVar6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar6, "TbVar6");
+            this.TbVar6.Name = "TbVar6";
+            this.TbVar6.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar6;
+            // 
+            // LblVar6
+            // 
+            resources.ApplyResources(this.LblVar6, "LblVar6");
+            this.LblVar6.Name = "LblVar6";
+            // 
+            // TbVar5
+            // 
+            this.TbVar5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar5, "TbVar5");
+            this.TbVar5.Name = "TbVar5";
+            this.TbVar5.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar5;
+            // 
+            // LblVar5
+            // 
+            resources.ApplyResources(this.LblVar5, "LblVar5");
+            this.LblVar5.Name = "LblVar5";
+            // 
+            // TbVar4
+            // 
+            this.TbVar4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar4, "TbVar4");
+            this.TbVar4.Name = "TbVar4";
+            this.TbVar4.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar4;
+            // 
+            // LblVal4
+            // 
+            resources.ApplyResources(this.LblVal4, "LblVal4");
+            this.LblVal4.Name = "LblVal4";
+            // 
+            // TbVar3
+            // 
+            this.TbVar3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar3, "TbVar3");
+            this.TbVar3.Name = "TbVar3";
+            this.TbVar3.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar3;
+            // 
+            // LblVar3
+            // 
+            resources.ApplyResources(this.LblVar3, "LblVar3");
+            this.LblVar3.Name = "LblVar3";
+            // 
+            // TbVar2
+            // 
+            this.TbVar2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar2, "TbVar2");
+            this.TbVar2.Name = "TbVar2";
+            this.TbVar2.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar2;
+            // 
+            // LblVar2
+            // 
+            resources.ApplyResources(this.LblVar2, "LblVar2");
+            this.LblVar2.Name = "LblVar2";
+            // 
+            // TbVar1
+            // 
+            this.TbVar1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "ctrlToolCommandVar1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbVar1, "TbVar1");
+            this.TbVar1.Name = "TbVar1";
+            this.TbVar1.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolCommandVar1;
+            // 
+            // LblVar1
+            // 
+            resources.ApplyResources(this.LblVar1, "LblVar1");
+            this.LblVar1.Name = "LblVar1";
+            // 
+            // BtnHoming2
+            // 
+            resources.ApplyResources(this.BtnHoming2, "BtnHoming2");
+            this.BtnHoming2.Name = "BtnHoming2";
+            this.BtnHoming2.UseVisualStyleBackColor = true;
+            this.BtnHoming2.Click += new System.EventHandler(this.BtnHoming_Click);
+            // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox3.Controls.Add(this.BtnCopyRemove);
             this.groupBox3.Controls.Add(this.BtnSendRemove8);
             this.groupBox3.Controls.Add(this.BtnSendRemove7);
@@ -1152,13 +1510,9 @@
             this.TbRemove2.Name = "TbRemove2";
             this.TbRemove2.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolStepRemove2;
             // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox2.Controls.Add(this.BtnCopyPickUp);
             this.groupBox2.Controls.Add(this.BtnSendPickUp8);
             this.groupBox2.Controls.Add(this.BtnSendPickUp7);
@@ -1292,17 +1646,54 @@
             this.TbPickUp2.Name = "TbPickUp2";
             this.TbPickUp2.Text = global::GrblPlotter.Properties.Settings.Default.ctrlToolStepPickUp2;
             // 
-            // BtnHoming2
+            // tabPage4
             // 
-            resources.ApplyResources(this.BtnHoming2, "BtnHoming2");
-            this.BtnHoming2.Name = "BtnHoming2";
-            this.BtnHoming2.UseVisualStyleBackColor = true;
-            this.BtnHoming2.Click += new System.EventHandler(this.BtnHoming_Click);
+            this.tabPage4.Controls.Add(this.label13);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tab4gB4
+            // 
+            this.tab4gB4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab4gB4.Controls.Add(this.tBflowControl);
+            this.tab4gB4.Controls.Add(this.cBflowControl);
+            resources.ApplyResources(this.tab4gB4, "tab4gB4");
+            this.tab4gB4.Name = "tab4gB4";
+            this.tab4gB4.TabStop = false;
+            // 
+            // cBflowControl
+            // 
+            resources.ApplyResources(this.cBflowControl, "cBflowControl");
+            this.cBflowControl.Checked = global::GrblPlotter.Properties.Settings.Default.flowControlEnable;
+            this.cBflowControl.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "flowControlEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBflowControl.Name = "cBflowControl";
+            this.cBflowControl.UseVisualStyleBackColor = true;
+            // 
+            // GbManualPenChange
+            // 
+            this.GbManualPenChange.Controls.Add(this.LblManPenChange);
+            this.GbManualPenChange.Controls.Add(this.tab4gB4);
+            resources.ApplyResources(this.GbManualPenChange, "GbManualPenChange");
+            this.GbManualPenChange.Name = "GbManualPenChange";
+            this.GbManualPenChange.TabStop = false;
+            // 
+            // LblManPenChange
+            // 
+            resources.ApplyResources(this.LblManPenChange, "LblManPenChange");
+            this.LblManPenChange.Name = "LblManPenChange";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ControlATC
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.GbManualPenChange);
             this.Controls.Add(this.GbPreset);
             this.Controls.Add(this.TabControlAutomatic);
             this.Controls.Add(this.GbSelection);
@@ -1314,6 +1705,7 @@
             this.GbScripts.ResumeLayout(false);
             this.GbScripts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudToolNr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
             this.GbPreset.ResumeLayout(false);
             this.GbPreset.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1342,11 +1734,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudEditY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEditX)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.GbSplitScript.ResumeLayout(false);
+            this.GbSplitScript.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.GbVariables.ResumeLayout(false);
+            this.GbVariables.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tab4gB4.ResumeLayout(false);
+            this.tab4gB4.PerformLayout();
+            this.GbManualPenChange.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1480,5 +1880,46 @@
         private System.Windows.Forms.Button BtnCopyRemove;
         private System.Windows.Forms.Button BtnSetToolNr1;
         private System.Windows.Forms.Button BtnHoming2;
+        private System.Windows.Forms.GroupBox GbSplitScript;
+        private System.Windows.Forms.Button BtnEditFileDialogTT5;
+        private System.Windows.Forms.Button btnFileDialogTT5;
+        private System.Windows.Forms.TextBox tBSubroutine;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox GbVariables;
+        private System.Windows.Forms.TextBox TbVar1;
+        private System.Windows.Forms.Label LblVar1;
+        private System.Windows.Forms.TextBox TbVar8;
+        private System.Windows.Forms.Label LblVar8;
+        private System.Windows.Forms.TextBox TbVar7;
+        private System.Windows.Forms.Label LblVar7;
+        private System.Windows.Forms.TextBox TbVar6;
+        private System.Windows.Forms.Label LblVar6;
+        private System.Windows.Forms.TextBox TbVar5;
+        private System.Windows.Forms.Label LblVar5;
+        private System.Windows.Forms.TextBox TbVar4;
+        private System.Windows.Forms.Label LblVal4;
+        private System.Windows.Forms.TextBox TbVar3;
+        private System.Windows.Forms.Label LblVar3;
+        private System.Windows.Forms.TextBox TbVar2;
+        private System.Windows.Forms.Label LblVar2;
+        private System.Windows.Forms.GroupBox tab4gB4;
+        private System.Windows.Forms.TextBox tBflowControl;
+        private System.Windows.Forms.CheckBox cBflowControl;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox GbManualPenChange;
+        private System.Windows.Forms.Label LblManPenChange;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox TbTitlePut;
+        private System.Windows.Forms.TextBox TbTitleProbe;
+        private System.Windows.Forms.TextBox TbTitleGet;
+        private System.Windows.Forms.TextBox TbTitleSelect;
+        private System.Windows.Forms.NumericUpDown nUDImportGCLineSegment;
+        private System.Windows.Forms.CheckBox cBImportGCLineSegmentsEquidistant;
+        private System.Windows.Forms.CheckBox cBImportGCSubEnable;
+        private System.Windows.Forms.CheckBox cBImportGCLineSegments;
+        private System.Windows.Forms.CheckBox cBimportGCSubPenUpDown;
+        private System.Windows.Forms.CheckBox cBImportGCSubFirst;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -479,7 +479,7 @@ https://linuxcnc.org/docs/html/gcode.html を参照してください。
     <comment>gb</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>段階的に</value>
+    <value>変数と手順</value>
     <comment>tab</comment>
   </data>
   <data name="BtnSendRemove8.Text" xml:space="preserve">
@@ -519,5 +519,104 @@ https://linuxcnc.org/docs/html/gcode.html を参照してください。
   <data name="BtnCopyPickUp.ToolTip" xml:space="preserve">
     <value>スクリプト用テキストエディタに貼り付けられるよう、すべての「pick-up」コマンドをクリップボードにコピーします。</value>
     <comment>tt2</comment>
+  </data>
+  <data name="BtnEditFileDialogTT5.Text" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="BtnEditFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>メモ帳でスクリプトを編集</value>
+  </data>
+  <data name="btnFileDialogTT5.Text" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="btnFileDialogTT5.ToolTip" xml:space="preserve">
+    <value>ファイルダイアログからスクリプトを選択</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>スクリプト内でコードを使用する際の変数名</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>スクリプト内でコードを使用する際の変数名</value>
+  </data>
+  <data name="GbSplitScript.Text" xml:space="preserve">
+    <value>スクリプトによる分割移動</value>
+    <comment>1</comment>
+  </data>
+  <data name="GbVariables.Text" xml:space="preserve">
+    <value>使用可能な自由変数</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>通常のGコードを指定します。複数のコードを記述する場合は、「;」を区切り文字として使用し、それぞれを別の行に分けてください。
+あるいは、Gコードを含むファイル名を指定することも可能です。</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>一時停止または停止時に、以下のGコードを送信します。</value>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>ストリーミングのフロー制御</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="LblManPenChange.Text" xml:space="preserve">
+    <value>ペンを交換する必要がある場合は、ストリーミングが一時停止し、必要なペンの色を選択するウィンドウが表示されます。
+
+下のテキストボックスには、一時停止後に送信されるコマンドを定義できます。例えば、ペンの交換を容易にするために、ペングリッパーを前面に移動させるコマンドなどです。</value>
+  </data>
+  <data name="GbManualPenChange.Text" xml:space="preserve">
+    <value>手動ペン交換</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>このパスは、ペンチェンジャーのセットアップファイルには保存されません。</value>
+  </data>
+  <data name="TbTitleProbe.ToolTip" xml:space="preserve">
+    <value>ボタンのテキスト</value>
+  </data>
+  <data name="TbTitleGet.ToolTip" xml:space="preserve">
+    <value>ボタンのテキスト</value>
+  </data>
+  <data name="TbTitleSelect.ToolTip" xml:space="preserve">
+    <value>ボタンのテキスト</value>
+  </data>
+  <data name="TbTitlePut.ToolTip" xml:space="preserve">
+    <value>ボタンのテキスト</value>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>値が0の場合、「パスの開始位置にも挿入」のみが処理されます</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>等間隔のセグメント</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>チェックあり：線分は（指定長以下の）等しい長さのセグメントに分割されます。
+チェックなし：最後のセグメントのみ短くなり、それ以外はすべて指定通りの長さになります。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>サブルーチンの挿入</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>指定されたセグメント長ごとにサブルーチンを挿入してください。</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>パスの分割を有効にする</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>長い直線的な移動を、指定された最大長以下の短い移動に分割します。
+「相対移動」とは併用しないでください。</value>
+    <comment>tt</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>サブルーチンの前後でペンアップ／ペンダウンを適用</value>
+    <comment>1</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>各パスの開始位置に挿入</value>
+    <comment>1</comment>
   </data>
 </root>
