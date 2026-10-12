@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.8.1.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.8.1.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -894,13 +894,19 @@
     <Content Include="data\palettes\Stabilo_Power_12pcs.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\palettes\Watercolor_7_colors.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="data\palettes\PaintDotNet_Default.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\palettes\PaintDotNet_Herlitz_Zettel.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\Watercolor_12.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\Watercolor_24.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\palettes\Watercolor_7_CMYK_RGB.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\papersize.xml">
@@ -1079,50 +1085,74 @@
     <Content Include="data\scripts\script_%282nd_grbl%29_pen_v0201_select.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_brush_v1200_clean.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1200_refresh.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1200_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_clean.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_refresh.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_brush_v1583_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="data\scripts\script_my_sign.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_pen_v1200_remove.nc">
+    <Content Include="data\scripts\script_pen_v1811_pickup.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_pen_v1200_select.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1810_pickup.nc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\scripts\script_pen_v1810_remove.nc">
+    <Content Include="data\scripts\script_pen_v1811_remove.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\scripts\script_probing_gripper_v0201.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\tools\_currentToolChanger.atc">
+    <Content Include="data\tools\ToolChanger_X_v1811.atc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\tools\ToolChanger_X_v1810.atc">
+    <Content Include="data\scripts\script_brush_v1811_clean.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_brush_v1811_refresh.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_brush_v1811_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\Watercolor_X_v1811.atc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\sinus100mm.isf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\framing_c.png" />
+    <EmbeddedResource Include="MachineControl\ControlATC.ar.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.cs.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.de-DE.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.es.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.fr.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.it.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.ja.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.pl.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.pt.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlATC.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.ru.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.tr.resx">
+      <DependentUpon>ControlATC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlATC.zh-CN.resx">
       <DependentUpon>ControlATC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCDeviceLaser.ar.resx">
@@ -1707,9 +1737,9 @@
     <EmbeddedResource Include="UserControls\UCToolListElement.resx">
       <DependentUpon>UCToolListElement.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="data\palettes\Inkscape_svg.gpl">
+    <Content Include="data\palettes\Inkscape_svg.gpl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Resources\setup.png" />
     <EmbeddedResource Include="UserControls\UCDeviceLaser2.resx">
       <DependentUpon>UCDeviceLaser2.cs</DependentUpon>
@@ -1797,9 +1827,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\line.isf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\examples\sinus.isf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\tulip.isf">
