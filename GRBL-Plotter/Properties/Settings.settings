@@ -423,25 +423,49 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolCommandGripperClose" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M3 S25 G4 P0.5</Value>
+      <Value Profile="(Default)">M3 S2 M4 P0.5</Value>
     </Setting>
     <Setting Name="ctrlToolCommandGripperOpen" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M3 S2 G4 P0.5</Value>
+      <Value Profile="(Default)">M3 S20 M4 P0.5</Value>
+    </Setting>
+    <Setting Name="ctrlToolCommandVar1" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar5" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar6" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar7" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ctrlToolCommandVar8" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_pen_1810_pickup.nc</Value>
+      <Value Profile="(Default)">data\scripts\script_v1583_brush_select.nc</Value>
     </Setting>
     <Setting Name="ctrlToolScriptProbe" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
     <Setting Name="ctrlToolScriptPut" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_pen_1810_remove.nc</Value>
+      <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
     <Setting Name="ctrlToolScriptSelect" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\</Value>
+      <Value Profile="(Default)">data\scripts\script_v1583_brush_clean.nc</Value>
     </Setting>
     <Setting Name="ctrlToolStepPickUp1" Type="System.String" Scope="User">
       <Value Profile="(Default)">#TOGO ( gripper open )</Value>
@@ -1680,7 +1704,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGCSubroutine" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_v1583_brush_refresh.nc</Value>
+      <Value Profile="(Default)">data\scripts\script_v1811_brush_refresh.nc</Value>
     </Setting>
     <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -2875,6 +2899,9 @@
     </Setting>
     <Setting Name="tabletFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">500, 480</Value>
+    </Setting>
+    <Setting Name="tabletLastPalette" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="tabletPlotterMoveAir" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

@@ -1705,7 +1705,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("M3 S25 G4 P0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("M3 S2 M4 P0.5")]
         public string ctrlToolCommandGripperClose {
             get {
                 return ((string)(this["ctrlToolCommandGripperClose"]));
@@ -1717,13 +1717,109 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("M3 S2 G4 P0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("M3 S20 M4 P0.5")]
         public string ctrlToolCommandGripperOpen {
             get {
                 return ((string)(this["ctrlToolCommandGripperOpen"]));
             }
             set {
                 this["ctrlToolCommandGripperOpen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar1 {
+            get {
+                return ((string)(this["ctrlToolCommandVar1"]));
+            }
+            set {
+                this["ctrlToolCommandVar1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar2 {
+            get {
+                return ((string)(this["ctrlToolCommandVar2"]));
+            }
+            set {
+                this["ctrlToolCommandVar2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar3 {
+            get {
+                return ((string)(this["ctrlToolCommandVar3"]));
+            }
+            set {
+                this["ctrlToolCommandVar3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar4 {
+            get {
+                return ((string)(this["ctrlToolCommandVar4"]));
+            }
+            set {
+                this["ctrlToolCommandVar4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar5 {
+            get {
+                return ((string)(this["ctrlToolCommandVar5"]));
+            }
+            set {
+                this["ctrlToolCommandVar5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar6 {
+            get {
+                return ((string)(this["ctrlToolCommandVar6"]));
+            }
+            set {
+                this["ctrlToolCommandVar6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar7 {
+            get {
+                return ((string)(this["ctrlToolCommandVar7"]));
+            }
+            set {
+                this["ctrlToolCommandVar7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolCommandVar8 {
+            get {
+                return ((string)(this["ctrlToolCommandVar8"]));
+            }
+            set {
+                this["ctrlToolCommandVar8"] = value;
             }
         }
         
@@ -1741,7 +1837,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen_1810_pickup.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_select.nc")]
         public string ctrlToolScriptGet {
             get {
                 return ((string)(this["ctrlToolScriptGet"]));
@@ -1765,7 +1861,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen_1810_remove.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
         public string ctrlToolScriptPut {
             get {
                 return ((string)(this["ctrlToolScriptPut"]));
@@ -1777,13 +1873,205 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_clean.nc")]
         public string ctrlToolScriptSelect {
             get {
                 return ((string)(this["ctrlToolScriptSelect"]));
             }
             set {
                 this["ctrlToolScriptSelect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
+        public string ctrlToolStepPickUp1 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp1"]));
+            }
+            set {
+                this["ctrlToolStepPickUp1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 X-1 ( to the left )")]
+        public string ctrlToolStepPickUp2 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp2"]));
+            }
+            set {
+                this["ctrlToolStepPickUp2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
+        public string ctrlToolStepPickUp3 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp3"]));
+            }
+            set {
+                this["ctrlToolStepPickUp3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
+        public string ctrlToolStepPickUp4 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp4"]));
+            }
+            set {
+                this["ctrlToolStepPickUp4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGC ( gripper close )")]
+        public string ctrlToolStepPickUp5 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp5"]));
+            }
+            set {
+                this["ctrlToolStepPickUp5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Z20 ( lift pen )")]
+        public string ctrlToolStepPickUp6 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp6"]));
+            }
+            set {
+                this["ctrlToolStepPickUp6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
+        public string ctrlToolStepPickUp7 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp7"]));
+            }
+            set {
+                this["ctrlToolStepPickUp7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOAZ ( lower to original actual height)")]
+        public string ctrlToolStepPickUp8 {
+            get {
+                return ((string)(this["ctrlToolStepPickUp8"]));
+            }
+            set {
+                this["ctrlToolStepPickUp8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 Z20 ( lift pen )")]
+        public string ctrlToolStepRemove1 {
+            get {
+                return ((string)(this["ctrlToolStepRemove1"]));
+            }
+            set {
+                this["ctrlToolStepRemove1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
+        public string ctrlToolStepRemove2 {
+            get {
+                return ((string)(this["ctrlToolStepRemove2"]));
+            }
+            set {
+                this["ctrlToolStepRemove2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOLZ ( lower to original last height)")]
+        public string ctrlToolStepRemove3 {
+            get {
+                return ((string)(this["ctrlToolStepRemove3"]));
+            }
+            set {
+                this["ctrlToolStepRemove3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
+        public string ctrlToolStepRemove4 {
+            get {
+                return ((string)(this["ctrlToolStepRemove4"]));
+            }
+            set {
+                this["ctrlToolStepRemove4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X-1 ( to the left )")]
+        public string ctrlToolStepRemove5 {
+            get {
+                return ((string)(this["ctrlToolStepRemove5"]));
+            }
+            set {
+                this["ctrlToolStepRemove5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
+        public string ctrlToolStepRemove6 {
+            get {
+                return ((string)(this["ctrlToolStepRemove6"]));
+            }
+            set {
+                this["ctrlToolStepRemove6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
+        public string ctrlToolStepRemove7 {
+            get {
+                return ((string)(this["ctrlToolStepRemove7"]));
+            }
+            set {
+                this["ctrlToolStepRemove7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ctrlToolStepRemove8 {
+            get {
+                return ((string)(this["ctrlToolStepRemove8"]));
+            }
+            set {
+                this["ctrlToolStepRemove8"] = value;
             }
         }
         
@@ -6545,7 +6833,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_refresh.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1811_brush_refresh.nc")]
         public string importGCSubroutine {
             get {
                 return ((string)(this["importGCSubroutine"]));
@@ -6696,6 +6984,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCToolDefNrUse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCToolListHideUnused {
+            get {
+                return ((bool)(this["importGCToolListHideUnused"]));
+            }
+            set {
+                this["importGCToolListHideUnused"] = value;
             }
         }
         
@@ -11321,6 +11621,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string tabletLastPalette {
+            get {
+                return ((string)(this["tabletLastPalette"]));
+            }
+            set {
+                this["tabletLastPalette"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool tabletPlotterMoveAir {
             get {
@@ -11868,210 +12180,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["wirecutterToolDiameter"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGCToolListHideUnused {
-            get {
-                return ((bool)(this["importGCToolListHideUnused"]));
-            }
-            set {
-                this["importGCToolListHideUnused"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
-        public string ctrlToolStepPickUp1 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp1"]));
-            }
-            set {
-                this["ctrlToolStepPickUp1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 X-1 ( to the left )")]
-        public string ctrlToolStepPickUp2 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp2"]));
-            }
-            set {
-                this["ctrlToolStepPickUp2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
-        public string ctrlToolStepPickUp3 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp3"]));
-            }
-            set {
-                this["ctrlToolStepPickUp3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
-        public string ctrlToolStepPickUp4 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp4"]));
-            }
-            set {
-                this["ctrlToolStepPickUp4"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#TOGC ( gripper close )")]
-        public string ctrlToolStepPickUp5 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp5"]));
-            }
-            set {
-                this["ctrlToolStepPickUp5"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 Z20 ( lift pen )")]
-        public string ctrlToolStepPickUp6 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp6"]));
-            }
-            set {
-                this["ctrlToolStepPickUp6"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
-        public string ctrlToolStepPickUp7 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp7"]));
-            }
-            set {
-                this["ctrlToolStepPickUp7"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOAZ ( lower to original actual height)")]
-        public string ctrlToolStepPickUp8 {
-            get {
-                return ((string)(this["ctrlToolStepPickUp8"]));
-            }
-            set {
-                this["ctrlToolStepPickUp8"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 G1 F500 Z20 ( lift pen )")]
-        public string ctrlToolStepRemove1 {
-            get {
-                return ((string)(this["ctrlToolStepRemove1"]));
-            }
-            set {
-                this["ctrlToolStepRemove1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y-12 ( forward )")]
-        public string ctrlToolStepRemove2 {
-            get {
-                return ((string)(this["ctrlToolStepRemove2"]));
-            }
-            set {
-                this["ctrlToolStepRemove2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G53 G90 Z#TOLZ ( lower to original last height)")]
-        public string ctrlToolStepRemove3 {
-            get {
-                return ((string)(this["ctrlToolStepRemove3"]));
-            }
-            set {
-                this["ctrlToolStepRemove3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#TOGO ( gripper open )")]
-        public string ctrlToolStepRemove4 {
-            get {
-                return ((string)(this["ctrlToolStepRemove4"]));
-            }
-            set {
-                this["ctrlToolStepRemove4"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 X-1 ( to the left )")]
-        public string ctrlToolStepRemove5 {
-            get {
-                return ((string)(this["ctrlToolStepRemove5"]));
-            }
-            set {
-                this["ctrlToolStepRemove5"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 Y12 ( to the rear )")]
-        public string ctrlToolStepRemove6 {
-            get {
-                return ((string)(this["ctrlToolStepRemove6"]));
-            }
-            set {
-                this["ctrlToolStepRemove6"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G91 X1 ( to the right )")]
-        public string ctrlToolStepRemove7 {
-            get {
-                return ((string)(this["ctrlToolStepRemove7"]));
-            }
-            set {
-                this["ctrlToolStepRemove7"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ctrlToolStepRemove8 {
-            get {
-                return ((string)(this["ctrlToolStepRemove8"]));
-            }
-            set {
-                this["ctrlToolStepRemove8"] = value;
             }
         }
     }
