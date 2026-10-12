@@ -60,6 +60,7 @@
  * 2024-11-27 l:735 f:SelectNextFigureGroupTile  check if LineIsInRange
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-04-09 l:520 f:InsertCodeToFctb  add fCTBCode.Text = sourceGCode; to use new code even if no insertion possible
+ * 2026-08-26 l:300 f:FctbCheckUnknownCode allow "#" beacuse of tool change variables and $H for homing
 */
 
 using FastColoredTextBoxNS;
@@ -296,12 +297,16 @@ namespace GrblPlotter
                 }
                 else if ((curLine.Length > 0) && (allowed.IndexOf(curLine[0]) < 0))     // if 1st char is unknown - no gcode
                 {
+					if (curLine.Contains("#"))	// allow variables
+						break;
                     fCTBCode.Selection = fCTBCode.GetLine(i);
                     fCTBCode.SelectedText = "(" + curLine + " <- unknown command)";
                     if (--messageCnt > 0) message += "Line " + i.ToString() + " : " + curLine + "\r\n";
                 }
                 else if ((curLine.Length > 1) && (number.IndexOf(curLine[1]) < 0))  // if 1st known but 2nd not part of number
                 {
+                    if (curLine.Contains("$H"))  // allow homing
+                        break;
                     fCTBCode.Selection = fCTBCode.GetLine(i);
                     fCTBCode.SelectedText = "(" + curLine + " <- unknown command)";
                     if (--messageCnt > 0) message += "Line " + i.ToString() + " : " + curLine + "\r\n";
@@ -313,6 +318,7 @@ namespace GrblPlotter
 
             if (message.Length > 0)
             {
+                Logger.Warn("FctbCheckUnknownCode ----------------------------------------");
                 if (messageCnt <= 0)
                 {
                     message = "Too many errors - stop fixing the code!!!\r\n\r\n" + message;

@@ -516,6 +516,7 @@ namespace GrblPlotter
             SetCustomButton(btnCustom12, Properties.Settings.Default.guiCustomBtn12);//, 12);
 
             ucDevicePlotter2.SetButtonProp(1, Properties.Settings.Default.guiCustomBtn30);
+            ucDevicePlotter2.UpdateBtnText();
 
             customButtonUse += SetCustomButton(btnCustom13, Properties.Settings.Default.guiCustomBtn13);//, 13);
             customButtonUse += SetCustomButton(btnCustom14, Properties.Settings.Default.guiCustomBtn14);//, 14);

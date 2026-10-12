@@ -129,8 +129,10 @@ namespace GrblPlotter
         private const string extensionHPGL = ".plt,.hpgl";
         private const string extensionCSV = ".csv,.dat";
         private const string extensionJson = ".pdn-json";
+        private const string extensionTablet = ".isf,.icstk";
 
-        private const string loadFilter = "G-Code (*.nc, *.cnc, *.ngc, *.gcode, *.tap)|*.nc;*.cnc;*.ngc;*.gcode;*.tap|" +
+        private const string loadFilter = "All files (*.*)|*.*|" +
+                                            "G-Code (*.nc, *.cnc, *.ngc, *.gcode, *.tap)|*.nc;*.cnc;*.ngc;*.gcode;*.tap|" +
                                             "SVG - Scalable Vector Graphics|*.svg|" +
                                             "DXF - Drawing Exchange Format |*.dxf|" +
                                             "HPGL - HP Graphics Language (*.plt, *.hpgl)|*.plt;*.hpgl|" +
@@ -138,8 +140,7 @@ namespace GrblPlotter
                                             "Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|" +
                                             "Gerber files (*.gbr, *.ger, kicad)|*.gbr;*.ger;*.gtl;*.gbl;*.gts;*.gbs;*.gto;*.gbo;*.gko;*.g2l;*.g3l|" +
                                             "Images (*.bmp,*.gif,*.png,*.jpg)|*.bmp;*.gif;*.png;*.jpg|" +
-                                            "PaintDotNet Layers(*.pdn-json)|*.pdn-json|" +
-                                            "All files (*.*)|*.*";
+                                            "PaintDotNet Layers(*.pdn-json)|*.pdn-json";
 
         private int delayedHeightMapShow = 0;
         private string lastLoaded = "";
@@ -827,6 +828,34 @@ namespace GrblPlotter
                 { _heightmap_form.DiyControlConnected = _diyControlPad.IsConnected; }
                 fileLoaded = true;
             }
+            else if (extensionTablet.Contains(ext))
+            {
+                if (_tablet_form == null)
+                {
+                    _tablet_form = new GCodeFromTablet();
+                    _tablet_form.RaiseCmdEvent += OnRaiseTabletCmdEvent;
+                    _tablet_form.FormClosed += FormClosed_Tablet;
+                    //    _tablet_form.BtnImport.Click += GetGCodeFromTablet;      // assign btn-click event
+                    _tablet_form.importWholeDrawingToolStripMenuItem.Click += GetGCodeFromTablet;
+                    _tablet_form.BtnCreateGcode.Click += GetGCodeFromTablet;
+                    _tablet_form.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
+                    EventCollector.SetOpenForm("Ftab");
+                }
+                else
+                {
+                    _tablet_form.Visible = false;
+                }
+
+                if (showFormInFront) _tablet_form.Show(this);
+                else _tablet_form.Show(); // this);
+
+                showFormsToolStripMenuItem.Visible = true;
+                _tablet_form.WindowState = FormWindowState.Normal;
+                _tablet_form.LoadExtern(fileName);
+
+                fileLoaded = true;
+            }
+
             else if (ext == ".txt")
             {
                 if (File.Exists(fileName))
@@ -1390,7 +1419,7 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.importVectorizeFromClipboard)
                 {
                     GCodeFromPDNJson.LoadFromClipboard(tempFile);
-                    SetFctbCodeText(Graphic.GCode.ToString());      
+                    SetFctbCodeText(Graphic.GCode.ToString());
 
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return false; }
@@ -2221,7 +2250,7 @@ namespace GrblPlotter
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            //    Logger.Trace("MainForm_KeyDown  {0}   focus:{1}", e.KeyCode, FindFocusedControl(this).Name);
+            Logger.Trace("MainForm_KeyDown  KeyCode:{0}  Modifiers:{1}  focus:{2}", e.KeyCode.ToString(), e.Modifiers.ToString(), FindFocusedControl(this).Name);
             MyApplication.ESCwasPressed = false;
             if (pictureBox1.Focused)
             {
@@ -2275,6 +2304,7 @@ namespace GrblPlotter
             }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
+                Logger.Trace("MainForm_KeyDown Ctrl+V");
                 LoadFromClipboard();
                 EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
                 e.SuppressKeyPress = true;

@@ -1185,8 +1185,8 @@ namespace GrblPlotter
 
         private void splitContainer2_Panel2_SizeChanged(object sender, EventArgs e)
         {
-            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
-            PanelDeviceDisabled.Height = splitContainer2.Panel2.Height - 40;
+            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 100;
+            PanelDeviceDisabled.Height = splitContainer2.Panel2.Height - 60;
             PanelDeviceDisabled.BackColor = System.Drawing.Color.FromArgb(128, 255, 255, 192);
         }
 

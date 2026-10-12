@@ -277,14 +277,14 @@ namespace GrblPlotter
             this.automaticPenChangerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coordinateSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
+            this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.laserToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStreamingAtLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_StreamLine = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
@@ -1503,14 +1503,14 @@ namespace GrblPlotter
             this.automaticPenChangerToolStripMenuItem,
             this.coordinateSystemsToolStripMenuItem,
             this.toolStripSeparator20,
+            this.edgeFinderToolStripMenuItem,
+            this.processAutomationToolStripMenuItem,
+            this.heightMapToolStripMenuItem,
             this.laserToolsToolStripMenuItem,
             this.toolStripMenuItem1,
             this.projectorToolStripMenuItem,
-            this.edgeFinderToolStripMenuItem,
             this.setupToolStripMenuItem,
             this.toolStripSeparator21,
-            this.processAutomationToolStripMenuItem,
-            this.heightMapToolStripMenuItem,
             this.startStreamingAtLineToolStripMenuItem,
             this.toolStripSeparator22,
             this.controlStreamingToolStripMenuItem,
@@ -1542,6 +1542,24 @@ namespace GrblPlotter
             this.toolStripSeparator20.Name = "toolStripSeparator20";
             resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
             // 
+            // edgeFinderToolStripMenuItem
+            // 
+            this.edgeFinderToolStripMenuItem.Name = "edgeFinderToolStripMenuItem";
+            resources.ApplyResources(this.edgeFinderToolStripMenuItem, "edgeFinderToolStripMenuItem");
+            this.edgeFinderToolStripMenuItem.Click += new System.EventHandler(this.FormOpenEdgeFinder);
+            // 
+            // processAutomationToolStripMenuItem
+            // 
+            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
+            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
+            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
+            // 
+            // heightMapToolStripMenuItem
+            // 
+            this.heightMapToolStripMenuItem.Name = "heightMapToolStripMenuItem";
+            resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
+            this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.FormOpenHeightMap);
+            // 
             // laserToolsToolStripMenuItem
             // 
             this.laserToolsToolStripMenuItem.Name = "laserToolsToolStripMenuItem";
@@ -1560,12 +1578,6 @@ namespace GrblPlotter
             resources.ApplyResources(this.projectorToolStripMenuItem, "projectorToolStripMenuItem");
             this.projectorToolStripMenuItem.Click += new System.EventHandler(this.ProjectorToolStripMenuItem_Click);
             // 
-            // edgeFinderToolStripMenuItem
-            // 
-            this.edgeFinderToolStripMenuItem.Name = "edgeFinderToolStripMenuItem";
-            resources.ApplyResources(this.edgeFinderToolStripMenuItem, "edgeFinderToolStripMenuItem");
-            this.edgeFinderToolStripMenuItem.Click += new System.EventHandler(this.FormOpenEdgeFinder);
-            // 
             // setupToolStripMenuItem
             // 
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
@@ -1576,18 +1588,6 @@ namespace GrblPlotter
             // 
             this.toolStripSeparator21.Name = "toolStripSeparator21";
             resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
-            // 
-            // processAutomationToolStripMenuItem
-            // 
-            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
-            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
-            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
-            // 
-            // heightMapToolStripMenuItem
-            // 
-            this.heightMapToolStripMenuItem.Name = "heightMapToolStripMenuItem";
-            resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
-            this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.FormOpenHeightMap);
             // 
             // startStreamingAtLineToolStripMenuItem
             // 
@@ -2206,6 +2206,14 @@ namespace GrblPlotter
             settings1.ctrlToolChangeM6PassThrough = false;
             settings1.ctrlToolCommandGripperClose = "M3 S2 M4 P0.5";
             settings1.ctrlToolCommandGripperOpen = "M3 S20 M4 P0.5";
+            settings1.ctrlToolCommandVar1 = "";
+            settings1.ctrlToolCommandVar2 = "";
+            settings1.ctrlToolCommandVar3 = "";
+            settings1.ctrlToolCommandVar4 = "";
+            settings1.ctrlToolCommandVar5 = "";
+            settings1.ctrlToolCommandVar6 = "";
+            settings1.ctrlToolCommandVar7 = "";
+            settings1.ctrlToolCommandVar8 = "";
             settings1.ctrlToolScriptDelay = new decimal(new int[] {
             1,
             0,
@@ -3213,7 +3221,7 @@ namespace GrblPlotter
             settings1.importGCSubEnable = false;
             settings1.importGCSubFirst = false;
             settings1.importGCSubPenUpDown = true;
-            settings1.importGCSubroutine = "data\\scripts\\script_v1583_brush_refresh.nc";
+            settings1.importGCSubroutine = "data\\scripts\\script_v1811_brush_refresh.nc";
             settings1.importGCTangentialAngle = new decimal(new int[] {
             30,
             0,
@@ -4185,6 +4193,7 @@ namespace GrblPlotter
             settings1.tabletFitToCurve = true;
             settings1.tabletFormLocation = new System.Drawing.Point(0, 0);
             settings1.tabletFormSize = new System.Drawing.Size(500, 480);
+            settings1.tabletLastPalette = "";
             settings1.tabletPlotterMoveAir = false;
             settings1.tabletPlotterMoveMouse = false;
             settings1.tabletPointDistance = new decimal(new int[] {

@@ -1043,6 +1043,9 @@ Dil
   <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
     <value>Wire cutter</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="createJogPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
@@ -1438,6 +1441,30 @@ Dil
   <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 6</value>
   </data>
+  <data name="edgeFinderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Probing</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Process automation</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Surface scan</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="laserToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
@@ -1465,15 +1492,6 @@ Dil
   <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Opens a new window to display machine-path on the workpiece via a projector above the work bench</value>
   </data>
-  <data name="edgeFinderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Probing</value>
-  </data>
-  <data name="edgeFinderToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
@@ -1485,21 +1503,6 @@ Dil
   </data>
   <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 6</value>
-  </data>
-  <data name="processAutomationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Process automation</value>
-  </data>
-  <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Surface scan</value>
-  </data>
-  <data name="heightMapToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="toolStrip_tb_StreamLine.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -1802,7 +1805,7 @@ Dil
     <value>ucStreaming</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1829,7 +1832,7 @@ Dil
     <value>ucOverrides</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1913,7 +1916,7 @@ Dil
     <value>ucFlowControl</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1940,7 +1943,7 @@ Dil
     <value>ucSetOffset</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -2033,7 +2036,7 @@ Dil
     <value>ucMoveToGraphic</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2060,7 +2063,7 @@ Dil
     <value>ucMoveToZero</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2087,7 +2090,7 @@ Dil
     <value>ucJogControlAll</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2117,7 +2120,7 @@ Dil
     <value>ucDeviceLaser2</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Parent" xml:space="preserve">
     <value>tabPageLaser</value>
@@ -2171,7 +2174,7 @@ Dil
     <value>ucDevicePlotter2</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Parent" xml:space="preserve">
     <value>tabPagePlotter</value>
@@ -2222,7 +2225,7 @@ Dil
     <value>ucDeviceRouter2</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2300,7 +2303,7 @@ Dil
     <value>ucSetCoordinateSystem</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -3104,7 +3107,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucdro</value>
   </data>
   <data name="&gt;&gt;ucdro.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucdro.Parent" xml:space="preserve">
     <value>tLPRechtsOben</value>
@@ -3800,7 +3803,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucToolList</value>
   </data>
   <data name="&gt;&gt;ucToolList.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucToolList.Parent" xml:space="preserve">
     <value>splitContainer2.Panel1</value>
@@ -3858,7 +3861,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>0</value>
   </data>
   <data name="PanelDeviceDisabled.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 30</value>
+    <value>10, 50</value>
   </data>
   <data name="PanelDeviceDisabled.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>10, 10, 10, 10</value>
@@ -3906,7 +3909,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDeviceLaser</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -3960,7 +3963,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDevicePlotter</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -4011,7 +4014,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDeviceRouter</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -5267,6 +5270,24 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
   <data name="&gt;&gt;toolStripSeparator20.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;edgeFinderToolStripMenuItem.Name" xml:space="preserve">
+    <value>edgeFinderToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;edgeFinderToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;processAutomationToolStripMenuItem.Name" xml:space="preserve">
+    <value>processAutomationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;processAutomationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;heightMapToolStripMenuItem.Name" xml:space="preserve">
+    <value>heightMapToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;heightMapToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;laserToolsToolStripMenuItem.Name" xml:space="preserve">
     <value>laserToolsToolStripMenuItem</value>
   </data>
@@ -5285,12 +5306,6 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
   <data name="&gt;&gt;projectorToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;edgeFinderToolStripMenuItem.Name" xml:space="preserve">
-    <value>edgeFinderToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;edgeFinderToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;setupToolStripMenuItem.Name" xml:space="preserve">
     <value>setupToolStripMenuItem</value>
   </data>
@@ -5302,18 +5317,6 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator21.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;processAutomationToolStripMenuItem.Name" xml:space="preserve">
-    <value>processAutomationToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;processAutomationToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;heightMapToolStripMenuItem.Name" xml:space="preserve">
-    <value>heightMapToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;heightMapToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;startStreamingAtLineToolStripMenuItem.Name" xml:space="preserve">
     <value>startStreamingAtLineToolStripMenuItem</value>

@@ -44,6 +44,7 @@
  * 2026-05-15 l:617 f:StartStreaming don't set lastrecentfile to lastProcessed.nc
  * 2026-06-06 clean-up after implementing ucStreaming
  * 2026-06-11 l:498 f:StartStreaming if (_serial_form == null)
+ * 2026-09-14 l:334, 372 add ucStreaming.TimerStop(); for finish ans top
 */
 
 using GrblPlotter.GUI;
@@ -330,6 +331,7 @@ namespace GrblPlotter
 
                 case GrblStreaming.finish:
                     Logger.Info("streaming finished ok {0}", isStreamingOk);
+					ucStreaming.TimerStop();
                     EventCollector.SetStreaming("Sfin");
                     if (isStreamingOk)
                     {
@@ -367,6 +369,7 @@ namespace GrblPlotter
 
                 case GrblStreaming.stop:
                     SaveStreamingStatus(e.CodeLineSent, "Stop", "");
+					ucStreaming.TimerStop();
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.stop";// updateControls();
                     SetInfoLabel(Localization.GetString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")", Color.Fuchsia);
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.ListSettings.Default.flowControlText

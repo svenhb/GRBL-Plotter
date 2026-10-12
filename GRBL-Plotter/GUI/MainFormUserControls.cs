@@ -323,6 +323,7 @@ namespace GrblPlotter
                 if ((e.IntVal >= 90) && (e.IntVal < 93))
                 {
                     tC_RouterPlotterLaser.SelectedIndex = e.IntVal - 90;
+                    ucDevicePlotter2.UpdateBtnText();
                 }
                 if (e.IntVal == 98)
                 {
@@ -330,6 +331,7 @@ namespace GrblPlotter
                     int h = showPenChange ? 205 : 100;
                     tC_RouterPlotterLaser2.Height = (int)(h * DpiScaling);
                     ucDevicePlotter.SetBtnFillColor();
+                    ucDevicePlotter2.UpdateBtnText();
                     VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
                     pictureBox1.Invalidate();                                   // resfresh view
                 }
@@ -392,7 +394,7 @@ namespace GrblPlotter
                 if (e.IntVal == 31)
                 { FormOpenLaserTools(sender, e); }       // laser tools
                 if (e.IntVal == 33)
-                { FormOpenAutomaticToolChanger(sender, e); }     
+                { FormOpenAutomaticToolChanger(sender, e); }
                 if (e.IntVal == 21)
                 { FormOpenEdgeFinder(sender, e); }  // probing
                 if (e.IntVal == 22)
@@ -406,11 +408,15 @@ namespace GrblPlotter
             else if (e.Gc == GuiControl.useToolList)        // UCToolList-CbApplyToolList was changed
             {
                 bool enable = (e.IntVal == 0) ? true : false;
-                ucDeviceLaser.Enabled = enable;
-                ucDevicePlotter.Enabled = enable;
-                ucDeviceRouter.Enabled = enable;
+                ucDeviceLaser.SetEnable(enable);        // ucDeviceLaser.Enabled = enable;
+                ucDevicePlotter.SetEnable(enable);      // ucDevicePlotter.Enabled = enable;
+                ucDeviceRouter.SetEnable(enable);      // ucDeviceRouter.Enabled = enable;
                 PanelDeviceDisabled.Visible = !enable;
-                PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
+                PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 100;
+            }
+            else if (e.Gc == GuiControl.toolPropertyChanged)        // UCToolList-CbApplyToolList was changed
+            {
+                ucToolList.UpdateValuesToolListElements(e.IntVal);
             }
         }
 
@@ -418,7 +424,7 @@ namespace GrblPlotter
         {
             int pageCount2 = tC_RouterPlotterLaser2.TabCount;
             MyControl.SetSelectedDevice(tC_RouterPlotterLaser.SelectedIndex);
-            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 40;
+            PanelDeviceDisabled.Width = splitContainer2.Panel2.Width - 100;
             if (tC_RouterPlotterLaser.SelectedIndex < pageCount2)
             {
                 ucToolList.Visible = true;
@@ -431,7 +437,11 @@ namespace GrblPlotter
 
                 PanelDeviceDisabled.Visible = MyControl.ApplyToolList;
 
-                if (tC_RouterPlotterLaser.SelectedIndex == 1)   // Plotter
+                if (tC_RouterPlotterLaser.SelectedIndex == 0)       // Laser
+                {
+                    ucDeviceLaser.UpdateVisibillity();
+                }
+                else if (tC_RouterPlotterLaser.SelectedIndex == 1)   // Plotter
                 {
                     if (splitContainer2.Panel2.Width < 250)
                     {
@@ -439,6 +449,11 @@ namespace GrblPlotter
                         if (ndis > 0)
                             splitContainer2.SplitterDistance = ndis;
                     }
+                    ucDevicePlotter.UpdateVisibillity();
+                }
+                else if (tC_RouterPlotterLaser.SelectedIndex == 2)   // Router
+                {
+                    ucDeviceRouter.UpdateVisibillity();
                 }
             }
             else
@@ -448,9 +463,9 @@ namespace GrblPlotter
                 LoadProperties.Init();
                 PanelDeviceDisabled.Visible = false;
             }
-            TC_RouterPlotterLaserLastSelected = tC_RouterPlotterLaser.SelectedIndex;
-            UpdateForms();
-        }
+                TC_RouterPlotterLaserLastSelected = tC_RouterPlotterLaser.SelectedIndex;
+                UpdateForms();
+            }
         private void TC_RouterPlotterLaser2_SelectedIndexChanged(object sender, EventArgs e)
         {
             int pageCount1 = tC_RouterPlotterLaser.TabCount;
