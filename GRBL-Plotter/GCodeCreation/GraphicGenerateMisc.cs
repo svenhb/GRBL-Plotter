@@ -217,7 +217,7 @@ namespace GrblPlotter
                 if (log) Logger.Trace("...GroupAll {0} type:{1} count:{2}  key:'{3}'", pathObject.Info.Id, pathObject.GetType().ToString(), groupCount, tmpKey);
 
                 if (keyToIndex.ContainsKey(tmpKey))
-                {
+                {   // key allready exists
                     if (groupCount < groupedGraphicLocal.Count)
                     {
                         groupedGraphicLocal[keyToIndex[tmpKey]].AddInfo(pathObject);        // add length, dimension, area
@@ -226,7 +226,7 @@ namespace GrblPlotter
                     if (log) Logger.Trace("     Add {0} to key:'{1}'", pathObject.Info.Id, tmpKey);
                 }
                 else
-                {
+                {   // add new key
                     groupCount++;
                     keyToIndex.Add(tmpKey, groupCount);
 
@@ -296,6 +296,32 @@ namespace GrblPlotter
                                 groupedGraphicLocal.Sort((a, b) => a.PathArea.CompareTo(b.PathArea));
                             else
                                 groupedGraphicLocal.Sort((a, b) => b.PathArea.CompareTo(a.PathArea));
+                            break;
+                        case SortOption.ByToolList:
+                            if (ToolList.toolListArray.Count > 1)
+                            {
+                                int TNr, GrpIndex = 0;
+                                foreach (ToolProperty tp in ToolList.toolListArray)
+                                {
+                                    TNr = tp.ToolNr;
+                                    for (int i = GrpIndex; i < groupedGraphicLocal.Count; i++)
+                                    {
+                                        if (groupedGraphicLocal[i].ToolNr == TNr)
+                                        {
+                                            Logger.Trace("...Sort by ToolList ToolNr:{0}   GrpIndex:{1}  index:{2}", TNr, GrpIndex, i);
+                                            if (i == GrpIndex)
+                                            {
+                                                GrpIndex++;
+                                                continue;
+                                            }
+                                            GroupObject tmp = groupedGraphicLocal[GrpIndex];
+                                            groupedGraphicLocal[GrpIndex] = groupedGraphicLocal[i];
+                                            groupedGraphicLocal[i] = tmp;
+                                            GrpIndex++;
+                                        }
+                                    }
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -468,7 +494,7 @@ namespace GrblPlotter
             {
                 if (DeviceSpecificOptions)
                 {
-					// store already used attribute and repetitions in a dictionary
+                    // store already used attribute and repetitions in a dictionary
                     string colorStr = "";
                     switch (graphicInformation.GroupOption)
                     {

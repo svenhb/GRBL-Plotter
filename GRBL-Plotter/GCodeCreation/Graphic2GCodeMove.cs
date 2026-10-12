@@ -57,7 +57,6 @@ namespace GrblPlotter
             if (ModificationAux.Value1Enable)
             {
                 ModificationAux.Value1Command = string.Format(" {0}{1}", ModificationAux.Value1Name, FrmtNum(distance));
-                //        Logger.Info("SetAux1Distance {0}", Value1Command);
             }
             else { ModificationAux.Value1Command = ""; }
         }
@@ -67,12 +66,9 @@ namespace GrblPlotter
             if (ModificationAux.Value2Enable)
             {
                 ModificationAux.Value2Command = string.Format(" {0}{1}", ModificationAux.Value2Name, FrmtNum(distance));
-                //        Logger.Info("SetAux2Distance {0}", Value2Command);
             }
             else { ModificationAux.Value2Command = ""; }
         }
-
-
 
         private static void Move(StringBuilder gcodeString, int gnr, double x, double y, bool applyFeed, string cmt)
         { Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
@@ -84,7 +80,7 @@ namespace GrblPlotter
             if (gnr != 0)
             {
                 if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
-                { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
+                { gcodeString = figureString; }
             }
             string feed = "";
             StringBuilder gcodeTmp = new StringBuilder();
@@ -113,7 +109,7 @@ namespace GrblPlotter
 
             if (applyFeed && (gnr > 0))
             {
-                if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
+             //   if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
                 feed = string.Format("F{0}", GcodeXYFeed);
                 ApplyXYFeedRate = false;                        // don't set feed next time
             }
@@ -144,7 +140,7 @@ namespace GrblPlotter
                         gcodeTmp.AppendFormat("F{0} ", GcodeXYFeed);
                         lastf = GcodeXYFeed;
                         isneeded = true;
-                        if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
+                   //     if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
                     }
                     gcodeTmp.AppendFormat("{0}\r\n", cmt);
                     if (isneeded)
@@ -245,6 +241,5 @@ namespace GrblPlotter
             lastx = x; lasty = y; lastf = GcodeXYFeed;
             Control.LastMovewasG0 = false;
         }
-
     }
 }

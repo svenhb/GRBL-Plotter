@@ -65,6 +65,9 @@
  * 2025-01-02 l:880 f:GetCodeNrFromGCode replace Convert.ToInt16 by int.TryParse
  * 2026-04-08 replace tooltable by toollist
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-08-25 fix subroutine bug
+ * 2026-08-27 l:1550 f:InsertSubroutine avoid double insertion of subroutines 99 and 95 - SetSubroutine(Properties.Settings.Default.importGCSubroutine, 99);
+ * 2026-08-30 l:1433 f:MoveSplit remove on SubroutineOnPathStart do it Graphic2GCode instead
 */
 
 using GrblPlotter.UserControls;
@@ -245,13 +248,7 @@ namespace GrblPlotter
     }
     public static class GcodeSummary
     {
-        //   private static string Summary = "";
         private static readonly StringBuilder Summary = new StringBuilder();
-
-        //	private static readonly string highlightWarn = "style='background-color:yellow;'";
-        //	private static readonly string highlightError = "style='background-color:pink;'";
-        //    private static readonly string highlightGood = "style='background-color:lightgreen;'";
-        //    private static readonly string highlightInfo = "style='background-color:lightyellow;'";
 
         private static readonly string highlightWarn = " class='highlightWarn'";
         private static readonly string highlightError = " class='highlightError'";
@@ -276,7 +273,6 @@ namespace GrblPlotter
         public static bool SetSpindleEnable = false;
         public static bool SetSpindleSpeed = false;
         public static bool SetLaserEnable = false;
-
 
         public static void Reset()
         {
@@ -520,35 +516,24 @@ namespace GrblPlotter
         private static string docTitle = "";
         private static string docDescription = "";
 
-        private static int decimalPlaces = 3;
         private const string formatCode = "00";
         private static string formatNumber = "0.###";
 
-        private static bool useValueFromToolTable = false;
         public static float GcodeXYFeed { get; set; } //= 1999;         // XY feed to apply for G1
-        private static bool gcodeXYFeedToolTable = false; // from Tool Table
         private static bool gcodeComments = true;       // if true insert additional comments into GCode
 
         private static bool PreventSpindle { get; set; }
-        //        public static float gcodeZRepitition;          // Z feed to apply for G1
-        private static bool gcodeSValueEnable = false;
         private static string gcodeSValueCommand = "";
-
 
         // depth per pass
         private static XyPoint figureStart;                                 // 1st point of figure to move via G0 before pen down
         private static string figureStartAlpha;
 
-        //    private static bool IncrementEnable = false;                                // depth per pass enabled
-        //    private static bool IncrementStartAtZero = false;
-        //    private static float finalZ = -2;                                   // final tool path depth
         public static bool RepeatZ
         {
             get { return OptionZAxis.IncrementEnable; }
             set { OptionZAxis.IncrementEnable = value; }
         }
-
-        //    private static Stopwatch stopwatch = new Stopwatch();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -590,6 +575,7 @@ namespace GrblPlotter
         }
         internal static class Control
         {
+            internal static int decimalPlaces = 3;
             internal static bool InsertSubroutineEnable = false;
             internal static bool InsertSubroutinePenUpDown = false;
             internal static int SubroutineCount = 0;
@@ -609,6 +595,8 @@ namespace GrblPlotter
 
             internal static void Reset(bool convertGraphics)
             {
+                decimalPlaces = (int)Properties.Settings.Default.importGCDecPlaces;
+                SetDecimalPlaces(Control.decimalPlaces);
                 ToolChangeAddCommand = Properties.Settings.Default.importGCTool;
                 ToolChangeM0Enable = Properties.Settings.Default.importGCToolM0;
                 ToolChangePerform = Properties.Settings.Default.ctrlToolChange;
@@ -748,9 +736,10 @@ namespace GrblPlotter
         public static class ModificationSegmentation
         {
             internal static bool Enable;
-            internal static float Length;
+            internal static float Length;       // insert subroutine after this length
             internal static bool Equidistant;
             internal static bool SubroutineOnPathStart;
+            internal static float PathStartMinLength = 10;       // set SubroutineOnPathStart if previous path length was longer
             internal static void Reset(bool convertGraphics)
             {
                 ModificationSegmentation.Enable = false;
@@ -770,7 +759,6 @@ namespace GrblPlotter
             internal static string Name = "C";
             internal static double Angle = 0;
             internal static float AngleDevi = 0;
-            //    private static float gcodeTangentialAngleLast = 0;
             internal static string Command = "";
             internal static void Reset()
             {
@@ -787,13 +775,12 @@ namespace GrblPlotter
         {
             internal static bool Value1Enable = false;
             internal static string Value1Name = "A";
-            //    private static float gcodeAuxiliaryValue1Distance = 1;
             internal static string Value1Command = "";
 
             internal static bool Value2Enable = false;
             internal static string Value2Name = "A";
-            //    private static float gcodeAuxiliaryValue2Distance = 1;
             internal static string Value2Command = "";
+
             internal static void Reset()
             {
                 ModificationAux.Value1Enable = Properties.Settings.Default.importGCAux1Enable;
@@ -828,12 +815,9 @@ namespace GrblPlotter
             if (!GcodeSummary.MetadataUse)//            Properties.ListSettings.Default.importSVGMetaData)
                 GcodeDefaults.Reset();
 
-            decimalPlaces = (int)Properties.Settings.Default.importGCDecPlaces;
-            SetDecimalPlaces(decimalPlaces);
+            Tracker.Reset();
+            Control.Reset(convertGraphics);
             GcodeXYFeed = GcodeDefaults.FeedXY;		//(float)Properties.ListSettings.Default.importGCXYFeed;
-
-            useValueFromToolTable = Properties.Settings.Default.importGCToolListUse;
-            gcodeXYFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTXYFeed;
 
             gcodeComments = Properties.Settings.Default.importGCAddComments;
             Spindle.Reset();
@@ -842,8 +826,8 @@ namespace GrblPlotter
             DepthFromWidth.Reset();
 
             OptionIndividual.Reset();
-            Control.Reset(convertGraphics);
-            Tracker.Reset();
+            //    Control.Reset(convertGraphics);
+            //    Tracker.Reset();
 
             remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
 
@@ -851,8 +835,6 @@ namespace GrblPlotter
             ModificationTangential.Reset();
             ModificationAux.Reset();
 
-            // prevent spindle/laser-on on job start
-            //   PreventSpindle = PreventSpindle && !ToggleEnable; //(&& dragtool && ...)
             PreventSpindle = OptionZAxis.PreventSpindle || Spindle.ToggleEnable; //(&& dragtool && ...)
 
             docTitle = "";
@@ -867,97 +849,99 @@ namespace GrblPlotter
             if (Control.GcodeRelative)
             { lastx = 0; lasty = 0; }
 
-            //      stopwatch = new Stopwatch();
-            //      stopwatch.Start();
-
             gcodeSValueCommand = "";
             ModificationTangential.Command = "";
             ModificationAux.Value1Command = "";
             ModificationAux.Value2Command = "";
 
+            /********************************************************
+             ***** Override
+             ********************************************************/
             MyControl.OverideGcodeSetup();
 
-            if ((Control.InsertSubroutineEnable && ModificationSegmentation.Enable) || Control.ToolChangeAddCommand || Control.ToolChangePerform ||
-                (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0)))
+
+            bool insertSubroutine = false;
+            if (Control.ToolChangeAddCommand)
             {
-                bool insertSubroutine = false;
-                if (Control.ToolChangeAddCommand)
+                insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptPut);
+                insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptSelect);
+                insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptGet);
+                insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptProbe);
+            }
+
+            if (ModificationSegmentation.Enable && Control.InsertSubroutineEnable)
+            { insertSubroutine = true; }
+            if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0))
+            { insertSubroutine = true; }
+            if (insertSubroutine)
+            {
+                double tmp_lastz = lastz;
+                StringBuilder tmp = new StringBuilder();
+
+                Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", Control.InsertSubroutineEnable, Control.ToolChangeAddCommand, Control.ToolChangePerform);
+                PenUp(tmp, "");
+                Control.SubroutineCode += "\r\n(subroutine)\r\nO90 (Pen up)\r\n";
+                Control.SubroutineCode += tmp.ToString();
+                Control.SubroutineCode += "M99\r\n";
+                AddToHeader("Add SR 90 Pen up");
+                tmp.Clear();
+                PenDown(tmp, "");
+                Control.SubroutineCode += "\r\n(subroutine)\r\nO92 (Pen down)\r\n";
+                Control.SubroutineCode += tmp.ToString();
+                Control.SubroutineCode += "M99\r\n";
+                AddToHeader("Add SR 92 Pen down");
+
+                lastz = tmp_lastz;
+
+                if (OptionPWM.Enable)
                 {
-                    insertSubroutine = false;
-                    insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptPut);
-                    insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptSelect);
-                    insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptGet);
-                    insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptProbe);
-                }
-                if (Control.InsertSubroutineEnable && ModificationSegmentation.Enable && FileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
-                { insertSubroutine = true; }
-                if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0))
-                { insertSubroutine = true; }
-                if (insertSubroutine)
-                {
-                    double tmp_lastz = lastz;
-                    StringBuilder tmp = new StringBuilder();
-                    Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", Control.InsertSubroutineEnable, Control.ToolChangeAddCommand, Control.ToolChangePerform);
-                    PenUp(tmp, "");
-                    Control.SubroutineCode += "\r\n(subroutine)\r\nO90 (Pen up)\r\n";
-                    Control.SubroutineCode += tmp.ToString();
-                    Control.SubroutineCode += "M99\r\n";
-                    AddToHeader("Add SR 90 Pen up");
                     tmp.Clear();
-                    PenDown(tmp, "");
-                    Control.SubroutineCode += "\r\n(subroutine)\r\nO92 (Pen down)\r\n";
+                    SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMZero, (float)Properties.Settings.Default.importGCPWMDlyDown);
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO91 (Pen zero)\r\n";
                     Control.SubroutineCode += tmp.ToString();
                     Control.SubroutineCode += "M99\r\n";
-                    AddToHeader("Add SR 92 Pen down");
+                    AddToHeader("Add SR 91 Pen zero");
+                    tmp.Clear();
+                    SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMP93, (float)Properties.Settings.Default.importGCPWMDlyP93);
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO93 (" + Properties.Settings.Default.importGCPWMTextP93 + ")\r\n";
+                    Control.SubroutineCode += tmp.ToString();
+                    Control.SubroutineCode += "M99\r\n";
+                    AddToHeader("Add SR 93 " + Properties.Settings.Default.importGCPWMTextP93);
+                    tmp.Clear();
+                    SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMP94, (float)Properties.Settings.Default.importGCPWMDlyP94);
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO94 (" + Properties.Settings.Default.importGCPWMTextP94 + ")\r\n";
+                    Control.SubroutineCode += tmp.ToString();
+                    Control.SubroutineCode += "M99\r\n";
+                    AddToHeader("Add SR 94 " + Properties.Settings.Default.importGCPWMTextP94);
+                }
+                else if (OptionZAxis.Enable)
+                {
+                    tmp.Clear();
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO91 (Pen zero)\r\n";
+                    Control.SubroutineCode += "G00 Z0.000\r\n";
+                    Control.SubroutineCode += "M99\r\n";
+                    AddToHeader("Add SR 91 Pen zero");
+                    tmp.Clear();
+                    //    PenUp(tmp, "");
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO93 (Far up)\r\n";
+                    Control.SubroutineCode += "G01 Z" + FrmtNum(Properties.Settings.Default.DevicePlotterZP93) + "\r\n";
+                    Control.SubroutineCode += "M99\r\n";
+                    AddToHeader("Add SR 93 Pen far up");
+                    tmp.Clear();
+                    //    PenDown(tmp, "");
+                    Control.SubroutineCode += "\r\n(subroutine)\r\nO94 (Down stir)\r\n";
+                    Control.SubroutineCode += "G01 Z" + FrmtNum(Properties.Settings.Default.DevicePlotterZP94) + "\r\n";
+                    Control.SubroutineCode += "M99\r\n";
+                    AddToHeader("Add SR 94 Pen stir");
 
-                    if (Properties.Settings.Default.importSVGCircleToDot)   // && File.Exists(Properties.ListSettings.Default.importCircleToDotScript))
-                    {
-                        SetSubroutine(Properties.Settings.Default.importCircleToDotScript, 95);
-                    }
-
-                    lastz = tmp_lastz;
-
-                    if (OptionPWM.Enable)
-                    {
-                        tmp.Clear();
-                        SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMZero, (float)Properties.Settings.Default.importGCPWMDlyDown);
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO91 (Pen zero)\r\n";
-                        Control.SubroutineCode += tmp.ToString();
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 91 Pen zero");
-                        tmp.Clear();
-                        SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMP93, (float)Properties.Settings.Default.importGCPWMDlyP93);
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO93 (" + Properties.Settings.Default.importGCPWMTextP93 + ")\r\n";
-                        Control.SubroutineCode += tmp.ToString();
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 93 " + Properties.Settings.Default.importGCPWMTextP93);
-                        tmp.Clear();
-                        SetPwm(tmp, (float)Properties.Settings.Default.importGCPWMP94, (float)Properties.Settings.Default.importGCPWMDlyP94);
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO94 (" + Properties.Settings.Default.importGCPWMTextP94 + ")\r\n";
-                        Control.SubroutineCode += tmp.ToString();
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 94 " + Properties.Settings.Default.importGCPWMTextP94);
-                    }
-                    else if (OptionZAxis.Enable)
-                    {
-                        tmp.Clear();
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO91 (Pen zero)\r\n";
-                        Control.SubroutineCode += "G00 Z0.000";
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 91 Pen zero");
-                        tmp.Clear();
-                        //    PenUp(tmp, "");
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO93 (Far up)\r\n";
-                        Control.SubroutineCode += "G01 Z" + FrmtNum(Properties.Settings.Default.DevicePlotterZP93);
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 93 Pen far up");
-                        tmp.Clear();
-                        //    PenDown(tmp, "");
-                        Control.SubroutineCode += "\r\n(subroutine)\r\nO93 (Down stir)\r\n";
-                        Control.SubroutineCode += "G01 Z" + FrmtNum(Properties.Settings.Default.DevicePlotterZP94);
-                        Control.SubroutineCode += "M99\r\n";
-                        AddToHeader("Add SR 94 Pen stir");
-                    }
+                }
+                if (Properties.Settings.Default.importSVGCircleToDot)   // && File.Exists(Properties.ListSettings.Default.importCircleToDotScript))
+                {
+                    SetSubroutine(Properties.Settings.Default.importCircleToDotScript, 95);
+                }
+                if (ModificationSegmentation.Enable)
+                {
+                    SetSubroutine(Properties.Settings.Default.importGCSubroutine, 99);      // also line 1580
                 }
             }
         }
@@ -987,7 +971,7 @@ namespace GrblPlotter
         }
 
         public static bool IsEqual(double vala, double valb)
-        { return (Math.Round(vala, decimalPlaces) == Math.Round(valb, decimalPlaces)); }
+        { return (Math.Round(vala, Control.decimalPlaces) == Math.Round(valb, Control.decimalPlaces)); }
 
         public static void SetDecimalPlaces(int num)
         {
@@ -1253,9 +1237,6 @@ namespace GrblPlotter
                     gcodeValue.AppendFormat("M{0} S{1:0} {2}\r\n", Spindle.SpindleCmd, Spindle.Speed, cmt);  //2022-03-15
                     if ((!OptionZAxis.Enable) && (Control.LastMovewasG0))
                     {
-                        // %NM tag, to keep code-line when synthezising code
-                        //        gcodeValue.AppendFormat("G91 G1 X0.001 F{0} ( %NM use Laser mode)\r\n", GcodeXYFeed);
-                        //        gcodeValue.AppendFormat("G91 G1 X-0.001     ( %NM G1 move to activate laser)\r\n");
                         if (!Control.GcodeRelative)
                         { gcodeValue.AppendFormat("G90 ( %NM )\r\n"); }
                     }
@@ -1328,17 +1309,7 @@ namespace GrblPlotter
                 if (Spindle.LasermodeEnable && !OptionPWM.Enable)  // 1st Z, then Laser
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Laser-Off");
-                    //    SpindleOff(gcodeValue, cmto);
                     gcodeValue.AppendFormat("M{0} S0 ({1} Lasermode: S0 instead of M5 to switch laser off)\r\n", Spindle.SpindleCmd, cmt);  //2022-03-15
-                    /*     if ((!Enable) && (LastMovewasG0))
-                         {
-                             gcodeValue.AppendFormat("G91 G1 X0.001 F{0} ( %NM use Laser mode)\r\n", GcodeXYFeed);
-                             gcodeValue.AppendFormat("G91 G1 X-0.001     ( %NM G1 move to activate laser)\r\n");
-                             if (!GcodeRelative)
-                             { gcodeValue.AppendFormat("G90 ( %NM )\r\n"); }
-                             //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
-                             //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
-                         }*/ // removed  2023-06-26  not needed for pen-up
                     penUpApplied = true;
                 }
             }
@@ -1398,7 +1369,7 @@ namespace GrblPlotter
         { lastx = lx; lasty = ly; lastz = lz; }
 
         private static double lasta;
-        //   public static bool LastMovewasG0 { get; set; } //= true;
+
         public static void MoveToNoFeed(StringBuilder gcodeValue, Point coord, string cmt)//, bool avoidFeed)
         { ApplyXYFeedRate = false; MoveSplit(gcodeValue, 1, coord.X, coord.Y, ApplyXYFeedRate, cmt); }
         public static void MoveTo(StringBuilder gcodeValue, Point coord, string cmt)
@@ -1436,10 +1407,9 @@ namespace GrblPlotter
         { MoveSplit(gcodeString, gnr, mx, my, null, applyFeed, cmt); }
 
         private static double remainingX = 10, remainingY = 10, remainingC = 10;
-        //private static float segFinalX = 0, segFinalY = 0;//, segLastFinalX = 0, segLastFinalY = 0;
-        //   private static int lastCharCount = 0;
-        private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, double finalx, double finaly, double? z, bool applyFeed, string cmt)
+        internal static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, double finalx, double finaly, double? z, bool applyFeed, string cmt)
         {
+            /* called by l:1048 f:MoveTo in Graphic2GCode */
             if (Control.LastMovewasG0)
             {
                 if ((finalx == lastx) && (finaly == lasty)) // discard G1 without any move
@@ -1451,7 +1421,7 @@ namespace GrblPlotter
             if (gnr != 0)
             {
                 if (OptionZAxis.Enable && OptionZAxis.IncrementEnable)
-                { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
+                { gcodeString = figureString; }
             }
 
             if (ModificationSegmentation.Enable)       // apply segmentation
@@ -1468,8 +1438,10 @@ namespace GrblPlotter
                 // add subroutine at the beginning of each path (after G0 move)
                 if (ModificationSegmentation.SubroutineOnPathStart && (Control.LastMovewasG0 || (moveLength >= segmentLength)))       // also subroutine at first point
                 {
-                    if (Control.InsertSubroutineEnable)
-                        applyFeed = InsertSubroutine(gcodeString, lastx, lasty);//, lastz, applyFeed);
+                    /* if device=plotter, subroutine already set in l:85 f:PenDownDevice Graphic2GCodeRelatedDevice */
+                    //    if (Control.InsertSubroutineEnable)
+                    //        applyFeed = InsertSubroutine(gcodeString, lastx, lasty);//, lastz, applyFeed);
+                    applyFeed = true;
                     remainingC = segmentLength;
                 }
 
@@ -1499,7 +1471,6 @@ namespace GrblPlotter
                                 Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
                                 if (i >= 1) { applyFeed = false; cmt = ""; }
                                 if (Control.InsertSubroutineEnable)
-                                    //  applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);  // edit 2021-06-20
                                     applyFeed = InsertSubroutine(gcodeString, tmpX, tmpY);//, lastz, applyFeed);
                             }
                         }
@@ -1519,7 +1490,6 @@ namespace GrblPlotter
                                 Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
                                 if (i >= 1) { applyFeed = false; cmt = ""; }
                                 if (Control.InsertSubroutineEnable)
-                                    //    applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);    // edit 2021-06-20
                                     applyFeed = InsertSubroutine(gcodeString, tmpX, tmpY);//, lastz, applyFeed);
                             }
                         }
@@ -1529,7 +1499,6 @@ namespace GrblPlotter
                         if ((equidistance) || (remainingC == 0))
                         {
                             if (Control.InsertSubroutineEnable)
-                                //    insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);    // edit 2021-06-20
                                 InsertSubroutine(gcodeString, finalx, finaly);//, lastz, applyFeed);
                             remainingC = segmentLength;
                         }
@@ -1547,10 +1516,12 @@ namespace GrblPlotter
         // process subroutine, afterwards move back to last regular position before subroutine        
         private static bool InsertSubroutine(StringBuilder gcodeString, double lX, double lY)//, float lZ, bool applyFeed)
         {
-            //Logger.Trace("insertSubroutine");
             bool xyfeedneeded = true;
-            if (Control.InsertSubroutinePenUpDown) PenUp(gcodeString, "PU");
+            if (Control.InsertSubroutinePenUpDown)
+                PenUp(gcodeString, "PU");
+
             gcodeString.AppendFormat("M98 P99 (call subroutine)\r\n");
+
             if (Control.InsertSubroutinePenUpDown)
             {
                 gcodeString.AppendFormat("G90 G0 X{0} Y{1}\r\n", FrmtNum(lX), FrmtNum(lY));
@@ -1559,26 +1530,26 @@ namespace GrblPlotter
             }
             else
             {
-                gcodeString.AppendFormat("G90 G1 X{0} Y{1} F{2}\r\n", FrmtNum(lX), FrmtNum(lY), GcodeXYFeed);
+                gcodeString.AppendFormat("G90 G0 X{0} Y{1}\r\n", FrmtNum(lX), FrmtNum(lY));
+                gcodeString.AppendFormat("G90 G1 F{0}\r\n", GcodeXYFeed);
                 xyfeedneeded = false;
             }
 
             Control.SubroutineCount++;
-            if (Control.SubroutineFound == 0)     // read file once
-            {
-                SetSubroutine(Properties.Settings.Default.importGCSubroutine, 99);
-                SetSubroutine(Properties.Settings.Default.importCircleToDotScript, 95);
-                Control.SubroutineFound++;
-            }
             return xyfeedneeded;    // applyFeed is needed
         }
 
-        public static void SetSubroutine(string file, int nr)
+        public static void SetSubroutine(string fileRaw, int nr)
         {
             Control.SubroutineCode += "\r\n(subroutine)\r\nO" + nr.ToString() + "\r\n";
             string result = "";
+            string file = Datapath.MakeAbsolutePath(fileRaw);
+
             if (File.Exists(file))
-            { Control.SubroutineCode += File.ReadAllText(file); }
+            {
+                string code = File.ReadAllText(file);
+                Control.SubroutineCode += code;
+            }
             else
             {
                 Control.SubroutineCode += "(file " + file + " not found)\r\n";
@@ -1767,7 +1738,6 @@ namespace GrblPlotter
                     if (moveLength >= (count * segmentLength))
                     {
                         if (Control.InsertSubroutineEnable)
-                        //    applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);    //2021-06-20
                         { if (gcodeValue != null) ApplyXYFeedRate = InsertSubroutine(gcodeValue, (float)x, (float)y); }//, lastz, ApplyXYFeedRate); }
                         count++;
                     }
@@ -1778,7 +1748,6 @@ namespace GrblPlotter
             if ((moveLength >= (count * segmentLength)) || equidistance)
             {
                 if (Control.InsertSubroutineEnable)
-                //    applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);    //2021-06-20
                 { if (gcodeValue != null) ApplyXYFeedRate = InsertSubroutine(gcodeValue, pos2.X, pos2.Y); }//, lastz, ApplyXYFeedRate); }
                                                                                                            //    moveLength = 0;
             }
@@ -2025,9 +1994,6 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importGCToolListUse)
             {
                 header += "( Values from tool-table: All";
-                //    if (Properties.Settings.Default.importGCTTSSpeed) { header += "spindle speed, "; }
-                //    if (Properties.Settings.Default.importGCTTXYFeed) { header += "XY feed, "; }
-                //    if (Properties.Settings.Default.importGCTTZAxis) { header += "Z Values "; }
                 header += ")\r\n";
             }
 
@@ -2040,7 +2006,6 @@ namespace GrblPlotter
             if (Tracker.gcodePauseCounter > 0)
                 header += string.Format("( M0 count    : {0})\r\n", Tracker.gcodePauseCounter);
 
-            //			header_end += string.Format("({0} >)\r\n", xmlMarker.headerEnd);
             return header + header_end;
         }
 
@@ -2078,8 +2043,7 @@ namespace GrblPlotter
             OptionZAxis.finalZ = OptionZAxis.Down;
             string cmt = "";
             bool fromTT = false;
-            //      if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
-            //     if (Properties.ListSettings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
+
             if (OptionZAxis.gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
             if (fromTT && gcodeComments) { cmt += " from tool-table"; }
             cmt = "( " + cmt + " )";

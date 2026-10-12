@@ -55,6 +55,7 @@ namespace GrblPlotter
         }
         public static void JobEndDevice(StringBuilder gcodeValue, string cmt)
         {
+            PenUpDevice(gcodeValue, "PU");
             if (Import.SelectedDevice == DeviceSelection.Router)
             {
                 gcodeValue.AppendFormat("M{0}{1}\r\n", FrmtCode(5), " (JobEnd)");

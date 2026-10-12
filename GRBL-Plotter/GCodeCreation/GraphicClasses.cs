@@ -35,6 +35,7 @@
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-06-04 l:818 f:AddArc adapt call to Dimension.SetDimensionArc
  * 2026-07-21 l:140 add OptionRepeatCodeNumber
+ * 2026-08-16 l:97 f:SortOption add ByToolList
 */
 
 using GrblPlotter.Helper;
@@ -93,7 +94,7 @@ namespace GrblPlotter
         /// </summary>		
         public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode, Wire, Image, Ink, ImageForm };
         public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7 };
-        public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
+        public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4, ByToolList=5 };
         public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2 };
 
         /***************** GraphicInformationClass ********************************/

@@ -413,7 +413,7 @@ namespace GrblPlotter
             const uint loggerSelect = (uint)LogEnables.PathModification;
             double gcodeDragRadius = (double)Properties.Settings.Default.importGCDragKnifeLength;
             double gcodeDragAngle = (double)Properties.Settings.Default.importGCDragKnifeAngle;
-            bool useKnife = Properties.Settings.Default.importGCDragKnifeUse;
+            bool useTangentialKnife = Properties.Settings.Default.importGCDragKnifeUse;
 
             Logger.Info("...DragToolModification radius:{0:0.00} angle:{1:0.00}", gcodeDragRadius, gcodeDragAngle);
 
@@ -436,7 +436,7 @@ namespace GrblPlotter
                         if ((logFlags & loggerSelect) > 0) Logger.Trace(" New path count:{0}", opath.Path.Count);
 
                         /* First move starts earlier ? */
-                        if (!useKnife)
+                        if (!useTangentialKnife)
                         {
                             opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startEarlier);
                             if ((logFlags & loggerSelect) > 0) Logger.Trace(" not useKnife extend first move old x:{0:0.00} y:{1:0:00}  new x:{2:0.00} y:{3:0.00}", opath.Start.X, opath.Start.Y, opath.Path[0].MoveTo.X, opath.Path[0].MoveTo.Y);
@@ -485,7 +485,7 @@ namespace GrblPlotter
                             opath.Path[i].MoveTo = ExtendPath(opath.Path[i - 1].MoveTo, opath.Path[i].MoveTo, gcodeDragRadius, ExtendDragPath.endLater);
                             if (i == opath.Path.Count - 1)
                             {   /* last move */
-                                if (useKnife)   // leave path at 0 deg.
+                                if (useTangentialKnife)   // leave path at 0 deg.
                                 {
                                     /* add arc to leave path with knife angle = 0° degree */
                                     Point leavePath = new Point(origMoveTo.X + gcodeDragRadius, origMoveTo.Y);
@@ -502,7 +502,7 @@ namespace GrblPlotter
                         }   // end for
 
                         opath.End = opath.Path[opath.Path.Count - 1].MoveTo;
-                        if (useKnife)
+                        if (useTangentialKnife)
                         {   /* knife has angle of 0° - and 1st path? #340 */
                             Point startPathOriginal = new Point(opath.Path[0].MoveTo.X, opath.Path[0].MoveTo.Y);
                             Point startPath0Degree = new Point(opath.Path[0].MoveTo.X - gcodeDragRadius, opath.Path[0].MoveTo.Y);

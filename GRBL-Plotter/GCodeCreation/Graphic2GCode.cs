@@ -45,7 +45,7 @@
  * 2023-11-03 l:357 f:CreateGCode (figure) add proforma figure-tag if not figureEnable
  * 2023-11-27 l:465 f:ProcessPathObject call subroutine only if needed
  * 2024-01-03 l:360 f:CreateGCode check if (completeGraphic.Count > 0) 
- * 2024-01-07 l:393 f:CreateGCode if (useToolTable) also adapt width/diameter issue #370
+ * 2024-01-07 l:393 f:CreateGCode if (useToolList) also adapt width/diameter issue #370
  * 2024-03-19 l:970 f:MoveToDashed avoid intermediate G0 coordinates
  * 2024-04-13 l:438 f:ProcessPathLength new function
  * 2024-06-22 l:1116 f:arc tangential
@@ -55,6 +55,8 @@
  * 2026-04-08 replace tooltable by toollist
  * 2026-04-09 GUI rework for vers. 1.8.0.0
  * 2026-07-24 l:295, 405, 846 limit digits in GCode-XML -> PenWidth=\"{0:0.000}\"
+ * 2026-08-27 l:1060 f:MoveTo change call: if (useAlternitveZ) MoveSplit
+ * 2026-08-30 l:917 f:StartPath add SubroutineOnPathStart before penDown
 */
 
 using GrblPlotter.UserControls;
@@ -88,7 +90,8 @@ namespace GrblPlotter
         private static bool pauseBeforePenDown = false;
 
         private static bool useAlternitveZ = false;
-        private static bool useToolTable = false;
+        private static bool useToolList = false;
+        private static bool toolCmdWasSet = false;
 
         private static bool figureEnable = true;
 
@@ -114,7 +117,7 @@ namespace GrblPlotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        //    private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
+
         private static bool logEnable;
         private static bool logDetailed;
         private static bool logCoordinates;
@@ -151,14 +154,13 @@ namespace GrblPlotter
             GlobalPathLengthPU = 0;
             GlobalPathStart = Graphic.GetStartPos(3);
 
-
             FigureEndTagWasSet = true;
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)                              // initialize GCode creation (get stored settings for export)
             pathInfo = new PathInformation();
 
             useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp;
 
-            useToolTable = Properties.Settings.Default.importGCToolListUse;
+            useToolList = Properties.Settings.Default.importGCToolListUse;
         }
 
         /// <summary>
@@ -191,7 +193,6 @@ namespace GrblPlotter
 
             if (graphicInfo == null) return false;
             if (tiledGraphic == null) return false;
-            //    double offsetX, offsetY;
 
             SetHalftoneMode(finalGcodeString, graphicInfo);
 
@@ -291,7 +292,7 @@ namespace GrblPlotter
                     {
                         figColor = string.Format(" PenColor=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
                         //    figWidth = string.Format(" PenWidth=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
-                        //      if (useToolTable)                                                   // 2021-08-26 #217
+                        //      if (useToolList)                                                   // 2021-08-26 #217
                         figWidth = string.Format(" PenWidth=\"{0:0.000}\"", ToolList.GetToolDiameter(groupObject.ToolNr));
 
                     }
@@ -305,7 +306,7 @@ namespace GrblPlotter
                 {
                     if (logEnable) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.Id);
 
-                    if (useToolTable && MyControl.UseSpecificDevice())                                                   // 2021-08-26 #217
+                    if (Graphic2GCode.useToolList && MyControl.UseSpecificDevice())                                                   // 2021-08-26 #217
                     {
                         int toolToUse = groupObject.ToolNr;
                         if (Properties.Settings.Default.importGCToolDefNrUse)
@@ -317,7 +318,7 @@ namespace GrblPlotter
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);   // 2024-01-07 #370
 
-                    //    Logger.Trace("toolToUse:{0}   toolColor:{1}  toolWidth:{2}", toolToUse, toolColor, toolWidth);
+                        //    Logger.Trace("toolToUse:{0}   toolColor:{1}  toolWidth:{2}", toolToUse, toolColor, toolWidth);
                     }
                     ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
@@ -416,22 +417,18 @@ namespace GrblPlotter
                 {
                     toolColor = pathObject.Info.GroupAttributes[(int)GroupOption.ByColor];
                     toolNr = ToolList.GetToolNRByToolColor(toolColor, 0);
-                //    Logger.Trace("1 GetToolNRByToolColor result {0}", toolNr);
-                    //    toolNr = useToolList ? ToolList.GetToolNRByToolColor(toolColor, 0) : ToolTable.GetToolNRByToolColor(toolColor, 0);
                 }
 
                 // real tool to use: default or from graphic	   
                 int toolToUse = toolNr;
-                if (useToolTable && Properties.Settings.Default.importGCToolDefNrUse)
+                if (Graphic2GCode.useToolList && Properties.Settings.Default.importGCToolDefNrUse)
                     toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
 
                 toolName = ToolList.GetToolName(toolToUse);
                 toolColor = ToolList.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
                 toolWidth = ToolList.GetToolDiameter(toolToUse);       // 2024-01-07 #370
 
-            //    Logger.Trace("toolToUse:{0}  toolName:{1}  toolColor:{2}  toolWidth:{3}", toolToUse, toolName, toolColor, toolWidth);
-
-                if (useToolTable && MyControl.UseSpecificDevice())                                       // 2021-08-26 #217
+                if (Graphic2GCode.useToolList && MyControl.UseSpecificDevice())                                       // 2021-08-26 #217
                 {
                     pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
                     pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);  // 2024-01-07 #370
@@ -509,7 +506,6 @@ namespace GrblPlotter
                 }
                 else if (graphicInfo.OptionZFromWidth)
                 {
-                    //    dotCounter++;
                     double newZ = CalculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("---Dot OptionZFromWidth: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ, newZ);
                     newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
@@ -518,7 +514,6 @@ namespace GrblPlotter
                 }
                 if (graphicInfo.OptionSFromWidth)
                 {
-                    //    dotCounter++;
                     double newS = CalculateSFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setS:{1:0.00}", DotData.OptZ, newS);
                     Gcode.OptionPWM.Down = Gcode.Spindle.Speed = (float)newS;   //???
@@ -536,7 +531,6 @@ namespace GrblPlotter
                     dotCounter = 0;
                     Gcode.CallSubroutine(gcodeString, 95, "refresh stamp");
                 }
-                //    Gcode.Down = origZ;
             }
             else
             {
@@ -558,7 +552,6 @@ namespace GrblPlotter
                 if (graphicInfo.OptionSpecialDevelopment || graphicInfo.ImportDxfConsiderZ)	// apply given z-value from *.Depth (Develop: zCut, zNotch; or from DXF-z)
                 {
                     Gcode.OptionZAxis.Down = (float)PathData.Path[0].Depth;
-                    //  Logger.Info("ProcessPathObject OptionSpecialDevelopment start Z:{0:0.000}", PathData.Path[0].Depth);
                 }
                 if (graphicInfo.OptionSpecialWireBender)
                 {
@@ -582,7 +575,7 @@ namespace GrblPlotter
                     if (graphicInfo.OptionZFromWidth)
                     {
                         newZ = CalculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, entity.Depth);
-                        if (logEnable) Logger.Trace("--ProcessPathObject-OptionZFromWidth: orig:{0}  new:{1}", origZ, newZ);
+                        if (logEnable) Logger.Trace("--ProcessPathObject-OptionZFromWidth: orig:{0:0.000}  new:{1:0.000}", origZ, newZ);
 
                         newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
                         Gcode.OptionZAxis.Down = (float)newZ;
@@ -620,13 +613,11 @@ namespace GrblPlotter
                     /* Create Line */
                     if (entity is GCodeLine)
                     {
-                        //    Logger.Trace("# MoveTo {0:0.0}  Angle:{1:0.0}", entity.MoveTo, (entity.Angle * 180 / Math.PI));
                         MoveTo(entity.MoveTo, newZ, newS, entity.Angle, "");
                     }
                     else if (entity is GCodeArc ArcData)
                     {
                         /* Create Arc */
-                        //    Logger.Trace("# ArcTo  {0:0.0}  AngleStart:{1:0.0}  Angle:{2:0.0}", ArcData.MoveTo, ArcData.AngleStart * 180 / Math.PI, ArcData.Angle * 180 / Math.PI);
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
                 }
@@ -663,6 +654,7 @@ namespace GrblPlotter
                 }
             }
         }
+
         private static void CalculateAux1(GCodeMotion entity)
         {
             int setAux1ZMode = Properties.Settings.Default.importGCAux1ZMode;
@@ -711,7 +703,7 @@ namespace GrblPlotter
             {
                 double zMin = Math.Abs((double)DepthFromWidth.SMin);
                 double zMax = Math.Abs((double)DepthFromWidth.SMax);
-                //    double width = Math.Abs((double)Properties.Settings.Default.importDepthFromWidthMax);
+
                 Gcode.Comment(gcodeString, string.Format("{0} Min=\"{1}\" Max=\"{2}\" Width=\"{3}\" />", XmlMarker.HalftoneS, zMin, zMax, graphicInfo.PenWidthMax));  //width
             }
         }
@@ -753,6 +745,7 @@ namespace GrblPlotter
 
             return -z;
         }
+
         public static double CalculateZFromRangeBackup(double min, double max, double penWidth)
         {
             if (logDetailed)
@@ -837,6 +830,7 @@ namespace GrblPlotter
             string groupVal6 = string.Format(" PathArea=\"{0:0.0}\"", groupObject.PathArea);
             return string.Format("{0}{1}{2}{3}{4}{5}", groupVal1, groupVal2, groupVal3, groupVal4, groupVal5, groupVal6);
         }
+
         private static StringBuilder GetFigureAttributes(PathObject pathObject)
         {
             StringBuilder attributes = new StringBuilder();
@@ -856,7 +850,6 @@ namespace GrblPlotter
 
             return attributes;
         }
-
 
         /// <summary>
         /// Set start tag, move to beginning of path via G0, finish old path
@@ -917,7 +910,19 @@ namespace GrblPlotter
                 if (pauseBeforePath) { Gcode.Pause(gcodeString, "Pause before path"); }
 
                 if (toolNr >= 0)
-                    ToolChange(toolNr, 1, toolCmt);   // add tool change commands (if enabled) and set XYFeed etc.
+                { ToolChange(toolNr, 1, toolCmt); }   // add tool change commands (if enabled) and set XYFeed etc.
+
+                if (!toolCmdWasSet)
+                { // add subroutine at the beginning of each path (after G0 move)
+                    if (ModificationSegmentation.Enable && ModificationSegmentation.SubroutineOnPathStart)       // also subroutine at first point
+                    {
+                        gcodeString.AppendFormat("M98 P99 (call subroutine on path start)\r\n");
+                    }
+                }
+                toolCmdWasSet = false;
+                if (pathObject.PathLength < ModificationSegmentation.PathStartMinLength)
+                    // this path length is short, don't insert subroutine on next path
+                    toolCmdWasSet = true;
             }
 
             double setangle = 180 * angle / Math.PI;
@@ -974,8 +979,6 @@ namespace GrblPlotter
 
                         pwmDown = pwmUp - stp * pwmDelta / steps;
                         gcodeString.AppendFormat("M{0} S{1}\r\n", Gcode.Spindle.SpindleCmd, (int)pwmDown);
-                        //                    if (pwmDownDlyMax > 0)
-                        //                         gcodeString.AppendFormat("G{0} P{1}\r\n", gcode.frmtCode(4), gcode.frmtNum(partDly));
                     }
                     Gcode.OptionPWM.DlyDown = 0;// (float)partDly;
                     Gcode.MoveTo(gcodeString, pathObject.Start, "");
@@ -1041,6 +1044,7 @@ namespace GrblPlotter
         /// </summary>
         private static void MoveTo(Point coordxy, double newZ, double? newS, double tangAngle, string cmt)
         {
+            /* called by l:614 f:ProcessPathObject*/
             bool applyDashPattern = Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1);
 
             if (!useAlternitveZ && !applyDashPattern)    //Properties.ListSettings.Default.importDepthFromWidthRamp)
@@ -1054,9 +1058,8 @@ namespace GrblPlotter
             if (newS != null) Gcode.SetSValue((double)newS);
 
             if (logCoordinates) Logger.Trace("MoveTo useAlternitveZ:{0}  newZ:{1:0.00}", useAlternitveZ, newZ);
-
-            if (useAlternitveZ) 		//Properties.ListSettings.Default.importDepthFromWidthRamp|| Properties.ListSettings.Default.importDXFUseZ)
-                Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, Gcode.ApplyXYFeedRate, cmt);
+            if (useAlternitveZ)         //Properties.ListSettings.Default.importDepthFromWidthRamp|| Properties.ListSettings.Default.importDXFUseZ)
+                MoveSplit(gcodeString, 1, coordxy.X, coordxy.Y, newZ, Gcode.ApplyXYFeedRate, cmt);
             else if (applyDashPattern)
                 MoveToDashed(coordxy);
             else
@@ -1064,8 +1067,6 @@ namespace GrblPlotter
 
             lastGC = coordxy;
         }
-
-
 
         private static void MoveToDashed(Point coordxy)
         {
@@ -1145,8 +1146,6 @@ namespace GrblPlotter
                     if (gcodeComments) dashInfo = "pen-up dash:" + dashInfo;
                     if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}", pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
                     pPenUp = new Point(pNext.X, pNext.Y);
-                    //    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
-                    //    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
                 }
                 else
                 {
@@ -1234,7 +1233,6 @@ namespace GrblPlotter
                 header.Append(finalGcodeString);
                 header.Append(footer);
             }
-            //header.AppendLine("M30"); // 2021-05-07 reomved
 
             if (Properties.Settings.Default.ctrlLineNumbers || Properties.Settings.Default.ctrlLineEndEnable)
             {
@@ -1255,7 +1253,6 @@ namespace GrblPlotter
                 header.Append(String.Join("\n", lines));
             }
             Graphic.GCode = header.Replace(',', '.');
-            //    Logger.Trace("end Graphic2GCode - FinalGCode() {0}", Graphic.GCode.ToString());
             return true;
         }
 
@@ -1302,7 +1299,7 @@ namespace GrblPlotter
         /// Insert tool change command
         /// </summary>
         private static void ToolChange(int toolnr, int objectCount, string cmt = "")
-        { Gcode.Tool(gcodeString, toolnr, objectCount, cmt); }  // add tool change commands (if enabled) and set XYFeed etc.
+        { Gcode.Tool(gcodeString, toolnr, objectCount, cmt); toolCmdWasSet = true; }  // add tool change commands (if enabled) and set XYFeed etc.
 
 
         /// <summary>
@@ -1310,7 +1307,5 @@ namespace GrblPlotter
         /// </summary>
         private static void Comment(string cmt)
         { Gcode.Comment(gcodeString, cmt); }
-
     }
-
 }

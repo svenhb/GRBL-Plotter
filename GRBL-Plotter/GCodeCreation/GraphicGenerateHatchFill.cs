@@ -126,7 +126,9 @@ namespace GrblPlotter
                         {
                             CountProperty((int)GroupOption.ByColor, fillColor);      // now FillToolListElements-color is also penColor -> for grouping
                             if (!MyControl.ApplyToolList)
-                                ToolList.Add(new ToolProperty(fillColor));
+                            {
+                                ToolList.AddColor(fillColor);
+                            }
                         }
 
                         if (DeviceSpecificOptions && MyControl.ApplyToolList)	// Device is Laser, Plotter, Router
