@@ -341,4 +341,45 @@ Bir fare %50'lik sabit bir basınç değeri verir.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Panodan XYZ verilerini içe aktar (sekmeyle ayrılmış değerler x y z veya x z)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>XYZ verilerini panodan içe aktarın (sekme ile ayrılmış x y z veya x z değerleri).
+Z değeri 0,0 ila 1,0 aralığındadır.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Arka plan rengini ayarla</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Tüm konturları şimdi yumuşat</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Çizici çalışma alanı dışında kalan noktaları kaldır</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Arka plan resmi</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dosyadan yükle</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Panodan yapıştır</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Arka plan renginin saydamlığını ayarla</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Arka plan resmini dosyadan yükle</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Arka plan resmini panodan yapıştır</value>
+    <comment>tt</comment>
+  </data>
 </root>

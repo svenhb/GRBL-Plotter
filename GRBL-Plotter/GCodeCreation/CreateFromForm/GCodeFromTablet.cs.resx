@@ -341,4 +341,45 @@ Myš poskytuje konstantní hodnotu tlaku 50 %.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Import dat XYZ ze schránky (hodnoty x y z nebo x z oddělené tabulací)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Importovat data XYZ ze schránky (hodnoty oddělené tabulátorem: x y z nebo x z).
+Hodnota Z v rozsahu 0,0 až 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Nastavit barvu pozadí</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Vyhladit všechny tahy</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Odstranit body mimo pracovní prostor plotru</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Obrázek pozadí</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Načíst ze souboru</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Vložit ze schránky</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Nastavit průhlednost barvy pozadí</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Načíst obrázek pozadí ze souboru</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Vložit obrázek pozadí ze schránky</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -341,4 +341,45 @@ Mysz dostarcza stałą wartość nacisku 50%.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importuj dane XYZ ze schowka (wartości rozdzielone tabulatorem x y z lub x z)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Importuj dane XYZ ze schowka (wartości rozdzielone tabulatorami: x y z lub x z).
+Wartość Z w zakresie od 0,0 do 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Ustaw kolor tła</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Wygładź wszystkie linie</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Usuń punkty spoza obszaru roboczego plotera</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Obraz tła</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wczytaj z pliku</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wklej ze schowka</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Ustaw przezroczystość koloru tła</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Wczytaj obraz tła z pliku</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Wklej obraz tła ze schowka</value>
+    <comment>tt</comment>
+  </data>
 </root>

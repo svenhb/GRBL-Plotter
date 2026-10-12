@@ -341,4 +341,45 @@
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>クリップボードからXYZデータをインポートします（タブ区切りのxyzまたはxzの値）</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>クリップボードからXYZデータをインポートします（タブ区切り値：x y z または x z）。
+Zの値の範囲は0.0～1.0です。</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>背景色を設定</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>すべてのストロークを滑らかにする</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>プロッターの作業領域外にある点を削除</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>背景画像</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ファイルから読み込む</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>クリップボードから貼り付け</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>背景色の透明度を設定</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>ファイルから背景画像を読み込む</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>クリップボードから背景画像を貼り付け</value>
+    <comment>tt</comment>
+  </data>
 </root>

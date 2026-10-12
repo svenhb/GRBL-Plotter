@@ -1383,7 +1383,7 @@
             this.CboxToolTable.Name = "CboxToolTable";
             this.CboxToolTable.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.CboxToolTable_DrawItem);
             // 
-            // CboxToolFiles
+            // CboxColorPaletteFiles
             // 
             this.CboxToolFiles.FormattingEnabled = true;
             resources.ApplyResources(this.CboxToolFiles, "CboxToolFiles");

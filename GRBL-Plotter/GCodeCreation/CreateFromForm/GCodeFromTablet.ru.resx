@@ -341,4 +341,45 @@
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Импорт данных XYZ из буфера обмена (значения, разделенные табуляцией, x, y, z или x, z)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Импорт данных XYZ из буфера обмена (значения, разделенные табуляцией: x y z или x z).
+Значение Z — в диапазоне от 0,0 до 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Установить цвет фона</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Сгладить все контуры</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Удалить точки, находящиеся за пределами рабочей области плоттера</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Фоновое изображение</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Загрузить из файла</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Вставить из буфера обмена</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Установить прозрачность цвета фона</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Загрузить фоновое изображение из файла</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Вставить фоновое изображение из буфера обмена</value>
+    <comment>tt</comment>
+  </data>
 </root>

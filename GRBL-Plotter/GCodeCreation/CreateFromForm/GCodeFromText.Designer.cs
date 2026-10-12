@@ -385,7 +385,7 @@ namespace GrblPlotter
             this.CboxToolTable.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.CboxToolTable_DrawItem);
             this.CboxToolTable.SelectedIndexChanged += new System.EventHandler(this.CboxToolTable_SelectedIndexChanged);
             // 
-            // CboxToolFiles
+            // CboxColorPaletteFiles
             // 
             this.CboxToolFiles.FormattingEnabled = true;
             resources.ApplyResources(this.CboxToolFiles, "CboxToolFiles");

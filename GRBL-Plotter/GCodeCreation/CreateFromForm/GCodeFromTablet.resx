@@ -190,7 +190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnHelp.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="CboxPapersize.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 20</value>
@@ -406,7 +406,7 @@
     <value>6, 117</value>
   </data>
   <data name="BtnReduce.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 29</value>
+    <value>143, 29</value>
   </data>
   <data name="BtnReduce.TabIndex" type="System.Int32, mscorlib">
     <value>54</value>
@@ -427,7 +427,7 @@
     <value>GbModify</value>
   </data>
   <data name="&gt;&gt;BtnReduce.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -647,7 +647,7 @@ Or assign a filename containing GCode. </value>
     <value>GbModify</value>
   </data>
   <data name="&gt;&gt;NudPointDistance.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="CbMovementPenUp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -743,7 +743,7 @@ Or assign a filename containing GCode. </value>
     <value>NoControl</value>
   </data>
   <data name="CbFitToCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 8</value>
+    <value>276, 91</value>
   </data>
   <data name="CbFitToCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
@@ -757,9 +757,6 @@ Or assign a filename containing GCode. </value>
   <data name="CbFitToCurve.ToolTip" xml:space="preserve">
     <value>After completing a line, it is smoothed.</value>
   </data>
-  <data name="CbFitToCurve.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;CbFitToCurve.Name" xml:space="preserve">
     <value>CbFitToCurve</value>
   </data>
@@ -767,10 +764,10 @@ Or assign a filename containing GCode. </value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CbFitToCurve.Parent" xml:space="preserve">
-    <value>GbMode</value>
+    <value>GbModify</value>
   </data>
   <data name="&gt;&gt;CbFitToCurve.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="NudSizePen.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 18</value>
@@ -799,17 +796,130 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;NudSizePen.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="BtnCreateGcode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 6</value>
+  <data name="BtnImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 84</value>
   </data>
-  <data name="BtnCreateGcode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 46</value>
+  <data name="BtnImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="BtnCreateGcode.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+  <data name="BtnImport.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
   </data>
-  <data name="BtnCreateGcode.Text" xml:space="preserve">
-    <value>Create GCode</value>
+  <data name="BtnImport.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Import XYZ data from clipboard (tab seperated values x y z  or x z).
+Z in the range 0.0 to 1.0
+</value>
+  </data>
+  <data name="BtnImport.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnImport.Name" xml:space="preserve">
+    <value>BtnImport</value>
+  </data>
+  <data name="&gt;&gt;BtnImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnImport.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;BtnImport.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnBackcolor.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="BtnBackcolor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 36</value>
+  </data>
+  <data name="BtnBackcolor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 23</value>
+  </data>
+  <data name="BtnBackcolor.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="BtnBackcolor.Text" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Set backcolor</value>
+  </data>
+  <data name="&gt;&gt;BtnBackcolor.Name" xml:space="preserve">
+    <value>BtnBackcolor</value>
+  </data>
+  <data name="&gt;&gt;BtnBackcolor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnBackcolor.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnBackcolor.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="BtnFitCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnFitCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 117</value>
+  </data>
+  <data name="BtnFitCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 29</value>
+  </data>
+  <data name="BtnFitCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="BtnFitCurve.Text" xml:space="preserve">
+    <value>FitCurve</value>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Smooth all stroked now</value>
+  </data>
+  <data name="BtnFitCurve.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnFitCurve.Name" xml:space="preserve">
+    <value>BtnFitCurve</value>
+  </data>
+  <data name="&gt;&gt;BtnFitCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnFitCurve.Parent" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;BtnFitCurve.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="CbRemovePoints.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbRemovePoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>433, 91</value>
+  </data>
+  <data name="CbRemovePoints.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="CbRemovePoints.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="CbRemovePoints.Text" xml:space="preserve">
+    <value>Remove points </value>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Remove points which are not inside plotter working space</value>
+  </data>
+  <data name="&gt;&gt;CbRemovePoints.Name" xml:space="preserve">
+    <value>CbRemovePoints</value>
+  </data>
+  <data name="&gt;&gt;CbRemovePoints.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbRemovePoints.Parent" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;CbRemovePoints.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;BtnCreateGcode.Name" xml:space="preserve">
     <value>BtnCreateGcode</value>
@@ -845,55 +955,31 @@ Or assign a filename containing GCode. </value>
     <value>ToolPanel</value>
   </data>
   <data name="&gt;&gt;GbMode.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="BtnFitCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BtnFitCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 117</value>
-  </data>
-  <data name="BtnFitCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 29</value>
-  </data>
-  <data name="BtnFitCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="BtnFitCurve.Text" xml:space="preserve">
-    <value>FitCurve</value>
-  </data>
-  <data name="BtnFitCurve.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;BtnFitCurve.Name" xml:space="preserve">
-    <value>BtnFitCurve</value>
-  </data>
-  <data name="&gt;&gt;BtnFitCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnFitCurve.Parent" xml:space="preserve">
-    <value>GbModify</value>
-  </data>
-  <data name="&gt;&gt;BtnFitCurve.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="CbMovementMouse.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="BtnCreateGcode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 16</value>
   </data>
-  <data name="CbMovementMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="BtnCreateGcode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 46</value>
   </data>
-  <data name="CbMovementMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
+  <data name="BtnCreateGcode.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
   </data>
-  <data name="CbMovementMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 20</value>
+  <data name="BtnCreateGcode.Text" xml:space="preserve">
+    <value>Create GCode</value>
   </data>
-  <data name="CbMovementMouse.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;BtnCreateGcode.Name" xml:space="preserve">
+    <value>BtnCreateGcode</value>
   </data>
-  <data name="CbMovementMouse.Text" xml:space="preserve">
-    <value>Move also on mouse motion</value>
+  <data name="&gt;&gt;BtnCreateGcode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnCreateGcode.Parent" xml:space="preserve">
+    <value>GbMode</value>
+  </data>
+  <data name="&gt;&gt;BtnCreateGcode.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;CbMovementMouse.Name" xml:space="preserve">
     <value>CbMovementMouse</value>
@@ -930,6 +1016,36 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="&gt;&gt;GbPlotter.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="CbMovementMouse.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbMovementMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbMovementMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 47</value>
+  </data>
+  <data name="CbMovementMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 20</value>
+  </data>
+  <data name="CbMovementMouse.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="CbMovementMouse.Text" xml:space="preserve">
+    <value>Move also on mouse motion</value>
+  </data>
+  <data name="&gt;&gt;CbMovementMouse.Name" xml:space="preserve">
+    <value>CbMovementMouse</value>
+  </data>
+  <data name="&gt;&gt;CbMovementMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbMovementMouse.Parent" xml:space="preserve">
+    <value>GbPlotter</value>
+  </data>
+  <data name="&gt;&gt;CbMovementMouse.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1024,38 +1140,86 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;LblToolTable.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="CboxToolFiles.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="CboxColorPaletteFiles.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="CboxToolFiles.ItemHeight" type="System.Int32, mscorlib">
+  <data name="CboxColorPaletteFiles.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="CboxToolFiles.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="CboxColorPaletteFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 35</value>
   </data>
-  <data name="CboxToolFiles.MaxDropDownItems" type="System.Int32, mscorlib">
+  <data name="CboxColorPaletteFiles.MaxDropDownItems" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="CboxToolFiles.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CboxColorPaletteFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 24</value>
   </data>
-  <data name="CboxToolFiles.TabIndex" type="System.Int32, mscorlib">
+  <data name="CboxColorPaletteFiles.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
   </data>
-  <data name="CboxToolFiles.Text" xml:space="preserve">
+  <data name="CboxColorPaletteFiles.Text" xml:space="preserve">
     <value>Last loaded color palette</value>
   </data>
-  <data name="&gt;&gt;CboxToolFiles.Name" xml:space="preserve">
-    <value>CboxToolFiles</value>
+  <data name="&gt;&gt;CboxColorPaletteFiles.Name" xml:space="preserve">
+    <value>CboxColorPaletteFiles</value>
   </data>
-  <data name="&gt;&gt;CboxToolFiles.Type" xml:space="preserve">
+  <data name="&gt;&gt;CboxColorPaletteFiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CboxToolFiles.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CboxColorPaletteFiles.Parent" xml:space="preserve">
     <value>GbColor</value>
   </data>
-  <data name="&gt;&gt;CboxToolFiles.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CboxColorPaletteFiles.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Name" xml:space="preserve">
+    <value>cBflowControl</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenSetup.Name" xml:space="preserve">
+    <value>BtnOpenSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenSetup.Parent" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenSetup.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="GbToolChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 384</value>
+  </data>
+  <data name="GbToolChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>608, 110</value>
+  </data>
+  <data name="GbToolChange.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="GbToolChange.Text" xml:space="preserve">
+    <value>From Setup form</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Name" xml:space="preserve">
+    <value>GbToolChange</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;GbToolChange.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="cBflowControl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1113,30 +1277,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="&gt;&gt;BtnOpenSetup.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="GbToolChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 384</value>
-  </data>
-  <data name="GbToolChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 110</value>
-  </data>
-  <data name="GbToolChange.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="GbToolChange.Text" xml:space="preserve">
-    <value>From Setup form</value>
-  </data>
-  <data name="&gt;&gt;GbToolChange.Name" xml:space="preserve">
-    <value>GbToolChange</value>
-  </data>
-  <data name="&gt;&gt;GbToolChange.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbToolChange.Parent" xml:space="preserve">
-    <value>SetupPanel</value>
-  </data>
-  <data name="&gt;&gt;GbToolChange.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1211,7 +1351,7 @@ Or assign a filename containing GCode. </value>
     <value>1, 1, 1, 1</value>
   </data>
   <data name="FlpToolSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 98</value>
+    <value>132, 98</value>
   </data>
   <data name="FlpToolSelection.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1228,11 +1368,119 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;FlpToolSelection.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>317, 17</value>
+  </metadata>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;TabletPanel.Name" xml:space="preserve">
+    <value>TabletPanel</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Name" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>884, 561</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="TabletPanel" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="menuStrip1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ToolPanel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,26,Absolute,120,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;Tablet.Name" xml:space="preserve">
+    <value>Tablet</value>
+  </data>
+  <data name="&gt;&gt;Tablet.Type" xml:space="preserve">
+    <value>TabletControl.TabletControl, TabletControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Tablet.Parent" xml:space="preserve">
+    <value>TabletPanel</value>
+  </data>
+  <data name="&gt;&gt;Tablet.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TabletPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TabletPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 149</value>
+  </data>
+  <data name="TabletPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>878, 409</value>
+  </data>
+  <data name="TabletPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.Name" xml:space="preserve">
+    <value>TabletPanel</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;TabletPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="Tablet.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="Tablet.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="Tablet.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1258,30 +1506,6 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;Tablet.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="TabletPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="TabletPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 149</value>
-  </data>
-  <data name="TabletPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>778, 409</value>
-  </data>
-  <data name="TabletPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;TabletPanel.Name" xml:space="preserve">
-    <value>TabletPanel</value>
-  </data>
-  <data name="&gt;&gt;TabletPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TabletPanel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;TabletPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>317, 17</value>
   </metadata>
@@ -1290,87 +1514,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="menuStrip1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="MenuNewClear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="MenuNewClear.Text" xml:space="preserve">
-    <value>New (clear canvas)</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="importXyzDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import xyz data</value>
-  </data>
-  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Import XYZ data from clipboard (tab seperated values x y z  or x z)</value>
-  </data>
-  <data name="dLiveUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
-    <value>2D view live update</value>
-  </data>
-  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Add each finished stroke to 2D view in main form</value>
-  </data>
-  <data name="dLiveUpdateToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="importWholeDrawingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import whole drawing</value>
-  </data>
-  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Read all strokes from canvas and convert them to GCode.</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 21</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="liveUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 22</value>
-  </data>
-  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Live update</value>
-  </data>
-  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Update plotter position on pen or mouse move.</value>
-  </data>
-  <data name="plotterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 21</value>
-  </data>
-  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Plotter</value>
-  </data>
-  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 21</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setup / Help</value>
   </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1394,6 +1537,187 @@ Or assign a filename containing GCode. </value>
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 21</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="MenuNewClear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="MenuNewClear.Text" xml:space="preserve">
+    <value>New (clear canvas)</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 21</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import xyz data</value>
+  </data>
+  <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Import XYZ data from clipboard (tab seperated values x y z  or x z).
+Z in the range 0.0 to 1.0</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>2D view live update</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Add each finished stroke to 2D view in main form</value>
+  </data>
+  <data name="dLiveUpdateToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import whole drawing</value>
+  </data>
+  <data name="importWholeDrawingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Read all strokes from canvas and convert them to GCode.</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 21</value>
+  </data>
+  <data name="plotterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 22</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Live update</value>
+  </data>
+  <data name="liveUpdateToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Update plotter position on pen or mouse move.</value>
+  </data>
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 21</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setup / Help</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Name" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Parent" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Name" xml:space="preserve">
+    <value>GbColor</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Parent" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;GbColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;GbPen.Name" xml:space="preserve">
+    <value>GbPen</value>
+  </data>
+  <data name="&gt;&gt;GbPen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbPen.Parent" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;GbPen.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ToolPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ToolPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="ToolPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 29</value>
+  </data>
+  <data name="ToolPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>878, 114</value>
+  </data>
+  <data name="ToolPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Name" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;ToolPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;CbTransparency.Name" xml:space="preserve">
+    <value>CbTransparency</value>
+  </data>
+  <data name="&gt;&gt;CbTransparency.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbTransparency.Parent" xml:space="preserve">
+    <value>GbColor</value>
+  </data>
+  <data name="&gt;&gt;CbTransparency.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="GbColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>541, 3</value>
+  </data>
+  <data name="GbColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>334, 110</value>
+  </data>
+  <data name="GbColor.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="GbColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Name" xml:space="preserve">
+    <value>GbColor</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbColor.Parent" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;GbColor.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="CbTransparency.AutoSize" type="System.Boolean, mscorlib">
@@ -1429,45 +1753,6 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;CbTransparency.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="GbColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>415, 3</value>
-  </data>
-  <data name="GbColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 110</value>
-  </data>
-  <data name="GbColor.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="GbColor.Text" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="&gt;&gt;GbColor.Name" xml:space="preserve">
-    <value>GbColor</value>
-  </data>
-  <data name="&gt;&gt;GbColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbColor.Parent" xml:space="preserve">
-    <value>ToolPanel</value>
-  </data>
-  <data name="&gt;&gt;GbColor.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 59</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>The visible pen width depends on the selected plotter working size</value>
-  </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
@@ -1502,64 +1787,145 @@ Or assign a filename containing GCode. </value>
     <value>ToolPanel</value>
   </data>
   <data name="&gt;&gt;GbPen.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 43</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 59</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="ToolPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>The visible pen width depends on the selected plotter working size</value>
   </data>
-  <data name="ToolPanel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>GbPen</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Name" xml:space="preserve">
+    <value>LblDevice</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;LblDevice.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;BtnCloseSetup.Name" xml:space="preserve">
+    <value>BtnCloseSetup</value>
+  </data>
+  <data name="&gt;&gt;BtnCloseSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnCloseSetup.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;BtnCloseSetup.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Name" xml:space="preserve">
+    <value>LblInfo</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Name" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;GbModify.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;GbLiveUpdate.Name" xml:space="preserve">
+    <value>GbLiveUpdate</value>
+  </data>
+  <data name="&gt;&gt;GbLiveUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbLiveUpdate.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;GbLiveUpdate.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;GbSize.Name" xml:space="preserve">
+    <value>GbSize</value>
+  </data>
+  <data name="&gt;&gt;GbSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbSize.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;GbSize.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="SetupPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="ToolPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 29</value>
+  <data name="SetupPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>800, 0</value>
   </data>
-  <data name="ToolPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>778, 114</value>
+  <data name="SetupPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>800, 600</value>
   </data>
-  <data name="ToolPanel.TabIndex" type="System.Int32, mscorlib">
+  <data name="SetupPanel.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
   </data>
-  <data name="&gt;&gt;ToolPanel.Name" xml:space="preserve">
-    <value>ToolPanel</value>
+  <data name="SetupPanel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;ToolPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;SetupPanel.Name" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;SetupPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ToolPanel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;ToolPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 561</value>
-  </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;SetupPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="TabletPanel" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="menuStrip1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ToolPanel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,26,Absolute,120,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="&gt;&gt;SetupPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="LblDevice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1593,30 +1959,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="&gt;&gt;LblDevice.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="BtnImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 84</value>
-  </data>
-  <data name="BtnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="BtnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="BtnImport.Text" xml:space="preserve">
-    <value>Import</value>
-  </data>
-  <data name="&gt;&gt;BtnImport.Name" xml:space="preserve">
-    <value>BtnImport</value>
-  </data>
-  <data name="&gt;&gt;BtnImport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnImport.Parent" xml:space="preserve">
-    <value>SetupPanel</value>
-  </data>
-  <data name="&gt;&gt;BtnImport.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="BtnCloseSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1706,6 +2048,54 @@ A mouse delivers a constant pressure value of 50%.</value>
   <data name="&gt;&gt;LblInfo.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LblStrokes.Name" xml:space="preserve">
+    <value>LblStrokes</value>
+  </data>
+  <data name="&gt;&gt;LblStrokes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblStrokes.Parent" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;LblStrokes.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="GbModify.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 216</value>
+  </data>
+  <data name="GbModify.Size" type="System.Drawing.Size, System.Drawing">
+    <value>608, 162</value>
+  </data>
+  <data name="GbModify.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="GbModify.Text" xml:space="preserve">
+    <value>Modify strokes</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Name" xml:space="preserve">
+    <value>GbModify</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbModify.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;GbModify.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1731,7 +2121,7 @@ A mouse delivers a constant pressure value of 50%.</value>
     <value>GbModify</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="LblStrokes.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 18</value>
@@ -1743,7 +2133,7 @@ A mouse delivers a constant pressure value of 50%.</value>
     <value>57</value>
   </data>
   <data name="LblStrokes.Text" xml:space="preserve">
-    <value>A stroke drawn with the stylus consists of countless point coordinates. After a stroke is completed, the number of points is reduced to a necessary number.</value>
+    <value>A stroke, drawn with the stylus, consists of countless point coordinates. After a stroke is completed, the number of points is reduced to a necessary number.</value>
   </data>
   <data name="&gt;&gt;LblStrokes.Name" xml:space="preserve">
     <value>LblStrokes</value>
@@ -1755,31 +2145,7 @@ A mouse delivers a constant pressure value of 50%.</value>
     <value>GbModify</value>
   </data>
   <data name="&gt;&gt;LblStrokes.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="GbModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 216</value>
-  </data>
-  <data name="GbModify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 162</value>
-  </data>
-  <data name="GbModify.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="GbModify.Text" xml:space="preserve">
-    <value>Modify strokes</value>
-  </data>
-  <data name="&gt;&gt;GbModify.Name" xml:space="preserve">
-    <value>GbModify</value>
-  </data>
-  <data name="&gt;&gt;GbModify.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbModify.Parent" xml:space="preserve">
-    <value>SetupPanel</value>
-  </data>
-  <data name="&gt;&gt;GbModify.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="GbLiveUpdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>617, 100</value>
@@ -1832,53 +2198,14 @@ A mouse delivers a constant pressure value of 50%.</value>
   <data name="&gt;&gt;GbSize.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="SetupPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="SetupPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="SetupPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
-  </data>
-  <data name="SetupPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="SetupPanel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;SetupPanel.Name" xml:space="preserve">
-    <value>SetupPanel</value>
-  </data>
-  <data name="&gt;&gt;SetupPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SetupPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SetupPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>202, 17</value>
   </metadata>
-  <data name="TssLblActualPos.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="TssLblActualPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
-  </data>
-  <data name="TssLblActualPos.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
-  </data>
-  <data name="TssLblCanvasData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 539</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 22</value>
+    <value>884, 22</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1896,7 +2223,328 @@ A mouse delivers a constant pressure value of 50%.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="TssLblActualPos.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="TssLblActualPos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
+  </data>
+  <data name="TssLblActualPos.Text" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
+  </data>
+  <data name="TssLblCanvasData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 17</value>
+  </metadata>
+  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 26</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
+    <value>contextMenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 22</value>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Background image</value>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Load from file</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste from clipboard</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Name" xml:space="preserve">
+    <value>BtnPasteBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Name" xml:space="preserve">
+    <value>BtnLoadBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Name" xml:space="preserve">
+    <value>TbTransparency</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="GbBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>415, 3</value>
+  </data>
+  <data name="GbBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 110</value>
+  </data>
+  <data name="GbBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="GbBackground.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Name" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.Parent" xml:space="preserve">
+    <value>ToolPanel</value>
+  </data>
+  <data name="&gt;&gt;GbBackground.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TbTransparency.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="TbTransparency.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 38</value>
+  </data>
+  <data name="TbTransparency.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="TbTransparency.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Set transparence of background color</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Name" xml:space="preserve">
+    <value>TbTransparency</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;TbTransparency.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="BtnLoadBackground.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="BtnLoadBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 80</value>
+  </data>
+  <data name="BtnLoadBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 23</value>
+  </data>
+  <data name="BtnLoadBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="BtnLoadBackground.Text" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Load background image from file</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Name" xml:space="preserve">
+    <value>BtnLoadBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnLoadBackground.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnPasteBackground.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="BtnPasteBackground.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnPasteBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 80</value>
+  </data>
+  <data name="BtnPasteBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 23</value>
+  </data>
+  <data name="BtnPasteBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="BtnPasteBackground.Text" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Paste background image from clipboard</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Name" xml:space="preserve">
+    <value>BtnPasteBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;BtnPasteBackground.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 18</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 15</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 18</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Alpha</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>GbBackground</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1908,10 +2556,10 @@ A mouse delivers a constant pressure value of 50%.</value>
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 561</value>
+    <value>884, 561</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
+    <value>900, 600</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Graphics tablet</value>
@@ -2005,6 +2653,24 @@ A mouse delivers a constant pressure value of 50%.</value>
   </data>
   <data name="&gt;&gt;TssLblCanvasData.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pasteBackgroundImageToolStripMenuItem.Name" xml:space="preserve">
+    <value>pasteBackgroundImageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pasteBackgroundImageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;loadFromFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>loadFromFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;loadFromFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>pasteFromClipboardToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>GCodeFromTablet</value>

@@ -340,4 +340,45 @@ O bien, asigna un nombre de archivo que contenga GCode.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importar datos XYZ desde el portapapeles (valores separados por tabulaciones x y z o x z)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Importar datos XYZ desde el portapapeles (valores separados por tabulaciones: x y z, o bien x z).
+Z en el rango de 0,0 a 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Establecer color de fondo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Suavizar todos los trazos ahora</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Eliminar puntos fuera del área de trabajo del trazador</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imagen de fondo</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cargar desde archivo</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pegar desde el portapapeles</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Establecer transparencia del color de fondo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Cargar imagen de fondo desde archivo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Pegar imagen de fondo desde el portapapeles</value>
+    <comment>tt</comment>
+  </data>
 </root>

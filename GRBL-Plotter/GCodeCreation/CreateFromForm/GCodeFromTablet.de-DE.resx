@@ -341,4 +341,45 @@ Eine Maus liefert einen konstanten Druckwert von 50 %.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>XYZ-Daten aus der Zwischenablage importieren (tabulatorgetrennte Werte xyz oder xz)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>XYZ-Daten aus der Zwischenablage importieren (tabulatorgetrennte Werte: x y z oder x z).
+Z im Bereich von 0,0 bis 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Hintergrundfarbe festlegen</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Alle Konturen glätten</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Punkte außerhalb des Plotter-Arbeitsbereichs entfernen</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hintergrundbild</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aus Datei laden</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aus Zwischenablage einfügen</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Transparenz der Hintergrundfarbe festlegen</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Hintergrundbild aus Datei laden</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Hintergrundbild aus Zwischenablage einfügen</value>
+    <comment>tt</comment>
+  </data>
 </root>

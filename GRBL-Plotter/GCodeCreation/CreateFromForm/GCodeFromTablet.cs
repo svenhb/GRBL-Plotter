@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
  * 2025-08-01 new form
+ * 2026-08-24 l:532 f:SetColorPalettetButtons bug fix, load tool list - clear old list
 
 // inspiration
  https://learn.microsoft.com/en-us/uwp/api/windows.ui.input.inking.inkpresenter.updatedefaultdrawingattributes?view=winrt-26100
@@ -38,9 +39,10 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
 using System.Xml;
-//using static GrblPlotter.Helper.Colors;
+
 using Button = System.Windows.Forms.Button;
 using Color = System.Drawing.Color;
+using Colors = GrblPlotter.Helper.Colors;
 
 namespace GrblPlotter
 {
@@ -51,8 +53,8 @@ namespace GrblPlotter
         private bool isDrawingByMouse = false;
         private double lastX = 0, lastY = 0, lastZ = 0, lastDrawX = 0, lastDrawY = 0, lastDrawZ = 0;
         private bool timerTick = false;
-        private long figureCount = 1;
         private Color figureColor = Color.Black;
+        private Color backColor = Color.White;
         private int toolNr = 1;
         private int toolNrLast = 1;
         private double figurePenSize = 1;
@@ -60,7 +62,6 @@ namespace GrblPlotter
         private double canvasToPlotSize = 1;
 
         private bool recordDrawing = true;
-        private string fileName;
         internal StringBuilder gcodeString = new StringBuilder();
         private long gcodeLines = 0;
         private double gcodeDistancePD = 0;
@@ -83,16 +84,17 @@ namespace GrblPlotter
 
         private void GCodeFromTablet_Load(object sender, EventArgs e)
         {
-            //    string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
             if (!System.IO.Directory.Exists(Datapath.ColorPalette))
                 MessageBox.Show("Subdirectory 'palettes' doesn't exist", "Attention");
-            FillToolTableFileList(Datapath.ColorPalette);           // list tool table files
-            string defaultToolList = Datapath.ColorPalette + "\\" + "GRBL-Plotter_Watercolor.txt";
-            LoadColorPalettetSetBtn(defaultToolList);                  // list toolProp from _current.csv	
+            FillColorPaletteFileList(Datapath.ColorPalette);           // list tool table files
+            Colors.LoadColorPalette(Properties.Settings.Default.tabletLastPalette);
+            //    SetColorPalettetButtons();
+
             ResizeCanvas();
             figurePenSize = (double)NudSizePen.Value;
             Tablet.PenSize = Tablet.Width * (double)(NudSizePen.Value / NudSizeX.Value);
-            Logger.Trace("GCodeFromTablet_Load Plotter X:{0}  Y:{1}  NudPen:{2}   Canvas X:{3}  Y:{4}  TabletPen:{5}", NudSizeX.Value, NudSizeY.Value, NudSizePen.Value, Tablet.Width, Tablet.Height, Tablet.PenSize);
+            Tablet.PaperColor = System.Windows.Media.Brushes.White;
+            Logger.Trace("GCodeFromTablet_Load Plotter X:{0}  Y:{1}  NudPen:{2}   Canvas X:{3}  Y:{4}  TabletPen:{5:0.000}", NudSizeX.Value, NudSizeY.Value, NudSizePen.Value, Tablet.Width, Tablet.Height, Tablet.PenSize);
             canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
             UpdateToolTableList();      // show tool-files and last loaded toolProp
             SetCanvasColor();
@@ -106,27 +108,25 @@ namespace GrblPlotter
             Tablet.Clear();
             SetupPanel.Location = new Point(0, 26);
             SetupPanel.Size = new Size(780, 580);
+            SetColorPalettetButtons();
         }
 
         private void GCodeFromTablet_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Info("++++++ GCodeFromTablet STOP ++++++");
-            //    Properties.ListSettings.Default.locationImageForm = Location;
             Properties.Settings.Default.tabletFormSize = this.Size;
             Properties.Settings.Default.tabletFormLocation = this.Location;
             Properties.Settings.Default.Save();
+            Tablet.Dispose();
         }
 
         private void GCodeFromTablet_Resize(object sender, EventArgs e)
         {
-            const int dWidth = 800;
-            const int dGbColorWidth = 360;
-            const int dFlpToolSWidth = 158;
+            const int dWidth = 900;
+            const int dGbColorWidth = 334;
+            const int dFlpToolSWidth = 132;
             const int dGbColorWGap = dWidth - dGbColorWidth;
             const int dFlpToolSWGap = dWidth - dFlpToolSWidth;
-            //    FlpToolSelection.Height = Height - 296;
-            //    GbToolChange.Top = Height - 198;
-            //    Tablet.Width = PTablet.Width - 2;
             BtnHelp.Left = Width - 40;
             GbColor.Width = Width - dGbColorWGap;
             FlpToolSelection.Width = Width - dFlpToolSWGap;
@@ -138,7 +138,7 @@ namespace GrblPlotter
             double x = (double)NudSizeX.Value;
             double y = (double)NudSizeY.Value;
             double rPlotter = x / y;
-            double rCanvas = TabletPanel.Width / TabletPanel.Height;
+            double rCanvas = (double)TabletPanel.Width / (double)TabletPanel.Height;
 
             if (rPlotter > rCanvas)
             {
@@ -151,7 +151,7 @@ namespace GrblPlotter
                 Tablet.Width = (int)(x * TabletPanel.Height / y) - 2;
             }
             canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
-            if (enableLog) Logger.Trace("ResizeCanvas Plotter X:{0}  Y:{1}  Pen:{2}   Canvas X:{3}  Y:{4}  Pen:{5}", x, y, NudSizePen.Value, Tablet.Width, Tablet.Height, Tablet.PenSize);
+            if (enableLog) Logger.Trace("ResizeCanvas Plotter X:{0}  Y:{1}  Pen:{2}   Canvas X:{3}  Y:{4}  Pen:{5:0.00}", x, y, NudSizePen.Value, Tablet.Width, Tablet.Height, Tablet.PenSize);
         }
         #endregion
 
@@ -388,87 +388,69 @@ namespace GrblPlotter
             //   VisuGCode.pathBackground;
         }
 
-        /* Read complete inkCanvas and generate GCode */
+        /******************************************************************************
+        ****** Read complete inkCanvas and generate GCode ******
+        *******************************************************************************/
         internal void GenerateGCode()
         {   /* called by BtnImport_Click, which also triggers MainFormOtherForms.cs GetGCodeFromTablet
 			   Read all Strokes from InkCanvas and copy to Graphic-class 
 			   GetGCodeFromTablet() copies result from Graphic-class to 2D-View
 			   */
-            Logger.Trace("●●●●●● Tablet GenerateGCode");
             int strokeCount = Tablet.GetStrokeCount();
-            Logger.Trace("###### Import strokes {0}", strokeCount);
+            double minDistXY = 1;
+            double minDistZ = 0.1;
+            Point3D posSet, posNew;
+            Logger.Info("●●●●●● Tablet GenerateGCode Import strokes {0}, minXY:{1}  minZ:{2}", strokeCount, minDistXY, minDistZ);
             if (strokeCount > 0)
             {
                 VisuGCode.pathBackground.Reset();
                 Graphic.CleanUp();
                 Graphic.Init(Graphic.SourceType.Ink, "", null, null);
-                /*    Graphic.graphicInformation.ImportDxfConsiderZ = false;
-                    Graphic.graphicInformation.OptionZFromWidth = false;
-                    Graphic.graphicInformation.OptionSFromWidth = false;
-
-                    Graphic.graphicInformation.PenWidthMin = 0;
-                    Graphic.graphicInformation.PenWidthMax = (double)NudSizePen.Value;
-
-                    if (Properties.Settings.Default.importGCPWMEnable)
-                        Graphic.graphicInformation.OptionSFromWidth = true;
-                    else if (Properties.Settings.Default.importGCZEnable)
-                    {
-                        Graphic.graphicInformation.OptionZFromWidth = true;
-                        Graphic.graphicInformation.ImportDxfConsiderZ = true;
-                    }
-                    Graphic.graphicInformation.ApplyHatchFillSVG = false;
-                    Graphic.graphicInformation.OptionNodesOnly = false;
-                    Graphic.graphicInformation.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance; //false;
-                    Graphic.graphicInformation.FigureEnable = true;
-                    Graphic.graphicInformation.GroupEnable = true;
-                    Graphic.graphicInformation.GroupOption = Graphic.GroupOption.ByColor;
-              */
                 Graphic.maxObjectCountBeforeReducingXML = 0;   // no limit
-
                 Graphic.SetType("Ink");
 
-                /* save settings */
-                /*        decimal origWidthMax = Properties.Settings.Default.importDepthFromWidthMax;
-                        decimal zMin = Properties.Settings.Default.importDepthFromWidthMin;
-                        decimal zMax = Properties.Settings.Default.importDepthFromWidthMax;
-                        bool pwmFromWidth = Properties.Settings.Default.importPWMFromWidth;
-               /*        Properties.Settings.Default.importDepthFromWidthMin = 0;
-                        Properties.Settings.Default.importDepthFromWidthMax = Properties.Settings.Default.importGCZDown;
-                        Properties.Settings.Default.importPWMFromWidth = Graphic.graphicInformation.OptionSFromWidth;
-                        Properties.Settings.Default.Save();
-        */
                 Logger.Trace("##### GenerateGCode S:{0}  Z:{1}  Pen-min:{2}  Pen-max:{3}", Graphic.graphicInformation.OptionSFromWidth, Graphic.graphicInformation.OptionZFromWidth, Graphic.graphicInformation.PenWidthMin, Graphic.graphicInformation.PenWidthMax);
-                Logger.Trace("##### GenerateGCode min:{0}  max:{1}", Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax);
+                Logger.Trace("##### GenerateGCode DepthFromWidth min:{0}  max:{1}", Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax);
+                Tablet.LogInfo();
 
                 for (int i = 0; i < strokeCount; i++)
                 {
-                    List<Point3D> list = Tablet.GetStroke(i, out Color col, out double widthPx);
+                    List<Point3D> list = Tablet.GetStroke(i, out Color col, out double strokeWidthPx);
                     double widthMM = (double)NudSizePen.Value;
                     string fColor = string.Format("{0:X2}{1:X2}{2:X2}{3:X2}", col.A, col.R, col.G, col.B);
                     Graphic.SetPenColor(fColor);
                     Graphic.SetPenWidth(widthMM.ToString().Replace(",", "."));
                     Graphic.SetGeometry("Ink");
-                    Graphic.StartPath(Translate(list[0].X, list[0].Y), list[0].Z * widthMM);                  // start next path
-                    Logger.Trace("# Stroke Nr.:{0,4}  {1,35}  width-px:{2:0.00}  mm:{3:0.00}", i, col, widthPx, widthMM);
-                    foreach (Point3D p in list)
+                    if (list.Count > 0)
                     {
-                        Graphic.AddLine(Translate(p.X, p.Y), p.Z * widthMM);
+                        posSet = posNew = list[0];
+                        Graphic.StartPath(Translate(list[0].X, list[0].Y), list[0].Z * widthMM);                  // start next path
+                                                                                                                  //        Logger.Trace("# Stroke Nr.:{0,4}  {1,35}  width-px:{2:0.00}  mm:{3:0.00}", i, col, strokeWidthPx, widthMM);
+                        for (int k = 1; k < list.Count; k++)
+                        {
+                            posNew = list[k];
+                            if (DistanceXY(posSet, posNew) > minDistXY)
+                            {
+                                Graphic.AddLine(Translate(posNew.X, posNew.Y), Math.Round(posNew.Z * widthMM, 1));
+                                posSet = posNew;
+                            }
+                        }
+                        // set last point anyway
+                        Graphic.AddLine(Translate(posNew.X, posNew.Y), Math.Round(posNew.Z * widthMM, 1));
+                        Graphic.StopPath();
                     }
-                    Graphic.StopPath();
                 }
 
                 Graphic.CreateGCode();          // result is saved as stringbuilder in Graphic.GCode;
                                                 //	VisuGCode.pathBackground
-
-                /* restore settings */
-                /*     Properties.Settings.Default.importDepthFromWidthMax = origWidthMax;
-                     Properties.Settings.Default.importDepthFromWidthMin = zMin;
-                     Properties.Settings.Default.importDepthFromWidthMax = zMax;
-                     Properties.Settings.Default.importPWMFromWidth = pwmFromWidth;
-               */
             }
         }
-
+        private double DistanceXY(Point3D a, Point3D b)
+        {
+            double a2 = (a.X - b.X);
+            double b2 = (a.Y - b.Y);
+            return Math.Sqrt(a2 * a2 + b2 * b2);
+        }
         private System.Windows.Point Translate(double x, double y)
         {
             double realX = (double)NudSizeX.Value * x / Tablet.Width;
@@ -539,50 +521,44 @@ namespace GrblPlotter
         /* reload file list and UpdateToolTip tool buttons */
         private void UpdateToolTableList()
         {
-            FillToolTableFileList(Datapath.ColorPalette);           // list tool table files
-                                                                    //    CboxToolFiles.Text = Properties.Settings.Default.toolTableLastLoaded;
-                                                                    //   string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
+            FillColorPaletteFileList(Datapath.ColorPalette);
         }
 
-        /* list all CSV files from toolProp-folder in combobox */
-        private void FillToolTableFileList(string filepath)
+        /* list all files from palette-folder in combobox */
+        private void FillColorPaletteFileList(string filepath)
         {
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(filepath);
-                CboxToolFiles.Items.Clear();
+                CboxColorPaletteFiles.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
                 {
-                    //   if (Files[i].ToLower().EndsWith("csv"))
-                    {
-                        string name = Path.GetFileName(Files[i]);
-                        //        if (name != ToolList.DefaultFileName)
-                        CboxToolFiles.Items.Add(name);
-                    }
+                    string name = Path.GetFileName(Files[i]);
+                    CboxColorPaletteFiles.Items.Add(name);
                 }
             }
             catch (Exception err) { Logger.Error(err, "FillToolTableFileList "); }
         }
 
         /* copy selected tool-file to _current.csv */
-        private void CboxToolFiles_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboxColorPaletteFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(CboxToolFiles.Text))
+            if (!string.IsNullOrEmpty(CboxColorPaletteFiles.Text))
             {
-                string newPalette = Datapath.ColorPalette + "\\" + CboxToolFiles.Text;
-                LoadColorPalettetSetBtn(newPalette);
+                string newPalette = Datapath.ColorPalette + "\\" + CboxColorPaletteFiles.Text;
+                Properties.Settings.Default.tabletLastPalette = newPalette;
+                Colors.LoadColorPalette(newPalette);
+                SetColorPalettetButtons();
                 SendCodeEvent(new CmdEventArgs("tool"));
+                Properties.Settings.Default.Save();
             }
         }
 
         /* Display colors from selected color palette */
-        private bool LoadColorPalettetSetBtn(string file)
+        private bool SetColorPalettetButtons()
         {
-            Colors.LoadColorPalette(file);
-
             int index = 0;
             int toolCnt = Colors.MyPalette.Count;
-            //    double flpRatio = (double)FlpToolSelection.Width / FlpToolSelection.Height;
             int w = FlpToolSelection.Width;
             int btnSize = 44;
             if (toolCnt * btnSize > 2 * w)
@@ -590,6 +566,7 @@ namespace GrblPlotter
             if (toolCnt * btnSize > 3 * w)
                 btnSize = 22;
 
+            FlpToolSelection.Controls.Clear();
             foreach (PaletteEntry tmp in Colors.MyPalette)
             {
                 Button btn = new Button
@@ -648,12 +625,6 @@ namespace GrblPlotter
             return Color.FromArgb(d, d, d);
         }
 
-
-        /* nok */
-        private void Tablet_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
         #endregion
 
         #region controls
@@ -669,9 +640,15 @@ namespace GrblPlotter
         {
             Tablet.FitToCurve = CbFitToCurve.Checked;
         }
-
-        private void NudSizeX_ValueChanged(object sender, EventArgs e)
+        private void CbRemovePoints_CheckedChanged(object sender, EventArgs e)
         {
+            Tablet.RemoveOutOfAreaPoints = CbRemovePoints.Checked;
+        }
+
+        private void NudSize_ValueChanged(object sender, EventArgs e)
+        {
+            Tablet.CorrectRatio((double)NudSizeX.Value * canvasToPlotSize, (double)NudSizeY.Value * canvasToPlotSize);
+            Tablet.PenSize = Tablet.Width * (double)(NudSizePen.Value / NudSizeX.Value);
             ResizeCanvas();
         }
 
@@ -704,8 +681,11 @@ namespace GrblPlotter
                 NudSizeX.Value = (decimal)papersizePreset[i].X;
                 NudSizeY.Value = (decimal)papersizePreset[i].Y;
             }
-
-            Tablet.CorrectRatio((double)NudSizeX.Value * canvasToPlotSize, (double)NudSizeY.Value * canvasToPlotSize);
+            if (Tablet.GetStrokeCount() == 0)
+                ClearCanvas();
+            else
+                Tablet.CorrectRatio((double)NudSizeX.Value * canvasToPlotSize, (double)NudSizeY.Value * canvasToPlotSize);
+            Tablet.PenSize = Tablet.Width * (double)(NudSizePen.Value / NudSizeX.Value);
         }
 
         private void BtnSwitchXy_Click(object sender, EventArgs e)
@@ -713,7 +693,11 @@ namespace GrblPlotter
             decimal tmp = NudSizeX.Value;
             NudSizeX.Value = NudSizeY.Value;
             NudSizeY.Value = tmp;
-            Tablet.CorrectRatio((double)NudSizeX.Value * canvasToPlotSize, (double)NudSizeY.Value * canvasToPlotSize);
+            if (Tablet.GetStrokeCount() == 0)
+                ClearCanvas();
+            else
+                Tablet.CorrectRatio((double)NudSizeX.Value * canvasToPlotSize, (double)NudSizeY.Value * canvasToPlotSize);
+            Tablet.PenSize = Tablet.Width * (double)(NudSizePen.Value / NudSizeX.Value);
         }
 
         private void BtnReduce_Click(object sender, EventArgs e)
@@ -752,19 +736,15 @@ namespace GrblPlotter
             ToolPanel.Visible = TabletPanel.Visible = true;
         }
 
+        /******************************************************************************/
         private void MenuNewClear_Click(object sender, EventArgs e)
         {
             ClearCanvas();
-            //   Tablet.Clear();
-            //   canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
         }
         private void ClearCanvas()
         {
             Tablet.Clear();
             canvasToPlotSize = (double)(Tablet.Width / NudSizeX.Value);
-            //   string defaultToolList = Datapath.Tools + "\\" + ToolList.DefaultFileName;
-            //   LoadColorPalettetSetBtn(defaultToolList);                  // list toolProp from _current.csv						
-            figureCount = 1;
             Tablet.Clear();
             gcodeString.Clear();
             gcodeLines = 0;
@@ -773,37 +753,149 @@ namespace GrblPlotter
 
         private void MenuOpen_Click(object sender, EventArgs e)
         {
+            Logger.Trace("MenuOpen_Click");
             loadingPath = Tablet.StrokesLoad(loadingPath);
             TssLblCanvasData.Text = Tablet.GetStrokesData();
+            ResizeCanvas();
         }
-
+        public void LoadExtern(string file)		// via drag&drop on main GUI
+        {
+            Logger.Trace("LoadExtern {0}",file);
+            if (!File.Exists(file)) return;
+            /* reset paper size */
+            canvasToPlotSize = 1;
+            Tablet.Clear();
+            Tablet.PenSize = (double)NudSizePen.Value;
+            Tablet.Width = (int)NudSizeX.Value;
+            Tablet.Height = (int)NudSizeY.Value;
+            Tablet.CorrectRatio((double)NudSizeX.Value, (double)NudSizeY.Value);
+            Tablet.LoadFile(file);
+            ResizeCanvas();
+        }
+        public void SetBackgroundImage(string file)      // via drag&drop on main GUI
+        {
+            if (!File.Exists(file)) return;
+            TbTransparency.Value = 64;
+            Tablet.SetBackgroundImage(new Bitmap(file));
+            SetSetBackgroundColor();
+        }
         private void MenuSave_Click(object sender, EventArgs e)
         {
             int cnt = Tablet.GetStrokeCount();
-            Logger.Trace("###### Save strokes {0}", cnt);
+            Logger.Trace("MenuSave_Click Save strokes {0}", cnt);
             Tablet.StrokesSave(Datapath.Examples);
         }
 
-        private void GCodeFromTablet_KeyDown(object sender, KeyEventArgs e)
+        private void CmsLoadBackgroundImage_Click(object sender, EventArgs e)
         {
-            Logger.Trace("GCodeFromTablet_KeyDown");
-            Logger.Trace(string.Format("CTRL+V  {0}  {1}", e.KeyCode, e.Modifiers));
-            if (e.KeyCode == Keys.V && e.Control)//.Modifiers == Keys.Control)
+            try
             {
-                Logger.Trace(string.Format("CTRL+V  {0}  {1}", e.KeyCode, e.Modifiers));
-                MessageBox.Show("CTRL+V");
-                string txt = Clipboard.GetText().Replace(',', '.');
-                ImportData(txt);
-                e.SuppressKeyPress = true;
+                using (OpenFileDialog sfd = new OpenFileDialog())
+                {
+                    sfd.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;";
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        SetBackgroundImage(sfd.FileName);
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "MenuSetBackgroundImage_Click ");
+                MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void CmsPasteBackgroundImage_Click(object sender, EventArgs e)
+        {
+            IDataObject iData;
+
+            try
+            {
+                iData = Clipboard.GetDataObject();
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "▀▀▀▀▀▀▀▀▀▀ CmsPasteBackgroundImage_Click GetDataObject ");
+                MessageBox.Show("Could not get clipboard data:\r\n" + err, "Error");
+                return;
+            }
+
+            /* if clipboard data is bitmap format */
+            if (iData.GetDataPresent(DataFormats.Bitmap))
+            {
+                Logger.Info("- LoadFromClipboard Bitmap");
+                TbTransparency.Value = 64;
+                Tablet.SetBackgroundImage(new Bitmap(Clipboard.GetImage()));
+                SetSetBackgroundColor();
+            }
+        }
+
+        /******************************************************************************/
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.V))
+            {
+                CmsPasteBackgroundImage_Click(null,null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void GCodeFromTablet_KeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Trace("GCodeFromTablet_KeyDown  Code:{0}  Data:{1}  Value:{2} Mod:{3}  V?{4}", e.KeyCode, e.KeyData, e.KeyValue, e.Modifiers, (e.KeyCode == Keys.V));
+            //  if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
+            //   if (e.KeyData == (Keys.Control | Keys.V))//
+            if (e.KeyCode == Keys.V && e.Control)
+            {
+                Logger.Trace("CTRL+V  {0}  {1}", e.KeyCode, e.Modifiers);
+
+                IDataObject iData;
+
+                try
+                {
+                    iData = Clipboard.GetDataObject();
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "▀▀▀▀▀▀▀▀▀▀ LoadFromClipboard GetDataObject ");
+                    MessageBox.Show("Could not get clipboard data:\r\n" + err, "Error");
+                    return;
+                }
+
+                /* if clipboard data is text... */
+                if (iData.GetDataPresent(DataFormats.Text))
+                {
+                    Logger.Info("- LoadFromClipboard Text");
+                    MessageBox.Show("CTRL+V");
+                    string txt = Clipboard.GetText().Replace(',', '.');
+                    ImportData(txt);
+                }
+                /* if clipboard data is bitmap format */
+                else if (iData.GetDataPresent(DataFormats.Bitmap))
+                {
+                    Logger.Info("- LoadFromClipboard Bitmap");
+                    Tablet.SetBackgroundImage(new Bitmap(Clipboard.GetImage()));
+                }
+
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+            else
+            {
+                e.SuppressKeyPress = false;
+            }
+        }
+
+        /******************************************************************************
+         ***** generate canvas ink data from X/Z or XYZ data
+        *******************************************************************************/
         private void ImportData(string txt)
         { // https://www.mathe-fa.de/de#result
             Logger.Trace("ImportData");
             if (txt != null)
             {
                 var lines = Regex.Split(txt, "\r\n|\r|\n");
-                double yDefault = Tablet.Height / 2;
+                double yDefault = Tablet.Height - Tablet.PenSize;// Tablet.Height / 2;
                 if (lines.Length > 0)
                 {
                     List<System.Windows.Media.Media3D.Point3D> xyz = new List<System.Windows.Media.Media3D.Point3D>();
@@ -835,6 +927,10 @@ namespace GrblPlotter
                             { Logger.Trace("ImportData nok Z '{0}'", coord[1]); }
                             if (count++ < 10) Logger.Trace("ImportData add '{0}' -> {1}   '{2}' -> {3}", coord[0], x, coord[1], z);
                         }
+                        else
+                        {
+                            continue;
+                        }
                         xyz.Add(new System.Windows.Media.Media3D.Point3D(x, y, z));
                     }
 
@@ -865,7 +961,67 @@ namespace GrblPlotter
             ImportData(txt);
         }
 
-        private void MenuImportWholeDrawing_Click(object sender, EventArgs e)
+        private void GCodeFromTablet_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void GCodeFromTablet_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files != null)
+            {
+                string file = files[0];
+                if (!File.Exists(file)) return;
+                String ext = Path.GetExtension(file).ToLower();
+
+                try
+                {
+                    if ((ext == ".isf") || (ext == ".icstk"))
+                    {
+                        LoadExtern(file);
+                    }
+                    if ((ext == ".jpg") || (ext == ".png"))
+                    {
+                        SetBackgroundImage(file);
+                    }
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "LoadExtern {0} ", file);
+                    MessageBox.Show("Error loading image:\r\n" + err.Message, "Error");
+                }
+            }
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void BtnSetBackground_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.SolidColorOnly = false;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                backColor = MyDialog.Color;
+                SetSetBackgroundColor();
+            }
+            MyDialog.Dispose();
+        }
+
+        private void SetSetBackgroundColor()
+        {
+            byte alpha = (byte)TbTransparency.Value;
+            System.Windows.Media.Color MColor = new System.Windows.Media.Color();
+            MColor = System.Windows.Media.Color.FromArgb(alpha, backColor.R, backColor.G, backColor.B);
+            System.Windows.Media.SolidColorBrush scb = new System.Windows.Media.SolidColorBrush(MColor);
+            Tablet.PaperColor = scb;
+        }
+
+        private void TbTransparency_Scroll(object sender, EventArgs e)
+        {
+            SetSetBackgroundColor();
+        }
+
+        private void BtnCreateGcode_Click(object sender, EventArgs e)
         {
             GenerateGCode();
         }

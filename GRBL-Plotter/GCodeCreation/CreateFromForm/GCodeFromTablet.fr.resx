@@ -340,4 +340,45 @@ Une souris fournit une valeur de pression constante de 50 %.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importer des données XYZ depuis le presse-papiers (valeurs x, y, z ou x, z séparées par des tabulations)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Importer des données XYZ depuis le presse-papiers (valeurs séparées par des tabulations : x y z ou x z).
+Z compris entre 0,0 et 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Définir la couleur d'arrière-plan</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Lisser tous les contours</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Supprimer les points hors de la zone de travail du traceur</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Image d'arrière-plan</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Charger depuis un fichier</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Coller depuis le presse-papiers</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Définir la transparence de la couleur d'arrière-plan</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Charger l'image d'arrière-plan depuis un fichier</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Coller l'image d'arrière-plan depuis le presse-papiers</value>
+    <comment>tt</comment>
+  </data>
 </root>

@@ -341,4 +341,45 @@ Um mouse fornece um valor de pressão constante de 50%.</value>
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importar dados XYZ da área de transferência (valores x y z ou x z separados por tabulação)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>Importar dados XYZ da área de transferência (valores separados por tabulação: x y z ou x z).
+Z no intervalo de 0,0 a 1,0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>Definir cor de fundo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>Suavizar todos os traços agora</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>Remover pontos fora da área de trabalho do plotter</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imagem de fundo</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Carregar de arquivo</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Colar da área de transferência</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>Definir transparência da cor de fundo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>Carregar imagem de fundo de arquivo</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>Colar imagem de fundo da área de transferência</value>
+    <comment>tt</comment>
+  </data>
 </root>

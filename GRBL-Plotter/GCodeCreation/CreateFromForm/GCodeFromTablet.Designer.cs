@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeFromTablet));
+            System.Windows.Media.SolidColorBrush solidColorBrush3 = new System.Windows.Media.SolidColorBrush();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.BtnRefresh = new System.Windows.Forms.Button();
@@ -53,15 +54,18 @@
             this.NudSizeY = new System.Windows.Forms.NumericUpDown();
             this.CbFitToCurve = new System.Windows.Forms.CheckBox();
             this.NudSizePen = new System.Windows.Forms.NumericUpDown();
+            this.BtnImport = new System.Windows.Forms.Button();
+            this.BtnBackcolor = new System.Windows.Forms.Button();
+            this.BtnFitCurve = new System.Windows.Forms.Button();
+            this.CbRemovePoints = new System.Windows.Forms.CheckBox();
             this.GbMode = new System.Windows.Forms.GroupBox();
             this.BtnCreateGcode = new System.Windows.Forms.Button();
-            this.BtnFitCurve = new System.Windows.Forms.Button();
             this.GbPlotter = new System.Windows.Forms.GroupBox();
             this.CbMovementMouse = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LblToolTable = new System.Windows.Forms.Label();
-            this.CboxToolFiles = new System.Windows.Forms.ComboBox();
+            this.CboxColorPaletteFiles = new System.Windows.Forms.ComboBox();
             this.GbToolChange = new System.Windows.Forms.GroupBox();
             this.cBflowControl = new System.Windows.Forms.CheckBox();
             this.BtnOpenSetup = new System.Windows.Forms.Button();
@@ -90,7 +94,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SetupPanel = new System.Windows.Forms.Panel();
             this.LblDevice = new System.Windows.Forms.Label();
-            this.BtnImport = new System.Windows.Forms.Button();
             this.BtnCloseSetup = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.LblInfo = new System.Windows.Forms.Label();
@@ -102,6 +105,17 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TssLblActualPos = new System.Windows.Forms.ToolStripStatusLabel();
             this.TssLblCanvasData = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteBackgroundImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GbBackground = new System.Windows.Forms.GroupBox();
+            this.TbTransparency = new System.Windows.Forms.TrackBar();
+            this.BtnLoadBackground = new System.Windows.Forms.Button();
+            this.BtnPasteBackground = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NudPointDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSizeX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSizeY)).BeginInit();
@@ -120,6 +134,9 @@
             this.GbLiveUpdate.SuspendLayout();
             this.GbSize.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.GbBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TbTransparency)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -311,7 +328,7 @@
             this.NudSizeX.Name = "NudSizeX";
             this.toolTip1.SetToolTip(this.NudSizeX, resources.GetString("NudSizeX.ToolTip"));
             this.NudSizeX.Value = global::GrblPlotter.Properties.Settings.Default.tabletSizeX;
-            this.NudSizeX.ValueChanged += new System.EventHandler(this.NudSizeX_ValueChanged);
+            this.NudSizeX.ValueChanged += new System.EventHandler(this.NudSize_ValueChanged);
             // 
             // NudSizeY
             // 
@@ -336,7 +353,7 @@
             this.NudSizeY.Name = "NudSizeY";
             this.toolTip1.SetToolTip(this.NudSizeY, resources.GetString("NudSizeY.ToolTip"));
             this.NudSizeY.Value = global::GrblPlotter.Properties.Settings.Default.tabletSizeY;
-            this.NudSizeY.ValueChanged += new System.EventHandler(this.NudSizeX_ValueChanged);
+            this.NudSizeY.ValueChanged += new System.EventHandler(this.NudSize_ValueChanged);
             // 
             // CbFitToCurve
             // 
@@ -369,6 +386,40 @@
             this.NudSizePen.Value = global::GrblPlotter.Properties.Settings.Default.tabletSizePen;
             this.NudSizePen.ValueChanged += new System.EventHandler(this.NudSizePen_ValueChanged);
             // 
+            // BtnImport
+            // 
+            resources.ApplyResources(this.BtnImport, "BtnImport");
+            this.BtnImport.Name = "BtnImport";
+            this.toolTip1.SetToolTip(this.BtnImport, resources.GetString("BtnImport.ToolTip"));
+            this.BtnImport.UseVisualStyleBackColor = true;
+            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
+            // 
+            // BtnBackcolor
+            // 
+            resources.ApplyResources(this.BtnBackcolor, "BtnBackcolor");
+            this.BtnBackcolor.Name = "BtnBackcolor";
+            this.toolTip1.SetToolTip(this.BtnBackcolor, resources.GetString("BtnBackcolor.ToolTip"));
+            this.BtnBackcolor.UseVisualStyleBackColor = true;
+            this.BtnBackcolor.Click += new System.EventHandler(this.BtnSetBackground_Click);
+            // 
+            // BtnFitCurve
+            // 
+            resources.ApplyResources(this.BtnFitCurve, "BtnFitCurve");
+            this.BtnFitCurve.Name = "BtnFitCurve";
+            this.toolTip1.SetToolTip(this.BtnFitCurve, resources.GetString("BtnFitCurve.ToolTip"));
+            this.BtnFitCurve.UseVisualStyleBackColor = true;
+            this.BtnFitCurve.Click += new System.EventHandler(this.BtnFitCurve_Click);
+            // 
+            // CbRemovePoints
+            // 
+            resources.ApplyResources(this.CbRemovePoints, "CbRemovePoints");
+            this.CbRemovePoints.Checked = true;
+            this.CbRemovePoints.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbRemovePoints.Name = "CbRemovePoints";
+            this.toolTip1.SetToolTip(this.CbRemovePoints, resources.GetString("CbRemovePoints.ToolTip"));
+            this.CbRemovePoints.UseVisualStyleBackColor = true;
+            this.CbRemovePoints.CheckedChanged += new System.EventHandler(this.CbRemovePoints_CheckedChanged);
+            // 
             // GbMode
             // 
             this.GbMode.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -377,7 +428,6 @@
             this.GbMode.Controls.Add(this.RbMode2);
             this.GbMode.Controls.Add(this.RbMode1);
             this.GbMode.Controls.Add(this.RbMode0);
-            this.GbMode.Controls.Add(this.CbFitToCurve);
             resources.ApplyResources(this.GbMode, "GbMode");
             this.GbMode.Name = "GbMode";
             this.GbMode.TabStop = false;
@@ -387,14 +437,7 @@
             resources.ApplyResources(this.BtnCreateGcode, "BtnCreateGcode");
             this.BtnCreateGcode.Name = "BtnCreateGcode";
             this.BtnCreateGcode.UseVisualStyleBackColor = true;
-            this.BtnCreateGcode.Click += new System.EventHandler(this.MenuImportWholeDrawing_Click);
-            // 
-            // BtnFitCurve
-            // 
-            resources.ApplyResources(this.BtnFitCurve, "BtnFitCurve");
-            this.BtnFitCurve.Name = "BtnFitCurve";
-            this.BtnFitCurve.UseVisualStyleBackColor = true;
-            this.BtnFitCurve.Click += new System.EventHandler(this.BtnFitCurve_Click);
+            this.BtnCreateGcode.Click += new System.EventHandler(this.BtnCreateGcode_Click);
             // 
             // GbPlotter
             // 
@@ -428,12 +471,12 @@
             resources.ApplyResources(this.LblToolTable, "LblToolTable");
             this.LblToolTable.Name = "LblToolTable";
             // 
-            // CboxToolFiles
+            // CboxColorPaletteFiles
             // 
-            resources.ApplyResources(this.CboxToolFiles, "CboxToolFiles");
-            this.CboxToolFiles.FormattingEnabled = true;
-            this.CboxToolFiles.Name = "CboxToolFiles";
-            this.CboxToolFiles.SelectedIndexChanged += new System.EventHandler(this.CboxToolFiles_SelectedIndexChanged);
+            resources.ApplyResources(this.CboxColorPaletteFiles, "CboxColorPaletteFiles");
+            this.CboxColorPaletteFiles.FormattingEnabled = true;
+            this.CboxColorPaletteFiles.Name = "CboxColorPaletteFiles";
+            this.CboxColorPaletteFiles.SelectedIndexChanged += new System.EventHandler(this.CboxColorPaletteFiles_SelectedIndexChanged);
             // 
             // GbToolChange
             // 
@@ -497,15 +540,18 @@
             // Tablet
             // 
             resources.ApplyResources(this.Tablet, "Tablet");
+            this.Tablet.BackColor = System.Drawing.Color.White;
             this.Tablet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Tablet.FitToCurve = false;
             this.Tablet.Name = "Tablet";
             this.Tablet.OnPenUpReduce = true;
+            solidColorBrush3.Color = System.Windows.Media.Color.FromArgb(((byte)(0)), ((byte)(255)), ((byte)(255)), ((byte)(255)));
+            this.Tablet.PaperColor = solidColorBrush3;
             this.Tablet.PenSize = 2D;
             this.Tablet.PointDistance = 0.2D;
+            this.Tablet.RemoveOutOfAreaPoints = true;
             this.Tablet.ZoomOnResize = true;
             this.Tablet.TabletEvent += new TabletControl.TabletEventHandler(this.Tablet_TabletEvent);
-            this.Tablet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GCodeFromTablet_KeyDown);
             // 
             // menuStrip1
             // 
@@ -571,7 +617,7 @@
             // 
             this.importWholeDrawingToolStripMenuItem.Name = "importWholeDrawingToolStripMenuItem";
             resources.ApplyResources(this.importWholeDrawingToolStripMenuItem, "importWholeDrawingToolStripMenuItem");
-            this.importWholeDrawingToolStripMenuItem.Click += new System.EventHandler(this.MenuImportWholeDrawing_Click);
+            this.importWholeDrawingToolStripMenuItem.Click += new System.EventHandler(this.BtnCreateGcode_Click);
             // 
             // plotterToolStripMenuItem
             // 
@@ -595,6 +641,7 @@
             // 
             // ToolPanel
             // 
+            this.ToolPanel.Controls.Add(this.GbBackground);
             this.ToolPanel.Controls.Add(this.GbColor);
             this.ToolPanel.Controls.Add(this.GbMode);
             this.ToolPanel.Controls.Add(this.GbPen);
@@ -605,7 +652,7 @@
             // 
             this.GbColor.BackColor = System.Drawing.Color.WhiteSmoke;
             this.GbColor.Controls.Add(this.CbTransparency);
-            this.GbColor.Controls.Add(this.CboxToolFiles);
+            this.GbColor.Controls.Add(this.CboxColorPaletteFiles);
             this.GbColor.Controls.Add(this.LblToolTable);
             this.GbColor.Controls.Add(this.PSelectedColor);
             this.GbColor.Controls.Add(this.FlpToolSelection);
@@ -660,13 +707,6 @@
             resources.ApplyResources(this.LblDevice, "LblDevice");
             this.LblDevice.Name = "LblDevice";
             // 
-            // BtnImport
-            // 
-            resources.ApplyResources(this.BtnImport, "BtnImport");
-            this.BtnImport.Name = "BtnImport";
-            this.BtnImport.UseVisualStyleBackColor = true;
-            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
-            // 
             // BtnCloseSetup
             // 
             resources.ApplyResources(this.BtnCloseSetup, "BtnCloseSetup");
@@ -687,6 +727,8 @@
             // GbModify
             // 
             this.GbModify.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbModify.Controls.Add(this.CbRemovePoints);
+            this.GbModify.Controls.Add(this.CbFitToCurve);
             this.GbModify.Controls.Add(this.label7);
             this.GbModify.Controls.Add(this.LblStrokes);
             this.GbModify.Controls.Add(this.BtnFitCurve);
@@ -746,10 +788,94 @@
             this.TssLblCanvasData.Name = "TssLblCanvasData";
             resources.ApplyResources(this.TssLblCanvasData, "TssLblCanvasData");
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteBackgroundImageToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            // 
+            // pasteBackgroundImageToolStripMenuItem
+            // 
+            this.pasteBackgroundImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadFromFileToolStripMenuItem,
+            this.pasteFromClipboardToolStripMenuItem});
+            this.pasteBackgroundImageToolStripMenuItem.Name = "pasteBackgroundImageToolStripMenuItem";
+            resources.ApplyResources(this.pasteBackgroundImageToolStripMenuItem, "pasteBackgroundImageToolStripMenuItem");
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            resources.ApplyResources(this.loadFromFileToolStripMenuItem, "loadFromFileToolStripMenuItem");
+            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.CmsLoadBackgroundImage_Click);
+            // 
+            // pasteFromClipboardToolStripMenuItem
+            // 
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.CmsPasteBackgroundImage_Click);
+            // 
+            // GbBackground
+            // 
+            this.GbBackground.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbBackground.Controls.Add(this.label10);
+            this.GbBackground.Controls.Add(this.label9);
+            this.GbBackground.Controls.Add(this.label8);
+            this.GbBackground.Controls.Add(this.BtnPasteBackground);
+            this.GbBackground.Controls.Add(this.BtnLoadBackground);
+            this.GbBackground.Controls.Add(this.TbTransparency);
+            this.GbBackground.Controls.Add(this.BtnBackcolor);
+            resources.ApplyResources(this.GbBackground, "GbBackground");
+            this.GbBackground.Name = "GbBackground";
+            this.GbBackground.TabStop = false;
+            // 
+            // TbTransparency
+            // 
+            resources.ApplyResources(this.TbTransparency, "TbTransparency");
+            this.TbTransparency.Maximum = 255;
+            this.TbTransparency.Name = "TbTransparency";
+            this.TbTransparency.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.toolTip1.SetToolTip(this.TbTransparency, resources.GetString("TbTransparency.ToolTip"));
+            this.TbTransparency.Value = 255;
+            this.TbTransparency.Scroll += new System.EventHandler(this.TbTransparency_Scroll);
+            // 
+            // BtnLoadBackground
+            // 
+            resources.ApplyResources(this.BtnLoadBackground, "BtnLoadBackground");
+            this.BtnLoadBackground.Name = "BtnLoadBackground";
+            this.toolTip1.SetToolTip(this.BtnLoadBackground, resources.GetString("BtnLoadBackground.ToolTip"));
+            this.BtnLoadBackground.UseVisualStyleBackColor = true;
+            this.BtnLoadBackground.Click += new System.EventHandler(this.CmsLoadBackgroundImage_Click);
+            // 
+            // BtnPasteBackground
+            // 
+            resources.ApplyResources(this.BtnPasteBackground, "BtnPasteBackground");
+            this.BtnPasteBackground.Name = "BtnPasteBackground";
+            this.toolTip1.SetToolTip(this.BtnPasteBackground, resources.GetString("BtnPasteBackground.ToolTip"));
+            this.BtnPasteBackground.UseVisualStyleBackColor = true;
+            this.BtnPasteBackground.Click += new System.EventHandler(this.CmsPasteBackgroundImage_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // GCodeFromTablet
             // 
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.SetupPanel);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.statusStrip1);
@@ -759,8 +885,8 @@
             this.Name = "GCodeFromTablet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GCodeFromTablet_FormClosing);
             this.Load += new System.EventHandler(this.GCodeFromTablet_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GCodeFromTablet_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GCodeFromTablet_KeyDown);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.GCodeFromTablet_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.GCodeFromTablet_DragEnter);
             this.Resize += new System.EventHandler(this.GCodeFromTablet_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.NudPointDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSizeX)).EndInit();
@@ -792,6 +918,10 @@
             this.GbSize.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.GbBackground.ResumeLayout(false);
+            this.GbBackground.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TbTransparency)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -810,7 +940,7 @@
         private System.Windows.Forms.NumericUpDown NudSizeX;
         private System.Windows.Forms.CheckBox CbMovementMouse;
         private TabletControl.TabletControl Tablet;
-        private System.Windows.Forms.ComboBox CboxToolFiles;
+        private System.Windows.Forms.ComboBox CboxColorPaletteFiles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel PSelectedColor;
         private System.Windows.Forms.FlowLayoutPanel FlpToolSelection;
@@ -870,5 +1000,18 @@
         private System.Windows.Forms.ToolStripMenuItem importXyzDataToolStripMenuItem;
         internal System.Windows.Forms.Button BtnCreateGcode;
         private System.Windows.Forms.Label LblDevice;
+        private System.Windows.Forms.Button BtnBackcolor;
+        private System.Windows.Forms.CheckBox CbRemovePoints;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem pasteBackgroundImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.GroupBox GbBackground;
+        private System.Windows.Forms.TrackBar TbTransparency;
+        private System.Windows.Forms.Button BtnLoadBackground;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button BtnPasteBackground;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }

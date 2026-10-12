@@ -339,4 +339,45 @@
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Import XYZ data from clipboard (tab seperated values x y z  or x z)</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>استيراد بيانات XYZ من الحافظة (قيم مفصولة بعلامات جدولة: x y z أو x z).
+تتراوح قيمة Z بين 0.0 و1.0.</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>تحديد لون الخلفية</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>تنعيم جميع الخطوط المرسومة الآن</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>إزالة النقاط التي تقع خارج نطاق عمل جهاز الرسم</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>صورة الخلفية</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحميل من ملف</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>لصق من الحافظة</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>ضبط شفافية لون الخلفية</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>تحميل صورة الخلفية من ملف</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>لصق صورة الخلفية من الحافظة</value>
+    <comment>tt</comment>
+  </data>
 </root>

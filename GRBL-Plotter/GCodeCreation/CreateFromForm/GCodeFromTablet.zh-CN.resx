@@ -341,4 +341,45 @@
   <data name="importXyzDataToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>从剪贴板导入 XYZ 数据（制表符分隔的 xyz 或 xz 值）</value>
   </data>
+  <data name="BtnImport.ToolTip" xml:space="preserve">
+    <value>从剪贴板导入 XYZ 数据（制表符分隔的值：x y z 或 x z）。
+Z 值的范围为 0.0 到 1.0。</value>
+    <comment>tt1</comment>
+  </data>
+  <data name="BtnBackcolor.ToolTip" xml:space="preserve">
+    <value>设置背景色</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnFitCurve.ToolTip" xml:space="preserve">
+    <value>平滑所有描边</value>
+    <comment>tt</comment>
+  </data>
+  <data name="CbRemovePoints.ToolTip" xml:space="preserve">
+    <value>移除绘图仪工作区域之外的点</value>
+    <comment>tt</comment>
+  </data>
+  <data name="pasteBackgroundImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>背景图像</value>
+    <comment>m</comment>
+  </data>
+  <data name="loadFromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>从文件加载</value>
+    <comment>m</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>从剪贴板粘贴</value>
+    <comment>m</comment>
+  </data>
+  <data name="TbTransparency.ToolTip" xml:space="preserve">
+    <value>设置背景色透明度</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnLoadBackground.ToolTip" xml:space="preserve">
+    <value>从文件加载背景图像</value>
+    <comment>tt</comment>
+  </data>
+  <data name="BtnPasteBackground.ToolTip" xml:space="preserve">
+    <value>从剪贴板粘贴背景图像</value>
+    <comment>tt</comment>
+  </data>
 </root>
