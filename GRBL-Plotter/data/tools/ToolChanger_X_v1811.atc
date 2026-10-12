@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ToolPositions Device="Plotter" Amount="12">
+  <ToolChange ScriptDelay="1" Off-X="-166" Off-Y="-186" Off-Z="-21" Off-A="0">
+    <Description>Tool change setup for pens, arranged along the x-axis, as shown in the video
+https://youtu.be/9iofjVE7zfY
+    </Description>
+    <ToolChangeCmdGripperOpen>M3 S2 G4 P0.5</ToolChangeCmdGripperOpen>
+    <ToolChangeCmdGripperClose>M3 S25 G4 P0.5</ToolChangeCmdGripperClose>
+    <ToolChangeCmdVar1>G91 X-1 ( to the left )</ToolChangeCmdVar1>
+    <ToolChangeCmdVar2>G91 X1 ( to the right )</ToolChangeCmdVar2>
+    <ToolChangeCmdVar3>G91 Y-12 ( forward )</ToolChangeCmdVar3>
+    <ToolChangeCmdVar4>G91 Y12 ( to the rear )</ToolChangeCmdVar4>
+    <ToolChangeCmdVar5>G91 Z20 ( move up )</ToolChangeCmdVar5>
+    <ToolChangeCmdVar6>G91 Z-20 (move down)</ToolChangeCmdVar6>
+    <ToolChangeCmdVar7></ToolChangeCmdVar7>
+    <ToolChangeCmdVar8></ToolChangeCmdVar8>
+    <ToolChangeScriptPut>data\scripts\script_pen_v1811_remove.nc</ToolChangeScriptPut>
+    <ToolChangeScriptSelect>data\scripts\</ToolChangeScriptSelect>
+    <ToolChangeScriptGet>data\scripts\script_pen_v1811_pickup.nc</ToolChangeScriptGet>
+    <ToolChangeScriptProbe>data\scripts\</ToolChangeScriptProbe>
+    <StepByStepPresetPickUp1>#TOGO</StepByStepPresetPickUp1>
+    <StepByStepPresetPickUp2>#TOV1</StepByStepPresetPickUp2>
+    <StepByStepPresetPickUp3>#TOV3</StepByStepPresetPickUp3>
+    <StepByStepPresetPickUp4>#TOV2</StepByStepPresetPickUp4>
+    <StepByStepPresetPickUp5>#TOGC</StepByStepPresetPickUp5>
+    <StepByStepPresetPickUp6>#TOV5</StepByStepPresetPickUp6>
+    <StepByStepPresetPickUp7>#TOV4</StepByStepPresetPickUp7>
+    <StepByStepPresetPickUp8></StepByStepPresetPickUp8>
+    <StepByStepPresetRemove1>#TOV5</StepByStepPresetRemove1>
+    <StepByStepPresetRemove2>#TOV3</StepByStepPresetRemove2>
+    <StepByStepPresetRemove3>#TOV6</StepByStepPresetRemove3>
+    <StepByStepPresetRemove4>#TOGO</StepByStepPresetRemove4>
+    <StepByStepPresetRemove5>#TOV1</StepByStepPresetRemove5>
+    <StepByStepPresetRemove6>#TOV4</StepByStepPresetRemove6>
+    <StepByStepPresetRemove7>#TOV2</StepByStepPresetRemove7>
+    <StepByStepPresetRemove8></StepByStepPresetRemove8>
+  </ToolChange>
+  <Tool Nr="1" X="0" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="2" X="15" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="3" X="30" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="4" X="45" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="5" X="60" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="6" X="75" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="7" X="90" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="8" X="105" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="9" X="120" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="10" X="135" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="11" X="150" Y="0" Z="0" A="0" D="10.000" />
+  <Tool Nr="12" X="165" Y="0" Z="0" A="0" D="10.000" />
+</ToolPositions>

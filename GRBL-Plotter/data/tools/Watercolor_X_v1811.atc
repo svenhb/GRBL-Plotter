@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ToolPositions Device="Plotter" Amount="7">
+  <ToolChange ScriptDelay="0.1" Off-X="-156.001998901367" Off-Y="-13.0050001144409" Off-Z="-10" Off-A="0">
+    <Description>Tool change setup for watercolor 7 colors. Use color palette Watercolor_7_CMYK_RGB</Description>
+    <ToolChangeCmdGripperOpen>M3 S2 G4 P0.5</ToolChangeCmdGripperOpen>
+    <ToolChangeCmdGripperClose>M3 S25 G4 P0.5</ToolChangeCmdGripperClose>
+    <ToolChangeCmdVar1>G53 G90 G0 X-54 Y-53 ( water bowl 1 )</ToolChangeCmdVar1>
+    <ToolChangeCmdVar2>G53 G90 G0 X-20 Y-53 ( water bowl 2 )</ToolChangeCmdVar2>
+    <ToolChangeCmdVar3>G53 G90 G0 X-20 Y-22 ( water bowl 3 )</ToolChangeCmdVar3>
+    <ToolChangeCmdVar4>G53 G90 G0 Z-2 ( far up )</ToolChangeCmdVar4>
+    <ToolChangeCmdVar5>G90 G1 F3000 Z0 ( down )</ToolChangeCmdVar5>
+    <ToolChangeCmdVar6>G90 G0 Z5 ( up )</ToolChangeCmdVar6>
+    <ToolChangeCmdVar7>G91 G1 X-8 F3000( start stir brush )</ToolChangeCmdVar7>
+    <ToolChangeCmdVar8>G2 X0 Y0 I8 J0 ( stir brush )</ToolChangeCmdVar8>
+    <ToolChangeScriptPut Title="Clean">data\scripts\script_brush_v1811_clean.nc</ToolChangeScriptPut>
+    <ToolChangeScriptSelect Title="Clean">data\scripts\</ToolChangeScriptSelect>
+    <ToolChangeScriptGet Title="Take C">data\scripts\script_brush_v1811_select.nc</ToolChangeScriptGet>
+    <ToolChangeScriptProbe Title="Probe">data\scripts\</ToolChangeScriptProbe>
+    <StepByStepPresetPickUp1>#TOV1</StepByStepPresetPickUp1>
+    <StepByStepPresetPickUp2>#TOV2</StepByStepPresetPickUp2>
+    <StepByStepPresetPickUp3>#TOV3</StepByStepPresetPickUp3>
+    <StepByStepPresetPickUp4>#TOV4</StepByStepPresetPickUp4>
+    <StepByStepPresetPickUp5>#TOV5</StepByStepPresetPickUp5>
+    <StepByStepPresetPickUp6>#TOV6</StepByStepPresetPickUp6>
+    <StepByStepPresetPickUp7></StepByStepPresetPickUp7>
+    <StepByStepPresetPickUp8></StepByStepPresetPickUp8>
+    <StepByStepPresetRemove1></StepByStepPresetRemove1>
+    <StepByStepPresetRemove2></StepByStepPresetRemove2>
+    <StepByStepPresetRemove3></StepByStepPresetRemove3>
+    <StepByStepPresetRemove4></StepByStepPresetRemove4>
+    <StepByStepPresetRemove5></StepByStepPresetRemove5>
+    <StepByStepPresetRemove6></StepByStepPresetRemove6>
+    <StepByStepPresetRemove7></StepByStepPresetRemove7>
+    <StepByStepPresetRemove8></StepByStepPresetRemove8>
+  </ToolChange>
+  <Tool Nr="1" X="0" Y="0" Z="0" A="0" D="30.000" />
+  <Tool Nr="2" X="35" Y="0" Z="0" A="0" D="30.000" />
+  <Tool Nr="3" X="70" Y="0" Z="0" A="0" D="30.000" />
+  <Tool Nr="4" X="105" Y="0" Z="0" A="0" D="30.000" />
+  <Tool Nr="5" X="0" Y="-45" Z="0" A="0" D="30.000" />
+  <Tool Nr="6" X="35" Y="-45" Z="0" A="0" D="30.000" />
+  <Tool Nr="7" X="70" Y="-45" Z="0" A="0" D="30.000" />
+</ToolPositions>

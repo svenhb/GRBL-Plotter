@@ -1,0 +1,26 @@
+# School watercolor set 24
+# Diameter:3.0
+FFF200,Yellow
+FF6600,Orange
+E60000,Vermilion
+E30052,Magenta Red
+702082,Violet
+002FA7,Ultramarine Blue
+00AEEF,Cyan
+008080,Teal
+99CC00,Yellow-Green
+C69214,Yellow Ochre
+8B4513,Burnt Sienna
+000000,Black
+FFF44F,Lemon
+FFC800,Indian yellow
+960018,Carmine red
+003153,Prussian blue
+0047AB,Cobalt blue
+536878,Payne's grey
+008080,Turquoise blue
+006400,French green
+808000,Olive green
+635147,Umber
+FFC0CB,Flesh colour
+B87333,Yellow brown

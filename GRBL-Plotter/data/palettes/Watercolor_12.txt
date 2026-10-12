@@ -1,0 +1,14 @@
+# School watercolor set 12
+# Diameter:3.0
+FFF200,Yellow
+FF6600,Orange
+E60000,Vermilion
+E30052,Magenta Red
+702082,Violet
+002FA7,Ultramarine Blue
+00AEEF,Cyan
+008080,Teal
+99CC00,Yellow-Green
+C69214,Yellow Ochre
+8B4513,Burnt Sienna
+000000,Black

@@ -1,0 +1,17 @@
+( Move pen back to pen storage )
+( Assumption: active pen storage position is empty )
+( G53 indicates machine coordinates - no transform required )
+G53 G90 G0 X#TOLX Y#TOLY    ( move gripper in front of last pen in absolute machine coordinates )
+G53 G90 G0 Z#TOLZ           ( move gripper to correct height )
+
+G91 G1 F1000                ( set relative mode and feedrate )
+#TOV5                       ( lift pen )
+#TOV3                       ( move pen into holder )
+#TOV6                       ( move pen down )
+
+#TOGO                       ( open gripper)
+G91 G1 F1000                ( set relative mode and feedrate )
+#TOV1                       ( left )
+G53 G90 Y#TOLY              ( move back to orig. Y pos )
+G53 G90 X#TOLX              ( move back to orig. X pos )
+G53 G90 Z#TOLZ              ( move gripper to correct height )

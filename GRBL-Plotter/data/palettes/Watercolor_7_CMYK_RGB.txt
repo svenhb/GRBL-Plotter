@@ -1,0 +1,9 @@
+# Watercolor
+# Diameter:3.0
+00FFFF,Cyan
+FF00FF,Magenta
+FFFF00,Yellow
+000000,Black
+FF0000,Red
+00FF00,Green
+0000FF,Blue
