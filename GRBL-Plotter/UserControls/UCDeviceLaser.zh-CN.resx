@@ -151,7 +151,7 @@
   </data>
   <data name="BtnUseZ.Text" xml:space="preserve">
     <value>Z轴</value>
-    <comment>b2</comment>
+    <comment>btn3</comment>
   </data>
   <data name="BtnUseZ.ToolTip" xml:space="preserve">
     <value>使用Z轴进行更深的切削</value>
@@ -226,7 +226,7 @@ M4 动态激光功率模式：动态激光功率模式会根据当前速度与�
   </data>
   <data name="BtnFill.Text" xml:space="preserve">
     <value>填充</value>
-    <comment>b1</comment>
+    <comment>btn1</comment>
   </data>
   <data name="LblMax.ToolTip" xml:space="preserve">
     <value>grbl $30 设置</value>
@@ -241,6 +241,7 @@ M4 动态激光功率模式：动态激光功率模式会根据当前速度与�
   </data>
   <data name="BtnLaserTools.Text" xml:space="preserve">
     <value>激光工具</value>
+    <comment>btn4</comment>
   </data>
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>设置激光器</value>
@@ -265,7 +266,7 @@ M4 激光功率动态模式</value>
   </data>
   <data name="BtnOverlap.Text" xml:space="preserve">
     <value>Перерез</value>
-    <comment>1</comment>
+    <comment>btn2</comment>
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
     <value>Онлайн-справка</value>

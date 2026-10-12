@@ -43,6 +43,11 @@
             this.LblPowerMin = new System.Windows.Forms.Label();
             this.BtnHelp = new System.Windows.Forms.Button();
             this.BtnOffsetSort = new System.Windows.Forms.Button();
+            this.NudDeviceLaserPowerMin = new System.Windows.Forms.NumericUpDown();
+            this.CbLaserpower = new System.Windows.Forms.CheckBox();
+            this.NudDeviceLaserPasses = new System.Windows.Forms.NumericUpDown();
+            this.NudDeviceLaserSpeed = new System.Windows.Forms.NumericUpDown();
+            this.NudDeviceLaserPower = new System.Windows.Forms.NumericUpDown();
             this.BtnSetup = new System.Windows.Forms.Button();
             this.GbPowerSettings = new System.Windows.Forms.GroupBox();
             this.LblSet = new System.Windows.Forms.Label();
@@ -66,18 +71,13 @@
             this.LblOverlapEnable = new System.Windows.Forms.Label();
             this.LblOverlapHeadline = new System.Windows.Forms.Label();
             this.BtnLaserTools = new System.Windows.Forms.Button();
-            this.NudDeviceLaserPowerMin = new System.Windows.Forms.NumericUpDown();
             this.CbAirAssist = new System.Windows.Forms.CheckBox();
-            this.CbLaserpower = new System.Windows.Forms.CheckBox();
-            this.NudDeviceLaserPasses = new System.Windows.Forms.NumericUpDown();
-            this.NudDeviceLaserSpeed = new System.Windows.Forms.NumericUpDown();
-            this.NudDeviceLaserPower = new System.Windows.Forms.NumericUpDown();
-            this.GbPowerSettings.SuspendLayout();
-            this.PanelTranslation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPowerMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPasses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPower)).BeginInit();
+            this.GbPowerSettings.SuspendLayout();
+            this.PanelTranslation.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblMax
@@ -167,6 +167,93 @@
             this.toolTip1.SetToolTip(this.BtnOffsetSort, resources.GetString("BtnOffsetSort.ToolTip"));
             this.BtnOffsetSort.UseVisualStyleBackColor = true;
             this.BtnOffsetSort.Click += new System.EventHandler(this.BtnOffsetSort_Click);
+            // 
+            // NudDeviceLaserPowerMin
+            // 
+            this.NudDeviceLaserPowerMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPowerMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDeviceLaserPowerMin.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudDeviceLaserPowerMin, "NudDeviceLaserPowerMin");
+            this.NudDeviceLaserPowerMin.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.NudDeviceLaserPowerMin.Name = "NudDeviceLaserPowerMin";
+            this.toolTip1.SetToolTip(this.NudDeviceLaserPowerMin, resources.GetString("NudDeviceLaserPowerMin.ToolTip"));
+            this.NudDeviceLaserPowerMin.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPowerMin;
+            this.NudDeviceLaserPowerMin.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
+            // 
+            // CbLaserpower
+            // 
+            resources.ApplyResources(this.CbLaserpower, "CbLaserpower");
+            this.CbLaserpower.Checked = global::GrblPlotter.Properties.Settings.Default.DeviceLaserM3;
+            this.CbLaserpower.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbLaserpower.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserM3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbLaserpower.Name = "CbLaserpower";
+            this.toolTip1.SetToolTip(this.CbLaserpower, resources.GetString("CbLaserpower.ToolTip"));
+            this.CbLaserpower.UseVisualStyleBackColor = true;
+            this.CbLaserpower.CheckedChanged += new System.EventHandler(this.CbLaserpower_CheckedChanged);
+            // 
+            // NudDeviceLaserPasses
+            // 
+            this.NudDeviceLaserPasses.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPasses", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.NudDeviceLaserPasses, "NudDeviceLaserPasses");
+            this.NudDeviceLaserPasses.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudDeviceLaserPasses.Name = "NudDeviceLaserPasses";
+            this.toolTip1.SetToolTip(this.NudDeviceLaserPasses, resources.GetString("NudDeviceLaserPasses.ToolTip"));
+            this.NudDeviceLaserPasses.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPasses;
+            this.NudDeviceLaserPasses.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
+            // 
+            // NudDeviceLaserSpeed
+            // 
+            this.NudDeviceLaserSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDeviceLaserSpeed.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudDeviceLaserSpeed, "NudDeviceLaserSpeed");
+            this.NudDeviceLaserSpeed.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.NudDeviceLaserSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudDeviceLaserSpeed.Name = "NudDeviceLaserSpeed";
+            this.toolTip1.SetToolTip(this.NudDeviceLaserSpeed, resources.GetString("NudDeviceLaserSpeed.ToolTip"));
+            this.NudDeviceLaserSpeed.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserSpeed;
+            this.NudDeviceLaserSpeed.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
+            // 
+            // NudDeviceLaserPower
+            // 
+            this.NudDeviceLaserPower.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPower", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDeviceLaserPower.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudDeviceLaserPower, "NudDeviceLaserPower");
+            this.NudDeviceLaserPower.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.NudDeviceLaserPower.Name = "NudDeviceLaserPower";
+            this.toolTip1.SetToolTip(this.NudDeviceLaserPower, resources.GetString("NudDeviceLaserPower.ToolTip"));
+            this.NudDeviceLaserPower.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPower;
+            this.NudDeviceLaserPower.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
             // 
             // BtnSetup
             // 
@@ -309,24 +396,6 @@
             this.BtnLaserTools.UseVisualStyleBackColor = true;
             this.BtnLaserTools.Click += new System.EventHandler(this.BtnStartLaserTools_Click);
             // 
-            // NudDeviceLaserPowerMin
-            // 
-            this.NudDeviceLaserPowerMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPowerMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudDeviceLaserPowerMin.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudDeviceLaserPowerMin, "NudDeviceLaserPowerMin");
-            this.NudDeviceLaserPowerMin.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.NudDeviceLaserPowerMin.Name = "NudDeviceLaserPowerMin";
-            this.toolTip1.SetToolTip(this.NudDeviceLaserPowerMin, resources.GetString("NudDeviceLaserPowerMin.ToolTip"));
-            this.NudDeviceLaserPowerMin.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPowerMin;
-            // 
             // CbAirAssist
             // 
             resources.ApplyResources(this.CbAirAssist, "CbAirAssist");
@@ -335,74 +404,6 @@
             this.CbAirAssist.Name = "CbAirAssist";
             this.CbAirAssist.UseVisualStyleBackColor = true;
             this.CbAirAssist.CheckedChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
-            // 
-            // CbLaserpower
-            // 
-            resources.ApplyResources(this.CbLaserpower, "CbLaserpower");
-            this.CbLaserpower.Checked = global::GrblPlotter.Properties.Settings.Default.DeviceLaserM3;
-            this.CbLaserpower.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbLaserpower.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserM3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbLaserpower.Name = "CbLaserpower";
-            this.toolTip1.SetToolTip(this.CbLaserpower, resources.GetString("CbLaserpower.ToolTip"));
-            this.CbLaserpower.UseVisualStyleBackColor = true;
-            this.CbLaserpower.CheckedChanged += new System.EventHandler(this.CbLaserpower_CheckedChanged);
-            // 
-            // NudDeviceLaserPasses
-            // 
-            this.NudDeviceLaserPasses.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPasses", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.NudDeviceLaserPasses, "NudDeviceLaserPasses");
-            this.NudDeviceLaserPasses.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NudDeviceLaserPasses.Name = "NudDeviceLaserPasses";
-            this.toolTip1.SetToolTip(this.NudDeviceLaserPasses, resources.GetString("NudDeviceLaserPasses.ToolTip"));
-            this.NudDeviceLaserPasses.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPasses;
-            this.NudDeviceLaserPasses.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
-            // 
-            // NudDeviceLaserSpeed
-            // 
-            this.NudDeviceLaserSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudDeviceLaserSpeed.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudDeviceLaserSpeed, "NudDeviceLaserSpeed");
-            this.NudDeviceLaserSpeed.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-            this.NudDeviceLaserSpeed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NudDeviceLaserSpeed.Name = "NudDeviceLaserSpeed";
-            this.toolTip1.SetToolTip(this.NudDeviceLaserSpeed, resources.GetString("NudDeviceLaserSpeed.ToolTip"));
-            this.NudDeviceLaserSpeed.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserSpeed;
-            this.NudDeviceLaserSpeed.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
-            // 
-            // NudDeviceLaserPower
-            // 
-            this.NudDeviceLaserPower.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "DeviceLaserPower", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudDeviceLaserPower.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudDeviceLaserPower, "NudDeviceLaserPower");
-            this.NudDeviceLaserPower.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.NudDeviceLaserPower.Name = "NudDeviceLaserPower";
-            this.toolTip1.SetToolTip(this.NudDeviceLaserPower, resources.GetString("NudDeviceLaserPower.ToolTip"));
-            this.NudDeviceLaserPower.Value = global::GrblPlotter.Properties.Settings.Default.DeviceLaserPower;
-            this.NudDeviceLaserPower.ValueChanged += new System.EventHandler(this.CbAirAssist_CheckedChanged);
             // 
             // UCDeviceLaser
             // 
@@ -433,14 +434,14 @@
             this.Load += new System.EventHandler(this.UCDeviceLaser_Load);
             this.SizeChanged += new System.EventHandler(this.UCDeviceLaser_Resize);
             this.Resize += new System.EventHandler(this.UCDeviceLaser_Resize);
-            this.GbPowerSettings.ResumeLayout(false);
-            this.GbPowerSettings.PerformLayout();
-            this.PanelTranslation.ResumeLayout(false);
-            this.PanelTranslation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPowerMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPasses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudDeviceLaserPower)).EndInit();
+            this.GbPowerSettings.ResumeLayout(false);
+            this.GbPowerSettings.PerformLayout();
+            this.PanelTranslation.ResumeLayout(false);
+            this.PanelTranslation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

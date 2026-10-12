@@ -39,6 +39,7 @@ namespace GrblPlotter.UserControls
         private readonly MyControl m = new MyControl();
         private readonly ToolProperty toolProp = new ToolProperty();
         private OptionPropHatchFill fill = new OptionPropHatchFill();
+        private bool ToolEnabled = true;
 
         public int SpindleMin
         {
@@ -117,6 +118,8 @@ namespace GrblPlotter.UserControls
             toolProp.Laser.Passes = (int)NudDeviceLaserPasses.Value;
             toolProp.Laser.Fill = fill.Copy();
 
+            SpindleSet = NudDeviceLaserPower.Value.ToString();
+
             MyControl.SetToolsProperties(DeviceSelection.Laser, toolProp);
         }
 
@@ -176,8 +179,9 @@ namespace GrblPlotter.UserControls
 
         private void CbAirAssist_CheckedChanged(object sender, EventArgs e)
         {
-            MyControl.SettingWasChanged(true);
             UpdateTools();
+            MyControl.SettingWasChanged(true);
+            OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.toolPropertyChanged, 0));
         }
 
         #region buttons
@@ -208,6 +212,9 @@ namespace GrblPlotter.UserControls
                 new ControlDefaults(LblSetup2.Text, "DeviceLaserCmndAirOn"),
                 new ControlDefaults(LblSetup3.Text, "DeviceLaserCmndAirOff")
             };
+            if (!ToolEnabled)
+                cd.RemoveAt(0);
+
             MyControl.ShowSimpleSetup(LblSetupHeadline.Text, "", Cursor.Position, cd);
             MyControl.SettingWasChanged(true);
         }
@@ -300,6 +307,22 @@ namespace GrblPlotter.UserControls
             LblPower.BackColor = BtnSetup.BackColor = MyControl.NotifyYellow;
             LblPower.ForeColor = BtnSetup.ForeColor = Colors.ContrastColor(MyControl.NotifyYellow);
             MyControl.ChangeColor(GbPowerSettings, MyControl.PanelHighlight, Colors.ContrastColor(MyControl.PanelHighlight));
+            SetBtnFillColor();
+        }
+
+        internal void SetEnable(bool enable)
+        {
+            ToolEnabled = enable;
+            NudDeviceLaserSpeed.Enabled = enable;
+            NudDeviceLaserPowerMin.Enabled = enable;
+            NudDeviceLaserPasses.Enabled = enable;
+            NudDeviceLaserPower.Enabled = enable;
+            CbAirAssist.Enabled = enable;
+            CbLaserpower.Enabled = enable;
+            BtnFill.Enabled = enable;
+        }
+        internal void UpdateVisibillity()
+        {
             SetBtnFillColor();
         }
     }

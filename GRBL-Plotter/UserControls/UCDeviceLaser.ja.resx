@@ -151,7 +151,7 @@
   </data>
   <data name="BtnUseZ.Text" xml:space="preserve">
     <value>Z軸</value>
-    <comment>b2</comment>
+    <comment>btn3</comment>
   </data>
   <data name="BtnUseZ.ToolTip" xml:space="preserve">
     <value>より深い切削にはZ軸を使用</value>
@@ -221,7 +221,7 @@ M4 動的出力レーザーモード：動的出力レーザーモードでは�
   </data>
   <data name="BtnFill.Text" xml:space="preserve">
     <value>埋める</value>
-    <comment>b1</comment>
+    <comment>btn1</comment>
   </data>
   <data name="LblMax.ToolTip" xml:space="preserve">
     <value>grbl $30 設定</value>
@@ -236,6 +236,7 @@ M4 動的出力レーザーモード：動的出力レーザーモードでは�
   </data>
   <data name="BtnLaserTools.Text" xml:space="preserve">
     <value>レーザーツール</value>
+    <comment>btn4</comment>
   </data>
   <data name="LblSetupHeadline.Text" xml:space="preserve">
     <value>レーザー設定</value>
@@ -260,7 +261,7 @@ M4 レーザー出力可変モード</value>
   </data>
   <data name="BtnOverlap.Text" xml:space="preserve">
     <value>オーバーカット</value>
-    <comment>1</comment>
+    <comment>btn2</comment>
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
     <value>オンラインヘルプ</value>
