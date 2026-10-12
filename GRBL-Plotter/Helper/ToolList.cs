@@ -42,7 +42,7 @@ namespace GrblPlotter
         public float GroupWidth { get; set; }
         public string GroupLayer { get; set; }
         public string ToolName { get; set; }
-    //    public XyzPoint Position { get; set; }
+        //    public XyzPoint Position { get; set; }
         public string Gcode { get; set; }
 
         public DeviceToolProperties Laser { get; set; }
@@ -178,6 +178,13 @@ namespace GrblPlotter
         {
             toolListArray.Add(tp.Copy());
         }
+        public static void AddColor(string col)
+        {
+            ToolList.Add(MyControl.GetToolsProperties().Copy());   // default settings
+            int indx = toolListArray.Count - 1;
+            toolListArray[indx].ToolNr = (short)(indx + 1);
+            toolListArray[indx].GroupColor = Colors.TryConvertColor(col);
+        }
         public static int GetToolListIndexByToolNr(int nr)
         {
             for (int i = 0; i < toolListArray.Count; i++)
@@ -202,10 +209,14 @@ namespace GrblPlotter
             }
             foreach (ToolProperty tool in toolListArray)
             {
-                if (toolNr == tool.ToolNr)
-                { return tool; }
+                if ((short)toolNr == tool.ToolNr)
+                {
+                    if (log) Logger.Trace("GetToolProperties found toolNr:{0}  cnt:{1}", toolNr, toolListArray.Count);
+                    return tool;
+                }
             }
 
+            if (log) Logger.Trace("GetToolProperties use via index:{0}  toolNr:{1}, return {2}  cnt:{3}", index, toolNr, toolListArray[toolNr - 1].ToolNr, toolListArray.Count);
             return toolListArray[toolNr - 1];
         }
         public static OptionPropHatchFill GetToolFill(int toolNr, DeviceSelection SelectedDevice)
@@ -520,12 +531,6 @@ namespace GrblPlotter
                                 device = 2;
                                 toolListArray[toolCnt].Router.ReadXML(reader);
                                 break;
-                            case "Position":
-                             //   toolListArray[toolCnt].ReadPositionXML(reader);
-                                //        if (device == 0) { toolPositionArray[toolCnt].Laser.ReadPositionXML(reader); }
-                                //        else if (device == 1) { toolPositionArray[toolCnt].Plotter.ReadPositionXML(reader); }
-                                //        else if (device == 2) { toolPositionArray[toolCnt].Router.ReadPositionXML(reader); }
-                                break;
                             case "HatchFill":
                                 if (device == 0) { toolListArray[toolCnt].Laser.ReadFillXML(reader); }
                                 else if (device == 1) { toolListArray[toolCnt].Plotter.ReadFillXML(reader); }
@@ -589,7 +594,13 @@ namespace GrblPlotter
         {
             if (FileName == "") { FileName = Datapath.Tools + "\\" + DefaultFileNameXML; }
             if (File.Exists(FileName))
-                File.Delete(FileName);
+            {
+                try
+                {
+                    File.Delete(FileName);
+                }
+                catch { }
+            }
             var psd = Properties.Settings.Default;
             XyzPoint positionOffset = new XyzPoint((double)psd.toolTableOffsetX, (double)psd.toolTableOffsetY, (double)psd.toolTableOffsetZ, (double)psd.toolTableOffsetA);
 
@@ -609,7 +620,7 @@ namespace GrblPlotter
                     tP.WriteXML(ref w);
                 }
             }
-            w.WriteEndElement();    // ToolList
+            w.WriteEndElement();
             w.Flush();
             w.Close();
             w.Dispose();
@@ -651,9 +662,12 @@ namespace GrblPlotter
             other.Fill = Fill.Copy();
             return other;
         }
-        public string Settings()//int device = 0)
-        {           //if (device==0)
-            return string.Format("FeedXY:{0}  MinS:{1}  MaxS:{2} | UseSorZ:{3}  FeedZ:{4}  MinZ:{5}  MaxZ:{6} | Air:{7}  M3/4:{8}  Passes:{9} | FillEnable:{10}", FeedXY, SaveS, FinalS, UseSorZ, FeedZ, SaveZ, FinalZ, UseAir, UseM3, Passes, Fill.Enable);
+        public string Settings(int choice=0)
+        {         
+			if (choice==0)
+				return string.Format("FeedXY:{0}  MinS:{1}  MaxS:{2} | UseSorZ:{3}  FeedZ:{4}  MinZ:{5}  MaxZ:{6} | Air:{7}  M3/4:{8}  Passes:{9} | FillEnable:{10}", FeedXY, SaveS, FinalS, UseSorZ, FeedZ, SaveZ, FinalZ, UseAir, UseM3, Passes, Fill.Enable);
+			else
+				return string.Format("FeedXY:{0}  FeedZ:{1}  MinZ:{2}  MaxZ:{3} |  MinS:{4}  MaxS:{5}", FeedXY, FeedZ, SaveZ, FinalZ, SaveS, FinalS);
         }
         public void WriteXML(ref XmlWriter w, string tag)
         {

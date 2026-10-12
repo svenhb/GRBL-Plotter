@@ -21,7 +21,6 @@
  * 2026-08-10 l:274 f:LoadColorPalette extract pen diameter
 */
 
-using Microsoft.Win32;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -264,6 +263,10 @@ namespace GrblPlotter.Helper
                     throw;      // unknown exception...
                 }
             }
+            else
+            {
+                Logger.Warn("LoadColorPalette file not found, use default colors");
+            }
             MyPalette.Clear();
             PaletteEntry tmp;
             int toolNr = 1;
@@ -273,9 +276,9 @@ namespace GrblPlotter.Helper
                 {
                     if (line.ToLower().Contains("diameter") && line.Contains(":"))
                     {
-                        string[] part=line.Split(':');
-                        if (double.TryParse(part[1], out double d)) 
-                        { Properties.Settings.Default.DevicePlotterToolDiameter=(decimal)d; }
+                        string[] part = line.Split(':');
+                        if (double.TryParse(part[1], out double d))
+                        { Properties.Settings.Default.DevicePlotterToolDiameter = (decimal)d; }
                     }
                     continue;
                 }

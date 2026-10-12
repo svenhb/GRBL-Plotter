@@ -18,6 +18,7 @@
 */
 /*
  * 2026-04-09 GUI rework for vers. 1.8.0.0
+ * 2026-09-06 add Logger.Warn
 */
 
 using System.Globalization;
@@ -39,6 +40,7 @@ namespace GrblPlotter.Helper
                 else
                     Logger.Warn("ReadXML GetFloat nok {0}=\"{1}\"", s, reader[s]);
             }
+            Logger.Warn("XML.GetFloat NOK {0}  {1}", s, def);
             return def;
         }
         internal static int GetInt(XmlReader reader, string s, int def)
@@ -50,6 +52,7 @@ namespace GrblPlotter.Helper
                 else
                     Logger.Warn("ReadXML GetInt nok {0}=\"{1}\"", s, reader[s]);
             }
+            Logger.Warn("XML.GetInt NOK {0}  {1}", s, def);
             return def;
         }
         internal static bool GetBool(XmlReader reader, string s, bool def)
@@ -61,6 +64,7 @@ namespace GrblPlotter.Helper
                 else
                     Logger.Warn("ReadXML GetBool nok {0}=\"{1}\"", s, reader[s]);
             }
+            Logger.Warn("XML.GetBool NOK {0}  {1}", s, def);
             return def;
         }
         internal static string GetString(XmlReader reader, string s, string def)
@@ -69,6 +73,7 @@ namespace GrblPlotter.Helper
             {
                 return reader[s];
             }
+            Logger.Warn("XML.GetString NOK {0}  {1}", s, def);
             return def;
         }
 

@@ -18,6 +18,7 @@
 */
 /*
  * 2026-08-05 new class ToolChanger
+ * 2026-09-06 add Script Attribute Title
 */
 /*
 ToolChanger settings are tool positions, global tool position offset, tool exchange scripts
@@ -44,7 +45,6 @@ using GrblPlotter.UserControls;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Xml;
 
@@ -62,11 +62,11 @@ namespace GrblPlotter
         {
             ToolNr = (short)tnr;
             Position = new XyzPoint((double)x, (double)y, (double)z, (double)a);
-            Diameter= d;
+            Diameter = d;
         }
         public void ResetToolProperties()
         {
-            ToolNr = 1; 
+            ToolNr = 1;
             Position = new XyzPoint();
             Diameter = 10;
         }
@@ -93,9 +93,13 @@ namespace GrblPlotter
     {
         internal static readonly string defaultFileExtension = "currentToolChanger (*.atc)|*.atc";
         internal static readonly string defaultFileName = "_currentToolChanger.atc";
-        private static readonly bool log = true;
+        private static readonly bool log = false;
         internal static List<ToolPosition> toolPositionArray = new List<ToolPosition>();   // load color palette into this array
         internal static string Description = "";
+        internal static string TitlePut = "Remove";
+        internal static string TitleSelect = "Select";
+        internal static string TitleGet = "Take";
+        internal static string TitleProbe = "Probe";
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -117,7 +121,7 @@ namespace GrblPlotter
             }
             return -1;
         }
-      
+
         private static readonly XmlReaderSettings settings = new XmlReaderSettings()
         { DtdProcessing = DtdProcessing.Prohibit };
         public static int Init(string cmt = "")    // return number of entries
@@ -128,9 +132,9 @@ namespace GrblPlotter
         public static int ReadXML(string FileName = "")
         {
             bool isCurrent = false;
-            if (FileName == "") { FileName = Datapath.Tools + "\\"+ defaultFileName; isCurrent = true; }
+            if (FileName == "") { FileName = Datapath.Tools + "\\" + defaultFileName; isCurrent = true; }
             toolPositionArray.Clear();
-            Logger.Info("ToolChanger ReadXML {0}", FileName);
+            Logger.Info("ReadXML {0}", FileName);
             int toolCnt = 0;
 
             if (File.Exists(FileName))
@@ -146,72 +150,87 @@ namespace GrblPlotter
                     {
                         if (!reader.IsStartElement())
                             continue;
-                        switch (reader.Name)
+                        if (reader.Name.Equals("ToolChange"))
                         {
-                            case "ToolChanger":
-                                if (log) Logger.Trace("ReadXML ToolChanger: {0}   {1}   {2}   {3}  ", reader["Off-X"], reader["Off-Y"], reader["Off-Z"], reader["Off-A"]);
-                                psd.ctrlToolScriptDelay = XML.GetInt(reader, "ScriptDelay", 1);
-                                positionOffset.X = XML.GetFloat(reader, "Off-X", 0.1f);
-                                positionOffset.Y = XML.GetFloat(reader, "Off-Y", 0.2f);
-                                positionOffset.Z = XML.GetFloat(reader, "Off-Z", 0.3f);
-                                positionOffset.A = XML.GetFloat(reader, "Off-A", 0.4f);
-                                psd.toolTableOffsetX = (decimal)positionOffset.X;
-                                psd.toolTableOffsetY = (decimal)positionOffset.Y;
-                                psd.toolTableOffsetZ = (decimal)positionOffset.Z;
-                                psd.toolTableOffsetA = (decimal)positionOffset.A;
-                                psd.Save();
-                                break;
-                            case "Description":
-                                if (reader.NodeType == XmlNodeType.Element)
-                                {
-                                    Description = reader.ReadElementContentAsString();
-                                    Logger.Trace("ReadXML  Description  '{0}'", reader["Description"]);
-                                }
-                                break;
-
-                            case "ToolChangeCmdGripperOpen":
-                                if ((reader["ToolChangeCmdGripperOpen"] != null) && (reader["ToolChangeCmdGripperOpen"].Length > 0))
-                                    psd.ctrlToolCommandGripperOpen = reader["ToolChangeCmdGripperOpen"];
-                                break;
-                            case "ToolChangeCmdGripperClose":
-                                if ((reader["ToolChangeCmdGripperClose"] != null) && (reader["ToolChangeCmdGripperClose"].Length > 0))
-                                    psd.ctrlToolCommandGripperClose = reader["ToolChangeCmdGripperClose"];
-                                break;
-
-                            case "ToolChangeScriptPut":
-                                if ((reader["ToolChangeScriptPut"] != null) && (reader["ToolChangeScriptPut"].Length > 0))
-                                    psd.ctrlToolScriptPut = reader["ToolChangeScriptPut"];
-                                break;
-                            case "ToolChangeScriptSelect":
-                                if ((reader["ToolChangeScriptSelect"] != null) && (reader["ToolChangeScriptSelect"].Length > 0))
-                                    psd.ctrlToolScriptSelect = reader["ToolChangeScriptSelect"];
-                                break;
-                            case "ToolChangeScriptGet":
-                                if ((reader["ToolChangeScriptGet"] != null) && (reader["ToolChangeScriptGet"].Length > 0))
-                                    psd.ctrlToolScriptGet = reader["ToolChangeScriptGet"];
-                                break;
-                            case "ToolChangeScriptProbe":
-                                if ((reader["ToolChangeScriptProbe"] != null) && (reader["ToolChangeScriptProbe"].Length > 0))
-                                    psd.ctrlToolScriptProbe = reader["ToolChangeScriptProbe"];
-                                break;
-
-                            case "Tool":
+                            if (log) Logger.Trace("ReadXML ToolChanger offset: X:{0}   Y:{1}   Z:{2}   A:{3}  ", reader["Off-X"], reader["Off-Y"], reader["Off-Z"], reader["Off-A"]);
+                            psd.ctrlToolScriptDelay = (decimal)XML.GetFloat(reader, "ScriptDelay", 0.1f);
+                            positionOffset.X = XML.GetFloat(reader, "Off-X", 0.1f);
+                            positionOffset.Y = XML.GetFloat(reader, "Off-Y", 0.2f);
+                            positionOffset.Z = XML.GetFloat(reader, "Off-Z", 0.3f);
+                            positionOffset.A = XML.GetFloat(reader, "Off-A", 0.4f);
+                            psd.toolTableOffsetX = (decimal)positionOffset.X;
+                            psd.toolTableOffsetY = (decimal)positionOffset.Y;
+                            psd.toolTableOffsetZ = (decimal)positionOffset.Z;
+                            psd.toolTableOffsetA = (decimal)positionOffset.A;
+                            psd.Save();
+                        }
+                        else if (reader.Name.Equals("Description") && (reader.NodeType == XmlNodeType.Element))
+                        {
+                            Description = reader.ReadElementContentAsString().Replace("\n", "\r\n");
+                            if (log) Logger.Trace("ReadXML Description: '{0}'", Description.Replace("\r\n", " | "));
+                        }
+                        else if (reader.Name.Equals("ToolChangeCmdGripperOpen"))
+                        {
+                            SetPsd("ToolChangeCmdGripperOpen", "ctrlToolCommandGripperOpen");
+                        }
+                        else if (reader.Name.Equals("ToolChangeCmdGripperClose"))
+                        {
+                            SetPsd("ToolChangeCmdGripperClose", "ctrlToolCommandGripperClose");
+                        }
+                        else if (reader.Name.Contains("ToolChangeCmdVar"))
+                        {
+                            string nr = reader.Name.Substring(reader.Name.Length - 1);
+                            SetPsd("ToolChangeCmdVar" + nr, "ctrlToolCommandVar" + nr);
+                        }
+                        else if (reader.Name.Contains("StepByStepPresetPickUp"))
+                        {
+                            string nr = reader.Name.Substring(reader.Name.Length - 1);
+                            SetPsd("StepByStepPresetPickUp" + nr, "ctrlToolStepPickUp" + nr);
+                        }
+                        else if (reader.Name.Contains("StepByStepPresetRemove"))
+                        {
+                            string nr = reader.Name.Substring(reader.Name.Length - 1);
+                            SetPsd("StepByStepPresetRemove" + nr, "ctrlToolStepRemove" + nr);
+                        }
+                        else if (reader.Name.Contains("ToolChangeScript"))
+                        {
+                            string func = reader.Name.Substring("ToolChangeScript".Length );
+                        //   SetPsd("ToolChangeScript" + func, "ctrlToolScript" + func);
+                            if (func.Contains("Put")) { TitlePut = XML.GetString(reader,"Title","Remove"); }
+                            else if (func.Contains("Select")) {  TitleSelect = XML.GetString(reader, "Title", "Select"); }
+                            else if (func.Contains("Get")) { TitleGet = XML.GetString(reader, "Title", "Take"); }
+                            else if (func.Contains("Probe")) { TitleProbe = XML.GetString(reader, "Title", "Probe"); }
+                            SetPsd("ToolChangeScript" + func, "ctrlToolScript" + func);
+                        }
+                        else if (reader.Name.Equals("Tool"))
+                        {
                                 if (log) Logger.Trace("ReadXML Tool:{0,3}  X:{1,4}   Y:{2,4}   Z:{3,4}  A:{4,4}", reader["Nr"], reader["X"], reader["Y"], reader["Z"], reader["A"]);
                                 toolPositionArray.Add(new ToolPosition());
                                 toolCnt = toolPositionArray.Count - 1;
                                 toolPositionArray[toolCnt].ToolNr = (short)XML.GetInt(reader, "Nr", 1);
-                                XyzPoint pos = new XyzPoint()   ;
+                                XyzPoint pos = new XyzPoint();
                                 pos.X = XML.GetFloat(reader, "X", 0);
                                 pos.Y = XML.GetFloat(reader, "Y", 0);
                                 pos.Z = XML.GetFloat(reader, "Z", 0);
                                 pos.A = XML.GetFloat(reader, "A", 0);
                                 toolPositionArray[toolCnt].Position = pos;
                                 toolPositionArray[toolCnt].Diameter = XML.GetFloat(reader, "D", 0);
-                                break;
                         }
                     }
                     reader.Close();
                     reader.Dispose();
+                    psd.Save();
+
+                    void SetPsd(string key, string var)
+                    {
+                        string txt = reader.ReadElementContentAsString();
+                    //    Logger.Trace("try read key:{0}  var:{1} val:'{2}'", key, var, txt);
+                        try
+                        {
+                            Properties.Settings.Default[var] = txt;
+                        }
+                        catch (Exception err) { Logger.Error(err, " set PSD key:{0}  var:{1} ", key, var); }
+                    }
                 }
                 catch (Exception err)
                 { Logger.Error(err, "ReadXML nok"); }
@@ -233,7 +252,7 @@ namespace GrblPlotter
 
         public static void WriteXML(string FileName = "")
         {
-            if (FileName == "") { FileName = Datapath.Tools + "\\"+ defaultFileName; }
+            if (FileName == "") { FileName = Datapath.Tools + "\\" + defaultFileName; }
             if (File.Exists(FileName))
                 File.Delete(FileName);
             var psd = Properties.Settings.Default;
@@ -254,9 +273,9 @@ namespace GrblPlotter
             w.WriteAttributeString("Off-Y", positionOffset.Y.ToString().Replace(',', '.'));
             w.WriteAttributeString("Off-Z", positionOffset.Z.ToString().Replace(',', '.'));
             w.WriteAttributeString("Off-A", positionOffset.A.ToString().Replace(',', '.'));
-            
+
             w.WriteStartElement("Description");
-            w.WriteString(Description);
+            w.WriteString(Description);//.Replace("\r", "&#13").Replace("\n", "&#10"));
             w.WriteEndElement();
 
             w.WriteStartElement("ToolChangeCmdGripperOpen");
@@ -266,20 +285,44 @@ namespace GrblPlotter
             w.WriteString(psd.ctrlToolCommandGripperClose);
             w.WriteEndElement();
 
+            for (int i = 1; i <= 8; i++)
+            {
+                w.WriteStartElement("ToolChangeCmdVar"+i.ToString());
+                w.WriteString((string)Properties.Settings.Default["ctrlToolCommandVar"+i.ToString()]);
+                w.WriteEndElement();
+            }
+
             w.WriteStartElement("ToolChangeScriptPut");
+            w.WriteAttributeString("Title", TitlePut);
             w.WriteString(psd.ctrlToolScriptPut);
             w.WriteEndElement();
             w.WriteStartElement("ToolChangeScriptSelect");
+            w.WriteAttributeString("Title", TitleSelect);
             w.WriteString(psd.ctrlToolScriptSelect);
             w.WriteEndElement();
             w.WriteStartElement("ToolChangeScriptGet");
+            w.WriteAttributeString("Title", TitleGet);
             w.WriteString(psd.ctrlToolScriptGet);
             w.WriteEndElement();
             w.WriteStartElement("ToolChangeScriptProbe");
+            w.WriteAttributeString("Title", TitleProbe);
             w.WriteString(psd.ctrlToolScriptProbe);
             w.WriteEndElement();
 
-            w.WriteEndElement();		// "ToolChange"
+            for (int i = 1; i <= 8; i++)
+            {
+                w.WriteStartElement("StepByStepPresetPickUp" + i.ToString());
+                w.WriteString((string)Properties.Settings.Default["ctrlToolStepPickUp" + i.ToString()]);
+                w.WriteEndElement();
+            }
+            for (int i = 1; i <= 8; i++)
+            {
+                w.WriteStartElement("StepByStepPresetRemove" + i.ToString());
+                w.WriteString((string)Properties.Settings.Default["ctrlToolStepRemove" + i.ToString()]);
+                w.WriteEndElement();
+            }
+
+            w.WriteEndElement();        // "ToolChange"
 
             if (toolPositionArray.Count > 0)
             {
