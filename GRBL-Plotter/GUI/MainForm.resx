@@ -1655,7 +1655,7 @@ Dil
     <value>2, 2</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1260, 24</value>
+    <value>1576, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1673,7 +1673,7 @@ Dil
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 21</value>
@@ -1703,10 +1703,10 @@ Dil
     <value>0, 17</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 607</value>
+    <value>2, 764</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1260, 22</value>
+    <value>1576, 22</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1724,7 +1724,7 @@ Dil
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <metadata name="SplashScreenTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>367, 17</value>
@@ -1805,7 +1805,7 @@ Dil
     <value>ucStreaming</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCStreaming, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucStreaming.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1832,7 +1832,7 @@ Dil
     <value>ucOverrides</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCOverrides, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucOverrides.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1874,7 +1874,7 @@ Dil
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 1</value>
+    <value>298, 108</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1916,7 +1916,7 @@ Dil
     <value>ucFlowControl</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCFlowControl, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucFlowControl.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1943,7 +1943,7 @@ Dil
     <value>ucSetOffset</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetOffset, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetOffset.Parent" xml:space="preserve">
     <value>tLPLinks</value>
@@ -1967,7 +1967,7 @@ Dil
     <value>5</value>
   </data>
   <data name="tLPLinks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 579</value>
+    <value>306, 736</value>
   </data>
   <data name="tLPLinks.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -2036,7 +2036,7 @@ Dil
     <value>ucMoveToGraphic</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToGraphic, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToGraphic.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2063,7 +2063,7 @@ Dil
     <value>ucMoveToZero</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCMoveToZero, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucMoveToZero.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2090,7 +2090,7 @@ Dil
     <value>ucJogControlAll</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCJogControlAll, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucJogControlAll.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2120,7 +2120,7 @@ Dil
     <value>ucDeviceLaser2</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser2, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser2.Parent" xml:space="preserve">
     <value>tabPageLaser</value>
@@ -2174,7 +2174,7 @@ Dil
     <value>ucDevicePlotter2</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter2, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter2.Parent" xml:space="preserve">
     <value>tabPagePlotter</value>
@@ -2225,7 +2225,7 @@ Dil
     <value>ucDeviceRouter2</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter2, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter2.Parent" xml:space="preserve">
     <value>tabPage5</value>
@@ -2303,7 +2303,7 @@ Dil
     <value>ucSetCoordinateSystem</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCSetCoordinateSystem, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucSetCoordinateSystem.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
@@ -2315,7 +2315,7 @@ Dil
     <value>Fill</value>
   </data>
   <data name="tLPRechtsUntenRechts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>710, 0</value>
+    <value>1026, 0</value>
   </data>
   <data name="tLPRechtsUntenRechts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2327,7 +2327,7 @@ Dil
     <value>5</value>
   </data>
   <data name="tLPRechtsUntenRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 397</value>
+    <value>236, 554</value>
   </data>
   <data name="tLPRechtsUntenRechts.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -2787,7 +2787,7 @@ Dil
     <value>3, 3</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>698, 313</value>
+    <value>1014, 470</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -2811,7 +2811,7 @@ Dil
     <value>NoControl</value>
   </data>
   <data name="CbAddGraphic.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 346</value>
+    <value>3, 503</value>
   </data>
   <data name="CbAddGraphic.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 17</value>
@@ -2842,10 +2842,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>Fill</value>
   </data>
   <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 370</value>
+    <value>3, 527</value>
   </data>
   <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>698, 20</value>
+    <value>1014, 20</value>
   </data>
   <data name="tBURL.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2993,7 +2993,7 @@ Alt-click rounds position to 0.1 raster,
     <value>Fill</value>
   </data>
   <data name="tLPMitteUnten1Zeile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 319</value>
+    <value>0, 476</value>
   </data>
   <data name="tLPMitteUnten1Zeile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3002,7 +3002,7 @@ Alt-click rounds position to 0.1 raster,
     <value>1</value>
   </data>
   <data name="tLPMitteUnten1Zeile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>704, 24</value>
+    <value>1020, 24</value>
   </data>
   <data name="tLPMitteUnten1Zeile.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3032,7 +3032,7 @@ Alt-click rounds position to 0.1 raster,
     <value>4</value>
   </data>
   <data name="tLPMitteUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>704, 391</value>
+    <value>1020, 548</value>
   </data>
   <data name="tLPMitteUnten.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3065,7 +3065,7 @@ Alt-click rounds position to 0.1 raster,
     <value>1</value>
   </data>
   <data name="tLPRechtsUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>946, 397</value>
+    <value>1262, 554</value>
   </data>
   <data name="tLPRechtsUnten.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -3107,7 +3107,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucdro</value>
   </data>
   <data name="&gt;&gt;ucdro.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDRO, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucdro.Parent" xml:space="preserve">
     <value>tLPRechtsOben</value>
@@ -3146,7 +3146,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3182,7 +3182,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3218,7 +3218,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3251,7 +3251,7 @@ Alt-click rounds position to 0.1 raster,
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 38</value>
+    <value>91, 38</value>
   </data>
   <data name="btnCustom4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3278,13 +3278,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 1</value>
+    <value>100, 1</value>
   </data>
   <data name="btnCustom5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom5.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -3311,13 +3311,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 38</value>
+    <value>100, 38</value>
   </data>
   <data name="btnCustom6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom6.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3344,13 +3344,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 75</value>
+    <value>100, 75</value>
   </data>
   <data name="btnCustom7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom7.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -3377,13 +3377,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 112</value>
+    <value>100, 112</value>
   </data>
   <data name="btnCustom8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 38</value>
+    <value>91, 38</value>
   </data>
   <data name="btnCustom8.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -3410,13 +3410,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 1</value>
+    <value>197, 1</value>
   </data>
   <data name="btnCustom9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom9.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -3443,13 +3443,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 38</value>
+    <value>197, 38</value>
   </data>
   <data name="btnCustom10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom10.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -3476,13 +3476,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 75</value>
+    <value>197, 75</value>
   </data>
   <data name="btnCustom11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 35</value>
+    <value>91, 35</value>
   </data>
   <data name="btnCustom11.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -3509,13 +3509,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 112</value>
+    <value>197, 112</value>
   </data>
   <data name="btnCustom12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 38</value>
+    <value>91, 38</value>
   </data>
   <data name="btnCustom12.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -3542,13 +3542,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 1</value>
+    <value>294, 1</value>
   </data>
   <data name="btnCustom13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 35</value>
+    <value>94, 35</value>
   </data>
   <data name="btnCustom13.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -3575,13 +3575,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 38</value>
+    <value>294, 38</value>
   </data>
   <data name="btnCustom14.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 35</value>
+    <value>94, 35</value>
   </data>
   <data name="btnCustom14.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -3608,13 +3608,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 75</value>
+    <value>294, 75</value>
   </data>
   <data name="btnCustom15.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 35</value>
+    <value>94, 35</value>
   </data>
   <data name="btnCustom15.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -3641,13 +3641,13 @@ Alt-click rounds position to 0.1 raster,
     <value>NoControl</value>
   </data>
   <data name="btnCustom16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 112</value>
+    <value>294, 112</value>
   </data>
   <data name="btnCustom16.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 38</value>
+    <value>94, 38</value>
   </data>
   <data name="btnCustom16.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -3680,7 +3680,7 @@ Alt-click rounds position to 0.1 raster,
     <value>4</value>
   </data>
   <data name="tLPCustomButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 151</value>
+    <value>391, 151</value>
   </data>
   <data name="tLPCustomButton2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3707,10 +3707,10 @@ Alt-click rounds position to 0.1 raster,
     <value>Fill</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 3</value>
+    <value>400, 3</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 147</value>
+    <value>391, 147</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3737,7 +3737,7 @@ Alt-click rounds position to 0.1 raster,
     <value>1</value>
   </data>
   <data name="tLPCustomButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>478, 153</value>
+    <value>794, 153</value>
   </data>
   <data name="tLPCustomButton1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3764,7 +3764,7 @@ Alt-click rounds position to 0.1 raster,
     <value>0, 0</value>
   </data>
   <data name="GbCustomButtons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 172</value>
+    <value>800, 172</value>
   </data>
   <data name="GbCustomButtons.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -3794,7 +3794,7 @@ Alt-click rounds position to 0.1 raster,
     <value>0, 0</value>
   </data>
   <data name="ucToolList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 172</value>
+    <value>800, 172</value>
   </data>
   <data name="ucToolList.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -3803,7 +3803,7 @@ Alt-click rounds position to 0.1 raster,
     <value>ucToolList</value>
   </data>
   <data name="&gt;&gt;ucToolList.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCToolList, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucToolList.Parent" xml:space="preserve">
     <value>splitContainer2.Panel1</value>
@@ -3909,7 +3909,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDeviceLaser</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceLaser, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceLaser.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -3963,7 +3963,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDevicePlotter</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDevicePlotter, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDevicePlotter.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -4014,7 +4014,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>ucDeviceRouter</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Type" xml:space="preserve">
-    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>GrblPlotter.UserControls.UCDeviceRouter, GRBL-Plotter, Version=1.8.1.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucDeviceRouter.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -4185,10 +4185,10 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>215</value>
   </data>
   <data name="splitContainer2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>705, 174</value>
+    <value>1021, 174</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>486</value>
+    <value>802</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -4218,7 +4218,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.Size" type="System.Drawing.Size, System.Drawing">
-    <value>943, 176</value>
+    <value>1259, 176</value>
   </data>
   <data name="tLPRechtsOben.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -4248,7 +4248,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>2</value>
   </data>
   <data name="tLPRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>946, 579</value>
+    <value>1262, 736</value>
   </data>
   <data name="tLPRechts.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -4284,7 +4284,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>400</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1260, 581</value>
+    <value>1576, 738</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
     <value>308</value>
@@ -4302,7 +4302,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4311,7 +4311,7 @@ Change tool properties in the tool list or disable 'Apply tool list'.</value>
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1264, 631</value>
+    <value>1580, 788</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 670</value>

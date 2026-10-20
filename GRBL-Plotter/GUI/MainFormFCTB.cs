@@ -64,6 +64,7 @@
 */
 
 using FastColoredTextBoxNS;
+using GrblPlotter.UserControls;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -336,7 +337,9 @@ namespace GrblPlotter
 
             CmsPicBoxEnable();
             ClearErrorLines();
-            Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, LoadProperties.MultipleImportFromForm);
+            if (!MyControl.UseSpecificDevice())
+                LoadProperties.Init();
+            Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled FromForm:{1}  enabled ImportAlways:{2}", insertCode, LoadProperties.MultipleImportFromForm, LoadProperties.MultipleImportAlways);
             if (insertCode && (LoadProperties.MultipleImportFromForm || LoadProperties.MultipleImportAlways))
             { return InsertCodeToFctb(code, true, 0, 0, 0); }
             else

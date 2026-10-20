@@ -179,6 +179,7 @@ namespace GrblPlotter
                 _shape_form = new GCodeFromShape();
                 _shape_form.FormClosed += FormClosed_ShapeToGCode;
                 _shape_form.btnApply.Click += GetGCodeFromShape;      // assign btn-click event
+                _shape_form.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
                 EventCollector.SetOpenForm("Fsis");
             }
             else
@@ -293,6 +294,7 @@ namespace GrblPlotter
                 _barcode_form.FormClosed += FormClosed_BarcodeToGCode;
                 _barcode_form.btnGenerateBarcode1D.Click += GetGCodeFromBarcode;      // assign btn-click event
                 _barcode_form.btnGenerateBarcode2D.Click += GetGCodeFromBarcode;      // assign btn-click event
+                _barcode_form.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
                 EventCollector.SetOpenForm("Fbcd");
             }
             else

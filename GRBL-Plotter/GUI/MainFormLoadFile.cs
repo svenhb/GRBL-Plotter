@@ -2250,7 +2250,7 @@ namespace GrblPlotter
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            Logger.Trace("MainForm_KeyDown  KeyCode:{0}  Modifiers:{1}  focus:{2}", e.KeyCode.ToString(), e.Modifiers.ToString(), FindFocusedControl(this).Name);
+            Logger.Trace("MainForm_KeyDown  KeyCode:{0}  Modifiers:{1} ", e.KeyCode.ToString(), e.Modifiers.ToString());
             MyApplication.ESCwasPressed = false;
             if (pictureBox1.Focused)
             {

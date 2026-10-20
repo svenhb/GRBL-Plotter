@@ -18,7 +18,6 @@
 */
 /* MainFormUserControl
  * 2026-04-09 GUI rework for vers. 1.8.0.0
- 80, 110
 */
 
 using GrblPlotter.Helper;
@@ -166,8 +165,6 @@ namespace GrblPlotter
             int w = ucJogControlAll.GetControlWidth();
             w = Math.Max(w, ucMoveToGraphic.GetControlWidth());
 
-            //    Logger.Trace("ResizeRightSide {0}  {1}", w, src);
-
             tLPRechtsUntenRechts.Width = w;
             tC_RouterPlotterLaser2.Width = w;
             ucMoveToGraphic.Width = w;
@@ -175,14 +172,10 @@ namespace GrblPlotter
             ucMoveToZero.Width = w;
             ucJogControlAll.Width = w;
             ucdro.MainWidth = this.Width;
-
-            //    int h = Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic ? 175 : 100;
-            //    tC_RouterPlotterLaser2.Height = h;
         }
 
         private void UserControlsSetAxisCount(int nr, CommandProtocol cp)
         {
-            //    Logger.Trace("UserControlsSetAxisCount  axis:{0}  protocol:{1}", nr, cp);
             ucdro.SetAxisCount(nr, cp);
             ucMoveToZero.SetAxisCount(nr, cp);
             ucJogControlAll.SetAxisCount(nr, cp);
@@ -262,11 +255,11 @@ namespace GrblPlotter
                     UpdateControlEnables();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
-                    //      SetTextThreadSave(lbInfo, Localization.GetString("mainInfoCheckCode"), SystemColors.Control);
+
                     SetInfoLabel(Localization.GetString("mainInfoCheckCode"), SystemColors.Control);
                     fCTBCode.Bookmarks.Clear();
                     _serial_form.StartStreaming(fCTBCode.Lines, 0, fCTBCode.LinesCount - 1, true);
-                    //         btnStreamStart.Enable = false;
+
                     OnPaint_setBackground();
                 }
             }
@@ -314,12 +307,7 @@ namespace GrblPlotter
                 if (e.IntVal == 13) // generate image data
                 {
                     tC_RouterPlotterLaser.SelectedIndex = tC_RouterPlotterLaser.TabCount - 1;
-                    //    MyControl.SetSelectedDevice(tC_RouterPlotterLaser.TabCount - 1);
                 }
-                /*     if (e.IntVal == 14) 
-                     {
-                         ucDevicePlotter2.ShowPanelPenChange(Properties.Settings.Default.DevicePlotterPenChangeRBAutomatic);
-                     }*/
                 if ((e.IntVal >= 90) && (e.IntVal < 93))
                 {
                     tC_RouterPlotterLaser.SelectedIndex = e.IntVal - 90;
@@ -443,9 +431,9 @@ namespace GrblPlotter
                 }
                 else if (tC_RouterPlotterLaser.SelectedIndex == 1)   // Plotter
                 {
-                    if (splitContainer2.Panel2.Width < 250)
+                    if (splitContainer2.Panel2.Width < (DpiScaling * 250))
                     {
-                        int ndis = splitContainer2.Width - 305; //288
+                        int ndis = splitContainer2.Width - (int)(DpiScaling * 305); //288
                         if (ndis > 0)
                             splitContainer2.SplitterDistance = ndis;
                     }
@@ -463,9 +451,9 @@ namespace GrblPlotter
                 LoadProperties.Init();
                 PanelDeviceDisabled.Visible = false;
             }
-                TC_RouterPlotterLaserLastSelected = tC_RouterPlotterLaser.SelectedIndex;
-                UpdateForms();
-            }
+            TC_RouterPlotterLaserLastSelected = tC_RouterPlotterLaser.SelectedIndex;
+            UpdateForms();
+        }
         private void TC_RouterPlotterLaser2_SelectedIndexChanged(object sender, EventArgs e)
         {
             int pageCount1 = tC_RouterPlotterLaser.TabCount;
@@ -516,8 +504,11 @@ namespace GrblPlotter
 
         internal void UpdateForms()
         {
+            _barcode_form?.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
+            _shape_form?.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
             _text_form?.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
             _tablet_form?.SetActiveDevice(TC_RouterPlotterLaserLastSelected);
+            CbAddGraphic.Visible = (TC_RouterPlotterLaserLastSelected >= 3);
         }
     }
 }

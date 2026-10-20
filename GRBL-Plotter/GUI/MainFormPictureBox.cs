@@ -768,6 +768,7 @@ namespace GrblPlotter
         private bool mouseDownLeftButton = false;
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            pictureBox1.Focus();//2026-10-16
             mouseDownPos = e.Location;
             if (logDetailed || logSelection) Logger.Trace("▼▼▼ pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}   handleActive:{4}   marker:{5}   lasmarker:{6}", e.X, e.Y, picAbsPos.X, picAbsPos.Y, SelectionHandle.IsActive, markerType, lastMarkerType);
             moveTranslationOld = new XyPoint(e.X, e.Y);

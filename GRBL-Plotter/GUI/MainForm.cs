@@ -316,9 +316,9 @@ namespace GrblPlotter
 
                 try { splitContainer2.SplitterDistance = Properties.Settings.Default.DeviceLaserSplitterDistance; }
                 catch (Exception err) { Logger.Error(err, " splitContainer2.SplitterDistance "); }
-                if (splitContainer2.Panel2.Width < 250)
+                if (splitContainer2.Panel2.Width < (DpiScaling* 250))
                 {
-                    int ndis = splitContainer2.Width - 305; //288
+                    int ndis = splitContainer2.Width - (int)(DpiScaling * 305); //288
                     if (ndis > 0)
                         splitContainer2.SplitterDistance = ndis;
                 }
