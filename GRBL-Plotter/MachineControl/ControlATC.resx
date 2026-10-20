@@ -256,7 +256,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GbSelection.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="TbTitleProbe.Location" type="System.Drawing.Point, System.Drawing">
     <value>558, 76</value>
@@ -975,10 +975,10 @@
     <value>NoControl</value>
   </data>
   <data name="BtnOffsetMoveTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 65</value>
+    <value>3, 65</value>
   </data>
   <data name="BtnOffsetMoveTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 23</value>
+    <value>135, 23</value>
   </data>
   <data name="BtnOffsetMoveTo.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -1038,7 +1038,7 @@
     <value>118, 16</value>
   </data>
   <data name="BtnGripperClose2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 23</value>
+    <value>99, 23</value>
   </data>
   <data name="BtnGripperClose2.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1066,10 +1066,10 @@
     <value>NoControl</value>
   </data>
   <data name="BtnGripperOpen2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+    <value>3, 16</value>
   </data>
   <data name="BtnGripperOpen2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="BtnGripperOpen2.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1123,10 +1123,10 @@
     <value>NoControl</value>
   </data>
   <data name="BtnStartToolTake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 69</value>
+    <value>3, 69</value>
   </data>
   <data name="BtnStartToolTake.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="BtnStartToolTake.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -1156,10 +1156,10 @@
     <value>NoControl</value>
   </data>
   <data name="BtnToolRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 119</value>
+    <value>3, 119</value>
   </data>
   <data name="BtnToolRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="BtnToolRemove.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1189,7 +1189,7 @@
     <value>NoControl</value>
   </data>
   <data name="BtnOffsetGet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 65</value>
+    <value>147, 65</value>
   </data>
   <data name="BtnOffsetGet.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 23</value>
@@ -1690,7 +1690,7 @@ Don't use with "Relative movements"</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GbPreset.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2303,10 +2303,10 @@ Variables:
     <value>NoControl</value>
   </data>
   <data name="BtnHoming.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 146</value>
+    <value>3, 146</value>
   </data>
   <data name="BtnHoming.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 23</value>
+    <value>214, 23</value>
   </data>
   <data name="BtnHoming.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -2360,10 +2360,10 @@ Variables:
     <value>NoControl</value>
   </data>
   <data name="BtnStartToolProbe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 94</value>
+    <value>3, 94</value>
   </data>
   <data name="BtnStartToolProbe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="BtnStartToolProbe.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -2390,10 +2390,10 @@ Variables:
     <value>NoControl</value>
   </data>
   <data name="BtnStartToolSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 44</value>
+    <value>3, 44</value>
   </data>
   <data name="BtnStartToolSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="BtnStartToolSelect.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -4331,7 +4331,7 @@ Variables:
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TabControlAutomatic.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="cBflowControl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4440,7 +4440,7 @@ In the textbox below, commands can be defined, which will be send after the paus
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GbManualPenChange.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>194, 17</value>

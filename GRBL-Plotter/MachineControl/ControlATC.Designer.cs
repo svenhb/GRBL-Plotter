@@ -990,9 +990,11 @@
             this.TabControlAutomatic.Controls.Add(this.tabPage1);
             this.TabControlAutomatic.Controls.Add(this.tabPage3);
             this.TabControlAutomatic.Controls.Add(this.tabPage4);
+            this.TabControlAutomatic.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.TabControlAutomatic, "TabControlAutomatic");
             this.TabControlAutomatic.Name = "TabControlAutomatic";
             this.TabControlAutomatic.SelectedIndex = 0;
+            this.TabControlAutomatic.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControlAutomatic_DrawItem);
             // 
             // tabPage2
             // 

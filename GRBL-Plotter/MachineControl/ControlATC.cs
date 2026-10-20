@@ -22,10 +22,12 @@
  * 2026-09-06 add change of Script-Button Text
 */
 
+using GrblPlotter.Helper;
 using GrblPlotter.UserControls;
 using NLog;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -506,6 +508,20 @@ namespace GrblPlotter.MachineControl
         {
             OnRaiseGuiControlEvent(new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 98));
             timer1.Stop();
+        }
+
+        private void TabControlAutomatic_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = TabControlAutomatic.TabPages[e.Index];
+            Color fc = (e.State == DrawItemState.Selected) ? Colors.ContrastColor(MyControl.NotifyYellow) : MyControl.PanelForeColor;
+            if (!e.Bounds.IsEmpty)
+            {
+                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? MyControl.NotifyYellow : page.BackColor), e.Bounds);
+            }
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, e.Font, paddedBounds, fc); // page.ForeColor);
         }
     }
 }
