@@ -40,6 +40,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 using static GrblPlotter.DeviceToolProperties;
 using static GrblPlotter.Gcode;
@@ -48,7 +49,7 @@ using static GrblPlotter.Graphic;
 namespace GrblPlotter.UserControls
 {
     public enum CommandProtocol { Marlin, grblOld, grblCanJog }
-    public enum GuiControl { streamStart, streamStartSection, streamStop, streamPause, streamCheck, simulateStart, simulateStop, simulatePause, simulateFaster, simulateSlower, guiUpdate, highligh, reloadGraphic, invalidate, openForm, customButton, useToolList }
+    public enum GuiControl { streamStart, streamStartSection, streamStop, streamPause, streamCheck, simulateStart, simulateStop, simulatePause, simulateFaster, simulateSlower, guiUpdate, highligh, reloadGraphic, invalidate, openForm, customButton, useToolList, toolPropertyChanged }
     public enum DeviceSelection { Laser, Plotter, Router, Individual }
 
     public struct DistFeed
@@ -161,11 +162,6 @@ namespace GrblPlotter.UserControls
         internal static void SettingWasChanged(bool changed = true)
         {
             settingWasChanged = changed;
-            if (changed)
-            {
-                //     ucToolList.FillToolListElements();
-            }
-            //    RaiseGuiControlEvent(null, new UserControlGuiControlEventArgs(GuiControl.guiUpdate, 14));
         }
         internal static bool GetSettingWasChanged()
         { return settingWasChanged; }
@@ -176,7 +172,8 @@ namespace GrblPlotter.UserControls
         }
         internal static void SetSelectedDevice(int tab)
         {
-            if (log) Logger.Trace("SetSelectedDevice  by tab:{0}", tab);
+            if (log) Logger.Trace("SetSelectedDevice  by tab:{0}  dpiscale:{1}", tab, DpiScaling);
+
             if (tab == 0)
                 SelectedDevice = DeviceSelection.Laser;
             else if (tab == 1)
@@ -286,7 +283,8 @@ namespace GrblPlotter.UserControls
             {
                 if (log) Logger.Trace("►►►►►► ChangeGraphicOptionsDeviceSpecific device: {0} UseSpecificDevice: {1}   {2}", GetSelectedDeviceName(), UseSpecificDevice(), GetActualDevice().Settings());
             }
-            if (!ProcessAutomationRunning)
+
+            if (!ProcessAutomationRunning)  /* disable insert of forms and multiple file load */
                 LoadProperties.Off();
 
             var PropSettings = Properties.Settings.Default;
@@ -310,7 +308,7 @@ namespace GrblPlotter.UserControls
             info.FigureEnable = true;
 
             if (ApplyToolList)
-                info.SortOption = SortOption.ByToolNr;
+                info.SortOption = SortOption.ByToolList;
             else
                 info.SortOption = SortOption.none;
 
@@ -391,10 +389,14 @@ namespace GrblPlotter.UserControls
 
                 info.OptionNoise = Properties.Settings.Default.importGraphicNoiseEnable;
                 info.OptionAddZProfile = Properties.Settings.Default.DevicePlotterAddZGradientEnable;
+                info.OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
+                if (info.OptionDragTool)
+                {
+                    Properties.Settings.Default.importGCDragKnifePercentEnable = false;
+                    Properties.Settings.Default.importGCDragKnifeUse = false;
+                }
 
                 info.ConvertArcToLine = Properties.Settings.Default.importGCLineSegmentation;
-
-                //	Properties.Settings.Default.importGCNoArcs;
 
                 if (useInkFromTablet || useDepthFromWidth || info.OptionAddZProfile)
                 {
@@ -541,14 +543,17 @@ namespace GrblPlotter.UserControls
                         DepthFromWidth.SEnable = true;
                     }
                 }
-                else                                        //Z-axis
+                else                                        // Z-axis
                 {
                     Gcode.OptionZAxis.Enable = true;
                     if (useInkFromTablet || useDepthFromWidth || useAddZProfile)
                     {
-                        DepthFromWidth.ZMin = (float)0;// Properties.Settings.Default.importGCPWMZero;
+                        DepthFromWidth.ZMin = (float)0;     // Properties.Settings.Default.importGCPWMZero;
                         DepthFromWidth.ZMax = (float)Properties.Settings.Default.DevicePlotterZDown;
                         DepthFromWidth.SEnable = true;
+
+                        if (useInkFromTablet)
+                            SetDecimalPlaces(2);
                     }
                 }
 
@@ -567,12 +572,13 @@ namespace GrblPlotter.UserControls
                     Properties.Settings.Default.ctrlToolChangeEmptyNr = 0;
                 }
                 Gcode.ModificationSegmentation.Enable = Properties.Settings.Default.importGCLineSegmentation;
+                Logger.Trace("OverideGcodeSetup Plotter Gcode.ModificationSegmentation.Enable:{0} ", Gcode.ModificationSegmentation.Enable);
             }
 
             /*********** Router **********/
             else if (SelectedDevice == DeviceSelection.Router)
             {
-            //    Gcode.Spindle.Speed = (float)Properties.Settings.Default.DeviceRouterSpindle;
+                //    Gcode.Spindle.Speed = (float)Properties.Settings.Default.DeviceRouterSpindle;
                 Gcode.OptionZAxis.Enable = true;
                 Gcode.OptionZAxis.IncrementEnable = Properties.Settings.Default.importGCZIncEnable;
                 Gcode.ModificationTangential.Enable = Properties.Settings.Default.importGCTangentialEnable;
@@ -1138,6 +1144,34 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
         private static void SetFilePath(string prop, string filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*")
         {
             string file = (string)Properties.Settings.Default[prop];
+            string ipath = Datapath.MakeAbsolutePath(file);
+            OpenFileDialog opnDlg = new OpenFileDialog();
+            Logger.Info("SetFilePath initiial: box:'{0}'   makeAbsolute:'{1}'", file, ipath);
+            opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
+            opnDlg.Filter = filter;  //"GCode (*.nc)|*.nc|All Files (*.*)|*.*";
+            //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
+            if (opnDlg.ShowDialog() == DialogResult.OK)
+            {
+                FileInfo f = new FileInfo(opnDlg.FileName);
+                string path;
+                Logger.Info("SetFilePath DirectoryName:{0}   Datapath.AppDataFolder:{1}", f.DirectoryName, Datapath.AppDataFolder);
+                if (f.DirectoryName == Datapath.AppDataFolder)
+                    path = f.Name;  // only file name
+                else if (f.DirectoryName.StartsWith(Datapath.AppDataFolder))
+                    path = f.FullName.Replace(Datapath.AppDataFolder, ".");
+                else
+                    path = f.FullName;  // Full path
+                if (path.StartsWith(@".\"))
+                    path = path.Substring(2);
+                Properties.Settings.Default[prop] = path;
+                Logger.Info("SetFilePath changed: box:{0}   makeAbsolute:{1}", path, opnDlg.FileName);
+            }
+            opnDlg.Dispose();
+        }
+
+        private static void SetFilePath1(string prop, string filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*")
+        {
+            string file = (string)Properties.Settings.Default[prop];
             OpenFileDialog opnDlg = new OpenFileDialog();
             string ipath = Datapath.MakeAbsolutePath(file);
             //    if (log) Logger.Info("SetFilePath initiial: box:{0}   makeAbsolute:{1}", tmp.Text, ipath);
@@ -1215,13 +1249,6 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
         public EventArgs e
         { get { return _e; } }
     }
-
-
-
-    //using System.Windows.Forms;
-    //using System.Drawing;
-    //using System.Drawing.Drawing2D;
-    //using System.ComponentModel;
 
     namespace Styling_Toggle_Button
     {
@@ -1337,8 +1364,6 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                      new Rectangle(2, 2, toggleSize, toggleSize));
                 }
             }
-
-
         }
 
         public class RoundedButton : Button
@@ -1383,11 +1408,6 @@ https://stackoverflow.com/questions/61145347/c-how-to-make-a-dark-mode-theme-in-
                     }
                 }
             }
-
         }
     }
-
-
-
-
 }
