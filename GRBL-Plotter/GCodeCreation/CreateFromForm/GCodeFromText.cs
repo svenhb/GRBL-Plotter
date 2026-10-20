@@ -49,6 +49,7 @@
  * 2026-06-02 add SetFontSize / SetAlignment / SetLineDistance for process-automation control
  * 2026-06-02 SetFontSize/SetLineDistance also set the data-bound setting (binding was reverting the control); SetFontSize also sizes the Windows font
  * 2026-07-05 add palette- and color selection 
+ * 2026-10-18 disable CbInsertCode if device != individual
 */
 
 using GrblPlotter.Helper;
@@ -60,9 +61,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-//using System.Windows.Media;
-//using static System.Net.Mime.MediaTypeNames;
 
 
 // http://imajeenyus.com/computer/20150110_single_line_fonts/
@@ -77,6 +77,7 @@ namespace GrblPlotter
         private static Font initFont;
         private static Color initColor;
         private bool isDevice = true;
+        private float DpiScaling = 1;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -95,6 +96,7 @@ namespace GrblPlotter
 
         private void TextForm_Load(object sender, EventArgs e)
         {
+            DpiScaling = (float)DeviceDpi / 96;
             FillFontSelector();
 
             Location = Properties.Settings.Default.locationTextForm;
@@ -105,7 +107,6 @@ namespace GrblPlotter
             initColor = textColor = tBText.ForeColor;
             UpdateIniVariables();
             RbFont2.Checked = !Properties.Settings.Default.createTextHersheySelect;
-            //    RbFont1_CheckedChanged(sender, e);
 
             LoadPicture("svg");
             UpdateColorPaletteList();
@@ -113,6 +114,8 @@ namespace GrblPlotter
             Logger.Trace("initColor {0}    index {1}", textColor, index);
             if ((index >= 0) && (index < CboxToolTable.Items.Count))
                 CboxToolTable.SelectedIndex = index;
+
+            GCodeFromText_Resize(sender, e);
         }
 
         private bool iniWasSet = false;
@@ -263,6 +266,7 @@ namespace GrblPlotter
             LblToolDiameter.Text = string.Format("{0:0.000}", MyControl.GetActualToolDiameter());
             LblDevice.Left = LblDevice1.Left + LblDevice1.Width;
             LblToolDiameter.Left = LblToolDiameter1.Left + LblToolDiameter1.Width;
+            CbInsertCode.Visible = !isDevice;
         }
         #region form_controls
         // get text, break it into chars, get path, etc... This event needs to be assigned in MainForm to poll text
@@ -413,21 +417,46 @@ namespace GrblPlotter
             }
         }
 
-        private void GCodeFromText_Resize(object sender, EventArgs e)
+        private void GCodeFromText_DpiChanged(object sender, DpiChangedEventArgs e)
         {
-            tBText.Width = Width - (716 - 446);
-            tBText.Height = Height - 280;
-            btnApply.Left = Width - 151;
-            btnApply.Top = Height - 88;
-            CbInsertCode.Top = Height - 84;
+            Logger.Trace("Dpi old:{0}, new:{1}", e.DeviceDpiOld, e.DeviceDpiNew);
+            Task.Delay(1000).ContinueWith(t => DoScaling()); //DoScaling();
+        }
 
-            tabControl1.Width = Width - 17;
-            panel1.Width = Width - 118;
-            tabControl1.Height = Height - 36;
-            panel1.Height = Height - 76;
+        private void GCodeFromText_Resize(object sender, EventArgs e)
+        { DoScaling(); }
 
-            tBText.Invalidate();
+        private void DoScaling()
+        {
+            Logger.Trace("DoScaling {0}", DeviceDpi);
+            DpiScaling = (float)DeviceDpi / 96;
+
+            tBText.Width = Width - (int)(DpiScaling * (716 - 446));
+            tBText.Height = Height - (int)(DpiScaling * 280);
+            btnApply.Left = Width - (int)(DpiScaling * 151);
+            btnApply.Top = Height - (int)(DpiScaling * 88);
+            CbInsertCode.Top = Height - (int)(DpiScaling * 84);
+
+            panel1.Width = Width - (int)(DpiScaling * 118);
+            panel1.Height = Height - (int)(DpiScaling * 76);
+
+            //PerformLayout();
+            //Update();
+            Invalidate();
             ShowTextSize();
+        }
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1.TabPages[e.Index];
+            Color fc = (e.State == DrawItemState.Selected) ? Colors.ContrastColor(MyControl.NotifyYellow) : MyControl.PanelForeColor;
+            if (!e.Bounds.IsEmpty)
+            {
+                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? MyControl.NotifyYellow : page.BackColor), e.Bounds);
+            }
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, e.Font, paddedBounds, fc); // page.ForeColor);
         }
 
         private void CBToolTable_CheckedChanged(object sender, EventArgs e)

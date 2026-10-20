@@ -34,6 +34,7 @@
  * 2023-07-31 l:156 f:BtnApply_Click fix group and figure tags
  * 2025-03-10 integrate INI settings
  * 2026-03-31 no use of tooltable anymore
+ * 2026-10-18 disable CbInsertCode if device != individual
 */
 
 using GrblPlotter.UserControls;
@@ -108,6 +109,11 @@ namespace GrblPlotter
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
+        }
+        public void SetActiveDevice(int device)
+        {
+            bool isDevice = (device < 3);
+            CbInsertCode.Visible = !isDevice;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

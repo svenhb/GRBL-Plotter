@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2020-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2020-2026 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,9 +22,12 @@
  * 2020-12-09 line 166, 264 no return of Gcode, must be picked up at Graphic.GCode
  * 2021-07-14 code clean up / code quality
  * 2024-02-10 add process automation
+ * 2026-10-18 disable CbInsertCode if device != individual
 */
 
+using GrblPlotter.UserControls;
 using QRCoder;
+using SharpDX.DirectInput;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -60,8 +63,13 @@ namespace GrblPlotter
 
             UpdateIniVariables();
         }
+        public void SetActiveDevice(int device)
+        {
+            bool isDevice = (device < 3);
+            CbInsertCode.Visible = !isDevice;
+        }
 
-		public void Restart()
+        public void Restart()
 		{
 			if (doBarcode)
 				BtnGenerateBarcodeClick(null, null);

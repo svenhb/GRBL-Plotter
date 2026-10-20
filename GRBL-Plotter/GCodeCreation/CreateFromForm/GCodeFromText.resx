@@ -1141,6 +1141,60 @@
   <data name="&gt;&gt;BtnSetHeight.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="NUDHeight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 90</value>
+  </data>
+  <data name="NUDHeight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="NUDHeight.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="NUDHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Set desired text height and adapt font-size to reach it.</value>
+  </data>
+  <data name="&gt;&gt;NUDHeight.Name" xml:space="preserve">
+    <value>NUDHeight</value>
+  </data>
+  <data name="&gt;&gt;NUDHeight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NUDHeight.Parent" xml:space="preserve">
+    <value>GbFont2</value>
+  </data>
+  <data name="&gt;&gt;NUDHeight.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NUDWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 72</value>
+  </data>
+  <data name="NUDWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="NUDWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="NUDWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Set desired text width and adapt font-size to reach it.</value>
+  </data>
+  <data name="&gt;&gt;NUDWidth.Name" xml:space="preserve">
+    <value>NUDWidth</value>
+  </data>
+  <data name="&gt;&gt;NUDWidth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NUDWidth.Parent" xml:space="preserve">
+    <value>GbFont2</value>
+  </data>
+  <data name="&gt;&gt;NUDWidth.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1510,60 +1564,6 @@
   <data name="&gt;&gt;tBText.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="NUDHeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 90</value>
-  </data>
-  <data name="NUDHeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="NUDHeight.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="NUDHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NUDHeight.ToolTip" xml:space="preserve">
-    <value>Set desired text height and adapt font-size to reach it.</value>
-  </data>
-  <data name="&gt;&gt;NUDHeight.Name" xml:space="preserve">
-    <value>NUDHeight</value>
-  </data>
-  <data name="&gt;&gt;NUDHeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NUDHeight.Parent" xml:space="preserve">
-    <value>GbFont2</value>
-  </data>
-  <data name="&gt;&gt;NUDHeight.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="NUDWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 72</value>
-  </data>
-  <data name="NUDWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="NUDWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="NUDWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NUDWidth.ToolTip" xml:space="preserve">
-    <value>Set desired text width and adapt font-size to reach it.</value>
-  </data>
-  <data name="&gt;&gt;NUDWidth.Name" xml:space="preserve">
-    <value>NUDWidth</value>
-  </data>
-  <data name="&gt;&gt;NUDWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NUDWidth.Parent" xml:space="preserve">
-    <value>GbFont2</value>
-  </data>
-  <data name="&gt;&gt;NUDWidth.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="LblHeight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1925,7 +1925,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 315</value>
+    <value>692, 315</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2189,7 +2189,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 315</value>
+    <value>692, 315</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2209,11 +2209,20 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>130, 18</value>
+  </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
+    <value>0, 0</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 341</value>
+    <value>700, 341</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -2242,14 +2251,11 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>700, 341</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 300</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>300, 380</value>
+    <value>716, 380</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Create G-Code from Text</value>
